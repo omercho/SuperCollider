@@ -1,0 +1,147 @@
+<html><head><title>Quark</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES</div>
+<div id='categories'><a href='./../Browse.html#Quarks'>Quarks</a></div>
+<h1>Quark</h1>
+<div id='summary'>Package of SC classes and extensions</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/<a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/Quark.sc'>Quark.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Object.html">Object</a></div>
+<div id='related'>See also: <a href="./../Guides/UsingQuarks.html">Using Quarks</a>, <a href="./../Classes/Quarks.html">Quarks</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'><li class='toc2'><a href='#Format of the .quark file'>Format of the .quark file</a></li>
+<ul class='toc'></ul></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*find'>find</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented class methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*fromFile'>fromFile</a> </li>
+<li class='toc3'><a href='#*fromPath'>fromPath</a> </li>
+<li class='toc3'><a href='#*fromString'>fromString</a> </li>
+<li class='toc3'><a href='#*new'>new</a> </li>
+</ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-name'>name</a> </li>
+<li class='toc3'><a href='#-summary'>summary</a> </li>
+<li class='toc3'><a href='#-version'>version</a> </li>
+<li class='toc3'><a href='#-author'>author</a> </li>
+<li class='toc3'><a href='#-path'>path</a> </li>
+<li class='toc3'><a href='#-info'>info</a> </li>
+<li class='toc3'><a href='#-help'>help</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+<li class='toc2'><a href='#Undocumented instance methods'>Undocumented instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-=='>==</a> </li>
+<li class='toc3'><a href='#-definesClasses'>definesClasses</a> </li>
+<li class='toc3'><a href='#-definesExtensionMethods'>definesExtensionMethods</a> </li>
+<li class='toc3'><a href='#-dependencies'>dependencies</a> </li>
+<li class='toc3'><a href='#-getDependencies'>getDependencies</a> </li>
+<li class='toc3'><a href='#-getName'>getName</a> </li>
+<li class='toc3'><a href='#-getString'>getString</a> </li>
+<li class='toc3'><a href='#-getVersion'>getVersion</a> </li>
+<li class='toc3'><a href='#-hash'>hash</a> </li>
+<li class='toc3'><a href='#-isCompatible'>isCompatible</a> </li>
+<li class='toc3'><a href='#-isLocal'>isLocal</a> </li>
+<li class='toc3'><a href='#-longDesc'>longDesc</a> </li>
+<li class='toc3'><a href='#-openHelpFile'>openHelpFile</a> </li>
+<li class='toc3'><a href='#-parent'>parent</a> </li>
+<li class='toc3'><a href='#-postDesc'>postDesc</a> </li>
+<li class='toc3'><a href='#-status'>status</a> </li>
+<li class='toc3'><a href='#-tags'>tags</a> </li>
+</ul></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>A Quark is a package of SC classes, helpfiles and other SC code.
+<p>A Quark object is created from the quark file found at <code class='code prettyprint lang-sc'>Quarks.local.path +/+ "DIRECTORY" +/+ nameOfQuark ++ ".quark"</code>. These Quark objects are mostly used just by the <a href="./../Classes/Quarks.html">Quarks</a> class, and you usually don't need to deal with them at all. But to publish a quark, you do need to make the quark file.<h3><a class='anchor' name='Format of the .quark file'>Format of the .quark file</a></h3>
+
+<p>This quarkfile is written in sc code, and should contain a dictionary with basic information about the package.<pre class='code prettyprint lang-sc'>(
+// required:
+    \name:           "theName",
+    \path:           "foldername", // almost always the same as the quark name
+    \summary:        "Human readable summary",
+    \author:         "My Name",
+
+// optional:
+    \version:        1.0, // must be a float
+    \organization:   "My Organization",
+    \country:        "My Country",
+    \since:          "2004",
+    \schelp:         "Classes/MyClass",
+    \ext_dependancy: "Information on additional software needed to run this quark properly",
+    \url:            "http://www.strangeQuark.de",
+
+// If the quark depends on other quarks, you can specify it as a list containing:
+// (1) strings (just the quark name)
+    \dependencies:   "nameOfDependantQuark"
+// (2) key-&gt;value pairs (name-&gt;version)
+//  \dependencies:   [("nameOfDependantQuark" -&gt; 1.0)]
+// or (3) arrays with info in this order: [name, version, repositoryBaseUrl]
+//  \dependencies:   [["nameOfDependantQuark", 1.0, "https://svn.weirdserver.be/trunk/weirdquarks"]]
+
+)</pre>
+
+<p>Of particular importance for the Quarks interface class is the PATH. This is the path relative to the quark directory. In most cases this is simply the name of the quark and also the name of the folder. However, you may wish to create a parent folder and then keep several quarks inside that, in which case your path would be: parentfolder/quarkname
+<p>It may even be possible to nest quarks inside of quarks (a kind of aggregate package), though a better way to do that would be to define an empty quark (the aggregate) and specify the other sub quarks as dependencies.
+<p>The value of <code class='code prettyprint lang-sc'>\schelp</code> optionally sets the main help file for the quark. It is a help path relative to an included <code>HelpSource</code> folder. For example, if the quark contains <code>HelpSource/Reference/MyQuark.schelp</code> one could use:<pre class='code prettyprint lang-sc'>    \schelp: "Reference/MyQuark"</pre>
+
+<p>It is used by <a href="#-help">-help</a>. If no <code class='code prettyprint lang-sc'>\schelp</code> is given, it will open the category browser showing all helpfiles for the quark.<div class='note'><span class='notelabel'>NOTE:</span> The old help system (sc version 3.4) used <code class='code prettyprint lang-sc'>\helpdoc</code>, and the new help system (<a href="./../Classes/SCDoc.html">SCDoc</a>) uses <code class='code prettyprint lang-sc'>\schelp</code> instead to be able to support both old and new helpfiles during the transition to the new help system.</div><div class='warning'><span class='warninglabel'>WARNING:</span> Please test that you don't have any syntax errors in your quark file before commiting it.</div><h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*find' href='./../Overviews/Methods.html#find'>find</a> (<span class='argstr'>name</span>)</h3>
+<div class='method'>
+<p>Return the Quark object with specified name, if found.</div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented class methods'>Undocumented class methods</a></h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*fromFile' href='./../Overviews/Methods.html#fromFile'>fromFile</a> (<span class='argstr'>path</span>, <span class='argstr'>parent</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*fromPath' href='./../Overviews/Methods.html#fromPath'>fromPath</a> (<span class='argstr'>path</span>, <span class='argstr'>parent</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*fromString' href='./../Overviews/Methods.html#fromString'>fromString</a> (<span class='argstr'>string</span>, <span class='argstr'>parent</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*new' href='./../Overviews/Methods.html#new'>new</a> (<span class='argstr'>blob</span>, <span class='argstr'>parent</span>)</h3>
+<h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-name' href='./../Overviews/Methods.html#name'>name</a> </h3>
+<div class='method'>
+<p>The name of the quark.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-summary' href='./../Overviews/Methods.html#summary'>summary</a> </h3>
+<div class='method'>
+<p>The summary of the quark.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-version' href='./../Overviews/Methods.html#version'>version</a> </h3>
+<div class='method'>
+<p>The version of the quark.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-author' href='./../Overviews/Methods.html#author'>author</a> </h3>
+<div class='method'>
+<p>The author of the quark.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-path' href='./../Overviews/Methods.html#path'>path</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-path' href='./../Overviews/Methods.html#path'>path</a> = value</h3>
+<div class='method'>
+<p>The path of the quark.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-info' href='./../Overviews/Methods.html#info'>info</a> </h3>
+<div class='method'>
+<p>The whole info blob as given in the .quark file.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-help' href='./../Overviews/Methods.html#help'>help</a> </h3>
+<div class='method'>
+<p>Open the main helpfile for this quark as given by the <code class='code prettyprint lang-sc'>\schelp</code> key in the directory file, or the category browser page showing all helpfiles for this quark if no main helpfile was specified. This method falls back to opening the old help as given by <code class='code prettyprint lang-sc'>\helpdoc</code> if above fails.</div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h3><a class='anchor' name='Undocumented instance methods'>Undocumented instance methods</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-==' href='./../Overviews/Methods.html#=='>==</a> (<span class='argstr'>that</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-definesClasses' href='./../Overviews/Methods.html#definesClasses'>definesClasses</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/packages.sc'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/packages.sc</a></div>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-definesExtensionMethods' href='./../Overviews/Methods.html#definesExtensionMethods'>definesExtensionMethods</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/packages.sc'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Quarks/packages.sc</a></div>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-dependencies' href='./../Overviews/Methods.html#dependencies'>dependencies</a> (<span class='argstr'>recursive: false</span>, <span class='argstr'>knownList</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-getDependencies' href='./../Overviews/Methods.html#getDependencies'>getDependencies</a> (<span class='argstr'>obj</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-getName' href='./../Overviews/Methods.html#getName'>getName</a> (<span class='argstr'>obj</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-getString' href='./../Overviews/Methods.html#getString'>getString</a> (<span class='argstr'>obj</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-getVersion' href='./../Overviews/Methods.html#getVersion'>getVersion</a> (<span class='argstr'>obj</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-hash' href='./../Overviews/Methods.html#hash'>hash</a> (<span class='argstr'>that</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-isCompatible' href='./../Overviews/Methods.html#isCompatible'>isCompatible</a> </h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-isLocal' href='./../Overviews/Methods.html#isLocal'>isLocal</a> </h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-longDesc' href='./../Overviews/Methods.html#longDesc'>longDesc</a> </h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-openHelpFile' href='./../Overviews/Methods.html#openHelpFile'>openHelpFile</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/deprecated/deprecated-3.7.sc'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/deprecated/deprecated-3.7.sc</a></div>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-parent' href='./../Overviews/Methods.html#parent'>parent</a> </h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-postDesc' href='./../Overviews/Methods.html#postDesc'>postDesc</a> </h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-status' href='./../Overviews/Methods.html#status'>status</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-status' href='./../Overviews/Methods.html#status'>status</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-tags' href='./../Overviews/Methods.html#tags'>tags</a> </h3>
+<div class='doclink'>source: <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/Quark.schelp'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/Quark.schelp</a><br>link::Classes/Quark::<br>sc version: 3.6.5</div></div></body></html>

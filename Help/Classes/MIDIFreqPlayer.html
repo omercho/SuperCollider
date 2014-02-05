@@ -1,0 +1,127 @@
+<html><head><title>MIDIFreqPlayer</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#External Control>MIDI'>External Control>MIDI</a>, <a href='./../Browse.html#Libraries>crucial>MIDI'>Libraries>crucial>MIDI</a></div>
+<h1>MIDIFreqPlayer</h1>
+<div id='summary'>MIDI note to control rate \freq convertor. Classic analog monophonic style including hammer on trills</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/crucial-library-master/Control/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/crucial-library-master/Control/MIDIPlayer.sc'>MIDIPlayer.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/MIDIHoldsNotes.html">MIDIHoldsNotes</a> : <a href="../Classes/MIDIPlayer.html">MIDIPlayer</a> : <a href="../Classes/SynthlessPlayer.html">SynthlessPlayer</a> : <a href="../Classes/AbstractPlayer.html">AbstractPlayer</a> : <a href="../Classes/AbstractFunction.html">AbstractFunction</a> : <a href="../Classes/Object.html">Object</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*new'>new</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+</ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-initResponders'>initResponders</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#examples'>Examples</a></li>
+<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>Implements classic analog monophonic style MIDI to control rate \freq. Including hammer on trills (if you know analog synths you know what that means).<pre class='code prettyprint lang-sc'>(
+
+Instr(\monosynth,{ arg gate=0.0,freq=440.0,ffreq=500,rq=0.1,width=0.3;
+    var amp;
+    amp = Latch.kr(gate,gate);
+
+    RLPF.ar(
+        Pulse.ar(freq,width),
+        ffreq,
+        rq)
+
+    * EnvGen.kr(Env.adsr,gate,amp)
+
+});
+
+Patch(\monosynth,[
+    MIDIGatePlayer.new,
+    MIDIFreqPlayer.new
+]).gui
+
+)</pre>
+<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*new' href='./../Overviews/Methods.html#new'>new</a> (<span class='argstr'>init: 440</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>init<td class='argumentdesc'></table></div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-initResponders' href='./../Overviews/Methods.html#initResponders'>initResponders</a> </h3>
+<div class='method'></div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='examples'>Examples</a></h2>
+<pre class='code prettyprint lang-sc'>// command-. to stop
+
+(
+
+Instr(\fatsynth,{ arg gate=0.0,freq=440.0,ffreq=500,rq=0.1;
+    var amp;
+    amp = Latch.kr(gate,gate);
+
+    RHPF.ar(
+        Splay.arFill(9,{ arg i;
+            Pulse.ar(freq + rrand(-100,100),LFNoise1.kr(0.01))
+        }),
+        ffreq * amp,
+        rq)
+
+    * EnvGen.kr(Env.adsr,gate,amp)
+});
+
+Patch(\fatsynth,[
+    MIDIGatePlayer.new,
+    MIDIFreqPlayer.new,
+    CCPlayer(50,ControlSpec(100,3000,\exp,0.0,500.0)),
+    CCPlayer(51,ControlSpec(0.1,0.9,\exp,0.0,0.1))
+]).gui
+
+)
+
+// Mod Wheel
+(
+Patch(\fatsynth,[
+    MIDIGatePlayer.new,
+    MIDIFreqPlayer.new,
+    CCPlayer(1,[100,3000,\exp,0.0,500.0])
+]).play
+
+)
+
+(
+Patch(\monosynth,[
+    BeatClockPlayer.new(16),
+    MIDIFreqPlayer.new,
+    CCPlayer(50,[100,3000,\exp,0.0,1500.0]),
+    CCPlayer(51,[0.1,0.9,\exp,0.0,0.2]),
+    CCPlayer(52,[0.05,1.0])
+]).play
+
+)</pre>
+
+<p>Note that the intial values are the spec's defaults, not the Instr function argument defaults.<pre class='code prettyprint lang-sc'>/*
+( // PlayerBinop not yet implemented
+
+Patch(\monosynth,[
+    BeatClockPlayer.new(16) * MIDIGatePlayer.new,
+    MIDIFreqPlayer.new,
+    CCPlayer(50,[100,3000,\exp,0.0,1500.0]),
+    CCPlayer(51,[0.1,0.9,\exp,0.0,0.2]),
+    CCPlayer(52,[0.05,1.0])
+]).play
+
+)
+*/</pre>
+<div class='doclink'>source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/crucial-library-master/HelpSource/Classes/MIDIFreqPlayer.schelp'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/crucial-library-master/HelpSource/Classes/MIDIFreqPlayer.schelp</a><br>link::Classes/MIDIFreqPlayer::<br>sc version: 3.6.5</div></div></body></html>

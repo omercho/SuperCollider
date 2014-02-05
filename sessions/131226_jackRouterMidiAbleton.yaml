@@ -1,0 +1,32 @@
+documents: !QVariantList
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131225_ifthisif02_d.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131225_1656_DrumM_Pif.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131226_0042_BufNoise.scd
+  - /Users/omercho/Dropbox/SC/__SC2011/+11JUL2011/110722_ZirkoniumJack.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 1
+        position: 2206
+      - !QVariantMap
+        documentIndex: 2
+        position: 4114
+      - !QVariantMap
+        documentIndex: 4
+        position: 602
+      - !QVariantMap
+        documentIndex: 3
+        position: 1187
+      - !QVariantMap
+        documentIndex: 0
+        position: 112
+  state: AAAA/wAAAAAAAAABAAAAZAEAAAABAQAAAAE=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAAAAAAFgAABokAAAMBAAAAAAAAACwAAAaJAAADAQAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAABsAAACvvwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACvgAAAGYA////AAAAAQAAAksAAAK+/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAWoAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAWsAAAFTAAAATAD///8AAAPRAAACvgAAAAEAAAACAAAAAQAAAAL8AAAAAA==

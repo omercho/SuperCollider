@@ -1,0 +1,1142 @@
+<html><head><title>Kaffer</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></div>
+<h1>Kaffer</h1>
+<div id='summary'>(Undocumented class)</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/Kaffer.sc'>Kaffer.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Buffer.html">Buffer</a> : <a href="../Classes/Object.html">Object</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented class methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*initClass'>initClass</a> </li>
+<li class='toc3'><a href='#*panAzChannels'>panAzChannels</a> </li>
+</ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+<li class='toc2'><a href='#Undocumented instance methods'>Undocumented instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-batt'>batt</a> </li>
+<li class='toc3'><a href='#-bdamp'>bdamp</a> </li>
+<li class='toc3'><a href='#-bend'>bend</a> </li>
+<li class='toc3'><a href='#-bfdamp'>bfdamp</a> </li>
+<li class='toc3'><a href='#-bfmix'>bfmix</a> </li>
+<li class='toc3'><a href='#-bfroom'>bfroom</a> </li>
+<li class='toc3'><a href='#-bloop'>bloop</a> </li>
+<li class='toc3'><a href='#-bmul'>bmul</a> </li>
+<li class='toc3'><a href='#-bout'>bout</a> </li>
+<li class='toc3'><a href='#-bpan'>bpan</a> </li>
+<li class='toc3'><a href='#-bpv1a'>bpv1a</a> </li>
+<li class='toc3'><a href='#-bpv1b'>bpv1b</a> </li>
+<li class='toc3'><a href='#-bpv2a'>bpv2a</a> </li>
+<li class='toc3'><a href='#-bpv2b'>bpv2b</a> </li>
+<li class='toc3'><a href='#-bpv3a'>bpv3a</a> </li>
+<li class='toc3'><a href='#-bpv3b'>bpv3b</a> </li>
+<li class='toc3'><a href='#-bpv4a'>bpv4a</a> </li>
+<li class='toc3'><a href='#-bpv4b'>bpv4b</a> </li>
+<li class='toc3'><a href='#-bpv5a'>bpv5a</a> </li>
+<li class='toc3'><a href='#-bpv5b'>bpv5b</a> </li>
+<li class='toc3'><a href='#-breset'>breset</a> </li>
+<li class='toc3'><a href='#-brev'>brev</a> </li>
+<li class='toc3'><a href='#-brls'>brls</a> </li>
+<li class='toc3'><a href='#-broom'>broom</a> </li>
+<li class='toc3'><a href='#-brt'>brt</a> </li>
+<li class='toc3'><a href='#-brt1'>brt1</a> </li>
+<li class='toc3'><a href='#-brt1Dur'>brt1Dur</a> </li>
+<li class='toc3'><a href='#-brt2'>brt2</a> </li>
+<li class='toc3'><a href='#-brt2Dur'>brt2Dur</a> </li>
+<li class='toc3'><a href='#-brt3'>brt3</a> </li>
+<li class='toc3'><a href='#-bstart'>bstart</a> </li>
+<li class='toc3'><a href='#-bsus'>bsus</a> </li>
+<li class='toc3'><a href='#-btrDur'>btrDur</a> </li>
+<li class='toc3'><a href='#-btrig'>btrig</a> </li>
+<li class='toc3'><a href='#-bvib'>bvib</a> </li>
+<li class='toc3'><a href='#-play'>play</a> </li>
+<li class='toc3'><a href='#-playBuf'>playBuf</a> </li>
+<li class='toc3'><a href='#-playBufR'>playBufR</a> </li>
+<li class='toc3'><a href='#-playFverb'>playFverb</a> </li>
+<li class='toc3'><a href='#-playGverb'>playGverb</a> </li>
+<li class='toc3'><a href='#-playGverbR'>playGverbR</a> </li>
+<li class='toc3'><a href='#-playLP'>playLP</a> </li>
+<li class='toc3'><a href='#-playPV1'>playPV1</a> </li>
+<li class='toc3'><a href='#-playPV1R'>playPV1R</a> </li>
+<li class='toc3'><a href='#-playPV2'>playPV2</a> </li>
+<li class='toc3'><a href='#-playPV3'>playPV3</a> </li>
+<li class='toc3'><a href='#-playPV3Pan'>playPV3Pan</a> </li>
+<li class='toc3'><a href='#-playPV4'>playPV4</a> </li>
+<li class='toc3'><a href='#-playPV4B'>playPV4B</a> </li>
+<li class='toc3'><a href='#-playPV4Pan'>playPV4Pan</a> </li>
+<li class='toc3'><a href='#-playPV5'>playPV5</a> </li>
+<li class='toc3'><a href='#-transBuf'>transBuf</a> </li>
+<li class='toc3'><a href='#-transGverb'>transGverb</a> </li>
+</ul></ul><li class='toc1'><a href='#Help template'>Help template</a></li>
+<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>This class is missing documentation.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented class methods'>Undocumented class methods</a></h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*initClass' href='./../Overviews/Methods.html#initClass'>initClass</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*panAzChannels' href='./../Overviews/Methods.html#panAzChannels'>panAzChannels</a> </h3>
+<h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h3><a class='anchor' name='Undocumented instance methods'>Undocumented instance methods</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-batt' href='./../Overviews/Methods.html#batt'>batt</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-batt' href='./../Overviews/Methods.html#batt'>batt</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bdamp' href='./../Overviews/Methods.html#bdamp'>bdamp</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bdamp' href='./../Overviews/Methods.html#bdamp'>bdamp</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bend' href='./../Overviews/Methods.html#bend'>bend</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bend' href='./../Overviews/Methods.html#bend'>bend</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfdamp' href='./../Overviews/Methods.html#bfdamp'>bfdamp</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfdamp' href='./../Overviews/Methods.html#bfdamp'>bfdamp</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfmix' href='./../Overviews/Methods.html#bfmix'>bfmix</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfmix' href='./../Overviews/Methods.html#bfmix'>bfmix</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfroom' href='./../Overviews/Methods.html#bfroom'>bfroom</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bfroom' href='./../Overviews/Methods.html#bfroom'>bfroom</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bloop' href='./../Overviews/Methods.html#bloop'>bloop</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bloop' href='./../Overviews/Methods.html#bloop'>bloop</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bmul' href='./../Overviews/Methods.html#bmul'>bmul</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bmul' href='./../Overviews/Methods.html#bmul'>bmul</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bout' href='./../Overviews/Methods.html#bout'>bout</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bout' href='./../Overviews/Methods.html#bout'>bout</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpan' href='./../Overviews/Methods.html#bpan'>bpan</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpan' href='./../Overviews/Methods.html#bpan'>bpan</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv1a' href='./../Overviews/Methods.html#bpv1a'>bpv1a</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv1a' href='./../Overviews/Methods.html#bpv1a'>bpv1a</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv1b' href='./../Overviews/Methods.html#bpv1b'>bpv1b</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv1b' href='./../Overviews/Methods.html#bpv1b'>bpv1b</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv2a' href='./../Overviews/Methods.html#bpv2a'>bpv2a</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv2a' href='./../Overviews/Methods.html#bpv2a'>bpv2a</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv2b' href='./../Overviews/Methods.html#bpv2b'>bpv2b</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv2b' href='./../Overviews/Methods.html#bpv2b'>bpv2b</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv3a' href='./../Overviews/Methods.html#bpv3a'>bpv3a</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv3a' href='./../Overviews/Methods.html#bpv3a'>bpv3a</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv3b' href='./../Overviews/Methods.html#bpv3b'>bpv3b</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv3b' href='./../Overviews/Methods.html#bpv3b'>bpv3b</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv4a' href='./../Overviews/Methods.html#bpv4a'>bpv4a</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv4a' href='./../Overviews/Methods.html#bpv4a'>bpv4a</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv4b' href='./../Overviews/Methods.html#bpv4b'>bpv4b</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv4b' href='./../Overviews/Methods.html#bpv4b'>bpv4b</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv5a' href='./../Overviews/Methods.html#bpv5a'>bpv5a</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv5a' href='./../Overviews/Methods.html#bpv5a'>bpv5a</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv5b' href='./../Overviews/Methods.html#bpv5b'>bpv5b</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bpv5b' href='./../Overviews/Methods.html#bpv5b'>bpv5b</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-breset' href='./../Overviews/Methods.html#breset'>breset</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-breset' href='./../Overviews/Methods.html#breset'>breset</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brev' href='./../Overviews/Methods.html#brev'>brev</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brev' href='./../Overviews/Methods.html#brev'>brev</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brls' href='./../Overviews/Methods.html#brls'>brls</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brls' href='./../Overviews/Methods.html#brls'>brls</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-broom' href='./../Overviews/Methods.html#broom'>broom</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-broom' href='./../Overviews/Methods.html#broom'>broom</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt' href='./../Overviews/Methods.html#brt'>brt</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt' href='./../Overviews/Methods.html#brt'>brt</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt1' href='./../Overviews/Methods.html#brt1'>brt1</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt1' href='./../Overviews/Methods.html#brt1'>brt1</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt1Dur' href='./../Overviews/Methods.html#brt1Dur'>brt1Dur</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt1Dur' href='./../Overviews/Methods.html#brt1Dur'>brt1Dur</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt2' href='./../Overviews/Methods.html#brt2'>brt2</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt2' href='./../Overviews/Methods.html#brt2'>brt2</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt2Dur' href='./../Overviews/Methods.html#brt2Dur'>brt2Dur</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt2Dur' href='./../Overviews/Methods.html#brt2Dur'>brt2Dur</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt3' href='./../Overviews/Methods.html#brt3'>brt3</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-brt3' href='./../Overviews/Methods.html#brt3'>brt3</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bstart' href='./../Overviews/Methods.html#bstart'>bstart</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bstart' href='./../Overviews/Methods.html#bstart'>bstart</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bsus' href='./../Overviews/Methods.html#bsus'>bsus</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bsus' href='./../Overviews/Methods.html#bsus'>bsus</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-btrDur' href='./../Overviews/Methods.html#btrDur'>btrDur</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-btrDur' href='./../Overviews/Methods.html#btrDur'>btrDur</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-btrig' href='./../Overviews/Methods.html#btrig'>btrig</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-btrig' href='./../Overviews/Methods.html#btrig'>btrig</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bvib' href='./../Overviews/Methods.html#bvib'>bvib</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bvib' href='./../Overviews/Methods.html#bvib'>bvib</a> = value</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-play' href='./../Overviews/Methods.html#play'>play</a> (<span class='argstr'>loop: false</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playBuf' href='./../Overviews/Methods.html#playBuf'>playBuf</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playBufR' href='./../Overviews/Methods.html#playBufR'>playBufR</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>end</span>, <span class='argstr'>reset</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playFverb' href='./../Overviews/Methods.html#playFverb'>playFverb</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>froom</span>, <span class='argstr'>fmix</span>, <span class='argstr'>fdamp</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playGverb' href='./../Overviews/Methods.html#playGverb'>playGverb</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>room</span>, <span class='argstr'>rev</span>, <span class='argstr'>damp</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playGverbR' href='./../Overviews/Methods.html#playGverbR'>playGverbR</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>end</span>, <span class='argstr'>reset</span>, <span class='argstr'>loop</span>, <span class='argstr'>room</span>, <span class='argstr'>rev</span>, <span class='argstr'>damp</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playLP' href='./../Overviews/Methods.html#playLP'>playLP</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV1' href='./../Overviews/Methods.html#playPV1'>playPV1</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV1R' href='./../Overviews/Methods.html#playPV1R'>playPV1R</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV2' href='./../Overviews/Methods.html#playPV2'>playPV2</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv2a</span>, <span class='argstr'>pv2b</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV3' href='./../Overviews/Methods.html#playPV3'>playPV3</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv3a</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV3Pan' href='./../Overviews/Methods.html#playPV3Pan'>playPV3Pan</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv3a</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV4' href='./../Overviews/Methods.html#playPV4'>playPV4</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv4a</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV4B' href='./../Overviews/Methods.html#playPV4B'>playPV4B</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv4a</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV4Pan' href='./../Overviews/Methods.html#playPV4Pan'>playPV4Pan</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv4a</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-playPV5' href='./../Overviews/Methods.html#playPV5'>playPV5</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rate</span>, <span class='argstr'>rate2</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pv5a</span>, <span class='argstr'>pv5b</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-transBuf' href='./../Overviews/Methods.html#transBuf'>transBuf</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rt</span>, <span class='argstr'>rt1</span>, <span class='argstr'>rt2</span>, <span class='argstr'>rt3</span>, <span class='argstr'>rt1Dur</span>, <span class='argstr'>rt2Dur</span>, <span class='argstr'>trDur</span>, <span class='argstr'>vib</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-transGverb' href='./../Overviews/Methods.html#transGverb'>transGverb</a> (<span class='argstr'>att</span>, <span class='argstr'>sus</span>, <span class='argstr'>rls</span>, <span class='argstr'>mul</span>, <span class='argstr'>trig</span>, <span class='argstr'>rt</span>, <span class='argstr'>rt1</span>, <span class='argstr'>rt2</span>, <span class='argstr'>rt3</span>, <span class='argstr'>rt1Dur</span>, <span class='argstr'>rt2Dur</span>, <span class='argstr'>trDur</span>, <span class='argstr'>vib</span>, <span class='argstr'>start</span>, <span class='argstr'>loop</span>, <span class='argstr'>room</span>, <span class='argstr'>rev</span>, <span class='argstr'>damp</span>, <span class='argstr'>pan</span>, <span class='argstr'>out</span>)</h3>
+<h2><a class='anchor' name='Help template'>Help template</a></h2>
+
+<p>Copy and paste the text below and save to HelpSource/Classes/Kaffer.schelp<pre class='code prettyprint lang-sc'>TITLE:: Kaffer
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: initClass
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: panAzChannels
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+METHOD:: brls
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: transBuf
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rt
+(describe argument here)
+
+ARGUMENT:: rt1
+(describe argument here)
+
+ARGUMENT:: rt2
+(describe argument here)
+
+ARGUMENT:: rt3
+(describe argument here)
+
+ARGUMENT:: rt1Dur
+(describe argument here)
+
+ARGUMENT:: rt2Dur
+(describe argument here)
+
+ARGUMENT:: trDur
+(describe argument here)
+
+ARGUMENT:: vib
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bfmix
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: play
+(describe method here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: batt
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bstart
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt1
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playFverb
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: froom
+(describe argument here)
+
+ARGUMENT:: fmix
+(describe argument here)
+
+ARGUMENT:: fdamp
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV4
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv4a
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv2b
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv4b
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: btrig
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bend
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv1a
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv4a
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: broom
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bmul
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bsus
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV4Pan
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv4a
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt3
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV2
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv2a
+(describe argument here)
+
+ARGUMENT:: pv2b
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bdamp
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: transGverb
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rt
+(describe argument here)
+
+ARGUMENT:: rt1
+(describe argument here)
+
+ARGUMENT:: rt2
+(describe argument here)
+
+ARGUMENT:: rt3
+(describe argument here)
+
+ARGUMENT:: rt1Dur
+(describe argument here)
+
+ARGUMENT:: rt2Dur
+(describe argument here)
+
+ARGUMENT:: trDur
+(describe argument here)
+
+ARGUMENT:: vib
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: room
+(describe argument here)
+
+ARGUMENT:: rev
+(describe argument here)
+
+ARGUMENT:: damp
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bout
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bfroom
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: btrDur
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv1b
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV3Pan
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv3a
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt2
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playBufR
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: end
+(describe argument here)
+
+ARGUMENT:: reset
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playLP
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv5a
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV1
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playBuf
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV1R
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV4B
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv4a
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv5b
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpan
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV5
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv5a
+(describe argument here)
+
+ARGUMENT:: pv5b
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv2a
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playPV3
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: rate2
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: pv3a
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brev
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt1Dur
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bfdamp
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playGverb
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: room
+(describe argument here)
+
+ARGUMENT:: rev
+(describe argument here)
+
+ARGUMENT:: damp
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: playGverbR
+(describe method here)
+
+ARGUMENT:: att
+(describe argument here)
+
+ARGUMENT:: sus
+(describe argument here)
+
+ARGUMENT:: rls
+(describe argument here)
+
+ARGUMENT:: mul
+(describe argument here)
+
+ARGUMENT:: trig
+(describe argument here)
+
+ARGUMENT:: rate
+(describe argument here)
+
+ARGUMENT:: start
+(describe argument here)
+
+ARGUMENT:: end
+(describe argument here)
+
+ARGUMENT:: reset
+(describe argument here)
+
+ARGUMENT:: loop
+(describe argument here)
+
+ARGUMENT:: room
+(describe argument here)
+
+ARGUMENT:: rev
+(describe argument here)
+
+ARGUMENT:: damp
+(describe argument here)
+
+ARGUMENT:: pan
+(describe argument here)
+
+ARGUMENT:: out
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: brt2Dur
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: breset
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bvib
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv3a
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpv3b
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bloop
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
+</pre>
+<div class='doclink'>link::Classes/Kaffer::<br>sc version: 3.6.5</div></div></body></html>
