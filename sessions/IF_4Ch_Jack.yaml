@@ -1,0 +1,64 @@
+documents: !QVariantList
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/_MAIN_01.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/LoopMain_02.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/scCh01.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/stpDrum01.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/stpBass01.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/stpMid01.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/scKaf01.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/startupOC/Note_hz.scd
+  - /Users/omercho/Dropbox/SC/__SCVvarius/tutorial/SCBook0211_code/code/Ch 17 Tunings/Ch17code.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131225_ifthisif02_d.scd
+  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/140101_demoReel01_06.scd
+  - /Users/omercho/Dropbox/SC/__SC2013/+33JUL/130719_0244_KafesQC.scd
+  - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120918_0439_dragm.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 11
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 536
+      - !QVariantMap
+        documentIndex: 9
+        position: 1583
+      - !QVariantMap
+        documentIndex: 8
+        position: 2289
+      - !QVariantMap
+        documentIndex: 7
+        position: 4393
+      - !QVariantMap
+        documentIndex: 10
+        position: 4616
+      - !QVariantMap
+        documentIndex: 5
+        position: 318
+      - !QVariantMap
+        documentIndex: 4
+        position: 3
+      - !QVariantMap
+        documentIndex: 3
+        position: 246
+      - !QVariantMap
+        documentIndex: 2
+        position: 776
+      - !QVariantMap
+        documentIndex: 1
+        position: 249
+      - !QVariantMap
+        documentIndex: 0
+        position: 1384
+      - !QVariantMap
+        documentIndex: 6
+        position: 539
+  state: AAAA/wAAAAAAAAABAAAAZAEAAAABAQAAAAE=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: AAHZ0MsAAQAAAAADHAAAANYAAAXpAAADIwAAAxwAAADsAAAF6QAAAyMAAAAAAAA=
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAgAAAAOAAABqkAAAMLAAAAIAAAAE4AAAapAAADCwAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACpvwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACpgAAAGYA////AAAAAQAAAiMAAAKm/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAKmAAAATAD///8AAAPQAAACpgAAAAEAAAACAAAAAQAAAAL8AAAAAA==

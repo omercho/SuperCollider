@@ -1,0 +1,173 @@
+<html><head><title>Using Quarks</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider GUIDES</div>
+<div id='categories'><a href='./../Browse.html#Quarks'>Quarks</a></div>
+<h1>Using Quarks</h1>
+<div id='summary'>A guide to Quarks</div>
+</div>
+<div class='subheader'>
+<div id='related'>See also: <a href="./../Classes/Quark.html">Quark</a>, <a href="./../Classes/Quarks.html">Quarks</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#Obtaining quarks'>Obtaining quarks</a></li>
+<ul class='toc'><li class='toc2'><a href='#Downloaded binary'>Downloaded binary</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Getting Quarks from the SVN repository'>Getting Quarks from the SVN repository</a></li>
+<ul class='toc'></ul></ul><li class='toc1'><a href='#Using Quarks'>Using Quarks</a></li>
+<ul class='toc'><li class='toc2'><a href='#The DIRECTORY'>The DIRECTORY</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Checking out and Installing a Quark'>Checking out and Installing a Quark</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Uninstall'>Uninstall</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Dependencies'>Dependencies</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Check out all available Quarks'>Check out all available Quarks</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Standard SVN tools'>Standard SVN tools</a></li>
+<ul class='toc'></ul></ul><li class='toc1'><a href='#Creating a Quark'>Creating a Quark</a></li>
+<ul class='toc'><li class='toc2'><a href='#Adding a quark to the public repository'>Adding a quark to the public repository</a></li>
+<ul class='toc'></ul><li class='toc2'><a href='#Local Repository Example'>Local Repository Example</a></li>
+<ul class='toc'></ul></ul></ul></div>
+<p>SC supports extensions to its class library, documentation, and server UGen plugins. These extensions are stored in subfolders of <code class='code prettyprint lang-sc'>Platform.userExtensionDir</code>. For more info see <a href="./../Guides/UsingExtensions.html">Using Extensions</a>.
+<p>A Quark is a more formalized kind of extension folder. It can be shared with others and can be easily installed or uninstalled using the Quarks package manager. The package manager has a directory of "quarkfiles" which describe the quarks and how to install them automatically for you.
+<p>There is a shared library of these packages on SourceForge <a href="http://quarks.sourceforge.net">http://quarks.sourceforge.net</a> offering a variety of useful extra capabilities for SC.<h2><a class='anchor' name='Obtaining quarks'>Obtaining quarks</a></h2>
+
+<p>There are two standard ways to obtain this shared Quarks library.<h3><a class='anchor' name='Downloaded binary'>Downloaded binary</a></h3>
+
+<p>If you have downloaded the full binary of SC then you already have them in the Optional Extras folder of the SC download. If so, move the 'quarks' folder into this directory:<pre class='code prettyprint lang-sc'>// execute this code to post the directory path
+Platform.userAppSupportDir</pre>
+<div class='note'><span class='notelabel'>NOTE:</span> do not place it inside Extensions. If you place all of them inside extensions, then they will all be in the compile path.</div>
+<p>The Quarks package manager will now be able to install and uninstall individual Quark packages. It does so by making a symlink in the Extensions/quarks/ folder, pointing back to the quark's source code which stays in the User App Support directory.<pre class='code prettyprint lang-sc'>// manage Quarks packages from a gui
+Quarks.gui</pre>
+<div class='note'><span class='notelabel'>NOTE:</span> Do not turn everything on. Start slowly</div>
+<p>Some Quarks depend on other Quarks and will automatically install the other ones they need. Conflicts of classes and package dependencies are always a possibility, so be aware that you may "break" your SC so that it cannot compile what has been placed in its compile path.
+<p>If this happens, simply open the extension folder (<code class='code prettyprint lang-sc'>Platform.userExtensionDir</code>) and delete the symlinks inside the quarks folder. (Remember: these symlinks point back to the actual quarks sitting harmlessly in your app support directory)<h3><a class='anchor' name='Getting Quarks from the SVN repository'>Getting Quarks from the SVN repository</a></h3>
+
+<p>The other way to obtain the Quarks library is to checkout a copy using Subversion (SVN). SC is fully integrated with SVN and can checkout single quarks or update them whenever developers make changes. This is a wonderful thing since you can complain about a broken knob, somebody in Belgium will fix it and a few hours later its working for you.
+<p>You will need the subversion client software installed (<a href="http://subversion.tigris.org">http://subversion.tigris.org</a>). To check whether you already have it, type "svn help" in a terminal window.
+<p>If you have previously installed the quarks library from the binary download, you should move or delete that folder now.
+<p>The Quarks class and the quarks gui manager will be executing subversion commands.
+<p>On Mac, those commands will launch in a terminal window. The first time you run a SourceForge quarks svn command you will be asked whether to accept the SSL certificate for SourceForge. Press 'p' to accept it permanently.<h2><a class='anchor' name='Using Quarks'>Using Quarks</a></h2>
+<h3><a class='anchor' name='The DIRECTORY'>The DIRECTORY</a></h3>
+
+<p>The quarks folder contains a folder called DIRECTORY filled with quarkfiles xxxxxxxxy.quark. These file describe the quark, the developer and note any dependencies. You can update the directory without downloading all of the quarks.
+<p>The following command will make sure you have an up-to-date directory listing (you can run this whether or not it's your first time using quarks):<pre class='code prettyprint lang-sc'>Quarks.updateDirectory
+
+// list all quarks in the repository
+Quarks.repos.quarks</pre>
+
+<p>Note that checking out or updating the directory touches only the list of quarks. It does not check out or update any code or help files that belong to a quark. If you want to get the latest code for an individual quark, use the instructions in the next section. To checkout or update the entire Quarks repository:<pre class='code prettyprint lang-sc'>Quarks.checkoutAll; // NB: most users don't want ALL quarks, so getting them all might be a waste of disk space!
+Quarks.update;</pre>
+
+<p>Individual Quarks can be updated by providing the name to the update method:<pre class='code prettyprint lang-sc'>Quarks.update("testquark"); // much better use of your hard disk. (NB this assumes you already have installed "testquark")</pre>
+<h3><a class='anchor' name='Checking out and Installing a Quark'>Checking out and Installing a Quark</a></h3>
+
+<p>Either launch the package manager to install/uninstall individual Quarks:<pre class='code prettyprint lang-sc'>Quarks.gui</pre>
+
+<p>which we hope is somewhat self explanatory. (and steadily improving)
+<p>...or use the "checkout" command directly:<pre class='code prettyprint lang-sc'>// checks it out from svn
+Quarks.checkout("testquark");
+
+// this installs it
+Quarks.install("testquark");</pre>
+
+<p>This symlinks the quark's sourcecode folder into your Extensions directory. The source code itself stays in the quarks folder, but the symlink is in your Extensions directory (and thus in SC's compile path).
+<p>After a quark is installed you must recompile the language. Installing simply places the code into SC's compile path. You must then recompile the class library.
+<p>Then you can use it:<pre class='code prettyprint lang-sc'>TestQuark.sayHello</pre>
+<h3><a class='anchor' name='Uninstall'>Uninstall</a></h3>
+
+<p>You can of course uninstall quarks if you decide you don't need them:<pre class='code prettyprint lang-sc'>Quarks.uninstall("testquark");
+
+// list those installed
+Quarks.installed</pre>
+<h3><a class='anchor' name='Dependencies'>Dependencies</a></h3>
+
+<p>Quarks may specify other quarks that they are dependent on. <code class='code prettyprint lang-sc'>Quarks.install</code> will also attempt to install those other quarks that the desired quark depends upon, if not already installed. You can prevent this if neccessary by passing false as the second argument to <code class='code prettyprint lang-sc'>Quarks.install</code>.<pre class='code prettyprint lang-sc'>Quarks.install( "somequark", includeDependencies: false )</pre>
+
+<p>Similarly the install command will attempt to download quarks if you don't already have them locally. You can prevent this using the allowCheckout argument:<pre class='code prettyprint lang-sc'>Quarks.install( "somequark", checkoutIfNeeded: false )
+
+// list those in the repository that you could checkout
+Quarks.repos.quarks
+
+// list those that you have checked out and could now install
+Quarks.local.quarks</pre>
+<h3><a class='anchor' name='Check out all available Quarks'>Check out all available Quarks</a></h3>
+<pre class='code prettyprint lang-sc'>Quarks.checkoutAll</pre>
+
+<p>This downloads all of them into {Application Support Directory}/quarks but does not yet install them into your class library. It can be particularly helpful because you won't in future need to have an internet connection to install the quarks: they are already downloaded even if not installed.<pre class='code prettyprint lang-sc'>// post those checked out
+Quarks.checkedOut
+
+// post those checked out with a description
+Quarks.listCheckedOut
+
+// post all available with a description
+Quarks.listAvailable</pre>
+<h3><a class='anchor' name='Standard SVN tools'>Standard SVN tools</a></h3>
+
+<p>The Quarks class interface mirrors the familar svn commands while substituting in the correct paths.<pre class='code prettyprint lang-sc'>Quarks.update( "testquark" )
+Quarks.update // updates all
+
+Quarks.status( "testquark" )
+Quarks.status // status of all</pre>
+
+<p>You may also use any standard SVN tools which is probably easier especially for add and commit.
+<p>The principal repository is located at: <a href="https://quarks.svn.sourceforge.net/svnroot/quarks">https://quarks.svn.sourceforge.net/svnroot/quarks</a><h2><a class='anchor' name='Creating a Quark'>Creating a Quark</a></h2>
+
+<p>Adding a Quark requires using standard SVN tools. Create your folder in {Application Support}/quarks/ (we'll assume it's called quarkname). Place your classes in this folder. Place a quark file called quarkname.quark into {Application Support}/quarks/DIRECTORY (see <a href="./../Classes/Quark.html">Quark</a> for the format). You can now install, re-compile, test and uninstall install the quark from your local system without having added it into the public repository. You can use quarks for your own private purposes to install and uninstall packages of classes.<h3><a class='anchor' name='Adding a quark to the public repository'>Adding a quark to the public repository</a></h3>
+
+<p>You will need a SourceForge account to publish a quark to the subversion repository. You will need to be familiar with the basics of svn. You also need the account to be added to the "quarks" project - contact one of the admins listed at <a href="http://sourceforge.net/projects/quarks">http://sourceforge.net/projects/quarks</a> to do that.
+<p>Once you're authorised:
+<p>In a shell go to {Application Support}/quarks/ and execute:<pre>svn add quarkname
+
+svn add DIRECTORY/quarkname.quark
+
+svn commit -m "adding quarkname" quarkname
+svn commit -m "adding directory entry for quarkname" DIRECTORY/quarkname.quark</pre>
+<p>Be careful to commit only changes to your own quark and to the directory entry you have added.<h3><a class='anchor' name='Local Repository Example'>Local Repository Example</a></h3>
+
+<p>Besides the public repos at sourceforge you can use any other subversion host including a repository running on your local machine. Running a local repository is suprisingly easy. This is useful in that you get version control and an easy way to manage package installation.
+<p>For obvious reasons you need to have a running subversion system somewhere in order to use this feature. Nevertheless it is possible to use alreadily existing subversion quarks directories (as the SonEnvir one).<ol>
+<li>Create a directory in svn-repos (e.g. quarks-&lt;yourname/id/institution&gt;).<div class='note'><span class='notelabel'>NOTE:</span> This name has to be unique across all Quark repositories you will ever check out!</div>
+<p> Create a dir within it called "DIRECTORY" containing quark files.<li>Fill repos with your work<li>Now use Quarks to make it accessible in SC (shown at hand of the existing and publicly available SonEnvir quarks):<pre class='code prettyprint lang-sc'>~qSonEnvir = Quarks(
+    reposPath: "https://svn.sonenvir.at/repos/SonEnvir/trunk/src/quarks-sonenvir",
+    localPath: Platform.userAppSupportDir ++ "/quarks-sonenvir"
+);
+
+~qSonEnvir.checkoutAll;
+// or, if alreadily checked out at the appropriate place:
+~qSonEnvir.update;</pre>
+<li>now install your quarks:<pre class='code prettyprint lang-sc'>// post all checked out
+~qSonEnvir.listCheckedOut;
+
+// or post all available with a description
+~qSonEnvir.listAvailable
+
+~qSonEnvir.install("sonenvir-testquark");
+~qSonEnvir.isInstalled("sonenvir-testquark");
+
+~qSonEnvir.listInstalled</pre>
+<li>recompile<li>test<pre class='code prettyprint lang-sc'>SonEnvirTestQuark.sayHello
+
+~qSonEnvir = Quarks(
+    reposPath: "https://svn.sonenvir.at/repos/SonEnvir/trunk/src/quarks-sonenvir",
+    localPath: Platform.userAppSupportDir ++ "/quarks-sonenvir"
+);</pre>
+<li>remove what you're don't need<pre class='code prettyprint lang-sc'>~qSonEnvir.uninstall("sonenvir-testquark")
+
+// recompile
+SonEnvirTestQuark.sayHello
+// -&gt; error</pre>
+<li>update<pre class='code prettyprint lang-sc'>~qSonEnvir.updateDirectory
+~qSonEnvir.update</pre>
+</ol>
+
+<p><div class='doclink'>source: <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Guides/UsingQuarks.schelp'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Guides/UsingQuarks.schelp</a><br>link::Guides/UsingQuarks::<br>sc version: 3.6.5</div></div></body></html>
