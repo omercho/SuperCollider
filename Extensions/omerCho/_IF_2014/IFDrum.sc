@@ -54,20 +54,22 @@ IFDrum.times(4,5,4);
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/3], ~kickTimes),
+			\dur, Pseq([~durMul/2], ~kickTimes),
 			\degree, Pseq([~nt1Kick.next], inf),
 			\amp, Pseq([~amp1Kick.next, ~amp2Kick.next, ~amp3Kick.next], inf),
 			\sustain, Pseq([~sus1Kick.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~kickOct
 		).play;
 
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/3], ~snrTimes),
+			\dur, Pseq([~durMul/2], ~snrTimes),
 			\degree, Pseq([~nt1Snr.next, ~nt2Snr.next, ~nt3Snr.next], inf),
 			\amp, Pseq([~amp1Snr.next, ~amp2Snr.next, ~amp3Snr.next], inf),
 			\sustain, Pseq([~sus1Snr.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~snrOct
 		).play;
 
@@ -75,10 +77,11 @@ IFDrum.times(4,5,4);
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/3], ~hatTimes),
+			\dur, Pseq([~durMul/2], ~hatTimes),
 			\degree, Pseq([~nt1Hat.next, ~nt2Hat.next, ~nt3Hat.next], inf),
 			\amp, Pseq([~amp1Hat.next, ~amp2Hat.next, ~amp3Hat.next], inf),
 			\sustain, Pseq([~sus1Hat.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~hatOct
 		).play;
 
