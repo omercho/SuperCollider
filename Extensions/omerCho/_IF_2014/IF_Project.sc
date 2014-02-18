@@ -12,6 +12,7 @@
 	*initClass {
 		StartUp add: {
 			Server.default.doWhenBooted({
+				0.5.wait;
 				this.globals;
 				this.preSetAll;
 				this.setTempo(120);
@@ -28,7 +29,8 @@
 
 	*times{arg kickT, snrT, hatT, bassT, sampT, ortaT, flatT, res1T;
 
-		IFDrum.times(kickT, snrT, hatT);
+
+		IFKick.times(kickT); IFSnr.times(snrT); IFHat.times(hatT);
 		IFBass.times(bassT); IFSamp.times(sampT);
 		IFOrta.times(ortaT); IFFlat.times(flatT);
 		IFRes1.times(res1T);
@@ -42,16 +44,13 @@
 	*globals{
 
 		~scl1 = Scale.chromatic; ~scl2 = Scale.minor;
-		Tempo.bpm = 120; ~durMul = 1.0;
+		~durMul = 1.0;
 
 		~mTrans=0;
 
-		~nt0=[0].choose;
-		~nt0= ~nt0+13;
-		~ntH= ~nt0+13;
-		~ntL= ~nt0-13;
+		~nt=0;
 
-		~countMain = 0;
+		~countMain=0;
 
 		~mainCountersReset = {
 			~countMain=0;
@@ -125,6 +124,6 @@
 
 /*
 
-IFProject.times{kickT:1, snrT:1, hatT:1, bassT:1, sampT:1, ortaT:1, flatT:1, res1T:1;
+IFProject.times(kickT:1, snrT:1, hatT:1, bassT:1, sampT:1, ortaT:1, flatT:1, res1T:1);
 
 */

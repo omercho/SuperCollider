@@ -10,8 +10,8 @@ QC.img("tekme", 1, 0.8, 0.0, 0.0, 1.0, 0.8, 90);
 		
 		QC.img('deliKapali', ~seq.next, 1);
 		0.08.wait;
-		
-		
+
+
 	}
 }.fork;
 

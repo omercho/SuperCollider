@@ -17,7 +17,7 @@
 
 		MIDIClient.init;	// scan all midi sources
 		MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
-		~md1 = MIDIOut.newByName("IAC Driver", "SC1");
+		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
 
 	}
 

@@ -19,102 +19,41 @@ documents: !QVariantList
   - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpMid01.scd
   - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpFlt01.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Cargah.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Bummer/Bummer.sc
   - /Users/omercho/Dropbox/SC/__SCVvarius/_igoumenitsa/DuetDraw.sc
-  - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120912_0150_needSugar.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/DakisTrentos/SendTags.sc
   - /Users/omercho/Downloads/send_tags_presentation.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLoadEngine.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
+  - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120918_0439_dragm.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
+  - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/MIDIOut.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
+        documentIndex: 20
+        position: 477
+      - !QVariantMap
         documentIndex: 25
-        position: 320
-      - !QVariantMap
-        documentIndex: 24
-        position: 110
-      - !QVariantMap
-        documentIndex: 23
-        position: 802
-      - !QVariantMap
-        documentIndex: 26
-        position: 442
-      - !QVariantMap
-        documentIndex: 22
-        position: 5435
+        position: 0
       - !QVariantMap
         documentIndex: 21
-        position: 3516
+        position: 0
       - !QVariantMap
-        documentIndex: 20
-        position: 1539
+        documentIndex: 22
+        position: 435
       - !QVariantMap
-        documentIndex: 19
-        position: 234
-      - !QVariantMap
-        documentIndex: 18
-        position: 799
-      - !QVariantMap
-        documentIndex: 17
-        position: 2233
-      - !QVariantMap
-        documentIndex: 16
-        position: 1132
-      - !QVariantMap
-        documentIndex: 15
-        position: 564
-      - !QVariantMap
-        documentIndex: 14
-        position: 72
-      - !QVariantMap
-        documentIndex: 13
-        position: 234
-      - !QVariantMap
-        documentIndex: 12
-        position: 310
-      - !QVariantMap
-        documentIndex: 11
-        position: 692
-      - !QVariantMap
-        documentIndex: 10
-        position: 2844
-      - !QVariantMap
-        documentIndex: 7
-        position: 39
-      - !QVariantMap
-        documentIndex: 6
-        position: 207
-      - !QVariantMap
-        documentIndex: 3
-        position: 1518
-      - !QVariantMap
-        documentIndex: 2
-        position: 2488
-      - !QVariantMap
-        documentIndex: 5
-        position: 256
-      - !QVariantMap
-        documentIndex: 9
-        position: 2068
-      - !QVariantMap
-        documentIndex: 4
-        position: 264
-      - !QVariantMap
-        documentIndex: 8
-        position: 1067
+        documentIndex: 24
+        position: 167
       - !QVariantMap
         documentIndex: 1
-        position: 20739
+        position: 20755
       - !QVariantMap
         documentIndex: 0
-        position: 338
-  state: AAAA/wAAAAAAAAABAAACqgEAAAABAQAAAAE=
+        position: 307
+  state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAACjAAAABYAAAVZAAAC4wAAAowAAAAsAAAFWQAAAuMAAAAAAAA=
+    help-dock: AQHZ0MsAAQAAAAABEgAAAVAAAAPfAAAEHQAAARIAAAFmAAAD3wAABB0AAAAAAAA=
     post-dock: ""
-  geometry: AdnQywABAAD////8AAAASQAABoUAAALj/////AAAAF8AAAaFAAAC4wAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACbfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACbQAAAGYA////AAAAAQAAAXYAAAJt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAJtAAAATAD///8AAAR9AAACbQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAD////9AAAASQAABoYAAAP1/////QAAAF8AAAaGAAAD9QAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAqMAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAANQAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

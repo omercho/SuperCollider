@@ -57,24 +57,24 @@ IDE:
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
-      help-dock: AQHZ0MsAAQAAAAACjAAAABYAAAVZAAAC4wAAAowAAAAsAAAFWQAAAuMAAAAAAAA=
+      help-dock: AQHZ0MsAAQAAAAABEgAAAVAAAAPfAAAEHQAAARIAAAFmAAAD3wAABB0AAAAAAAA=
       post-dock: ""
-    geometry: AdnQywABAAD////8AAAASQAABoUAAALj/////AAAAF8AAAaFAAAC4wAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACbfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACbQAAAGYA////AAAAAQAAAXYAAAJt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAJtAAAATAD///8AAAR9AAACbQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAD////9AAAASQAABoYAAAP1/////QAAAF8AAAaGAAAD9QAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAqMAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAANQAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/MIDIOut.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCPuppets/OCPuppet.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesQC/QC.sc
+    - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131222_ifthisisifAbleton_01.scd
+    - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131211_midiTraktor_01.scd
+    - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120918_0439_dragm.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLoadEngine.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRes1.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOrta.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/DakisTrentos/SendTags.sc
-    - /Users/omercho/Downloads/send_tags_presentation.scd
-    - /Users/omercho/Downloads/SendTags.sc
-    - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120912_0150_needSugar.scd
-    - /Users/omercho/Dropbox/SC/__SCVvarius/_igoumenitsa/DuetDraw.sc
   shortcuts:
     ide-document-reload: Ctrl+Shift+K
   startWithSession: last
