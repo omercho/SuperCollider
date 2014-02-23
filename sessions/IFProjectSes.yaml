@@ -1,59 +1,83 @@
 documents: !QVariantList
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/LoopMain_02.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stp_MAIN_02.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFDrum.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOrta.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFFlat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRes1.sc
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/ERGASTIRIO_A.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd
   - /Users/omercho/Library/Application Support/SuperCollider/startupOC/Note_hz.scd
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Scale.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/startupOC/OCScales.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpDrum01.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpBass01.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpSamp01.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpMid01.scd
-  - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stpFlt01.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Cargah.sc
-  - /Users/omercho/Dropbox/SC/__SCVvarius/_igoumenitsa/DuetDraw.sc
-  - /Users/omercho/Downloads/send_tags_presentation.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
-  - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120918_0439_dragm.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
-  - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/MIDIOut.sc
+  - /Users/omercho/Downloads/send_tags_presentation.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 20
-        position: 477
-      - !QVariantMap
-        documentIndex: 25
-        position: 0
-      - !QVariantMap
-        documentIndex: 21
-        position: 0
-      - !QVariantMap
-        documentIndex: 22
-        position: 435
-      - !QVariantMap
-        documentIndex: 24
+        documentIndex: 17
         position: 167
       - !QVariantMap
-        documentIndex: 1
-        position: 20755
+        documentIndex: 18
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 351
+      - !QVariantMap
+        documentIndex: 5
+        position: 1945
+      - !QVariantMap
+        documentIndex: 16
+        position: 967
+      - !QVariantMap
+        documentIndex: 8
+        position: 887
+      - !QVariantMap
+        documentIndex: 14
+        position: 120
+      - !QVariantMap
+        documentIndex: 6
+        position: 48
+      - !QVariantMap
+        documentIndex: 4
+        position: 1106
       - !QVariantMap
         documentIndex: 0
-        position: 307
+        position: 328
+      - !QVariantMap
+        documentIndex: 19
+        position: 2577
+      - !QVariantMap
+        documentIndex: 3
+        position: 1198
+      - !QVariantMap
+        documentIndex: 7
+        position: 2541
+      - !QVariantMap
+        documentIndex: 11
+        position: 863
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
+      - !QVariantMap
+        documentIndex: 1
+        position: 20885
+      - !QVariantMap
+        documentIndex: 13
+        position: 0
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAABEgAAAVAAAAPfAAAEHQAAARIAAAFmAAAD3wAABB0AAAAAAAA=
+    help-dock: AQHZ0MsAAQAAAAABEgAAAUgAAAPfAAAEFQAAARIAAAFeAAAD3wAABBUAAAAAAAA=
     post-dock: ""
   geometry: AdnQywABAAD////9AAAASQAABoYAAAP1/////QAAAF8AAAaGAAAD9QAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAqMAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAANQAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAioAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAAPJAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

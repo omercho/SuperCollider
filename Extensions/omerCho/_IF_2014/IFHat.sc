@@ -61,15 +61,14 @@ IFHat.times(4);
 		}.fork;
 	}
 
-	*pat_1 {
-
+	*pat_1 {|pat1T=1|
 
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/2], ~hatTimes),
-			\degree, Pseq([~nt1HatP.next, ~nt2HatP.next, ~nt3HatP.next], inf),
-			\amp, Pseq([~amp1HatP.next, ~amp2HatP.next, ~amp3HatP.next], inf),
+			\dur, Pseq([1]*~durMul, pat1T),
+			\degree, Pseq([~nt1HatP.next], inf),
+			\amp, Pseq([~amp1HatP.next], inf),
 			\sustain, Pseq([~sus1HatP.next],inf),
 			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~hatOct
@@ -79,25 +78,37 @@ IFHat.times(4);
 		this.timesCount;
 	}
 
-	*pat_2 {
+	*pat_2 { |pat2T=1|
 
 
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/2], ~hatTimes),
-			\degree, Pseq([~nt1HatP.next, ~nt2HatP.next, ~nt3HatP.next], inf),
-			\amp, Pseq([~amp1HatP.next, ~amp2HatP.next, ~amp3HatP.next], inf),
+			\dur, Pseq([Pseq([1/2],2)]*~durMul, pat2T),
+			\degree, Pseq([~nt1HatP.next], inf),
+			\amp, Pseq([~amp1HatP.next], inf),
 			\sustain, Pseq([~sus1HatP.next],inf),
 			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~hatOct
 		).play;
 
-		this.count3;
-		this.timesCount;
 	}
 
-	//Drum Beat Counter
+	*pat_3 {|pat3T=1|
+
+		Pbind(
+			\chan, ~hatCh,
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([Pseq([1/3],3)]*~durMul, pat3T),
+			\degree, Pseq([~nt1HatP.next], inf),
+			\amp, Pseq([~amp1HatP.next], inf),
+			\sustain, Pseq([~sus1HatP.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
+			\octave, ~hatOct
+		).play;
+
+	}
+	//Hat Counter
 	*timesCount {
 		timeCnt = timeCnt + 1;
 		timeCnt.switch(

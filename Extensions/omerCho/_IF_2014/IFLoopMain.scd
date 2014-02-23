@@ -45,7 +45,7 @@
 						4, {
 							1.do{
 
-								~countMain = 10;
+								~countMain = 0;
 
 							};
 						},
@@ -172,15 +172,9 @@
 
 		}.fork;
 
-		IFProject.times(
-			kickT:2, snrT:2, hatT:3,
-			bassT:(1..1).choose, sampT:(1..1).choose,
-			ortaT:(1..1).choose, flatT:(1..1).choose,
-			res1T:(1..1).choose
-		);
-		IFSnr.pat_1;
-		IFHat.pat_1;
 		IFKick.pat_1;
+		IFSnr.p1;
+		IFHat.pat_1;
 		IFBass.pat_1;
 		IFSamp.pat_1;
 		IFOrta.pat_1;

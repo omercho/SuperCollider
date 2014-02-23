@@ -173,6 +173,8 @@ Hilbert
 HilbertFIR
 IEnvGen
 IFFT
+IFLoopMain
+IFMain
 IRand
 IRand
 Ia1Erg
@@ -597,6 +599,7 @@ Unpack1FFT
 UnpackFFT
 VDiskIn
 VDiskIn
+VKeysERG
 VOsc
 VOsc3
 VarLag

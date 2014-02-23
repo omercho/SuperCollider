@@ -29,6 +29,8 @@ IFSnr.times(4);
 
 	}
 
+
+
 	*default {
 
 		~nt1Snr = PatternProxy( Pseq([0], inf));
@@ -64,14 +66,14 @@ IFSnr.times(4);
 		}.fork;
 	}
 
-	*pat_1 {
+	*p1 {|pat1T=1|
 
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/2], ~snrTimes),
-			\degree, Pseq([~nt1SnrP.next, ~nt2SnrP.next, ~nt3SnrP.next], inf),
-			\amp, Pseq([~amp1SnrP.next, ~amp2SnrP.next, ~amp3SnrP.next], inf),
+			\dur, Pseq([1]*~durMul, pat1T),
+			\degree, Pseq([~nt1SnrP.next], inf),
+			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf),
 			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~snrOct
@@ -83,7 +85,37 @@ IFSnr.times(4);
 		this.timesCount;
 	}
 
-	//Drum Beat Counter
+	*p4 {|pat4T=1|
+
+		Pbind(
+			\chan, ~snrCh,
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([Pseq([1/4],4)]*~durMul, pat4T),
+			\degree, Pseq([~nt1SnrP.next], inf),
+			\amp, Pseq([~amp1SnrP.next], inf),
+			\sustain, Pseq([~sus1SnrP.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
+			\octave, ~snrOct
+		).play;
+
+	}
+
+	*p8 {|pat8T=1|
+
+		Pbind(
+			\chan, ~snrCh,
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([Pseq([1/8],8)]*~durMul, pat8T),
+			\degree, Pseq([~nt1SnrP.next], inf),
+			\amp, Pseq([~amp1SnrP.next], inf),
+			\sustain, Pseq([~sus1SnrP.next],inf),
+			\mtranspose, Pseq([~mTrans], inf),
+			\octave, ~snrOct
+		).play;
+
+	}
+
+	//Snr Beat Counter
 	*timesCount {
 		timeCnt = timeCnt + 1;
 		timeCnt.switch(

@@ -1,4 +1,4 @@
-~tmp1=120;
+~tmp1=195;
 //~scaleMain= Scale.gong;
 //////                                     - 0 -
 
@@ -9,7 +9,7 @@
 
 // MAIN
 	~durMul = 1.0;
-	~dur    = Pseq([1, 1, 1, 1, 1, 1, 1, 1, 1]*~durMul, inf).asStream;
+	~dur    = Pseq([1/2, 1, 1/2, 1, 1/2, 1, 1, 1/2, 1]*~durMul, inf).asStream;
 	//~dur    = Pxrand([0.11, 0.21, 0.41, 1, 2, 1.3, 0.58, 4, 0.01]*~durMul, inf).asStream;
 
 // DRUM
@@ -23,12 +23,9 @@
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr.source  =  Pseq([~nt+0,~nt+1,~nt-1, ~nt+0,~nt+4,~nt+0, ~nt+0,~nt+0,~nt+0], inf);
-	~amp1Snr.source =  Pseq([0,0.6,1, 0,0,0.9, 0,0,0.9], inf);
-	~sus1Snr.source =  Pslide([0.22], inf,                            3,1,1);
-	~nt2Snr.source  =  Pslide([~nt, ~nt, ~nt, ~nt, ~nt], inf,    3,1,1);
-	~amp2Snr.source =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
-	~nt3Snr.source  =  Pslide([~nt, ~nt, ~nt, ~nt, ~nt], inf,    3,1,3);
-	~amp3Snr.source =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
+	~amp1Snr.source =  Pseq([0,0,1, 0,0,0.9, 0,0,0.9], inf);
+	~sus1Snr.source =  Pseq([0.22], inf,                            3,1,1);
+
 
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
 	~nt1Hat.source   = Pslide([~nt, ~nt+1, ~nt-1, ~nt+1, ~nt-1], inf,   3,1,0);
@@ -123,10 +120,7 @@
 	~nt1Snr.source  =  Pseq([~nt+0,~nt+1,~nt-1, ~nt+0,~nt+4,~nt+0, ~nt+0,~nt+0,~nt+0], inf);
 	~amp1Snr.source =  Pseq([0,0.6,1, 0,0,0.9, 0,0,0.9], inf);
 	~sus1Snr.source =  Pslide([0.22], inf,                            3,1,1);
-	~nt2Snr.source  =  Pslide([~nt, ~nt, ~nt, ~nt, ~nt], inf,    3,1,1);
-	~amp2Snr.source =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
-	~nt3Snr.source  =  Pslide([~nt, ~nt, ~nt, ~nt, ~nt], inf,    3,1,3);
-	~amp3Snr.source =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
+
 
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
 	~nt1Hat.source   = Pslide([~nt, ~nt+1, ~nt-1, ~nt+1, ~nt-1], inf,   3,1,0);
@@ -140,7 +134,7 @@
 
 // BASS     //CH -4- [Bass]
 
-	~nt1Bass = Pslide([~nt, ~nt+1,~nt,~nt+3, ~nt], inf, 3,1,2).asStream;
+	~nt1Bass = Pslide([~nt, ~nt,~nt,~nt+3, ~nt], inf, 3,1,2).asStream;
 	~amp1Bass =  Pslide([0.9, 0.6, 0, 0.8, 0], inf,          3,1,2).asStream;
 	~sus1Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2]*0.8, inf,     3,1,2).asStream;
 	~nt2Bass = Pslide([~nt, ~nt+3,~nt,~nt+5, ~nt], inf, 3,1,1).asStream;
