@@ -5,7 +5,7 @@ IFKick.times(4);
 */
 
 	IFKick {
-	classvar <>counter3=0, timeCnt=0;
+	classvar <>counter2=0, timeCnt=0;
 	var <>kTime=1;
 
 
@@ -33,14 +33,13 @@ IFKick.times(4);
 
 		~nt1Kick = PatternProxy( Pseq([0], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
+		~dur1Kick = PatternProxy( Pseq([1], inf));
+		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
 		~amp1Kick = PatternProxy( Pseq([1], inf));
 		~amp1KickP = Pseq([~amp1Kick], inf).asStream;
-		~amp2Kick = PatternProxy( Pseq([1], inf));
-		~amp2KickP = Pseq([~amp2Kick], inf).asStream;
-		~amp3Kick = PatternProxy( Pseq([1], inf));
-		~amp3KickP = Pseq([~amp3Kick], inf).asStream;
 		~sus1Kick = PatternProxy( Pseq([1], inf));
-		~sus1KickP = Pseq([~sus1Kick], inf).asStream;
+		~sus1KickP = Pseq([~dur1Kick], inf).asStream;
+
 
 	}
 
@@ -64,17 +63,17 @@ IFKick.times(4);
 
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durMul/2], ~kickTimes),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur1KickP.next]*~durMul, ~kickTimes),
 			\degree, Pseq([~nt1KickP.next], inf),
-			\amp, Pseq([~amp1KickP.next, ~amp2KickP.next, ~amp3KickP.next], inf),
+			\amp, Pseq([~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf),
 			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~kickOct
 		).play;
 
 
-		this.count3;
+		this.count2;
 		this.timesCount;
 	}
 
@@ -101,14 +100,14 @@ IFKick.times(4);
 
 	}
 
-	*count3 {
+	*count2 {
 		1.do{
-			counter3 = counter3 + 1;
-			counter3.switch(
-				3, {
-					("            KickCnt"+counter3).postln;
-					this.ctl_3;
-					counter3 = 0;
+			counter2 = counter2 + 1;
+			counter2.switch(
+				2, {
+					("            KickCnt"+counter2).postln;
+					this.ctl_2;
+					counter2 = 0;
 
 				}
 
