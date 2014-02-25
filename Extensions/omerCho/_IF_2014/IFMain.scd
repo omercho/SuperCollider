@@ -1,4 +1,4 @@
-~tmp1=195;
+~tmp1=125;
 //~scaleMain= Scale.gong;
 //////                                     - 0 -
 
@@ -9,32 +9,29 @@
 
 // MAIN
 	~durMul = 1.0;
-	~dur    = Pseq([1/2, 1, 1/2, 1, 1/2, 1, 1, 1/2, 1]*~durMul, inf).asStream;
+	~dur    = Pseq([1,1,1, 1]*~durMul, inf).asStream;
 	//~dur    = Pxrand([0.11, 0.21, 0.41, 1, 2, 1.3, 0.58, 4, 0.01]*~durMul, inf).asStream;
 
 // DRUM
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
-	~nt1Kick.source   =  Pseq([~nt], inf);
-	~amp1Kick.source  =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
-	~sus1Kick.source  =  Pseq([0.2, 0.5, 1], inf);
-	~nt2Kick.source   =  Pseq([~nt], inf);
-	~amp2Kick.source  =  Pseq([0.0, 1, 0, 0, 0.8, 0, 0, 0.6, 0], inf);
-	~amp3Kick.source  =  Pseq([0.0, 0, 0, 0, 0.0, 1, 0, 0.0, 0], inf);
+	~nt1Kick.source   =  Pseq([~nt+0, ~nt+13, ~nt+27, ~nt+39, ~nt+43], inf);
+	~dur1Kick.source  =  Pseq([1, 1, 1/2, 1, 1/2], inf);
+	~amp1Kick.source  =  Pseq([0.9, 0.4, 0.9, 0.3, 0.9, 0.2, 0.9, 0.1], inf);
+	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
-	~nt1Snr.source  =  Pseq([~nt+0,~nt+1,~nt-1, ~nt+0,~nt+4,~nt+0, ~nt+0,~nt+0,~nt+0], inf);
-	~amp1Snr.source =  Pseq([0,0,1, 0,0,0.9, 0,0,0.9], inf);
+	~nt1Snr.source  =  Pseq([~nt], inf);
+	~dur1Snr.source  =  Pseq([1], inf);
+	~amp1Snr.source =  Pseq([0.0, 0.9, 0.0, 0.9, 0.0, 0.9, 0.0, 0.9], inf);
 	~sus1Snr.source =  Pseq([0.22], inf,                            3,1,1);
 
 
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
 	~nt1Hat.source   = Pslide([~nt, ~nt+1, ~nt-1, ~nt+1, ~nt-1], inf,   3,1,0);
-	~amp1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
+	~dur1Hat.source  =  Pseq([1/2], inf);
+	~amp1Hat.source  = Pseq([0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9], inf);
 	~sus1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
-	~nt2Hat.source   = Pslide([~nt, ~nt-2, ~nt, ~nt-2, ~nt+1], inf,     3,1,1);
-	~amp2Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,1);
-	~nt3Hat.source   = Pslide([~nt, ~nt, ~nt+3, ~nt+3, ~nt],inf,        3,1,3);
-	~amp3Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,3);
+
 
 
 // BASS     //CH -4- [Bass]
@@ -65,31 +62,9 @@
 	~nt3SampRes = Pslide([~nt,~nt,~nt,~nt, ~nt]+5,           inf, 3,1,2).asStream;
 
 
-// Orta    //CH -6- [Orta]
-	~nt1Orta = Pslide([~nt-0,~nt+0,~nt,~nt+0, ~nt-0],    inf, 3,1,0).asStream;
-	~amp1Orta =  Pslide([0.0, 0, 0, 0.8, 0],                inf, 3,1,0).asStream;
-	~sus1Orta = Pslide([0.5, 0.5, 1.5, 1.1, 0.2],               inf, 3,1,0).asStream;
-	~nt2Orta = Pslide([~nt+2,~nt+3,~nt+4,~nt+3, ~nt+2],  inf, 3,1,1).asStream;
-	~amp2Orta =  Pslide([0, 0.6, 0, 0.0, 0],                inf, 3,1,1).asStream;
-	~sus2Orta = Pslide([1.5, 0.5, 1.5, 0.8, 1.2],             inf, 3,1,1).asStream;
-	~nt3Orta = Pslide([~nt, ~nt+1,~nt,~nt+3, ~nt],       inf, 3,1,3).asStream;
-	~amp3Orta =  Pslide([0, 0.0, 0, 0.0, 0],                inf, 3,1,3).asStream;
-	~sus3Orta = Pslide([1.5, 2.5, 1.5, 1.8, 2],               inf, 3,1,3).asStream;
 
 
-// Flutter    //CH -7- [Flat]
-	~nt1Flat = Pslide([~nt,~nt+1,~nt-3,~nt+1, ~nt-1],    inf, 3,1,0).asStream;
-	~amp1Flat =  Pslide([0.0, 0.6, 0, 0.0, 0],                inf, 3,1,0).asStream;
-	~sus1Flat = Pslide([0.5, 4.5, 0.5, 0.1, 0.8],             inf, 3,1,0).asStream;
-	~nt2Flat = Pslide([~nt+2,~nt+3,~nt+4,~nt+3, ~nt+2],  inf, 3,1,1).asStream;
-	~amp2Flat =  Pslide([0.0, 0.6, 0, 0.0, 0],                inf, 3,1,1).asStream;
-	~sus2Flat = Pslide([1.5, 0.5, 1.5, 0.8, 1.2]*0.8,         inf, 3,1,1).asStream;
-	~nt3Flat = Pslide([~nt, ~nt+1,~nt,~nt+3, ~nt],       inf, 3,1,3).asStream;
-	~amp3Flat =  Pslide([0.0, 0.6, 0, 0.8, 0],                inf, 3,1,3).asStream;
-	~sus3Flat = Pslide([1.5, 2.5, 1.5, 1.8, 2],               inf, 3,1,3).asStream;
-
-
-//SampFX
+//Resonator Send
 	~nt1Res1 = Pslide([~nt]+12, inf, 3,1,0).asStream;
 	~nt2Res1 = Pslide([~nt]+12, inf, 3,1,1).asStream;
 	~nt3Res1 = Pslide([~nt]+12, inf, 3,1,2).asStream;
@@ -110,11 +85,10 @@
 
 // DRUM
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
-	~nt1Kick.source   =  Pseq([~nt-1], inf);
-	~amp1Kick.source  =  Pseq([1, 0, 0, 0.9, 0.0, 0, 0.9, 0, 0], inf);
-	~sus1Kick.source  =  Pseq([2, 1, 1], inf);
-	~amp2Kick.source  =  Pseq([0.9, 0.0, 0, 0.9, 0.0, 0, 0.9, 0.8, 0], inf);
-	~amp3Kick.source  =  Pseq([0.0, 0, 0, 0, 0.0, 1, 0, 0.0, 0], inf);
+	~nt1Kick.source   =  Pseq([~nt+0, ~nt+13, ~nt+27, ~nt+39, ~nt+43], inf);
+	~dur1Kick.source  =  Pseq([1, 1, 1/2, 1, 1/2], inf);
+	~amp1Kick.source  =  Pseq([0.9, 0.4, 0.9, 0.3, 0.9, 0.2, 0.9, 0.1], inf);
+	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr.source  =  Pseq([~nt+0,~nt+1,~nt-1, ~nt+0,~nt+4,~nt+0, ~nt+0,~nt+0,~nt+0], inf);

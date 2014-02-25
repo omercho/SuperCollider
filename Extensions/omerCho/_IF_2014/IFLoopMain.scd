@@ -8,6 +8,7 @@
 //~scaleMain= Scale.major;
 //~scaleMain= Scale.cargah;
 //~scaleMain= Scale.neva;
+//~scaleMain= Scale.hicaz;
 //~scaleMain= Scale.gong;
 //~scaleMain= Scale.minorPentatonic;
 //~scaleMain= Scale.egyptian;
@@ -45,7 +46,7 @@
 						4, {
 							1.do{
 
-								~countMain = 0;
+								~countMain = 10;
 
 							};
 						},
@@ -72,8 +73,10 @@
 						1, {},
 						2, {
 							1.do{
-								~mTrans=(7); ~durMul*2.wait;
-								~mTrans=(5); ~durMul*2.wait;
+								~mTrans=(0);
+								~durMul*2.wait;
+								~mTrans=(0);
+								~durMul*2.wait;
 								~mTrans=(0);
 
 								~countMain = 0;
@@ -172,13 +175,13 @@
 
 		}.fork;
 
-		IFKick.pat_1;
-		IFSnr.p1;
-		IFHat.pat_1;
-		IFBass.pat_1;
-		IFSamp.pat_1;
-		IFOrta.pat_1;
-		IFFlat.pat_1;
+		IFKick(3);
+		IFSnr(1);
+		IFHat([2].choose);
+		//IFBass.pat_1;
+		//IFSamp.pat_1;
+		//IFOrta.pat_1;
+		//IFFlat.pat_1;
 		IFRes1.pat_1;
 
 		~dur.next.wait;
@@ -187,5 +190,5 @@
 
 ~loopMain_1.play(quant:0);
 /*
-
+IFKick(1);
 */

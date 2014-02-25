@@ -21,7 +21,7 @@ classvar <>counter3 = 0;
 
 		~sampCh=5;
 		~sampTimes=1;
-		~octSamp=2;
+		~octSamp=4;
 		~sampMac1=1; ~sampMac2=2;~sampMac3=3; ~sampMac4=4;
 		~sampMac5=5; ~sampMac6=6;~sampMac7=7; ~sampMac8=8;
 	}

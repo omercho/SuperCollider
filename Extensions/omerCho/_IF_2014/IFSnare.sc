@@ -5,7 +5,7 @@ IFSnr.times(4);
 */
 
 	IFSnr {
-	classvar <>counter3=0, timeCnt=0;
+	classvar <>counter2=0, <>counter3=0, timeCnt=0;
 	var <>sTime=1;
 
 
@@ -35,16 +35,10 @@ IFSnr.times(4);
 
 		~nt1Snr = PatternProxy( Pseq([0], inf));
 		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
-		~nt2Snr = PatternProxy( Pseq([0], inf));
-		~nt2SnrP = Pseq([~nt1Snr], inf).asStream;
-		~nt3Snr = PatternProxy( Pseq([0], inf));
-		~nt3SnrP = Pseq([~nt1Snr], inf).asStream;
+		~dur1Snr = PatternProxy( Pseq([1], inf));
+		~dur1SnrP = Pseq([~dur1Snr], inf).asStream;
 		~amp1Snr = PatternProxy( Pseq([1], inf));
 		~amp1SnrP = Pseq([~amp1Snr], inf).asStream;
-		~amp2Snr = PatternProxy( Pseq([1], inf));
-		~amp2SnrP = Pseq([~amp2Snr], inf).asStream;
-		~amp3Snr = PatternProxy( Pseq([1], inf));
-		~amp3SnrP = Pseq([~amp3Snr], inf).asStream;
 		~sus1Snr = PatternProxy( Pseq([1], inf));
 		~sus1SnrP = Pseq([~sus1Snr], inf).asStream;
 
@@ -66,12 +60,20 @@ IFSnr.times(4);
 		}.fork;
 	}
 
-	*p1 {|pat1T=1|
+	*new{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  { this.p1(val) }
+
+	}
+
+	*p1 {|i=1|
 
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([1]*~durMul, pat1T),
+			\dur, Pseq([Pseq([~dur1SnrP.next/i],i)]*~durMul, 1),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf),
@@ -80,39 +82,8 @@ IFSnr.times(4);
 		).play;
 
 
-
-		this.count3;
+		this.count2;
 		this.timesCount;
-	}
-
-	*p4 {|pat4T=1|
-
-		Pbind(
-			\chan, ~snrCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([1/4],4)]*~durMul, pat4T),
-			\degree, Pseq([~nt1SnrP.next], inf),
-			\amp, Pseq([~amp1SnrP.next], inf),
-			\sustain, Pseq([~sus1SnrP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~snrOct
-		).play;
-
-	}
-
-	*p8 {|pat8T=1|
-
-		Pbind(
-			\chan, ~snrCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([1/8],8)]*~durMul, pat8T),
-			\degree, Pseq([~nt1SnrP.next], inf),
-			\amp, Pseq([~amp1SnrP.next], inf),
-			\sustain, Pseq([~sus1SnrP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~snrOct
-		).play;
-
 	}
 
 	//Snr Beat Counter
@@ -138,14 +109,14 @@ IFSnr.times(4);
 
 	}
 
-	*count3 {
+	*count2 {
 		1.do{
-			counter3 = counter3 + 1;
-			counter3.switch(
+			counter2 = counter2 + 1;
+			counter2.switch(
 				3, {
-					("            SnareCnt"+counter3).postln;
-					this.ctl_3;
-					counter3 = 0;
+					("            SnareCnt"+counter2).postln;
+					this.ctl_2;
+					counter2 = 0;
 
 				}
 

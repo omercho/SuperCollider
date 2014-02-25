@@ -42,9 +42,9 @@ classvar <>counter3 = 0;
 		Pbind(
 			\type, \midi, \chan, ~bassCh, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~durMul/3], ~bassTimes),
-			\degree, Pseq([~nt1Bass.next, ~nt2Bass.next, ~nt3Bass.next], inf),
-			\amp, Pseq([~amp1Bass.next, ~amp2Bass.next, ~amp3Bass.next], inf),
-			\sustain, Pseq([~sus1Bass.next, ~sus2Bass.next, ~sus3Bass.next], inf),
+			\degree, Pseq([~nt1Bass.next], inf),
+			\amp, Pseq([~amp1Bass.next], inf),
+			\sustain, Pseq([~sus1Bass.next], inf),
 			\mtranspose, Pseq([~mTrans], inf),
 			\octave, ~octBass
 		).play;

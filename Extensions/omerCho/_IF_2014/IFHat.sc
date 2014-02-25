@@ -32,16 +32,10 @@ IFHat.times(4);
 
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
-		~nt2Hat = PatternProxy( Pseq([0], inf));
-		~nt2HatP = Pseq([~nt1Hat], inf).asStream;
-		~nt3Hat = PatternProxy( Pseq([0], inf));
-		~nt3HatP = Pseq([~nt1Hat], inf).asStream;
+		~dur1Hat = PatternProxy( Pseq([1], inf));
+		~dur1HatP = Pseq([~dur1Snr], inf).asStream;
 		~amp1Hat = PatternProxy( Pseq([1], inf));
 		~amp1HatP = Pseq([~amp1Hat], inf).asStream;
-		~amp2Hat = PatternProxy( Pseq([1], inf));
-		~amp2HatP = Pseq([~amp2Hat], inf).asStream;
-		~amp3Hat = PatternProxy( Pseq([1], inf));
-		~amp3HatP = Pseq([~amp3Hat], inf).asStream;
 		~sus1Hat = PatternProxy( Pseq([1], inf));
 		~sus1HatP = Pseq([~sus1Hat], inf).asStream;
 
@@ -61,12 +55,20 @@ IFHat.times(4);
 		}.fork;
 	}
 
-	*pat_1 {|pat1T=1|
+	*new{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  { this.p1(val) }
+
+	}
+
+	*p1 {|i=1|
 
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([1]*~durMul, pat1T),
+			\dur, Pseq([Pseq([~dur1HatP.next/i],i)]*~durMul, 1),
 			\degree, Pseq([~nt1HatP.next], inf),
 			\amp, Pseq([~amp1HatP.next], inf),
 			\sustain, Pseq([~sus1HatP.next],inf),
@@ -78,36 +80,7 @@ IFHat.times(4);
 		this.timesCount;
 	}
 
-	*pat_2 { |pat2T=1|
 
-
-		Pbind(
-			\chan, ~hatCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([1/2],2)]*~durMul, pat2T),
-			\degree, Pseq([~nt1HatP.next], inf),
-			\amp, Pseq([~amp1HatP.next], inf),
-			\sustain, Pseq([~sus1HatP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~hatOct
-		).play;
-
-	}
-
-	*pat_3 {|pat3T=1|
-
-		Pbind(
-			\chan, ~hatCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([1/3],3)]*~durMul, pat3T),
-			\degree, Pseq([~nt1HatP.next], inf),
-			\amp, Pseq([~amp1HatP.next], inf),
-			\sustain, Pseq([~sus1HatP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~hatOct
-		).play;
-
-	}
 	//Hat Counter
 	*timesCount {
 		timeCnt = timeCnt + 1;

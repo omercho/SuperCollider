@@ -33,7 +33,7 @@ IFKick.times(4);
 
 		~nt1Kick = PatternProxy( Pseq([0], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
-		~dur1Kick = PatternProxy( Pseq([1], inf));
+		~dur1Kick = PatternProxy( Pseq([1,1/2], inf));
 		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
 		~amp1Kick = PatternProxy( Pseq([1], inf));
 		~amp1KickP = Pseq([~amp1Kick], inf).asStream;
@@ -59,16 +59,38 @@ IFKick.times(4);
 		}.fork;
 	}
 
-	*pat_1 {
+	*new{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  {
+			{val.do{
+				~nt1KickP.next;
+				~dur1KickP.next;
+				~amp1KickP.next;
+				~sus1KickP.next;
+				~nt1KickSon=~nt1KickP;
+				~dur1KickSon=~dur1KickP;
+				~amp1KickSon=~amp1KickP;
+				~sus1KickSon=~sus1KickP;
+				this.p1(val);
+				~durMul*((~dur1KickSon.next)/val).wait;
+			}}.fork;
+		}
 
+	}
+
+	*p1 {|i=1|
+		//~nt1KickSon=~nt1KickP;
+		//~dur1KickSon=~dur1KickP;
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1KickP.next]*~durMul, ~kickTimes),
-			\degree, Pseq([~nt1KickP.next], inf),
-			\amp, Pseq([~amp1KickP.next], inf),
-			\sustain, Pseq([~sus1KickP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([Pseq([~sus1KickSon],1)], 1),
+			\degree, Pseq([~nt1KickSon], 1),
+			\amp, Pseq([~amp1KickSon], 1),
+			\sustain, Pseq([~sus1KickSon],1),
+			\mtranspose, Pseq([~mTrans], 1),
 			\octave, ~kickOct
 		).play;
 
