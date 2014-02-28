@@ -19,7 +19,10 @@ IFHat.times(4);
 
 		~hatCh=2;
 		~hatTimes=1;
-		~hatOct=4;
+		~transHat=0;
+		~stretchHat=0;
+		~legHat=0;
+		~octHat=4;
 		~hatVolC=1;
 	}
 
@@ -51,7 +54,7 @@ IFHat.times(4);
 	*oct { arg hOct;
 
 		{
-			~hatOct =  hOct;
+			~octHat =  hOct;
 		}.fork;
 	}
 
@@ -59,25 +62,45 @@ IFHat.times(4);
 		var val;
 		val=i;
 		case
-		{ i == val }  { this.p1(val) }
+		{ i == val }  {
+			{val.do{
+				~nt1HatP.next;
+				~dur1HatP.next;
+				~amp1HatP.next;
+				~sus1HatP.next;
+				~nt1HatSon=~nt1HatP;
+				~dur1HatSon=~dur1HatP;
+				~amp1HatSon=~amp1HatP;
+				~sus1HatSon=~sus1HatP;
+				~nt1HatSon.value;
+				~dur1HatSon.value;
+				~amp1HatSon.value;
+				~sus1HatSon.value;
+
+				this.p1(val);
+
+				~durMul*((~dur1HatSon.next)/val).wait;
+			}}.fork;
+		}
 
 	}
 
 	*p1 {|i=1|
-
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~dur1HatP.next/i],i)]*~durMul, 1),
-			\degree, Pseq([~nt1HatP.next], inf),
-			\amp, Pseq([~amp1HatP.next], inf),
-			\sustain, Pseq([~sus1HatP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~hatOct
+			\dur, Pseq([Pseq([~dur1HatSon.value/i],1)], 1),
+			\degree, Pseq([~nt1HatSon.value], 1),
+			\amp, Pseq([~amp1HatSon.value], 1),
+			\sustain, Pseq([~sus1HatSon.value],1),
+			\mtranspose, Pseq([~transHat], 1),
+			\octave, ~octHat,
+			\legato, ~legHat,
+			\stretch, ~stretchHat
 		).play;
 
-		this.count3;
-		this.timesCount;
+		//this.count2;
+		//this.timesCount;
 	}
 
 

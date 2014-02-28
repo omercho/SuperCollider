@@ -57,24 +57,24 @@ IDE:
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
-      help-dock: AQHZ0MsAAQAAAAABEgAAAUgAAAPfAAAEFQAAARIAAAFeAAAD3wAABBUAAAAAAAA=
+      help-dock: AQHZ0MsAAQAAAAADXAAAAVUAAAYpAAAEIgAAA1wAAAFrAAAGKQAABCIAAAAAAAA=
       post-dock: ""
-    geometry: AdnQywABAAD////9AAAASQAABoYAAAP1/////QAAAF8AAAaGAAAD9QAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAioAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAAPJAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAD////9AAAASQAABoYAAAMt/////QAAAF8AAAaGAAADLQAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAc0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAQmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/startup.scd
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/StartUp.schelp
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/Server.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/OCServeOptions.sc
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Reference/EventStream.schelp
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
-    - /Users/omercho/Dropbox/SC/__SC2012/+22SEPT2012/120918_0439_dragm.scd
-    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/MIDIOut.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
   shortcuts:
     ide-document-reload: Ctrl+Shift+K
   startWithSession: last

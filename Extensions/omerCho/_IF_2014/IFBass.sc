@@ -15,7 +15,7 @@ classvar <>counter3 = 0;
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; });
+		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; });
 		}
 	}
 
@@ -24,6 +24,10 @@ classvar <>counter3 = 0;
 		~bassCh=4;
 		~bassTimes=1;
 		~octBass=3;
+		~transBass=0;
+		~legBass=0;
+		~stretchBass=0;
+
 		~bassMac1=1; ~bassMac2=2;
 		~bassMac3=3; ~bassMac4=4;
 		~bassMac5=5; ~bassMac6=6;
@@ -32,23 +36,64 @@ classvar <>counter3 = 0;
 
 	*preSet{}
 
-	*times { arg basTime;
 
-		{~bassTimes = basTime;}.fork;
+	*default {
+
+		~nt1Bass = PatternProxy( Pseq([0], inf));
+		~nt1BassP = Pseq([~nt1Bass], inf).asStream;
+		~dur1Bass = PatternProxy( Pseq([1], inf));
+		~dur1BassP = Pseq([~dur1Bass], inf).asStream;
+		~amp1Bass = PatternProxy( Pseq([0.9], inf));
+		~amp1BassP = Pseq([~amp1Bass], inf).asStream;
+		~sus1Bass = PatternProxy( Pseq([1], inf));
+		~sus1BassP = Pseq([~dur1Bass], inf).asStream;
+
+
 	}
 
-	*pat_1 { arg basTime;
+	*new{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  {
+			{val.do{
+				~nt1BassP.next;
+				~dur1BassP.next;
+				~amp1BassP.next;
+				~sus1BassP.next;
+				~nt1BassSon=~nt1BassP;
+				//~nt1BassSon.value;
+				~dur1BassSon=~dur1BassP;
+				//~dur1BassSon.value;
+				~amp1BassSon=~amp1BassP;
+				//~amp1BassSon.value;
+				~sus1BassSon=~sus1BassP;
+				//~sus1BassSon.value;
 
+				this.p1(val);
+
+				~durMul*((~dur1BassSon.next)/val).wait;
+			}}.fork;
+		}
+
+	}
+
+	*p1 {|i=1|
 		Pbind(
-			\type, \midi, \chan, ~bassCh, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~durMul/3], ~bassTimes),
-			\degree, Pseq([~nt1Bass.next], inf),
-			\amp, Pseq([~amp1Bass.next], inf),
-			\sustain, Pseq([~sus1Bass.next], inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~octBass
+			\chan, ~bassCh,
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([Pseq([~dur1BassSon.value/i],1)], 1),
+			\degree, Pseq([~nt1BassSon.value], 1),
+			\amp, Pseq([~amp1BassSon.value], 1),
+			\sustain, Pseq([~sus1BassSon.value],1),
+			\mtranspose, Pseq([~transBass.value], 1),
+			\octave, ~octBass,
+			\legato, ~legBass,
+			\stretch, ~stretchBass
 		).play;
-		this.count3;
+
+		//this.count2;
+		//this.timesCount;
 	}
 
 	//Bass Beat Counter

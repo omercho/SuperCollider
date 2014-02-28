@@ -19,7 +19,10 @@ IFKick.times(4);
 
 		~kickCh=0;
 		~kickTimes=1;
-		~kickOct=4;
+		~octKick=4;
+		~transKick=0;
+		~legKick=0;
+		~stretchKick=0;
 		~drumVolC=0; ~kickVolC=1;
 	}
 
@@ -43,22 +46,6 @@ IFKick.times(4);
 
 	}
 
-	*times { arg kTime;
-
-		{
-			~kickTimes = kTime;
-
-		}.fork;
-	}
-
-	*oct { arg kOct;
-
-		{
-			~kickOct = kOct;
-
-		}.fork;
-	}
-
 	*new{|i=1|
 		var val;
 		val=i;
@@ -73,7 +60,13 @@ IFKick.times(4);
 				~dur1KickSon=~dur1KickP;
 				~amp1KickSon=~amp1KickP;
 				~sus1KickSon=~sus1KickP;
+				~nt1KickSon.value;
+				~dur1KickSon.value;
+				~amp1KickSon.value;
+				~sus1KickSon.value;
+
 				this.p1(val);
+
 				~durMul*((~dur1KickSon.next)/val).wait;
 			}}.fork;
 		}
@@ -81,22 +74,21 @@ IFKick.times(4);
 	}
 
 	*p1 {|i=1|
-		//~nt1KickSon=~nt1KickP;
-		//~dur1KickSon=~dur1KickP;
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~sus1KickSon],1)], 1),
-			\degree, Pseq([~nt1KickSon], 1),
-			\amp, Pseq([~amp1KickSon], 1),
-			\sustain, Pseq([~sus1KickSon],1),
-			\mtranspose, Pseq([~mTrans], 1),
-			\octave, ~kickOct
+			\dur, Pseq([Pseq([~dur1KickSon.value/i],1)], 1),
+			\degree, Pseq([~nt1KickSon.value], 1),
+			\amp, Pseq([~amp1KickSon.value], 1),
+			\sustain, Pseq([~sus1KickSon.value],1),
+			\mtranspose, Pseq([~transKick], 1),
+			\octave, ~octKick,
+			\legato, ~legKick,
+			\stretch, ~stretchKick
 		).play;
 
-
-		this.count2;
-		this.timesCount;
+		//this.count2;
+		//this.timesCount;
 	}
 
 	//Drum Beat Counter

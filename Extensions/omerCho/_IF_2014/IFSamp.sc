@@ -13,7 +13,7 @@ classvar <>counter3 = 0;
 	*initClass {
 		StartUp add: {
 			this.globals;
-			Server.default.doWhenBooted({  this.preSet; });
+			Server.default.doWhenBooted({  this.preSet; this.default; });
 		}
 	}
 
@@ -22,6 +22,9 @@ classvar <>counter3 = 0;
 		~sampCh=5;
 		~sampTimes=1;
 		~octSamp=4;
+		~transSamp=0;
+		~legSamp=0;
+		~stretchSamp=0;
 		~sampMac1=1; ~sampMac2=2;~sampMac3=3; ~sampMac4=4;
 		~sampMac5=5; ~sampMac6=6;~sampMac7=7; ~sampMac8=8;
 	}
@@ -30,26 +33,65 @@ classvar <>counter3 = 0;
 		~md1.control(~sampCh, ~sampMac2, 94); //
 
 	}
-	*times { arg smpTime;
+	*default {
 
-		{~sampTimes = smpTime;}.fork;
+		~nt1Samp = PatternProxy( Pseq([0], inf));
+		~nt1SampP = Pseq([~nt1Samp], inf).asStream;
+		~dur1Samp = PatternProxy( Pseq([1], inf));
+		~dur1SampP = Pseq([~dur1Samp], inf).asStream;
+		~amp1Samp = PatternProxy( Pseq([0.9], inf));
+		~amp1SampP = Pseq([~amp1Samp], inf).asStream;
+		~sus1Samp = PatternProxy( Pseq([1], inf));
+		~sus1SampP = Pseq([~dur1Samp], inf).asStream;
+
+
 	}
 
-	*pat_1 { arg smpTime;
+	*new{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  {
+			{val.do{
+				~nt1SampP.next;
+				~dur1SampP.next;
+				~amp1SampP.next;
+				~sus1SampP.next;
+				~nt1SampSon=~nt1SampP;
+				//~nt1SampSon.value;
+				~dur1SampSon=~dur1SampP;
+				//~dur1SampSon.value;
+				~amp1SampSon=~amp1SampP;
+				//~amp1SampSon.value;
+				~sus1SampSon=~sus1SampP;
+				//~sus1SampSon.value;
 
+				this.p1(val);
+
+				~durMul*((~dur1SampSon.next)/val).wait;
+			}}.fork;
+		}
+
+	}
+
+	*p1 {|i=1|
 		Pbind(
 			\chan, ~sampCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-
-			\dur, Pseq([~durMul/3], ~sampTimes),
-			\degree, Pseq([~nt1Samp.next, ~nt2Samp.next, ~nt3Samp.next], inf),
-			\amp, Pseq([~amp1Samp.next, ~amp2Samp.next, ~amp3Samp.next], inf),
-			\sustain,Pseq([~sus1Samp.next, ~sus2Samp.next, ~sus3Samp.next], inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~octSamp
+			\dur, Pseq([Pseq([~dur1SampSon.value/i],1)], 1),
+			\degree, Pseq([~nt1SampSon.value], 1),
+			\amp, Pseq([~amp1SampSon.value], 1),
+			\sustain, Pseq([~sus1SampSon.value],1),
+			\mtranspose, Pseq([~transSamp.value], 1),
+			\octave, ~octSamp,
+			\legato, ~legSamp,
+			\stretch, ~stretchSamp
 		).play;
+
+
+
 		IFSampFX.resPat_1;
-		this.count3;
+		//this.count3;
 
 	}
 

@@ -9,53 +9,43 @@
 
 // MAIN
 	~durMul = 1.0;
-	~dur    = Pseq([1,1,1, 1]*~durMul, inf).asStream;
+	~dur    = Pseq([1, 1, 1, 1]*~durMul, inf).asStream;
 	//~dur    = Pxrand([0.11, 0.21, 0.41, 1, 2, 1.3, 0.58, 4, 0.01]*~durMul, inf).asStream;
 
 // DRUM
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
-	~nt1Kick.source   =  Pseq([~nt+0, ~nt+13, ~nt+27, ~nt+39, ~nt+43], inf);
-	~dur1Kick.source  =  Pseq([1, 1, 1/2, 1, 1/2], inf);
-	~amp1Kick.source  =  Pseq([0.9, 0.4, 0.9, 0.3, 0.9, 0.2, 0.9, 0.1], inf);
+	~nt1Kick.source   =  Pseq([~nt+0, ~nt+3, ~nt+0, ~nt+0], inf);
+	~dur1Kick.source  =  Pseq([1, 1, 1, 1], inf);
+	~amp1Kick.source  =  Pseq([0.9, 0.0, 0.9, 0.0, 0.9, 0.2, 0.9, 0.1], inf);
 	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
-	~nt1Snr.source  =  Pseq([~nt], inf);
-	~dur1Snr.source  =  Pseq([1], inf);
-	~amp1Snr.source =  Pseq([0.0, 0.9, 0.0, 0.9, 0.0, 0.9, 0.0, 0.9], inf);
-	~sus1Snr.source =  Pseq([0.22], inf,                            3,1,1);
+	~nt1Snr.source  =  Pslide([~nt+0, ~nt+6, ~nt-10, ~nt+22, ~nt-4], inf,   3,1,0);
+	~dur1Snr.source  =  Pseq([1/2, 1, 1/2, 1], inf);
+	~amp1Snr.source =  Pseq([0.5, 0.9, 0.0, 0.9, 0.0, 0.9, 0.4, 0.9], inf);
+	~sus1Snr.source =  Pseq([1.22, 1, 0.66, 0.22], inf,3,1,1);
 
 
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
-	~nt1Hat.source   = Pslide([~nt, ~nt+1, ~nt-1, ~nt+1, ~nt-1], inf,   3,1,0);
-	~dur1Hat.source  =  Pseq([1/2], inf);
-	~amp1Hat.source  = Pseq([0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9], inf);
+	~nt1Hat.source   = Pslide([~nt+0, ~nt+16, ~nt-10, ~nt+22, ~nt-4], inf,   3,1,0);
+	~dur1Hat.source  = Pseq([1, 1, 1, 1], inf);
+	~amp1Hat.source  = Pseq([0.9, 0.9, 0.3, 0.9, 0.9, 0.5, 0.9, 0.9], inf);
 	~sus1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
 
 
 
 // BASS     //CH -4- [Bass]
-	~nt1Bass  = Pseq([~nt+0,~nt+0,~nt+0, ~nt+3,~nt+0,~nt+0, ~nt+3,~nt+0,~nt+0], inf).asStream;
-	~amp1Bass = Pseq([0.9, 0.0, 0.0,  0.6, 0.0, 0.0, 0.3, 0.0, 0.0],               inf).asStream;
-	~sus1Bass = Pslide([0.5, 1.5, 0.5, 0.8, 2],              inf, 3,1,0).asStream;
-	~nt2Bass  = Pslide([~nt, ~nt+1,~nt+2,~nt+4, ~nt+5],      inf, 3,1,1).asStream;
-	~amp2Bass = Pslide([0.9, 0.0, 0.9, 0.8, 0],             inf, 3,1,1).asStream;
-	~sus2Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2]/2,              inf, 3,1,1).asStream;
-	~nt3Bass  = Pslide([~nt, ~nt+1,~nt+2,~nt+4, ~nt+5],      inf, 3,1,3).asStream;
-	~amp3Bass = Pslide([0.9, 0.5, 0, 0.8, 0],               inf, 3,1,3).asStream;
-	~sus3Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2]/2,              inf, 3,1,3).asStream;
+	~nt1Bass.source   =  Pseq([~nt+0, ~nt+3, ~nt-2], inf);
+	~dur1Bass.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/4, inf);
+	~amp1Bass.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
+	~sus1Bass.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
 
 
 //SAMPLER   //CH -5- [SAMP]
-	~nt1Samp = Pslide([~nt,~nt,~nt-2,~nt, ~nt],           inf, 3,1,0).asStream;
-	~amp1Samp =  Pslide([0.7, 0.0, 0.9, 0, 0],                           inf, 3,1,0).asStream;
-	~sus1Samp = Pseq([1.5, 2.5, 1.5, 1.8, 0.22, 2.5, 2.25, 1.8, 0.5], inf).asStream;
-	~nt2Samp = Pslide([~nt-7,~nt,~nt,~nt, ~nt],             inf, 3,1,1).asStream;
-	~amp2Samp =  Pslide([0.9, 0.0, 0.0, 0, 0]*0.8,                           inf, 3,1,1).asStream;
-	~sus2Samp = Pslide([1.5, 2.5, 1.5, 1.8, 2, 2.5, 2.25, 1.8 ]*0.5,   inf, 3,1,1).asStream;
-	~nt3Samp = Pslide([~nt+7,~nt,~nt,~nt, ~nt],             inf, 3,1,2).asStream;
-	~amp3Samp =  Pslide([0.9, 0.0, 0.0, 0, 0],                           inf, 3,1,2).asStream;
-	~sus3Samp = Pslide([1.5, 2.5, 1.5, 1.8, 2, 2.5, 2.25, 1.8 ]*0.3,   inf, 3,1,2).asStream;
+	~nt1Samp.source   =  Pseq([~nt+0, ~nt+3, ~nt-2], inf);
+	~dur1Samp.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/4, inf);
+	~amp1Samp.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
+	~sus1Samp.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
 //SampFX
 	~nt1SampRes = Pslide([~nt,~nt,~nt,~nt, ~nt]+12,           inf, 3,1,0).asStream;
 	~nt2SampRes = Pslide([~nt,~nt,~nt,~nt, ~nt]+12,           inf, 3,1,1).asStream;
@@ -77,7 +67,7 @@
 ~mainSet_01 = { IFProject.setTempo(~tmp1); ~scl2 = ~scaleMain;
 
 //global
-	~nt=[0].choose;  ~nt=~nt; ~nt=~nt+13; ~nt=~nt-13;
+	~nt=[0].choose;
 
 // MAIN
 	~durMul = 1.0;
@@ -85,38 +75,29 @@
 
 // DRUM
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
-	~nt1Kick.source   =  Pseq([~nt+0, ~nt+13, ~nt+27, ~nt+39, ~nt+43], inf);
+	~nt1Kick.source   =  Pseq([~nt+0, ~nt+7, ~nt+14, ~nt+9, ~nt+3], inf);
 	~dur1Kick.source  =  Pseq([1, 1, 1/2, 1, 1/2], inf);
-	~amp1Kick.source  =  Pseq([0.9, 0.4, 0.9, 0.3, 0.9, 0.2, 0.9, 0.1], inf);
+	~amp1Kick.source  =  Pseq([0.9, 0.0, 0.9, 0.0, 0.9, 0.2, 0.9, 0.1], inf);
 	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
-	~nt1Snr.source  =  Pseq([~nt+0,~nt+1,~nt-1, ~nt+0,~nt+4,~nt+0, ~nt+0,~nt+0,~nt+0], inf);
-	~amp1Snr.source =  Pseq([0,0.6,1, 0,0,0.9, 0,0,0.9], inf);
-	~sus1Snr.source =  Pslide([0.22], inf,                            3,1,1);
+	~nt1Snr.source  =  Pseq([~nt], inf);
+	~dur1Snr.source  =  Pseq([1/2, 1, 1/2, 1, 1], inf);
+	~amp1Snr.source =  Pseq([0.5, 0.9, 0.0, 0.9, 0.0, 0.9, 0.4, 0.9], inf);
+	~sus1Snr.source =  Pseq([0.22], inf, 3,1,1);
 
 
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
-	~nt1Hat.source   = Pslide([~nt, ~nt+1, ~nt-1, ~nt+1, ~nt-1], inf,   3,1,0);
+	~nt1Hat.source   = Pslide([~nt, ~nt+16, ~nt-1, ~nt+18, ~nt-4], inf,   3,1,0);
+	~dur1Kick.source  =  Pseq([1, 1/2, 1, 1/2], inf);
 	~amp1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
 	~sus1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
-	~nt2Hat.source   = Pslide([~nt, ~nt-2, ~nt, ~nt-2, ~nt+1], inf,     3,1,1);
-	~amp2Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,1);
-	~nt3Hat.source   = Pslide([~nt, ~nt, ~nt+3, ~nt+3, ~nt],inf,        3,1,3);
-	~amp3Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,3);
-
 
 // BASS     //CH -4- [Bass]
-
-	~nt1Bass = Pslide([~nt, ~nt,~nt,~nt+3, ~nt], inf, 3,1,2).asStream;
-	~amp1Bass =  Pslide([0.9, 0.6, 0, 0.8, 0], inf,          3,1,2).asStream;
-	~sus1Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2]*0.8, inf,     3,1,2).asStream;
-	~nt2Bass = Pslide([~nt, ~nt+3,~nt,~nt+5, ~nt], inf, 3,1,1).asStream;
-	~amp2Bass =  Pslide([0.9, 0.6, 0, 0.8, 0],          inf, 3,1,1).asStream;
-	~sus2Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2],                        inf, 3,1,1).asStream;
-	~nt3Bass = Pslide([~nt, ~nt+1,~nt,~nt+3, ~nt],      inf, 3,1,3).asStream;
-	~amp3Bass =  Pslide([0.9, 0.6, 0, 0.8, 0],                           inf, 3,1,3).asStream;
-	~sus3Bass = Pslide([1.5, 2.5, 1.5, 1.8, 2],                        inf, 3,1,3).asStream;
+	~nt1Bass.source   =  Pslide([~nt+0,~nt+5,~nt+7,~nt+14,~nt-2], inf, 3,1,0).asStream;
+	~dur1Bass.source  =  Pseq([1, 1, 1, 1/2, 1/2], inf);
+	~amp1Bass.source  =  Pseq([0.9, 0.0, 0.9, 0.8], inf);
+	~sus1Bass.source  =  Pseq([0.2, 0.5, 0.2, 0.1], inf);
 
 
 //SAMPLER   //CH -3- [SAMP]
@@ -189,7 +170,7 @@
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr  = Pseq([0, 3, 5, 1, 2, 3, 5, 1, 4], inf).asStream;
 	~amp1Snr =  Pseq([0.9, 0, 0.9, 0, 0, 0.7, 0, 0.9, 0.8], inf).asStream;
-	~nt2Snr  = Pslide([0, 1, 2, 3, 4, 5], inf, 3,1,0).asStream;
+	~nt1Snr  = Pslide([0, 1, 2, 3, 4, 5], inf, 3,1,0).asStream;
 	~amp2Snr =  Pslide([0, 0.9, 0, 0, 0.7], inf, 3,1,0).asStream;
 	~nt3Snr  = Pslide([6, 7, 2, 3, 4, 5], inf, 3,1,1).asStream;
 	~amp3Snr =  Pslide([0, 0, 0.9, 0, 0.7], inf, 3,1,1).asStream;

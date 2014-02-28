@@ -15,7 +15,7 @@
 				0.5.wait;
 				this.globals;
 				this.preSetAll;
-				this.setTempo(120);
+				this.setTempo(125);
 			});
 		}
 	}
@@ -45,8 +45,6 @@
 
 		~scl1 = Scale.chromatic; ~scl2 = Scale.minor;
 		~durMul = 1.0;
-
-		~mTrans=0;
 
 		~nt=0;
 

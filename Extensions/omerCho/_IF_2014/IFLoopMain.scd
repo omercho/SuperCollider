@@ -46,7 +46,7 @@
 						4, {
 							1.do{
 
-								~countMain = 10;
+								~countMain = 0;
 
 							};
 						},
@@ -175,11 +175,12 @@
 
 		}.fork;
 
-		IFKick(3);
+
+		IFKick([1,1,1,1,2,1,2].choose);
 		IFSnr(1);
-		IFHat([2].choose);
-		//IFBass.pat_1;
-		//IFSamp.pat_1;
+		IFHat([2,4,3,1,2,1,2].choose);
+		IFBass([1].choose);
+		IFSamp(1);
 		//IFOrta.pat_1;
 		//IFFlat.pat_1;
 		IFRes1.pat_1;
@@ -191,4 +192,6 @@
 ~loopMain_1.play(quant:0);
 /*
 IFKick(1);
+~legKick=0.9;
+~stretchKick=2;
 */

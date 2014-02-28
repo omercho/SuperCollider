@@ -19,7 +19,10 @@ IFSnr.times(4);
 
 		~snrCh=1;
 		~snrTimes=1;
-		~snrOct=4;
+		~transSnr=0;
+		~octSnr=3;
+		~stretchSnr=0;
+		~legSnr=0;
 		~snrVolC=1;
 	}
 
@@ -44,46 +47,56 @@ IFSnr.times(4);
 
 	}
 
-	*times { arg sTime;
-
-		{
-			~snrTimes = sTime;
-
-		}.fork;
-	}
-
-	*oct { arg sOct;
-
-		{
-			~snrOct = sOct;
-
-		}.fork;
-	}
 
 	*new{|i=1|
 		var val;
 		val=i;
 		case
-		{ i == val }  { this.p1(val) }
+		{ i == val }  {
+			{val.do{
+				~nt1SnrP.next;
+				~nt1SnrSon=~nt1SnrP;
+				~nt1SnrSon.value;
+
+				~dur1SnrP.next;
+				~dur1SnrSon=~dur1SnrP;
+
+
+
+
+				~sus1SnrP.next;
+				~sus1SnrSon=~sus1SnrP;
+				~sus1SnrSon.value;
+
+				~amp1SnrP.next;
+				~amp1SnrSon=~amp1SnrP;
+				~amp1SnrSon.value;
+
+				this.p1(val);
+
+				~dur1SnrSon.value;
+				~durMul*((~dur1SnrSon.next)/val).wait;
+			}}.fork;
+		}
 
 	}
 
 	*p1 {|i=1|
-
 		Pbind(
 			\chan, ~snrCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~dur1SnrP.next/i],i)]*~durMul, 1),
-			\degree, Pseq([~nt1SnrP.next], inf),
-			\amp, Pseq([~amp1SnrP.next], inf),
-			\sustain, Pseq([~sus1SnrP.next],inf),
-			\mtranspose, Pseq([~mTrans], inf),
-			\octave, ~snrOct
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([Pseq([~dur1SnrSon.value/i],1)], 1),
+			\degree, Pseq([~nt1SnrSon.value], 1),
+			\amp, Pseq([~amp1SnrSon.value], 1),
+			\sustain, Pseq([~sus1SnrSon.value],1),
+			\mtranspose, Pseq([~transSnr.value], 1),
+			\octave, ~octSnr,
+			\legato, ~legSnr,
+			\stretch, ~stretchSnr
 		).play;
 
-
-		this.count2;
-		this.timesCount;
+		//this.count2;
+		//this.timesCount;
 	}
 
 	//Snr Beat Counter

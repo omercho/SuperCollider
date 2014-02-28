@@ -1,11 +1,11 @@
 documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOrta.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFFlat.sc
@@ -19,65 +19,94 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
   - /Users/omercho/Downloads/send_tags_presentation.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/OCServeOptions.sc
+  - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/Server.sc
+  - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/StartUp.schelp
+  - /Users/omercho/Library/Application Support/SuperCollider/startup.scd
+  - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 17
-        position: 167
-      - !QVariantMap
         documentIndex: 18
         position: 0
       - !QVariantMap
-        documentIndex: 2
-        position: 351
+        documentIndex: 15
+        position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 1945
-      - !QVariantMap
-        documentIndex: 16
-        position: 967
-      - !QVariantMap
-        documentIndex: 8
-        position: 887
-      - !QVariantMap
-        documentIndex: 14
-        position: 120
-      - !QVariantMap
-        documentIndex: 6
-        position: 48
-      - !QVariantMap
-        documentIndex: 4
-        position: 1106
-      - !QVariantMap
-        documentIndex: 0
-        position: 328
-      - !QVariantMap
-        documentIndex: 19
-        position: 2577
-      - !QVariantMap
-        documentIndex: 3
-        position: 1198
-      - !QVariantMap
-        documentIndex: 7
-        position: 2541
-      - !QVariantMap
-        documentIndex: 11
-        position: 863
+        documentIndex: 13
+        position: 0
       - !QVariantMap
         documentIndex: 12
         position: 0
       - !QVariantMap
-        documentIndex: 1
-        position: 20885
+        documentIndex: 11
+        position: 489
       - !QVariantMap
-        documentIndex: 13
+        documentIndex: 10
         position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 8
+        position: 887
+      - !QVariantMap
+        documentIndex: 7
+        position: 256
+      - !QVariantMap
+        documentIndex: 22
+        position: 0
+      - !QVariantMap
+        documentIndex: 21
+        position: 473
+      - !QVariantMap
+        documentIndex: 23
+        position: 109
+      - !QVariantMap
+        documentIndex: 24
+        position: 367
+      - !QVariantMap
+        documentIndex: 14
+        position: 120
+      - !QVariantMap
+        documentIndex: 16
+        position: 967
+      - !QVariantMap
+        documentIndex: 19
+        position: 157
+      - !QVariantMap
+        documentIndex: 20
+        position: 132
+      - !QVariantMap
+        documentIndex: 17
+        position: 167
+      - !QVariantMap
+        documentIndex: 0
+        position: 335
+      - !QVariantMap
+        documentIndex: 6
+        position: 1572
+      - !QVariantMap
+        documentIndex: 5
+        position: 1522
+      - !QVariantMap
+        documentIndex: 4
+        position: 1625
+      - !QVariantMap
+        documentIndex: 3
+        position: 1033
+      - !QVariantMap
+        documentIndex: 2
+        position: 17203
+      - !QVariantMap
+        documentIndex: 1
+        position: 2917
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAABEgAAAUgAAAPfAAAEFQAAARIAAAFeAAAD3wAABBUAAAAAAAA=
+    help-dock: AQHZ0MsAAQAAAAADXAAAAVUAAAYpAAAEIgAAA1wAAAFrAAAGKQAABCIAAAAAAAA=
     post-dock: ""
-  geometry: AdnQywABAAD////9AAAASQAABoYAAAP1/////QAAAF8AAAaGAAAD9QAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADf/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADfwAAAGYA////AAAAAQAAAioAAAN//AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAN/AAAATAD///8AAAPJAAADfwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAD////9AAAASQAABoYAAAMt/////QAAAF8AAAaGAAADLQAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAc0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAQmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
