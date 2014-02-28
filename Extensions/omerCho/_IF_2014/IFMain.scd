@@ -1,12 +1,10 @@
 ~tmp1=125;
 //~scaleMain= Scale.gong;
 //////                                     - 0 -
-
 ~mainSet_00 = { IFProject.setTempo(~tmp1); ~scl2 = ~scaleMain; ~scl1 = ~scaleMain;
 
 //global
 	~nt=[0].choose;
-
 // MAIN
 	~durMul = 1.0;
 	~dur    = Pseq([1, 1, 1, 1]*~durMul, inf).asStream;
@@ -36,14 +34,14 @@
 
 // BASS     //CH -4- [Bass]
 	~nt1Bass.source   =  Pseq([~nt+0, ~nt+3, ~nt-2], inf);
-	~dur1Bass.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/4, inf);
+	~dur1Bass.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/2, inf);
 	~amp1Bass.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
 	~sus1Bass.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
 
 
 //SAMPLER   //CH -5- [SAMP]
-	~nt1Samp.source   =  Pseq([~nt+0, ~nt+3, ~nt-2], inf);
-	~dur1Samp.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/4, inf);
+	~nt1Samp.source   =  Pseq([~nt+14, ~nt+3, ~nt+12], inf);
+	~dur1Samp.source  =  Pseq([1, 1/2, 1/2, 1/2], inf);
 	~amp1Samp.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
 	~sus1Samp.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
 //SampFX
@@ -61,6 +59,7 @@
 
 
 };
+~mainSet_00.fork(quant:0);
 //////                                      - 0 -
 //////                                      - 1 -
 

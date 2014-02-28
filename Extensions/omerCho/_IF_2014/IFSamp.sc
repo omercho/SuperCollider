@@ -57,28 +57,31 @@ classvar <>counter3 = 0;
 				~dur1SampP.next;
 				~amp1SampP.next;
 				~sus1SampP.next;
+
 				~nt1SampSon=~nt1SampP;
-				//~nt1SampSon.value;
 				~dur1SampSon=~dur1SampP;
-				//~dur1SampSon.value;
 				~amp1SampSon=~amp1SampP;
-				//~amp1SampSon.value;
 				~sus1SampSon=~sus1SampP;
+				//~nt1SampSon.value;
+				//~dur1SampSon.value;
+				//~amp1SampSon.value;
 				//~sus1SampSon.value;
 
 				this.p1(val);
 
-				~durMul*((~dur1SampSon.next)/val).wait;
+				~durMul*((~dur1SampSon.value)/i).wait;
 			}}.fork;
 		}
 
 	}
 
 	*p1 {|i=1|
+		var val;
+		val=i;
 		Pbind(
 			\chan, ~sampCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1SampSon.value/i],1)], 1),
+			\dur, Pseq([Pseq([~dur1SampSon.value/val],1)], 1),
 			\degree, Pseq([~nt1SampSon.value], 1),
 			\amp, Pseq([~amp1SampSon.value], 1),
 			\sustain, Pseq([~sus1SampSon.value],1),
@@ -90,7 +93,7 @@ classvar <>counter3 = 0;
 
 
 
-		IFSampFX.resPat_1;
+		//IFSampFX.resPat_1;
 		//this.count3;
 
 	}
@@ -148,6 +151,8 @@ classvar <>counter3 = 0;
 
 }
 
+/*
+
 IFSampFX {
 	classvar <>resTime =1;
 	*initClass { StartUp add: { this.globals; this.preSet;}}
@@ -192,7 +197,7 @@ IFSampFX {
 	}
 
 }
-/*
+
 */
 /*
 IFCounter {

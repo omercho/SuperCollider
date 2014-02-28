@@ -36,7 +36,7 @@ IFKick.times(4);
 
 		~nt1Kick = PatternProxy( Pseq([0], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
-		~dur1Kick = PatternProxy( Pseq([1,1/2], inf));
+		~dur1Kick = PatternProxy( Pseq([1], inf));
 		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
 		~amp1Kick = PatternProxy( Pseq([1], inf));
 		~amp1KickP = Pseq([~amp1Kick], inf).asStream;
@@ -74,6 +74,8 @@ IFKick.times(4);
 	}
 
 	*p1 {|i=1|
+		var val;
+		val=i;
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),

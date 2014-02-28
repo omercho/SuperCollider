@@ -62,17 +62,17 @@ classvar <>counter3 = 0;
 				~amp1BassP.next;
 				~sus1BassP.next;
 				~nt1BassSon=~nt1BassP;
-				//~nt1BassSon.value;
 				~dur1BassSon=~dur1BassP;
-				//~dur1BassSon.value;
 				~amp1BassSon=~amp1BassP;
-				//~amp1BassSon.value;
 				~sus1BassSon=~sus1BassP;
+				//~nt1BassSon.value;
+				//~dur1BassSon.value;
 				//~sus1BassSon.value;
+				//~amp1BassSon.value;
 
 				this.p1(val);
 
-				~durMul*((~dur1BassSon.next)/val).wait;
+				~durMul*((~dur1BassSon.value)/i).wait;
 			}}.fork;
 		}
 

@@ -2,14 +2,13 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOrta.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFFlat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRes1.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd
   - /Users/omercho/Library/Application Support/SuperCollider/startupOC/Note_hz.scd
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Scale.sc
@@ -18,95 +17,92 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
   - /Users/omercho/Downloads/send_tags_presentation.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/OCServeOptions.sc
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/Server.sc
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/StartUp.schelp
   - /Users/omercho/Library/Application Support/SuperCollider/startup.scd
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 18
+        documentIndex: 17
         position: 0
       - !QVariantMap
-        documentIndex: 15
-        position: 0
-      - !QVariantMap
-        documentIndex: 13
+        documentIndex: 14
         position: 0
       - !QVariantMap
         documentIndex: 12
         position: 0
       - !QVariantMap
         documentIndex: 11
-        position: 489
+        position: 0
       - !QVariantMap
         documentIndex: 10
-        position: 0
-      - !QVariantMap
-        documentIndex: 9
-        position: 0
-      - !QVariantMap
-        documentIndex: 8
-        position: 887
-      - !QVariantMap
-        documentIndex: 7
-        position: 256
-      - !QVariantMap
-        documentIndex: 22
-        position: 0
-      - !QVariantMap
-        documentIndex: 21
-        position: 473
-      - !QVariantMap
-        documentIndex: 23
-        position: 109
-      - !QVariantMap
-        documentIndex: 24
-        position: 367
-      - !QVariantMap
-        documentIndex: 14
-        position: 120
-      - !QVariantMap
-        documentIndex: 16
-        position: 967
-      - !QVariantMap
-        documentIndex: 19
-        position: 157
+        position: 489
       - !QVariantMap
         documentIndex: 20
+        position: 0
+      - !QVariantMap
+        documentIndex: 19
+        position: 473
+      - !QVariantMap
+        documentIndex: 21
+        position: 109
+      - !QVariantMap
+        documentIndex: 22
+        position: 367
+      - !QVariantMap
+        documentIndex: 13
+        position: 120
+      - !QVariantMap
+        documentIndex: 15
+        position: 967
+      - !QVariantMap
+        documentIndex: 18
         position: 132
       - !QVariantMap
-        documentIndex: 17
+        documentIndex: 16
         position: 167
+      - !QVariantMap
+        documentIndex: 9
+        position: 157
+      - !QVariantMap
+        documentIndex: 8
+        position: 0
       - !QVariantMap
         documentIndex: 0
         position: 335
       - !QVariantMap
         documentIndex: 6
-        position: 1572
-      - !QVariantMap
-        documentIndex: 5
-        position: 1522
+        position: 1279
       - !QVariantMap
         documentIndex: 4
-        position: 1625
+        position: 1522
+      - !QVariantMap
+        documentIndex: 7
+        position: 1346
+      - !QVariantMap
+        documentIndex: 5
+        position: 1276
       - !QVariantMap
         documentIndex: 3
-        position: 1033
+        position: 615
+      - !QVariantMap
+        documentIndex: 23
+        position: 397
       - !QVariantMap
         documentIndex: 2
-        position: 17203
+        position: 16672
       - !QVariantMap
         documentIndex: 1
-        position: 2917
+        position: 356
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: AQHZ0MsAAQAAAAADXAAAAVUAAAYpAAAEIgAAA1wAAAFrAAAGKQAABCIAAAAAAAA=
     post-dock: ""
-  geometry: AdnQywABAAD////9AAAASQAABoYAAAMt/////QAAAF8AAAaGAAADLQAAAAAAAA==
+  geometry: AdnQywABAAAAAAAaAAAAUgAABqMAAAM2AAAAGgAAAGgAAAajAAADNgAAAAAAAA==
   state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAc0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAQmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

@@ -72,14 +72,14 @@ IFHat.times(4);
 				~dur1HatSon=~dur1HatP;
 				~amp1HatSon=~amp1HatP;
 				~sus1HatSon=~sus1HatP;
-				~nt1HatSon.value;
+				/*~nt1HatSon.value;
 				~dur1HatSon.value;
 				~amp1HatSon.value;
-				~sus1HatSon.value;
+				~sus1HatSon.value;*/
 
 				this.p1(val);
 
-				~durMul*((~dur1HatSon.next)/val).wait;
+				~durMul*((~dur1HatSon.value)/val).wait;
 			}}.fork;
 		}
 
