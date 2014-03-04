@@ -1,44 +1,79 @@
+~tmp1=125;
+~scaleMain= Scale.minor;
+IFProject.setTempo(~tmp1); ~scl2 = ~scaleMain; ~scl1 = ~scaleMain;
 
 ~ifPlay.stop;
 ~ifPlay={|tm=4|
 
-	~nt1Samp.source   =  Pseq([~nt-12, ~nt+0, ~nt+12, ~nt-11], inf);
-	~dur1Samp.source  =  Pseq([1, 1, 1, 1]*2, inf);
-	~amp1Samp.source  =  Pseq([0.9, 0.7, 0.9, 0.8], inf);
-	~sus1Samp.source  =  Pseq([0.2, 0.4, 0.2, 0.9], inf);
+	~nt1Keys.source   =  Pseq([~nt+0, ~nt+3, ~nt+2, ~nt+4, ~nt+24 , ~nt+14], inf);
+	~dur1Keys.source  =  Pseq([1]*1, inf);
+	~amp1Keys.source  =  Pseq([0.9], inf);
+	~sus1Samp.source  =  Pseq([0.2], inf);
+	//1
 	inf.do{
-		12.do {
+		8.do {
 
-			~transSamp=(0);
-			IFSamp([4].choose);
-			IFKick([2,1].choose);
-			IFHat([4,2,2].choose);
+
+			~transKeys=(-0);~transSamp=(0); ~transBass=(0);
+			IFKeys([4].choose);
+			IFSamp([1].choose);
+			IFBass([2].choose);
+			IFKick([1].choose);
+			IFSnr([1].choose);
+			IFHat([4].choose);
 			1.wait;
 		};
-		0.5.wait;
+		//0.1.wait;
 		4.do {
-			~transSamp=(5);
-			IFSamp([4,2].choose);
-			IFKick([2,1].choose);
-			IFHat([4,2,2].choose);
-			1.wait;
-		};
-		0.5.wait;
-		3.do {
-			~transSamp=(7);
+			~transKeys=(-2); ~transSamp=(5); ~transBass=(5);
 			IFSamp([4].choose);
-			IFKick([2,1].choose);
-			IFHat([4,2,2].choose);
+			IFKeys([4].choose);
+			IFKick([1].choose);
+			IFSnr([2].choose);
+			IFHat([8].choose);
 			1.wait;
 		};
-		0.5.wait;
+		//0.1.wait;
+		2.do {
+			~transKeys=(3);~transSamp=(7);
+			IFKeys([2].choose);
+			IFSamp([4].choose);
+			IFKick([1].choose);
+			IFSnr([1].choose);
+			IFHat([2].choose);
+			1.wait;
+		};
+		//0.1.wait;
 		1.do {
-			~transSamp=(13);
+			~transKeys=(5);~transSamp=(13);
 			IFSamp([4].choose);
-			IFKick([2,1].choose);
-			IFHat([4,2,2].choose);
+			IFKick([2].choose);
+			IFSnr([2].choose);
+			IFHat([4].choose);
+			1.wait;
+		};
+		1.do {
+			~transSamp=(4);
+			IFSamp([4].choose);
+			IFKick([1].choose);
+			IFSnr([2].choose);
+			IFHat([3].choose);
 			1.wait;
 		};
 	};
+	//2
+	1.do{
+		32.do {
+			~transKeys=(-2); ~transSamp=(-5); ~transBass=(-5);
+			IFKeys([4].choose);
+			IFSamp([1].choose);
+			IFBass([2].choose);
+			IFKick([2].choose);
+			IFSnr([1].choose);
+			IFHat([4].choose);
+			1.wait;
+		};
+
+	}
 }.fork;
 

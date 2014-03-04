@@ -176,13 +176,12 @@
 		}.fork;
 
 
-		IFKick([1].choose);
-		IFSnr(1);
+		IFKick([1,2].choose);
+		IFSnr(1,2);
 		IFHat([2,4,3,1,2,1,2].choose);
-		IFBass([1].choose);
-		IFSamp(2);
-		//IFOrta.pat_1;
-		//IFFlat.pat_1;
+		IFKeys([2,4].choose);
+		IFBass([2,4].choose);
+		IFSamp(2,1);
 		IFRes1.pat_1;
 
 		~dur.next.wait;

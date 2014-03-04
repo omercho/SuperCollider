@@ -2,24 +2,22 @@
 //~scaleMain= Scale.gong;
 //////                                     - 0 -
 ~mainSet_00 = { IFProject.setTempo(~tmp1); ~scl2 = ~scaleMain; ~scl1 = ~scaleMain;
-
 //global
 	~nt=[0].choose;
 // MAIN
 	~durMul = 1.0;
 	~dur    = Pseq([1, 1, 1, 1]*~durMul, inf).asStream;
-	//~dur    = Pxrand([0.11, 0.21, 0.41, 1, 2, 1.3, 0.58, 4, 0.01]*~durMul, inf).asStream;
 
 // DRUM
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
-	~nt1Kick.source   =  Pseq([~nt+0, ~nt+3, ~nt+0, ~nt+0], inf);
+	~nt1Kick.source   =  Pseq([~nt+0, ~nt+0, ~nt+0, ~nt+0], inf);
 	~dur1Kick.source  =  Pseq([1, 1, 1, 1], inf);
-	~amp1Kick.source  =  Pseq([0.9, 0.0, 0.9, 0.0, 0.9, 0.2, 0.9, 0.1], inf);
+	~amp1Kick.source  =  Pseq([0.9, 1.0], inf);
 	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr.source  =  Pslide([~nt+0, ~nt+6, ~nt-10, ~nt+22, ~nt-4], inf,   3,1,0);
-	~dur1Snr.source  =  Pseq([1/2, 1, 1/2, 1], inf);
+	~dur1Snr.source  =  Pseq([1, 1, 1, 1], inf);
 	~amp1Snr.source =  Pseq([0.5, 0.9, 0.0, 0.9, 0.0, 0.9, 0.4, 0.9], inf);
 	~sus1Snr.source =  Pseq([1.22, 1, 0.66, 0.22], inf,3,1,1);
 
@@ -31,19 +29,24 @@
 	~sus1Hat.source  = Pslide([0.8, 0.6, 0.4, 0.9, 0.9], inf,           3,1,0);
 
 
+// Keys     //CH -4- [Keys]
+	~nt1Keys.source   =  Pseq([~nt+5, ~nt+4, ~nt+2, ~nt+3, ~nt+1 , ~nt+7], inf);
+	~dur1Keys.source  =  Pseq([1, 1, 1, 1]*1, inf);
+	~amp1Keys.source  =  Pseq([1.0, 0.9, 0.0, 0.8], inf);
+	~sus1Keys.source  =  Pseq([1.1, 0.1, 0.1, 0.1], inf);
 
 // BASS     //CH -4- [Bass]
-	~nt1Bass.source   =  Pseq([~nt+0, ~nt+3, ~nt-2], inf);
-	~dur1Bass.source  =  Pseq([1/2, 1/2, 1/2, 1/2]/2, inf);
-	~amp1Bass.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
-	~sus1Bass.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
+	~nt1Bass.source   =  Pseq([~nt+0, ~nt+4, ~nt+2, ~nt+3, ~nt+1 , ~nt+7], inf);
+	~dur1Bass.source  =  Pseq([1, 1, 1, 1]*2, inf);
+	~amp1Bass.source  =  Pseq([0.9, 0.8, 0.9, 0.8], inf);
+	~sus1Bass.source  =  Pseq([1.1, 0.1, 0.1, 0.1], inf);
 
 
 //SAMPLER   //CH -5- [SAMP]
-	~nt1Samp.source   =  Pseq([~nt+14, ~nt+3, ~nt+12], inf);
-	~dur1Samp.source  =  Pseq([1, 1/2, 1/2, 1/2], inf);
-	~amp1Samp.source  =  Pseq([0.9, 0.9, 0.9, 0.8], inf);
-	~sus1Samp.source  =  Pseq([0.1, 0.1, 0.1, 0.1], inf);
+	~nt1Samp.source   =  Pseq([~nt+0, ~nt+13, ~nt-12], inf);
+	~dur1Samp.source  =  Pseq([1, 1, 1, 1]*1, inf);
+	~amp1Samp.source  =  Pseq([0.9, 0.0, 0.5, 0.0], inf);
+	~sus1Samp.source  =  Pseq([0.2, 0.1, 0.1, 0.1], inf);
 //SampFX
 	~nt1SampRes = Pslide([~nt,~nt,~nt,~nt, ~nt]+12,           inf, 3,1,0).asStream;
 	~nt2SampRes = Pslide([~nt,~nt,~nt,~nt, ~nt]+12,           inf, 3,1,1).asStream;

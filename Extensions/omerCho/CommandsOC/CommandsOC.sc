@@ -43,3 +43,23 @@ PostAllMIDI {
 	}
 
 }
+
+PostAllOSC {
+
+
+
+
+	*on{
+
+		OSCFunc.trace(true); // Turn posting on
+
+	}
+
+	*off{
+
+
+		OSCFunc.trace(false); // Turn posting off
+	}
+
+
+}

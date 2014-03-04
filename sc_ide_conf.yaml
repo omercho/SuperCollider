@@ -59,12 +59,13 @@ IDE:
       documents-dock: ""
       help-dock: AQHZ0MsAAQAAAAADXAAAAVUAAAYpAAAEIgAAA1wAAAFrAAAGKQAABCIAAAAAAAA=
       post-dock: ""
-    geometry: AdnQywABAAAAAAAaAAAAUgAABqMAAAM2AAAAGgAAAGgAAAajAAADNgAAAAAAAA==
+    geometry: AdnQywABAAAAAAAaAAAAUwAABqMAAAM3AAAAGgAAAGkAAAajAAADNwAAAAAAAA==
     state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAc0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAQmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
     - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
     - /Users/omercho/Library/Application Support/SuperCollider/startup.scd
@@ -74,7 +75,6 @@ IDE:
     - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Reference/EventStream.schelp
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
   shortcuts:
     ide-document-reload: Ctrl+Shift+K
   startWithSession: last
