@@ -52,22 +52,11 @@ IFKick.times(4);
 		case
 		{ i == val }  {
 			{val.do{
-				~nt1KickP.next;
-				~dur1KickP.next;
-				~amp1KickP.next;
-				~sus1KickP.next;
-				~nt1KickSon=~nt1KickP;
-				~dur1KickSon=~dur1KickP;
-				~amp1KickSon=~amp1KickP;
-				~sus1KickSon=~sus1KickP;
-				~nt1KickSon.value;
-				~dur1KickSon.value;
-				~amp1KickSon.value;
-				~sus1KickSon.value;
+
 
 				this.p1(val);
 
-				~durMul*((~dur1KickSon.next)/val).wait;
+				~durMul*((~dur1KickP.value)/val).wait;
 			}}.fork;
 		}
 
@@ -79,10 +68,10 @@ IFKick.times(4);
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~dur1KickSon.value/i],1)], 1),
-			\degree, Pseq([~nt1KickSon.value], 1),
-			\amp, Pseq([~amp1KickSon.value], 1),
-			\sustain, Pseq([~sus1KickSon.value],1),
+			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
+			\degree, Pseq([~nt1KickP.next], 1),
+			\amp, Pseq([~amp1KickP.next], 1),
+			\sustain, Pseq([~sus1KickP.next],1),
 			\mtranspose, Pseq([~transKick], 1),
 			\octave, ~octKick,
 			\legato, ~legKick,

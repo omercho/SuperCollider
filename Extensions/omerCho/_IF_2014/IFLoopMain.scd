@@ -176,7 +176,7 @@
 		}.fork;
 
 
-		IFKick([1,2].choose);
+		IFKick([1].choose);
 		IFSnr(1,2);
 		IFHat([2,4,3,1,2,1,2].choose);
 		IFKeys([2,4].choose);

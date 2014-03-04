@@ -64,6 +64,7 @@ IFHat.times(4);
 		case
 		{ i == val }  {
 			{val.do{
+				/*
 				~nt1HatP.next;
 				~dur1HatP.next;
 				~amp1HatP.next;
@@ -72,27 +73,29 @@ IFHat.times(4);
 				~dur1HatSon=~dur1HatP;
 				~amp1HatSon=~amp1HatP;
 				~sus1HatSon=~sus1HatP;
-				/*~nt1HatSon.value;
+				~nt1HatSon.value;
 				~dur1HatSon.value;
 				~amp1HatSon.value;
 				~sus1HatSon.value;*/
 
 				this.p1(val);
 
-				~durMul*((~dur1HatSon.value)/val).wait;
+				~durMul*((~dur1HatP.value)/val).wait;
 			}}.fork;
 		}
 
 	}
 
 	*p1 {|i=1|
+		var val;
+		val=i;
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~dur1HatSon.value/i],1)], 1),
-			\degree, Pseq([~nt1HatSon.value], 1),
-			\amp, Pseq([~amp1HatSon.value], 1),
-			\sustain, Pseq([~sus1HatSon.value],1),
+			\dur, Pseq([Pseq([~dur1HatP.next/val],1)], 1),
+			\degree, Pseq([~nt1HatP.next], 1),
+			\amp, Pseq([~amp1HatP.next], 1),
+			\sustain, Pseq([~sus1HatP.next],1),
 			\mtranspose, Pseq([~transHat], 1),
 			\octave, ~octHat,
 			\legato, ~legHat,

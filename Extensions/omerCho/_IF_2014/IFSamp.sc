@@ -57,17 +57,19 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMul*((~dur1SampP.value)/i).wait;
+				~durMul*((~dur1SampP.value)/val).wait;
 			}}.fork;
 		}
 
 	}
 
 	*p1 {|i=1|
+		var val;
+		val=i;
 		Pbind(
 			\chan, ~chSamp,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1SampP.next/i],1)], 1),
+			\dur, Pseq([Pseq([~dur1SampP.next/val],1)], 1),
 			\degree, Pseq([~nt1SampP.next], 1),
 			\amp, Pseq([~amp1SampP.next], 1),
 			\sustain, Pseq([~sus1SampP.next],1),

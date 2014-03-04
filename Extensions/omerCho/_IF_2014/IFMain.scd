@@ -12,8 +12,8 @@
 //CH -0- [ KICK ]------------------------------- [Kick] - Ch -0- //
 	~nt1Kick.source   =  Pseq([~nt+0, ~nt+0, ~nt+0, ~nt+0], inf);
 	~dur1Kick.source  =  Pseq([1, 1, 1, 1], inf);
-	~amp1Kick.source  =  Pseq([0.9, 1.0], inf);
-	~sus1Kick.source  =  Pseq([1.2, 0.5, 0.2, 0.1], inf);
+	~amp1Kick.source  =  Pseq([0.9], inf);
+	~sus1Kick.source  =  Pseq([0.2, 0.2, 0.2, 0.2], inf);
 
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr.source  =  Pslide([~nt+0, ~nt+6, ~nt-10, ~nt+22, ~nt-4], inf,   3,1,0);

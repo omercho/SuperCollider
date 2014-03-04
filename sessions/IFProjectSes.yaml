@@ -24,6 +24,7 @@ documents: !QVariantList
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -34,9 +35,6 @@ editors: !QVariantMap
         documentIndex: 21
         position: 109
       - !QVariantMap
-        documentIndex: 20
-        position: 0
-      - !QVariantMap
         documentIndex: 19
         position: 473
       - !QVariantMap
@@ -46,17 +44,11 @@ editors: !QVariantMap
         documentIndex: 17
         position: 0
       - !QVariantMap
-        documentIndex: 16
-        position: 167
-      - !QVariantMap
         documentIndex: 15
         position: 967
       - !QVariantMap
         documentIndex: 14
         position: 0
-      - !QVariantMap
-        documentIndex: 13
-        position: 120
       - !QVariantMap
         documentIndex: 12
         position: 0
@@ -67,46 +59,58 @@ editors: !QVariantMap
         documentIndex: 10
         position: 489
       - !QVariantMap
-        documentIndex: 9
-        position: 157
-      - !QVariantMap
         documentIndex: 8
         position: 0
-      - !QVariantMap
-        documentIndex: 6
-        position: 1279
-      - !QVariantMap
-        documentIndex: 5
-        position: 1276
-      - !QVariantMap
-        documentIndex: 4
-        position: 1522
-      - !QVariantMap
-        documentIndex: 3
-        position: 615
       - !QVariantMap
         documentIndex: 0
         position: 335
       - !QVariantMap
-        documentIndex: 7
-        position: 270
+        documentIndex: 16
+        position: 167
       - !QVariantMap
-        documentIndex: 23
-        position: 1317
+        documentIndex: 13
+        position: 817
+      - !QVariantMap
+        documentIndex: 20
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 157
+      - !QVariantMap
+        documentIndex: 6
+        position: 921
+      - !QVariantMap
+        documentIndex: 7
+        position: 921
+      - !QVariantMap
+        documentIndex: 5
+        position: 1344
+      - !QVariantMap
+        documentIndex: 4
+        position: 1111
+      - !QVariantMap
+        documentIndex: 3
+        position: 1301
+      - !QVariantMap
+        documentIndex: 25
+        position: 1582
       - !QVariantMap
         documentIndex: 24
-        position: 236
+        position: 372
+      - !QVariantMap
+        documentIndex: 23
+        position: 1496
       - !QVariantMap
         documentIndex: 2
-        position: 1520
+        position: 16818
       - !QVariantMap
         documentIndex: 1
-        position: 2910
+        position: 2894
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAADXAAAAVUAAAYpAAAEIgAAA1wAAAFrAAAGKQAABCIAAAAAAAA=
+    help-dock: AQHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
     post-dock: ""
   geometry: AdnQywABAAAAAAAaAAAAUwAABqMAAAM3AAAAGgAAAGkAAAajAAADNwAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAc0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAQmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAk0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAOmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
