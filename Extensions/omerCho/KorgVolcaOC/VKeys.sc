@@ -12,6 +12,8 @@ VKeys {
 
 		~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 1");
 
+		//~vKeys = MIDIOut.newByName("IAC Driver", "SC-Abl");
+
 		~vcoPorta    = 5;   //*1
 		~expr    = 11;  //*1,3
 		~voice   = 40; //

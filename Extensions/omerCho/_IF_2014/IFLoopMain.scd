@@ -15,7 +15,7 @@
 //~scaleMain= Scale.augmented2;
 //~scaleMain= Scale.partch_o1;
 
-~loopMain_1.stop; Ableton.killAll;
+~loopMain_1.stop; Ableton.killAll; VKeys.killAll;
 ~loopMain_1.reset;
 ~mainSet_00.fork(quant:0);
 ~loopMain_1 = Task({
@@ -175,13 +175,13 @@
 
 		}.fork;
 
-
+		IFKeys([1,2].choose);
 		IFKick([1].choose);
-		IFSnr(1,2);
-		IFHat([2,4,3,1,2,1,2].choose);
-		IFKeys([2,4].choose);
-		IFBass([2,4].choose);
-		IFSamp(2,1);
+		IFSnr([1,2, 3].choose);
+		IFHat([2,4, 3].choose);
+
+		IFBass([1,2].choose);
+		IFSamp([1].choose);
 		IFRes1.pat_1;
 
 		~dur.next.wait;

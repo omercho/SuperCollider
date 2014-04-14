@@ -18,6 +18,7 @@ IFKick.times(4);
 	*globals{
 
 		~kickCh=0;
+		~kickLate= 0.00;
 		~kickTimes=1;
 		~octKick=4;
 		~transKick=0;
@@ -53,6 +54,8 @@ IFKick.times(4);
 		{ i == val }  {
 			{val.do{
 
+
+				~kickLate.wait;
 
 				this.p1(val);
 

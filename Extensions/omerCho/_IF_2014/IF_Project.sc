@@ -38,10 +38,12 @@
 
 	*setTempo {arg tempo;
 		Tempo.bpm = tempo;
-		Ableton.tap4;
+		//Ableton.tap4;
 	}
 
 	*globals{
+
+		~abLate=0.01;
 
 		~scl1 = Scale.chromatic; ~scl2 = Scale.minor;
 		~durMul = 1.0;

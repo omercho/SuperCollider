@@ -22,6 +22,7 @@ classvar <>counter3 = 0;
 	*globals{
 
 		~chSamp=5;
+		~sampLate=0.00;
 		~timesSamp=1;
 		~octSamp=3;
 		~transSamp=0;
@@ -54,6 +55,7 @@ classvar <>counter3 = 0;
 		{ i == val }  {
 			{val.do{
 
+				~sampLate.wait;
 
 				this.p1(val);
 

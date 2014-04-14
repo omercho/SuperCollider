@@ -18,6 +18,7 @@ IFHat.times(4);
 	*globals{
 
 		~hatCh=2;
+		~hatLate=0.00;
 		~hatTimes=1;
 		~transHat=0;
 		~stretchHat=0;
@@ -64,19 +65,8 @@ IFHat.times(4);
 		case
 		{ i == val }  {
 			{val.do{
-				/*
-				~nt1HatP.next;
-				~dur1HatP.next;
-				~amp1HatP.next;
-				~sus1HatP.next;
-				~nt1HatSon=~nt1HatP;
-				~dur1HatSon=~dur1HatP;
-				~amp1HatSon=~amp1HatP;
-				~sus1HatSon=~sus1HatP;
-				~nt1HatSon.value;
-				~dur1HatSon.value;
-				~amp1HatSon.value;
-				~sus1HatSon.value;*/
+
+				~hatLate.wait;
 
 				this.p1(val);
 

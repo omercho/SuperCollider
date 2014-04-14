@@ -2,6 +2,7 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
@@ -24,93 +25,104 @@ documents: !QVariantList
   - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/iannixTesting.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
+  - /Users/omercho/Dropbox/SC/__SC2012/+16MAR2012/120313_sendingOscToProcess.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 22
-        position: 367
-      - !QVariantMap
-        documentIndex: 21
-        position: 109
-      - !QVariantMap
-        documentIndex: 19
-        position: 473
-      - !QVariantMap
-        documentIndex: 18
-        position: 132
-      - !QVariantMap
-        documentIndex: 17
+        documentIndex: 15
         position: 0
       - !QVariantMap
-        documentIndex: 15
-        position: 967
-      - !QVariantMap
         documentIndex: 14
+        position: 817
+      - !QVariantMap
+        documentIndex: 13
         position: 0
       - !QVariantMap
         documentIndex: 12
         position: 0
       - !QVariantMap
         documentIndex: 11
-        position: 0
-      - !QVariantMap
-        documentIndex: 10
         position: 489
       - !QVariantMap
-        documentIndex: 8
+        documentIndex: 23
+        position: 367
+      - !QVariantMap
+        documentIndex: 22
+        position: 109
+      - !QVariantMap
+        documentIndex: 21
         position: 0
       - !QVariantMap
-        documentIndex: 0
-        position: 335
-      - !QVariantMap
-        documentIndex: 16
-        position: 167
-      - !QVariantMap
-        documentIndex: 13
-        position: 817
-      - !QVariantMap
         documentIndex: 20
+        position: 473
+      - !QVariantMap
+        documentIndex: 19
+        position: 132
+      - !QVariantMap
+        documentIndex: 18
         position: 0
       - !QVariantMap
         documentIndex: 9
-        position: 157
+        position: 0
       - !QVariantMap
-        documentIndex: 6
-        position: 921
+        documentIndex: 16
+        position: 761
+      - !QVariantMap
+        documentIndex: 10
+        position: 2722
+      - !QVariantMap
+        documentIndex: 8
+        position: 266
       - !QVariantMap
         documentIndex: 7
-        position: 921
+        position: 266
+      - !QVariantMap
+        documentIndex: 6
+        position: 240
       - !QVariantMap
         documentIndex: 5
-        position: 1344
+        position: 256
       - !QVariantMap
         documentIndex: 4
-        position: 1111
+        position: 247
       - !QVariantMap
         documentIndex: 3
-        position: 1301
-      - !QVariantMap
-        documentIndex: 25
-        position: 1582
+        position: 265
       - !QVariantMap
         documentIndex: 24
-        position: 372
+        position: 1725
       - !QVariantMap
-        documentIndex: 23
-        position: 1496
+        documentIndex: 26
+        position: 0
+      - !QVariantMap
+        documentIndex: 17
+        position: 470
+      - !QVariantMap
+        documentIndex: 0
+        position: 740
+      - !QVariantMap
+        documentIndex: 28
+        position: 1
       - !QVariantMap
         documentIndex: 2
-        position: 16818
+        position: 16654
+      - !QVariantMap
+        documentIndex: 25
+        position: 343
       - !QVariantMap
         documentIndex: 1
-        position: 2894
+        position: 359
+      - !QVariantMap
+        documentIndex: 27
+        position: 5144
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
+    help-dock: AAHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
     post-dock: ""
   geometry: AdnQywABAAAAAAAaAAAAUwAABqMAAAM3AAAAGgAAAGkAAAajAAADNwAAAAAAAA==
   state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAk0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAOmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

@@ -57,7 +57,7 @@ IDE:
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
-      help-dock: AQHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
+      help-dock: AAHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
       post-dock: ""
     geometry: AdnQywABAAAAAAAaAAAAUwAABqMAAAM3AAAAGgAAAGkAAAajAAADNwAAAAAAAA==
     state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAk0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAOmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
@@ -65,16 +65,17 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
-    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/GUI/PlusGUI/Control/SynthDescLibPlusGUI.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/startup.scd
-    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/StartUp.schelp
-    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/Server.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/OCServeOptions.sc
+    - /Users/omercho/Dropbox/SC/~OOOSSSCCC/110713_2346_sendingOscToTοuchOSC2.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG
+    - /Users/omercho/Dropbox/SC/~OOOSSSCCC/110713_2346_sendingOscToTοuchOSC.scd
+    - /Users/omercho/Dropbox/SC/__SC2012/+16MAR2012/120313_sendingOscToProcess.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/iannixTesting.scd
+    - /Users/omercho/Dropbox/SC/~CoolZounds/titltMIDI_100302_01.scd
+    - /Users/omercho/Dropbox/SC/~CoolZounds/titltFX100302_01.scd
+    - /Users/omercho/Dropbox/SC/~CoolZounds/titlt_100301_03.scd
+    - /Users/omercho/Dropbox/SC/~CoolZounds/titlt_100301_02.scd
   shortcuts:
+    help-browser: Ctrl+Shift+H
     ide-document-reload: Ctrl+Shift+K
   startWithSession: last

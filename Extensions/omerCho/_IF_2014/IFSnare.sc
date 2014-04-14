@@ -18,6 +18,7 @@ IFSnr.times(4);
 	*globals{
 
 		~snrCh=1;
+		~snrLate=0.00;
 		~snrTimes=1;
 		~transSnr=0;
 		~octSnr=3;
@@ -54,6 +55,8 @@ IFSnr.times(4);
 		case
 		{ i == val }  {
 			{val.do{
+
+				~snrLate.wait;
 
 				this.p1(val);
 

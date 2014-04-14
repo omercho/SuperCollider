@@ -1,7 +1,7 @@
 
 /*
 IFKeys.times(2);
-IFKeys.pat_1;
+IFKeys(3);
 
 ~octKeys=4;
 
@@ -22,6 +22,7 @@ classvar <>counter3 = 0;
 	*globals{
 
 		~chKeys=3;
+		~keysLate= 0.00;
 		~timesKeys=1;
 		~octKeys=3;
 		~transKeys=0;
@@ -54,6 +55,7 @@ classvar <>counter3 = 0;
 		{ i == val }  {
 			{val.do{
 
+				~keysLate.wait;
 
 				this.p1(val);
 

@@ -1,0 +1,24 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/140401_iannixTest2.scd
+  - /Users/omercho/Dropbox/SC/~SynthDefs/~ZKM_SynthDefs/110302_MouseNoise.scd
+  - /Users/omercho/Dropbox/SC/~SynthDefs/110329_varel_03OK.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 1
+        position: 597
+      - !QVariantMap
+        documentIndex: 2
+        position: 2
+      - !QVariantMap
+        documentIndex: 0
+        position: 32
+  state: AAAA/wAAAAAAAAABAAAAZAEAAAABAQAAAAE=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: AQHZ0MsAAQAAAAAA5wAAAOIAAASgAAADrwAAAOcAAAD4AAAEoAAAA68AAAAAAAA=
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAGAAAAUwAABo8AAAOnAAAABgAAAGkAAAaPAAADpwAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADJ/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADJwAAAGYA////AAAAAQAAAdAAAAMn/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAMnAAAATAD///8AAAQjAAADJwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

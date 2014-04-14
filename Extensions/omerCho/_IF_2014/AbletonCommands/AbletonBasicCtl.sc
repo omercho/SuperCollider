@@ -38,14 +38,14 @@
 
 	*tap4 {
 
-/*		{
+		{
 			Pbind(
 				\type, \midi, \midicmd, \control,
 				\midiout,~md1, \chan, 15, \ctlNum, 2,\delta, Pseq([1], 4),\control, Pseq([100], 4)
 			).play;
 			4.01.wait;
-			this.stop;
-		}.fork;*/
+			//this.stop;
+		}.fork;
 	}
 
 	*killAll{
