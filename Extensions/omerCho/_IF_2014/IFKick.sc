@@ -1,7 +1,7 @@
 
 /*
 
-IFKick.times(4);
+IFKick(4);
 */
 
 	IFKick {
@@ -20,16 +20,18 @@ IFKick.times(4);
 		~kickCh=0;
 		~kickLate= 0.00;
 		~kickTimes=1;
-		~octKick=4;
-		~transKick=0;
-		~legKick=0;
-		~stretchKick=0;
+		~octMulKick=4;
+		~trKick=0;
+		~rootKick=0;
+		~harmKick=0;
+		~susMulKick=1;
 		~drumVolC=0; ~kickVolC=1;
 	}
 
 	*preSet {
 		~md1.control(~kickCh, ~drumVolC, 100); //Drum Channel Master Volume
-		~md1.control(~kickCh, ~kickVolC, 100); //KickVol
+		//~mdTouch.control(1, 11, 1); //KickVol
+		~md1.control(1, 11, 120); //KickVol
 
 	}
 
@@ -41,8 +43,20 @@ IFKick.times(4);
 		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
 		~amp1Kick = PatternProxy( Pseq([1], inf));
 		~amp1KickP = Pseq([~amp1Kick], inf).asStream;
-		~sus1Kick = PatternProxy( Pseq([1], inf));
-		~sus1KickP = Pseq([~dur1Kick], inf).asStream;
+		~sus1Kick = PatternProxy( Pseq([0.5], inf));
+		~sus1KickP = Pseq([~sus1Kick], inf).asStream;
+
+		~tmKick = PatternProxy( Pseq([1], inf));
+		~tmKickP= Pseq([~tmKick], inf).asStream;
+
+		~transKick = PatternProxy( Pseq([0], inf));
+		~transKickP = Pseq([~transKick], inf).asStream;
+		~octKick = PatternProxy( Pseq([4], inf));
+		~octKickP = Pseq([~octKick], inf).asStream;
+		//~legKick = PatternProxy( Pseq([0.0], inf));
+		//~legKickP = Pseq([~legKick], inf).asStream;
+		~strKick = PatternProxy( Pseq([1.0], inf));
+		~strKickP = Pseq([~strKick], inf).asStream;
 
 
 	}
@@ -54,12 +68,12 @@ IFKick.times(4);
 		{ i == val }  {
 			{val.do{
 
-
+				//~kickLate=~abLate;
 				~kickLate.wait;
 
 				this.p1(val);
 
-				~durMul*((~dur1KickP.value)/val).wait;
+				~durMul*((~dur1KickP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -70,16 +84,16 @@ IFKick.times(4);
 		val=i;
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree, Pseq([~nt1KickP.next], 1),
 			\amp, Pseq([~amp1KickP.next], 1),
-			\sustain, Pseq([~sus1KickP.next],1),
-			\mtranspose, Pseq([~transKick], 1),
-			\octave, ~octKick,
-			\legato, ~legKick,
-			\stretch, ~stretchKick
+			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
+			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
+			\octave, Pseq([~octKickP.next], 1)+~octMulKick,
+			\harmonic, Pseq([~strKickP.next], 1)+~harmKick
 		).play;
+
 
 		//this.count2;
 		//this.timesCount;

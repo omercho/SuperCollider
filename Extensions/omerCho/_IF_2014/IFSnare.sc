@@ -20,10 +20,13 @@ IFSnr.times(4);
 		~snrCh=1;
 		~snrLate=0.00;
 		~snrTimes=1;
-		~transSnr=0;
-		~octSnr=3;
-		~stretchSnr=0;
-		~legSnr=0;
+		~rootSnr=0;
+		~harmSnr=0;
+		~susMulSnr=1;
+		~trSnr=0;
+
+		~octMulSnr=0;
+
 		~snrVolC=1;
 	}
 
@@ -46,6 +49,18 @@ IFSnr.times(4);
 		~sus1Snr = PatternProxy( Pseq([1], inf));
 		~sus1SnrP = Pseq([~sus1Snr], inf).asStream;
 
+		~tmSnr = PatternProxy( Pseq([1], inf));
+		~tmSnrP= Pseq([~tmSnr], inf).asStream;
+
+		~transSnr = PatternProxy( Pseq([0], inf));
+		~transSnrP = Pseq([~transSnr], inf).asStream;
+		~octSnr = PatternProxy( Pseq([4], inf));
+		~octSnrP = Pseq([~octSnr], inf).asStream;
+		//~legSnr = PatternProxy( Pseq([0.0], inf));
+		//~legSnrP = Pseq([~legSnr], inf).asStream;
+		~strSnr = PatternProxy( Pseq([1.0], inf));
+		~strSnrP = Pseq([~strSnr], inf).asStream;
+
 	}
 
 
@@ -56,12 +71,13 @@ IFSnr.times(4);
 		{ i == val }  {
 			{val.do{
 
+				//~snrLate=~abLate;
 				~snrLate.wait;
 
 				this.p1(val);
 
-				~dur1SnrSon.value;
-				~durMul*((~dur1SnrP.value)/val).wait;
+				//~dur1SnrSon.value;
+				~durMul*((~dur1SnrP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -76,11 +92,10 @@ IFSnr.times(4);
 			\dur, Pseq([Pseq([~dur1SnrP.next/val],1)], 1),
 			\degree, Pseq([~nt1SnrP.next], 1),
 			\amp, Pseq([~amp1SnrP.next], 1),
-			\sustain, Pseq([~sus1SnrP.next],1),
-			\mtranspose, Pseq([~transSnr], 1),
-			\octave, ~octSnr,
-			\legato, ~legSnr,
-			\stretch, ~stretchSnr
+			\sustain, Pseq([~sus1SnrP.next],1)*~susMulSnr,
+			\mtranspose, Pseq([~transSnrP.next], 1)+~trSnr,
+			\octave, Pseq([~octSnrP.next], 1)+~octMulSnr,
+			\harmonic, Pseq([~strSnrP.next], 1)+~harmSnr
 		).play;
 
 		//this.count2;

@@ -15,6 +15,8 @@ OCMIDI {
 		//MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
 		~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
+		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // create the NetAddr
 
 	}

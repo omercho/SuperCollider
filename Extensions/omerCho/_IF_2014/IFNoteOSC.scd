@@ -1,92 +1,27 @@
-PostAllOSC.on;
-PostAllOSC.off;
+/////////////////////----- Note -------//////////////
 
-
-~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // create the NetAddr
-~tOSCAdrr.sendMsg('/1/label1', 'part1');// send the application the message "hello" with the parameter "there"
-
-~tOSCAdrr.sendMsg('/1/toggleMain', 0);
-
-
-(
-~togMain.remove;
-~togMain = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"IF Main PLAY".postln;
-
-		~ifPlay={|tm=4|
-
-			//~nt1Keys.source   =  Pseq([~nt+0, ~nt+3, ~nt+2, ~nt+4, ~nt+24 , ~nt+14], inf);
-			//~dur1Keys.source  =  Pseq([1]*1, inf);
-			//~amp1Keys.source  =  Pseq([0.9], inf);
-			//~sus1Samp.source  =  Pseq([0.2], inf);
-			//1
-			inf.do{
-				12.do {
-
-
-					~transKeys=(-0);~transSamp=(0); ~transBass=(0);
-					IFKeys([1].choose);
-					IFSamp([1].choose);
-					IFBass([1].choose);
-					IFKick([1].choose);
-					IFSnr([1].choose);
-					IFHat([2].choose);
-					~dur.next.wait;
-				};
-			};
-
-		}.fork;
-
-
-	});
-
-	if ( msg[1]==0, {
-		"IF Main STOP".postln;
-		~ifPlay.stop;
-
-	});
-	},
-	'/1/toggleMain'
-);
+//~legKick = PatternProxy( Pseq([0], inf));
+//~legKickP= Pseq([~legKick], inf).asStream;
 
 ~noteFader.remove;
 ~noteFader= OSCFunc({
 	arg msg;
-	~nt= msg[1];
+
+	~legKick.source=msg[1];~legSnr.source=msg[1];~legHat.source=msg[1];
+	~legBass.source=msg[1];~legKeys.source=msg[1];~legSamp.source=msg[1];
+
 	~tOSCAdrr.sendMsg('noteLabel', msg[1]);
 	},
 	'/noteFader'
 );
 
-~tempoFader.remove;
-~tempoFader= OSCFunc({
-	arg msg;
-	IFProject.setTempo(msg[1]);
-	~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
-	},
-	'/tempoFader'
-);
-
-~tapAbleton.remove;
-~tapAbleton= OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-
-		Ableton.tap4;
-
-	});
-	},
-	'/tapAbleton'
-);
 
 ~note_0.remove;
 ~note_0 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 0".postln;
-		~nt=0;
+		"Root NOTE 0".postln;
+		~legKick.source=0;
 		~tOSCAdrr.sendMsg('noteLabel', '0');
 	});
 	},
@@ -97,8 +32,8 @@ PostAllOSC.off;
 ~note_1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 1".postln;
-		~nt=1;
+		"Root NOTE 1".postln;
+		~legKick.source=1;
 		~tOSCAdrr.sendMsg('noteLabel', '1');
 	});
 	},
@@ -110,8 +45,8 @@ PostAllOSC.off;
 ~note_2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 2".postln;
-		~nt=2;
+		"Root NOTE 2".postln;
+		~legKick.source=2;
 		~tOSCAdrr.sendMsg('noteLabel', '2');
 	});
 	},
@@ -122,8 +57,8 @@ PostAllOSC.off;
 ~note_3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 3".postln;
-		~nt=3;
+		"Root NOTE 3".postln;
+		~legKick.source=3;
 		~tOSCAdrr.sendMsg('noteLabel', '3');
 	});
 	},
@@ -134,8 +69,8 @@ PostAllOSC.off;
 ~note_4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 4".postln;
-		~nt=4;
+		"Root NOTE 4".postln;
+		~legKick.source=4;
 		~tOSCAdrr.sendMsg('noteLabel', '4');
 	});
 	},
@@ -146,8 +81,8 @@ PostAllOSC.off;
 ~note_5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 5".postln;
-		~nt=5;
+		"Root NOTE 5".postln;
+		~legKick.source=5;
 		~tOSCAdrr.sendMsg('noteLabel', '5');
 	});
 	},
@@ -158,8 +93,8 @@ PostAllOSC.off;
 ~note_6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 6".postln;
-		~nt=6;
+		"Root NOTE 6".postln;
+		~legKick.source=6;
 		~tOSCAdrr.sendMsg('noteLabel', '6');
 	});
 	},
@@ -170,8 +105,8 @@ PostAllOSC.off;
 ~note_7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 7".postln;
-		~nt=7;
+		"Root NOTE 7".postln;
+		~legKick.source=7;
 		~tOSCAdrr.sendMsg('noteLabel', '7');
 	});
 	},
@@ -182,8 +117,8 @@ PostAllOSC.off;
 ~note_8 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 8".postln;
-		~nt=8;
+		"Root NOTE 8".postln;
+		~legKick.source=8;
 		~tOSCAdrr.sendMsg('noteLabel', '8');
 	});
 	},
@@ -194,8 +129,8 @@ PostAllOSC.off;
 ~note_9 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 9".postln;
-		~nt=9;
+		"Root NOTE 9".postln;
+		~legKick.source=9;
 		~tOSCAdrr.sendMsg('noteLabel', '9');
 	});
 	},
@@ -206,8 +141,8 @@ PostAllOSC.off;
 ~note_10 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 10".postln;
-		~nt=10;
+		"Root NOTE 10".postln;
+		~legKick.source=10;
 		~tOSCAdrr.sendMsg('noteLabel', '10');
 	});
 	},
@@ -218,8 +153,8 @@ PostAllOSC.off;
 ~note_11 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 11".postln;
-		~nt=11;
+		"Root NOTE 11".postln;
+		~legKick.source=11;
 		~tOSCAdrr.sendMsg('noteLabel', '11');
 	});
 	},
@@ -230,8 +165,8 @@ PostAllOSC.off;
 ~note_12 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 12".postln;
-		~nt=12;
+		"Root NOTE 12".postln;
+		~legKick.source=12;
 		~tOSCAdrr.sendMsg('noteLabel', '12');
 	});
 	},
@@ -242,8 +177,8 @@ PostAllOSC.off;
 ~note_13 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 13".postln;
-		~nt=13;
+		"Root NOTE 13".postln;
+		~legKick.source=13;
 		~tOSCAdrr.sendMsg('noteLabel', '13');
 	});
 	},
@@ -254,8 +189,8 @@ PostAllOSC.off;
 ~note_14 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE 14".postln;
-		~nt=14;
+		"Root NOTE 14".postln;
+		~legKick.source=14;
 		~tOSCAdrr.sendMsg('noteLabel', '14');
 	});
 	},
@@ -267,8 +202,8 @@ PostAllOSC.off;
 ~note1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -1".postln;
-		~nt=(-1);
+		"Root NOTE -1".postln;
+		~legKick.source=(-1);
 		~tOSCAdrr.sendMsg('noteLabel', '-1');
 	});
 	},
@@ -280,8 +215,8 @@ PostAllOSC.off;
 ~note2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -2".postln;
-		~nt=(-2);
+		"Root NOTE -2".postln;
+		~legKick.source=(-2);
 		~tOSCAdrr.sendMsg('noteLabel', '-2');
 	});
 	},
@@ -292,20 +227,20 @@ PostAllOSC.off;
 ~note3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -3".postln;
-		~nt=(-3);
+		"Root NOTE -3".postln;
+		~legKick.source=(-3);
 		~tOSCAdrr.sendMsg('noteLabel', '-3');
 	});
 	},
-	'/nt-4'
+	'/nt-3'
 );
 
 ~note4.remove;
 ~note4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -4".postln;
-		~nt=(-4);
+		"Root NOTE -4".postln;
+		~legKick.source=(-4);
 		~tOSCAdrr.sendMsg('noteLabel', '-4');
 	});
 	},
@@ -316,8 +251,8 @@ PostAllOSC.off;
 ~note5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -5".postln;
-		~nt=(-5);
+		"Root NOTE -5".postln;
+		~legKick.source=(-5);
 		~tOSCAdrr.sendMsg('noteLabel', '-5');
 	});
 	},
@@ -328,8 +263,8 @@ PostAllOSC.off;
 ~note6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -6".postln;
-		~nt=(-6);
+		"Root NOTE -6".postln;
+		~legKick.source=(-6);
 		~tOSCAdrr.sendMsg('noteLabel', '-6');
 	});
 	},
@@ -340,8 +275,8 @@ PostAllOSC.off;
 ~note7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -7".postln;
-		~nt=(-7);
+		"Root NOTE -7".postln;
+		~legKick.source=(-7);
 		~tOSCAdrr.sendMsg('noteLabel', '-7');
 	});
 	},
@@ -352,8 +287,8 @@ PostAllOSC.off;
 ~note8 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -8".postln;
-		~nt=(-8);
+		"Root NOTE -8".postln;
+		~legKick.source=(-8);
 		~tOSCAdrr.sendMsg('noteLabel', '-8');
 	});
 	},
@@ -364,8 +299,8 @@ PostAllOSC.off;
 ~note9 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -9".postln;
-		~nt=(-9);
+		"Root NOTE -9".postln;
+		~legKick.source=(-9);
 		~tOSCAdrr.sendMsg('noteLabel', '-9');
 	});
 	},
@@ -376,8 +311,8 @@ PostAllOSC.off;
 ~note10 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -10".postln;
-		~nt=(-10);
+		"Root NOTE -10".postln;
+		~legKick.source=(-10);
 		~tOSCAdrr.sendMsg('noteLabel', '-10');
 	});
 	},
@@ -388,8 +323,8 @@ PostAllOSC.off;
 ~note11 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -11".postln;
-		~nt=(-11);
+		"Root NOTE -11".postln;
+		~legKick.source=(-11);
 		~tOSCAdrr.sendMsg('noteLabel', '-11');
 	});
 	},
@@ -400,8 +335,8 @@ PostAllOSC.off;
 ~note12 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -12".postln;
-		~nt=(-12);
+		"Root NOTE -12".postln;
+		~legKick.source=(-12);
 		~tOSCAdrr.sendMsg('noteLabel', '-12');
 	});
 	},
@@ -412,8 +347,8 @@ PostAllOSC.off;
 ~note13 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -13".postln;
-		~nt=(-13);
+		"Root NOTE -13".postln;
+		~legKick.source=(-13);
 		~tOSCAdrr.sendMsg('noteLabel', '-13');
 	});
 	},
@@ -424,116 +359,10 @@ PostAllOSC.off;
 ~note14 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
-		"Main NOTE -14".postln;
-		~nt=(-14);
+		"Root NOTE -14".postln;
+		~legKick.source=(-14);
 		~tOSCAdrr.sendMsg('noteLabel', '-14');
 	});
 	},
 	'/nt-14'
 );
-
-
-
-
-~part__0.remove;
-~part_0 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part0".postln;
-
-		~mainSet_00.fork(quant:0);
-		~tOSCAdrr.sendMsg('partLabel', 'part0');
-	});
-	},
-	'/part0'
-);
-
-~part_1.remove;
-~part_1 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part1".postln;
-
-		~mainSet_01.fork(quant:0);
-		~tOSCAdrr.sendMsg('partLabel', 'part1');
-	});
-	},
-	'/part1'
-);
-
-~part_2.remove;
-~part_2 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part2".postln;
-
-		~mainSet_02.fork(quant:0);
-		~tOSCAdrr.sendMsg('partLabel', 'part2');
-	});
-	},
-	'/part2'
-);
-
-~part_3.remove;
-~part_3 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part3".postln;
-
-		~tOSCAdrr.sendMsg('partLabel', 'part3');
-	});
-	},
-	'/part3'
-);
-
-~part_4.remove;
-~part_4 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part4".postln;
-
-		~tOSCAdrr.sendMsg('partLabel', 'part4');
-	});
-	},
-	'/part4'
-);
-
-~part_5.remove;
-~part_5 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part5".postln;
-
-		~tOSCAdrr.sendMsg('partLabel', 'part5');
-	});
-	},
-	'/part5'
-);
-
-~part_6.remove;
-~part_6 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part6".postln;
-
-		~tOSCAdrr.sendMsg('partLabel', 'part6');
-	});
-	},
-	'/part6'
-);
-
-~part_7.remove;
-~part_7 = OSCFunc({
-	arg msg;
-	if ( msg[1]==1, {
-		"part7".postln;
-
-		~tOSCAdrr.sendMsg('partLabel', 'part7');
-	});
-	},
-	'/part7'
-);
-
-
-
-)

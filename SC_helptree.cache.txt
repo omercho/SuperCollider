@@ -3,15 +3,15 @@
 	19
 	[[Envelopes]]
 		6
-		Linen
+		DemandEnvGen
 		
 		Line
 		
 		EnvGen
 		
-		DemandEnvGen
-		
 		IEnvGen
+		
+		Linen
 		
 		XLine
 		
@@ -27,9 +27,13 @@
 			
 		[[Nonlinear]]
 			10
-			HilbertFIR
+			Median
 			
-			MantissaMask
+			TBall
+			
+			FreqShift
+			
+			HilbertFIR
 			
 			Slew
 			
@@ -37,683 +41,679 @@
 			
 			Ball
 			
-			Spring
+			MantissaMask
 			
 			Hilbert
 			
-			Median
-			
-			TBall
-			
-			FreqShift
+			Spring
 			
 		[[Linear]]
 			50
-			MidEQ
-			
-			BBandPass
-			
-			FOS
-			
-			LPZ2
-			
-			SOS
-			
-			BRF
-			
-			BPZ2
-			
-			HPZ1
-			
-			APF
-			
-			HPZ2
-			
-			RLPF
-			
 			HPF
-			
-			RHPF
-			
-			Formlet
-			
-			BLowShelf
 			
 			Resonz
 			
-			LPF
+			Lag2UD
+			
+			BRZ2
+			
+			Slope
+			
+			BPF
+			
+			Lag
 			
 			Ramp
 			
-			Decay2
+			TwoPole
 			
-			BBandStop
+			BHiShelf
+			
+			OnePole
+			
+			Lag2
+			
+			BBandPass
+			
+			Formlet
+			
+			Lag3
+			
+			BLowPass
 			
 			Changed
-			
-			MoogFF
-			
-			Decay
 			
 			Ringz
 			
 			LeakDC
 			
-			BEQSuite
-			
-			TwoZero
-			
-			DynKlank
-			
-			Lag
-			
-			Integrator
-			
-			Klank
-			
-			VarLag
-			
-			BLowPass
-			
-			TwoPole
-			
-			LPZ1
-			
-			OnePole
-			
-			LagUD
-			
-			BHiShelf
-			
-			OneZero
-			
-			BAllPass
-			
-			BHiPass
-			
-			Klang
-			
-			Lag3
-			
-			Lag2UD
-			
-			BPeakEQ
-			
-			Lag2
-			
-			Slope
-			
-			BRZ2
+			Decay
 			
 			Lag3UD
 			
-			BPF
+			BPeakEQ
+			
+			LPF
+			
+			RHPF
+			
+			BHiPass
+			
+			Klank
+			
+			APF
+			
+			BLowShelf
+			
+			BAllPass
+			
+			BRF
+			
+			Klang
+			
+			Decay2
+			
+			LagUD
+			
+			DynKlank
+			
+			MoogFF
+			
+			MidEQ
+			
+			FOS
+			
+			Integrator
+			
+			RLPF
+			
+			VarLag
+			
+			HPZ1
+			
+			HPZ2
+			
+			BPZ2
+			
+			SOS
+			
+			LPZ2
+			
+			OneZero
+			
+			BBandStop
+			
+			LPZ1
+			
+			BEQSuite
+			
+			TwoZero
 			
 	[[Demand]]
 		26
 		Demand
 		
-		Dbufrd
-		
-		Dshuf
-		
-		Dpoll
-		
-		Dswitch
-		
-		Dgeom
-		
-		DUGen
-		
-		Dswitch1
-		
-		DemandEnvGen
-		
-		Donce
-		
-		Drand
-		
-		Duty
-		
-		Dwhite
-		
-		Diwhite
-		
-		Dbrown
-		
-		Dser
-		
-		TDuty
-		
-		Dbufwr
+		Dseries
 		
 		ListDUGen
 		
-		Dxrand
+		Dbufwr
 		
-		Dseq
+		Dser
 		
-		Dstutter
+		Dbrown
+		
+		DemandEnvGen
+		
+		DUGen
+		
+		Dgeom
 		
 		Dwrand
 		
-		Dibrown
+		Dswitch
+		
+		Dshuf
+		
+		Dstutter
+		
+		Duty
+		
+		Diwhite
+		
+		Drand
 		
 		Dreset
 		
-		Dseries
+		Donce
+		
+		Dpoll
+		
+		Dwhite
+		
+		Dibrown
+		
+		Dbufrd
+		
+		Dxrand
+		
+		TDuty
+		
+		Dseq
+		
+		Dswitch1
 		
 	[[Synth control]]
 		12
-		FreeSelf
-		
-		PauseSelf
-		
-		DetectSilence
-		
-		LagControl
-		
-		FreeSelfWhenDone
+		PauseSelfWhenDone
 		
 		Pause
 		
-		PauseSelfWhenDone
+		FreeSelfWhenDone
 		
-		Control
-		
-		AudioControl
+		DetectSilence
 		
 		Free
 		
-		TrigControl
+		AudioControl
+		
+		Control
+		
+		LagControl
 		
 		Done
 		
+		TrigControl
+		
+		PauseSelf
+		
+		FreeSelf
+		
 	[[Maths]]
 		15
-		LinLin
+		Fold
 		
 		RunningMax
 		
-		Integrator
-		
-		InRect
-		
 		MostChange
 		
-		RunningSum
+		Slope
 		
-		Fold
+		LinLin
 		
-		Wrap
+		LinExp
+		
+		Schmidt
 		
 		InRange
 		
 		RunningMin
 		
+		InRect
+		
 		Clip
 		
+		RunningSum
+		
+		Integrator
+		
+		Wrap
+		
 		LeastChange
-		
-		Schmidt
-		
-		Slope
-		
-		LinExp
 		
 	[[Generators]]
 		5
 		[[Chaotic]]
 			23
-			Logistic
-			
-			QuadN
-			
-			LinCongC
-			
-			FBSineN
+			CuspN
 			
 			StandardN
 			
-			FBSineC
-			
-			LatoocarfianN
-			
-			QuadL
-			
-			HenonN
-			
-			LatoocarfianC
-			
-			GbmanL
-			
-			CuspL
+			StandardL
 			
 			LinCongN
 			
-			LinCongL
-			
 			GbmanN
 			
-			HenonL
+			FBSineC
 			
-			CuspN
+			LinCongL
 			
-			FBSineL
+			LatoocarfianN
 			
-			QuadC
+			LatoocarfianC
 			
-			StandardL
-			
-			LorenzL
-			
-			LatoocarfianL
+			HenonN
 			
 			HenonC
 			
+			QuadC
+			
+			LinCongC
+			
+			QuadL
+			
+			LorenzL
+			
+			FBSineN
+			
+			GbmanL
+			
+			Logistic
+			
+			FBSineL
+			
+			CuspL
+			
+			LatoocarfianL
+			
+			HenonL
+			
+			QuadN
+			
 		[[Single-value]]
 			7
-			IRand
-			
 			Silent
 			
-			ExpRand
-			
-			NRand
+			IRand
 			
 			DC
 			
 			LinRand
 			
+			NRand
+			
+			ExpRand
+			
 			Rand
 			
 		[[Deterministic]]
 			28
-			DynKlank
-			
-			SinOscFB
-			
-			SinOsc
-			
-			VOsc
-			
-			Pulse
+			Klank
 			
 			DynKlang
 			
-			Klank
+			Klang
 			
-			Impulse
+			OscN
 			
-			IndexL
+			COsc
 			
-			Saw
+			LFPar
 			
-			PMOsc
+			FSinOsc
+			
+			DynKlank
+			
+			LFPulse
 			
 			Osc
 			
 			SyncSaw
 			
-			LFSaw
-			
-			LFPar
-			
-			LFTri
-			
-			LFPulse
-			
-			FSinOsc
-			
-			Blip
-			
-			Klang
-			
-			VarSaw
-			
-			COsc
-			
-			Formant
-			
-			VOsc3
+			LFCub
 			
 			PSinGrain
 			
-			OscN
+			Formant
 			
-			LFCub
+			Impulse
+			
+			IndexL
+			
+			VarSaw
+			
+			Pulse
+			
+			LFTri
+			
+			Blip
 			
 			Pluck
 			
+			LFSaw
+			
+			PMOsc
+			
+			VOsc3
+			
+			SinOsc
+			
+			VOsc
+			
+			Saw
+			
+			SinOscFB
+			
 		[[Granular]]
 			6
-			GrainIn
-			
-			Warp1
-			
-			TGrains
-			
-			GrainBuf
-			
 			GrainSin
 			
 			GrainFM
 			
+			GrainIn
+			
+			TGrains
+			
+			Warp1
+			
+			GrainBuf
+			
 		[[Stochastic]]
 			32
-			IRand
-			
-			RandSeed
-			
-			TWindex
-			
 			PinkNoise
-			
-			Gendy2
-			
-			LFClipNoise
-			
-			TRand
 			
 			Dust
 			
+			LFNoise2
+			
+			LFDNoise0
+			
+			TRand
+			
 			WhiteNoise
 			
-			Gendy1
+			NRand
+			
+			LFNoise0
+			
+			ExpRand
+			
+			LFClipNoise
 			
 			BrownNoise
 			
-			LFGauss
+			LFDNoise1
 			
-			TExpRand
+			LFNoise1
 			
 			ClipNoise
 			
 			LinRand
 			
-			LFNoise0
-			
-			LFNoise1
-			
-			CoinGate
+			Rand
 			
 			TIRand
 			
-			ExpRand
-			
-			LFDNoise3
-			
-			LFDNoise0
+			Dust2
 			
 			GrayNoise
 			
+			Gendy1
+			
+			CoinGate
+			
+			TWindex
+			
 			RandID
 			
-			Rand
-			
-			LFNoise2
+			RandSeed
 			
 			Crackle
 			
-			LFDClipNoise
+			LFGauss
 			
-			NRand
+			Gendy2
 			
 			Gendy3
 			
-			Dust2
+			IRand
 			
-			LFDNoise1
+			LFDNoise3
+			
+			LFDClipNoise
+			
+			TExpRand
 			
 	[[Info]]
 		14
-		ControlDur
+		NumBuffers
 		
 		NumControlBuses
 		
-		RadiansPerSample
-		
-		SubsampleOffset
-		
-		NumAudioBuses
-		
-		NumOutputBuses
-		
 		Poll
 		
-		NumBuffers
+		NumRunningSynths
+		
+		SampleDur
+		
+		RadiansPerSample
+		
+		ControlDur
+		
+		CheckBadValues
 		
 		ControlRate
 		
 		NumInputBuses
 		
-		NumRunningSynths
-		
-		CheckBadValues
-		
-		SampleDur
+		SubsampleOffset
 		
 		SampleRate
 		
+		NumOutputBuses
+		
+		NumAudioBuses
+		
 	[[InOut]]
 		16
-		Out
-		
-		VDiskIn
-		
-		InFeedback
-		
-		XOut
-		
-		LocalOut
-		
-		AudioIn
-		
 		DiskOut
-		
-		InTrig
-		
-		LagIn
 		
 		OffsetOut
 		
-		SharedOut
+		InTrig
 		
-		ReplaceOut
+		XOut
 		
-		In
-		
-		DiskIn
-		
-		LocalIn
+		InFeedback
 		
 		SharedIn
 		
+		In
+		
+		SharedOut
+		
+		LocalOut
+		
+		LagIn
+		
+		AudioIn
+		
+		LocalIn
+		
+		VDiskIn
+		
+		ReplaceOut
+		
+		Out
+		
+		DiskIn
+		
 	[[Delays]]
 		21
-		BufCombC
-		
-		AllpassL
-		
-		AllpassC
-		
-		DelayN
-		
-		AllpassN
-		
-		BufAllpassC
-		
-		CombL
-		
-		BufDelayC
-		
-		Delay1
-		
 		BufDelayL
-		
-		BufDelayN
-		
-		DelayC
-		
-		TDelay
-		
-		Delay2
-		
-		BufAllpassN
 		
 		BufAllpassL
 		
-		BufCombN
+		BufDelayN
 		
 		BufCombL
 		
+		CombN
+		
+		BufDelayC
+		
+		DelayC
+		
+		CombL
+		
+		BufAllpassN
+		
+		Delay2
+		
+		AllpassC
+		
+		AllpassL
+		
+		Delay1
+		
+		TDelay
+		
+		BufAllpassC
+		
+		AllpassN
+		
 		DelayL
+		
+		BufCombN
 		
 		CombC
 		
-		CombN
+		BufCombC
+		
+		DelayN
 		
 	[[Unclassified]]
 		30
-		LinXFade2
-		
-		KafSin
-		
-		SendPeakRMS
-		
-		DelTapWr
-		
 		OCNam
 		
 		LinPan2
 		
-		OCBell
+		KafSinVib
 		
 		OCAtesh
 		
 		Pan2
 		
-		WidthFirstUGen
+		OCBell
 		
-		KafSinVib
+		SplayAz
 		
 		KafGendy
 		
-		Splay
-		
-		PanAz
+		Sum3
 		
 		ScopeOut2
 		
-		XFade2
-		
-		KafAtesh
-		
 		KafSMS
 		
-		Sum3
+		SendPeakRMS
 		
-		Sum4
+		OCDrumKick01
 		
-		DelTapRd
+		LinXFade2
 		
-		Balance2
+		XFade2
+		
+		Dunique
 		
 		PureUGen
 		
 		KafPMO
 		
-		SplayAz
-		
-		KafSinVibTest
+		KafSin
 		
 		Pan4
 		
+		KafSinVibTest
+		
+		Sum4
+		
+		Balance2
+		
+		DelTapRd
+		
 		KafBell
 		
-		OCDrumKick01
+		DelTapWr
 		
-		Dunique
+		Splay
+		
+		WidthFirstUGen
+		
+		KafAtesh
+		
+		PanAz
 		
 	[[Analysis]]
 		9
 		[[Pitch]]
 			3
-			ZeroCrossing
+			KeyTrack
 			
 			Pitch
 			
-			KeyTrack
+			ZeroCrossing
 			
-		SpecFlatness
-		
 		BeatTrack2
-		
-		SpecPcile
-		
-		[[Amplitude]]
-			11
-			Amplitude
-			
-			DetectSilence
-			
-			Compander
-			
-			AmpComp
-			
-			PeakFollower
-			
-			CompanderD
-			
-			Peak
-			
-			Limiter
-			
-			Loudness
-			
-			Normalizer
-			
-			AmpCompA
-			
-		MFCC
 		
 		Onsets
 		
+		[[Amplitude]]
+			11
+			DetectSilence
+			
+			Limiter
+			
+			CompanderD
+			
+			PeakFollower
+			
+			AmpCompA
+			
+			Normalizer
+			
+			Amplitude
+			
+			Peak
+			
+			Compander
+			
+			Loudness
+			
+			AmpComp
+			
 		SpecCentroid
+		
+		SpecFlatness
 		
 		BeatTrack
 		
+		MFCC
+		
+		SpecPcile
+		
 	[[User interaction]]
 		4
-		MouseY
-		
-		KeyState
-		
 		MouseButton
 		
 		MouseX
+		
+		KeyState
+		
+		MouseY
 		
 	[[Multichannel]]
 		3
 		[[Select]]
 			5
-			Select
-			
-			TWChoose
+			SelectXFocus
 			
 			LinSelectX
 			
-			SelectXFocus
+			TWChoose
+			
+			Select
 			
 			SelectX
 			
 		[[Ambisonics]]
 			5
-			PanB2
-			
 			Rotate2
 			
 			PanB
+			
+			PanB2
 			
 			DecodeB2
 			
@@ -725,9 +725,9 @@
 			
 	[[Reverbs]]
 		3
-		FreeVerb2
-		
 		FreeVerb
+		
+		FreeVerb2
 		
 		GVerb
 		
@@ -737,215 +737,215 @@
 		
 	[[FFT]]
 		52
-		PV_JensenAndersen
+		PV_MagNoise
 		
-		SpecCentroid
+		PV_PhaseShift90
+		
+		PV_Add
+		
+		UnpackFFT
+		
+		FFT
+		
+		PV_MagSmear
+		
+		PV_ConformalMap
+		
+		PV_Div
+		
+		SpecFlatness
+		
+		Convolution
 		
 		PV_MagMul
 		
-		PV_MagNoise
+		PV_Copy
 		
 		Convolution2L
 		
 		PackFFT
 		
-		PV_PhaseShift
-		
-		PV_MagAbove
-		
-		Unpack1FFT
-		
-		PV_PhaseShift90
-		
-		PV_RectComb
-		
-		PV_Mul
-		
-		Convolution
-		
-		BeatTrack2
-		
-		FFTTrigger
-		
-		PV_HainsworthFoote
-		
-		PV_CopyPhase
-		
-		PV_ConformalMap
-		
-		SpecPcile
-		
-		UnpackFFT
-		
-		PV_RectComb2
-		
-		PV_Min
-		
-		PV_MagDiv
-		
-		PV_RandComb
-		
-		PV_BrickWall
-		
-		PV_LocalMax
-		
-		PV_RandWipe
-		
-		PV_Max
-		
-		PV_Diffuser
-		
-		SpecFlatness
-		
-		PV_BinShift
-		
-		PV_MagClip
-		
 		PartConv
 		
-		PV_Conj
-		
-		PV_MagShift
-		
-		Convolution3
-		
-		FFT
-		
-		PV_Div
-		
-		IFFT
-		
-		PV_ChainUGen
-		
-		PV_MagFreeze
-		
-		StereoConvolution2L
-		
-		PV_MagSmear
-		
-		BeatTrack
-		
-		PV_MagSquared
-		
-		PV_Copy
+		PV_JensenAndersen
 		
 		PV_BinScramble
 		
-		PV_BinWipe
+		IFFT
+		
+		PV_PhaseShift
+		
+		FFTTrigger
+		
+		PV_Mul
+		
+		BeatTrack2
+		
+		PV_ChainUGen
+		
+		Unpack1FFT
+		
+		Convolution3
+		
+		PV_BinShift
+		
+		PV_BrickWall
+		
+		BeatTrack
+		
+		PV_Min
+		
+		PV_Conj
+		
+		SpecPcile
+		
+		PV_LocalMax
 		
 		PV_PhaseShift270
 		
-		PV_MagBelow
+		PV_RandWipe
 		
-		PV_Add
+		PV_RandComb
+		
+		PV_HainsworthFoote
+		
+		PV_MagShift
+		
+		PV_MagFreeze
+		
+		PV_BinWipe
+		
+		PV_MagSquared
+		
+		SpecCentroid
+		
+		PV_Diffuser
+		
+		PV_CopyPhase
+		
+		PV_Max
+		
+		PV_RectComb
+		
+		StereoConvolution2L
+		
+		PV_MagDiv
+		
+		PV_MagAbove
+		
+		PV_MagClip
+		
+		PV_MagBelow
 		
 		Convolution2
 		
+		PV_RectComb2
+		
 	[[Conversion]]
 		5
-		A2K
+		T2A
 		
 		K2A
 		
-		DegreeToKey
+		A2K
 		
-		T2A
+		DegreeToKey
 		
 		T2K
 		
 	[[Buffer]]
 		22
-		LocalBuf
-		
-		SetBuf
-		
-		Warp1
-		
-		GrainBuf
-		
-		VDiskIn
+		DiskOut
 		
 		BufWr
 		
 		ScopeOut
 		
+		Phasor
+		
 		[[Info]]
 			7
-			BufFrames
+			BufSampleRate
 			
-			BufSamples
+			BufFrames
 			
 			MaxLocalBufs
 			
 			BufDur
 			
+			BufSamples
+			
 			BufRateScale
 			
 			BufChannels
 			
-			BufSampleRate
-			
-		IndexInBetween
-		
-		Shaper
+		WrapIndex
 		
 		TGrains
 		
-		DiskOut
-		
-		RecordBuf
-		
-		WrapIndex
-		
-		PlayBuf
-		
 		Tap
-		
-		DetectIndex
-		
-		Phasor
-		
-		ClearBuf
 		
 		Index
 		
-		DiskIn
+		IndexInBetween
+		
+		DetectIndex
+		
+		GrainBuf
+		
+		SetBuf
+		
+		Shaper
 		
 		BufRd
 		
+		Warp1
+		
+		RecordBuf
+		
+		ClearBuf
+		
+		PlayBuf
+		
+		VDiskIn
+		
+		LocalBuf
+		
+		DiskIn
+		
 	[[Triggers]]
 		16
-		Timer
-		
-		Trig
-		
-		PulseDivider
-		
-		Trig1
-		
-		ToggleFF
-		
-		SetResetFF
-		
-		SendTrig
-		
-		SendReply
-		
-		Gate
-		
-		LastValue
-		
-		TDelay
-		
-		Sweep
+		PulseCount
 		
 		Phasor
 		
-		Stepper
+		SendReply
 		
 		Latch
 		
-		PulseCount
+		Sweep
+		
+		LastValue
+		
+		Timer
+		
+		ToggleFF
+		
+		Stepper
+		
+		PulseDivider
+		
+		TDelay
+		
+		Gate
+		
+		SendTrig
+		
+		Trig1
+		
+		SetResetFF
+		
+		Trig
 		
 [[UserExtensions]]
 	2
@@ -959,20 +959,20 @@
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/apis/instr.api.scd
 		[[ddwMIDI]]
 			9
-			CControl
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CControl.html
+			MIDIPort
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIPort.html
+			CCAllocator
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CCAllocator.html
 			VoicerMIDISocket
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/VoicerMIDISocket.html
+			CControl
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CControl.html
+			MIDISyncClock
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html
 			MIDIRecBuf
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIRecBuf.html
 			BasicMIDISocket
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDISocket.html
-			MIDISyncClock
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html
-			CCAllocator
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CCAllocator.html
-			MIDIPort
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIPort.html
 			MIDIBufManager
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIBufManager.html
 			BasicMIDIControl
@@ -1087,10 +1087,10 @@
 				5
 				flowerg
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/flowerg.rtf
-				_JODA
-				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/_JODA.scd
 				PinkNoise
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/PinkNoise.scd
+				_JODA
+				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/_JODA.scd
 				00JODA00
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
 				Untitled 2
@@ -1166,17 +1166,27 @@
 			140401_iannixTest2
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/140401_iannixTest2.scd
 		[[_IF_2014]]
-			5
-			IFLoopMain
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
+			10
 			singleRutines
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
+			IFNoteOSC3
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC3.scd
+			singleRutines2
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
+			IFLoopMain
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
 			IFMain
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
 			IFOSC_ERG
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
-			singleRutines2
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
+			IFtransOSC
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFtransOSC.scd
+			IFNoteOSC
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC.scd
+			IFNoteOSC2
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC2.scd
+			IFOctOSC
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd
 		[[PsendPreceive]]
 			4
 			Posc
@@ -1201,311 +1211,311 @@
 			
 		[[Event]]
 			5
-			Posc
+			Pevent
 			
 			Pmono
 			
-			Pevent
-			
-			PmonoArtic
+			Posc
 			
 			Pbind
+			
+			PmonoArtic
 			
 		[[Time]]
 			7
 			PstepNadd
 			
+			Pseg
+			
 			PstepNfunc
 			
 			Pstep3add
+			
+			Ptime
 			
 			Pstep
 			
 			Pstep2add
 			
-			Ptime
-			
-			Pseg
-			
+		Peventmod
+		
 		[[Server Control]]
 			5
+			Pbus
+			
 			Pfxb
-			
-			Pproto
-			
-			Pfx
 			
 			Pgroup
 			
-			Pbus
+			Pfx
+			
+			Pproto
 			
 		[[Lookup]]
 			14
-			Psym1
-			
-			PbindProxy
-			
-			Psym
-			
-			Pdef
+			Ptsym
 			
 			TaskProxy
 			
-			PatternProxy
+			Psym
 			
 			EventPatternProxy
 			
-			Ptsym
+			Tdef
 			
 			Pnsym1
 			
-			Pdict
-			
-			Tdef
+			Pdefn
 			
 			Pbindef
 			
+			PatternProxy
+			
+			Pdict
+			
+			Psym1
+			
 			Pnsym
 			
-			Pdefn
+			PbindProxy
+			
+			Pdef
 			
 		[[Function]]
 			7
+			PlazyEnvirN
+			
 			Plazy
-			
-			Pfuncn
-			
-			PlazyEnvir
-			
-			Prout
-			
-			Proutine
 			
 			Pfunc
 			
-			PlazyEnvirN
+			PlazyEnvir
 			
-		Plet
-		
+			Proutine
+			
+			Prout
+			
+			Pfuncn
+			
 		[[Math]]
 			10
-			Paddpre
-			
-			Pnaryop
-			
-			Prorate
-			
-			Punop
-			
-			PdegreeToKey
-			
-			Pbinop
-			
 			Padd
+			
+			Paddpre
 			
 			Pdiff
 			
-			Pavaroh
-			
 			Paddp
+			
+			Pbinop
+			
+			Punop
+			
+			Prorate
+			
+			Pnaryop
+			
+			PdegreeToKey
+			
+			Pavaroh
 			
 		[[List]]
 			16
-			Pslide
-			
-			Pgeom
-			
-			Place
-			
-			Ppatlace
+			Pfpar
 			
 			Pseries
 			
-			ListPattern
+			Pslide
 			
-			Pseq
+			Ptuple
 			
 			Pxrand
 			
 			[[Indexing]]
 				5
-				Pswitch1
+				Pswitch
+				
+				Pindex
 				
 				Pfsm
 				
 				Pdfsm
 				
-				Pswitch
+				Pswitch1
 				
-				Pindex
-				
-			Pshuf
+			ListPattern
 			
 			Pwalk
 			
-			Pwrand
+			Pgeom
+			
+			Pseq
+			
+			Place
 			
 			Pser
 			
-			Ptuple
-			
-			Pfpar
-			
 			Prand
 			
+			Pshuf
+			
+			Ppatlace
+			
+			Pwrand
+			
+		Pattern
+		
 		[[Language Control]]
 			5
-			Pif
-			
 			Pprotect
-			
-			Pseed
-			
-			Pwhile
 			
 			Ptrace
 			
-		Peventmod
-		
+			Pif
+			
+			Pwhile
+			
+			Pseed
+			
 		[[Repetition]]
 			10
-			Pstutter
-			
 			Pgate
 			
-			Pfinval
-			
 			Pclutch
-			
-			Pfindur
 			
 			Pn
 			
 			Psync
 			
-			Pfin
+			Pstutter
 			
 			Pconst
 			
+			Pfinval
+			
 			PdurStutter
 			
+			Pfin
+			
+			Pfindur
+			
+		Pget
+		
+		Plet
+		
 		[[Filter]]
 			27
 			Pstretchp
 			
-			Pset
-			
-			Psetp
-			
-			FuncFilterPattern
-			
-			Pcollect
-			
-			Pmulp
-			
 			PparGroup
-			
-			PfinQuant
-			
-			Psetpre
-			
-			Plag
-			
-			Pstretch
-			
-			Pflatten
-			
-			PAbstractGroup
-			
-			Pplayer
-			
-			Pclump
-			
-			Ppatmod
-			
-			PfadeOut
 			
 			Pdrop
 			
+			PfinQuant
+			
+			PfadeOut
+			
 			Pselect
 			
-			FilterPattern
+			Ppatmod
 			
-			Pwrap
+			Pcollect
 			
-			Prewrite
+			Pstretch
+			
+			PAbstractGroup
 			
 			Psend
 			
-			PfadeIn
+			Pplayer
+			
+			Prewrite
+			
+			Psetp
 			
 			Preject
 			
-			Pmulpre
+			FilterPattern
 			
 			Pmul
+			
+			FuncFilterPattern
+			
+			Pclump
+			
+			PfadeIn
+			
+			Pset
+			
+			Pwrap
+			
+			Plag
+			
+			Pmulp
+			
+			Pmulpre
+			
+			Pflatten
+			
+			Psetpre
 			
 		[[Data Sharing]]
 			4
 			Pfset
 			
-			Pkey
-			
 			Plambda
+			
+			Pkey
 			
 			Penvir
 			
 		[[Parallel]]
 			7
-			Ptpar
-			
-			Pgtpar
-			
 			Spawner
 			
-			Pspawner
-			
-			Pspawn
+			Pgtpar
 			
 			Pgpar
 			
 			Ppar
 			
-		Pattern
-		
+			Pspawn
+			
+			Pspawner
+			
+			Ptpar
+			
 		[[Random]]
 			12
-			Phprand
-			
-			Ppoisson
-			
 			Pexprand
 			
 			Pbeta
 			
-			Plprand
-			
-			Pgauss
-			
-			Pbrown
-			
-			Pwhite
-			
-			Pgbrown
-			
-			Pmeanrand
-			
-			Pcauchy
+			Phprand
 			
 			Pprob
 			
-		Pget
-		
+			Pgbrown
+			
+			Pwhite
+			
+			Pcauchy
+			
+			Pbrown
+			
+			Pmeanrand
+			
+			Plprand
+			
+			Ppoisson
+			
+			Pgauss
+			
 		[[User Input]]
 			3
-			Phid
-			
 			PhidKey
+			
+			Phid
 			
 			PhidSlot
 			
@@ -1514,30 +1524,31 @@ o = [
 	IdentityDictionary.prNew,  Array.prNew(512),  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/iannixTesting.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/apis/instr.api.scd",  
 	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/makarnaTryOut.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/01Opening_Pitch.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgplayBuf.rtf",  
 	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/wwErgastirio.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIRecBuf.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/Untitled 2.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/J_110224/RedimEchs.rtf",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/vermonaLearn.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/_TransBeings1ERG.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/04RecordInputSessions.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIPort.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/-KafesUgens/_KafListOfInstruments.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDISocket.html",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1Preceive.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/filter.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/stylusFantasticus/stlsFntstcs01_101118/sFClasses/sFSyncAction01.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play2.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110602_peirama_grains_omer.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll01.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIBufManager.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/globalsErg.rtf",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1Erg.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDIControl.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/-KafesUgens/KafGrainBuf.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/07Onsets.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/PsendPreceive.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/iPod_Eleni.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/insertImages_ALL2.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/kaffersList.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/EmptySynchActonClass.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05bRehearsal.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/insertFotos.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110602_peirama_grains_omer2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/02SelectionsMade.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/03RecordSoundInOnly.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_dictionary.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/sendMitsDoepfer.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Rast.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_playImages.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgLypat0.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/vermona.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CControl.html",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/101123_BufProto01.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110613_sendToDaki.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Cargah.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/PinkNoise.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/140401_iannixTest2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KaffRoutinePhrases.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll02.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/playImages.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play3.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/00SoundCheck.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110612_DopferNoteOn.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/ScaleCreation.rtf",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CCAllocator.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Posc.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgTascaleBass1.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/VoicerMIDISocket.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110815_vermS.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll00.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/ZKM1Classes/110305_ZKM1_iPad12.rtf",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05aRehearsal.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/_TransBeings1ERG1.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110815_vermS01.rtf",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgIndust1.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafferDocumantation.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Makam.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/flowerg.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/_JODA.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Phrase.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Experiments/PsendPreceiveExamp.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/NullReceive.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_loadImages.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~kafesPresentationFinal01.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd",  
-	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05cRehearsalPdef.scd"
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/vermonaLearn.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/_TransBeings1ERG.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/04RecordInputSessions.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIPort.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/-KafesUgens/_KafListOfInstruments.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll.rtf",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDISocket.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC3.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1Preceive.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/filter.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/stylusFantasticus/stlsFntstcs01_101118/sFClasses/sFSyncAction01.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFtransOSC.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110602_peirama_grains_omer.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll01.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIBufManager.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/globalsErg.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1Erg.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDIControl.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/-KafesUgens/KafGrainBuf.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/07Onsets.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/PsendPreceive.html",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/iPod_Eleni.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/insertImages_ALL2.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/kaffersList.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/EmptySynchActonClass.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05bRehearsal.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeysERG.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/insertFotos.rtf",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110602_peirama_grains_omer2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/02SelectionsMade.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/03RecordSoundInOnly.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_dictionary.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/sendMitsDoepfer.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Rast.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_playImages.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgLypat0.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/vermona.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CControl.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/101123_BufProto01.rtf",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110613_sendToDaki.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Cargah.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/PinkNoise.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/140401_iannixTest2.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KaffRoutinePhrases.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll02.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/playImages.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~Play/Play3.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/soundCheck/00SoundCheck.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110612_DopferNoteOn.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/ScaleCreation.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC2.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Posc.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CCAllocator.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgTascaleBass1.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/VoicerMIDISocket.html",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110815_vermS.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/_NCIRCONTrOll00.rtf",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/ZKM1Classes/110305_ZKM1_iPad12.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05aRehearsal.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/TransBeingsClasses/_TransBeings1ERG1.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/thesTudio/110815_vermS01.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/IAClasses/Ia1ErgIndust1.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafferDocumantation.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Thesis/Makam.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/flowerg.rtf",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/_JODA.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Phrase.html",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Experiments/PsendPreceiveExamp.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/NCircleClasses/notInUse/NullReceive.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/ABHelp/kafMotion_loadImages.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~kafesPresentationFinal01.scd",  
+	"/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd",  "/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~KafesOF/scCode/unUsed/IZ_code/rehearsalAndShow/05cRehearsalPdef.scd"
 ];
 p = [
 	// IdentityDictionary
-	0, [ array: o[1],  size: 87,  
+	0, [ array: o[1],  size: 92,  
 		proto: nil,  parent: nil,  
 		know: false ],  
 	// Array
@@ -1556,118 +1567,118 @@ p = [
 		nil,  nil,  nil,  nil,  
 		'Untitled 2',  o[10],  'RedimEchs',  o[11],  
 		'vermonaLearn',  o[12],  nil,  nil,  
+		'IFOctOSC',  o[13],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'_TransBeings1ERG',  o[13],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'IFMain',  o[14],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'04RecordInputSessions',  o[15],  nil,  nil,  
-		'MIDIPort',  o[16],  '_KafListOfInstruments',  o[17],  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  '_NCIRCONTrOll',  o[18],  
+		'_TransBeings1ERG',  o[14],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  'BasicMIDISocket',  o[19],  
+		'IFMain',  o[15],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		'Ia1Preceive',  o[20],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  'filter',  o[21],  
-		nil,  nil,  nil,  nil,  
-		'sFSyncAction01',  o[22],  nil,  nil,  
+		'04RecordInputSessions',  o[16],  nil,  nil,  
+		'MIDIPort',  o[17],  '_KafListOfInstruments',  o[18],  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  'Play2',  o[23],  
-		nil,  nil,  nil,  nil,  
-		'110602_peirama_grains_omer',  o[24],  '_NCIRCONTrOll01',  o[25],  
-		'MIDIBufManager',  o[26],  'globalsErg',  o[27],  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  'Ia1Erg',  o[28],  
-		'BasicMIDIControl',  o[29],  nil,  nil,  
-		'KafGrainBuf',  o[30],  '07Onsets',  o[31],  
+		nil,  nil,  '_NCIRCONTrOll',  o[19],  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'PsendPreceive',  o[32],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'iPod_Eleni',  o[33],  nil,  nil,  
+		nil,  nil,  'BasicMIDISocket',  o[20],  
+		'IFNoteOSC3',  o[21],  nil,  nil,  
+		'Ia1Preceive',  o[22],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
+		nil,  nil,  'filter',  o[23],  
 		nil,  nil,  nil,  nil,  
-		'insertImages_ALL2',  o[34],  nil,  nil,  
-		nil,  nil,  'kaffersList',  o[35],  
-		'EmptySynchActonClass',  o[36],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'MIDISyncClock',  o[37],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'05bRehearsal',  o[38],  'VKeysERG',  o[39],  
-		nil,  nil,  nil,  nil,  
-		'insertFotos',  o[40],  '110602_peirama_grains_omer2',  o[41],  
-		nil,  nil,  nil,  nil,  
-		'02SelectionsMade',  o[42],  nil,  nil,  
+		'sFSyncAction01',  o[24],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		'03RecordSoundInOnly',  o[43],  nil,  nil,  
+		nil,  nil,  'Play2',  o[25],  
+		'IFtransOSC',  o[26],  nil,  nil,  
+		'110602_peirama_grains_omer',  o[27],  '_NCIRCONTrOll01',  o[28],  
+		'MIDIBufManager',  o[29],  'globalsErg',  o[30],  
 		nil,  nil,  nil,  nil,  
-		'kafMotion_dictionary',  o[44],  nil,  nil,  
-		'Play',  o[45],  nil,  nil,  
+		nil,  nil,  'Ia1Erg',  o[31],  
+		'BasicMIDIControl',  o[32],  nil,  nil,  
+		'KafGrainBuf',  o[33],  '07Onsets',  o[34],  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  'sendMitsDoepfer',  o[46],  
-		nil,  nil,  'Rast',  o[47],  
-		nil,  nil,  'kafMotion_playImages',  o[48],  
-		nil,  nil,  'Ia1ErgLypat0',  o[49],  
-		'vermona',  o[50],  nil,  nil,  
-		nil,  nil,  'CControl',  o[51],  
-		nil,  nil,  '101123_BufProto01',  o[52],  
-		'110613_sendToDaki',  o[53],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'PsendPreceive',  o[35],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		nil,  nil,  'Cargah',  o[54],  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  'PinkNoise',  o[55],  
-		'140401_iannixTest2',  o[56],  'KaffRoutinePhrases',  o[57],  
-		'_NCIRCONTrOll02',  o[58],  'playImages',  o[59],  
-		'Play3',  o[60],  '00SoundCheck',  o[61],  
-		'110612_DopferNoteOn',  o[62],  'ScaleCreation',  o[63],  
-		'CCAllocator',  o[64],  nil,  nil,  
-		'Posc',  o[65],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'Ia1ErgTascaleBass1',  o[66],  'singleRutines',  o[67],  
-		nil,  nil,  'VoicerMIDISocket',  o[68],  
-		'110815_vermS',  o[69],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		'_NCIRCONTrOll00',  o[70],  '110305_ZKM1_iPad12',  o[71],  
-		'IFOSC_ERG',  o[72],  nil,  nil,  
-		'05aRehearsal',  o[73],  '_TransBeings1ERG1',  o[74],  
-		'110815_vermS01',  o[75],  'Ia1ErgIndust1',  o[76],  
-		nil,  nil,  nil,  nil,  
-		'KafferDocumantation',  o[77],  nil,  nil,  
-		'IFLoopMain',  o[78],  'Makam',  o[79],  
-		nil,  nil,  nil,  nil,  
-		'flowerg',  o[80],  nil,  nil,  
-		'_JODA',  o[81],  nil,  nil,  
-		nil,  nil,  nil,  nil,  
-		nil,  nil,  'Phrase',  o[82],  
-		nil,  nil,  'PsendPreceiveExamp',  o[83],  
+		'iPod_Eleni',  o[36],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		'NullReceive',  o[84],  'kafMotion_loadImages',  o[85],  
 		nil,  nil,  nil,  nil,  
-		'~kafesPresentationFinal01',  o[86],  '00JODA00',  o[87],  
+		'insertImages_ALL2',  o[37],  nil,  nil,  
+		nil,  nil,  'kaffersList',  o[38],  
+		'EmptySynchActonClass',  o[39],  nil,  nil,  
 		nil,  nil,  nil,  nil,  
-		'05cRehearsalPdef',  o[88],  nil,  nil ]
+		nil,  nil,  nil,  nil,  
+		'MIDISyncClock',  o[40],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'05bRehearsal',  o[41],  'VKeysERG',  o[42],  
+		nil,  nil,  nil,  nil,  
+		'insertFotos',  o[43],  '110602_peirama_grains_omer2',  o[44],  
+		nil,  nil,  nil,  nil,  
+		'02SelectionsMade',  o[45],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'03RecordSoundInOnly',  o[46],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'kafMotion_dictionary',  o[47],  nil,  nil,  
+		'Play',  o[48],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  'sendMitsDoepfer',  o[49],  
+		nil,  nil,  'Rast',  o[50],  
+		nil,  nil,  'kafMotion_playImages',  o[51],  
+		nil,  nil,  'Ia1ErgLypat0',  o[52],  
+		'vermona',  o[53],  nil,  nil,  
+		nil,  nil,  'CControl',  o[54],  
+		nil,  nil,  '101123_BufProto01',  o[55],  
+		'110613_sendToDaki',  o[56],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  'Cargah',  o[57],  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  'PinkNoise',  o[58],  
+		'140401_iannixTest2',  o[59],  'KaffRoutinePhrases',  o[60],  
+		'_NCIRCONTrOll02',  o[61],  'playImages',  o[62],  
+		'Play3',  o[63],  '00SoundCheck',  o[64],  
+		'110612_DopferNoteOn',  o[65],  'ScaleCreation',  o[66],  
+		'IFNoteOSC',  o[67],  'IFNoteOSC2',  o[68],  
+		'Posc',  o[69],  'CCAllocator',  o[70],  
+		nil,  nil,  nil,  nil,  
+		'Ia1ErgTascaleBass1',  o[71],  'singleRutines',  o[72],  
+		nil,  nil,  'VoicerMIDISocket',  o[73],  
+		'110815_vermS',  o[74],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'_NCIRCONTrOll00',  o[75],  '110305_ZKM1_iPad12',  o[76],  
+		'IFOSC_ERG',  o[77],  nil,  nil,  
+		'05aRehearsal',  o[78],  '_TransBeings1ERG1',  o[79],  
+		'110815_vermS01',  o[80],  'Ia1ErgIndust1',  o[81],  
+		nil,  nil,  nil,  nil,  
+		'KafferDocumantation',  o[82],  nil,  nil,  
+		'IFLoopMain',  o[83],  'Makam',  o[84],  
+		nil,  nil,  nil,  nil,  
+		'flowerg',  o[85],  nil,  nil,  
+		'_JODA',  o[86],  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  'Phrase',  o[87],  
+		nil,  nil,  'PsendPreceiveExamp',  o[88],  
+		nil,  nil,  nil,  nil,  
+		nil,  nil,  nil,  nil,  
+		'NullReceive',  o[89],  'kafMotion_loadImages',  o[90],  
+		nil,  nil,  nil,  nil,  
+		'~kafesPresentationFinal01',  o[91],  '00JODA00',  o[92],  
+		nil,  nil,  nil,  nil,  
+		'05cRehearsalPdef',  o[93],  nil,  nil ]
 ];
 prUnarchive(o,p);

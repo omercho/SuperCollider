@@ -25,7 +25,43 @@
 
 	}
 
-	*preSetAll{}
+	*preSetAll{
+		~md1.control(1, 11, (110..116).choose); //KickVol
+		~md1.control(1, 16, (97..106).choose); //SnrVol
+		~md1.control(1, 21, (90..106).choose); //HatVol
+		~md1.control(1, 26, (90..95).choose); //BassVol
+		~md1.control(1, 31, (100..106).choose); //KeysVol
+		~md1.control(1, 36, (98..104).choose); //SampVol
+
+		~md1.control(1, 50, 0); //KickSus
+		~md1.control(1, 51, 0); //SnrSus
+		~md1.control(1, 52, 0); //HatSus
+		~md1.control(1, 53, 0); //BassSus
+		~md1.control(1, 54, (100..116).choose); //KeysSus
+		~md1.control(1, 55, 0); //SampSus
+
+		~md1.control(1, 13, (30..26).choose); //KickDec
+		~md1.control(1, 18, (30..26).choose); //SnrDec
+		~md1.control(1, 23, (30..26).choose); //HatDec
+		~md1.control(1, 28, (30..26).choose); //BassDec
+		~md1.control(1, 33, (30..26).choose); //KeysDec
+		~md1.control(1, 38, (30..26).choose); //SampDec
+
+		~md1.control(1, 12, (64..74).choose); //KickMute
+		~md1.control(1, 17, (64..74).choose); //SnrMute
+		~md1.control(1, 22, (64..74).choose); //HatMute
+		~md1.control(1, 27, (64..74).choose); //BassMute
+		~md1.control(1, 32, (64..74).choose); //KeysMute
+		~md1.control(1, 37, (64..74).choose); //SampMute
+
+		~md1.control(1, 41, 64); //KickChain
+		~md1.control(1, 42, 64); //SnrChain
+		~md1.control(1, 43, 64); //HatChain
+		~md1.control(1, 44, 64); //BassChain
+		~md1.control(1, 45, 64); //KeysChain
+		~md1.control(1, 46, 64); //SampChain
+
+	}
 
 	*times{arg kickT, snrT, hatT, bassT, sampT, ortaT, flatT, res1T;
 
@@ -43,7 +79,7 @@
 
 	*globals{
 
-		~abLate=0.01;
+		~abLate=0.00;
 
 		~scl1 = Scale.chromatic; ~scl2 = Scale.minor;
 		~durMul = 1.0;

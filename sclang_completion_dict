@@ -175,7 +175,12 @@ IEnvGen
 IFFT
 IFLoopMain
 IFMain
+IFNoteOSC
+IFNoteOSC2
+IFNoteOSC3
 IFOSC_ERG
+IFOctOSC
+IFtransOSC
 IRand
 IRand
 Ia1Erg

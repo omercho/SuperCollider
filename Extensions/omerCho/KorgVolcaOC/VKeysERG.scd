@@ -39,8 +39,8 @@ Pdef(\vKeyVCOCut,
 			\chan, 0, \ctlNum, ~vcoCut,
 			\type, \midi, \midicmd, \control, \midiout,~vKeys,
 			\delta, Pseq([0.5], inf),
-			\control, Pseq([20,40, 60,40, 10,40, 80,40],inf),
-		\stretch, 2
+			\control, Pseq([20,40, 60,40, 10,40, 80,40],inf)
+		//\stretch, 2
 
 		).play;
 

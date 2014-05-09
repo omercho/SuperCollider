@@ -1,0 +1,140 @@
+<html><head><title>MIDIClockOut</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#External Control>MIDI'>External Control>MIDI</a>, <a href='./../Browse.html#Libraries>crucial>MIDI'>Libraries>crucial>MIDI</a>, <a href='./../Browse.html#Libraries>crucial>Scheduling'>Libraries>crucial>Scheduling</a></div>
+<h1>MIDIClockOut</h1>
+<div id='summary'>a Player that sends MIDI Clock Out</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Control/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Control/MIDIClock.sc'>MIDIClock.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Object.html">Object</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*new'>new</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+</ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-sched'>sched</a> </li>
+<li class='toc3'><a href='#-port'>port</a> </li>
+<li class='toc3'><a href='#-isPlaying'>isPlaying</a> </li>
+<li class='toc3'><a href='#-play'>play</a> </li>
+<li class='toc3'><a href='#-start'>start</a> </li>
+<li class='toc3'><a href='#-next'>next</a> </li>
+<li class='toc3'><a href='#-stop'>stop</a> </li>
+<li class='toc3'><a href='#-prepareToBundle'>prepareToBundle</a> </li>
+<li class='toc3'><a href='#-stopToBundle'>stopToBundle</a> </li>
+<li class='toc3'><a href='#-synthArg'>synthArg</a> </li>
+<li class='toc3'><a href='#-cmdPeriod'>cmdPeriod</a> </li>
+<li class='toc3'><a href='#-destroy'>destroy</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+<li class='toc2'><a href='#Undocumented instance methods'>Undocumented instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-gotoBeatAtBeat'>gotoBeatAtBeat</a> </li>
+</ul></ul><li class='toc1'><a href='#examples'>Examples</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#Slaving Ableton'>Slaving Ableton</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#Song Position Ptr'>Song Position Ptr</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#Player compatibility'>Player compatibility</a></li>
+<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>As a player this produces no audio, but emits MIDI Clock. It can be simply played and it will start sending. It can be added to a PlayerMixer and it will play in synch with the other players.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*new' href='./../Overviews/Methods.html#new'>new</a> (<span class='argstr'>deviceName</span>, <span class='argstr'>portName</span>, <span class='argstr'>tempoClock</span>)</h3>
+<div class='method'>
+<p>The device and port will be looked up by name. see <a href="./../Classes/MIDIOut.html">MIDIOut</a> *newByName If nil, it will default to use the first connected midi destination.<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>deviceName<td class='argumentdesc'><tr><td class='argumentname'>portName<td class='argumentdesc'><tr><td class='argumentname'>tempoClock<td class='argumentdesc'>
+<p>defaults to the global default TempoClock</table></div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-sched' href='./../Overviews/Methods.html#sched'>sched</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-sched' href='./../Overviews/Methods.html#sched'>sched</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-port' href='./../Overviews/Methods.html#port'>port</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-port' href='./../Overviews/Methods.html#port'>port</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-isPlaying' href='./../Overviews/Methods.html#isPlaying'>isPlaying</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-play' href='./../Overviews/Methods.html#play'>play</a> </h3>
+<div class='method'>
+<p>at the start of the next bar (according to the default TempoClock)  send a song position pointer of 0 and start sending MIDI clocks</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-start' href='./../Overviews/Methods.html#start'>start</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-next' href='./../Overviews/Methods.html#next'>next</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-stop' href='./../Overviews/Methods.html#stop'>stop</a> </h3>
+<div class='method'>
+<p>stop sending MIDI clocks, effective immediately</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prepareToBundle' href='./../Overviews/Methods.html#prepareToBundle'>prepareToBundle</a> (<span class='argstr'>group</span>, <span class='argstr'>b</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>group<td class='argumentdesc'><tr><td class='argumentname'>b<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-stopToBundle' href='./../Overviews/Methods.html#stopToBundle'>stopToBundle</a> (<span class='argstr'>b</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>b<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synthArg' href='./../Overviews/Methods.html#synthArg'>synthArg</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-cmdPeriod' href='./../Overviews/Methods.html#cmdPeriod'>cmdPeriod</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-destroy' href='./../Overviews/Methods.html#destroy'>destroy</a> </h3>
+<div class='method'></div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h3><a class='anchor' name='Undocumented instance methods'>Undocumented instance methods</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-gotoBeatAtBeat' href='./../Overviews/Methods.html#gotoBeatAtBeat'>gotoBeatAtBeat</a> (<span class='argstr'>beat</span>, <span class='argstr'>atBeat</span>)</h3>
+<h2><a class='anchor' name='examples'>Examples</a></h2>
+<pre class='code prettyprint lang-sc'>m = MIDIClockOut.new;
+
+m.play
+
+Tempo.bpm = 140
+
+Tempo.bpm = 100
+
+Tempo.bpm = 80
+
+// change tempo using the slider
+Tempo.default.gui
+
+m.stop</pre>
+
+<p>Command-period will send a midi clock stop and stop sending further clocks.
+<p>Changing song position pointer is not yet supported, though its possible.
+<p>Sending to other applications in OS X
+<p>First see MIDIOut regarding IAC busses<pre class='code prettyprint lang-sc'>m = MIDIClockOut( "IAC Driver", "IAC Bus 1");
+
+m.play
+
+Tempo.bpm = 140
+
+Tempo.bpm = 60
+
+Tempo.bpm = 20
+
+
+m.stop</pre>
+<h2><a class='anchor' name='Slaving Ableton'>Slaving Ableton</a></h2>
+
+<p>In Ableton Live enable the IAC Bus as an input. On that input, enable Sync
+<p>In the main arrange page you should see the midi clock light on the left side blinking on the beat. Click EXT to slave to that external.
+<p>Turn on the Ableton metronome
+<p>open the tempo gui:<pre class='code prettyprint lang-sc'>Tempo.default.gui</pre>
+
+<p>and turn on that metronome too. You should be able to hear the exact time difference.
+<p>In Ableton's preferences you can adjust the MIDI Clock Sync Delay. I found 68.0ms to be about right.
+<p>Note that different approaches to server latency on the SC side might require you to use a different sync value. crucial Players aim to always play on the server at the logical time specified by the default TempoClock, without any added latency. In other words I always make sure that the SC language is scheduling and sending bundles ahead of time with the intention of arriving and executing on time.<h2><a class='anchor' name='Song Position Ptr'>Song Position Ptr</a></h2>
+
+<p>Currently it starts playing at 0 and keeps on going. No relocate yet. I'm thinking about the best way to handle this in a global SC fashion. Something like TempoClock where there is a default global timeline and that can be relocated and will send notifications for interested parties that also need to relocate themselves. MIDIClockOut would then listen for those notifications. The main problem is that TempoClock doesn't like to be relocated to a different beat.<h2><a class='anchor' name='Player compatibility'>Player compatibility</a></h2>
+
+<p>It will behave like a player if placed inside a player structure (it will play when told to, stop when told to)<pre class='code prettyprint lang-sc'>(
+p = PlayerMixer([
+        Patch({ arg tempo;
+            Impulse.ar( tempo )
+        }
+        ,[
+            TempoPlayer.new
+        ]),
+        MIDIClockOut("IAC Driver", "IAC Bus 1")
+    ]);
+
+p.play(atTime: 1)
+)</pre>
+<div class='doclink'>source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/MIDIClockOut.schelp'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/MIDIClockOut.schelp</a><br>link::Classes/MIDIClockOut::<br>sc version: 3.6.5</div></div></body></html>

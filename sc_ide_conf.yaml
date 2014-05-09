@@ -57,24 +57,24 @@ IDE:
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
-      help-dock: AAHZ0MsAAQAAAAACLgAAAR4AAAT7AAAD6wAAAi4AAAE0AAAE+wAAA+sAAAAAAAA=
+      help-dock: AQHZ0MsAAQAAAAACQQAAABYAAAaPAAAD4QAAAkEAAAAsAAAGjwAAA+EAAAAAAAA=
       post-dock: ""
-    geometry: AdnQywABAAAAAAAaAAAAUwAABqMAAAM3AAAAGgAAAGkAAAajAAADNwAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAACt/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACtwAAAGYA////AAAAAQAAAk0AAAK3/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAK3AAAATAD///8AAAOmAAACtwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAD/////AAAAFgAABogAAAOS/////wAAACwAAAaIAAADkgAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADT/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADTwAAAGYA////AAAAAQAAAk0AAANP/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAANPAAAATAD///8AAAOmAAADTwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Dropbox/SC/~OOOSSSCCC/110713_2346_sendingOscToTοuchOSC2.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG
-    - /Users/omercho/Dropbox/SC/~OOOSSSCCC/110713_2346_sendingOscToTοuchOSC.scd
-    - /Users/omercho/Dropbox/SC/__SC2012/+16MAR2012/120313_sendingOscToProcess.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/iannixTesting.scd
-    - /Users/omercho/Dropbox/SC/~CoolZounds/titltMIDI_100302_01.scd
-    - /Users/omercho/Dropbox/SC/~CoolZounds/titltFX100302_01.scd
-    - /Users/omercho/Dropbox/SC/~CoolZounds/titlt_100301_03.scd
-    - /Users/omercho/Dropbox/SC/~CoolZounds/titlt_100301_02.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFPartsOSC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC3.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC2.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFtransOSC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Scale.sc
+    - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/ifisif_B_2014/stp_MAIN_01.scd
   shortcuts:
     help-browser: Ctrl+Shift+H
     ide-document-reload: Ctrl+Shift+K

@@ -24,10 +24,13 @@ classvar <>counter3 = 0;
 		~chBass=4;
 		~bassLate=0.00;
 		~timesBass=1;
-		~octBass=3;
-		~transBass=0;
-		~legBass=0;
-		~stretchBass=0;
+		~octMulBass=0;
+		~harmBass=0;
+		~rootBass=0;
+		~susMulBass=1;
+		~trBass=0;
+
+
 
 	}
 
@@ -43,7 +46,31 @@ classvar <>counter3 = 0;
 		~amp1Bass = PatternProxy( Pseq([0.9], inf));
 		~amp1BassP = Pseq([~amp1Bass], inf).asStream;
 		~sus1Bass = PatternProxy( Pseq([1], inf));
-		~sus1BassP = Pseq([~dur1Bass], inf).asStream;
+		~sus1BassP = Pseq([~sus1Bass], inf).asStream;
+
+
+		~tmBass = PatternProxy( Pseq([1], inf));
+		~tmBassP= Pseq([~tmBass], inf).asStream;
+
+
+		~transBass = PatternProxy( Pseq([0], inf));
+		~transBassP = Pseq([~transBass], inf).asStream;
+		~octBass = PatternProxy( Pseq([4], inf));
+		~octBassP = Pseq([~octBass], inf).asStream;
+		~legBass = PatternProxy( Pseq([0.0], inf));
+		~legBassP = Pseq([~legBass], inf).asStream;
+		~strBass = PatternProxy( Pseq([1.0], inf));
+		~strBassP = Pseq([~strBass], inf).asStream;
+
+		~delta1Bass = PatternProxy( Pseq([0.5], inf));
+		~delta1BassP = Pseq([~delta1Bass], inf).asStream;
+		~delta2Bass = PatternProxy( Pseq([0.5], inf));
+		~delta2BassP = Pseq([~delta2Bass], inf).asStream;
+
+		~lfo1Bass = PatternProxy( Pseq([40], inf));
+		~lfo1BassP = Pseq([~lfo1Bass], inf).asStream;
+		~lfo2Bass = PatternProxy( Pseq([40], inf));
+		~lfo2BassP = Pseq([~lfo2Bass], inf).asStream;
 
 
 	}
@@ -55,11 +82,12 @@ classvar <>counter3 = 0;
 		{ i == val }  {
 			{val.do{
 
+				//~bassLate=~abLate;
 				~bassLate.wait;
 
 				this.p1(val);
 
-				~durMul*((~dur1BassP.value)/val).wait;
+				~durMul*((~dur1BassP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -74,12 +102,29 @@ classvar <>counter3 = 0;
 			\dur, Pseq([Pseq([~dur1BassP.next/val],1)], 1),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),
-			\sustain, Pseq([~sus1BassP.next],1),
-			\mtranspose, Pseq([~transBass.value], 1),
-			\octave, ~octBass,
-			\legato, ~legBass,
-			\stretch, ~stretchBass
+			\sustain, Pseq([~sus1BassP.next],1)*~susMulBass,
+			\mtranspose, Pseq([~transBassP.next], 1)+~trBass,
+			\octave, Pseq([~octBassP.next], 1)+~octMulBass,
+			//\root, Pseq([~legBassP.next], 1),
+			\harmonic, Pseq([~strBassP.next], 1)+~harmBass
 		).play;
+
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~md1, \chan, 4, \ctlNum, 0,
+			\delta, Pseq([~delta1BassP.next], 2),
+			\control, Pseq([~lfo1BassP.next], 2),
+
+		).play;
+
+		Pbind(//LFO 2
+			\type, \midi, \midicmd, \control,
+			\midiout,~md1,\chan, 4,  \ctlNum, 1,
+			\delta, Pseq([~delta2BassP.next], 2),
+			\control, Pseq([~lfo2BassP.next], 2),
+
+		).play;
+
 
 		//this.count2;
 		//this.timesCount;

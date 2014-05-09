@@ -12,6 +12,7 @@ VKeys {
 
 		~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 1");
 
+
 		//~vKeys = MIDIOut.newByName("IAC Driver", "SC-Abl");
 
 		~vcoPorta    = 5;   //*1
@@ -58,7 +59,7 @@ VKeys {
 		~vKeys.control(0, ~voice, ~poly); //voice
 		~vKeys.control(0, ~octVK, ~oct3); //octave
 
-		~vKeys.control(0, ~vcoDetune, 5); //detune
+		~vKeys.control(0, ~vcoDetune, 6); //detune
 		~vKeys.control(0, ~vcoPorta, 0); // portamento
 		~vKeys.control(0, ~vcoEg, 0); // VCOsculator Envelope Intencity
 

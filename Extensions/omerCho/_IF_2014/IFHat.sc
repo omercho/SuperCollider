@@ -20,10 +20,13 @@ IFHat.times(4);
 		~hatCh=2;
 		~hatLate=0.00;
 		~hatTimes=1;
-		~transHat=0;
-		~stretchHat=0;
-		~legHat=0;
-		~octHat=4;
+		~harmHat=0;
+		~rootHat=0;
+		~susMulHat=1;
+		~trHat=0;
+
+
+		~octMulHat=0;
 		~hatVolC=1;
 	}
 
@@ -42,6 +45,18 @@ IFHat.times(4);
 		~amp1HatP = Pseq([~amp1Hat], inf).asStream;
 		~sus1Hat = PatternProxy( Pseq([1], inf));
 		~sus1HatP = Pseq([~sus1Hat], inf).asStream;
+
+		~tmHat = PatternProxy( Pseq([1], inf));
+		~tmHatP= Pseq([~tmHat], inf).asStream;
+
+		~transHat = PatternProxy( Pseq([0], inf));
+		~transHatP = Pseq([~transHat], inf).asStream;
+		~octHat = PatternProxy( Pseq([4], inf));
+		~octHatP = Pseq([~octHat], inf).asStream;
+		~legHat = PatternProxy( Pseq([3.0], inf));
+		~legHatP = Pseq([~legHat], inf).asStream;
+		~strHat = PatternProxy( Pseq([1.0], inf));
+		~strHatP = Pseq([~strHat], inf).asStream;
 
 	}
 
@@ -66,11 +81,12 @@ IFHat.times(4);
 		{ i == val }  {
 			{val.do{
 
+				//~hatLate=~abLate;
 				~hatLate.wait;
 
 				this.p1(val);
 
-				~durMul*((~dur1HatP.value)/val).wait;
+				~durMul*((~dur1HatP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -81,15 +97,15 @@ IFHat.times(4);
 		val=i;
 		Pbind(
 			\chan, ~hatCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1HatP.next/val],1)], 1),
 			\degree, Pseq([~nt1HatP.next], 1),
 			\amp, Pseq([~amp1HatP.next], 1),
-			\sustain, Pseq([~sus1HatP.next],1),
-			\mtranspose, Pseq([~transHat], 1),
-			\octave, ~octHat,
-			\legato, ~legHat,
-			\stretch, ~stretchHat
+			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
+			\mtranspose, Pseq([~transHatP.next], 1)+~trHat,
+			\octave, Pseq([~octHatP.next], 1)+~octMulHat,
+			\root, Pseq([~legHatP.next], 1),
+			\harmonic, Pseq([~strHatP.next], 1)+~harmHat
 		).play;
 
 		//this.count2;
