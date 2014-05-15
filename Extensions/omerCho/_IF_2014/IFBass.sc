@@ -29,6 +29,7 @@ classvar <>counter3 = 0;
 		~rootBass=0;
 		~susMulBass=1;
 		~trBass=0;
+		~lfoMulBass=0;
 
 
 
@@ -113,7 +114,7 @@ classvar <>counter3 = 0;
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 4, \ctlNum, 0,
 			\delta, Pseq([~delta1BassP.next], 2),
-			\control, Pseq([~lfo1BassP.next], 2),
+			\control, Pseq([~lfo1BassP.next], 2)*~lfoMulBass,
 
 		).play;
 
@@ -121,7 +122,7 @@ classvar <>counter3 = 0;
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1,\chan, 4,  \ctlNum, 1,
 			\delta, Pseq([~delta2BassP.next], 2),
-			\control, Pseq([~lfo2BassP.next], 2),
+			\control, Pseq([~lfo2BassP.next], 2)*~lfoMulBass,
 
 		).play;
 

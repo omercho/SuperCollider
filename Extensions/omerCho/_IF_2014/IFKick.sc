@@ -20,7 +20,7 @@ IFKick(4);
 		~kickCh=0;
 		~kickLate= 0.00;
 		~kickTimes=1;
-		~octMulKick=4;
+		~octMulKick=2;
 		~trKick=0;
 		~rootKick=0;
 		~harmKick=0;
@@ -46,6 +46,9 @@ IFKick(4);
 		~sus1Kick = PatternProxy( Pseq([0.5], inf));
 		~sus1KickP = Pseq([~sus1Kick], inf).asStream;
 
+		~tmMulKick = PatternProxy( Pseq([1], inf));
+		~tmMulKickP= Pseq([~tmMulKick], inf).asStream;
+
 		~tmKick = PatternProxy( Pseq([1], inf));
 		~tmKickP= Pseq([~tmKick], inf).asStream;
 
@@ -59,6 +62,7 @@ IFKick(4);
 		~strKickP = Pseq([~strKick], inf).asStream;
 
 
+
 	}
 
 	*new{|i=1|
@@ -66,12 +70,29 @@ IFKick(4);
 		val=i;
 		case
 		{ i == val }  {
-			{val.do{
+			{val.do{var led;
+				led= ~amp1Kick.asStream.value;
 
 				//~kickLate=~abLate;
 				~kickLate.wait;
 
 				this.p1(val);
+
+				if ( led>0, {
+
+					1.do{
+					~tOSCAdrr.sendMsg('kickLed', led);
+					~sus1Kick.asStream.value.wait;
+					~tOSCAdrr.sendMsg('kickLed', 0);
+					};
+
+				},{
+
+						~tOSCAdrr.sendMsg('kickLed', 0.0);
+
+				});
+
+
 
 				~durMul*((~dur1KickP.next)/val).wait;
 			}}.fork;
@@ -87,7 +108,7 @@ IFKick(4);
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree, Pseq([~nt1KickP.next], 1),
-			\amp, Pseq([~amp1KickP.next], 1),
+			\amp, Pseq([~amp1KickP.next], 1).trace,
 			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\octave, Pseq([~octKickP.next], 1)+~octMulKick,

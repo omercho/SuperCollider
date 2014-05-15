@@ -29,6 +29,7 @@ classvar <>counter3 = 0;
 		~harmSamp=0;
 		~susMulSamp=1;
 		~trSamp=0;
+		~lfoMulSamp=0;
 
 	}
 
@@ -51,7 +52,7 @@ classvar <>counter3 = 0;
 
 		~transSamp = PatternProxy( Pseq([0], inf));
 		~transSampP = Pseq([~transSamp], inf).asStream;
-		~octSamp = PatternProxy( Pseq([5], inf));
+		~octSamp = PatternProxy( Pseq([4], inf));
 		~octSampP = Pseq([~octSamp], inf).asStream;
 		~legSamp = PatternProxy( Pseq([0.0], inf));
 		~legSampP = Pseq([~legSamp], inf).asStream;
@@ -109,7 +110,7 @@ classvar <>counter3 = 0;
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 4, \ctlNum, 10,
 			\delta, Pseq([~delta1SampP.next], 2),
-			\control, Pseq([~lfo1SampP.next], 2),
+			\control, Pseq([~lfo1SampP.next], 2)*~lfoMulSamp,
 
 		).play;
 
@@ -117,7 +118,7 @@ classvar <>counter3 = 0;
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1,\chan, 4,  \ctlNum, 11,
 			\delta, Pseq([~delta2SampP.next], 2),
-			\control, Pseq([~lfo2SampP.next], 2),
+			\control, Pseq([~lfo2SampP.next], 2)*~lfoMulSamp,
 
 		).play;
 

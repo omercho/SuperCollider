@@ -174,12 +174,14 @@ HilbertFIR
 IEnvGen
 IFFT
 IFLoopMain
+IFMIDI_Erg
 IFMain
 IFNoteOSC
 IFNoteOSC2
 IFNoteOSC3
 IFOSC_ERG
 IFOctOSC
+IFPartsOSC
 IFtransOSC
 IRand
 IRand

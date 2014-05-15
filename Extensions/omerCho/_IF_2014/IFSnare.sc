@@ -49,6 +49,9 @@ IFSnr.times(4);
 		~sus1Snr = PatternProxy( Pseq([1], inf));
 		~sus1SnrP = Pseq([~sus1Snr], inf).asStream;
 
+		~tmMulSnr = PatternProxy( Pseq([1], inf));
+		~tmMulSnrP= Pseq([~tmMulSnr], inf).asStream;
+
 		~tmSnr = PatternProxy( Pseq([1], inf));
 		~tmSnrP= Pseq([~tmSnr], inf).asStream;
 

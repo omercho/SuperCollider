@@ -1,6 +1,6 @@
 /////////////////////----- Parts -------//////////////
 
-~part_0.remove;
+~part_0.free;
 ~part_0 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -14,7 +14,7 @@
 );
 
 
-~part_1.remove;
+~part_1.free;
 ~part_1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -27,7 +27,7 @@
 	'/part1'
 );
 
-~part_2.remove;
+~part_2.free;
 ~part_2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -40,7 +40,7 @@
 	'/part2'
 );
 
-~part_3.remove;
+~part_3.free;
 ~part_3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -53,7 +53,7 @@
 	'/part3'
 );
 
-~part_4.remove;
+~part_4.free;
 ~part_4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -66,7 +66,7 @@
 	'/part4'
 );
 
-~part_5.remove;
+~part_5.free;
 ~part_5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -79,7 +79,7 @@
 	'/part5'
 );
 
-~part_6.remove;
+~part_6.free;
 ~part_6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -92,7 +92,7 @@
 	'/part6'
 );
 
-~part_7.remove;
+~part_7.free;
 ~part_7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -109,7 +109,7 @@
 
 
 
-~bridge1.remove;
+~bridge1.free;
 ~bridge1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -122,7 +122,7 @@
 	'/bridge1'
 );
 
-~bridge2.remove;
+~bridge2.free;
 ~bridge2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -135,7 +135,7 @@
 	'/bridge2'
 );
 
-~bridge3.remove;
+~bridge3.free;
 ~bridge3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -148,7 +148,7 @@
 	'/bridge3'
 );
 
-~bridge4.remove;
+~bridge4.free;
 ~bridge4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -161,7 +161,7 @@
 	'/bridge4'
 );
 
-~bridge5.remove;
+~bridge5.free;
 ~bridge5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -174,7 +174,7 @@
 	'/bridge5'
 );
 
-~bridge6.remove;
+~bridge6.free;
 ~bridge6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -187,7 +187,7 @@
 	'/bridge6'
 );
 
-~bridge7.remove;
+~bridge7.free;
 ~bridge7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {

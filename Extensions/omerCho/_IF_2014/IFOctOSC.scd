@@ -1,5 +1,5 @@
 //----Kick-------
-~octKickMulBut.remove;
+~octKickMulBut.free;
 ~octKickMulBut= OSCFunc({
 	arg msg;
 
@@ -15,7 +15,7 @@
 	'/octKickMul'
 );
 
-~octKickZeroBut.remove;
+~octKickZeroBut.free;
 ~octKickZeroBut= OSCFunc({
 	arg msg;
 
@@ -31,7 +31,7 @@
 	'/octKickZero'
 );
 
-~octKickDivBut.remove;
+~octKickDivBut.free;
 ~octKickDivBut= OSCFunc({
 	arg msg;
 
@@ -48,7 +48,7 @@
 );
 
 //----Snr-------
-~octSnrMulBut.remove;
+~octSnrMulBut.free;
 ~octSnrMulBut= OSCFunc({
 	arg msg;
 
@@ -64,7 +64,7 @@
 	'/octSnrMul'
 );
 
-~octSnrZeroBut.remove;
+~octSnrZeroBut.free;
 ~octSnrZeroBut= OSCFunc({
 	arg msg;
 
@@ -80,7 +80,7 @@
 	'/octSnrZero'
 );
 
-~octSnrDivBut.remove;
+~octSnrDivBut.free;
 ~octSnrDivBut= OSCFunc({
 	arg msg;
 
@@ -97,7 +97,7 @@
 );
 
 //----Hat-------
-~octHatMulBut.remove;
+~octHatMulBut.free;
 ~octHatMulBut= OSCFunc({
 	arg msg;
 
@@ -113,7 +113,7 @@
 	'/octHatMul'
 );
 
-~octHatZeroBut.remove;
+~octHatZeroBut.free;
 ~octHatZeroBut= OSCFunc({
 	arg msg;
 
@@ -129,7 +129,7 @@
 	'/octHatZero'
 );
 
-~octHatDivBut.remove;
+~octHatDivBut.free;
 ~octHatDivBut= OSCFunc({
 	arg msg;
 
@@ -146,7 +146,7 @@
 );
 
 //----Keys-------
-~octKeysMulBut.remove;
+~octKeysMulBut.free;
 ~octKeysMulBut= OSCFunc({
 	arg msg;
 
@@ -162,7 +162,7 @@
 	'/octKeysMul'
 );
 
-~octKeysZeroBut.remove;
+~octKeysZeroBut.free;
 ~octKeysZeroBut= OSCFunc({
 	arg msg;
 
@@ -178,7 +178,7 @@
 	'/octKeysZero'
 );
 
-~octKeysDivBut.remove;
+~octKeysDivBut.free;
 ~octKeysDivBut= OSCFunc({
 	arg msg;
 
@@ -195,7 +195,7 @@
 );
 
 //----Bass-------
-~octBassMulBut.remove;
+~octBassMulBut.free;
 ~octBassMulBut= OSCFunc({
 	arg msg;
 
@@ -211,7 +211,7 @@
 	'/octBassMul'
 );
 
-~octBassZeroBut.remove;
+~octBassZeroBut.free;
 ~octBassZeroBut= OSCFunc({
 	arg msg;
 
@@ -227,7 +227,7 @@
 	'/octBassZero'
 );
 
-~octBassDivBut.remove;
+~octBassDivBut.free;
 ~octBassDivBut= OSCFunc({
 	arg msg;
 
@@ -244,7 +244,7 @@
 );
 
 //----Samp-------
-~octSampMulBut.remove;
+~octSampMulBut.free;
 ~octSampMulBut= OSCFunc({
 	arg msg;
 
@@ -260,7 +260,7 @@
 	'/octSampMul'
 );
 
-~octSampZeroBut.remove;
+~octSampZeroBut.free;
 ~octSampZeroBut= OSCFunc({
 	arg msg;
 
@@ -276,7 +276,7 @@
 	'/octSampZero'
 );
 
-~octSampDivBut.remove;
+~octSampDivBut.free;
 ~octSampDivBut= OSCFunc({
 	arg msg;
 

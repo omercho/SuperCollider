@@ -3,7 +3,7 @@
 //~transKick.source = PatternProxy( Pseq([0], inf));
 //~transKick.sourceP= Pseq([~transKick.source], inf).asStream;
 
-~harmXY.remove;
+~harmXY.free;
 ~harmXY= OSCFunc({
 	arg msg;
 
@@ -15,7 +15,7 @@
 	'/harmXY/1'
 );
 
-~harm_0.remove;
+~harm_0.free;
 ~harm_0 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -29,7 +29,7 @@
 );
 
 
-~noteFader.remove;
+~noteFader.free;
 ~noteFader= OSCFunc({
 	arg msg;
 
@@ -42,7 +42,7 @@
 );
 
 
-~note_0.remove;
+~note_0.free;
 ~note_0 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -55,7 +55,7 @@
 	'/nt_0'
 );
 
-~note_1.remove;
+~note_1.free;
 ~note_1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -69,7 +69,7 @@
 );
 
 
-~note_2.remove;
+~note_2.free;
 ~note_2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -82,7 +82,7 @@
 	'/nt_2'
 );
 
-~note_3.remove;
+~note_3.free;
 ~note_3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -95,7 +95,7 @@
 	'/nt_3'
 );
 
-~note_4.remove;
+~note_4.free;
 ~note_4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -108,7 +108,7 @@
 	'/nt_4'
 );
 
-~note_5.remove;
+~note_5.free;
 ~note_5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -121,7 +121,7 @@
 	'/nt_5'
 );
 
-~note_6.remove;
+~note_6.free;
 ~note_6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -134,7 +134,7 @@
 	'/nt_6'
 );
 
-~note_7.remove;
+~note_7.free;
 ~note_7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -147,7 +147,7 @@
 	'/nt_7'
 );
 
-~note_8.remove;
+~note_8.free;
 ~note_8 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -160,7 +160,7 @@
 	'/nt_8'
 );
 
-~note_9.remove;
+~note_9.free;
 ~note_9 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -173,7 +173,7 @@
 	'/nt_9'
 );
 
-~note_10.remove;
+~note_10.free;
 ~note_10 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -186,7 +186,7 @@
 	'/nt_10'
 );
 
-~note_11.remove;
+~note_11.free;
 ~note_11 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -199,7 +199,7 @@
 	'/nt_11'
 );
 
-~note_12.remove;
+~note_12.free;
 ~note_12 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -212,7 +212,7 @@
 	'/nt_12'
 );
 
-~note_13.remove;
+~note_13.free;
 ~note_13 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -225,7 +225,7 @@
 	'/nt_13'
 );
 
-~note_14.remove;
+~note_14.free;
 ~note_14 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -239,7 +239,7 @@
 );
 
 //////////////////////////// NEGATIVE
-~note1.remove;
+~note1.free;
 ~note1 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -253,7 +253,7 @@
 );
 
 
-~note2.remove;
+~note2.free;
 ~note2 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -266,7 +266,7 @@
 	'/nt-2'
 );
 
-~note3.remove;
+~note3.free;
 ~note3 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -279,7 +279,7 @@
 	'/nt-3'
 );
 
-~note4.remove;
+~note4.free;
 ~note4 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -292,7 +292,7 @@
 	'/nt-4'
 );
 
-~note5.remove;
+~note5.free;
 ~note5 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -305,7 +305,7 @@
 	'/nt-5'
 );
 
-~note6.remove;
+~note6.free;
 ~note6 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -318,7 +318,7 @@
 	'/nt-6'
 );
 
-~note7.remove;
+~note7.free;
 ~note7 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -331,7 +331,7 @@
 	'/nt-7'
 );
 
-~note8.remove;
+~note8.free;
 ~note8 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -344,7 +344,7 @@
 	'/nt-8'
 );
 
-~note9.remove;
+~note9.free;
 ~note9 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -357,7 +357,7 @@
 	'/nt-9'
 );
 
-~note10.remove;
+~note10.free;
 ~note10 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -370,7 +370,7 @@
 	'/nt-10'
 );
 
-~note11.remove;
+~note11.free;
 ~note11 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -383,7 +383,7 @@
 	'/nt-11'
 );
 
-~note12.remove;
+~note12.free;
 ~note12 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -396,7 +396,7 @@
 	'/nt-12'
 );
 
-~note13.remove;
+~note13.free;
 ~note13 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {
@@ -409,7 +409,7 @@
 	'/nt-13'
 );
 
-~note14.remove;
+~note14.free;
 ~note14 = OSCFunc({
 	arg msg;
 	if ( msg[1]==1, {

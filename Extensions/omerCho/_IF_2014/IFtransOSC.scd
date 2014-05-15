@@ -1,5 +1,5 @@
 //----Kick-------
-~transKickMulBut.remove;
+~transKickMulBut.free;
 ~transKickMulBut= OSCFunc({
 	arg msg;
 
@@ -15,7 +15,7 @@
 	'/transKickMul'
 );
 
-~transKickZeroBut.remove;
+~transKickZeroBut.free;
 ~transKickZeroBut= OSCFunc({
 	arg msg;
 
@@ -31,7 +31,7 @@
 	'/transKickZero'
 );
 
-~transKickDivBut.remove;
+~transKickDivBut.free;
 ~transKickDivBut= OSCFunc({
 	arg msg;
 
@@ -48,7 +48,7 @@
 );
 
 //----Snr-------
-~transSnrMulBut.remove;
+~transSnrMulBut.free;
 ~transSnrMulBut= OSCFunc({
 	arg msg;
 
@@ -64,7 +64,7 @@
 	'/transSnrMul'
 );
 
-~transSnrZeroBut.remove;
+~transSnrZeroBut.free;
 ~transSnrZeroBut= OSCFunc({
 	arg msg;
 
@@ -80,7 +80,7 @@
 	'/transSnrZero'
 );
 
-~transSnrDivBut.remove;
+~transSnrDivBut.free;
 ~transSnrDivBut= OSCFunc({
 	arg msg;
 
@@ -97,7 +97,7 @@
 );
 
 //----Hat-------
-~transHatMulBut.remove;
+~transHatMulBut.free;
 ~transHatMulBut= OSCFunc({
 	arg msg;
 
@@ -113,7 +113,7 @@
 	'/transHatMul'
 );
 
-~transHatZeroBut.remove;
+~transHatZeroBut.free;
 ~transHatZeroBut= OSCFunc({
 	arg msg;
 
@@ -129,7 +129,7 @@
 	'/transHatZero'
 );
 
-~transHatDivBut.remove;
+~transHatDivBut.free;
 ~transHatDivBut= OSCFunc({
 	arg msg;
 
@@ -146,7 +146,7 @@
 );
 
 //----Keys-------
-~transKeysMulBut.remove;
+~transKeysMulBut.free;
 ~transKeysMulBut= OSCFunc({
 	arg msg;
 
@@ -162,7 +162,7 @@
 	'/transKeysMul'
 );
 
-~transKeysZeroBut.remove;
+~transKeysZeroBut.free;
 ~transKeysZeroBut= OSCFunc({
 	arg msg;
 
@@ -178,7 +178,7 @@
 	'/transKeysZero'
 );
 
-~transKeysDivBut.remove;
+~transKeysDivBut.free;
 ~transKeysDivBut= OSCFunc({
 	arg msg;
 
@@ -195,7 +195,7 @@
 );
 
 //----Bass-------
-~transBassMulBut.remove;
+~transBassMulBut.free;
 ~transBassMulBut= OSCFunc({
 	arg msg;
 
@@ -211,7 +211,7 @@
 	'/transBassMul'
 );
 
-~transBassZeroBut.remove;
+~transBassZeroBut.free;
 ~transBassZeroBut= OSCFunc({
 	arg msg;
 
@@ -227,7 +227,7 @@
 	'/transBassZero'
 );
 
-~transBassDivBut.remove;
+~transBassDivBut.free;
 ~transBassDivBut= OSCFunc({
 	arg msg;
 
@@ -244,7 +244,7 @@
 );
 
 //----Samp-------
-~transSampMulBut.remove;
+~transSampMulBut.free;
 ~transSampMulBut= OSCFunc({
 	arg msg;
 
@@ -260,7 +260,7 @@
 	'/transSampMul'
 );
 
-~transSampZeroBut.remove;
+~transSampZeroBut.free;
 ~transSampZeroBut= OSCFunc({
 	arg msg;
 
@@ -276,7 +276,7 @@
 	'/transSampZero'
 );
 
-~transSampDivBut.remove;
+~transSampDivBut.free;
 ~transSampDivBut= OSCFunc({
 	arg msg;
 

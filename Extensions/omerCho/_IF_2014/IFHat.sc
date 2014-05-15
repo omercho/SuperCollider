@@ -46,6 +46,8 @@ IFHat.times(4);
 		~sus1Hat = PatternProxy( Pseq([1], inf));
 		~sus1HatP = Pseq([~sus1Hat], inf).asStream;
 
+		~tmMulHat = PatternProxy( Pseq([1], inf));
+		~tmMulHatP= Pseq([~tmMulHat], inf).asStream;
 		~tmHat = PatternProxy( Pseq([1], inf));
 		~tmHatP= Pseq([~tmHat], inf).asStream;
 

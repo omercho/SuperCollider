@@ -22,6 +22,8 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC3.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFPartsOSC.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -38,62 +40,68 @@ editors: !QVariantMap
         documentIndex: 12
         position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 1753
-      - !QVariantMap
-        documentIndex: 11
-        position: 119
-      - !QVariantMap
-        documentIndex: 6
-        position: 2327
-      - !QVariantMap
-        documentIndex: 8
-        position: 2597
-      - !QVariantMap
-        documentIndex: 1
-        position: 2921
-      - !QVariantMap
-        documentIndex: 4
-        position: 1209
-      - !QVariantMap
         documentIndex: 17
         position: 0
-      - !QVariantMap
-        documentIndex: 3
-        position: 2049
       - !QVariantMap
         documentIndex: 10
         position: 1565
       - !QVariantMap
-        documentIndex: 0
-        position: 2118
+        documentIndex: 8
+        position: 2720
       - !QVariantMap
-        documentIndex: 14
-        position: 402
-      - !QVariantMap
-        documentIndex: 9
-        position: 237
-      - !QVariantMap
-        documentIndex: 7
-        position: 361
-      - !QVariantMap
-        documentIndex: 22
-        position: 2849
-      - !QVariantMap
-        documentIndex: 21
-        position: 9232
-      - !QVariantMap
-        documentIndex: 20
-        position: 3466
+        documentIndex: 6
+        position: 2726
       - !QVariantMap
         documentIndex: 19
-        position: 3418
+        position: 3382
+      - !QVariantMap
+        documentIndex: 22
+        position: 2819
+      - !QVariantMap
+        documentIndex: 20
+        position: 3430
+      - !QVariantMap
+        documentIndex: 21
+        position: 9168
       - !QVariantMap
         documentIndex: 18
-        position: 4345
+        position: 5318
+      - !QVariantMap
+        documentIndex: 7
+        position: 2719
+      - !QVariantMap
+        documentIndex: 9
+        position: 1715
+      - !QVariantMap
+        documentIndex: 14
+        position: 544
+      - !QVariantMap
+        documentIndex: 11
+        position: 142
+      - !QVariantMap
+        documentIndex: 1
+        position: 2921
+      - !QVariantMap
+        documentIndex: 0
+        position: 2121
+      - !QVariantMap
+        documentIndex: 5
+        position: 856
+      - !QVariantMap
+        documentIndex: 4
+        position: 876
+      - !QVariantMap
+        documentIndex: 3
+        position: 992
       - !QVariantMap
         documentIndex: 2
-        position: 1206
+        position: 3254
+      - !QVariantMap
+        documentIndex: 23
+        position: 480
+      - !QVariantMap
+        documentIndex: 24
+        position: 255
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap

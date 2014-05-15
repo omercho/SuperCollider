@@ -61,6 +61,17 @@
 		~md1.control(1, 45, 64); //KeysChain
 		~md1.control(1, 46, 64); //SampChain
 
+		~md1.control(3, 0, 0); //MainSendX
+		~md1.control(3, 1, 0); //MainSendY
+
+		"Harmonic 0".postln;
+		~harmKick=0;~harmSnr=0;~harmHat=0;
+		~harmBass=0;~harmKeys=0;~harmSamp=0;
+
+		~lfoMulBass=0.2; ~tOSCAdrr.sendMsg('lfoMulBass', 0.2);
+		~lfoMulKeys=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys', 0.5);
+		~lfoMulSamp=0.0; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.0);
+
 	}
 
 	*times{arg kickT, snrT, hatT, bassT, sampT, ortaT, flatT, res1T;
