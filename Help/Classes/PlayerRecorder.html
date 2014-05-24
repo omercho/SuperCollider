@@ -1,0 +1,90 @@
+<html><head><title>PlayerRecorder</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#Libraries>crucial>Players'>Libraries>crucial>Players</a></div>
+<h1>PlayerRecorder</h1>
+<div id='summary'>utility class to prepare and precisely record a player to a soundfile</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/PlayerRecorder.sc'>PlayerRecorder.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Object.html">Object</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*new'>new</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+</ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-player'>player</a> </li>
+<li class='toc3'><a href='#-recHeaderFormat'>recHeaderFormat</a> </li>
+<li class='toc3'><a href='#-recSampleFormat'>recSampleFormat</a> </li>
+<li class='toc3'><a href='#-limit'>limit</a> </li>
+<li class='toc3'><a href='#-record'>record</a> </li>
+<li class='toc3'><a href='#-liveRecord'>liveRecord</a> </li>
+<li class='toc3'><a href='#-stop'>stop</a> </li>
+<li class='toc3'><a href='#-cmdPeriod'>cmdPeriod</a> </li>
+<li class='toc3'><a href='#-makePath'>makePath</a> </li>
+<li class='toc3'><a href='#-server'>server</a> </li>
+<li class='toc3'><a href='#-bufferAndThen'>bufferAndThen</a> </li>
+<li class='toc3'><a href='#-prRecord'>prRecord</a> </li>
+<li class='toc3'><a href='#-prLiveRecord'>prLiveRecord</a> </li>
+<li class='toc3'><a href='#-synthDefToBundle'>synthDefToBundle</a> </li>
+<li class='toc3'><a href='#-free'>free</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+</ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*new' href='./../Overviews/Methods.html#new'>new</a> (<span class='argstr'>player</span>, <span class='argstr'>recHeaderFormat: 'AIFF'</span>, <span class='argstr'>recSampleFormat: 'float'</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>player<td class='argumentdesc'><tr><td class='argumentname'>recHeaderFormat<td class='argumentdesc'><tr><td class='argumentname'>recSampleFormat<td class='argumentdesc'></table></div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-player' href='./../Overviews/Methods.html#player'>player</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-player' href='./../Overviews/Methods.html#player'>player</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-recHeaderFormat' href='./../Overviews/Methods.html#recHeaderFormat'>recHeaderFormat</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-recHeaderFormat' href='./../Overviews/Methods.html#recHeaderFormat'>recHeaderFormat</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-recSampleFormat' href='./../Overviews/Methods.html#recSampleFormat'>recSampleFormat</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-recSampleFormat' href='./../Overviews/Methods.html#recSampleFormat'>recSampleFormat</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-limit' href='./../Overviews/Methods.html#limit'>limit</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-limit' href='./../Overviews/Methods.html#limit'>limit</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-record' href='./../Overviews/Methods.html#record'>record</a> (<span class='argstr'>path</span>, <span class='argstr'>endBeat</span>, <span class='argstr'>onComplete</span>, <span class='argstr'>atTime</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>endBeat<td class='argumentdesc'><tr><td class='argumentname'>onComplete<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-liveRecord' href='./../Overviews/Methods.html#liveRecord'>liveRecord</a> (<span class='argstr'>path</span>, <span class='argstr'>onComplete</span>, <span class='argstr'>atTime</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>onComplete<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-stop' href='./../Overviews/Methods.html#stop'>stop</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-cmdPeriod' href='./../Overviews/Methods.html#cmdPeriod'>cmdPeriod</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-makePath' href='./../Overviews/Methods.html#makePath'>makePath</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-server' href='./../Overviews/Methods.html#server'>server</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-bufferAndThen' href='./../Overviews/Methods.html#bufferAndThen'>bufferAndThen</a> (<span class='argstr'>path</span>, <span class='argstr'>then</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>then<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prRecord' href='./../Overviews/Methods.html#prRecord'>prRecord</a> (<span class='argstr'>path</span>, <span class='argstr'>endBeat</span>, <span class='argstr'>atTime</span>, <span class='argstr'>timeOfRequest</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>endBeat<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>timeOfRequest<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prLiveRecord' href='./../Overviews/Methods.html#prLiveRecord'>prLiveRecord</a> (<span class='argstr'>path</span>, <span class='argstr'>atTime</span>, <span class='argstr'>timeOfRequest</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>timeOfRequest<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synthDefToBundle' href='./../Overviews/Methods.html#synthDefToBundle'>synthDefToBundle</a> (<span class='argstr'>bundle</span>, <span class='argstr'>listen: true</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'><tr><td class='argumentname'>listen<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-free' href='./../Overviews/Methods.html#free'>free</a> </h3>
+<div class='method'></div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><div class='doclink'>source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/PlayerRecorder.schelp'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/PlayerRecorder.schelp</a><br>link::Classes/PlayerRecorder::<br>sc version: 3.6.5</div></div></body></html>

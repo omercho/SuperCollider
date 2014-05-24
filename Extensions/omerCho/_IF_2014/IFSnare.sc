@@ -80,7 +80,7 @@ IFSnr.times(4);
 				this.p1(val);
 
 				//~dur1SnrSon.value;
-				~durMul*((~dur1SnrP.next)/val).wait;
+				~durMulP*((~dur1SnrP.next)/val).wait;
 			}}.fork;
 		}
 

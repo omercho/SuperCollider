@@ -88,7 +88,7 @@ IFHat.times(4);
 
 				this.p1(val);
 
-				~durMul*((~dur1HatP.next)/val).wait;
+				~durMulP*((~dur1HatP.next)/val).wait;
 			}}.fork;
 		}
 

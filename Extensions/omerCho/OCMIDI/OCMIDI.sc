@@ -4,7 +4,7 @@ OCMIDI {
 
 	*initClass {
 		StartUp add: {
-
+			//0.5.wait;
 			this.initMIDI;
 		}
 	}
@@ -13,14 +13,14 @@ OCMIDI {
 
 		//MIDIClient.init;	// scan all midi sources
 		//MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
+		MIDIIn.connectAll;
 		~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
-		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
+		//~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
+		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge")
 
-		MIDIIn.connectAll;
-
-		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("192.168.10.4", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
 
 
 

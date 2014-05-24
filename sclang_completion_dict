@@ -173,6 +173,7 @@ Hilbert
 HilbertFIR
 IEnvGen
 IFFT
+IFKick_SC_Erg
 IFLoopMain
 IFMIDI_Erg
 IFMain
@@ -182,6 +183,7 @@ IFNoteOSC3
 IFOSC_ERG
 IFOctOSC
 IFPartsOSC
+IFSC_Synths
 IFtransOSC
 IRand
 IRand
@@ -288,6 +290,7 @@ MostChange
 MouseButton
 MouseX
 MouseY
+NMLNetRecord
 NRand
 NRand
 Normalizer
@@ -528,6 +531,7 @@ RandSeed
 Rast
 RecordBuf
 RedimEchs
+RepAddrBook
 ReplaceOut
 Resonz
 Ringz
@@ -605,6 +609,9 @@ TwoPole
 TwoZero
 Unpack1FFT
 UnpackFFT
+UtopiaExamplesMultiUser_1
+UtopiaExamplesSingle_1
+VBassERG
 VDiskIn
 VDiskIn
 VKeysERG
@@ -636,6 +643,10 @@ filter
 flowerg
 globalsErg
 iPod_Eleni
+ianniX_SC_01
+ianniX_SC_02
+ianniX_SC_03
+ianniX_SC_04
 iannixTesting
 insertFotos
 insertImages_ALL2

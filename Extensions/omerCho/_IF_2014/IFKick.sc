@@ -20,7 +20,7 @@ IFKick(4);
 		~kickCh=0;
 		~kickLate= 0.00;
 		~kickTimes=1;
-		~octMulKick=2;
+		~octMulKick=0;
 		~trKick=0;
 		~rootKick=0;
 		~harmKick=0;
@@ -94,7 +94,7 @@ IFKick(4);
 
 
 
-				~durMul*((~dur1KickP.next)/val).wait;
+				~durMulP*((~dur1KickP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -108,7 +108,7 @@ IFKick(4);
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree, Pseq([~nt1KickP.next], 1),
-			\amp, Pseq([~amp1KickP.next], 1).trace,
+			\amp, Pseq([~amp1KickP.next], 1),
 			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\octave, Pseq([~octKickP.next], 1)+~octMulKick,

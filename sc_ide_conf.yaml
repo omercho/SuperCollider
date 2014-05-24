@@ -44,7 +44,7 @@ IDE:
         color: "#3333bf"
       string: !textFormat
         color: "#3b3b3b"
-        background: "#adcbbe"
+        background: "#ebe8f0"
       symbol: !textFormat
         color: "#007300"
     indentWidth: 4
@@ -57,24 +57,24 @@ IDE:
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
-      help-dock: AQHZ0MsAAQAAAAACQQAAABYAAAaPAAAD4QAAAkEAAAAsAAAGjwAAA+EAAAAAAAA=
+      help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAD/////AAAAFgAABogAAAOS/////wAAACwAAAaIAAADkgAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADT/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADTwAAAGYA////AAAAAQAAAk0AAANP/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAANPAAAATAD///8AAAOmAAADTwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFgAABokAAAOSAAAAAAAAACwAAAaJAAADkgAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADT/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADTwAAAGYA////AAAAAQAAAk0AAANP/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdIAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdMAAAF8AAAATAD///8AAAOmAAADTwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
-    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Control/ResponseDefs.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFPartsOSC.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC3.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC2.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFtransOSC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCBell.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCAtesh.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
+    - /Users/omercho/Dropbox/SC/~SynthDefs/100424_sdef04Pat_02.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCDrumKick01.sc
+    - /Users/omercho/Dropbox/SC/-Projects/Makarna/-OCDrumUgens/OCKick.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBassERG.scd
   shortcuts:
     help-browser: Ctrl+Shift+H
     ide-document-reload: Ctrl+Shift+K

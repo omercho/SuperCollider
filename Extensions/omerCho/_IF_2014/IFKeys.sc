@@ -21,7 +21,7 @@ classvar <>counter3 = 0;
 
 	*globals{
 
-		~chKeys=3;
+		~chKeys=0;
 		~keysLate= 0.00;
 		~timesKeys=1;
 		~octMulKeys=0;
@@ -88,7 +88,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMul*((~dur1KeysP.next)/i).wait;
+				~durMulP*((~dur1KeysP.next)/i).wait;
 			}}.fork;
 		}
 
@@ -97,14 +97,14 @@ classvar <>counter3 = 0;
 	*p1 {|i=1|
 		Pbind(
 			\chan, ~chKeys,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1KeysP.next/i],1)], 1),
 			\degree, Pseq([~nt1KeysP.next], 1),
 			\amp, Pseq([~amp1KeysP.next], 1),
 			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys,
 			\mtranspose, Pseq([~transKeysP.next], 1)+~trKeys,
 			\octave, Pseq([~octKeysP.next], 1)+~octMulKeys,
-			//\root, Pseq([~legKeysP.next], 1),
+
 			\harmonic, Pseq([~strKeysP.next], 1)+~harmKeys
 		).play;
 

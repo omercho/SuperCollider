@@ -4,22 +4,22 @@ fork{
 	~frq = 940;
 	~dur = 0.1;
 	20.do{|i|
-		var freqs = ~frq + (12 *( i % 20)); 
-		
+		var freqs = ~frq + (12 *( i % 20));
+
 		OCBell.ar(freq: freqs, pan: (0.0..1.0).choose).play;
 		( ~dur + (0.1*(i%10)) ).yield;
 	}
 }
 )
 
-OCAtesh.ar(0.2, 0.3, 2.0, freq:~a1/4).play;
+OCAtesh.ar(0.02, 0.03, 0.9, freq:~a2/4).play;
 
 */
 
 OCAtesh : UGen {
 
 	*ar { |att =0.1, sus = 0.11, rls =1, loop = 0, out = 0, amp = 0.5, gate = 1,  freq = 2|
-		
+
 		^{
 			(
 				{|k|
@@ -27,26 +27,26 @@ OCAtesh : UGen {
 						{|i|
 							SinOsc.ar(
 								freq,
-						 		SinOsc.ar(i*k**i+18/[4,5])	
+						 		SinOsc.ar(i*k**i+18/[4,5])
 						 		 *
 						 		Decay.kr(
-						 		 	WhiteNoise.kr(1/4**i), 
+						 		 	WhiteNoise.kr(1/4**i),
 						 			SinOsc.ar(0.1)+1*k+i,
 						 			k*freq
 						 		)
 						 	)
 						}!2
 					).product
-				}!16
+				}!2
 			).sum *EnvGen.ar(
-				Env.new([0, 1, 0.8,  0], [att, sus, rls], -4, loop, releaseNode: nil), 
-				1, 
+				Env.new([0, 1, 0.8,  0], [att, sus, rls], -4, loop, releaseNode: nil),
+				1,
 				doneAction: 2
 			);
 		}
-	
+
 	}
-	
+
 }
 
 
@@ -55,7 +55,7 @@ OCAtesh : UGen {
 OCNam : UGen {
 
 	*ar { |out, amp = 0.9, gate = 1, attime =0.1, suslev = 0.11, rls =1, doneact = 0, freq = #[788.99, 196, 392, 1567, 293]|
-		
+
 		^SynthDef(\name,{|i|
 			var env, ses, ses1, ses2, decay;
 			env = Linen.kr(gate, attime, suslev, rls, doneAction:2) * amp;
@@ -71,9 +71,9 @@ OCNam : UGen {
 			ses2 = Formlet.ar(ses2, ses, 0.001, 0.3 );
 			Out.ar(out, ses2.cos/4 * env);
 		});
-	
+
 	}
-	
+
 }
 
 

@@ -84,7 +84,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMul*((~dur1SampP.next)/val).wait;
+				~durMulP*((~dur1SampP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -102,7 +102,6 @@ classvar <>counter3 = 0;
 			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
 			\mtranspose, Pseq([~transSampP.next], 1)+~trSamp,
 			\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
-			//\root, Pseq([~legSampP.next], 1),
 			\harmonic, Pseq([~strSampP.next], 1)+~harmSamp
 		).play;
 

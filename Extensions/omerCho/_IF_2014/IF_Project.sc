@@ -12,7 +12,7 @@
 	*initClass {
 		StartUp add: {
 			Server.default.doWhenBooted({
-				0.5.wait;
+				1.5.wait;
 				this.globals;
 				this.preSetAll;
 				this.setTempo(125);
@@ -26,51 +26,111 @@
 	}
 
 	*preSetAll{
-		~md1.control(1, 11, (110..116).choose); //KickVol
-		~md1.control(1, 16, (97..106).choose); //SnrVol
-		~md1.control(1, 21, (90..106).choose); //HatVol
-		~md1.control(1, 26, (90..95).choose); //BassVol
-		~md1.control(1, 31, (100..106).choose); //KeysVol
-		~md1.control(1, 36, (98..104).choose); //SampVol
-
+		"SetAll".postln;
+		~md1.control(1, 11, 100); //KickVol
+		~md1.control(1, 12, 64); //KickMute
 		~md1.control(1, 50, 0); //KickSus
+		~md1.control(1, 13, 40); //KickDec
+		~md1.control(1, 41, 0); //KickChain
+
+
+		~md1.control(1, 16, 95); //SnrVol
+		~md1.control(1, 17, 64); //SnrMute
 		~md1.control(1, 51, 0); //SnrSus
-		~md1.control(1, 52, 0); //HatSus
-		~md1.control(1, 53, 0); //BassSus
-		~md1.control(1, 54, (100..116).choose); //KeysSus
-		~md1.control(1, 55, 0); //SampSus
-
-		~md1.control(1, 13, (30..26).choose); //KickDec
-		~md1.control(1, 18, (30..26).choose); //SnrDec
-		~md1.control(1, 23, (30..26).choose); //HatDec
-		~md1.control(1, 28, (30..26).choose); //BassDec
-		~md1.control(1, 33, (30..26).choose); //KeysDec
-		~md1.control(1, 38, (30..26).choose); //SampDec
-
-		~md1.control(1, 12, (64..74).choose); //KickMute
-		~md1.control(1, 17, (64..74).choose); //SnrMute
-		~md1.control(1, 22, (64..74).choose); //HatMute
-		~md1.control(1, 27, (64..74).choose); //BassMute
-		~md1.control(1, 32, (64..74).choose); //KeysMute
-		~md1.control(1, 37, (64..74).choose); //SampMute
-
-		~md1.control(1, 41, 64); //KickChain
+		~md1.control(1, 18, 30); //SnrDec
 		~md1.control(1, 42, 64); //SnrChain
-		~md1.control(1, 43, 64); //HatChain
-		~md1.control(1, 44, 64); //BassChain
-		~md1.control(1, 45, 64); //KeysChain
+
+
+		~md1.control(1, 21, 90); //HatVol
+		~md1.control(1, 22, 64); //HatMute
+		~md1.control(1, 52, 20); //HatSus
+		~md1.control(1, 23, 45); //HatDec
+		~md1.control(1, 43, 0); //HatChain
+
+		~md1.control(1, 26, 98); //BassVol
+		~md1.control(1, 27, 64); //BassMute
+		~md1.control(1, 53, 30); //BassSus
+		~md1.control(1, 28, 35); //BassDec
+		~md1.control(1, 44, 14); //BassChain
+
+
+		~md1.control(1, 31, 106); //KeysVol
+		~md1.control(1, 32, 64); //KeysMute
+		~md1.control(1, 54, 100); //KeysSus
+		~md1.control(1, 33, 20); //KeysDec
+
+
+		~md1.control(1, 36, 90); //SampVol
+		~md1.control(1, 37, 64); //SampMute
+		~md1.control(1, 55, 60); //SampSus
+		~md1.control(1, 38, 30); //SampDec
 		~md1.control(1, 46, 64); //SampChain
 
 		~md1.control(3, 0, 0); //MainSendX
 		~md1.control(3, 1, 0); //MainSendY
 
-		"Harmonic 0".postln;
+
 		~harmKick=0;~harmSnr=0;~harmHat=0;
 		~harmBass=0;~harmKeys=0;~harmSamp=0;
 
 		~lfoMulBass=0.2; ~tOSCAdrr.sendMsg('lfoMulBass', 0.2);
 		~lfoMulKeys=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys', 0.5);
-		~lfoMulSamp=0.0; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.0);
+		~lfoMulSamp=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.4);
+
+	}
+
+
+	*preSet_1{
+		"Set1".postln;
+		~md1.control(1, 11, 104); //KickVol
+		~md1.control(1, 12, 64); //KickMute
+		~md1.control(1, 50, 0); //KickSus
+		~md1.control(1, 13, 50); //KickDec
+		~md1.control(1, 41, 60); //KickChain
+
+
+		~md1.control(1, 16, 95); //SnrVol
+		~md1.control(1, 17, 64); //SnrMute
+		~md1.control(1, 51, 100); //SnrSus
+		~md1.control(1, 18, 60); //SnrDec
+		~md1.control(1, 42, 74); //SnrChain
+
+
+		~md1.control(1, 21, 100); //HatVol
+		~md1.control(1, 22, 64); //HatMute
+		~md1.control(1, 52, 120); //HatSus
+		~md1.control(1, 23, 85); //HatDec
+		~md1.control(1, 43, 70); //HatChain
+
+		~md1.control(1, 26, 99); //BassVol
+		~md1.control(1, 27, 64); //BassMute
+		~md1.control(1, 53, 120); //BassSus
+		~md1.control(1, 28, 35); //BassDec
+		~md1.control(1, 44, 114); //BassChain
+
+
+		~md1.control(1, 31, 106); //KeysVol
+		~md1.control(1, 32, 64); //KeysMute
+		~md1.control(1, 54, 100); //KeysSus
+		~md1.control(1, 33, 20); //KeysDec
+
+
+		~md1.control(1, 36, 90); //SampVol
+		~md1.control(1, 37, 64); //SampMute
+		~md1.control(1, 55, 90); //SampSus
+		~md1.control(1, 38, 29); //SampDeC
+		~md1.control(1, 46, 64); //SampChain
+
+		~md1.control(3, 0, 30); //MainSendX
+		~md1.control(3, 1, 0); //MainSendY
+
+
+		~harmKick=0;~harmSnr=0;~harmHat=0;
+		~harmBass=0;~harmKeys=0;~harmSamp=0;
+
+		~lfoMulBass=0.7; ~tOSCAdrr.sendMsg('lfoMulBass', 0.7);
+		~lfoMulKeys=0.8; ~tOSCAdrr.sendMsg('lfoMulKeys', 0.8);
+		~lfoMulSamp=0.6; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.6);
 
 	}
 

@@ -21,7 +21,7 @@ classvar <>counter3 = 0;
 
 	*globals{
 
-		~chBass=4;
+		~chBass=0;
 		~bassLate=0.00;
 		~timesBass=1;
 		~octMulBass=0;
@@ -56,7 +56,7 @@ classvar <>counter3 = 0;
 
 		~transBass = PatternProxy( Pseq([0], inf));
 		~transBassP = Pseq([~transBass], inf).asStream;
-		~octBass = PatternProxy( Pseq([4], inf));
+		~octBass = PatternProxy( Pseq([3], inf));
 		~octBassP = Pseq([~octBass], inf).asStream;
 		~legBass = PatternProxy( Pseq([0.0], inf));
 		~legBassP = Pseq([~legBass], inf).asStream;
@@ -88,7 +88,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMul*((~dur1BassP.next)/val).wait;
+				~durMulP*((~dur1BassP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -99,7 +99,7 @@ classvar <>counter3 = 0;
 		val=i;
 		Pbind(
 			\chan, ~chBass,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1BassP.next/val],1)], 1),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),
@@ -112,7 +112,7 @@ classvar <>counter3 = 0;
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1, \chan, 4, \ctlNum, 0,
+			\midiout,~vBass, \chan, 4, \ctlNum, 0,
 			\delta, Pseq([~delta1BassP.next], 2),
 			\control, Pseq([~lfo1BassP.next], 2)*~lfoMulBass,
 
@@ -120,7 +120,7 @@ classvar <>counter3 = 0;
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1,\chan, 4,  \ctlNum, 1,
+			\midiout,~vBass,\chan, 4,  \ctlNum, 1,
 			\delta, Pseq([~delta2BassP.next], 2),
 			\control, Pseq([~lfo2BassP.next], 2)*~lfoMulBass,
 

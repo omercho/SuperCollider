@@ -1,24 +1,40 @@
 documents: !QVariantList
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/140401_iannixTest2.scd
-  - /Users/omercho/Dropbox/SC/~SynthDefs/~ZKM_SynthDefs/110302_MouseNoise.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/ianniX_SC_01.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/ianniX_SC_02.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/ianniX_SC_03.scd
   - /Users/omercho/Dropbox/SC/~SynthDefs/110329_varel_03OK.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/iannix/ianniX_SC_04.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 1
-        position: 597
+        documentIndex: 3
+        position: 644
+      - !QVariantMap
+        documentIndex: 5
+        position: 1470
+      - !QVariantMap
+        documentIndex: 4
+        position: 1602
       - !QVariantMap
         documentIndex: 2
-        position: 2
+        position: 32
+      - !QVariantMap
+        documentIndex: 6
+        position: 473
+      - !QVariantMap
+        documentIndex: 1
+        position: 25
       - !QVariantMap
         documentIndex: 0
-        position: 32
+        position: 921
   state: AAAA/wAAAAAAAAABAAAAZAEAAAABAQAAAAE=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
-    help-dock: AQHZ0MsAAQAAAAAA5wAAAOIAAASgAAADrwAAAOcAAAD4AAAEoAAAA68AAAAAAAA=
+    help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAAAGAAAAUwAABo8AAAOnAAAABgAAAGkAAAaPAAADpwAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADJ/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADJwAAAGYA////AAAAAQAAAdAAAAMn/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAAWoAAAAaAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAMnAAAATAD///8AAAQjAAADJwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAAAAAAAAAAAFgAABk0AAAQFAAAAAAAAACwAAAZNAAAEBQAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAABsAAADwvwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADwgAAAGYA////AAAAAQAAAqgAAAPC/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAugAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAukAAADZAAAATAD///8AAAM4AAADwgAAAAEAAAACAAAAAQAAAAL8AAAAAA==

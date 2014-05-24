@@ -1,0 +1,431 @@
+<html><head><title>AbstractPlayer</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#Libraries>crucial>Players'>Libraries>crucial>Players</a></div>
+<h1>AbstractPlayer</h1>
+<div id='summary'>the base class for all Players : a playable object</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/AbstractPlayer.sc'>AbstractPlayer.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/AbstractFunction.html">AbstractFunction</a> : <a href="../Classes/Object.html">Object</a></div>
+<div id='subclasses'>Subclasses: <a href="../Classes/AbstractPlayerProxy.html">AbstractPlayerProxy</a>, <a href="../Classes/AbstractSFP.html">AbstractSFP</a>, <a href="../Classes/AudioInPlayer.html">AudioInPlayer</a>, <a href="../Classes/HasPatchIns.html">HasPatchIns</a>, <a href="../Classes/HasSubject.html">HasSubject</a>, <a href="../Classes/KrPlayer.html">KrPlayer</a>, <a href="../Classes/MonoAudioIn.html">MonoAudioIn</a>, <a href="../Classes/MultiplePlayers.html">MultiplePlayers</a>, <a href="../Classes/PlayerBinop.html">PlayerBinop</a>, <a href="../Classes/PlayerMixer.html">PlayerMixer</a>, <a href="../Classes/PlayerUnop.html">PlayerUnop</a>, <a href="../Classes/SynthlessPlayer.html">SynthlessPlayer</a></div>
+<div id='related'>See also: <a href="./../Classes/Patch.html">Patch</a>, <a href="./../Classes/Mx">Mx</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*bundleClass'>bundleClass</a> </li>
+<li class='toc3'><a href='#*bundle'>bundle</a> </li>
+<li class='toc3'><a href='#*ar'>ar</a> </li>
+<li class='toc3'><a href='#*kr'>kr</a> </li>
+<li class='toc3'><a href='#*annotate'>annotate</a> </li>
+<li class='toc3'><a href='#*getAnnotation'>getAnnotation</a> </li>
+<li class='toc3'><a href='#*removeAnnotation'>removeAnnotation</a> </li>
+<li class='toc3'><a href='#*initClass'>initClass</a> </li>
+<li class='toc3'><a href='#*load'>load</a> </li>
+<li class='toc3'><a href='#*enpath'>enpath</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+</ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-path'>path</a> </li>
+<li class='toc3'><a href='#-synth'>synth</a> </li>
+<li class='toc3'><a href='#-group'>group</a> </li>
+<li class='toc3'><a href='#-server'>server</a> </li>
+<li class='toc3'><a href='#-patchOut'>patchOut</a> </li>
+<li class='toc3'><a href='#-status'>status</a> </li>
+<li class='toc3'><a href='#-play'>play</a> </li>
+<li class='toc3'><a href='#-prPlay'>prPlay</a> </li>
+<li class='toc3'><a href='#-prSetStatus'>prSetStatus</a> </li>
+<li class='toc3'><a href='#-isPrepared'>isPrepared</a> </li>
+<li class='toc3'><a href='#-readyForPlay'>readyForPlay</a> </li>
+<li class='toc3'><a href='#-prepareForPlay'>prepareForPlay</a> </li>
+<li class='toc3'><a href='#-prepareToBundle'>prepareToBundle</a> </li>
+<li class='toc3'><a href='#-makeResourcesToBundle'>makeResourcesToBundle</a> </li>
+<li class='toc3'><a href='#-prepareChildrenToBundle'>prepareChildrenToBundle</a> </li>
+<li class='toc3'><a href='#-loadDefFileToBundle'>loadDefFileToBundle</a> </li>
+<li class='toc3'><a href='#-defaultAtTime'>defaultAtTime</a> </li>
+<li class='toc3'><a href='#-loadBuffersToBundle'>loadBuffersToBundle</a> </li>
+<li class='toc3'><a href='#-makePatchOut'>makePatchOut</a> </li>
+<li class='toc3'><a href='#-topMakePatchOut'>topMakePatchOut</a> </li>
+<li class='toc3'><a href='#-setPatchOut'>setPatchOut</a> </li>
+<li class='toc3'><a href='#-spawn'>spawn</a> </li>
+<li class='toc3'><a href='#-spawnOn'>spawnOn</a> </li>
+<li class='toc3'><a href='#-spawnToBundle'>spawnToBundle</a> </li>
+<li class='toc3'><a href='#-spawnOnToBundle'>spawnOnToBundle</a> </li>
+<li class='toc3'><a href='#-didSpawn'>didSpawn</a> </li>
+<li class='toc3'><a href='#-isPlaying'>isPlaying</a> </li>
+<li class='toc3'><a href='#-cmdPeriod'>cmdPeriod</a> </li>
+<li class='toc3'><a href='#-onPlay'>onPlay</a> </li>
+<li class='toc3'><a href='#-onStop'>onStop</a> </li>
+<li class='toc3'><a href='#-onReady'>onReady</a> </li>
+<li class='toc3'><a href='#-freeOnStop'>freeOnStop</a> </li>
+<li class='toc3'><a href='#-prOn'>prOn</a> </li>
+<li class='toc3'><a href='#-stop'>stop</a> </li>
+<li class='toc3'><a href='#-stopToBundle'>stopToBundle</a> </li>
+<li class='toc3'><a href='#-didStop'>didStop</a> </li>
+<li class='toc3'><a href='#-release'>release</a> </li>
+<li class='toc3'><a href='#-releaseToBundle'>releaseToBundle</a> </li>
+<li class='toc3'><a href='#-free'>free</a> </li>
+<li class='toc3'><a href='#-freeToBundle'>freeToBundle</a> </li>
+<li class='toc3'><a href='#-freeResourcesToBundle'>freeResourcesToBundle</a> </li>
+<li class='toc3'><a href='#-didFree'>didFree</a> </li>
+<li class='toc3'><a href='#-freeSynthToBundle'>freeSynthToBundle</a> </li>
+<li class='toc3'><a href='#-freePatchOutToBundle'>freePatchOutToBundle</a> </li>
+<li class='toc3'><a href='#-record'>record</a> </li>
+<li class='toc3'><a href='#-busIndex'>busIndex</a> </li>
+<li class='toc3'><a href='#-bus'>bus</a> </li>
+<li class='toc3'><a href='#-asSynthDef'>asSynthDef</a> </li>
+<li class='toc3'><a href='#-writeDefFile'>writeDefFile</a> </li>
+<li class='toc3'><a href='#-synthDefArgs'>synthDefArgs</a> </li>
+<li class='toc3'><a href='#-defName'>defName</a> </li>
+<li class='toc3'><a href='#-rate'>rate</a> </li>
+<li class='toc3'><a href='#-numChannels'>numChannels</a> </li>
+<li class='toc3'><a href='#-spec'>spec</a> </li>
+<li class='toc3'><a href='#-addToSynthDef'>addToSynthDef</a> </li>
+<li class='toc3'><a href='#-synthArg'>synthArg</a> </li>
+<li class='toc3'><a href='#-instrArgFromControl'>instrArgFromControl</a> </li>
+<li class='toc3'><a href='#-ar'>ar</a> </li>
+<li class='toc3'><a href='#-kr'>kr</a> </li>
+<li class='toc3'><a href='#-value'>value</a> </li>
+<li class='toc3'><a href='#-valueArray'>valueArray</a> </li>
+<li class='toc3'><a href='#-plot'>plot</a> </li>
+<li class='toc3'><a href='#-connectTo'>connectTo</a> </li>
+<li class='toc3'><a href='#-connectToInputAt'>connectToInputAt</a> </li>
+<li class='toc3'><a href='#-connectToPatchIn'>connectToPatchIn</a> </li>
+<li class='toc3'><a href='#-disconnect'>disconnect</a> </li>
+<li class='toc3'><a href='#-children'>children</a> </li>
+<li class='toc3'><a href='#-deepDo'>deepDo</a> </li>
+<li class='toc3'><a href='#-allChildren'>allChildren</a> </li>
+<li class='toc3'><a href='#-composeUnaryOp'>composeUnaryOp</a> </li>
+<li class='toc3'><a href='#-composeBinaryOp'>composeBinaryOp</a> </li>
+<li class='toc3'><a href='#-reverseComposeBinaryOp'>reverseComposeBinaryOp</a> </li>
+<li class='toc3'><a href='#-beatDuration'>beatDuration</a> </li>
+<li class='toc3'><a href='#-timeDuration'>timeDuration</a> </li>
+<li class='toc3'><a href='#-embedInStream'>embedInStream</a> </li>
+<li class='toc3'><a href='#-delta'>delta</a> </li>
+<li class='toc3'><a href='#-name'>name</a> </li>
+<li class='toc3'><a href='#-asString'>asString</a> </li>
+<li class='toc3'><a href='#-save'>save</a> </li>
+<li class='toc3'><a href='#-didSaveAs'>didSaveAs</a> </li>
+<li class='toc3'><a href='#-asCompileString'>asCompileString</a> </li>
+<li class='toc3'><a href='#-storeParamsOn'>storeParamsOn</a> </li>
+<li class='toc3'><a href='#-simplifyStoreArgs'>simplifyStoreArgs</a> </li>
+<li class='toc3'><a href='#-annotate'>annotate</a> </li>
+<li class='toc3'><a href='#-changed'>changed</a> </li>
+<li class='toc3'><a href='#-copy'>copy</a> </li>
+<li class='toc3'><a href='#-guiClass'>guiClass</a> </li>
+<li class='toc3'><a href='#-addToDefName'>addToDefName</a> </li>
+<li class='toc3'><a href='#-proxyControlClass'>proxyControlClass</a> </li>
+<li class='toc3'><a href='#-wrapInFader'>wrapInFader</a> </li>
+<li class='toc3'><a href='#-releaseAndFreeToBundle'>releaseAndFreeToBundle</a> </li>
+<li class='toc3'><a href='#-enpath'>enpath</a> </li>
+<li class='toc3'><a href='#-loadDocument'>loadDocument</a> </li>
+<li class='toc3'><a href='#-didLoadFromPath'>didLoadFromPath</a> </li>
+<li class='toc3'><a href='#-load'>load</a> </li>
+<li class='toc3'><a href='#-busReport'>busReport</a> </li>
+<li class='toc3'><a href='#-asKAsset'>asKAsset</a> </li>
+<li class='toc3'><a href='#-swapperApp'>swapperApp</a> </li>
+<li class='toc3'><a href='#-wigglyness'>wigglyness</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+<li class='toc2'><a href='#Undocumented instance methods'>Undocumented instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-setGroupToBundle'>setGroupToBundle</a> </li>
+<li class='toc3'><a href='#-subGroups'>subGroups</a> </li>
+</ul></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>Players are things that can play. The AbstractPlayer interface encapsulates each of the steps to load an object, get its resources onto the server (eg. loading buffers, populating lookup tables) , to play at precise times, stop and free its resources when finished.
+<p>Players may have one synth or many or even none. They may hold groups, busses and buffers in its instance variables.
+<p>Players have an output spec and some of them have inputs and input specs.
+<p>If they have editable parameters then the framework supports saving and loading of the player object in compile string document format.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*bundleClass' href='./../Overviews/Methods.html#bundleClass'>bundleClass</a></h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*bundleClass' href='./../Overviews/Methods.html#bundleClass'>bundleClass</a> = value</h3>
+<div class='method'></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*bundle' href='./../Overviews/Methods.html#bundle'>bundle</a> (<span class='argstr'>server</span>, <span class='argstr'>atTime</span>, <span class='argstr'>buildFunction</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>server<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>buildFunction<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*ar' href='./../Overviews/Methods.html#ar'>ar</a> ( <span class='argstr'>... args</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>... args<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*kr' href='./../Overviews/Methods.html#kr'>kr</a> ( <span class='argstr'>... args</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>... args<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*annotate' href='./../Overviews/Methods.html#annotate'>annotate</a> (<span class='argstr'>thing</span>, <span class='argstr'>note</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>thing<td class='argumentdesc'><tr><td class='argumentname'>note<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*getAnnotation' href='./../Overviews/Methods.html#getAnnotation'>getAnnotation</a> (<span class='argstr'>thing</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>thing<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*removeAnnotation' href='./../Overviews/Methods.html#removeAnnotation'>removeAnnotation</a> (<span class='argstr'>thing</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>thing<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*initClass' href='./../Overviews/Methods.html#initClass'>initClass</a> </h3>
+<div class='method'></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*load' href='./../Overviews/Methods.html#load'>load</a> (<span class='argstr'>obj</span>, <span class='argstr'>warnIfNotFound: true</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>obj<td class='argumentdesc'><tr><td class='argumentname'>warnIfNotFound<td class='argumentdesc'></table></div><h3 class='cmethodname'><span class='methprefix'>*</span><a name='*enpath' href='./../Overviews/Methods.html#enpath'>enpath</a> (<span class='argstr'>obj</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>obj<td class='argumentdesc'></table></div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-path' href='./../Overviews/Methods.html#path'>path</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-path' href='./../Overviews/Methods.html#path'>path</a> = <span class='argstr'>p</span></h3>
+<div class='method'>
+<p> if loaded or saved, the player knows its path<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>p<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synth' href='./../Overviews/Methods.html#synth'>synth</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-group' href='./../Overviews/Methods.html#group'>group</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-group' href='./../Overviews/Methods.html#group'>group</a> = <span class='argstr'>g</span></h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>g<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-server' href='./../Overviews/Methods.html#server'>server</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-patchOut' href='./../Overviews/Methods.html#patchOut'>patchOut</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-status' href='./../Overviews/Methods.html#status'>status</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-play' href='./../Overviews/Methods.html#play'>play</a> (<span class='argstr'>group</span>, <span class='argstr'>atTime</span>, <span class='argstr'>bus</span>)</h3>
+<div class='method'>
+<p> boots the server, prepares the player for play (loading resources like samples etc.)  and spawns the player
+<p> all args are optional<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>group<td class='argumentdesc'>
+<p> a Server (will use the root node)  a Group  nil (default server's root node)<tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p> see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>bus<td class='argumentdesc'>
+<p> bus - (Bus,Integer,Nil)  a specific Bus to play on, otherwise will default to the main audio outs</table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prPlay' href='./../Overviews/Methods.html#prPlay'>prPlay</a> (<span class='argstr'>atTime</span>, <span class='argstr'>bus</span>, <span class='argstr'>timeOfRequest</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>bus<td class='argumentdesc'><tr><td class='argumentname'>timeOfRequest<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prSetStatus' href='./../Overviews/Methods.html#prSetStatus'>prSetStatus</a> (<span class='argstr'>newStatus</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>newStatus<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-isPrepared' href='./../Overviews/Methods.html#isPrepared'>isPrepared</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-readyForPlay' href='./../Overviews/Methods.html#readyForPlay'>readyForPlay</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prepareForPlay' href='./../Overviews/Methods.html#prepareForPlay'>prepareForPlay</a> (<span class='argstr'>group</span>, <span class='argstr'>private: false</span>, <span class='argstr'>bus</span>)</h3>
+<div class='method'>
+<p> this loads the synthDef to the server for the player and all of its children,  and allocates any resources such as buffers, loading sound files etc.<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>group<td class='argumentdesc'>
+<p> group - a Server, a Group or Nil<tr><td class='argumentname'>private<td class='argumentdesc'>
+<p> isPrivate: a public bus is one of the main audio outputs of your soundcard.  a private bus is one that will be patched and mixed further down the line.  When makePatchOut is called on the top player (the one that actually was sent .play)  it plays to a public (main audio output), and any internal children are told to  allocate and play onto a private bus.<tr><td class='argumentname'>bus<td class='argumentdesc'>
+<p> bus - a specific Bus to play on. this will cause isPrivate to be ignored</table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prepareToBundle' href='./../Overviews/Methods.html#prepareToBundle'>prepareToBundle</a> (<span class='argstr'>agroup</span>, <span class='argstr'>bundle</span>, <span class='argstr'>private: false</span>, <span class='argstr'>bus</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>agroup<td class='argumentdesc'><tr><td class='argumentname'>bundle<td class='argumentdesc'><tr><td class='argumentname'>private<td class='argumentdesc'><tr><td class='argumentname'>bus<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-makeResourcesToBundle' href='./../Overviews/Methods.html#makeResourcesToBundle'>makeResourcesToBundle</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prepareChildrenToBundle' href='./../Overviews/Methods.html#prepareChildrenToBundle'>prepareChildrenToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-loadDefFileToBundle' href='./../Overviews/Methods.html#loadDefFileToBundle'>loadDefFileToBundle</a> (<span class='argstr'>bundle</span>, <span class='argstr'>server</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'><tr><td class='argumentname'>server<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-defaultAtTime' href='./../Overviews/Methods.html#defaultAtTime'>defaultAtTime</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-loadBuffersToBundle' href='./../Overviews/Methods.html#loadBuffersToBundle'>loadBuffersToBundle</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-makePatchOut' href='./../Overviews/Methods.html#makePatchOut'>makePatchOut</a> (<span class='argstr'>agroup</span>, <span class='argstr'>private: false</span>, <span class='argstr'>bus</span>, <span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>agroup<td class='argumentdesc'><tr><td class='argumentname'>private<td class='argumentdesc'><tr><td class='argumentname'>bus<td class='argumentdesc'><tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-topMakePatchOut' href='./../Overviews/Methods.html#topMakePatchOut'>topMakePatchOut</a> (<span class='argstr'>agroup</span>, <span class='argstr'>private: false</span>, <span class='argstr'>bus</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>agroup<td class='argumentdesc'><tr><td class='argumentname'>private<td class='argumentdesc'><tr><td class='argumentname'>bus<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-setPatchOut' href='./../Overviews/Methods.html#setPatchOut'>setPatchOut</a> (<span class='argstr'>po</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>po<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawn' href='./../Overviews/Methods.html#spawn'>spawn</a> (<span class='argstr'>atTime</span>, <span class='argstr'>timeOfRequest</span>)</h3>
+<div class='method'>
+<p> assumes the player has been prepared. see prepareForPlay<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>timeOfRequest<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawnOn' href='./../Overviews/Methods.html#spawnOn'>spawnOn</a> (<span class='argstr'>group</span>, <span class='argstr'>bus</span>, <span class='argstr'>atTime</span>, <span class='argstr'>timeOfRequest</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>group<td class='argumentdesc'><tr><td class='argumentname'>bus<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a><tr><td class='argumentname'>timeOfRequest<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawnToBundle' href='./../Overviews/Methods.html#spawnToBundle'>spawnToBundle</a> (<span class='argstr'>bundle</span>, <span class='argstr'>selector: 'addToTailMsg'</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'><tr><td class='argumentname'>selector<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawnOnToBundle' href='./../Overviews/Methods.html#spawnOnToBundle'>spawnOnToBundle</a> (<span class='argstr'>agroup</span>, <span class='argstr'>bus</span>, <span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>agroup<td class='argumentdesc'><tr><td class='argumentname'>bus<td class='argumentdesc'><tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-didSpawn' href='./../Overviews/Methods.html#didSpawn'>didSpawn</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-isPlaying' href='./../Overviews/Methods.html#isPlaying'>isPlaying</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-cmdPeriod' href='./../Overviews/Methods.html#cmdPeriod'>cmdPeriod</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-onPlay' href='./../Overviews/Methods.html#onPlay'>onPlay</a> (<span class='argstr'>func</span>, <span class='argstr'>timeout</span>, <span class='argstr'>listener</span>, <span class='argstr'>oneShot: true</span>, <span class='argstr'>throwErrorOnTimeout</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>func<td class='argumentdesc'><tr><td class='argumentname'>timeout<td class='argumentdesc'><tr><td class='argumentname'>listener<td class='argumentdesc'><tr><td class='argumentname'>oneShot<td class='argumentdesc'><tr><td class='argumentname'>throwErrorOnTimeout<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-onStop' href='./../Overviews/Methods.html#onStop'>onStop</a> (<span class='argstr'>func</span>, <span class='argstr'>timeout</span>, <span class='argstr'>listener</span>, <span class='argstr'>oneShot: true</span>, <span class='argstr'>throwErrorOnTimeout</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>func<td class='argumentdesc'><tr><td class='argumentname'>timeout<td class='argumentdesc'><tr><td class='argumentname'>listener<td class='argumentdesc'><tr><td class='argumentname'>oneShot<td class='argumentdesc'><tr><td class='argumentname'>throwErrorOnTimeout<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-onReady' href='./../Overviews/Methods.html#onReady'>onReady</a> (<span class='argstr'>func</span>, <span class='argstr'>timeout</span>, <span class='argstr'>listener</span>, <span class='argstr'>oneShot: true</span>, <span class='argstr'>throwErrorOnTimeout</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>func<td class='argumentdesc'><tr><td class='argumentname'>timeout<td class='argumentdesc'><tr><td class='argumentname'>listener<td class='argumentdesc'><tr><td class='argumentname'>oneShot<td class='argumentdesc'><tr><td class='argumentname'>throwErrorOnTimeout<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freeOnStop' href='./../Overviews/Methods.html#freeOnStop'>freeOnStop</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-prOn' href='./../Overviews/Methods.html#prOn'>prOn</a> (<span class='argstr'>status</span>, <span class='argstr'>func</span>, <span class='argstr'>timeout</span>, <span class='argstr'>listener</span>, <span class='argstr'>oneShot: true</span>, <span class='argstr'>throwErrorOnTimeout</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>status<td class='argumentdesc'><tr><td class='argumentname'>func<td class='argumentdesc'><tr><td class='argumentname'>timeout<td class='argumentdesc'><tr><td class='argumentname'>listener<td class='argumentdesc'><tr><td class='argumentname'>oneShot<td class='argumentdesc'><tr><td class='argumentname'>throwErrorOnTimeout<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-stop' href='./../Overviews/Methods.html#stop'>stop</a> (<span class='argstr'>atTime</span>)</h3>
+<div class='method'>
+<p> stops playing but does not deallocate any resources (buffers etc.)  You need to .free to deallocate it<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-stopToBundle' href='./../Overviews/Methods.html#stopToBundle'>stopToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-didStop' href='./../Overviews/Methods.html#didStop'>didStop</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-release' href='./../Overviews/Methods.html#release'>release</a> (<span class='argstr'>releaseTime</span>, <span class='argstr'>atTime</span>)</h3>
+<div class='method'>
+<p> call release on the synth, with the releaseTime  then calls stop on the player, so even if the synthDef does not have a \gate  input, it will function the same as stop after a short delay.<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>releaseTime<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-releaseToBundle' href='./../Overviews/Methods.html#releaseToBundle'>releaseToBundle</a> (<span class='argstr'>releaseTime</span>, <span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>releaseTime<td class='argumentdesc'><tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-free' href='./../Overviews/Methods.html#free'>free</a> (<span class='argstr'>atTime</span>)</h3>
+<div class='method'>
+<p> frees all allocated resources (buffers etc.)  if it is playing then it also stops it<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freeToBundle' href='./../Overviews/Methods.html#freeToBundle'>freeToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freeResourcesToBundle' href='./../Overviews/Methods.html#freeResourcesToBundle'>freeResourcesToBundle</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-didFree' href='./../Overviews/Methods.html#didFree'>didFree</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freeSynthToBundle' href='./../Overviews/Methods.html#freeSynthToBundle'>freeSynthToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freePatchOutToBundle' href='./../Overviews/Methods.html#freePatchOutToBundle'>freePatchOutToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-record' href='./../Overviews/Methods.html#record'>record</a> (<span class='argstr'>path</span>, <span class='argstr'>endBeat</span>, <span class='argstr'>onComplete</span>, <span class='argstr'>recHeaderFormat</span>, <span class='argstr'>recSampleFormat</span>, <span class='argstr'>atTime</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>path<td class='argumentdesc'><tr><td class='argumentname'>endBeat<td class='argumentdesc'><tr><td class='argumentname'>onComplete<td class='argumentdesc'><tr><td class='argumentname'>recHeaderFormat<td class='argumentdesc'><tr><td class='argumentname'>recSampleFormat<td class='argumentdesc'><tr><td class='argumentname'>atTime<td class='argumentdesc'>
+<p>see <a href="./../Guides/atTime.html">atTime</a></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-busIndex' href='./../Overviews/Methods.html#busIndex'>busIndex</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-bus' href='./../Overviews/Methods.html#bus'>bus</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-bus' href='./../Overviews/Methods.html#bus'>bus</a> = <span class='argstr'>b</span></h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>b<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-asSynthDef' href='./../Overviews/Methods.html#asSynthDef'>asSynthDef</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-writeDefFile' href='./../Overviews/Methods.html#writeDefFile'>writeDefFile</a> (<span class='argstr'>dir</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>dir<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synthDefArgs' href='./../Overviews/Methods.html#synthDefArgs'>synthDefArgs</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-defName' href='./../Overviews/Methods.html#defName'>defName</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-rate' href='./../Overviews/Methods.html#rate'>rate</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-numChannels' href='./../Overviews/Methods.html#numChannels'>numChannels</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spec' href='./../Overviews/Methods.html#spec'>spec</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-addToSynthDef' href='./../Overviews/Methods.html#addToSynthDef'>addToSynthDef</a> (<span class='argstr'>synthDef</span>, <span class='argstr'>name</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>synthDef<td class='argumentdesc'><tr><td class='argumentname'>name<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synthArg' href='./../Overviews/Methods.html#synthArg'>synthArg</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-instrArgFromControl' href='./../Overviews/Methods.html#instrArgFromControl'>instrArgFromControl</a> (<span class='argstr'>control</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>control<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-ar' href='./../Overviews/Methods.html#ar'>ar</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-kr' href='./../Overviews/Methods.html#kr'>kr</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-value' href='./../Overviews/Methods.html#value'>value</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-valueArray' href='./../Overviews/Methods.html#valueArray'>valueArray</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-plot' href='./../Overviews/Methods.html#plot'>plot</a> (<span class='argstr'>duration: 5</span>, <span class='argstr'>bounds</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>duration<td class='argumentdesc'><tr><td class='argumentname'>bounds<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-connectTo' href='./../Overviews/Methods.html#connectTo'>connectTo</a> (<span class='argstr'>hasInput</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>hasInput<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-connectToInputAt' href='./../Overviews/Methods.html#connectToInputAt'>connectToInputAt</a> (<span class='argstr'>player</span>, <span class='argstr'>inputIndex: 0</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>player<td class='argumentdesc'><tr><td class='argumentname'>inputIndex<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-connectToPatchIn' href='./../Overviews/Methods.html#connectToPatchIn'>connectToPatchIn</a> (<span class='argstr'>patchIn</span>, <span class='argstr'>needsValueSetNow: true</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>patchIn<td class='argumentdesc'><tr><td class='argumentname'>needsValueSetNow<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-disconnect' href='./../Overviews/Methods.html#disconnect'>disconnect</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-children' href='./../Overviews/Methods.html#children'>children</a> </h3>
+<div class='method'>
+<p>for players that hold other players or objects, return those children  player classes should implement where appropriate.  a Patch has its args as children  SFP has its underlying object as child
+<p> using this.children.do({arg item; .... }) can save you from having to muck up  the Player class with extra methods.</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-deepDo' href='./../Overviews/Methods.html#deepDo'>deepDo</a> (<span class='argstr'>function</span>)</h3>
+<div class='method'>
+<p> do to allChildren<h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>function<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-allChildren' href='./../Overviews/Methods.html#allChildren'>allChildren</a> </h3>
+<div class='method'>
+<p>and all your children's children, and their children...</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-composeUnaryOp' href='./../Overviews/Methods.html#composeUnaryOp'>composeUnaryOp</a> (<span class='argstr'>operator</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>operator<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-composeBinaryOp' href='./../Overviews/Methods.html#composeBinaryOp'>composeBinaryOp</a> (<span class='argstr'>operator</span>, <span class='argstr'>pattern</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>operator<td class='argumentdesc'><tr><td class='argumentname'>pattern<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-reverseComposeBinaryOp' href='./../Overviews/Methods.html#reverseComposeBinaryOp'>reverseComposeBinaryOp</a> (<span class='argstr'>operator</span>, <span class='argstr'>pattern</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>operator<td class='argumentdesc'><tr><td class='argumentname'>pattern<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-beatDuration' href='./../Overviews/Methods.html#beatDuration'>beatDuration</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-timeDuration' href='./../Overviews/Methods.html#timeDuration'>timeDuration</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-embedInStream' href='./../Overviews/Methods.html#embedInStream'>embedInStream</a> (<span class='argstr'>inval</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>inval<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-delta' href='./../Overviews/Methods.html#delta'>delta</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-name' href='./../Overviews/Methods.html#name'>name</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-name' href='./../Overviews/Methods.html#name'>name</a> = value</h3>
+<div class='method'>
+<p> if loaded or saved then the name is the filename, else its the normal asString for an object (eg. "a Patch")</div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-asString' href='./../Overviews/Methods.html#asString'>asString</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-save' href='./../Overviews/Methods.html#save'>save</a> (<span class='argstr'>apath</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>apath<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-didSaveAs' href='./../Overviews/Methods.html#didSaveAs'>didSaveAs</a> (<span class='argstr'>apath</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>apath<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-asCompileString' href='./../Overviews/Methods.html#asCompileString'>asCompileString</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-storeParamsOn' href='./../Overviews/Methods.html#storeParamsOn'>storeParamsOn</a> (<span class='argstr'>stream</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>stream<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-simplifyStoreArgs' href='./../Overviews/Methods.html#simplifyStoreArgs'>simplifyStoreArgs</a> (<span class='argstr'>args</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>args<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-annotate' href='./../Overviews/Methods.html#annotate'>annotate</a> (<span class='argstr'>thing</span>, <span class='argstr'>note</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>thing<td class='argumentdesc'><tr><td class='argumentname'>note<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-changed' href='./../Overviews/Methods.html#changed'>changed</a> (<span class='argstr'>what</span> <span class='argstr'>... moreArgs</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>what<td class='argumentdesc'><tr><td class='argumentname'>... moreArgs<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-copy' href='./../Overviews/Methods.html#copy'>copy</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-guiClass' href='./../Overviews/Methods.html#guiClass'>guiClass</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-addToDefName' href='./../Overviews/Methods.html#addToDefName'>addToDefName</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Instr/instrSupport.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Instr/instrSupport.sc</a></div>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-proxyControlClass' href='./../Overviews/Methods.html#proxyControlClass'>proxyControlClass</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc</a></div>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-wrapInFader' href='./../Overviews/Methods.html#wrapInFader'>wrapInFader</a> (<span class='argstr'>bus</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bus<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-releaseAndFreeToBundle' href='./../Overviews/Methods.html#releaseAndFreeToBundle'>releaseAndFreeToBundle</a> (<span class='argstr'>releaseTime: 0</span>, <span class='argstr'>bundle</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/JITLibCrucialWrappers/wrapCXForNodeProxy.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>releaseTime<td class='argumentdesc'><tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-enpath' href='./../Overviews/Methods.html#enpath'>enpath</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-loadDocument' href='./../Overviews/Methods.html#loadDocument'>loadDocument</a> </h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-didLoadFromPath' href='./../Overviews/Methods.html#didLoadFromPath'>didLoadFromPath</a> (<span class='argstr'>argpath</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>argpath<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-load' href='./../Overviews/Methods.html#load'>load</a> (<span class='argstr'>obj</span>, <span class='argstr'>warnIfNotFound: true</span>)</h3>
+<div class='extmethod'>From extension in <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/pathUtilities.sc</a></div>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>obj<td class='argumentdesc'><tr><td class='argumentname'>warnIfNotFound<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-busReport' href='./../Overviews/Methods.html#busReport'>busReport</a>: METHOD NOT FOUND!</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>f<td class='argumentdesc'><tr><td class='argumentname'>slogan<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-asKAsset' href='./../Overviews/Methods.html#asKAsset'>asKAsset</a>: METHOD NOT FOUND!</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-swapperApp' href='./../Overviews/Methods.html#swapperApp'>swapperApp</a>: METHOD NOT FOUND!</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>sb<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-wigglyness' href='./../Overviews/Methods.html#wigglyness'>wigglyness</a>: METHOD NOT FOUND!</h3>
+<div class='method'></div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h3><a class='anchor' name='Undocumented instance methods'>Undocumented instance methods</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-setGroupToBundle' href='./../Overviews/Methods.html#setGroupToBundle'>setGroupToBundle</a> (<span class='argstr'>g</span>, <span class='argstr'>b</span>)</h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-subGroups' href='./../Overviews/Methods.html#subGroups'>subGroups</a> </h3>
+<div class='doclink'>source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/AbstractPlayer.schelp'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/AbstractPlayer.schelp</a><br>link::Classes/AbstractPlayer::<br>sc version: 3.6.5</div></div></body></html>

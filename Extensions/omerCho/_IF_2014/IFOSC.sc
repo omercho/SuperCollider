@@ -20,7 +20,9 @@ IFOSC {
 
 	*globals {
 
-		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // create the NetAddr
+		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("192.168.10.4", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
 
 
 	}
@@ -39,6 +41,18 @@ IFOSC {
 			'/setAll'
 		);
 
+		~set1But.free;
+		~set1But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFProject.preSet_1;
+
+			});
+			},
+			'/set1'
+		);
+
 	}
 
 	*main {
@@ -55,12 +69,12 @@ IFOSC {
 						1.do {
 
 							//~md1Clock.play;
-							IFKick(~tmMulKickP.next*~tmKickP.next);
+							IFKick_SC(~tmMulKickP.next*~tmKickP.next);
 							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 							IFHat(~tmMulHatP.next*~tmHatP.next);
 
-							IFKeys(~tmKeysP.next );
-							IFBass(~tmBassP.next);
+							IFKeys_SC(~tmKeysP.next);
+							IFBass_SC(~tmBassP.next);
 							IFSamp(~tmSampP.next);
 
 							~durMul*((~durP.next)).wait;
