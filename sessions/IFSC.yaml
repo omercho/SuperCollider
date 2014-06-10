@@ -1,0 +1,124 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Project.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Synths.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain01.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/singleRutines2.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat_SC_ERG.scd
+  - /Users/omercho/Dropbox/SC/-Projects/Makarna/-KafesUgens/KafGrainBuf.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_RECORD.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp_SC_ERG.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnr_SC_Erg.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODAMicPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
+  - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 17
+        position: 888
+      - !QVariantMap
+        documentIndex: 24
+        position: 3096
+      - !QVariantMap
+        documentIndex: 15
+        position: 0
+      - !QVariantMap
+        documentIndex: 14
+        position: 343
+      - !QVariantMap
+        documentIndex: 11
+        position: 840
+      - !QVariantMap
+        documentIndex: 19
+        position: 926
+      - !QVariantMap
+        documentIndex: 23
+        position: 429
+      - !QVariantMap
+        documentIndex: 13
+        position: 1328
+      - !QVariantMap
+        documentIndex: 22
+        position: 5583
+      - !QVariantMap
+        documentIndex: 26
+        position: 1730
+      - !QVariantMap
+        documentIndex: 20
+        position: 37
+      - !QVariantMap
+        documentIndex: 18
+        position: 6201
+      - !QVariantMap
+        documentIndex: 16
+        position: 1486
+      - !QVariantMap
+        documentIndex: 25
+        position: 298
+      - !QVariantMap
+        documentIndex: 6
+        position: 3364
+      - !QVariantMap
+        documentIndex: 7
+        position: 3387
+      - !QVariantMap
+        documentIndex: 8
+        position: 1801
+      - !QVariantMap
+        documentIndex: 9
+        position: 2004
+      - !QVariantMap
+        documentIndex: 27
+        position: 874
+      - !QVariantMap
+        documentIndex: 10
+        position: 409
+      - !QVariantMap
+        documentIndex: 21
+        position: 6065
+      - !QVariantMap
+        documentIndex: 4
+        position: 518
+      - !QVariantMap
+        documentIndex: 0
+        position: 1125
+      - !QVariantMap
+        documentIndex: 5
+        position: 3381
+      - !QVariantMap
+        documentIndex: 1
+        position: 2283
+      - !QVariantMap
+        documentIndex: 12
+        position: 815
+      - !QVariantMap
+        documentIndex: 2
+        position: 3962
+      - !QVariantMap
+        documentIndex: 3
+        position: 24665
+  state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywABAAAAAAG3AAAAoQAACEYAAASgAAAAAAAAACoAAAMfAAAEFQAAAAACAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAmoAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAG0AAAATAD///8AAAOPAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==

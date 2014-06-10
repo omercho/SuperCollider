@@ -4,7 +4,7 @@
 //Corfu, Greece
 
 
-	IFProject {
+	IFSCProjectGlobals {
 	classvar <>kickT, <>snrT, <>hatT, <>bassT, <>sampT, <>ortaT, <>flatT, <>res1T;
 	classvar <>tempo= 120;
 
@@ -12,7 +12,13 @@
 	*initClass {
 		StartUp add: {
 			Server.default.doWhenBooted({
-				1.5.wait;
+				0.5.wait;
+				IFSC.loadGroups;
+				0.25.wait;
+				IFSC.loadBuses;
+				0.25.wait;
+				IFSC.loadEffects;
+				0.5.wait;
 				this.globals;
 				this.preSetAll;
 				this.setTempo(125);
@@ -26,8 +32,8 @@
 	}
 
 	*preSetAll{
-		"SetAll".postln;
-		~md1.control(1, 11, 100); //KickVol
+		"IFSC SetAll".postln;
+		/*~md1.control(1, 11, 100); //KickVol
 		~md1.control(1, 12, 64); //KickMute
 		~md1.control(1, 50, 0); //KickSus
 		~md1.control(1, 13, 40); //KickDec
@@ -67,7 +73,7 @@
 		~md1.control(1, 46, 64); //SampChain
 
 		~md1.control(3, 0, 0); //MainSendX
-		~md1.control(3, 1, 0); //MainSendY
+		~md1.control(3, 1, 0); //MainSendY*/
 
 
 		~harmKick=0;~harmSnr=0;~harmHat=0;

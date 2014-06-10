@@ -88,7 +88,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMulP*((~dur1BassP.next)/val).wait;
+				~durMulP*((~dur1SampP.next)/val).wait;
 			}}.fork;
 		}
 

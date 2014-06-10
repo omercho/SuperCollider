@@ -173,10 +173,12 @@ Hilbert
 HilbertFIR
 IEnvGen
 IFFT
+IFHat_SC_ERG
 IFKick_SC_Erg
 IFLoopMain
 IFMIDI_Erg
 IFMain
+IFMain01
 IFNoteOSC
 IFNoteOSC2
 IFNoteOSC3
@@ -184,6 +186,9 @@ IFOSC_ERG
 IFOctOSC
 IFPartsOSC
 IFSC_Synths
+IFSamp_SC_ERG
+IFSnr_SC_Erg
+IF_RECORD
 IFtransOSC
 IRand
 IRand

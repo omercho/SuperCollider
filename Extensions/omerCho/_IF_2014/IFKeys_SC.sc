@@ -88,7 +88,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMulP*((~dur1KeysP.next)/i).wait;
+				~durMulP*((~dur1SampP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -124,13 +124,13 @@ classvar <>counter3 = 0;
 
 		).play;
 
-		Pbind(//LFO CUT
+		/*Pbind(//LFO CUT
 			\chan, 0, \midicmd, \control,
 			\type, \midi, \midiout,~vKeys, \ctlNum, ~vcfCut,
 			\delta, Pseq([~delta3KeysP.next], 4),
 			\control, Pseq([~vcfCtKeysP.next], 4)*~lfoMulKeys,
 
-		).play;
+		).play;*/
 
 		//this.count2;
 		//this.timesCount;

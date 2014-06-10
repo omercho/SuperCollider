@@ -59,23 +59,24 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFgAABokAAAOSAAAAAAAAACwAAAaJAAADkgAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADT/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADTwAAAGYA////AAAAAQAAAk0AAANP/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdIAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdMAAAF8AAAATAD///8AAAOmAAADTwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAG3AAAAoQAACEYAAASgAAAAAAAAACoAAAMfAAAEFQAAAAACAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAmoAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAG0AAAATAD///8AAAOPAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCBell.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCAtesh.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain01.scd
+    - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCProjectGlobals.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODAMicPat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Project.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODA.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
-    - /Users/omercho/Dropbox/SC/~SynthDefs/100424_sdef04Pat_02.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCDrumKick01.sc
-    - /Users/omercho/Dropbox/SC/-Projects/Makarna/-OCDrumUgens/OCKick.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBassERG.scd
   shortcuts:
+    editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H
     ide-document-reload: Ctrl+Shift+K
   startWithSession: last

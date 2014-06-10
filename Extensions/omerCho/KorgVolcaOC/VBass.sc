@@ -60,7 +60,7 @@ VBass {
 		~vBass.control(0, ~lfoInt, 0);
 
 
-		~vBass.control(0, ~vcoPitch1, 127); // VCO1
+		~vBass.control(0, ~vcoPitch1, 0); // VCO1
 		~vBass.control(0, ~vcoPitch2, 32); //VCO2
 		~vBass.control(0, ~vcoPitch3, 94); //VCO3
 

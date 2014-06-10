@@ -97,6 +97,7 @@ IFHat.times(4);
 	*p1 {|i=1|
 		var val;
 		val=i;
+
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),

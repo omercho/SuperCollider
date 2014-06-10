@@ -2,12 +2,9 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_Project.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoopMain.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnare.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass_SC.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys_SC.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp_SC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
@@ -26,102 +23,133 @@ documents: !QVariantList
   - /Users/omercho/Dropbox/SC/-Projects/Makarna/-OCDrumUgens/OCKick.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCDrumKick01.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
-  - /Users/omercho/Dropbox/SC/~SynthDefs/100424_sdef04Pat_02.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCAtesh.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCUgens/2012/OCBell.sc
+  - /Users/omercho/Dropbox/SC/-Projects/Makarna/-KafesUgens/KafGrainBuf.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Synths.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_RECORD.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+  - /Users/omercho/Dropbox/SC/__SCVvarius/100428_03_KickHatMIDI.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODAMicPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/~kafesPresentationFinal01.scd
+  - /Users/omercho/Dropbox/SC/__SC2012/+20JUL2012/120722_ateshSDef02.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp_SC_ERG.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 13
+        documentIndex: 10
         position: 343
       - !QVariantMap
-        documentIndex: 12
+        documentIndex: 9
         position: 132
       - !QVariantMap
-        documentIndex: 10
+        documentIndex: 7
         position: 723
       - !QVariantMap
-        documentIndex: 15
+        documentIndex: 12
         position: 3382
       - !QVariantMap
-        documentIndex: 18
+        documentIndex: 15
         position: 2819
       - !QVariantMap
-        documentIndex: 16
+        documentIndex: 13
         position: 3430
       - !QVariantMap
-        documentIndex: 17
+        documentIndex: 14
         position: 9168
       - !QVariantMap
-        documentIndex: 4
-        position: 1520
-      - !QVariantMap
-        documentIndex: 5
-        position: 1589
-      - !QVariantMap
-        documentIndex: 14
+        documentIndex: 11
         position: 5318
       - !QVariantMap
         documentIndex: 0
         position: 275
       - !QVariantMap
-        documentIndex: 24
+        documentIndex: 21
         position: 841
       - !QVariantMap
-        documentIndex: 23
+        documentIndex: 20
         position: 515
       - !QVariantMap
-        documentIndex: 11
+        documentIndex: 8
         position: 128
       - !QVariantMap
-        documentIndex: 21
+        documentIndex: 18
         position: 99
       - !QVariantMap
-        documentIndex: 8
-        position: 2482
-      - !QVariantMap
-        documentIndex: 9
+        documentIndex: 6
         position: 840
       - !QVariantMap
-        documentIndex: 20
+        documentIndex: 19
         position: 0
       - !QVariantMap
         documentIndex: 22
+        position: 1076
+      - !QVariantMap
+        documentIndex: 17
         position: 0
+      - !QVariantMap
+        documentIndex: 26
+        position: 780
+      - !QVariantMap
+        documentIndex: 25
+        position: 0
+      - !QVariantMap
+        documentIndex: 27
+        position: 1049
+      - !QVariantMap
+        documentIndex: 24
+        position: 926
+      - !QVariantMap
+        documentIndex: 4
+        position: 1589
+      - !QVariantMap
+        documentIndex: 23
+        position: 1509
+      - !QVariantMap
+        documentIndex: 32
+        position: 0
+      - !QVariantMap
+        documentIndex: 33
+        position: 0
+      - !QVariantMap
+        documentIndex: 31
+        position: 1941
+      - !QVariantMap
+        documentIndex: 34
+        position: 10473
+      - !QVariantMap
+        documentIndex: 35
+        position: 1115
+      - !QVariantMap
+        documentIndex: 16
+        position: 5
       - !QVariantMap
         documentIndex: 1
         position: 58
       - !QVariantMap
-        documentIndex: 27
-        position: 498
-      - !QVariantMap
-        documentIndex: 26
-        position: 0
-      - !QVariantMap
-        documentIndex: 19
-        position: 760
-      - !QVariantMap
-        documentIndex: 7
-        position: 264
-      - !QVariantMap
-        documentIndex: 6
-        position: 268
-      - !QVariantMap
         documentIndex: 3
-        position: 243
+        position: 1520
       - !QVariantMap
         documentIndex: 2
-        position: 16629
-      - !QVariantMap
-        documentIndex: 25
-        position: 1076
-      - !QVariantMap
-        documentIndex: 28
-        position: 209
+        position: 156
       - !QVariantMap
         documentIndex: 29
-        position: 199
+        position: 29
+      - !QVariantMap
+        documentIndex: 5
+        position: 271
+      - !QVariantMap
+        documentIndex: 28
+        position: 0
+      - !QVariantMap
+        documentIndex: 30
+        position: 384
+      - !QVariantMap
+        documentIndex: 36
+        position: 1952
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
