@@ -112,7 +112,7 @@ classvar <>counter3 = 0;
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~vBass, \chan, 4, \ctlNum, 0,
+			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoRate,
 			\delta, Pseq([~delta1BassP.next], 2),
 			\control, Pseq([~lfo1BassP.next], 2)*~lfoMulBass,
 
@@ -120,7 +120,7 @@ classvar <>counter3 = 0;
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~vBass,\chan, 4,  \ctlNum, 1,
+			\midiout,~vBass,\chan, 0,  \ctlNum, ~lfoInt,
 			\delta, Pseq([~delta2BassP.next], 2),
 			\control, Pseq([~lfo2BassP.next], 2)*~lfoMulBass,
 

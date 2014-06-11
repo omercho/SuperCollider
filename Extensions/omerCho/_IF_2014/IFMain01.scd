@@ -126,11 +126,9 @@ VBass.killAll; VKeys.killAll;
 	Pseq([0.5,0.5,0.75], 1),
 	Pseq([0.5,0.75], 2)
 ], inf);
-~dur.source = Pseq([1/2,1/3,1/4,1/5,1/3,1/2,1/2,1/7], inf);
-~dur.source = Pseq([1,1,1/2,1/2,1,1/2,1/2,1/4,1/4,1/4,1/2,1/4,1/2], inf);
-~dur.source = Pxrand([1,1,1,1,1/2,1/2,1/4,1/4,1/4,1/4], inf);
-~dur.source = Pseq([0.5], inf);
-~dur.source = Pseq([1], inf);
+//~dur.source = Pseq([1/2,1/3,1/4,1/5,1/3,1/2,1/2,1/7], inf);
+//~dur.source = Pseq([1,1,1/2,1/2,1,1/2,1/2,1/4,1/4,1/4,1/2,1/4,1/2], inf);
+
 
 //////                                     - 0 -
 ~mainSet_00 = {

@@ -27,6 +27,7 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
   - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
+  - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/110824:1015_bells&echos_cottle.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -37,14 +38,8 @@ editors: !QVariantMap
         documentIndex: 24
         position: 3096
       - !QVariantMap
-        documentIndex: 15
-        position: 0
-      - !QVariantMap
         documentIndex: 14
         position: 343
-      - !QVariantMap
-        documentIndex: 11
-        position: 840
       - !QVariantMap
         documentIndex: 19
         position: 926
@@ -55,9 +50,6 @@ editors: !QVariantMap
         documentIndex: 13
         position: 1328
       - !QVariantMap
-        documentIndex: 22
-        position: 5583
-      - !QVariantMap
         documentIndex: 26
         position: 1730
       - !QVariantMap
@@ -67,23 +59,11 @@ editors: !QVariantMap
         documentIndex: 18
         position: 6201
       - !QVariantMap
-        documentIndex: 16
-        position: 1486
-      - !QVariantMap
-        documentIndex: 25
-        position: 298
-      - !QVariantMap
         documentIndex: 6
         position: 3364
       - !QVariantMap
         documentIndex: 7
         position: 3387
-      - !QVariantMap
-        documentIndex: 8
-        position: 1801
-      - !QVariantMap
-        documentIndex: 9
-        position: 2004
       - !QVariantMap
         documentIndex: 27
         position: 874
@@ -94,26 +74,50 @@ editors: !QVariantMap
         documentIndex: 21
         position: 6065
       - !QVariantMap
-        documentIndex: 4
-        position: 518
+        documentIndex: 22
+        position: 1540
       - !QVariantMap
         documentIndex: 0
-        position: 1125
+        position: 1549
+      - !QVariantMap
+        documentIndex: 4
+        position: 518
       - !QVariantMap
         documentIndex: 5
         position: 3381
       - !QVariantMap
-        documentIndex: 1
-        position: 2283
+        documentIndex: 11
+        position: 842
       - !QVariantMap
         documentIndex: 12
         position: 815
       - !QVariantMap
+        documentIndex: 28
+        position: 611
+      - !QVariantMap
+        documentIndex: 8
+        position: 2654
+      - !QVariantMap
+        documentIndex: 9
+        position: 2004
+      - !QVariantMap
+        documentIndex: 25
+        position: 300
+      - !QVariantMap
+        documentIndex: 16
+        position: 2056
+      - !QVariantMap
         documentIndex: 2
-        position: 3962
+        position: 6540
       - !QVariantMap
         documentIndex: 3
-        position: 24665
+        position: 24402
+      - !QVariantMap
+        documentIndex: 15
+        position: 1359
+      - !QVariantMap
+        documentIndex: 1
+        position: 2575
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
