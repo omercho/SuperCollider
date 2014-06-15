@@ -17,7 +17,8 @@ IFSC_MIDI {
 			arg vel;
 			vel.postln;
 			//~vBass.control(0, ~egAtt, vel);
-			~vBass.control(0, ~gateTime, vel);
+			~vBass.control(0, ~egAtt, vel);
+			~vBass.control(0, ~slideTime, vel);
 		}, chan:1, ccNum:53);
 
 		~midiDecBass.free;

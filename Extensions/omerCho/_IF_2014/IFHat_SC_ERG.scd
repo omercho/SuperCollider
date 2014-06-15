@@ -201,7 +201,7 @@ SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
 SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
 	att =0.001, dec=0.03, susLev=0.0, rel=0.04,
 	lfo1Rate=1, lfo2Rate=1,
-	noose =10, freq = 90, pan = 0, freqpan=0.2 |
+	noose =10, freq = 90, pan = 0, freqpan=1.2 |
 	var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
 	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
 	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 0.99);
@@ -219,6 +219,35 @@ SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
 	ses = noise/in;
 	ses = ses*env2;
 	ses = ses.clip2(6);
+	ses = ses * amp;
+
+	Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-1.0, 1.0), 0.3)*env2);
+}).add;
+
+)
+
+(
+SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
+	att =0.001, dec=0.03, susLev=0.0, rel=0.04,
+	lfo1Rate=1, lfo2Rate=1,
+	noose =10, freq = 90, pan = 0, freqpan=1.2 |
+	var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 0.99);
+
+	env1 = EnvGen.ar(Env.perc(att, dec));
+	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+
+	noise = Clip.ar(freq*lfo2)*Blip.ar(freq);
+	in = ClipNoise.ar(freq*lfo2, freq*lfo1).softclip(2)+noise;
+	noise = HPF.ar(in*noise*lfo2, 1, 0.9, 0.5, noise+in);
+	noise = BHiShelf.ar(noise*in, 1, lfo2, -6);
+	noise = BHiPass.ar(noise, freq*lfo1, 0.5, env2);
+	in= MoogFF.ar(noise, in, 0.2);
+
+	ses = Mix.ar(noise,in);
+	ses = ses*env2;
+	ses = ses.clip2(1);
 	ses = ses * amp;
 
 	Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-1.0, 1.0), 0.3)*env2);

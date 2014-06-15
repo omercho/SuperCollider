@@ -65,6 +65,7 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/Filters_ixi.sc
     - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/110824:1015_bells&echos_cottle.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain01.scd
     - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
@@ -74,7 +75,6 @@ IDE:
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODAMicPat.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Project.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODA.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

@@ -28,15 +28,13 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
   - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
   - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/110824:1015_bells&echos_cottle.scd
+  - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/Filters_ixi.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
         documentIndex: 17
         position: 888
-      - !QVariantMap
-        documentIndex: 24
-        position: 3096
       - !QVariantMap
         documentIndex: 14
         position: 343
@@ -53,38 +51,14 @@ editors: !QVariantMap
         documentIndex: 26
         position: 1730
       - !QVariantMap
-        documentIndex: 20
-        position: 37
-      - !QVariantMap
-        documentIndex: 18
-        position: 6201
-      - !QVariantMap
-        documentIndex: 6
-        position: 3364
-      - !QVariantMap
         documentIndex: 7
         position: 3387
       - !QVariantMap
         documentIndex: 27
         position: 874
       - !QVariantMap
-        documentIndex: 10
-        position: 409
-      - !QVariantMap
-        documentIndex: 21
-        position: 6065
-      - !QVariantMap
-        documentIndex: 22
-        position: 1540
-      - !QVariantMap
         documentIndex: 0
         position: 1549
-      - !QVariantMap
-        documentIndex: 4
-        position: 518
-      - !QVariantMap
-        documentIndex: 5
-        position: 3381
       - !QVariantMap
         documentIndex: 11
         position: 842
@@ -92,32 +66,62 @@ editors: !QVariantMap
         documentIndex: 12
         position: 815
       - !QVariantMap
-        documentIndex: 28
-        position: 611
-      - !QVariantMap
-        documentIndex: 8
-        position: 2654
-      - !QVariantMap
         documentIndex: 9
         position: 2004
-      - !QVariantMap
-        documentIndex: 25
-        position: 300
-      - !QVariantMap
-        documentIndex: 16
-        position: 2056
-      - !QVariantMap
-        documentIndex: 2
-        position: 6540
-      - !QVariantMap
-        documentIndex: 3
-        position: 24402
       - !QVariantMap
         documentIndex: 15
         position: 1359
       - !QVariantMap
+        documentIndex: 22
+        position: 8381
+      - !QVariantMap
+        documentIndex: 8
+        position: 2654
+      - !QVariantMap
+        documentIndex: 24
+        position: 3096
+      - !QVariantMap
+        documentIndex: 16
+        position: 981
+      - !QVariantMap
+        documentIndex: 28
+        position: 611
+      - !QVariantMap
+        documentIndex: 20
+        position: 37
+      - !QVariantMap
+        documentIndex: 18
+        position: 7072
+      - !QVariantMap
+        documentIndex: 25
+        position: 148
+      - !QVariantMap
+        documentIndex: 29
+        position: 12282
+      - !QVariantMap
+        documentIndex: 5
+        position: 391
+      - !QVariantMap
+        documentIndex: 6
+        position: 2559
+      - !QVariantMap
+        documentIndex: 2
+        position: 5440
+      - !QVariantMap
+        documentIndex: 10
+        position: 411
+      - !QVariantMap
+        documentIndex: 4
+        position: 518
+      - !QVariantMap
+        documentIndex: 3
+        position: 582
+      - !QVariantMap
         documentIndex: 1
-        position: 2575
+        position: 5813
+      - !QVariantMap
+        documentIndex: 21
+        position: 11480
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap

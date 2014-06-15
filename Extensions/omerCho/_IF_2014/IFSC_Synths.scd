@@ -6,7 +6,7 @@ SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9|
 	Out.ar(out1, input);
 	Out.ar(out2, input);
 	Out.ar(out3, input);
-	Out.ar(out4, input);
+	//Out.ar(out4, input);
 }).send(Server.default);
 
 SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9|
@@ -16,7 +16,7 @@ SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9|
 	Out.ar(out1, input);
 	Out.ar(out2, input);
 	Out.ar(out3, input);
-	Out.ar(out4, input);
+	//Out.ar(out4, input);
 }).send(Server.default);
 
 SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9|
@@ -26,7 +26,7 @@ SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9|
 	Out.ar(out1, input);
 	Out.ar(out2, input);
 	Out.ar(out3, input);
-	Out.ar(out4, input);
+	//Out.ar(out4, input);
 }).send(Server.default);
 
 SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0|
@@ -64,7 +64,7 @@ SynthDef("clean",{ |out=0, in=0, lvl=0.9, durt=0.01, mainVol=0.9,
 	delay=0, decay=1|
 	var ses;
 	ses=In.ar(in, 2)*mainVol;
-	ses=CombN.ar(ses,delay,delay,decay, 1);
+	ses=CombN.ar(ses,0.1,delay,decay, 1);
 	ses=Limiter.ar( ses, lvl);
 	Out.ar( out, ses );
 }).send(Server.default);
@@ -84,10 +84,11 @@ SynthDef("reverb", { | out, in = 0, amp=0.5, pan=0.0, lvl=0.9,
 }).send(Server.default);
 
 SynthDef("delay", { |out = 0, in = 0, maxdelay = 1.25,  delay = 0.0, decay = 0.05, pan = 0, amp =0.9, lvl=0.9|
-	var ses, filt;
+	var ses, fx;
 	ses =  In.ar(in, 2);
-	ses = AllpassN.ar(ses,delay,[LFNoise1.kr(2, 1.5, 1.6), LFNoise1.kr(2, 1.5, 1.6)],decay, mul: 0.8);
+	ses = CombN.ar(ses,0.9,delay,decay, mul: 0.4);
 	//AllpassN.ar(dry, 2.5,[LFNoise1.kr(2, 1.5, 1.6), LFNoise1.kr(2, 1.5, 1.6)],3, mul: 0.8);
+	//ses = (ses+fx).dup;
 	ses=Limiter.ar( ses, lvl);
 	Out.ar(out,  Pan2.ar(ses, pan, amp));
 }).send(Server.default);
@@ -123,8 +124,8 @@ SynthDef("flow",{ |out=0, in, pan=0, lvl = 0.9, durt = 0.01,
 
 	ses = Resonz.ar(ses, LFDNoise0.kr(10).range(freq, freq/2), 0.01, 0.1);
 	//ses = Formlet.ar(ses, LFDNoise0.kr(2).range(freq, freq/2), 0.01, 0.1);
-	6.do({
-		ses = AllpassN.ar(ses, 0.040, [0.60.rand,0.70.rand], 2)
+	3.do({
+		ses = AllpassN.ar(ses, 0.90, [0.060.rand,0.70.rand], 2)
 	});
 
 	Out.ar(out,  Pan2.ar(Limiter.ar( ses, lvl, durt), pan, amp));
@@ -169,7 +170,7 @@ dec= (msg[1])*4;
 ~delayXY= OSCFunc({
 	arg msg, dec, del;
 	dec= (msg[1])*4;
-	del= (msg[1])*4;
+	del= (msg[1]);
 
 	~dly.set( \decay, dec, \delay, del);
 	~tOSCAdrr.sendMsg('delayLabel', msg[2]);
@@ -263,13 +264,13 @@ dec= (msg[1])*4;
 	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
 ]);
 ~vKickSynth = Synth.tail(~effe, \vKickInput,[\in,~busKick,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
 ]);
 ~vSnrSynth = Synth.tail(~effe, \vSnrInput,[\in,~busSnr,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
 ]);
 ~vHatSynth = Synth.tail(~effe, \vHatInput,[\in,~busHat,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
 ]);
 ~vSampSynth = Synth.tail(~effe, \vSampInput,[\in,~busSamp,
 	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus

@@ -115,7 +115,7 @@ IFSnr_SC {
 
 					1.do{
 					~tOSCAdrr.sendMsg('snrLed', led);
-					~sus1Snr.asStream.value.wait;
+					0.1+~sus1Snr.asStream.value.wait;
 					~tOSCAdrr.sendMsg('snrLed', 0.0);
 					};
 

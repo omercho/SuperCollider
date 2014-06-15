@@ -134,9 +134,9 @@ IFOSC {
 		~cutAllXY= OSCFunc({
 			arg msg;
 
-			//~tOSCAdrr.sendMsg('durLabel', msg[1]);
+
 			~vBass.control(0, ~cutOff, msg[1]*127);
-			//~vKeys.control(0, ~vsfCut, msg[2]);
+
 			~vKeys.control(0, ~vcfCut, msg[2]*127); //VCFilter CutOff
 
 			},
@@ -335,6 +335,17 @@ IFOSC {
 
 			},
 			'/timesSamp'
+		);
+
+		~tmMulDrumBut.free;
+		~tmMulDrumBut= OSCFunc({
+			arg msg;
+			~tmMulKick.source = msg[1];
+			~tmMulSnr.source = msg[1];
+			~tmMulHat.source = msg[1];
+
+			},
+			'/tmMulDrum'
 		);
 
 		~tmMulKickBut.free;
@@ -742,7 +753,7 @@ IFOSC {
 			arg msg;
 
 			~transKick.source=msg[1];~transSnr.source=msg[1];~transHat.source=msg[1];
-			~transBass.source=msg[1];~transKeys.source=msg[1];~transSamp.source=msg[1];
+			//~transBass.source=msg[1];~transKeys.source=msg[1];~transSamp.source=msg[1];
 
 			~tOSCAdrr.sendMsg('noteLabel', msg[1]);
 			},
