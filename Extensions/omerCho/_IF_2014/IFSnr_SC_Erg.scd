@@ -317,3 +317,140 @@ Pdef(\kar, Pbind(\instrument, \IFSnr_SC,
 )
 Pdef(\kar).play;
 Pdef(\kar).stop;
+
+(
+SynthDef(\IFSnr_SC, {|
+	att =0.01, dec=0.3, sustain=0.1,susLev=0.8, rel=0.9, mul = 0.8, pan = 0.0,
+	wnoise=0.2, gate=1,
+	lfo1Rate=1, lfo2Rate=1,
+	out = 0, amp = 1, freq = 100, decayTime = 0.7, bpfilter = 1900|
+
+	var env0, env1, env2, env1m, oscs, noise, ses,lfo1, lfo2;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+
+	env0 = EnvGen.ar(Env.new([0.0, dec, susLev, 0], [att, sustain, rel], [-4, -2, -4], 1), gate, doneAction:2);
+	env1 = EnvGen.ar(Env.new([freq*lfo2, 160, 140], [att, susLev], [-4, -5]));
+	env1m = env1.midicps;
+	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+
+	oscs = Mix.ar(
+		LFSaw.ar(env1m*lfo2, 0.6, 0.5, 0.3, -0.5),
+		SyncSaw.ar(env1m * lfo1, 0.9, 0.5, 0.3, -0.25)
+	);
+	oscs = BPF.ar(oscs, 3*env1*lfo1, env2);
+	oscs = Mix.ar(oscs , FSinOsc.ar(env1m, 0.8, env2));
+	oscs = oscs * env2;
+
+	noise = WhiteNoise.ar(wnoise);
+	noise = BPF.ar(noise, freq*lfo2, 1);
+	noise = BPF.ar(noise, 2*freq, 0.6, 3) * noise;
+	//noise = noise * env2;
+
+	ses = Mix.ar(oscs,noise);
+	ses = ses.clip2(0.4);
+	ses = Ringz.ar(ses, freq, dec, ses*lfo2);
+
+	Out.ar(out, Pan2.ar(ses, pan, amp*0.2)*mul)*env2;
+}).add;
+)
+
+(
+SynthDef(\IFSnr_SC, {|
+	att =0.01, dec=0.03, sustain=0.01,susLev=0.0, rel=0.09, mul = 0.9, pan = 0.0,
+	wnoise=0.2, gate=1,
+	lfo1Rate=1, lfo2Rate=1,
+	out = 0, amp = 1, freq = 100, decayTime = 0.7, bpfilter = 1900|
+
+	var env0, env1, env2, env1m, oscs, noise, ses,lfo1, lfo2;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+
+	env0 = EnvGen.ar(Env.new([0.0, dec, susLev, 0], [att, sustain, rel], [-4, -2, -4], 1), gate, doneAction:2);
+	env1 = EnvGen.ar(Env.new([freq, freq*0.2, freq*0.4], [att, susLev], [-4, -5]));
+	env1m = env1.midicps;
+	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+
+	oscs = Mix.ar(
+		LFTri.ar(env1m*lfo2, 0.6, 0.5, 0.3, 0.0)*0.5,
+		LFTri.ar(env1 *lfo1, 0.9, 0.5, 0.3, -0.0)*1.2
+	);
+	oscs = BPF.ar(oscs, 2*env1*lfo1, env2);
+	oscs = Mix.ar(oscs , FSinOsc.ar(env1, 0.8, env2));
+	oscs = oscs * env2;
+
+	noise = WhiteNoise.ar(wnoise);
+	noise = BPF.ar(noise, freq, lfo2-0.9);
+	noise = BPF.ar(noise, 2*freq, 0.6) * noise;
+	//noise = noise * env2;
+
+	ses = Mix.ar(oscs*1.2,noise*0.5);
+	ses = ses.clip2(0.4);
+	ses = Ringz.ar(ses, freq, dec, ses*lfo2);
+
+	Out.ar(out, Pan2.ar(ses, pan, amp*0.2)*mul)*env2;
+}).add;
+)
+
+(
+SynthDef(\IFSnr_SC, {|
+	att =0.01, dec=0.03, sustain=0.01,susLev=0.0, rel=0.09, mul = 0.9, pan = 0.0,
+	wnoise=0.2, gate=1,
+	lfo1Rate=1, lfo2Rate=1,
+	out = 0, amp = 1, freq = 100, decayTime = 0.7, bpfilter = 1900|
+
+	var env0, env1, env2, env1m, oscs, noise, ses,lfo1, lfo2;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+
+	env0 = EnvGen.ar(Env.new([0.0, dec, susLev, 0], [att, sustain, rel], [-4, -2, -4], 1), gate, doneAction:2);
+	env1 = EnvGen.ar(Env.new([freq, freq*0.2, freq*0.4], [att, susLev], [-4, -5]));
+	env1m = env1.midicps;
+	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+
+	oscs = Mix.ar(
+		LFTri.ar(env1m*lfo2, lfo2-0.9, 0.5, 0.3, 0.0)*0.5,
+		LFTri.ar(env1, 0.9, 0.5, 0.3, -0.0)*1.2
+	);
+	oscs = BPF.ar(oscs, 2*env1*lfo1, env2);
+	oscs = Mix.ar(oscs , FSinOsc.ar(env1, 0.8, env2));
+
+	noise = WhiteNoise.ar(wnoise);
+	noise = BPF.ar(noise, freq, lfo2-0.9);
+	noise = BPF.ar(noise, 2*freq, 0.6) * noise;
+	//noise = noise * env2;
+
+	ses = Mix.ar(oscs*1.2,noise*0.5);
+	ses = ses.clip2(0.4);
+	ses = Ringz.ar(ses, freq, dec, ses*lfo2);
+
+	Out.ar(out, Pan2.ar(ses, pan, amp*0.2)*mul)*env2;
+}).add;
+
+
+
+)
+
+(
+SynthDef(\IFSnr_SC, {| att =0.01, sustain=0.1, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+	gate=1, wnoise=2.8,
+	lfo1Rate=1, lfo2Rate=1,
+	amp=0.9,out=0, freq=110, freq2=69, freq3=49, pan = 0 |
+
+	var env, env1, env1m, ses,lfo1, lfo2;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+	env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+	env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, sustain], [-4, -5]));
+	env1m = env1.midicps;
+
+	ses = SinOsc.ar(env1m*4,lfo2-0.9);
+	ses = Mix.ar(ses*0.02,WhiteNoise.ar(wnoise));
+	ses = HPF.ar(ses, env1m, env);
+	ses = ses + SinOsc.ar(env1m, 0.5, env);
+	ses = ses.clip2(0.2+wnoise);
+	ses = ses * mul;
+	Out.ar(out, Pan2.ar(ses, pan, amp*1.1)*env);
+}).add;
+
+)

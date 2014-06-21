@@ -186,6 +186,7 @@ IFOSC_ERG
 IFOctOSC
 IFPartsOSC
 IFSC_Synths
+IFSC_Track01
 IFSamp_SC_ERG
 IFSnr_SC_Erg
 IF_RECORD
@@ -666,6 +667,7 @@ sFSyncAction01
 sendMitsDoepfer
 singleRutines
 singleRutines2
+trackOSC_ERG
 vermona
 vermonaLearn
 wwErgastirio

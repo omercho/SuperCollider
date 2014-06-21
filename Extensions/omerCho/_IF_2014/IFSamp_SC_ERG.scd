@@ -272,9 +272,9 @@ SynthDef( \IFSamp_SC, { |out, amp = 1, sus = 1.1, freq = 60, freqlp=50, mul=0.9,
 			in = SinOsc.ar(LFPulse.ar(freq, 2, brown), 0.7)*0.9;
 			ses = SinOsc.ar(freq, in*lfo2, 0.8);
 			ses = RLPF.ar(ses, freq*lfo2, cut1, 0.9, 0.6);
-			ses = 0.5*(ses*SinOsc.ar(freq*lfo2,decay));
+			ses = 0.8*(ses*SinOsc.ar(freq*lfo2,decay));
 
-			//ses = DelayC.ar( ses, 0.5, 0.001, 4.5, 0.0, ses);
+			ses = DelayC.ar( ses, 0.5, 0.001, 4.5, 0.0, ses);
 			ses = (ses*amp*env);
 			//ses = Limiter.ar(ses, 0.9, 0.01);
 
@@ -340,8 +340,8 @@ Pdef(\fft01).play;
 
 ///////////////////
 (
-SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=50, mul=0.9,
-			sin1 = 0, sin2 = 0.1, brown = 0.1, saw = 400, pan=0, cut1=0.5, gate=1,
+SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=50, mul=0.5,
+			sin1 = 0, sin2 = 0.1, brown = 0.1, saw = 40, pan=0, cut1=0.5, gate=1,
 			lfo1Rate=1, lfo2Rate=2,
 			att = 0.05, dec=0.02, rel = 0.02 |
 
@@ -353,24 +353,53 @@ SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=50, mul
 			env = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
 			decay = Decay2.ar(
 				SinOsc.ar(sin1, sin2),
-				LFSaw.ar(sin2, sin1)*2.2,
+				LFSaw.ar(sin2, sin1)*1.2,
 				Saw.ar(saw)
 			);
 
-			in = SinOsc.ar(LFPulse.ar(freq, 2, brown), 0.7)*0.9;
+			in = SinOsc.ar(LFPulse.ar(freq, cut1, brown), 0.7)*0.9;
 			ses = SinOsc.ar(freq, in*lfo2, 0.8);
 			ses = RLPF.ar(ses, freq*lfo2, cut1, 0.9, 0.6);
 			ses = 0.5*(ses*SinOsc.ar(freq*lfo2,decay));
 
-			//ses = DelayC.ar( ses, 0.5, 0.001, 4.5, 0.0, ses);
+			ses = DelayC.ar( ses, 0.1, 0.001, 4.5, 0.0, ses);
 			ses = (ses*amp*env);
 			//ses = Limiter.ar(ses, 0.9, 0.01);
 
-			Out.ar(out, Pan2.ar(ses, pan, mul*0.1));
+			Out.ar(out, Pan2.ar(ses, pan, mul));
 		}).add;
 )
 
+(
+SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=50, mul=0.5,
+			sin1 = 0, sin2 = 0.1, brown = 0.1, saw = 40, pan=0, cut1=0.5, gate=1,
+			lfo1Rate=1, lfo2Rate=2,
+			att = 0.05, dec=0.02, rel = 0.02 |
 
+			var in, osc, env,ses;
+			var lfo1, lfo2, decay;
+			lfo1 = Saw.kr(lfo1Rate).range(1.0, 3.2);
+			lfo2 = LFTri.kr(lfo2Rate).range(1.0, 4.95);
+			//env =  EnvGen.ar(Env.perc(att, rel), doneAction: 2, levelScale: 0.8, timeScale: sus);
+			env = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+			decay = Decay2.ar(
+				SinOsc.ar(sin1, sin2),
+				LFSaw.ar(sin2, sin1)*1.2,
+				Saw.ar(saw)
+			);
+
+			in = SinOsc.ar(LFPulse.ar(freq, cut1, brown), 0.7)*0.9;
+			ses = LFSaw.ar(freq, in*lfo2, brown);
+			ses = RLPF.ar(ses, freq*lfo2, cut1, 0.9, 0.6);
+			ses = 0.5*(ses*SinOsc.ar(freq*lfo2,decay));
+
+			ses = DelayC.ar( ses, 0.1, 0.001, 4.5, 0.0, ses);
+			ses = (ses*amp*env);
+			//ses = Limiter.ar(ses, 0.9, 0.01);
+
+			Out.ar(out, Pan2.ar(ses, pan, mul));
+		}).add;
+)
 
 
 

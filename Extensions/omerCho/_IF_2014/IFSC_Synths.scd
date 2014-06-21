@@ -1,63 +1,310 @@
 (
-SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9|
+
+~track1={
+
+	~track1Main.fork;
+
+	~togMain.free;
+	~togMain = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"IF Main PLAY".postln;
+			~mainSet_00.fork(quant:0);
+			~ifPlay={|tm=4|
+
+				inf.do{
+					1.do {
+
+						//~md1Clock.play;
+						IFKick_SC(~tmMulKickP.next*~tmKickP.next);
+						IFSnr_SC(~tmMulSnrP.next*~tmSnrP.next);
+						IFHat_SC(~tmMulHatP.next*~tmHatP.next);
+
+						IFKeys_SC(~tmKeysP.next);
+						IFBass_SC(~tmBassP.next);
+						IFSamp_SC(~tmSampP.next);
+
+						~durMul*((~durP.next)).wait;
+					};
+				};
+
+			}.fork;
+
+
+		});
+
+		if ( msg[1]==0, {
+			"IF Main STOP".postln;
+			~ifPlay.stop;
+			//~md1Clock.stop;
+
+		});
+		},
+		'/1/toggleMain'
+	);
+
+	//---------------- DUR Buttons ---------------//
+
+	~dur1But.free;
+	~dur1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur1".postln;
+			~tOSCAdrr.sendMsg('durLabel', '1');
+
+			~dur.source = Pseq([1], inf)*~durMulP;
+
+		});
+		},
+		'/dur1'
+	);
+
+	~dur2But.free;
+	~dur2But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur2".postln;
+			~tOSCAdrr.sendMsg('durLabel', '2');
+			~dur.source = Pseq([
+				Pseq([1], 7),
+				Pseq([0.5,0.5], 1)
+			], inf)*~durMulP;
+
+		});
+		},
+		'/dur2'
+	);
+
+	~dur3But.free;
+	~dur3But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur3".postln;
+			~tOSCAdrr.sendMsg('durLabel', '3');
+			~dur.source = Pseq([
+				Pseq([1], 3),
+				Pseq([0.5], 2),
+				Pseq([1], 3),
+				Pseq([0.5], 2)
+			], inf)*~durMulP;
+
+		});
+		},
+		'/dur3'
+	);
+
+	~dur4But.free;
+	~dur4But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur4".postln;
+			~tOSCAdrr.sendMsg('durLabel', '4');
+			~dur.source = Pseq([
+				Pseq([1], 2),
+				Pseq([0.5], 4),
+				Pseq([1.25], 1),
+				Pseq([0.75], 2)
+			], inf)*~durMulP;
+
+
+		});
+		},
+		'/dur4'
+	);
+
+	~durAks1But.free;
+	~durAks1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------durAks1".postln;
+			~tOSCAdrr.sendMsg('durLabel', 'Aks');
+			~dur.source = Pseq([
+				Pseq([0.5,0.5,0.75], 1),
+				Pseq([0.5,0.75], 1),
+				Pseq([0.5,0.5,0.75], 1),
+				Pseq([0.5,0.75], 2)
+			], inf)*~durMulP;
+
+		});
+		},
+		'/durAks1'
+	);
+
+	~durShuf1But.free;
+	~durShuf1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------durShuf1".postln;
+			~tOSCAdrr.sendMsg('durLabel', 'shuf');
+			~dur.source = Pshuf([
+				Pshuf([0.25,0.5,0.5], 1),
+				Pshuf([0.25,0.75], 1),
+				Pshuf([0.5,0.25,0.25], 1),
+				Pshuf([0.5,0.75], 2)
+			], inf)*~durMulP;
+
+		});
+		},
+		'/durShuf1'
+	);
+
+
+
+	~durRand1But.free;
+	~durRand1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------durRand1".postln;
+			~tOSCAdrr.sendMsg('durLabel', 'rand');
+			~dur.source = Pseq([
+				Pxrand([0.25,0.5,0.5], 1),
+				Pxrand([0.25,0.75], 1),
+				Pxrand([0.5,0.25,0.25], 1),
+				Pxrand([0.5,0.75], 2)
+			], inf)*~durMulP;
+
+		});
+		},
+		'/durRand1'
+	);
+
+	//durMul
+
+	~durMul1_4But.free;
+	~durMul1_4But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur1".postln;
+			~tOSCAdrr.sendMsg('durMulLabel', '1/4');
+
+			~durMul.source = Pseq([1/4], inf);
+
+		});
+		},
+		'/durMul1_4'
+	);
+
+	~durMul1_2But.free;
+	~durMul1_2But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur1".postln;
+			~tOSCAdrr.sendMsg('durMulLabel', '1/2');
+
+			~durMul.source = Pseq([1/2], inf);
+
+		});
+		},
+		'/durMul1_2'
+	);
+
+	~durMul1But.free;
+	~durMul1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+			"------------dur1".postln;
+			~tOSCAdrr.sendMsg('durMulLabel', '1');
+
+			~durMul.source = Pseq([1], inf);
+
+		});
+		},
+		'/durMul1'
+	);
+
+
+
+//PRESETS
+
+	~setAllBut.free;
+	~setAllBut = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+
+			IFSCProjectGlobals.preSetAll;
+
+		});
+		},
+		'/setAll'
+	);
+
+	~set1But.free;
+	~set1But = OSCFunc({
+		arg msg;
+		if ( msg[1]==1, {
+
+			IFSCProjectGlobals.preSet_1;
+
+		});
+		},
+		'/set1'
+	);
+
+};
+
+/*
+~track1.fork;
+*/
+
+SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input;
 	input=In.ar(in,2);
 	input=Pan2.ar(input, 0)*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	//Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
-SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9|
+SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input;
 	input=In.ar(in,2);
 	input=Pan2.ar(input, 0)*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	//Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
-SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9|
+SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input;
 	input=In.ar(in,2);
 	input=Pan2.ar(input, 0)*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	//Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
-SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0|
+SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input, ctl;
 	input=SoundIn.ar(2,0.9,0);
 	//ctl = FOS.kr(LFSaw.kr(8, 0, 0.2), 1 - input.abs, input, fosMul);
 	input= Pan2.ar(input, pan)*2*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
-SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0|
+SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input;
 	input=SoundIn.ar(3,0.9,0);
 	input= Pan2.ar(input, pan)*2*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
-SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0|
+SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 	var input;
 	input=In.ar(in,2);
 	input=Pan2.ar(input, 0)*vol;
-	Out.ar(out1, input);
-	Out.ar(out2, input);
-	Out.ar(out3, input);
-	Out.ar(out4, input);
+	Out.ar(out1, input*mtCln);
+	Out.ar(out2, input*mtDly);
+	Out.ar(out3, input*mtRev);
+	Out.ar(out4, input*mtFlo);
 }).send(Server.default);
 
 SynthDef("clean",{ |out=0, in=0, lvl=0.9, durt=0.01, mainVol=0.9,
@@ -69,7 +316,7 @@ SynthDef("clean",{ |out=0, in=0, lvl=0.9, durt=0.01, mainVol=0.9,
 	Out.ar( out, ses );
 }).send(Server.default);
 
-SynthDef("limiter",{ arg out=0, in = 0, lvl = 0.9, durt = 0.01, mainVol=0.9;
+SynthDef("limiter",{ |out=0, in = 0, lvl = 0.9, durt = 0.01, mainVol=0.9|
 	Out.ar( out, Limiter.ar( In.ar(in, 2)*mainVol, lvl) )
 }).send(Server.default);
 
@@ -132,17 +379,7 @@ SynthDef("flow",{ |out=0, in, pan=0, lvl = 0.9, durt = 0.01,
 }).send(Server.default);
 
 
-/*~vBassFosMul.free;
-~vBassFosMul= OSCFunc({
-arg msg, dec, delay;
-dec= (msg[1])*4;
-
-~vBassSynth.set(\fosMul, msg[1]);
-
-},
-'/susBass'
-);*/
-
+//Flow
 ~flowXY.free;
 ~flowXY= OSCFunc({
 	arg msg, inc, exp;
@@ -169,11 +406,11 @@ dec= (msg[1])*4;
 ~delayXY.free;
 ~delayXY= OSCFunc({
 	arg msg, dec, del;
-	dec= (msg[1])*4;
+	dec= (msg[2])*4;
 	del= (msg[1]);
 
 	~dly.set( \decay, dec, \delay, del);
-	~tOSCAdrr.sendMsg('delayLabel', msg[2]);
+	~tOSCAdrr.sendMsg('delayLabel', del);
 	~tOSCAdrr.sendMsg('decayLabel', dec);
 
 	},
@@ -193,7 +430,7 @@ dec= (msg[1])*4;
 ~delay05.free;
 ~delay05= OSCFunc({
 	arg msg;
-	~dly.set(\delay, 0.25);
+	~dly.set(\delay, 0.31);
 	~tOSCAdrr.sendMsg('delayLabel', 0.25);
 	~tOSCAdrr.sendMsg('delayXY',0, 0.25);
 	},
@@ -203,7 +440,7 @@ dec= (msg[1])*4;
 ~delay1.free;
 ~delay1= OSCFunc({
 	arg msg;
-	~dly.set(\delay, 0.5);
+	~dly.set(\delay, 0.43);
 	~tOSCAdrr.sendMsg('delayLabel', 0.5);
 	~tOSCAdrr.sendMsg('delayXY',0, 0.5);
 	},
@@ -258,29 +495,28 @@ dec= (msg[1])*4;
 )
 (
 ~vBassSynth = Synth.head(~piges, \vBassInput,[
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 ~vKeysSynth = Synth.head(~piges, \vKeysInput,[
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 ~vKickSynth = Synth.tail(~effe, \vKickInput,[\in,~busKick,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 ~vSnrSynth = Synth.tail(~effe, \vSnrInput,[\in,~busSnr,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 ~vHatSynth = Synth.tail(~effe, \vHatInput,[\in,~busHat,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 ~vSampSynth = Synth.tail(~effe, \vSampInput,[\in,~busSamp,
-	\out1, ~clnBus, \out2, ~dlyBus, \out3,~floBus, \out4, ~revBus
+	\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 ]);
 
+~cln = Synth.tail(~effe, \clean,[ \in , ~clnBus, \out, 0,\lvl, 0.9]);
 ~dly = Synth.tail(~effe,\delay,[\in,  ~dlyBus, \out, 0,\lvl, 0.0]);
 ~rev = Synth.tail(~effe, \reverb,[\in,  ~revBus, \out, 0,\lvl, 0.0]);
-//~lim = Synth.tail(~effe, \limiter,[ \in , ~limBus, \out, 0,\lvl, 0.9]);
 ~flo = Synth.tail(~effe, \flow,[ \in , ~floBus, \out, 0]);
-~cln = Synth.tail(~effe, \clean,[ \in , ~clnBus, \out, 0,\lvl, 0.9]);
 )
 
 (
@@ -290,11 +526,11 @@ dec= (msg[1])*4;
 ~vKickSynth.free;
 ~vSnrSynth.free;
 ~vHatSynth.free;
+~cln.free;
 ~dly.free;
 ~rev.free;
-//~lim.free;
 ~flo.free;
-~cln.free;
+
 )
 //SET
 //~vKickSynth.set(\vol, 0.2);

@@ -9,13 +9,13 @@ IFBass.pat_1;
 
 
 IFBass_SC {
-var <>keyTime = 1;
-classvar <>counter3 = 0;
+	var <>keyTime = 1;
+	classvar <>counter3 = 0;
 
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; });
+			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});
 		}
 	}
 
@@ -129,6 +129,99 @@ classvar <>counter3 = 0;
 
 		//this.count2;
 		//this.timesCount;
+	}
+
+
+	*osc{
+
+		~xy1Bass.free;
+		~xy1Bass= OSCFunc({
+			arg msg;
+
+			~vBass.control(0, ~vcoPitch2, msg[2]*127);
+			~vBass.control(0, ~vcoPitch3, msg[1]*127);
+
+			},
+			'/xy1Bass'
+		);
+
+		~attBassFader.free;
+		~attBassFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*127;
+			~vBass.control(0, ~egAtt, val+0.01);
+			},
+			'/attBass'
+		);
+
+		~lfoMulBassFad.free;
+		~lfoMulBassFad= OSCFunc({
+			arg msg;
+			~lfoMulBass=msg[1];
+			},
+			'/lfoMulBass'
+		);
+
+		~tmBassFader.free;
+		~tmBassFader= OSCFunc({
+			arg msg;
+			~tmBass.source = msg[1];
+
+			},
+			'/timesBass'
+		);
+
+		//MUTES
+		~vBassMtCln.free;
+		~vBassMtCln= OSCFunc({
+			arg msg;
+
+			~vBassSynth.set(\mtCln, msg[1]);
+
+			},
+			'/mtClnBass'
+		);
+
+		~vBassMtDly.free;
+		~vBassMtDly= OSCFunc({
+			arg msg;
+
+			~vBassSynth.set(\mtDly, msg[1]);
+
+			},
+			'/mtDlyBass'
+		);
+		~vBassMtRev.free;
+		~vBassMtRev= OSCFunc({
+			arg msg;
+
+			~vBassSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevBass'
+		);
+		~vBassMtFlo.free;
+		~vBassMtFlo= OSCFunc({
+			arg msg;
+
+			~vBassSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloBass'
+		);
+
+		~padBass.free;
+		~padBass = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFBass(~tmBassP.next);
+
+			});
+			},
+			'/padBass'
+		);
+
 	}
 
 	//Bass Beat Counter

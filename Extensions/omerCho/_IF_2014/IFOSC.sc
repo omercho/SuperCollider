@@ -4,8 +4,8 @@ IFOSC {
 		StartUp add: {
 			Server.default.doWhenBooted({
 				1.0.wait;
-				this.mulFaders;
 				this.globals;
+				this.mulFaders;
 				this.sets;
 				this.main;
 				this.parts;
@@ -63,29 +63,7 @@ IFOSC {
 
 	*sets {
 
-		~setAllBut.free;
-		~setAllBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
 
-				IFProject.preSetAll;
-
-			});
-			},
-			'/setAll'
-		);
-
-		~set1But.free;
-		~set1But = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFProject.preSet_1;
-
-			});
-			},
-			'/set1'
-		);
 
 	}
 
@@ -139,6 +117,8 @@ IFOSC {
 
 			~vKeys.control(0, ~vcfCut, msg[2]*127); //VCFilter CutOff
 
+			~cutSamp=msg[1];
+
 			},
 			'/cutAll'
 		);
@@ -146,7 +126,7 @@ IFOSC {
 		~susAllMulFader.free;
 		~susAllMulFader= OSCFunc({
 			arg msg;
-			~susMulSnr=msg[1];
+			//~susMulSnr=msg[1];
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
 			},
 			'/susAll'
@@ -161,43 +141,19 @@ IFOSC {
 			'/susDrum'
 		);
 
-		~lfoMulKeysFad.free;
-		~lfoMulKeysFad= OSCFunc({
-			arg msg;
-			~lfoMulKeys=msg[1];
-			},
-			'/lfoMulKeys'
-		);
 
-		~lfoMulBassFad.free;
-		~lfoMulBassFad= OSCFunc({
-			arg msg;
-			~lfoMulBass=msg[1];
-			},
-			'/lfoMulBass'
-		);
-
-		~lfoMulSampFad.free;
-		~lfoMulSampFad= OSCFunc({
-			arg msg;
-			~lfoMulSamp=msg[1];
-			},
-			'/lfoMulSamp'
-		);
 
 		~chainAllFader.free;
 		~chainAllFader= OSCFunc({
-			arg msg;
+			arg msg,val;
 
-			~md1.control(1, 41, msg[1]); //KickChain
-			~md1.control(1, 42, msg[1]); //SnrChain
-			~md1.control(1, 43, msg[1]); //HatChain
-			~md1.control(1, 44, msg[1]); //BassChain
-			~md1.control(1, 45, msg[1]); //KeysChain
-			~md1.control(1, 46, msg[1]); //SampChain
-
-
-
+			val=msg[1];
+			~attKick=val; ~tOSCAdrr.sendMsg('attKick', val);
+			~attSnr=val; ~tOSCAdrr.sendMsg('attSnr', val);
+			~attHat=val; ~tOSCAdrr.sendMsg('attHat', val);
+			~attBass=val; ~tOSCAdrr.sendMsg('attBass', val);
+			~attKeys=val; ~tOSCAdrr.sendMsg('attKeys', val);
+			~attSamp=val; ~tOSCAdrr.sendMsg('attSamp', val);
 			},
 			'/chainAll'
 		);
@@ -214,129 +170,6 @@ IFOSC {
 			'/tempoFader'
 		);
 
-		~padKick.free;
-		~padKick = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFKick(~tmKickP.next);
-
-			});
-			},
-			'/padKick'
-		);
-
-		~padSnr.free;
-		~padSnr = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFSnr(~tmSnrP.next);
-
-			});
-			},
-			'/padSnr'
-		);
-
-		~padHat.free;
-		~padHat = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFHat(~tmHatP.next);
-
-			});
-			},
-			'/padHat'
-		);
-
-		~padKeys.free;
-		~padKeys = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFKeys(~tmKeysP.next);
-
-			});
-			},
-			'/padKeys'
-		);
-
-		~padBass.free;
-		~padBass = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFBass(~tmBassP.next);
-
-			});
-			},
-			'/padBass'
-		);
-
-		~padSamp.free;
-		~padSamp = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFSamp(~tmSampP.next);
-
-			});
-			},
-			'/padSamp'
-		);
-
-		/////////////////////---- TIMES FADERS ----//////////////////
-
-		~tmKickFader.free;
-		~tmKickFader= OSCFunc({
-			arg msg;
-			~tmKick.source = msg[1];
-
-			},
-			'/timesKick'
-		);
-		~tmSnrFader.free;
-		~tmSnrFader= OSCFunc({
-			arg msg;
-			~tmSnr.source = msg[1];
-
-			},
-			'/timesSnr'
-		);
-		~tmHatFader.free;
-		~tmHatFader= OSCFunc({
-			arg msg;
-			~tmHat.source = msg[1];
-
-			},
-			'/timesHat'
-		);
-		~tmKeysFader.free;
-		~tmKeysFader= OSCFunc({
-			arg msg;
-			~tmKeys.source = msg[1];
-
-			},
-			'/timesKeys'
-		);
-		~tmBassFader.free;
-		~tmBassFader= OSCFunc({
-			arg msg;
-			~tmBass.source = msg[1];
-
-			},
-			'/timesBass'
-		);
-		~tmSampFader.free;
-		~tmSampFader= OSCFunc({
-			arg msg;
-			~tmSamp.source = msg[1];
-
-			},
-			'/timesSamp'
-		);
-
 		~tmMulDrumBut.free;
 		~tmMulDrumBut= OSCFunc({
 			arg msg;
@@ -348,157 +181,110 @@ IFOSC {
 			'/tmMulDrum'
 		);
 
-		~tmMulKickBut.free;
-		~tmMulKickBut= OSCFunc({
-			arg msg;
-			~tmMulKick.source = msg[1];
 
-			},
-			'/tmMulKick'
-		);
-		~tmMulSnrBut.free;
-		~tmMulSnrBut= OSCFunc({
-			arg msg;
-			~tmMulSnr.source = msg[1];
-
-			},
-			'/tmMulSnr'
-		);
-		~tmMulHatBut.free;
-		~tmMulHatBut= OSCFunc({
-			arg msg;
-			~tmMulHat.source = msg[1];
-
-			},
-			'/tmMulHat'
-		);
-
-
-
-		//---------------- DUR Buttons ---------------//
-
-		~dur1But.free;
-		~dur1But = OSCFunc({
+		~scale_1.free;
+		~scale_1= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------dur1".postln;
-				~tOSCAdrr.sendMsg('durLabel', msg[1]);
-
-				~dur.source = Pseq([1], inf)*~durMulP;
-
+				~scl1= Scale.phrygian;~scl2= Scale.phrygian;
+				~tOSCAdrr.sendMsg('scaleLabel', 'Phrygian');
 			});
 			},
-			'/dur1'
+			'/scale1'
 		);
-
-		~dur05But.free;
-		~dur05But = OSCFunc({
+		~scale_2.free;
+		~scale_2= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------dur0.5".postln;
-				~tOSCAdrr.sendMsg('durLabel', msg[1]);
-				~dur.source = Pseq([
-					Pseq([1], 7),
-					Pseq([0.5,0.5], 1)
-				], inf)*~durMulP;
-
+				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
+				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
 			});
 			},
-			'/dur05'
+			'/scale2'
 		);
-
-		~durAks1But.free;
-		~durAks1But = OSCFunc({
+		~scale_3.free;
+		~scale_3= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------durAks1".postln;
-				~tOSCAdrr.sendMsg('durLabel', 'Aks');
-				~dur.source = Pseq([
-					Pseq([0.5,0.5,0.75], 1),
-					Pseq([0.5,0.75], 1),
-					Pseq([0.5,0.5,0.75], 1),
-					Pseq([0.5,0.75], 2)
-				], inf)*~durMulP;
-
+				~scl1= Scale.zhi;~scl2= Scale.zhi;
+				~tOSCAdrr.sendMsg('scaleLabel', 'zhi');
 			});
 			},
-			'/durAks1'
+			'/scale3'
 		);
-
-		~durShuf1But.free;
-		~durShuf1But = OSCFunc({
+		~scale_4.free;
+		~scale_4= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------durShuf1".postln;
-				~tOSCAdrr.sendMsg('durLabel', 'shuf');
-				~dur.source = Pshuf([
-					Pshuf([0.25,0.5,0.5], 1),
-					Pshuf([0.25,0.75], 1),
-					Pshuf([0.5,0.25,0.25], 1),
-					Pshuf([0.5,0.75], 2)
-				], inf)*~durMulP;
-
+				~scl1= Scale.chinese;~scl2= Scale.chinese;
+				~tOSCAdrr.sendMsg('scaleLabel', 'chinese');
 			});
 			},
-			'/durShuf1'
+			'/scale4'
 		);
-
-		~durRand1But.free;
-		~durRand1But = OSCFunc({
+		~scale_5.free;
+		~scale_5= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------durRand1".postln;
-				~tOSCAdrr.sendMsg('durLabel', 'rand');
-				~dur.source = Pseq([
-					Pwhite(0.5, 0.9, 2),
-					Pwhite(0.2, 0.5, 2),
-					Pbrown(0.1, 2, 0.2, 2),
-					Pxrand([0.5,0.75, 1, 0.25], 2)
-				], inf)*~durMulP;
-
+				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
+				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
 			});
 			},
-			'/durRand1'
+			'/scale5'
 		);
-
-		~durMul1_4But = OSCFunc({
+		~scale_6.free;
+		~scale_6= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------dur1".postln;
-				~tOSCAdrr.sendMsg('durMulLabel', '1/4');
-
-				~durMul.source = Pseq([1/4], inf);
-
+				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
+				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
 			});
 			},
-			'/durMul1_4'
+			'/scale6'
 		);
 
-		~durMul1_2But = OSCFunc({
+		~trackOSC_1.free;
+		~trackOSC_1= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------dur1".postln;
-				~tOSCAdrr.sendMsg('durMulLabel', '1/2');
-
-				~durMul.source = Pseq([1/2], inf);
-
+				~track1.fork;
+				"TRACK 1".postln;
+				~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 			});
 			},
-			'/durMul1_2'
+			'/track1'
 		);
 
-		~durMul1But = OSCFunc({
+		~trackOSC_2.free;
+		~trackOSC_2= OSCFunc({
 			arg msg;
-			if ( msg[1]==1, {
-				"------------dur1".postln;
-				~tOSCAdrr.sendMsg('durMulLabel', '1');
 
-				~durMul.source = Pseq([1], inf);
+			~track2.fork;
 
-			});
 			},
-			'/durMul1'
+			'/track2'
 		);
+
+		~trackOSC_3.free;
+		~trackOSC_3= OSCFunc({
+			arg msg;
+
+			~track3.fork;
+
+			},
+			'/track3'
+		);
+
+		~trackOSC_4.free;
+		~trackOSC_4= OSCFunc({
+			arg msg;
+
+			~track4.fork;
+
+			},
+			'/track4'
+		);
+
 
 
 

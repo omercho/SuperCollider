@@ -38,21 +38,21 @@ IFHat_SC {
 			noose =10, freq = 90, pan = 0, freqpan=0.2 |
 			var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
 			lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
-			lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 0.99);
+			lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
 
 			env1 = EnvGen.ar(Env.perc(att, dec));
 			env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
 
-			noise = Blip.ar(freq*lfo2)*Blip.ar(freq);
-			in = Blip.ar(freq*lfo2, freq*lfo1).softclip(2)+noise;
-			noise = HPF.ar(in*noise**lfo2, 1, 0.9, 0.5, noise+in);
-			noise = BHiShelf.ar(noise+in, 1, lfo2, -6);
+			noise = SinOsc.ar(freq*lfo2);
+			in = Mix.ar(Blip.ar(freq*lfo2, freq*lfo1).softclip(2),noise);
+			noise = HPF.ar(in*noise*lfo2, 0, 0.9, 0.5, Mix.ar(noise*in));
+			//noise = BHiShelf.ar(Mix.ar(noise,in), 1, lfo2, -6);
 			noise = BHiPass.ar(noise/in, freq*lfo1, 0.5, env2);
 			in= MoogFF.ar(noise, in, 0.2);
 
 			ses = noise**in;
 			ses = ses*env2;
-			ses = ses.clip2(2);
+			ses = ses.clip2(0.2);
 			ses = ses * amp;
 
 			Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-1.0, 1.0), 0.3)*env2);
@@ -74,7 +74,8 @@ IFHat_SC {
 		~attHat=0.01;
 		~decHat=0.8;
 		~susLevHat=0.0;
-		~relHat = 0.02;
+		~relHat = 0.2;
+		~lfoMulHat = 1;
 
 		~tmMulHat = PatternProxy( Pseq([1], inf));
 		~tmMulHatP= Pseq([~tmMulHat], inf).asStream;
@@ -90,21 +91,14 @@ IFHat_SC {
 		~strHat = PatternProxy( Pseq([1.0], inf));
 		~strHatP = Pseq([~strHat], inf).asStream;
 
+		~lfo1Hat = PatternProxy( Pseq([1], inf));
+		~lfo1HatP = Pseq([~lfo1Hat], inf).asStream;
+		~lfo2Hat = PatternProxy( Pseq([1], inf));
+		~lfo2HatP = Pseq([~lfo2Hat], inf).asStream;
+
 	}
 
-	*times { arg hTime;
 
-		{
-			~hatTimes =  hTime;
-		}.fork;
-	}
-
-	*oct { arg hOct;
-
-		{
-			~octHat =  hOct;
-		}.fork;
-	}
 
 	*new{|i=1|
 		var val;
@@ -122,12 +116,12 @@ IFHat_SC {
 				if ( led>0, {
 
 					1.do{
-					~tOSCAdrr.sendMsg('hatLed', led);
-					~sus1Hat.asStream.value.wait;
-					~tOSCAdrr.sendMsg('hatLed', 0);
+						~tOSCAdrr.sendMsg('hatLed', led);
+						~sus1Hat.asStream.value.wait;
+						~tOSCAdrr.sendMsg('hatLed', 0);
 					};
 
-				},{
+					},{
 						~tOSCAdrr.sendMsg('hatLed', 0.0);
 
 				});
@@ -155,6 +149,8 @@ IFHat_SC {
 			\dec, ~decHat,
 			\susLev, ~susLevHat,
 			\rel, ~relHat,
+			\lfo1Rate, ~lfo1HatP*~lfoMulHat,
+			\lfo2Rate, ~lfo2HatP*~lfoMulHat,
 			\group, ~piges,
 			\out, Pseq([[ ~busHat]], inf )
 		).play;
@@ -165,11 +161,31 @@ IFHat_SC {
 
 	*osc{
 
+		~xy1Hat.free;
+		~xy1Hat= OSCFunc({
+			arg msg;
+
+
+
+			},
+			'/xy1Hat'
+		);
+
+		~attHatFader.free;
+		~attHatFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*2;
+			~attHat=val+0.01;
+			},
+			'/attHat'
+		);
+
 		~susLevHatFader.free;
 		~susLevHatFader= OSCFunc({
 			arg msg;
 			~susLevHat=msg[1];
-			msg[1].postln
+
+
 			},
 			'/susHat'
 		);
@@ -178,11 +194,96 @@ IFHat_SC {
 		~decHatFader= OSCFunc({
 			arg msg;
 			~decHat=msg[1];
-			msg[1].postln
+			~relHat=msg[1]+0.1;
 			},
 			'/decHat'
 		);
 
+		~tmHatFader.free;
+		~tmHatFader= OSCFunc({
+			arg msg;
+			~tmHat.source = msg[1];
+
+			},
+			'/timesHat'
+		);
+
+		~lfoMulHatFad.free;
+		~lfoMulHatFad= OSCFunc({
+			arg msg;
+			~lfoMulHat=msg[1];
+			},
+			'/lfoMulHat'
+		);
+
+		~tmMulHatBut.free;
+		~tmMulHatBut= OSCFunc({
+			arg msg;
+			~tmMulHat.source = msg[1];
+
+			},
+			'/tmMulHat'
+		);
+
+		//MUTES
+		~vHatMtCln.free;
+		~vHatMtCln= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtCln, msg[1]);
+
+			},
+			'/mtClnHat'
+		);
+		~vHatMtDly.free;
+		~vHatMtDly= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtDly, msg[1]);
+
+			},
+			'/mtDlyHat'
+		);
+		~vHatMtRev.free;
+		~vHatMtRev= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevHat'
+		);
+		~vHatMtFlo.free;
+		~vHatMtFlo= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloHat'
+		);
+
+		~padHat.free;
+		~padHat = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFHat(~tmHatP.next);
+
+			});
+			},
+			'/padHat'
+		);
+
+	}
+
+	*times { arg hTime;
+		{~hatTimes =  hTime;}.fork;
+	}
+
+	*oct { arg hOct;
+
+		{~octHat =  hOct;}.fork;
 	}
 
 	//Hat Counter

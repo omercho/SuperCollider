@@ -4,14 +4,14 @@
 IFKick(4);
 */
 
-	IFKick_SC {
+IFKick_SC {
 	classvar <>counter2=0, timeCnt=0;
 	var <>kTime=1;
 
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc; });
+			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc; });
 		}
 	}
 
@@ -44,7 +44,7 @@ IFKick(4);
 			ses = ses + SinOsc.ar(env1m, 0.5, env);
 			ses = ses.clip2(2);
 			ses = ses * mul;
-			Out.ar(out, Pan2.ar(ses, pan, mul*1.1));
+			Out.ar(out, Pan2.ar(ses, pan, amp*1.1));
 		}).add;
 
 	}
@@ -103,12 +103,12 @@ IFKick(4);
 				if ( led>0, {
 
 					1.do{
-					~tOSCAdrr.sendMsg('kickLed', led);
-					~sus1Kick.asStream.value.wait;
-					~tOSCAdrr.sendMsg('kickLed', 0);
+						~tOSCAdrr.sendMsg('kickLed', led);
+						~sus1Kick.asStream.value.wait;
+						~tOSCAdrr.sendMsg('kickLed', 0);
 					};
 
-				},{
+					},{
 						~tOSCAdrr.sendMsg('kickLed', 0.0);
 
 				});
@@ -124,13 +124,13 @@ IFKick(4);
 		val=i;
 
 		/*OCDrumKick01.ar(
-			amp: ~amp1KickP.next,
-			sus: ((~sus1KickP.next)*~susMulKick)*0.1,
-			freq1:((~nt1KickP.next*10)+(~transKickP.next)+~trKick),
-			freq2:69+((~strKickP.next)+~harmKick),
-			freq3:29+~harmKick,
-			wnoise:0.1,
-			room:0.1
+		amp: ~amp1KickP.next,
+		sus: ((~sus1KickP.next)*~susMulKick)*0.1,
+		freq1:((~nt1KickP.next*10)+(~transKickP.next)+~trKick),
+		freq2:69+((~strKickP.next)+~harmKick),
+		freq3:29+~harmKick,
+		wnoise:0.1,
+		room:0.1
 		).play;*/
 
 		Pbind(\instrument, \IFKick_SC,
@@ -156,6 +156,15 @@ IFKick(4);
 	}
 
 	*osc{
+		~attKickFader.free;
+		~attKickFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*2;
+			~attKick=val+0.01;
+			},
+			'/attKick'
+		);
+
 		~susLevKickFader.free;
 		~susLevKickFader= OSCFunc({
 			arg msg;
@@ -172,6 +181,69 @@ IFKick(4);
 			msg[1].postln
 			},
 			'/decKick'
+		);
+
+		~tmKickFader.free;
+		~tmKickFader= OSCFunc({
+			arg msg;
+			~tmKick.source = msg[1];
+
+			},
+			'/timesKick'
+		);
+		~tmMulKickBut.free;
+		~tmMulKickBut= OSCFunc({
+			arg msg;
+			~tmMulKick.source = msg[1];
+
+			},
+			'/tmMulKick'
+		);
+		//MUTES
+		~vKickMtCln.free;
+		~vKickMtCln= OSCFunc({
+			arg msg;
+			~vKickSynth.set(\mtCln, msg[1]);
+			},
+			'/mtClnKick'
+		);
+
+		~vKickMtDly.free;
+		~vKickMtDly= OSCFunc({
+			arg msg;
+			~vKickSynth.set(\mtDly, msg[1]);
+			},
+			'/mtDlyKick'
+		);
+		~vKickMtRev.free;
+		~vKickMtRev= OSCFunc({
+			arg msg;
+
+			~vKickSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevKick'
+		);
+		~vKickMtFlo.free;
+		~vKickMtFlo= OSCFunc({
+			arg msg;
+
+			~vKickSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloKick'
+		);
+
+		~padKick.free;
+		~padKick = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFKick(~tmKickP.next);
+
+			});
+			},
+			'/padKick'
 		);
 
 	}

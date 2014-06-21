@@ -65,6 +65,9 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/mainERG.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/trackOSC_ERG.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Track01.scd
     - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/Filters_ixi.sc
     - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/110824:1015_bells&echos_cottle.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain01.scd
@@ -72,9 +75,6 @@ IDE:
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCProjectGlobals.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/JODAMicPat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Project.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

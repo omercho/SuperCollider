@@ -9,13 +9,13 @@ IFKeys(3);
 
 
 IFKeys_SC {
-var <>keyTime = 1;
-classvar <>counter3 = 0;
+	var <>keyTime = 1;
+	classvar <>counter3 = 0;
 
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; });
+			Server.default.doWhenBooted({ this.globals; this.preSet; this.default;this.osc; });
 		}
 	}
 
@@ -59,7 +59,7 @@ classvar <>counter3 = 0;
 		~legKeysP = Pseq([~legKeys], inf).asStream;
 		~strKeys = PatternProxy( Pseq([1.0], inf));
 		~strKeysP = Pseq([~strKeys], inf).asStream;
-//~delta1Keys.source=0.5;
+		//~delta1Keys.source=0.5;
 		~delta1Keys = PatternProxy( Pseq([0.5], inf));
 		~delta1KeysP = Pseq([~delta1Keys], inf).asStream;
 		~lfoRtKeys = PatternProxy( Pseq([20], inf));
@@ -125,16 +125,114 @@ classvar <>counter3 = 0;
 		).play;
 
 		/*Pbind(//LFO CUT
-			\chan, 0, \midicmd, \control,
-			\type, \midi, \midiout,~vKeys, \ctlNum, ~vcfCut,
-			\delta, Pseq([~delta3KeysP.next], 4),
-			\control, Pseq([~vcfCtKeysP.next], 4)*~lfoMulKeys,
+		\chan, 0, \midicmd, \control,
+		\type, \midi, \midiout,~vKeys, \ctlNum, ~vcfCut,
+		\delta, Pseq([~delta3KeysP.next], 4),
+		\control, Pseq([~vcfCtKeysP.next], 4)*~lfoMulKeys,
 
 		).play;*/
 
 		//this.count2;
 		//this.timesCount;
 	}
+
+
+
+	*osc{
+
+		~xy1Keys.free;
+		~xy1Keys= OSCFunc({
+			arg msg;
+
+
+
+
+			~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
+			~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+
+			},
+			'/xy1Keys'
+		);
+
+		~attKeysFader.free;
+		~attKeysFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*127;
+			~vKeys.control(0, ~envAtt, val+0.01);
+			},
+			'/attKeys'
+		);
+
+		~lfoMulKeysFad.free;
+		~lfoMulKeysFad= OSCFunc({
+			arg msg;
+			~lfoMulKeys=msg[1];
+			},
+			'/lfoMulKeys'
+		);
+
+		~tmKeysFader.free;
+		~tmKeysFader= OSCFunc({
+			arg msg;
+			~tmKeys.source = msg[1];
+
+			},
+			'/timesKeys'
+		);
+
+		//MUTES
+		~vKeysMtCln.free;
+		~vKeysMtCln= OSCFunc({
+			arg msg;
+
+			~vKeysSynth.set(\mtCln, msg[1]);
+
+			},
+			'/mtClnKeys'
+		);
+		~vKeysMtDly.free;
+		~vKeysMtDly= OSCFunc({
+			arg msg;
+
+			~vKeysSynth.set(\mtDly, msg[1]);
+
+			},
+			'/mtDlyKeys'
+		);
+		~vKeysMtRev.free;
+		~vKeysMtRev= OSCFunc({
+			arg msg;
+
+			~vKeysSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevKeys'
+		);
+		~vKeysMtFlo.free;
+		~vKeysMtFlo= OSCFunc({
+			arg msg;
+
+			~vKeysSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloKeys'
+		);
+
+		~padKeys.free;
+		~padKeys = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFKeys(~tmKeysP.next);
+
+			});
+			},
+			'/padKeys'
+		);
+
+	}
+
+
 
 	//Keys Beat Counter
 	*count3 {
