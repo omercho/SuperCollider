@@ -149,7 +149,7 @@ IFKick_SC {
 			\wnoise,3,
 			\group, ~piges,
 			\out, Pseq([~busKick], inf )
-		).play;
+		).play(quant:0);
 
 		//this.count2;
 		//this.timesCount;

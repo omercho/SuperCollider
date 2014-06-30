@@ -108,12 +108,6 @@ editors: !QVariantMap
         documentIndex: 15
         position: 1779
       - !QVariantMap
-        documentIndex: 5
-        position: 3524
-      - !QVariantMap
-        documentIndex: 1
-        position: 4510
-      - !QVariantMap
         documentIndex: 7
         position: 813
       - !QVariantMap
@@ -126,14 +120,20 @@ editors: !QVariantMap
         documentIndex: 4
         position: 451
       - !QVariantMap
-        documentIndex: 2
-        position: 9371
+        documentIndex: 32
+        position: 1685
       - !QVariantMap
         documentIndex: 3
         position: 27514
       - !QVariantMap
-        documentIndex: 32
-        position: 1685
+        documentIndex: 2
+        position: 7987
+      - !QVariantMap
+        documentIndex: 1
+        position: 2201
+      - !QVariantMap
+        documentIndex: 5
+        position: 868
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap

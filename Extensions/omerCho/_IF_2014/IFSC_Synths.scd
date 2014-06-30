@@ -214,7 +214,7 @@
 
 
 
-//PRESETS
+	//PRESETS
 
 	~setAllBut.free;
 	~setAllBut = OSCFunc({
@@ -378,6 +378,26 @@ SynthDef("flow",{ |out=0, in, pan=0, lvl = 0.9, durt = 0.01,
 	Out.ar(out,  Pan2.ar(Limiter.ar( ses, lvl, durt), pan, amp));
 }).send(Server.default);
 
+~volCleanFad.free;
+~volCleanFad= OSCFunc({
+	arg msg;
+	~cln.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volClean', msg[1]);
+}, '/volClean');
+//-------------------------------------------
+~volFlowFad.free;
+~volFlowFad= OSCFunc({
+	arg msg; ~flo.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volFlow', msg[1]);
+}, '/volFlow');
+//-------------------------------------------
+~volDelayFad.free;
+~volDelayFad= OSCFunc({
+	arg msg; ~dly.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volDelay', msg[1]);
+}, '/volDelay');
+//-------------------------------------------
+~volMainFad.free;
+~volMainFad= OSCFunc({
+	arg msg; ~rev.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volReverb', msg[1]);
+}, '/volReverb');
 
 //Flow
 ~flowXY.free;

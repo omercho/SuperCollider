@@ -29,35 +29,37 @@ IFOSC {
 	}
 
 	*mulFaders{
-		~volCleanFad.free;
-		~volCleanFad= OSCFunc({arg msg; ~cln.set(\lvl, msg[1]); msg[1].postln; }, '/volClean');
-		//-------------------------------------------
-		~volFlowFad.free;
-		~volFlowFad= OSCFunc({arg msg; ~flo.set(\lvl, msg[1]); msg[1].postln; }, '/volFlow');
-		//-------------------------------------------
-		~volDelayFad.free;
-		~volDelayFad= OSCFunc({arg msg; ~dly.set(\lvl, msg[1]); }, '/volDelay');
-		//-------------------------------------------
-		~volMainFad.free;
-		~volMainFad= OSCFunc({arg msg; ~rev.set(\lvl, msg[1]); }, '/volReverb');
+
 		//-------------------------------------------
 		~volKickFad.free;
-		~volKickFad= OSCFunc({arg msg; ~vKickSynth.set(\vol, msg[1]); }, '/volKick');
+		~volKickFad= OSCFunc({
+			arg msg; ~vKickSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volKick', msg[1]);
+		}, '/volKick');
 		//-------------------------------------------
 		~volSnrFad.free;
-		~volSnrFad= OSCFunc({arg msg; ~vSnrSynth.set(\vol, msg[1]); }, '/volSnr');
+		~volSnrFad= OSCFunc({
+			arg msg; ~vSnrSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volSnr', msg[1]);
+		}, '/volSnr');
 		//-------------------------------------------
 		~volHatFad.free;
-		~volHatFad= OSCFunc({arg msg; ~vHatSynth.set(\vol, msg[1]);}, '/volHat');
+		~volHatFad= OSCFunc({
+			arg msg; ~vHatSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volHat', msg[1]);
+		}, '/volHat');
 		//-------------------------------------------
 		~volBassFad.free;
-		~volBassFad= OSCFunc({arg msg; ~vBassSynth.set(\vol, msg[1]);}, '/volBass');
+		~volBassFad= OSCFunc({
+			arg msg; ~vBassSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volBass', msg[1]);
+		}, '/volBass');
 		//-------------------------------------------
 		~volKeysFad.free;
-		~volKeysFad= OSCFunc({arg msg; ~vKeysSynth.set(\vol, msg[1]);}, '/volKeys');
+		~volKeysFad= OSCFunc({
+			arg msg; ~vKeysSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volKeys', msg[1]);
+		}, '/volKeys');
 		//-------------------------------------------
 		~volSampFad.free;
-		~volSampFad= OSCFunc({arg msg; ~vSampSynth.set(\vol, msg[1]);}, '/volSamp');
+		~volSampFad= OSCFunc({
+			arg msg; ~vSampSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volSamp', msg[1]);
+		}, '/volSamp');
 
 	}
 
