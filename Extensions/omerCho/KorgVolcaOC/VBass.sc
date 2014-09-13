@@ -13,7 +13,7 @@ VBass {
 		~vBass = MIDIOut.newByName("MIDIMATE II", "Port 1");
 
 
-		//~vBass = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		//~vBass = MIDIOut.newByName("", "SC-Abl");
 
 		~slideTime    = 5;   //*1
 		~expr    = 11;  //*1,3

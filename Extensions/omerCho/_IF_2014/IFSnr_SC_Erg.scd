@@ -444,7 +444,7 @@ SynthDef(\IFSnr_SC, {| att =0.01, sustain=0.1, dec=0.0, susLev=1.2, rel=0.09, mu
 	env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, sustain], [-4, -5]));
 	env1m = env1.midicps;
 
-	ses = SinOsc.ar(env1m*4,lfo2-0.9);
+	ses = SinOsc.ar(env1m*(-1),lfo2-0.9);
 	ses = Mix.ar(ses*0.02,WhiteNoise.ar(wnoise));
 	ses = HPF.ar(ses, env1m, env);
 	ses = ses + SinOsc.ar(env1m, 0.5, env);

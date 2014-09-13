@@ -101,7 +101,7 @@ IFKeys_SC {
 			\dur, Pseq([Pseq([~dur1KeysP.next/i],1)], 1),
 			\degree, Pseq([~nt1KeysP.next], 1),
 			\amp, Pseq([~amp1KeysP.next], 1),
-			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys,
+			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys*~susTD,
 			\mtranspose, Pseq([~transKeysP.next], 1)+~trKeys,
 			\octave, Pseq([~octKeysP.next], 1)+~octMulKeys,
 

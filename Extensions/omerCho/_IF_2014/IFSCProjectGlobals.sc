@@ -18,11 +18,13 @@
 				IFSC.loadBuses;
 				0.25.wait;
 				IFSC.loadEffects;
+				0.25.wait;
+				IFSC.playEffects;
 				0.5.wait;
 				this.globals;
 				this.preSetAll;
 				this.setTempo(120);
-				Server.default.latency=0.01;
+				Server.default.latency=0.0;
 			});
 		}
 	}
@@ -77,9 +79,11 @@
 
 	*globals{
 
+		~susTD=1;
+
 		~abLate=0.00;
 
-		~scl1 = Scale.chromatic; ~scl2 = Scale.minor;
+
 		~durMul = 1.0;
 
 		~nt=0;

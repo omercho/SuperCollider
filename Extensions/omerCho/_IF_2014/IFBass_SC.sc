@@ -103,7 +103,7 @@ IFBass_SC {
 			\dur, Pseq([Pseq([~dur1BassP.next/val],1)], 1),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),
-			\sustain, Pseq([~sus1BassP.next],1)*~susMulBass,
+			\sustain, Pseq([~sus1BassP.next],1)*~susMulBass*~susTD,
 			\mtranspose, Pseq([~transBassP.next], 1)+~trBass,
 			\octave, Pseq([~octBassP.next], 1)+~octMulBass,
 			//\root, Pseq([~legBassP.next], 1),

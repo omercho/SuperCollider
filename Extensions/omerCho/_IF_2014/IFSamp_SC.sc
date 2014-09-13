@@ -55,7 +55,7 @@ IFSamp_SC {
 			in = LFSaw.ar(LFSaw.ar(freq, cut1, brown), 0.3)*0.3**lfo2;
 			ses = LFSaw.ar(freq, den, brown);
 			ses = RLPF.ar(Mix.ar(ses,in), freqlp*cut1*lfo2, cut1, 0.9, 0.6);
-			ses = 0.5*(ses*SinOsc.ar(freq,decay/den));
+			ses = 0.8*(ses*SinOsc.ar(freq,decay/den));
 
 			ses = DelayC.ar( ses, 0.01, 0.001*lfo2, 4.5.abs, 0.3, ses);
 			ses = (Mix.ar(ses*0.3,den*1.4,in*1.2)*amp*env);
@@ -140,7 +140,7 @@ IFSamp_SC {
 			\dur, Pseq([Pseq([~dur1SampP.next],1)], 1),
 			\degree, Pseq([~nt1SampP.next], 1),
 			\amp, Pseq([~amp1SampP.next], 1),
-			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
+			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp*~susTD,
 			\mtranspose, Pseq([~transSampP.next], 1)+~trSamp,
 			\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
 			\harmonic, Pseq([~strSampP.next], 1)+~harmSamp,

@@ -11,6 +11,9 @@ IFOSC {
 				this.parts;
 				this.bridge;
 				this.note;
+				this.noteBass;
+				this.noteKeys;
+				this.noteSamp;
 				this.oct;
 				this.trans;
 
@@ -21,8 +24,8 @@ IFOSC {
 
 	*globals {
 
+		//~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // create the NetAddr
 		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("192.168.10.4", 57130); // create the NetAddr
 		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
 
 
@@ -183,6 +186,20 @@ IFOSC {
 			'/tmMulDrum'
 		);
 
+		~recordBut.free;
+		~recordBut = OSCFunc({
+			arg msg;
+
+			if ( msg[1]==1, {
+				   {Server.default.prepareForRecord; 0.1.wait; Server.default.record;}.fork;
+				},{
+					Server.default.stopRecording;
+				}
+			);
+
+			},
+			'/record'
+		);
 
 		~scale_1.free;
 		~scale_1= OSCFunc({
@@ -249,7 +266,7 @@ IFOSC {
 		~trackOSC_1= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~track1.fork;
+				IFSCTracks.track1;
 				"TRACK 1".postln;
 				~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 			});
@@ -288,6 +305,140 @@ IFOSC {
 		);
 
 
+		//_-_-_-_-_-_-_-_-SYNTH-_-_-_-_-_-_-_-_
+		~volCleanFad.free;
+		~volCleanFad= OSCFunc({
+			arg msg;
+			~cln.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volClean', msg[1]);
+		}, '/volClean');
+		//-------------------------------------------
+		~volFlowFad.free;
+		~volFlowFad= OSCFunc({
+			arg msg; ~flo.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volFlow', msg[1]);
+		}, '/volFlow');
+		//-------------------------------------------
+		~volDelayFad.free;
+		~volDelayFad= OSCFunc({
+			arg msg; ~dly.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volDelay', msg[1]);
+		}, '/volDelay');
+		//-------------------------------------------
+		~volMainFad.free;
+		~volMainFad= OSCFunc({
+			arg msg; ~rev.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volReverb', msg[1]);
+		}, '/volReverb');
+
+		//Flow
+		~flowXY.free;
+		~flowXY= OSCFunc({
+			arg msg, inc, exp;
+			inc= (msg[1]);
+			exp= (msg[2]);
+
+			~flo.set(\ampInc, inc, \ampExp, exp);
+			~tOSCAdrr.sendMsg('ampIncLabel', inc);
+			~tOSCAdrr.sendMsg('ampExpLabel', exp);
+
+			},
+			'/flowXY'
+		);
+		~flowAmpScale.free;
+		~flowAmpScale= OSCFunc({
+			arg msg;
+
+			~flo.set(\ampScale, msg[1]);
+
+			},
+			'/flowAmpScale'
+		);
+
+		~delayXY.free;
+		~delayXY= OSCFunc({
+			arg msg, dec, del;
+			dec= (msg[2])*4;
+			del= (msg[1]);
+
+			~dly.set( \decay, dec, \delay, del);
+			~tOSCAdrr.sendMsg('delayLabel', del);
+			~tOSCAdrr.sendMsg('decayLabel', dec);
+
+			},
+			'/delayXY'
+		);
+
+		~delay0.free;
+		~delay0= OSCFunc({
+			arg msg;
+			~dly.set(\delay, 0);
+			~tOSCAdrr.sendMsg('delayLabel', 0);
+			~tOSCAdrr.sendMsg('delayXY', 0,0);
+			},
+			'/delay0'
+		);
+
+		~delay05.free;
+		~delay05= OSCFunc({
+			arg msg;
+			~dly.set(\delay, 0.31);
+			~tOSCAdrr.sendMsg('delayLabel', 0.25);
+			~tOSCAdrr.sendMsg('delayXY',0, 0.25);
+			},
+			'/delay05'
+		);
+
+		~delay1.free;
+		~delay1= OSCFunc({
+			arg msg;
+			~dly.set(\delay, 0.43);
+			~tOSCAdrr.sendMsg('delayLabel', 0.5);
+			~tOSCAdrr.sendMsg('delayXY',0, 0.5);
+			},
+			'/delay1'
+		);
+
+		~reverbXY.free;
+		~reverbXY= OSCFunc({
+			arg msg;
+
+
+			~rev.set(\mix, msg[2], \room, msg[1]);
+
+			},
+			'/reverbXY'
+		);
+
+		~reverbDamp.free;
+		~reverbDamp= OSCFunc({
+			arg msg;
+
+			~rev.set(\damp, msg[1]);
+
+			},
+			'/reverbDamp'
+		);
+
+		~mFX1Del.free;
+		~mFX1Del= OSCFunc({
+			arg msg;
+
+			~cln.set(\delay, msg[2]);
+
+			},
+			'/masterFX1/1'
+		);
+
+		~mFX1DelOff.free;
+		~mFX1DelOff=MIDIFunc.cc( {
+			arg vel;
+
+			if ( vel==0, {
+
+				~cln.set(\delay, 0);
+
+			});
+
+
+
+		}, chan:1, ccNum:6);
 
 
 	}
@@ -1527,6 +1678,1171 @@ IFOSC {
 			},
 			'/transSampDiv'
 		);
+
+
+	}
+
+	*noteBass {
+
+		/////////////////////----- Note -------//////////////
+
+
+		~noteBass_0.free;
+		~noteBass_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Bass NOTE 0".postln;
+				~transBass.source=0;
+				~tOSCAdrr.sendMsg('noteBassLabel', '0');
+			});
+			},
+			'/ntBass_0'
+		);
+
+		~noteBass_1.free;
+		~noteBass_1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 1".postln;
+				//~transKick.source=1;~transSnr.source=1;~transHat.source=1;
+				~transBass.source=1;
+				~tOSCAdrr.sendMsg('noteBassLabel', '1');
+			});
+			},
+			'/ntBass_1'
+		);
+
+
+		~noteBass_2.free;
+		~noteBass_2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 2".postln;
+				//~transKick.source=2;~transSnr.source=2;~transHat.source=2;
+				~transBass.source=2;
+				~tOSCAdrr.sendMsg('noteBassLabel', '2');
+			});
+			},
+			'/ntBass_2'
+		);
+
+		~noteBass_3.free;
+		~noteBass_3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 3".postln;
+				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
+				~transBass.source=3;
+				~tOSCAdrr.sendMsg('noteBassLabel', '3');
+			});
+			},
+			'/ntBass_3'
+		);
+
+		~noteBass_4.free;
+		~noteBass_4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 4".postln;
+				//~transKick.source=4;~transSnr.source=4;~transHat.source=4;
+				~transBass.source=4;
+				~tOSCAdrr.sendMsg('noteBassLabel', '4');
+			});
+			},
+			'/ntBass_4'
+		);
+
+		~noteBass_5.free;
+		~noteBass_5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 5".postln;
+				//~transKick.source=5;~transSnr.source=5;~transHat.source=5;
+				~transBass.source=5;
+				~tOSCAdrr.sendMsg('noteBassLabel', '5');
+			});
+			},
+			'/ntBass_5'
+		);
+
+		~noteBass_6.free;
+		~noteBass_6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 6".postln;
+				//~transKick.source=6;~transSnr.source=6;~transHat.source=6;
+				~transBass.source=6;
+				~tOSCAdrr.sendMsg('noteBassLabel', '6');
+			});
+			},
+			'/ntBass_6'
+		);
+
+		~noteBass_7.free;
+		~noteBass_7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 7".postln;
+				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
+				~transBass.source=7;
+				~tOSCAdrr.sendMsg('noteBassLabel', '7');
+			});
+			},
+			'/ntBass_7'
+		);
+
+		~noteBass_8.free;
+		~noteBass_8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 8".postln;
+				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
+				~transBass.source=8;
+				~tOSCAdrr.sendMsg('noteBassLabel', '8');
+			});
+			},
+			'/ntBass_8'
+		);
+
+		~noteBass_9.free;
+		~noteBass_9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 9".postln;
+				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
+				~transBass.source=9;
+				~tOSCAdrr.sendMsg('noteBassLabel', '9');
+			});
+			},
+			'/ntBass_9'
+		);
+
+		~noteBass_10.free;
+		~noteBass_10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 10".postln;
+				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
+				~transBass.source=10;
+				~tOSCAdrr.sendMsg('noteBassLabel', '10');
+			});
+			},
+			'/ntBass_10'
+		);
+
+		~noteBass_11.free;
+		~noteBass_11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 11".postln;
+				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
+				~transBass.source=11;
+				~tOSCAdrr.sendMsg('noteBassLabel', '11');
+			});
+			},
+			'/ntBass_11'
+		);
+
+		~noteBass_12.free;
+		~noteBass_12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 12".postln;
+				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
+				~transBass.source=12;
+				~tOSCAdrr.sendMsg('noteBassLabel', '12');
+			});
+			},
+			'/ntBass_12'
+		);
+
+		~noteBass_13.free;
+		~noteBass_13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 13".postln;
+				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
+				~transBass.source=13;
+				~tOSCAdrr.sendMsg('noteBassLabel', '13');
+			});
+			},
+			'/ntBass_13'
+		);
+
+		~noteBass_14.free;
+		~noteBass_14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 14".postln;
+				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
+				~transBass.source=14;
+				~tOSCAdrr.sendMsg('noteBassLabel', '14');
+			});
+			},
+			'/ntBass_14'
+		);
+
+		//////////////////////////// NEGATIVE
+		~noteBass1.free;
+		~noteBass1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -1".postln;
+				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
+				~transBass.source=(-1);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-1');
+			});
+			},
+			'/ntBass-1'
+		);
+
+
+		~noteBass2.free;
+		~noteBass2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -2".postln;
+				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
+				~transBass.source=(-2);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-2');
+			});
+			},
+			'/ntBass-2'
+		);
+
+		~noteBass3.free;
+		~noteBass3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -3".postln;
+				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
+				~transBass.source=(-3);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-3');
+			});
+			},
+			'/ntBass-3'
+		);
+
+		~noteBass4.free;
+		~noteBass4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -4".postln;
+				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
+				~transBass.source=(-4);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-4');
+			});
+			},
+			'/ntBass-4'
+		);
+
+		~noteBass5.free;
+		~noteBass5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -5".postln;
+				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
+				~transBass.source=(-5);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-5');
+			});
+			},
+			'/ntBass-5'
+		);
+
+		~noteBass6.free;
+		~noteBass6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -6".postln;
+				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
+				~transBass.source=(-6);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-6');
+			});
+			},
+			'/ntBass-6'
+		);
+
+		~noteBass7.free;
+		~noteBass7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -7".postln;
+				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
+				~transBass.source=(-7);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-7');
+			});
+			},
+			'/ntBass-7'
+		);
+
+		~noteBass8.free;
+		~noteBass8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -8".postln;
+				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
+				~transBass.source=(-8);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-8');
+			});
+			},
+			'/ntBass-8'
+		);
+
+		~noteBass9.free;
+		~noteBass9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -9".postln;
+				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
+				~transBass.source=(-9);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-9');
+			});
+			},
+			'/ntBass-9'
+		);
+
+		~noteBass10.free;
+		~noteBass10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -10".postln;
+				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
+				~transBass.source=(-10);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-10');
+			});
+			},
+			'/ntBass-10'
+		);
+
+		~noteBass11.free;
+		~noteBass11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -11".postln;
+				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
+				~transBass.source=(-11);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-11');
+			});
+			},
+			'/ntBass-11'
+		);
+
+		~noteBass12.free;
+		~noteBass12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -12".postln;
+				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
+				~transBass.source=(-12);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-12');
+			});
+			},
+			'/ntBass-12'
+		);
+
+		~noteBass13.free;
+		~noteBass13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -13".postln;
+				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
+				~transBass.source=(-13);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-13');
+			});
+			},
+			'/ntBass-13'
+		);
+
+		~noteBass14.free;
+		~noteBass14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -14".postln;
+				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
+				~transBass.source=(-14);
+				~tOSCAdrr.sendMsg('noteBassLabel', '-14');
+			});
+			},
+			'/ntBass-14'
+		);
+
+
+
+	}
+
+	*noteKeys {
+
+		/////////////////////----- Note -------//////////////
+
+
+		~noteKeys_0.free;
+		~noteKeys_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 0".postln;
+
+				~transKeys.source=0;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '0');
+			});
+			},
+			'/ntKeys_0'
+		);
+
+		~noteKeys_1.free;
+		~noteKeys_1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 1".postln;
+
+				~transKeys.source=1;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '1');
+			});
+			},
+			'/ntKeys_1'
+		);
+
+
+		~noteKeys_2.free;
+		~noteKeys_2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 2".postln;
+
+			~transKeys.source=2;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '2');
+			});
+			},
+			'/ntKeys_2'
+		);
+
+		~noteKeys_3.free;
+		~noteKeys_3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 3".postln;
+				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
+				~transKeys.source=3;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '3');
+			});
+			},
+			'/ntKeys_3'
+		);
+
+		~noteKeys_4.free;
+		~noteKeys_4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 4".postln;
+
+				~transKeys.source=4;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '4');
+			});
+			},
+			'/ntKeys_4'
+		);
+
+		~noteKeys_5.free;
+		~noteKeys_5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 5".postln;
+
+				~transKeys.source=5;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '5');
+			});
+			},
+			'/ntKeys_5'
+		);
+
+		~noteKeys_6.free;
+		~noteKeys_6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 6".postln;
+
+				~transKeys.source=6;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '6');
+			});
+			},
+			'/ntKeys_6'
+		);
+
+		~noteKeys_7.free;
+		~noteKeys_7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 7".postln;
+				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
+				~transKeys.source=7;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '7');
+			});
+			},
+			'/ntKeys_7'
+		);
+
+		~noteKeys_8.free;
+		~noteKeys_8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 8".postln;
+				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
+				~transKeys.source=8;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '8');
+			});
+			},
+			'/ntKeys_8'
+		);
+
+		~noteKeys_9.free;
+		~noteKeys_9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 9".postln;
+				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
+				~transKeys.source=9;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '9');
+			});
+			},
+			'/ntKeys_9'
+		);
+
+		~noteKeys_10.free;
+		~noteKeys_10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 10".postln;
+				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
+				~transKeys.source=10;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '10');
+			});
+			},
+			'/ntKeys_10'
+		);
+
+		~noteKeys_11.free;
+		~noteKeys_11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 11".postln;
+				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
+				~transKeys.source=11;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '11');
+			});
+			},
+			'/ntKeys_11'
+		);
+
+		~noteKeys_12.free;
+		~noteKeys_12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 12".postln;
+				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
+				~transKeys.source=12;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '12');
+			});
+			},
+			'/ntKeys_12'
+		);
+
+		~noteKeys_13.free;
+		~noteKeys_13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 13".postln;
+				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
+				~transKeys.source=13;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '13');
+			});
+			},
+			'/ntKeys_13'
+		);
+
+		~noteKeys_14.free;
+		~noteKeys_14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 14".postln;
+				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
+				~transKeys.source=14;
+				~tOSCAdrr.sendMsg('noteKeysLabel', '14');
+			});
+			},
+			'/ntKeys_14'
+		);
+
+		//////////////////////////// NEGATIVE
+		~noteKeys1.free;
+		~noteKeys1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -1".postln;
+				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
+				~transKeys.source=(-1);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-1');
+			});
+			},
+			'/ntKeys-1'
+		);
+
+
+		~noteKeys2.free;
+		~noteKeys2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -2".postln;
+				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
+				~transKeys.source=(-2);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-2');
+			});
+			},
+			'/ntKeys-2'
+		);
+
+		~noteKeys3.free;
+		~noteKeys3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -3".postln;
+				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
+				~transKeys.source=(-3);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-3');
+			});
+			},
+			'/ntKeys-3'
+		);
+
+		~noteKeys4.free;
+		~noteKeys4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -4".postln;
+				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
+				~transKeys.source=(-4);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-4');
+			});
+			},
+			'/ntKeys-4'
+		);
+
+		~noteKeys5.free;
+		~noteKeys5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -5".postln;
+				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
+				~transKeys.source=(-5);
+			});
+			},
+			'/ntKeys-5'
+		);
+
+		~noteKeys6.free;
+		~noteKeys6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -6".postln;
+				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
+				~transKeys.source=(-6);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-6');
+			});
+			},
+			'/ntKeys-6'
+		);
+
+		~noteKeys7.free;
+		~noteKeys7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -7".postln;
+				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
+				~transKeys.source=(-7);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-7');
+			});
+			},
+			'/ntKeys-7'
+		);
+
+		~noteKeys8.free;
+		~noteKeys8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -8".postln;
+				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
+				~transKeys.source=(-8);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-8');
+			});
+			},
+			'/ntKeys-8'
+		);
+
+		~noteKeys9.free;
+		~noteKeys9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -9".postln;
+				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
+				~transKeys.source=(-9);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-9');
+			});
+			},
+			'/ntKeys-9'
+		);
+
+		~noteKeys10.free;
+		~noteKeys10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -10".postln;
+				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
+				~transKeys.source=(-10);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-10');
+			});
+			},
+			'/ntKeys-10'
+		);
+
+		~noteKeys11.free;
+		~noteKeys11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -11".postln;
+				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
+				~transKeys.source=(-11);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-11');
+			});
+			},
+			'/ntKeys-11'
+		);
+
+		~noteKeys12.free;
+		~noteKeys12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -12".postln;
+				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
+				~transKeys.source=(-12);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-12');
+			});
+			},
+			'/ntKeys-12'
+		);
+
+		~noteKeys13.free;
+		~noteKeys13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -13".postln;
+				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
+				~transKeys.source=(-13);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-13');
+			});
+			},
+			'/ntKeys-13'
+		);
+
+		~noteKeys14.free;
+		~noteKeys14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -14".postln;
+				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
+				~transKeys.source=(-14);
+				~tOSCAdrr.sendMsg('noteKeysLabel', '-14');
+			});
+			},
+			'/ntKeys-14'
+		);
+
+
+
+	}
+
+	*noteSamp {
+
+		/////////////////////----- Note -------//////////////
+
+
+		~noteSamp_0.free;
+		~noteSamp_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 0".postln;
+
+				~transSamp.source=0;
+				~tOSCAdrr.sendMsg('noteSampLabel', '0');
+			});
+			},
+			'/ntSamp_0'
+		);
+
+		~noteSamp_1.free;
+		~noteSamp_1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 1".postln;
+				//~transKick.source=1;~transSnr.source=1;~transHat.source=1;
+				~transSamp.source=1;
+				~tOSCAdrr.sendMsg('noteSampLabel', '1');
+			});
+			},
+			'/ntSamp_1'
+		);
+
+
+		~noteSamp_2.free;
+		~noteSamp_2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 2".postln;
+				//~transKick.source=2;~transSnr.source=2;~transHat.source=2;
+				~transSamp.source=2;
+				~tOSCAdrr.sendMsg('noteSampLabel', '2');
+			});
+			},
+			'/ntSamp_2'
+		);
+
+		~noteSamp_3.free;
+		~noteSamp_3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 3".postln;
+				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
+				~transSamp.source=3;
+				~tOSCAdrr.sendMsg('noteSampLabel', '3');
+			});
+			},
+			'/ntSamp_3'
+		);
+
+		~noteSamp_4.free;
+		~noteSamp_4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 4".postln;
+				//~transKick.source=4;~transSnr.source=4;~transHat.source=4;
+				~transSamp.source=4;
+				~tOSCAdrr.sendMsg('noteSampLabel', '4');
+			});
+			},
+			'/ntSamp_4'
+		);
+
+		~noteSamp_5.free;
+		~noteSamp_5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 5".postln;
+				//~transKick.source=5;~transSnr.source=5;~transHat.source=5;
+				~transSamp.source=5;
+				~tOSCAdrr.sendMsg('noteSampLabel', '5');
+			});
+			},
+			'/ntSamp_5'
+		);
+
+		~noteSamp_6.free;
+		~noteSamp_6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 6".postln;
+				//~transKick.source=6;~transSnr.source=6;~transHat.source=6;
+				~transSamp.source=6;
+				~tOSCAdrr.sendMsg('noteSampLabel', '6');
+			});
+			},
+			'/ntSamp_6'
+		);
+
+		~noteSamp_7.free;
+		~noteSamp_7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 7".postln;
+				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
+				~transSamp.source=7;
+				~tOSCAdrr.sendMsg('noteSampLabel', '7');
+			});
+			},
+			'/ntSamp_7'
+		);
+
+		~noteSamp_8.free;
+		~noteSamp_8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 8".postln;
+				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
+				~transSamp.source=8;
+				~tOSCAdrr.sendMsg('noteSampLabel', '8');
+			});
+			},
+			'/ntSamp_8'
+		);
+
+		~noteSamp_9.free;
+		~noteSamp_9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 9".postln;
+				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
+				~transSamp.source=9;
+				~tOSCAdrr.sendMsg('noteSampLabel', '9');
+			});
+			},
+			'/ntSamp_9'
+		);
+
+		~noteSamp_10.free;
+		~noteSamp_10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 10".postln;
+				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
+				~transSamp.source=10;
+				~tOSCAdrr.sendMsg('noteSampLabel', '10');
+			});
+			},
+			'/ntSamp_10'
+		);
+
+		~noteSamp_11.free;
+		~noteSamp_11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 11".postln;
+				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
+				~transSamp.source=11;
+				~tOSCAdrr.sendMsg('noteSampLabel', '11');
+			});
+			},
+			'/ntSamp_11'
+		);
+
+		~noteSamp_12.free;
+		~noteSamp_12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 12".postln;
+				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
+				~transSamp.source=12;
+				~tOSCAdrr.sendMsg('noteSampLabel', '12');
+			});
+			},
+			'/ntSamp_12'
+		);
+
+		~noteSamp_13.free;
+		~noteSamp_13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 13".postln;
+				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
+				~transSamp.source=13;
+				~tOSCAdrr.sendMsg('noteSampLabel', '13');
+			});
+			},
+			'/ntSamp_13'
+		);
+
+		~noteSamp_14.free;
+		~noteSamp_14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 14".postln;
+				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
+				~transSamp.source=14;
+				~tOSCAdrr.sendMsg('noteSampLabel', '14');
+			});
+			},
+			'/ntSamp_14'
+		);
+
+		//////////////////////////// NEGATIVE
+		~noteSamp1.free;
+		~noteSamp1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -1".postln;
+				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
+				~transSamp.source=(-1);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-1');
+			});
+			},
+			'/ntSamp-1'
+		);
+
+
+		~noteSamp2.free;
+		~noteSamp2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -2".postln;
+				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
+				~transSamp.source=(-2);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-2');
+			});
+			},
+			'/ntSamp-2'
+		);
+
+		~noteSamp3.free;
+		~noteSamp3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -3".postln;
+				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
+				~transSamp.source=(-3);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-3');
+			});
+			},
+			'/ntSamp-3'
+		);
+
+		~noteSamp4.free;
+		~noteSamp4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -4".postln;
+				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
+				~transSamp.source=(-4);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-4');
+			});
+			},
+			'/ntSamp-4'
+		);
+
+		~noteSamp5.free;
+		~noteSamp5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -5".postln;
+				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
+				~transSamp.source=(-5);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-5');
+			});
+			},
+			'/ntSamp-5'
+		);
+
+		~noteSamp6.free;
+		~noteSamp6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -6".postln;
+				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
+				~transSamp.source=(-6);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-6');
+			});
+			},
+			'/ntSamp-6'
+		);
+
+		~noteSamp7.free;
+		~noteSamp7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -7".postln;
+				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
+				~transSamp.source=(-7);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-7');
+			});
+			},
+			'/ntSamp-7'
+		);
+
+		~noteSamp8.free;
+		~noteSamp8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -8".postln;
+				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
+				~transSamp.source=(-8);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-8');
+			});
+			},
+			'/ntSamp-8'
+		);
+
+		~noteSamp9.free;
+		~noteSamp9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -9".postln;
+				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
+				~transSamp.source=(-9);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-9');
+			});
+			},
+			'/ntSamp-9'
+		);
+
+		~noteSamp10.free;
+		~noteSamp10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -10".postln;
+				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
+				~transSamp.source=(-10);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-10');
+			});
+			},
+			'/ntSamp-10'
+		);
+
+		~noteSamp11.free;
+		~noteSamp11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -11".postln;
+				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
+				~transSamp.source=(-11);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-11');
+			});
+			},
+			'/ntSamp-11'
+		);
+
+		~noteSamp12.free;
+		~noteSamp12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -12".postln;
+				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
+				~transSamp.source=(-12);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-12');
+			});
+			},
+			'/ntSamp-12'
+		);
+
+		~noteSamp13.free;
+		~noteSamp13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -13".postln;
+				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
+				~transSamp.source=(-13);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-13');
+			});
+			},
+			'/ntSamp-13'
+		);
+
+		~noteSamp14.free;
+		~noteSamp14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -14".postln;
+				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
+				~transSamp.source=(-14);
+				~tOSCAdrr.sendMsg('noteSampLabel', '-14');
+			});
+			},
+			'/ntSamp-14'
+		);
+
 
 
 	}

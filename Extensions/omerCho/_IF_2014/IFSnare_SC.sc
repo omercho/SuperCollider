@@ -44,8 +44,8 @@ IFSnr_SC {
 			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, sustain], [-4, -5]));
 			env1m = env1.midicps;
 
-			ses = SinOsc.ar(env1m*4,lfo2-0.9);
-			ses = Mix.ar(ses*0.02,WhiteNoise.ar(wnoise));
+			ses = SinOsc.ar(env1m*2,lfo2-0.9);
+			ses = Mix.ar(ses*0.2,WhiteNoise.ar(wnoise));
 			ses = HPF.ar(ses, env1m, env);
 			ses = ses + SinOsc.ar(env1m, 0.5, env);
 			ses = ses.clip2(0.2+wnoise);
@@ -73,7 +73,11 @@ IFSnr_SC {
 		~decSnr=0.08;
 		~susLevSnr=0.0;
 		~relSnr = 0.09;
-		~wnoise=1.0;
+		~wnoiseSnr=1.0;
+		~tomMul=0;
+
+		~freq2Snr=69;
+		~freq3Snr=49;
 
 
 		~tmMulSnr = PatternProxy( Pseq([1], inf));
@@ -136,9 +140,9 @@ IFSnr_SC {
 
 		Pbind(\instrument, \IFSnr_SC, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1SnrP.next/val],1),
-			\degree, Pseq([~nt1SnrP.next], 1),
+			\degree, Pseq([~nt1SnrP.next]*(~tomMul*(-1)), 1),
 			\amp, Pseq([~amp1SnrP.next], 1),
-			\sustain, Pseq([~sus1SnrP.next],1)*~susMulSnr,
+			\sustain, Pseq([~sus1SnrP.next],1)*~susMulSnr*~susTD,
 			\mtranspose, Pseq([~transSnrP.next], 1)+~trSnr,
 			\octave, Pseq([~octSnrP.next], 1)+~octMulSnr,
 			\harmonic, Pseq([~strSnrP.next], 1)+~harmSnr,
@@ -147,7 +151,9 @@ IFSnr_SC {
 			\dec, ~decSnr,
 			\susLev, ~susLevSnr,
 			\rel, ~relSnr,
-			\wnoise,Pseq([0.2, 0.1, 0.06, 5], inf)*~wnoise,
+			\wnoise,~wnoiseSnr,
+			\freq2, ~freq2Snr,
+			\freq3, ~freq3Snr,
 			\lfo1Rate, ~lfo1SnrP*~lfoMulSnr,
 			\lfo2Rate, ~lfo2SnrP*~lfoMulSnr,
 			\group, ~piges,

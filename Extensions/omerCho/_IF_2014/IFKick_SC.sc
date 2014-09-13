@@ -138,7 +138,7 @@ IFKick_SC {
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree,  Pseq([~nt1KickP.next], 1),
 			\amp, Pseq([~amp1KickP.next], 1),
-			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
+			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick*~susTD,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\harmonic, Pseq([~strKickP.next], 1)+~harmKick,
 			\pan, 0,

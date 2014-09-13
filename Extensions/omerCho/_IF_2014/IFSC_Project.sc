@@ -75,192 +75,137 @@ IFSC {
 	*loadEffects {
 
 
+		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
 
+		SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
 
+		SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
 
+		SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input, ctl;
+			input=SoundIn.ar(2,0.9,0);
+			//ctl = FOS.kr(LFSaw.kr(8, 0, 0.2), 1 - input.abs, input, fosMul);
+			input= Pan2.ar(input, pan)*2*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
 
-		/*SynthDef("reverb", { | out, in = 0, amp=0.05, pan=0.0,
-			roomsize = 10, revtime = 1, damping = 1.0, inputbw = 0.19, spread = 15,
-			drylevel = -3, earlylevel = -9, taillevel = -11 |
+		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=SoundIn.ar(3,0.9,0);
+			input= Pan2.ar(input, pan)*2*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef("clean",{ |out=0, in=0, lvl=0.9, durt=0.01, mainVol=0.9,
+			delay=0, decay=1|
+			var ses;
+			ses=In.ar(in, 2)*mainVol;
+			ses=CombN.ar(ses,0.1,delay,decay, 1);
+			ses=Limiter.ar( ses, lvl);
+			Out.ar( out, ses );
+		}).send(Server.default);
+
+		SynthDef("limiter",{ |out=0, in = 0, lvl = 0.9, durt = 0.01, mainVol=0.9|
+			Out.ar( out, Limiter.ar( In.ar(in, 2)*mainVol, lvl) )
+		}).send(Server.default);
+
+		SynthDef("reverb", { | out, in = 0, amp=0.5, pan=0.0, lvl=0.9,
+			room = 0.5, mix = 0.0, damp = 1.0 |
 			var input, ses;
 			input = In.ar(in, 2);
-			ses = GVerb.ar(
-				input,
-				roomsize,
-				revtime,
-				damping,
-				inputbw,
-				spread,
-				drylevel.dbamp,
-				earlylevel.dbamp,
-				taillevel.dbamp,
-				roomsize, amp);
+			ses = FreeVerb.ar(input,mix,room,damp);
+			ses=Limiter.ar( ses, lvl);
 
-			ReplaceOut.ar(out, Pan2.ar(ses, pan) );
-		}).send(Server.default);*/
+			Out.ar(out, Pan2.ar(ses, pan, amp) );
+		}).send(Server.default);
 
+		SynthDef("delay", { |out = 0, in = 0, maxdelay = 1.25,  delay = 0.0, decay = 0.05, pan = 0, amp =0.9, lvl=0.9|
+			var ses, fx;
+			ses =  In.ar(in, 2);
+			ses = CombN.ar(ses,0.9,delay,decay, mul: 0.4);
+			//AllpassN.ar(dry, 2.5,[LFNoise1.kr(2, 1.5, 1.6), LFNoise1.kr(2, 1.5, 1.6)],3, mul: 0.8);
+			//ses = (ses+fx).dup;
+			ses=Limiter.ar( ses, lvl);
+			Out.ar(out,  Pan2.ar(ses, pan, amp));
+		}).send(Server.default);
 
-
-		SynthDef("rlpf",{ |out = 0, amp = 0.8 in = 0, ffreq = 600, rq = 0.1, pan = 0|
-			Out.ar( out, Pan2.ar(RLPF.ar( In.ar(in), ffreq, rq, amp), pan))
+		SynthDef("fx1", { |out = 0, in = 0,
+			maxdelay = 1.25,  delay = 0.0, decay = 0.05, pan = 0, amp =0.5, dlyVol=0.8,
+			room = 0.5, mix = 1, damp = 1.0, revVol=0.8|
+			var ses, filt;
+			ses =  In.ar(in, 2);
+			ses = CombN.ar(ses,maxdelay,delay,decay,dlyVol);
+			ses = FreeVerb.ar(ses,mix,room,damp,revVol);
+			Out.ar(out,  Pan2.ar(ses, pan, amp));
 		}).send(Server.default);
 
 
-		SynthDef("wah", { arg out = 0, in = 0, rate = 0.5, amp = 1, pan = 0, cfreq = 1400, mfreq = 1200, rq=0.1, dist = 0.15;
-			var zin, zout;
-			zin = In.ar(in, 2);
-			cfreq = Lag3.kr(cfreq, 0.1);
-			mfreq = Lag3.kr(mfreq, 0.1);
-			rq   = Ramp.kr(rq, 0.1);
-			zout = RLPF.ar(zin, LFNoise1.kr(rate, mfreq, cfreq), rq, amp).distort * dist;
-			Out.ar( out , Pan2.ar(zout, pan) );
+		SynthDef("flow",{ |out=0, in, pan=0, lvl = 0.9, durt = 0.01,
+			ampInc = 0, ampExp = 1, ampScale = 0.1,
+			f1 = 0.5, f2 = 1.2, f3 = 1.5, f4 = 1.7, f5 = 2.2|
+			var input, amp, freq, hasFreq, ses;
+			input = In.ar(in);
+			//in = SoundIn.ar(1);
+			amp = Amplitude.kr(input, 0.05, 0.05);
+			# freq, hasFreq = Pitch.kr(input, ampThreshold: 0.02, median: 1);
+			//freq = Lag.kr(freq, 0.01);
+			ses = Mix.new(
+				SinOsc.ar(
+					freq * [f1, f2, f3, f4, f5]*1.0 ,
+					0,
+					LFNoise1.kr(0.2,0.1,0.1),
+					amp + ampInc pow: ampExp * ampScale
+				)
+			);
+
+			ses = Resonz.ar(ses, LFDNoise0.kr(10).range(freq, freq/2), 0.01, 0.1);
+			//ses = Formlet.ar(ses, LFDNoise0.kr(2).range(freq, freq/2), 0.01, 0.1);
+			3.do({
+				ses = AllpassN.ar(ses, 0.90, [0.060.rand,0.70.rand], 2)
+			});
+
+			Out.ar(out,  Pan2.ar(Limiter.ar( ses, lvl, durt), pan, amp));
 		}).send(Server.default);
-
-		"effects SynthDefs loaded".postln;
-
-		////////////////////////////////////////EffectsOSC///////////////////////////////////////////////
-		//REVERB
-		~roomF =�OSCresponderNode(nil,�'/bufP/room', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*300);
-			~rev.set(\roomsize, n1);
-		}).add;
-
-		~room2 =�OSCresponderNode(nil,�'/bufP/room2', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*3);
-			~rev.set(\roomsize, n1);
-		}).add;
-
-		~revtimeF =�OSCresponderNode(nil,�'/bufP/revtime', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*100);
-			~rev.set(\revtime, n1);
-		}).add;
-
-		~dampF =�OSCresponderNode(nil,�'/bufP/damp', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]);
-			~rev.set(\damping, n1);
-		}).add;
-
-		~revampF =�OSCresponderNode(nil,�'/bufP/revamp', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]) ;
-			~rev.set(\amp, n1);
-		}).add;
-
-		~revmain = OSCresponderNode(nil,�'/bufP/revmain', {�|t,r,m|
-			~rev.set(
-				\revtime, 20, \roomsize, 120, \damping, 0.9,
-				\inputbw, 0.3, \drylevel -9,
-				\earlylevel, -10, \taillevel, -10.1, \amp, 0.0005
-			);
-		}).add;
-		~bath = OSCresponderNode(nil,�'/bufP/bath', {�|t,r,m|
-			~rev.set(
-				\roomsize, 5, \revtime, 0.6, \damping, 0.62,
-				\earlylevel, -11, \taillevel, -13
-			);
-		}).add;
-		~church = OSCresponderNode(nil,�'/bufP/church', {�|t,r,m|
-			~rev.set(
-				\roomsize, 80, \revtime, 4.85, \damping, 0.41,
-				\inputbw, 0.19, \drylevel -3,
-				\earlylevel, -9, \taillevel, -11
-			);
-		}).add;
-		~cathedral = OSCresponderNode(nil,�'/bufP/cath', {�|t,r,m|
-			~rev.set(
-				\roomsize, 243, \revtime, 1, \damping, 0.1,
-				\inputbw, 0.34, \drylevel -3,
-				\earlylevel, -11, \taillevel, -9
-			);
-		}).add;
-		~canyon = OSCresponderNode(nil,�'/bufP/canyon', {�|t,r,m|
-			~rev.set(
-				\roomsize, 300, \revtime, 103, \damping, 0.43,
-				\inputbw, 0.51, \drylevel -5,
-				\earlylevel, -26, \taillevel, -20
-			);
-		}).add;
-
-
-		//DELAY
-		~delayF = OSCresponderNode(nil, '/bufP/delay', { |t,r,m|
-			var n1;
-			n1 = (m[1]*5);
-			~dly.set(\delay, n1);
-		}).add;
-		~decayF = OSCresponderNode(nil,'/bufP/decay', {|t,r,m|
-			var n1;
-			n1 = (m[1]*15) +0.1;
-			~dly.set(\decay, n1);
-		}).add;
-		~dlyampF =�OSCresponderNode(nil,�'/bufP/dlyamp', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*2);
-			~dly.set(\amp, n1);
-		}).add;
-		~dlyMain = OSCresponderNode(nil,�'/bufP/dlymain', {�|t,r,m|
-			~dly.set(\delay, 0, \decay, 3);
-		}).add;
-		~dly1Set = OSCresponderNode(nil,�'/bufP/dly1', {�|t,r,m|
-			~dly.set(\delay, 1, \decay, 3);
-		}).add;
-		~dly2Set = OSCresponderNode(nil,�'/bufP/dly2', {�|t,r,m|
-			~dly.set(\delay, 2, \decay, 3);
-		}).add;
-		~dly3Set = OSCresponderNode(nil,�'/bufP/dly3', {�|t,r,m|
-			~dly.set(\delay, 3, \decay, 3);
-		}).add;
-		~dly4Set = OSCresponderNode(nil,�'/bufP/dly4', {�|t,r,m|
-			~dly.set(\delay, 4, \decay, 3);
-		}).add;
-
-		//RLPF
-		~rlpfreqF =�OSCresponderNode(nil,�'/bufP/rlpfreq', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*5400)+ 20 ;
-			~rlp.set(\ffreq, n1);
-		}).add;
-		~rlprqF =�OSCresponderNode(nil,�'/bufP/rlprq', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*10)-2 ;
-			~rlp.set(\rq, n1);
-		}).add;
-		~rlpampF =�OSCresponderNode(nil,�'/bufP/rlpamp', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*4) ;
-			~rlp.set(\amp, n1);
-		}).add;
-
-		~limlevF =�OSCresponderNode(nil,�'/bufP/limlev', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]) ;
-			~lim.set(\lvl, n1);
-		}).add;
-		~limdurtF =�OSCresponderNode(nil,�'/bufP/limdurt', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*2) ;
-			~lim.set(\durt, n1);
-		}).add;
-
-		~distortF =�OSCresponderNode(nil,�'/bufP/distort', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*50) ;
-			~wah.set(\dist, n1);
-		}).add;
-		~wahrqF =�OSCresponderNode(nil,�'/bufP/wahrq', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*20)-5 ;
-			~wah.set(\rq, n1);
-		}).add;
-		~wahampF =�OSCresponderNode(nil,�'/bufP/wahamp', {�|t,r,m|�
-			var�n1;
-			n1�= (m[1]*6) ;
-			~wah.set(\amp, n1);
-		}).add;
 
 		"effects OSC loaded".postln;
 
@@ -269,39 +214,46 @@ IFSC {
 
 	*playEffects {
 
-		~rev = Synth.tail(~effe, "reverb",
-			[\in,  ~revBus, \out, ~limBus, \amp, 0.5
-			]
-		);
-		~dly = Synth.tail(~effe,"delay",
-			[\in,  ~dlyBus, \out, ~limBus, \amp, 0.0
-			]
-		);
-		~rlp = Synth.tail(~effe,"rlpf",
-			[\in,  ~rlpBus, \out, ~limBus,
-				\ffreq, 220, \rq, 1.5, \amp, 0.1
-			]
-		);
-		~wah = Synth.tail(~effe,"wah",
-			[\in,  ~wahBus, \out, ~limBus
-			]
-		);
-		~lim = Synth.tail(~effe, "limiter",
-			[ \in ,~limBus, \out, 0,
-				\lvl, 0.6, \durt, 0.01
-			]
-		);
+		~vBassSynth = Synth.head(~piges, \vBassInput,[
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vKeysSynth = Synth.head(~piges, \vKeysInput,[
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vKickSynth = Synth.tail(~effe, \vKickInput,[\in,~busKick,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vSnrSynth = Synth.tail(~effe, \vSnrInput,[\in,~busSnr,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vHatSynth = Synth.tail(~effe, \vHatInput,[\in,~busHat,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vSampSynth = Synth.tail(~effe, \vSampInput,[\in,~busSamp,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+
+		~cln = Synth.tail(~effe, \clean,[ \in , ~clnBus, \out, 0,\lvl, 0.9]);
+		~dly = Synth.tail(~effe,\delay,[\in,  ~dlyBus, \out, 0,\lvl, 0.0]);
+		~rev = Synth.tail(~effe, \reverb,[\in,  ~revBus, \out, 0,\lvl, 0.0]);
+		~flo = Synth.tail(~effe, \flow,[ \in , ~floBus, \out, 0]);
 		"effects are playing".postln;
 
 	}
 
 	*stopEffects {
 
-		~rev.free;
+		~vBassSynth.free;
+		~vKeysSynth.free;
+		~vKickSynth.free;
+		~vSnrSynth.free;
+		~vHatSynth.free;
+		~vSampSynth.free;
+		~cln.free;
 		~dly.free;
-		~rlp.free;
-		~wah.free;
-		~lim.free;
+		~rev.free;
+		~flo.free;
+
 
 	}
 

@@ -176,15 +176,18 @@ IFFT
 IFHat_SC_ERG
 IFKick_SC_Erg
 IFLoopMain
+IFMIDI2Analogs
 IFMIDI_Erg
 IFMain
 IFMain01
+IFMainTwoPlusInf01
 IFNoteOSC
 IFNoteOSC2
 IFNoteOSC3
 IFOSC_ERG
 IFOctOSC
 IFPartsOSC
+IFSCTracks
 IFSC_Synths
 IFSC_Track01
 IFSamp_SC_ERG
@@ -593,6 +596,7 @@ SyncSaw
 T2A
 T2K
 TBall
+TD3MIDI_01
 TDelay
 TDelay
 TDuty
@@ -613,6 +617,7 @@ Trig1
 TrigControl
 TwoPole
 TwoZero
+UMA_MIDI_Instruments
 Unpack1FFT
 UnpackFFT
 UtopiaExamplesMultiUser_1

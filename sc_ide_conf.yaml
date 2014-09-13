@@ -59,22 +59,21 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAG3AAAAoQAACEYAAASgAAAAAAAAACoAAAMfAAAEFQAAAAACAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAmoAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAG0AAAATAD///8AAAOPAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFgAABl0AAAQVAAAAAAAAACwAAAZdAAAEFQAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAjkAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAcgAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAckAAAIJAAAATAD///8AAANlAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/mainERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/trackOSC_ERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Track01.scd
-    - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/Filters_ixi.sc
-    - /Users/omercho/Dropbox/SC/__SC2014/+44JUN/110824:1015_bells&echos_cottle.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain01.scd
-    - /Users/omercho/Dropbox/SC/~SoundIn/110809_flowSoundIn.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+    - /Users/omercho/Dropbox/SC/__SCVvarius/_Buffers/kakomiri.scd
+    - /Users/omercho/Dropbox/SC/__SC2011/+07MAR2011/ZKM1_workProgressPresentation/~giris.scd
+    - /Users/omercho/Dropbox/SC/~SynthDefs/110803_basi00.scd
+    - /Users/omercho/Dropbox/SC/~SynthDefs/110326_kare05.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCProjectGlobals.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/startupOC/MakamScaleInfo.scd
+    - /Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Collections/Scale.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI2Analogs.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

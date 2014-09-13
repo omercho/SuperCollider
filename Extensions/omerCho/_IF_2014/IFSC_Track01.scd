@@ -1,6 +1,8 @@
-~track1={
+IFSCTracks{
 
-	~track1Main.fork;
+*track1 = {
+
+	~IFMainTrack1.fork;
 
 	~togMain.free;
 	~togMain = OSCFunc({
@@ -240,6 +242,7 @@
 
 };
 
+}
 /*
 ~track1.fork;
 */
