@@ -169,11 +169,12 @@ IFOSC {
 
 			IFSCProjectGlobals.setTempo(msg[1]);
 			~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
-
+			~tOSCAdrr.sendMsg('tempoFader', msg[1]);
 
 			},
 			'/tempoFader'
 		);
+
 
 		~tmMulDrumBut.free;
 		~tmMulDrumBut= OSCFunc({

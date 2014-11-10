@@ -153,7 +153,7 @@ IFMain {
 //CH -2- [ HAT ]
 	~nt1Hat.source    =  Pseq([Pseq([~nt+0],3)], inf);
 	~amp1Hat.source   =  Pseq([0.8], inf);
-	~sus1Hat.source   =  Pseq([0.3], inf);
+	~sus1Hat.source   =  Pseq([0.1], inf);
 	~tmHat.source     =  Pseq([1], inf);
 	~lfo1Hat.source   =  Pseq([-3], inf);
 	~lfo2Hat.source   =  Pseq([4], inf);
@@ -185,27 +185,27 @@ IFMain {
 //////                                      - 1 -
 ~mainSet_01 = {
 //CH -0- [ KICK ]
-	~nt1Kick.source   =  Pseq([0, ~nt+12, ~nt+3, ~nt+6], inf);
+	~nt1Kick.source   =  Pseq([0, ~nt+0, ~nt+3, ~nt+0], inf);
 	~amp1Kick.source  =  Pseq([0.9], inf);
 	~sus1Kick.source  =  Pseq([0.9, 0.1, 0.7, 0.1], inf);
 	~tmKick.source    =  Pseq([1], inf);
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
 	~nt1Snr.source  =  Pseq([~nt+0, ~nt-2, ~nt+3, ~nt+0], inf);
-	~amp1Snr.source =  Pseq([ 0.0,0.0, 0.0,0.9], inf);
+	~amp1Snr.source =  Pseq([0.9], inf);
 	~sus1Snr.source =  Pseq([0.2, 0.2, 0.2, 0.3]*0.8, inf);
-	~tmSnr.source   =  Pseq([2], inf);
+	~tmSnr.source   =  Pseq([1], inf);
 	~dur1Snr.source =  Pseq([1], inf);
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //
 	~nt1Hat.source   = Pseq([Pseq([~nt+0,~nt+3],4),Pseq([~nt+1],8)], inf);
-	~amp1Hat.source  = Pseq([ 0.8, 0.6, 0.8,0.7], inf);
+	~amp1Hat.source  = Pseq([ 0.9], inf);
 	~sus1Hat.source  = Pseq([0.2, 0.1, 0.03, 0.1], inf);
-	~tmHat.source    = Pseq([Pseq([2,2,1,2], 4), Pseq([4], 2)], inf);
+	~tmHat.source    = Pseq([Pseq([2,2,1,2], 4), Pseq([2], 2)], inf);
 	~dur1Hat.source  = Pseq([1], inf);
 //CH -4- [Bass]
-	~nt1Bass.source   =   Pseq([Pseq([~nt+0, ~nt-3],8),Pseq([~nt+0, ~nt+7, ~nt+4, ~nt+10],1)], inf);
-	~amp1Bass.source  =  Pslide([0.9, 0.0, 0.8, 0.7, 0.0, 0.8],         inf, 3,1,0);
+	~nt1Bass.source   =  Pslide([~nt+0,~nt+1,~nt+7,~nt+0,~nt+1,~nt+0],  inf, 3,1,0);
+	~amp1Bass.source  =  Pslide([0.9, 0.0, 0.8, 0.7, 0.0, 0.8],         inf, 3,3,0);
 	~sus1Bass.source  =  Pslide([0.2, 0.3, 0.8, 0.7, 0.2, 0.1 ]*0.9,        inf, 3,1,0);
-	~tmBass.source    =  Pseq([2,1,2,2], inf);
+	~tmBass.source    =  Pseq([2,1,2,1], inf);
 	~dur1Bass.source  =  Pseq([1], inf);
 	~lfo1Bass.source =  Pseq([30,90,70,98, 0,110,60,20], inf);
 	~lfo2Bass.source =  Pseq([0,0,110,50], inf);

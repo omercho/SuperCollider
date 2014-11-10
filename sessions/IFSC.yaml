@@ -33,12 +33,12 @@ documents: !QVariantList
   - /Users/omercho/Dropbox/SC/~SynthDefs/110803_basi00.scd
   - /Users/omercho/Dropbox/SC/__SC2011/+07MAR2011/ZKM1_workProgressPresentation/~giris.scd
   - /Users/omercho/Dropbox/SC/__SCVvarius/_Buffers/kakomiri.scd
+  - /Users/omercho/Dropbox/SC/~SoundIn/audioinput.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/HusoAmplitude.scd
+  - /Users/omercho/Downloads/Rythym1.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
-      - !QVariantMap
-        documentIndex: 20
-        position: 589
       - !QVariantMap
         documentIndex: 19
         position: 46
@@ -48,9 +48,6 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 21
         position: 13664
-      - !QVariantMap
-        documentIndex: 27
-        position: 6832
       - !QVariantMap
         documentIndex: 28
         position: 149
@@ -70,49 +67,10 @@ editors: !QVariantMap
         documentIndex: 33
         position: 541
       - !QVariantMap
-        documentIndex: 22
-        position: 0
-      - !QVariantMap
-        documentIndex: 5
-        position: 541
-      - !QVariantMap
-        documentIndex: 7
-        position: 2160
-      - !QVariantMap
-        documentIndex: 8
-        position: 2343
-      - !QVariantMap
-        documentIndex: 25
-        position: 710
-      - !QVariantMap
-        documentIndex: 24
-        position: 138
-      - !QVariantMap
-        documentIndex: 23
-        position: 2532
-      - !QVariantMap
-        documentIndex: 0
-        position: 2537
-      - !QVariantMap
-        documentIndex: 3
-        position: 2325
-      - !QVariantMap
-        documentIndex: 4
-        position: 722
-      - !QVariantMap
-        documentIndex: 9
-        position: 3704
-      - !QVariantMap
         documentIndex: 10
         position: 118
       - !QVariantMap
-        documentIndex: 11
-        position: 3730
-      - !QVariantMap
         documentIndex: 12
-        position: 67
-      - !QVariantMap
-        documentIndex: 13
         position: 67
       - !QVariantMap
         documentIndex: 17
@@ -130,14 +88,68 @@ editors: !QVariantMap
         documentIndex: 2
         position: 577
       - !QVariantMap
+        documentIndex: 11
+        position: 5009
+      - !QVariantMap
+        documentIndex: 34
+        position: 18
+      - !QVariantMap
+        documentIndex: 25
+        position: 710
+      - !QVariantMap
+        documentIndex: 27
+        position: 6832
+      - !QVariantMap
+        documentIndex: 7
+        position: 1813
+      - !QVariantMap
+        documentIndex: 8
+        position: 2018
+      - !QVariantMap
+        documentIndex: 24
+        position: 293
+      - !QVariantMap
+        documentIndex: 13
+        position: 67
+      - !QVariantMap
+        documentIndex: 35
+        position: 652
+      - !QVariantMap
         documentIndex: 14
-        position: 3918
+        position: 225
+      - !QVariantMap
+        documentIndex: 22
+        position: 0
+      - !QVariantMap
+        documentIndex: 23
+        position: 910
+      - !QVariantMap
+        documentIndex: 4
+        position: 1429
+      - !QVariantMap
+        documentIndex: 3
+        position: 5620
+      - !QVariantMap
+        documentIndex: 5
+        position: 541
+      - !QVariantMap
+        documentIndex: 0
+        position: 5478
+      - !QVariantMap
+        documentIndex: 9
+        position: 1363
       - !QVariantMap
         documentIndex: 1
-        position: 5263
+        position: 3340
+      - !QVariantMap
+        documentIndex: 20
+        position: 13295
+      - !QVariantMap
+        documentIndex: 36
+        position: 6387
       - !QVariantMap
         documentIndex: 26
-        position: 2116
+        position: 1685
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap
