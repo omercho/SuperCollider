@@ -88,7 +88,7 @@ IFKeys_SC {
 
 				this.p1(val);
 
-				~durMulP*((~dur1SampP.next)/val).wait;
+				~durMulP*((~dur1KeysP.next)/val).wait;
 			}}.fork;
 		}
 

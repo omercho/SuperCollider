@@ -17,9 +17,11 @@ IFSCTracks{
 
 							//~md1Clock.play;
 							IFKick_SC(~tmMulKickP.next*~tmKickP.next);
-							IFSnr_SC(~tmMulSnrP.next*~tmSnrP.next);
-							IFHat_SC(~tmMulHatP.next*~tmHatP.next);
-
+							IFVKick_SC(~tmVKickP.next);
+							IFVSnr_SC(~tmVSnrP.next);
+							IFVTom_SC(~tmVTomP.next);
+							IFVHat_SC(~tmVHatP.next);
+							IFVPcm_SC(~tmVPcmP.next);
 							IFKeys_SC(~tmKeysP.next);
 							IFBass_SC(~tmBassP.next);
 							IFSamp_SC(~tmSampP.next);

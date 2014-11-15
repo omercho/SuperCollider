@@ -18,7 +18,7 @@ IFKick_SC {
 	*globals{
 
 		~kickCh=0;
-		~kickLate= 0.0;
+		~kickLate= 0.02;
 		~kickTimes=1;
 		~octMulKick=0;
 		~trKick=0;
@@ -40,10 +40,11 @@ IFKick_SC {
 
 			ses = LFPulse.ar(env1m, 0, 0.5, env, -0.5);
 			ses = (ses + WhiteNoise.ar(wnoise))*env;
-			ses = LPF.ar(ses, env1m, env);
+			ses = LPF.ar(ses, env1m, env)*0.8;
 			ses = ses + SinOsc.ar(env1m, 0.5, env);
-			ses = ses.clip2(2);
+			ses = ses.clip2(8);
 			ses = ses * mul;
+			ses = Limiter.ar(ses,0.9);
 			Out.ar(out, Pan2.ar(ses, pan, amp*1.1));
 		}).add;
 
@@ -75,8 +76,7 @@ IFKick_SC {
 		~transKickP = Pseq([~transKick], inf).asStream;
 		~octKick = PatternProxy( Pseq([3], inf));
 		~octKickP = Pseq([~octKick], inf).asStream;
-		//~legKick = PatternProxy( Pseq([0.0], inf));
-		//~legKickP = Pseq([~legKick], inf).asStream;
+
 		~strKick = PatternProxy( Pseq([1.0], inf));
 		~strKickP = Pseq([~strKick], inf).asStream;
 
@@ -104,7 +104,7 @@ IFKick_SC {
 
 					1.do{
 						~tOSCAdrr.sendMsg('kickLed', led);
-						~sus1Kick.asStream.value.wait;
+						2/~sus1Kick.asStream.value.wait;
 						~tOSCAdrr.sendMsg('kickLed', 0);
 					};
 
@@ -293,26 +293,7 @@ IFKick_SC {
 
 	}
 
-	*ctl_2 {
 
-
-	}
-
-	*ctl_3 {
-
-
-	}
-	*ctl_9 {
-
-
-
-	}
-
-	*ctl_18 {
-
-
-
-	}
 
 }
 

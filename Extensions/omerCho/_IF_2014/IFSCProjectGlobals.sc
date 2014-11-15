@@ -24,7 +24,7 @@
 				this.globals;
 				this.preSetAll;
 				this.setTempo(120);
-				Server.default.latency=0.0;
+				//Server.default.latency=0.0;
 			});
 		}
 	}

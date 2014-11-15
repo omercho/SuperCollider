@@ -88,7 +88,7 @@ IFBass_SC {
 
 				this.p1(val);
 
-				~durMulP*((~dur1SampP.next)/val).wait;
+				~durMulP*((~dur1BassP.next)/val).wait;
 			}}.fork;
 		}
 

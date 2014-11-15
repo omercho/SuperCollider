@@ -34,31 +34,28 @@ IFSamp_SC {
 	}
 
 	*preSet{
-		SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=1250, mul=0.7,
-			sin1 = 0, sin2 = 0.1, brown = 0.1, saw = 40, pan=0, cut1=1.05, gate=1,
+		SynthDef( \IFSamp_SC, { |out, amp = 0.9, susLev = 0.1, freq = 60, freqlp=1250, mul=0.4,
+			sin1 = 0, sin2 = 0.1, brown = 0.1, saw = 40, pan=0, cut1=0.05, gate=1,
 			lfo1Rate=1, lfo2Rate=2,
 			att = 0.05, dec=0.02, rel = 0.02 |
 
-			var in, osc, env,ses;
+			var in, osc, env,ses, vco1,vco2,vco3, mix1,mix2, filt1, filt2;
 			var lfo1, lfo2, decay, den;
-			lfo1 = Saw.kr(lfo1Rate).range(1.0, 14.2);
+			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+			lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 2.2);
 			lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
-			den =  LFSaw.ar(freq*lfo2, Decay.ar(SinOsc.ar(sin1, sin2), 1.2, Saw.ar(saw)));
-			env = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
-			decay = Decay2.ar(
-				SinOsc.ar(sin1, sin2),
-				LFSaw.ar(sin2, sin1),
-				Saw.ar(saw)
-			);
+			vco1=  LFSaw.ar(freq,cut1,amp*Saw.ar(saw)*lfo1);
+			vco2=  LFTri.ar(LFSaw.ar(freq, 1, brown), cut1);
+			vco3 = LFSaw.ar(freq+lfo1, cut1, amp);
 
-			in = LFSaw.ar(LFSaw.ar(freq, cut1, brown), cut1)*lfo2;
-			ses = SyncSaw.ar(freq, den, amp);
-			ses = RLPF.ar(Mix.ar(ses,in), freq*4, cut1, 0.3, 0.9);
-			ses = 0.8*(ses+LFSaw.ar(freq,cut1,amp));
+			mix1 = Mix.ar(vco1*1.0,vco2*1.1, vco3*0.9);
 
-			ses = DelayC.ar( ses, 0.01, 0.4*lfo2, 3.5.abs, 0.3, ses);
-			ses = (Mix.ar(ses*0.3,den*1.4,in*1.2)*amp*env);
-			//ses = Limiter.ar(ses, 0.9, 0.01);
+			filt1 = RLPF.ar(mix1, (freq*4)+lfo1, 1, amp);
+			filt2 = MoogFF.ar(mix1, (freq*2)+lfo1, amp+sin1);
+
+			mix2 = Mix.ar(filt1*0.3,filt2*0.9)*amp;
+
+			ses = Limiter.ar(mix2, 0.9, 0.01)*env;
 
 			Out.ar(out, Pan2.ar(ses, pan, mul));
 		}).add;
@@ -77,16 +74,16 @@ IFSamp_SC {
 		~sus1Samp = PatternProxy( Pseq([1], inf));
 		~sus1SampP = Pseq([~sus1Samp], inf).asStream;
 
-		~attSamp=0.1;
-		~decSamp=0.8;
+		~attSamp=0.01;
+		~decSamp=0.2;
 		~susLevSamp=0.1;
-		~relSamp = 0.2;
-		~lfoMulSamp=0;
-		~cutSamp=1;
+		~relSamp = 0.1;
+		~lfoMulSamp=1.05;
+		~cutSamp=0.1;
 		~brownSamp=1.0;
-		~sawSamp=0.11;
-		~sin1Samp=0.1;
-		~sin2Samp=2.1;
+		~sawSamp=0.01;
+		~sin1Samp=10.1;
+		~sin2Samp=90.1;
 		~tmSamp = PatternProxy( Pseq([1], inf));
 		~tmSampP= Pseq([~tmSamp], inf).asStream;
 
@@ -152,7 +149,7 @@ IFSamp_SC {
 			\att, ~attSamp,
 			\dec, ~decSamp,
 			\susLev, ~susLevSamp,
-			\rel, ~relHat,
+			\rel, ~relSamp,
 			\lfo1Rate, ~lfo1SampP*~lfoMulSamp,
 			\lfo2Rate, ~lfo2SampP*~lfoMulSamp,
 			\group, ~piges,
@@ -171,7 +168,7 @@ IFSamp_SC {
 		\mtranspose, Pseq([~transSampP.next], 1)+~trSamp,
 		\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
 		\harmonic, Pseq([~strSampP.next], 1)+~harmSamp
-		).play;
+		).play;*/
 
 		Pbind(//LFO 1
 		\type, \midi, \midicmd, \control,
@@ -187,7 +184,7 @@ IFSamp_SC {
 		\delta, Pseq([~delta2SampP.next], 2),
 		\control, Pseq([~lfo2SampP.next], 2)*~lfoMulSamp,
 
-		).play;*/
+		).play;
 
 		//this.count2;
 		//this.timesCount;
@@ -202,7 +199,7 @@ IFSamp_SC {
 
 
 			~sin1Samp=msg[1];
-			~sin2Samp=msg[2];
+			~sin2Samp=msg[2]+~sin1Samp;
 
 			},
 			'/xy1Samp'

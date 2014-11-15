@@ -10,8 +10,8 @@ VKeys {
 
 	*globals{
 
-		~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 2");
-
+		//~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 2");
+		~vKeys = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
 
 		//~vKeys = MIDIOut.newByName("IAC Driver", "SC-Abl");
 

@@ -67,8 +67,8 @@ IFSC_MIDI {
 
 	*latency{
 
-		~vBass.latency=0.0;
-		~vKeys.latency=0.0;
+		~grp1=0.02;Server.default.latency=~grp1;~vBeats.latency=0.0;~vBass.latency=~grp1;~vKeys.latency=~grp1;
+
 
 	}
 

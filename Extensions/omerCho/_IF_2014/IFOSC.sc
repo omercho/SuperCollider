@@ -38,16 +38,7 @@ IFOSC {
 		~volKickFad= OSCFunc({
 			arg msg; ~vKickSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volKick', msg[1]);
 		}, '/volKick');
-		//-------------------------------------------
-		~volSnrFad.free;
-		~volSnrFad= OSCFunc({
-			arg msg; ~vSnrSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volSnr', msg[1]);
-		}, '/volSnr');
-		//-------------------------------------------
-		~volHatFad.free;
-		~volHatFad= OSCFunc({
-			arg msg; ~vHatSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volHat', msg[1]);
-		}, '/volHat');
+
 		//-------------------------------------------
 		~volBassFad.free;
 		~volBassFad= OSCFunc({
@@ -87,9 +78,7 @@ IFOSC {
 
 							//~md1Clock.play;
 							IFKick_SC(~tmMulKickP.next*~tmKickP.next);
-							IFSnr_SC(~tmMulSnrP.next*~tmSnrP.next);
-							IFHat_SC(~tmMulHatP.next*~tmHatP.next);
-
+							IFBeats_SC(~tmBeatsP.next);
 							IFKeys_SC(~tmKeysP.next);
 							IFBass_SC(~tmBassP.next);
 							IFSamp_SC(~tmSampP.next);
@@ -679,7 +668,7 @@ IFOSC {
 			arg msg;
 			if ( msg[1]==1, {
 				"Harmonic 0".postln;
-				~harmKick=0;~harmSnr=0;~harmHat=0;
+				~harmKick=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0;
 				//~tOSCAdrr.sendMsg('noteLabel', '0');
 			});
@@ -692,8 +681,7 @@ IFOSC {
 		~noteFader= OSCFunc({
 			arg msg;
 
-			~transKick.source=msg[1];~transSnr.source=msg[1];~transHat.source=msg[1];
-			//~transBass.source=msg[1];~transKeys.source=msg[1];~transSamp.source=msg[1];
+			~transKick.source=msg[1];~transSamp.source=msg[1];
 
 			~tOSCAdrr.sendMsg('noteLabel', msg[1]);
 			},

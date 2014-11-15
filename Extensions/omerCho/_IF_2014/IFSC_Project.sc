@@ -39,17 +39,17 @@ IFSC {
 
 	//---------Buses-----//
 	*loadBuses {
-		~busKick = Bus.new(\audio, 20, 2);
-		~busSnr = Bus.new(\audio, 22, 2);
-		~busHat = Bus.new(\audio, 24, 2);
+
+		~busBeats = Bus.new(\audio, 24, 2);
 		~busBass = Bus.new(\audio, 26, 2);
 		~busKeys = Bus.new(\audio, 28, 2);
-		~busSamp = Bus.new(\audio, 30, 2);
-		~revBus = Bus.new(\audio, 32, 2);
-		~dlyBus = Bus.new(\audio, 34, 2);
-		~limBus = Bus.new(\audio, 40, 2);
-		~floBus = Bus.new(\audio, 42, 2);
-		~clnBus = Bus.new(\audio, 44, 2);
+		~busKick = Bus.new(\audio, 30, 2);
+		~busSamp = Bus.new(\audio, 32, 2);
+		~revBus = Bus.new(\audio, 34, 2);
+		~dlyBus = Bus.new(\audio, 36, 2);
+		~limBus = Bus.new(\audio, 38, 2);
+		~floBus = Bus.new(\audio, 40, 2);
+		~clnBus = Bus.new(\audio, 42, 2);
 		"buses loaded".postln;
 
 	}
@@ -57,8 +57,8 @@ IFSC {
 	*unLoadBuses {
 
 		~busKick.free;
-		~busSnr.free;
-		~busHat.free;
+
+		~busBeats.free;
 		~busBass.free;
 		~busKeys.free;
 		~busSamp.free;
@@ -75,30 +75,12 @@ IFSC {
 	*loadEffects {
 
 
-		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
-			var input;
-			input=In.ar(in,2);
-			input=Pan2.ar(input, 0)*vol;
-			Out.ar(out1, input*mtCln);
-			Out.ar(out2, input*mtDly);
-			Out.ar(out3, input*mtRev);
-			Out.ar(out4, input*mtFlo);
-		}).send(Server.default);
 
-		SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
-			var input;
-			input=In.ar(in,2);
-			input=Pan2.ar(input, 0)*vol;
-			Out.ar(out1, input*mtCln);
-			Out.ar(out2, input*mtDly);
-			Out.ar(out3, input*mtRev);
-			Out.ar(out4, input*mtFlo);
-		}).send(Server.default);
 
-		SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
-			var input;
-			input=In.ar(in,2);
-			input=Pan2.ar(input, 0)*vol;
+		SynthDef(\vBeatsInput, {|out1,out2, out3, out4, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input, ctl;
+			input=SoundIn.ar(1,0.9,0);
+			input= Pan2.ar(input, pan)*2*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
 			Out.ar(out3, input*mtRev);
@@ -120,6 +102,16 @@ IFSC {
 			var input;
 			input=SoundIn.ar(3,0.9,0);
 			input= Pan2.ar(input, pan)*2*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
 			Out.ar(out3, input*mtRev);
@@ -214,6 +206,9 @@ IFSC {
 
 	*playEffects {
 
+		~vBeatsSynth = Synth.head(~piges, \vBeatsInput,[
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
 		~vBassSynth = Synth.head(~piges, \vBassInput,[
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
@@ -221,12 +216,6 @@ IFSC {
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
 		~vKickSynth = Synth.tail(~effe, \vKickInput,[\in,~busKick,
-			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
-		]);
-		~vSnrSynth = Synth.tail(~effe, \vSnrInput,[\in,~busSnr,
-			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
-		]);
-		~vHatSynth = Synth.tail(~effe, \vHatInput,[\in,~busHat,
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
 		~vSampSynth = Synth.tail(~effe, \vSampInput,[\in,~busSamp,
@@ -243,11 +232,10 @@ IFSC {
 
 	*stopEffects {
 
+		~vBeatsSynth.free;
 		~vBassSynth.free;
 		~vKeysSynth.free;
 		~vKickSynth.free;
-		~vSnrSynth.free;
-		~vHatSynth.free;
 		~vSampSynth.free;
 		~cln.free;
 		~dly.free;
@@ -258,18 +246,7 @@ IFSC {
 	}
 
 
-	*loadInstruments {
 
-		JODABaxx.load;
-		JODAFlowJer.load;
-		JODAFlowMic.load;
-		JODAKaos.load;
-		JODAMicPat.load;
-		JODANeyDef.load;
-		JODARecs.load;
-		JODATapBuf.load;
-
-	}
 
 
 

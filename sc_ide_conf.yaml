@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFgAABl0AAAQVAAAAAAAAACwAAAZdAAAEFQAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAjkAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAcgAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAckAAAIJAAAATAD///8AAANlAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAG3AAAAoQAACEYAAASgAAAAAAAAACoAAAMfAAAEFQAAAAACAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAqEAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAekAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAeoAAAHoAAAATAD///8AAAMvAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Downloads/Rythym1.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/HusoAmplitude.scd
-    - /Users/omercho/Dropbox/SC/~SoundIn/audioinput.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTomL_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFvKick_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/vBeatsErg.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/VBeats_SC.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+    - /Users/omercho/Downloads/Rythym1.scd
+    - /Users/omercho/Dropbox/SC/~SoundIn/audioinput.scd
     - /Users/omercho/Dropbox/SC/__SCVvarius/_Buffers/kakomiri.scd
     - /Users/omercho/Dropbox/SC/__SC2011/+07MAR2011/ZKM1_workProgressPresentation/~giris.scd
-    - /Users/omercho/Dropbox/SC/~SynthDefs/110803_basi00.scd
-    - /Users/omercho/Dropbox/SC/~SynthDefs/110326_kare05.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/SamplePlayers/Kaffer/KafferPan2.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/startupOC/MakamScaleInfo.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H
