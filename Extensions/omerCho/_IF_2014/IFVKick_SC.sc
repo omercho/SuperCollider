@@ -13,7 +13,7 @@ IFVKick_SC {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});
+			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});*/
 		}
 	}
 
@@ -35,7 +35,7 @@ IFVKick_SC {
 
 	*default {
 
-		~nt1VKick = PatternProxy( Pseq([0], inf));
+		~nt1VKick = PatternProxy( Pseq([~vKick], inf));
 		~nt1VKickP = Pseq([~nt1VKick], inf).asStream;
 		~dur1VKick = PatternProxy( Pseq([1], inf));
 		~dur1VKickP = Pseq([~dur1VKick], inf).asStream;

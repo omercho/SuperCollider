@@ -214,7 +214,67 @@ IFSCTracks{
 			'/durMul1'
 		);
 
-
+		//SCALES
+		~scale_1.free;
+		~scale_1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.phrygian;~scl2= Scale.phrygian;
+				~tOSCAdrr.sendMsg('scaleLabel', 'Phrygian');
+			});
+			},
+			'/scale1'
+		);
+		~scale_2.free;
+		~scale_2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.major;~scl2= Scale.major;
+				~tOSCAdrr.sendMsg('scaleLabel', 'major');
+			});
+			},
+			'/scale2'
+		);
+		~scale_3.free;
+		~scale_3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.zhi;~scl2= Scale.zhi;
+				~tOSCAdrr.sendMsg('scaleLabel', 'zhi');
+			});
+			},
+			'/scale3'
+		);
+		~scale_4.free;
+		~scale_4= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.chinese;~scl2= Scale.chinese;
+				~tOSCAdrr.sendMsg('scaleLabel', 'chinese');
+			});
+			},
+			'/scale4'
+		);
+		~scale_5.free;
+		~scale_5= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.minor;~scl2= Scale.minor;
+				~tOSCAdrr.sendMsg('scaleLabel', 'minor');
+			});
+			},
+			'/scale5'
+		);
+		~scale_6.free;
+		~scale_6= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
+				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
+			});
+			},
+			'/scale6'
+		);
 
 		//PRESETS
 

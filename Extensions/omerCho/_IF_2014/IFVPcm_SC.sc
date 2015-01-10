@@ -210,11 +210,11 @@ IFVPcm_SC {
 		'/vBeatsLevels/10'
 	);
 
-	~decVHatMulFad.free;
-	~decVHatMulFad= OSCFunc({
+	~spdVHatMulFad.free;
+	~spdVHatMulFad= OSCFunc({
 		arg msg;
 
-		~decVHatMul=msg[1];
+		~spdVHatMul=msg[1];
 		~tOSCAdrr.sendMsg('/spdVClap', msg[1]);
 		},
 		'/spdVClap'

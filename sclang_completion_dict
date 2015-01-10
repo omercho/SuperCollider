@@ -3,6 +3,7 @@ APF
 AllpassC
 AllpassL
 AllpassN
+AmbiantPresentation2014Review
 AmpComp
 AmpCompA
 Amplitude
@@ -49,6 +50,7 @@ BufRd
 BufSampleRate
 BufSamples
 BufWr
+BufferPatternFFT
 CCAllocator
 CControl
 COsc
@@ -671,6 +673,7 @@ mainERG
 makarnaTryOut
 playImages
 sFSyncAction01
+send2ableton
 sendMitsDoepfer
 singleRutines
 singleRutines2

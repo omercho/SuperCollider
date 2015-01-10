@@ -4,14 +4,14 @@ VKeys {
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet01; });
+		/*Server.default.doWhenBooted({ this.globals; this.preSet01; });*/
 		}
 	}
 
 	*globals{
 
-		//~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 2");
-		~vKeys = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
+		~vKeys = MIDIOut.newByName("MIDIMATE II", "Port 2");
+		//~vKeys = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
 
 		//~vKeys = MIDIOut.newByName("IAC Driver", "SC-Abl");
 

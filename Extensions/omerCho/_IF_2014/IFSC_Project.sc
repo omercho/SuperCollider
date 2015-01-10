@@ -3,6 +3,9 @@
 /*
 IFSC.loadGroups;
 IFSC.loadBuses;
+
+
+
 */
 
 
@@ -77,10 +80,10 @@ IFSC {
 
 
 
-		SynthDef(\vBeatsInput, {|out1,out2, out3, out4, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vBeatsInput, {|out1,out2, out3, out4, vol=0.9, pan=0.3,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 			var input, ctl;
 			input=SoundIn.ar(1,0.9,0);
-			input= Pan2.ar(input, pan)*2*vol;
+			input= Pan2.ar(input, SinOsc.kr(pan).range(-0.5, 0.5);)*2*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
 			Out.ar(out3, input*mtRev);
@@ -98,10 +101,10 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0.5,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
 			var input;
 			input=SoundIn.ar(3,0.9,0);
-			input= Pan2.ar(input, pan)*2*vol;
+			input= Pan2.ar(input, SinOsc.kr(pan).range(-0.7, 0.7);)*2*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
 			Out.ar(out3, input*mtRev);

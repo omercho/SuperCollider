@@ -2,14 +2,14 @@ IFSC_MIDI {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({
+			/*Server.default.doWhenBooted({
 				this.midiAdrr;
 				1.2.wait;
 				this.vBass;
 				this.vKeys;
 				this.latency;
 
-			});
+			});*/
 		}
 	}
 

@@ -11,7 +11,7 @@
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({
+			/*Server.default.doWhenBooted({
 				0.5.wait;
 				IFSC.loadGroups;
 				0.25.wait;
@@ -25,7 +25,7 @@
 				this.preSetAll;
 				this.setTempo(120);
 				//Server.default.latency=0.0;
-			});
+			});*/
 		}
 	}
 

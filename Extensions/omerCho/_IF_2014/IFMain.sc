@@ -111,11 +111,9 @@ VBass.killAll; VKeys.killAll;
 IFMain {
 *mainTrack1 {
 "IF Main Track 1 loaded".postln;
-~scl1= Scale.phrygian;~scl2= Scale.phrygian;
-~tOSCAdrr.sendMsg('scaleLabel', 'Phrygian');
+~scl1= Scale.phrygian;~scl2= Scale.phrygian; ~tOSCAdrr.sendMsg('scaleLabel', 'Phrygian');
 
-~tmp1=126;
-~tOSCAdrr.sendMsg('tempoLabel', '126');
+~tmp1=126; ~tOSCAdrr.sendMsg('tempoLabel', '126');
 ~nt=(0);
 
 ~dur = PatternProxy( Pseq([1], inf));
@@ -139,25 +137,22 @@ IFMain {
 //////                                     - 0 -
 ~mainSet_00 = {
 //CH -0- [ BEATS ]
-	//~nt1Beats.source   =  Pseq([~vKick,~vSnr,~vTomL,~vTomH,~vHatCl,~vHatOp,~vClap], inf);
-	~nt1VKick.source   =  Pseq([~vKick], inf);
-	~amp1VKick.source  =  Pseq([1,0,1,1], inf);
+	~amp1VKick.source  =  Pseq([1,0,1,0], inf);
 	~tmVKick.source    =  Pseq([1], inf);
-	~levVKick.source    =  Pseq([0.9, 0.4, 1,0.5], inf);
+	~levVKick.source    =  Pseq([0.9, 0.4, 0.7, 0.5], inf);
 
-	~nt1VSnr.source   =  Pseq([~vSnr], inf);
 	~amp1VSnr.source  =  Pseq([1,0,1,0,0,1,0], inf);
 	~tmVSnr.source    =  Pseq([1, 1, 1,1,1,1,1,2], inf);
 	~levVSnr.source    =  Pseq([1, 0.9, 0.6, 0.4], inf);
 
-	~nt1VTom.source   =  Pxrand([[~vTomL,~vTomH],~vTomH,~vTomL], inf);
+	~nt1VTom.source   =  Pxrand([[~vTomL,~vTomH],~vTomH,~vTomL, ~vTomH], inf);
 	~amp1VTom.source  =  Pseq([1, 0, 1, 1, 0, 0], inf);
 	~tmVTom.source    =  Pseq([1,1,2,1,1,2,2,1,2], inf);
 	~levVTomL.source  =  Pseq([ 0.3, 0.8, 0.3, 0.2], inf);
 	~levVTomH.source  =  Pseq([ 0.8, 0.2, 0.9, 0.5], inf);
 	~decVTom.source   =  Pseq([ 0.5, 0.4, 0.6, 0.5], inf);
 
-	~nt1VHat.source   =  Pxrand([[~vHatC,~vHatO],Pseq([~vHatC],5),~vHatO,Pseq([~vHatC],5)],inf);
+	~nt1VHat.source   =  Pseq([[~vHatC,~vHatO],Pseq([~vHatC],5),~vHatO,Pseq([~vHatC],9)],inf);
 	~amp1VHat.source  =  Pseq([1, 1, 1, 0, 1], inf);
 	~tmVHat.source    =  Pseq([2,2,2,2,1,4,1], inf);
 	~levVHatC.source  =  Pseq([ 1], inf);
@@ -166,13 +161,11 @@ IFMain {
 	~decVHatO.source   =  Pseq([ 0.2, 0.4, 0.6, 0.5], inf);
 
 	~nt1VPcm.source = Pxrand([
-				[~vCrsh,~vCalv,~vClap],
-				Pseq([~vCalv,~vAgog],5),
-				[~vCalv,~vAgog,~vClap],
-				Pseq([~vCalv],5),
-				~vCrsh],inf);
+				[~vCrsh,~vCalv,~vClap],Pseq([~vCalv,~vAgog],6),
+				[~vCalv,~vAgog,~vClap],Pseq([~vCalv],7),~vCrsh
+			],inf);
 	~amp1VPcm.source  =  Pseq([0, 1, 1, 0, 0,1,0], inf);
-	~tmVPcm.source    =  Pseq([1,2,1,1,1,2,1], inf);
+	~tmVPcm.source    =  Pseq([1,2,1,1,1,2,1]*1, inf);
 	~levVClap.source  =  Pseq([ 1,0.6, 0.8, 0.2], inf);
 	~spdVClap.source   =  Pseq([ 0.1, 0.9, 0.5], inf);
 	~levVCalv.source  =  Pseq([ 1,0.5, 0.3], inf);
@@ -183,8 +176,8 @@ IFMain {
 	~spdVCrsh.source   =  Pseq([ 0.1, 0.9, 0.6, 0.2], inf);
 
 //CH -0- [ KICK ]
-	~nt1Kick.source   =  Pseq([0,15,20,5], inf);
-	~amp1Kick.source  =  Pseq([0.9], inf);
+	~nt1Kick.source   =  Pseq([10,15,20,5], inf);
+	~amp1Kick.source  =  Pseq([0.9, 0.2, 0], inf);
 	~sus1Kick.source  =  Pseq([0.1], inf);
 	~tmKick.source    =  Pseq([1], inf);
 
@@ -196,20 +189,21 @@ IFMain {
 	~lfo1Bass.source  =  Pseq([0], inf);
 	~lfo2Bass.source  =  Pseq([0], inf);
 //CH -5- [Keys]
-	~nt1Keys.source   =  Pseq([Pseq([~nt+0],12)], inf);
+	~nt1Keys.source   =  Pseq([Pseq((0..7),1)], inf);
 	~amp1Keys.source  =  Pseq([Pseq([0.9, 0.6],8),Pseq([0.9, 0.7],2)], inf);
 	~sus1Keys.source  =  Pseq([Pseq([0.2],8)], inf);
-	~tmKeys.source    =  Pseq([2], inf);
+	~tmKeys.source    =  Pseq([1], inf);
 	~lfoRtKeys.source =  Pseq([94, 94, 95, 98, 94, 120], inf);
 	~lfoCtKeys.source =  Pseq([110, 100], inf);
 	~vcfCtKeys.source =  Pseq([120], inf);
 //CH -6- [SAMP]
-	~nt1Samp.source   =  Pseq([Pseq([~nt+0, ~nt-7],8),Pseq([~nt+2, ~nt+3],2)], inf);
+			~bufnumSamp.source=  Pseq([Pseq([[~p01,~p02, ~p03] ],1)], inf);
+	~nt1Samp.source   =  Pseq([Pseq((0..7),1)], inf);
 	~amp1Samp.source  =  Pseq([Pseq([0.9, 0.6],8),Pseq([0.9, 0.7],2)], inf);
-	~sus1Samp.source  =  Pseq([Pseq([0.2, 0.1],8),Pseq([0.3, 0.2],2)], inf);
+	~sus1Samp.source  =  Pseq([Pseq([0.2],8)], inf);
 	~tmSamp.source    =  Pseq([2], inf);
-	~lfo1Samp.source  =  Pseq([90,112,70,98, 80,110,67,120], inf);
-	~lfo2Samp.source  =  Pseq([60,120,80,100], inf);
+	~lfo1Samp.source  =  Pseq([1], inf);
+	~lfo2Samp.source  =  Pseq([1], inf);
 };
 //////                                      - 0 -
 
@@ -250,13 +244,14 @@ IFMain {
 	~lfoCtKeys.source =  Pseq([0,0,0,0,120], inf);
 	~vcfCtKeys.source =  Pseq([50,30,10,20,120], inf);
 //CH -6- [SAMP]
+	~bufnumSamp.source=  Pseq([Pxrand([[~p02,~n01],~p02,~n02,~n03 ],4)], inf);
 	~nt1Samp.source   =  Pslide([~nt+0,~nt+1,~nt+1,~nt+0,~nt+1,~nt+0],  inf, 3,1,0);
 	~amp1Samp.source  =  Pslide([0.9, 0.0, 0.8, 0.7, 0.0, 0.8]*0.8,         inf, 3,3,0);
 	~sus1Samp.source  =  Pslide([0.8, 0.3, 0.6, 0.7, 0.2, 0.2 ],        inf, 3,2,0);
 	~tmSamp.source    =  Pseq([1,2,2,2], inf);
 	~dur1Samp.source  =  Pseq([1], inf);
-	~lfo1Samp.source =  Pseq([90,112,70,98, 80,110,67,120], inf);
-	~lfo2Samp.source =  Pseq([60,120,80,100], inf);
+	~lfo1Samp.source =  Pseq([9,1,7,9, 8,10,7,1], inf);
+	~lfo2Samp.source =  Pseq([6,1,8,0.1], inf);
 };
 //////                                      - 1 -
 

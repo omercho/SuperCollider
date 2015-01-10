@@ -4,7 +4,7 @@ VBass {
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet01; });
+		/*Server.default.doWhenBooted({ this.globals; this.preSet01; });*/
 		}
 	}
 
@@ -60,9 +60,9 @@ VBass {
 		~vBass.control(0, ~lfoInt, 0);
 
 
-		~vBass.control(0, ~vcoPitch1, 0); // VCO1
-		~vBass.control(0, ~vcoPitch2, 32); //VCO2
-		~vBass.control(0, ~vcoPitch3, 94); //VCO3
+		~vBass.control(0, ~vcoPitch1, 66); // VCO1
+		~vBass.control(0, ~vcoPitch2, 0); //VCO2
+		~vBass.control(0, ~vcoPitch3, 127); //VCO3
 
 		~vBass.control(0, ~egAtt, 0);
 		~vBass.control(0, ~egDec, 120); //LFO Pitch Intencity
@@ -84,8 +84,8 @@ VBass {
 		~vBass.control(0, ~slideTime, 0); // portamento
 		~vBass.control(0, ~vcoPitch1, 0); // VCOsculator Envelope Intencity
 
-		~vBass.control(0, ~vcoPitch2, 50); //VCFilter CutOff
-		~vBass.control(0, ~vcoPitch3, 75); //VCFilter Envelope Intencity
+		~vBass.control(0, ~vcoPitch2, 0); //VCFilter CutOff
+		~vBass.control(0, ~vcoPitch3, 127); //VCFilter Envelope Intencity
 
 		~vBass.control(0, ~egAtt, 0); //LFO Rate
 		~vBass.control(0, ~egDec, 0); //LFO Pitch Intencity

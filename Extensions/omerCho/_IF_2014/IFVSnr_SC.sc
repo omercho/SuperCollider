@@ -16,7 +16,7 @@ IFVSnr_SC {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});
+			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});*/
 		}
 	}
 
@@ -38,7 +38,7 @@ IFVSnr_SC {
 
 	*default {
 
-		~nt1VSnr = PatternProxy( Pseq([0], inf));
+		~nt1VSnr = PatternProxy( Pseq([~vSnr], inf));
 		~nt1VSnrP = Pseq([~nt1VSnr], inf).asStream;
 		~dur1VSnr = PatternProxy( Pseq([1], inf));
 		~dur1VSnrP = Pseq([~dur1VSnr], inf).asStream;

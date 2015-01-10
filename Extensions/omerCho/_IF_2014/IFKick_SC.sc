@@ -11,7 +11,7 @@ IFKick_SC {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc; });
+			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc; });*/
 		}
 	}
 
@@ -141,7 +141,7 @@ IFKick_SC {
 			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick*~susTD,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\harmonic, Pseq([~strKickP.next], 1)+~harmKick,
-			\pan, 0,
+			\pan, Pbrown(-0.4, 0.4, 0.125, inf),
 			\att, ~attKick,
 			\dec, ~decKick,
 			\rel, ~relKick,

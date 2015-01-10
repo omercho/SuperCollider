@@ -15,7 +15,7 @@ IFKeys_SC {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet; this.default;this.osc; });
+			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default;this.osc; });*/
 		}
 	}
 

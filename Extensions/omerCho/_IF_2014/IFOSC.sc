@@ -2,7 +2,7 @@ IFOSC {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({
+			/*Server.default.doWhenBooted({
 				1.0.wait;
 				this.globals;
 				this.mulFaders;
@@ -18,15 +18,17 @@ IFOSC {
 				this.trans;
 
 
-			});
+			});*/
 		}
 	}
 
 	*globals {
 
 		//~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // create the NetAddr
-		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
+		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // router OTE
 		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("169.254.108.24", 57130); // vaggelisLocalNetwork
 
 
 	}
@@ -65,42 +67,6 @@ IFOSC {
 
 	*main {
 
-		~togMain.free;
-		~togMain = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"IF Main PLAY".postln;
-				~mainSet_00.fork(quant:0);
-				~ifPlay={|tm=4|
-
-					inf.do{
-						1.do {
-
-							//~md1Clock.play;
-							IFKick_SC(~tmMulKickP.next*~tmKickP.next);
-							IFBeats_SC(~tmBeatsP.next);
-							IFKeys_SC(~tmKeysP.next);
-							IFBass_SC(~tmBassP.next);
-							IFSamp_SC(~tmSampP.next);
-
-							~durMul*((~durP.next)).wait;
-						};
-					};
-
-				}.fork;
-
-
-			});
-
-			if ( msg[1]==0, {
-				"IF Main STOP".postln;
-				~ifPlay.stop;
-				//~md1Clock.stop;
-
-			});
-			},
-			'/1/toggleMain'
-		);
 
 		~cutAllXY.free;
 		~cutAllXY= OSCFunc({
@@ -175,6 +141,26 @@ IFOSC {
 			},
 			'/tmMulDrum'
 		);
+		~killAllBut.free;
+		~killAllBut= OSCFunc({
+			arg msg;
+			if(msg[1]==1,{
+				{"TRUE".postln;
+				IFSC.stopEffects;
+				IFSC.unLoadBuses;
+				IFSC.unLoadGroups;}.fork
+				},{
+					{"FALSE".postln;
+					IFSC.loadGroups;
+					IFSC.loadBuses;
+					IFSC.playEffects;}.fork;
+
+			});
+
+			},
+			'/killAll'
+		);
+
 
 		~recordBut.free;
 		~recordBut = OSCFunc({
@@ -191,66 +177,7 @@ IFOSC {
 			'/record'
 		);
 
-		~scale_1.free;
-		~scale_1= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.phrygian;~scl2= Scale.phrygian;
-				~tOSCAdrr.sendMsg('scaleLabel', 'Phrygian');
-			});
-			},
-			'/scale1'
-		);
-		~scale_2.free;
-		~scale_2= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
-				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
-			});
-			},
-			'/scale2'
-		);
-		~scale_3.free;
-		~scale_3= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.zhi;~scl2= Scale.zhi;
-				~tOSCAdrr.sendMsg('scaleLabel', 'zhi');
-			});
-			},
-			'/scale3'
-		);
-		~scale_4.free;
-		~scale_4= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.chinese;~scl2= Scale.chinese;
-				~tOSCAdrr.sendMsg('scaleLabel', 'chinese');
-			});
-			},
-			'/scale4'
-		);
-		~scale_5.free;
-		~scale_5= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
-				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
-			});
-			},
-			'/scale5'
-		);
-		~scale_6.free;
-		~scale_6= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~scl1= Scale.majorPentatonic;~scl2= Scale.majorPentatonic;
-				~tOSCAdrr.sendMsg('scaleLabel', 'majorPentatonic');
-			});
-			},
-			'/scale6'
-		);
+
 
 		~trackOSC_1.free;
 		~trackOSC_1= OSCFunc({

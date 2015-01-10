@@ -4,15 +4,15 @@ VBeats {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet01; this.oscMIDI });
+			/*Server.default.doWhenBooted({ this.globals; this.preSet01; this.oscMIDI });*/
 		}
 	}
 
 	*globals{
 
-		~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
+		//~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vBeats = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		//~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
+		~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
 
 		//~vBeats = MIDIOut.newByName("", "SC-Abl");
 

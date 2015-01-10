@@ -1,0 +1,24 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/send2ableton.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Ableton_ClockFromAbleton.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Traktor_ClockFromTraktor.scd
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 2
+        position: 620
+      - !QVariantMap
+        documentIndex: 1
+        position: 1562
+      - !QVariantMap
+        documentIndex: 0
+        position: 660
+  state: AAAA/wAAAAAAAAABAAAAZAEAAAABAQAAAAE=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAAAAAAFgAABokAAAP/AAAAAAAAACwAAAaJAAAD/wAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADvPwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADvAAAAGYA////AAAAAQAAArkAAAO8/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAjoAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAjsAAAGBAAAATAD///8AAAM6AAADvAAAAAEAAAACAAAAAQAAAAL8AAAAAA==

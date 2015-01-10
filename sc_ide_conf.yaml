@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAG3AAAAoQAACEYAAASgAAAAAAAAACoAAAMfAAAEFQAAAAACAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGYA////AAAAAQAAAqEAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAekAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAeoAAAHoAAAATAD///8AAAMvAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFgAABokAAAP/AAAAAAAAACwAAAaJAAAD/wAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAADvPwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADvAAAAGYA////AAAAAQAAArkAAAO8/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAjoAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAjsAAAGBAAAATAD///8AAAM6AAADvAAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTomL_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFvKick_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/vBeatsErg.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/VBeats_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC.sc
-    - /Users/omercho/Downloads/Rythym1.scd
-    - /Users/omercho/Dropbox/SC/~SoundIn/audioinput.scd
-    - /Users/omercho/Dropbox/SC/__SCVvarius/_Buffers/kakomiri.scd
-    - /Users/omercho/Dropbox/SC/__SC2011/+07MAR2011/ZKM1_workProgressPresentation/~giris.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Traktor_ClockFromTraktor.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Ableton_ClockFromAbleton.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/send2ableton.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/UMA_MIDI_Instruments.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_HUSO_TD3/TD3MIDI_01.scd
+    - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131211_midiTraktor_01.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCLoad.sc
+    - /Users/omercho/Dropbox/SC/~CoolZounds/GVerb01_100228.scd
+    - /Users/omercho/Dropbox/SC/~CoolZounds/atesProduct_100301_01.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H
