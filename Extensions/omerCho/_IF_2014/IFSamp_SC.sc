@@ -80,14 +80,14 @@ IFSamp_SC {
 
 
 *default {
-		~n01.free;~n01 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/athm01.aif");
-		~n02.free;~n02 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/athm01R.aif");
-		~n03.free;~n03 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/athm02.aif");
-		~n04.free;~n04 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/athm02R.aif");
-		~p01.free;~p01 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/piano01.aif");
-		~p02.free;~p02 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/sop01.aif");
-		~p03.free;~p03 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/dop01.aif");
-		~p04.free;~p04 = Buffer.read(Server.default, "sounds/_IFSC_Sounds/dop01r.aif");
+		~n01.free;~n01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01.aif");
+		~n02.free;~n02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01R.aif");
+		~n03.free;~n03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02.aif");
+		~n04.free;~n04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02R.aif");
+		~p01.free;~p01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/piano01.aif");
+		~p02.free;~p02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/sop01.aif");
+		~p03.free;~p03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01.aif");
+		~p04.free;~p04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01r.aif");
 		//~samplerEvent = Event.default.put(\freq, { ~midinote.midicps / ~sampleBaseFreq });
 
 	~nt1Samp = PatternProxy( Pseq([0], inf));
