@@ -7,14 +7,17 @@ IFSCLoad{
 		//////--------
 		fork{
 			Server.default.doWhenBooted({
-				IFOSC.globals; IFOSC.mulFaders; IFOSC.sets; IFOSC.main; IFOSC.parts; IFOSC.bridge;
-				IFOSC.note; IFOSC.noteBass; IFOSC.noteKeys; IFOSC.noteSamp; IFOSC.oct; IFOSC.trans;
+				IFOSC.globals; IFOSC.mulFaders; IFOSC.sets;
+				IFOSC.main; IFOSC.parts; IFOSC.bridge;
+				IFOSC.note; IFOSC.noteBass; IFOSC.noteKeys;
+				IFOSC.noteSamp; IFOSC.oct; IFOSC.trans;
 				0.1.wait;
 				IFSC_MIDI.vBass; IFSC_MIDI.vKeys;
 				0.1.wait;
 				IFSC_MIDI.midiAdrr;
 				0.1.wait;
-				IFSCProjectGlobals.globals; IFSCProjectGlobals.preSetAll; IFSCProjectGlobals.setTempo(120);
+				IFSCProjectGlobals.globals; IFSCProjectGlobals.preSetAll;
+				IFSCProjectGlobals.setTempo(120);
 				0.1.wait;
 
 				0.1.wait;

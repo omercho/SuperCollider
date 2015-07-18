@@ -26,7 +26,7 @@ IFOSC {
 
 		//~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // create the NetAddr
 		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
-		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
 		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
 		//~tOSCAdrr = NetAddr.new("169.254.108.24", 57130); // vaggelisLocalNetwork
 
@@ -196,6 +196,7 @@ IFOSC {
 			arg msg;
 
 			~track2.fork;
+			~tOSCAdrr.sendMsg('trackLabel','TRACK 2');
 
 			},
 			'/track2'

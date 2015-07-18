@@ -59,14 +59,14 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAQVAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAlEAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAegAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAekAAAHoAAAATAD///8AAAN/AAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAssAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAegAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAekAAAHoAAAATAD///8AAAMFAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Traktor_ClockFromTraktor.scd
     - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Ableton_ClockFromAbleton.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Traktor_ClockFromTraktor.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/send2ableton.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/UMA_MIDI_Instruments.scd
