@@ -47,13 +47,13 @@ IFSCLoad{
 
 
 				0.1.wait;
-				IFSC.loadGroups;
+				//IFSC.loadGroups;
 				0.25.wait;
-				IFSC.loadBuses;
+				//IFSC.loadBuses;
 				0.25.wait;
-				IFSC.loadEffects;
+				//IFSC.loadEffects;
 				0.25.wait;
-				IFSC.playEffects;
+				//IFSC.playEffects;
 				0.1.wait;
 				IFSC_MIDI.latency;
 

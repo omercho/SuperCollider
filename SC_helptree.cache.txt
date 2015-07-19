@@ -5,9 +5,9 @@
 		6
 		Line
 		
-		IEnvGen
-		
 		EnvGen
+		
+		IEnvGen
 		
 		Linen
 		
@@ -19,11 +19,11 @@
 		3
 		[[Pitch]]
 			3
-			FreqShift
-			
 			Vibrato
 			
 			PitchShift
+			
+			FreqShift
 			
 		[[Nonlinear]]
 			10
@@ -31,47 +31,35 @@
 			
 			HilbertFIR
 			
-			Spring
-			
-			MantissaMask
-			
 			Ball
 			
 			Median
 			
 			Slew
 			
-			FreqShift
+			MantissaMask
 			
 			Hilbert
+			
+			FreqShift
+			
+			Spring
 			
 			Hasher
 			
 		[[Linear]]
 			50
-			Lag2UD
+			RLPF
 			
-			BAllPass
-			
-			LPZ2
-			
-			Decay
-			
-			MoogFF
-			
-			BHiShelf
-			
-			RHPF
-			
-			Changed
-			
-			Integrator
-			
-			HPF
-			
-			BHiPass
+			Lag3
 			
 			BBandStop
+			
+			OnePole
+			
+			HPZ1
+			
+			Integrator
 			
 			BPF
 			
@@ -79,561 +67,573 @@
 			
 			DynKlank
 			
-			Ramp
-			
-			Lag3
-			
-			LPZ1
-			
-			OneZero
-			
-			BBandPass
-			
-			LagUD
-			
-			Formlet
-			
-			TwoPole
-			
-			LeakDC
-			
-			Klang
-			
-			FOS
-			
-			BEQSuite
-			
-			BPZ2
-			
-			VarLag
-			
-			BLowShelf
-			
-			BLowPass
-			
-			OnePole
-			
-			BRF
-			
-			BRZ2
-			
-			LPF
-			
-			TwoZero
-			
-			RLPF
-			
-			Klank
-			
 			Lag
-			
-			BPeakEQ
-			
-			Ringz
-			
-			Slope
-			
-			HPZ2
-			
-			Lag2
-			
-			HPZ1
-			
-			SOS
-			
-			Lag3UD
-			
-			MidEQ
-			
-			APF
 			
 			Decay2
 			
+			TwoPole
+			
+			Klang
+			
+			MidEQ
+			
+			BRF
+			
+			HPZ2
+			
+			BPeakEQ
+			
+			LPF
+			
+			BBandPass
+			
+			Ramp
+			
+			RHPF
+			
+			Lag2UD
+			
+			VarLag
+			
+			BHiShelf
+			
+			OneZero
+			
+			BPZ2
+			
+			Klank
+			
+			TwoZero
+			
+			BLowShelf
+			
+			LPZ1
+			
+			BEQSuite
+			
+			Ringz
+			
+			Formlet
+			
+			FOS
+			
+			Lag3UD
+			
+			LeakDC
+			
+			APF
+			
+			Changed
+			
+			LPZ2
+			
+			LagUD
+			
+			SOS
+			
+			MoogFF
+			
+			BAllPass
+			
+			BLowPass
+			
+			BRZ2
+			
+			Lag2
+			
+			HPF
+			
+			BHiPass
+			
+			Slope
+			
+			Decay
+			
 	[[Demand]]
 		26
-		Dswitch
+		Dseq
 		
-		ListDUGen
+		DemandEnvGen
 		
-		Dshuf
-		
-		Drand
+		Dser
 		
 		Dbrown
 		
 		Dwrand
 		
-		Dseries
-		
-		Dgeom
-		
-		Dstutter
-		
-		Dbufwr
-		
-		Dwhite
-		
 		Demand
-		
-		Dibrown
-		
-		Dswitch1
-		
-		Dxrand
-		
-		Dreset
-		
-		Dpoll
-		
-		DUGen
-		
-		Duty
-		
-		Dbufrd
-		
-		Donce
-		
-		Dseq
-		
-		TDuty
-		
-		Dser
 		
 		Diwhite
 		
-		DemandEnvGen
+		Dbufrd
+		
+		Dbufwr
+		
+		Dibrown
+		
+		Dgeom
+		
+		Drand
+		
+		TDuty
+		
+		Donce
+		
+		Duty
+		
+		Dswitch1
+		
+		Dwhite
+		
+		Dreset
+		
+		Dseries
+		
+		Dxrand
+		
+		Dpoll
+		
+		Dshuf
+		
+		Dstutter
+		
+		ListDUGen
+		
+		DUGen
+		
+		Dswitch
 		
 	[[Synth control]]
 		12
-		PauseSelfWhenDone
+		Free
 		
 		FreeSelfWhenDone
 		
-		Done
+		TrigControl
 		
-		LagControl
-		
-		Pause
+		DetectSilence
 		
 		Control
 		
-		Free
+		FreeSelf
 		
-		DetectSilence
+		LagControl
 		
 		AudioControl
 		
 		PauseSelf
 		
-		FreeSelf
+		Pause
 		
-		TrigControl
+		PauseSelfWhenDone
+		
+		Done
 		
 	[[Maths]]
 		15
+		RunningMax
+		
+		Clip
+		
+		LinLin
+		
+		InRect
+		
+		RunningSum
+		
+		LinExp
+		
+		Integrator
+		
+		InRange
+		
+		RunningMin
+		
+		Fold
+		
+		Wrap
+		
 		Schmidt
 		
 		LeastChange
 		
-		InRect
-		
-		Slope
-		
-		Fold
-		
-		LinLin
-		
-		LinExp
-		
 		MostChange
 		
-		RunningMin
-		
-		Wrap
-		
-		Clip
-		
-		InRange
-		
-		Integrator
-		
-		RunningSum
-		
-		RunningMax
+		Slope
 		
 	[[Generators]]
 		5
 		[[Chaotic]]
 			23
-			QuadN
-			
-			StandardN
+			Logistic
 			
 			LinCongN
 			
-			QuadL
-			
-			GbmanL
-			
-			LatoocarfianN
-			
 			QuadC
-			
-			LatoocarfianC
-			
-			StandardL
-			
-			CuspN
-			
-			CuspL
 			
 			LinCongL
 			
-			GbmanN
+			StandardN
 			
-			LorenzL
+			HenonC
+			
+			GbmanL
+			
+			CuspL
+			
+			LatoocarfianN
 			
 			HenonN
 			
 			LatoocarfianL
 			
-			FBSineL
+			GbmanN
 			
-			LinCongC
+			LorenzL
 			
 			FBSineC
 			
-			HenonC
+			LatoocarfianC
 			
-			HenonL
+			CuspN
 			
-			Logistic
+			QuadN
+			
+			FBSineL
 			
 			FBSineN
 			
+			QuadL
+			
+			HenonL
+			
+			LinCongC
+			
+			StandardL
+			
 		[[Single-value]]
 			7
-			ExpRand
-			
-			DC
-			
 			IRand
-			
-			Rand
-			
-			NRand
-			
-			LinRand
 			
 			Silent
 			
+			NRand
+			
+			Rand
+			
+			DC
+			
+			ExpRand
+			
+			LinRand
+			
 		[[Deterministic]]
 			28
-			Pulse
+			SyncSaw
 			
-			IndexL
-			
-			LFTri
+			Klank
 			
 			SinOsc
 			
 			Saw
 			
-			PSinGrain
+			LFSaw
 			
 			PMOsc
 			
-			LFCub
-			
-			Formant
-			
-			OscN
-			
-			VOsc
-			
-			VarSaw
-			
-			Klank
+			DynKlang
 			
 			DynKlank
 			
-			Blip
-			
-			Pluck
-			
-			DynKlang
-			
-			SyncSaw
-			
-			VOsc3
-			
-			SinOscFB
-			
-			Osc
-			
-			LFSaw
-			
-			Impulse
+			COsc
 			
 			LFPar
 			
-			LFPulse
+			Formant
 			
-			FSinOsc
+			VOsc
 			
-			COsc
+			IndexL
+			
+			Impulse
+			
+			Osc
 			
 			Klang
 			
+			Pluck
+			
+			VarSaw
+			
+			OscN
+			
+			LFCub
+			
+			SinOscFB
+			
+			FSinOsc
+			
+			VOsc3
+			
+			LFTri
+			
+			Blip
+			
+			LFPulse
+			
+			PSinGrain
+			
+			Pulse
+			
 		[[Granular]]
 			6
-			TGrains
-			
-			GrainIn
-			
-			Warp1
-			
 			GrainBuf
 			
 			GrainFM
 			
+			Warp1
+			
+			TGrains
+			
 			GrainSin
+			
+			GrainIn
 			
 		[[Stochastic]]
 			32
-			LFDNoise3
-			
-			Dust2
-			
-			LFClipNoise
-			
-			RandSeed
-			
-			TExpRand
-			
-			LinRand
-			
-			TRand
-			
-			TIRand
-			
-			CoinGate
-			
-			TWindex
-			
-			LFDNoise0
-			
-			IRand
-			
-			LFDNoise1
+			LFGauss
 			
 			Dust
 			
-			NRand
+			Gendy3
 			
-			WhiteNoise
-			
-			LFNoise1
-			
-			ExpRand
-			
-			LFNoise2
-			
-			GrayNoise
-			
-			PinkNoise
-			
-			Rand
-			
-			ClipNoise
-			
-			Gendy2
+			LFClipNoise
 			
 			LFNoise0
 			
-			Gendy3
+			Gendy1
+			
+			GrayNoise
+			
+			TWindex
+			
+			LFDNoise1
+			
+			NRand
 			
 			BrownNoise
 			
-			LFDClipNoise
+			ClipNoise
+			
+			Rand
+			
+			WhiteNoise
+			
+			Gendy2
+			
+			LFNoise1
+			
+			IRand
 			
 			Crackle
 			
-			LFGauss
+			TRand
+			
+			LFDClipNoise
+			
+			RandSeed
+			
+			LFNoise2
 			
 			RandID
 			
-			Gendy1
+			Dust2
+			
+			PinkNoise
+			
+			TExpRand
+			
+			TIRand
+			
+			LFDNoise3
+			
+			LFDNoise0
+			
+			ExpRand
+			
+			CoinGate
+			
+			LinRand
 			
 	[[Info]]
 		14
-		NumRunningSynths
+		ControlDur
+		
+		Poll
+		
+		NumOutputBuses
+		
+		NumBuffers
 		
 		SampleRate
 		
-		Poll
+		SubsampleOffset
+		
+		NumAudioBuses
+		
+		CheckBadValues
+		
+		SampleDur
+		
+		NumInputBuses
+		
+		ControlRate
 		
 		NumControlBuses
 		
 		RadiansPerSample
 		
-		SubsampleOffset
-		
-		ControlRate
-		
-		ControlDur
-		
-		CheckBadValues
-		
-		NumBuffers
-		
-		NumInputBuses
-		
-		NumOutputBuses
-		
-		NumAudioBuses
-		
-		SampleDur
+		NumRunningSynths
 		
 	[[InOut]]
 		16
-		Out
-		
-		XOut
+		ReplaceOut
 		
 		In
-		
-		LocalOut
-		
-		AudioIn
-		
-		VDiskIn
-		
-		OffsetOut
-		
-		LocalIn
-		
-		DiskIn
 		
 		SharedOut
 		
 		SharedIn
 		
-		ReplaceOut
+		DiskOut
 		
-		LagIn
+		LocalIn
+		
+		XOut
+		
+		OffsetOut
+		
+		Out
+		
+		DiskIn
+		
+		AudioIn
 		
 		InTrig
 		
 		InFeedback
 		
-		DiskOut
+		VDiskIn
+		
+		LagIn
+		
+		LocalOut
 		
 	[[Delays]]
 		21
-		TDelay
+		AllpassC
 		
-		BufDelayL
+		BufAllpassL
 		
-		BufAllpassN
+		CombN
 		
-		BufCombN
-		
-		AllpassL
-		
-		DelayL
-		
-		BufDelayC
+		AllpassN
 		
 		BufCombC
 		
 		Delay1
 		
-		CombN
-		
-		BufDelayN
-		
-		CombL
-		
-		CombC
-		
-		AllpassN
-		
-		DelayC
-		
-		AllpassC
-		
-		Delay2
+		BufAllpassC
 		
 		DelayN
 		
-		BufAllpassC
+		CombC
+		
+		BufDelayN
+		
+		Delay2
+		
+		DelayL
+		
+		BufAllpassN
+		
+		CombL
+		
+		TDelay
+		
+		AllpassL
+		
+		DelayC
+		
+		BufDelayC
 		
 		BufCombL
 		
-		BufAllpassL
+		BufCombN
+		
+		BufDelayL
 		
 	[[Unclassified]]
 		30
+		XFade2
+		
+		KafSinVib
+		
+		KafPMO
+		
+		SplayAz
+		
+		Dunique
+		
+		KafSMS
+		
+		OCBell
+		
+		Sum4
+		
+		Pan2
+		
+		OCAtesh
+		
+		KafBell
+		
+		ScopeOut2
+		
+		Pan4
+		
+		PureUGen
+		
 		WidthFirstUGen
 		
 		KafSin
 		
-		KafAtesh
-		
-		Dunique
-		
-		LinPan2
-		
-		ScopeOut2
-		
-		KafSMS
-		
-		XFade2
-		
-		PanAz
-		
-		OCAtesh
-		
-		Pan2
-		
-		KafSinVibTest
-		
-		PureUGen
-		
-		Balance2
-		
-		OCBell
-		
-		Pan4
+		OCNam
 		
 		KafGendy
 		
-		OCNam
-		
-		OCDrumKick01
-		
-		KafSinVib
-		
-		SplayAz
-		
-		Sum4
-		
-		DelTapWr
-		
-		LinXFade2
-		
-		DelTapRd
-		
-		KafBell
-		
 		SendPeakRMS
+		
+		KafAtesh
 		
 		Sum3
 		
-		KafPMO
+		DelTapWr
 		
 		Splay
+		
+		Balance2
+		
+		DelTapRd
+		
+		KafSinVibTest
+		
+		LinXFade2
+		
+		LinPan2
+		
+		PanAz
+		
+		OCDrumKick01
 		
 	[[Analysis]]
 		9
@@ -645,79 +645,79 @@
 			
 			Pitch
 			
-		BeatTrack
+		Onsets
 		
-		SpecPcile
+		BeatTrack2
+		
+		SpecCentroid
 		
 		[[Amplitude]]
 			11
+			CompanderD
+			
 			Compander
 			
 			PeakFollower
 			
-			Amplitude
+			Loudness
 			
 			Normalizer
 			
 			AmpComp
 			
-			AmpCompA
-			
 			DetectSilence
 			
 			Peak
 			
-			Loudness
-			
 			Limiter
 			
-			CompanderD
+			AmpCompA
 			
-		Onsets
+			Amplitude
+			
+		SpecPcile
 		
 		MFCC
 		
-		BeatTrack2
+		BeatTrack
 		
 		SpecFlatness
 		
-		SpecCentroid
-		
 	[[User interaction]]
 		4
-		MouseY
-		
-		KeyState
-		
 		MouseButton
 		
+		MouseY
+		
 		MouseX
+		
+		KeyState
 		
 	[[Multichannel]]
 		3
 		[[Select]]
 			5
-			SelectXFocus
-			
-			LinSelectX
-			
-			TWChoose
-			
 			Select
+			
+			SelectXFocus
 			
 			SelectX
 			
+			TWChoose
+			
+			LinSelectX
+			
 		[[Ambisonics]]
 			5
-			PanB2
-			
 			DecodeB2
+			
+			PanB
 			
 			Rotate2
 			
-			BiPanB2
+			PanB2
 			
-			PanB
+			BiPanB2
 			
 		[[Panners]]
 			1
@@ -725,11 +725,11 @@
 			
 	[[Reverbs]]
 		3
-		FreeVerb
-		
 		FreeVerb2
 		
 		GVerb
+		
+		FreeVerb
 		
 	[[MachineListening]]
 		1
@@ -737,215 +737,215 @@
 		
 	[[FFT]]
 		52
-		PV_PhaseShift
-		
-		PV_BinShift
-		
-		PV_BinScramble
-		
-		IFFT
-		
-		PV_BinWipe
-		
-		PV_BrickWall
-		
-		PV_ConformalMap
-		
-		PV_RandWipe
-		
-		Convolution3
-		
-		PV_Min
-		
-		PV_CopyPhase
-		
-		PackFFT
-		
 		PartConv
-		
-		Unpack1FFT
-		
-		PV_Conj
-		
-		PV_RectComb
-		
-		PV_Diffuser
-		
-		PV_MagSmear
-		
-		PV_RandComb
-		
-		UnpackFFT
-		
-		PV_JensenAndersen
-		
-		PV_Copy
-		
-		SpecFlatness
-		
-		PV_Add
-		
-		PV_LocalMax
-		
-		PV_RectComb2
-		
-		FFT
-		
-		PV_MagNoise
-		
-		BeatTrack
-		
-		PV_HainsworthFoote
-		
-		Convolution
-		
-		PV_MagDiv
-		
-		PV_MagMul
-		
-		BeatTrack2
-		
-		FFTTrigger
-		
-		PV_MagAbove
-		
-		SpecCentroid
-		
-		PV_Mul
-		
-		PV_MagBelow
-		
-		Convolution2
-		
-		PV_PhaseShift90
-		
-		StereoConvolution2L
-		
-		PV_MagFreeze
-		
-		PV_MagShift
 		
 		PV_Max
 		
+		PV_PhaseShift
+		
+		PV_HainsworthFoote
+		
+		Unpack1FFT
+		
+		PV_MagMul
+		
+		PV_BinScramble
+		
+		Convolution3
+		
 		SpecPcile
 		
-		PV_ChainUGen
+		PV_MagFreeze
 		
-		PV_Div
-		
-		PV_PhaseShift270
+		StereoConvolution2L
 		
 		Convolution2L
 		
-		PV_MagClip
+		SpecCentroid
+		
+		IFFT
+		
+		PV_MagShift
+		
+		PV_LocalMax
+		
+		PV_Div
+		
+		PV_Min
+		
+		FFTTrigger
+		
+		PV_PhaseShift90
+		
+		PV_MagBelow
+		
+		PV_Conj
+		
+		Convolution2
+		
+		PV_MagNoise
+		
+		PV_ChainUGen
+		
+		PV_Add
+		
+		PV_ConformalMap
+		
+		PV_RectComb2
 		
 		PV_MagSquared
 		
+		PV_MagDiv
+		
+		PV_RandWipe
+		
+		PV_Diffuser
+		
+		BeatTrack2
+		
+		PV_Copy
+		
+		PV_BrickWall
+		
+		PV_BinWipe
+		
+		BeatTrack
+		
+		UnpackFFT
+		
+		PV_BinShift
+		
+		PackFFT
+		
+		PV_JensenAndersen
+		
+		PV_Mul
+		
+		PV_PhaseShift270
+		
+		PV_RandComb
+		
+		PV_MagAbove
+		
+		PV_MagClip
+		
+		PV_RectComb
+		
+		PV_MagSmear
+		
+		SpecFlatness
+		
+		FFT
+		
+		PV_CopyPhase
+		
+		Convolution
+		
 	[[Conversion]]
 		5
-		K2A
-		
 		A2K
-		
-		T2A
 		
 		T2K
 		
 		DegreeToKey
 		
+		T2A
+		
+		K2A
+		
 	[[Buffer]]
 		22
-		SetBuf
-		
 		Tap
-		
-		LocalBuf
-		
-		RecordBuf
-		
-		TGrains
-		
-		[[Info]]
-			7
-			BufSamples
-			
-			BufDur
-			
-			BufSampleRate
-			
-			MaxLocalBufs
-			
-			BufChannels
-			
-			BufFrames
-			
-			BufRateScale
-			
-		Shaper
-		
-		ScopeOut
-		
-		IndexInBetween
-		
-		BufRd
-		
-		BufWr
-		
-		VDiskIn
-		
-		Index
-		
-		Phasor
-		
-		DiskIn
-		
-		DetectIndex
-		
-		GrainBuf
-		
-		Warp1
 		
 		PlayBuf
 		
-		WrapIndex
-		
 		DiskOut
 		
+		[[Info]]
+			7
+			BufDur
+			
+			BufSamples
+			
+			BufSampleRate
+			
+			BufFrames
+			
+			MaxLocalBufs
+			
+			BufRateScale
+			
+			BufChannels
+			
 		ClearBuf
 		
-	[[Triggers]]
-		16
-		TDelay
-		
-		LastValue
-		
-		SendTrig
-		
-		Stepper
-		
-		Gate
-		
-		Sweep
-		
-		Trig
-		
-		PulseDivider
-		
-		ToggleFF
-		
-		SendReply
-		
-		Latch
+		BufRd
 		
 		Phasor
 		
-		Trig1
+		Warp1
+		
+		DiskIn
+		
+		GrainBuf
+		
+		ScopeOut
+		
+		TGrains
+		
+		RecordBuf
+		
+		BufWr
+		
+		SetBuf
+		
+		LocalBuf
+		
+		Shaper
+		
+		WrapIndex
+		
+		VDiskIn
+		
+		DetectIndex
+		
+		Index
+		
+		IndexInBetween
+		
+	[[Triggers]]
+		16
+		Latch
 		
 		Timer
 		
-		PulseCount
+		Stepper
 		
 		SetResetFF
+		
+		ToggleFF
+		
+		Phasor
+		
+		PulseCount
+		
+		PulseDivider
+		
+		LastValue
+		
+		SendReply
+		
+		Sweep
+		
+		TDelay
+		
+		Trig1
+		
+		Trig
+		
+		SendTrig
+		
+		Gate
 		
 [[UserExtensions]]
 	2
@@ -975,24 +975,24 @@
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/Utopia/testing/NMLNetRecord.scd
 		[[ddwMIDI]]
 			9
-			MIDIRecBuf
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIRecBuf.html
 			MIDIPort
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIPort.html
-			MIDISyncClock
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html
-			VoicerMIDISocket
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/VoicerMIDISocket.html
-			BasicMIDIControl
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDIControl.html
 			MIDIBufManager
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIBufManager.html
+			BasicMIDISocket
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDISocket.html
 			CCAllocator
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CCAllocator.html
 			CControl
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/CControl.html
-			BasicMIDISocket
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDISocket.html
+			MIDISyncClock
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDISyncClock.html
+			MIDIRecBuf
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/MIDIRecBuf.html
+			BasicMIDIControl
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/BasicMIDIControl.html
+			VoicerMIDISocket
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/Help/VoicerMIDISocket.html
 		[[J_110224]]
 			1
 			RedimEchs
@@ -1103,14 +1103,14 @@
 				5
 				flowerg
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/flowerg.rtf
+				PinkNoise
+				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/PinkNoise.scd
 				_JODA
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/_JODA.scd
 				00JODA00
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/00JODA00.scd
 				Untitled 2
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/Untitled 2.rtf
-				PinkNoise
-				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Projects/JODA/PinkNoise.scd
 			[[NCircleClasses]]
 				1
 				[[notInUse]]
@@ -1209,6 +1209,8 @@
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
 			BufferPatternFFT
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/BufferPatternFFT.scd
+			IFSCTracks
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCTracks.scd
 			IFSC_Track01
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Track01.scd
 			IFLoopMain
@@ -1237,10 +1239,10 @@
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_notInUse/HusoAmplitude.scd
 				IFSnr_SC_Erg
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_notInUse/IFSnr_SC_Erg.scd
-			IFSCTracks
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCTracks.scd
 			IFNoteOSC2
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFNoteOSC2.scd
+			IFMain
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
 			IF_RECORD
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IF_RECORD.scd
 			AmbiantPresentation2014Review
@@ -1251,20 +1253,16 @@
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Synths.scd
 			IFOSC_ERG
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC_ERG.scd
-			IFMain
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.scd
+			trackOSC_ERG
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/trackOSC_ERG.scd
 			vBeatsErg
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/vBeatsErg.scd
 			IFtransOSC
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFtransOSC.scd
-			trackOSC_ERG
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/trackOSC_ERG.scd
 			IFOctOSC
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOctOSC.scd
 		[[PsendPreceive]]
 			4
-			Posc
-			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Posc.html
 			Phrase
 			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Phrase.html
 			PsendPreceive
@@ -1273,6 +1271,8 @@
 				1
 				PsendPreceiveExamp
 				/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Experiments/PsendPreceiveExamp.scd
+			Posc
+			/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Help/Posc.html
 [[Streams-Patterns-Events]]
 	1
 	[[Patterns]]
@@ -1285,31 +1285,31 @@
 			
 		[[Event]]
 			5
-			Posc
-			
 			PmonoArtic
-			
-			Pbind
 			
 			Pmono
 			
+			Pbind
+			
 			Pevent
+			
+			Posc
 			
 		[[Time]]
 			7
-			PstepNadd
-			
 			Pstep3add
+			
+			PstepNfunc
 			
 			Ptime
 			
 			Pstep
 			
-			Pstep2add
-			
 			Pseg
 			
-			PstepNfunc
+			Pstep2add
+			
+			PstepNadd
 			
 		[[Server Control]]
 			5
@@ -1317,33 +1317,35 @@
 			
 			Pproto
 			
+			Pbus
+			
 			Pgroup
 			
 			Pfx
 			
-			Pbus
-			
 		[[Lookup]]
 			14
+			Pdefn
+			
+			Ptsym
+			
+			Pnsym
+			
+			Tdef
+			
+			Pdict
+			
+			Pdef
+			
+			TaskProxy
+			
 			Pbindef
 			
 			Psym1
 			
-			Pdef
-			
-			Pnsym
-			
-			Ptsym
-			
 			Pnsym1
 			
-			Tdef
-			
-			TaskProxy
-			
 			EventPatternProxy
-			
-			Pdefn
 			
 			PatternProxy
 			
@@ -1351,247 +1353,245 @@
 			
 			Psym
 			
-			Pdict
-			
+		Peventmod
+		
 		[[Function]]
 			7
-			PlazyEnvirN
+			Pfuncn
 			
-			Pfunc
+			PlazyEnvirN
 			
 			Prout
 			
 			Proutine
 			
-			Pfuncn
+			PlazyEnvir
 			
 			Plazy
 			
-			PlazyEnvir
+			Pfunc
 			
-		Pget
+		Pattern
 		
 		[[Math]]
 			10
-			Padd
+			Paddpre
 			
 			Pavaroh
 			
-			Prorate
+			Padd
+			
+			Paddp
 			
 			Punop
+			
+			Pnaryop
 			
 			Pbinop
 			
 			Pdiff
 			
-			Pnaryop
-			
-			Paddp
-			
-			Paddpre
+			Prorate
 			
 			PdegreeToKey
 			
 		[[List]]
 			16
+			Pwalk
+			
+			Pgeom
+			
+			Prand
+			
+			Pfpar
+			
 			Ppatlace
+			
+			ListPattern
 			
 			Pwrand
 			
-			Prand
+			Pseq
+			
+			[[Indexing]]
+				5
+				Pfsm
+				
+				Pdfsm
+				
+				Pindex
+				
+				Pswitch
+				
+				Pswitch1
+				
+			Ptuple
+			
+			Place
+			
+			Pshuf
 			
 			Pseries
 			
 			Pser
 			
-			Pwalk
-			
-			[[Indexing]]
-				5
-				Pswitch
-				
-				Pdfsm
-				
-				Pswitch1
-				
-				Pfsm
-				
-				Pindex
-				
-			Pshuf
-			
-			Ptuple
-			
-			Place
-			
-			Pgeom
-			
-			ListPattern
-			
-			Pfpar
-			
 			Pxrand
-			
-			Pseq
 			
 			Pslide
 			
 		[[Language Control]]
 			5
-			Ptrace
-			
 			Pprotect
-			
-			Pwhile
 			
 			Pseed
 			
 			Pif
 			
+			Ptrace
+			
+			Pwhile
+			
 		[[Repetition]]
 			10
 			Psync
 			
-			PdurStutter
-			
 			Pfinval
-			
-			Pn
-			
-			Pstutter
-			
-			Pconst
-			
-			Pclutch
 			
 			Pgate
 			
-			Pfin
+			Pclutch
+			
+			PdurStutter
+			
+			Pstutter
 			
 			Pfindur
 			
-		Plet
-		
+			Pn
+			
+			Pconst
+			
+			Pfin
+			
 		[[Filter]]
 			27
-			PfadeIn
-			
-			PAbstractGroup
+			FuncFilterPattern
 			
 			Pmulpre
 			
-			Pcollect
+			Pplayer
 			
-			Pstretch
+			Pmul
 			
-			Pset
+			PAbstractGroup
+			
+			Plag
+			
+			Psetp
+			
+			Pmulp
 			
 			Ppatmod
+			
+			Pflatten
+			
+			PparGroup
+			
+			Psend
+			
+			Pclump
+			
+			Pselect
+			
+			PfadeIn
+			
+			Pwrap
+			
+			FilterPattern
+			
+			Pset
 			
 			Pdrop
 			
 			Psetpre
 			
-			Pwrap
-			
-			Psetp
+			PfinQuant
 			
 			Pstretchp
 			
-			FilterPattern
+			Pstretch
 			
-			Pselect
+			Pcollect
 			
-			PparGroup
-			
-			Pmulp
-			
-			Pflatten
-			
-			Pmul
+			PfadeOut
 			
 			Preject
 			
 			Prewrite
 			
-			PfadeOut
-			
-			FuncFilterPattern
-			
-			Plag
-			
-			Pclump
-			
-			PfinQuant
-			
-			Psend
-			
-			Pplayer
-			
 		[[Data Sharing]]
 			4
-			Pfset
+			Penvir
 			
 			Pkey
 			
 			Plambda
 			
-			Penvir
+			Pfset
 			
 		[[Parallel]]
 			7
-			Pspawner
-			
 			Spawner
 			
 			Ptpar
 			
-			Pgpar
+			Pspawn
 			
 			Ppar
 			
-			Pspawn
+			Pgpar
+			
+			Pspawner
 			
 			Pgtpar
 			
 		[[Random]]
 			12
-			Plprand
+			Pbeta
 			
 			Pcauchy
 			
-			Ppoisson
+			Pgbrown
 			
-			Pgauss
+			Pwhite
 			
 			Phprand
 			
 			Pexprand
 			
-			Pprob
+			Pmeanrand
 			
-			Pgbrown
-			
-			Pbeta
+			Pgauss
 			
 			Pbrown
 			
-			Pmeanrand
+			Ppoisson
 			
-			Pwhite
+			Pprob
 			
-		Peventmod
+			Plprand
+			
+		Plet
 		
 		[[User Input]]
 			3
 			PhidSlot
 			
-			Phid
-			
 			PhidKey
 			
-		Pattern
+			Phid
+			
+		Pget
 		
 var o, p;
 o = [

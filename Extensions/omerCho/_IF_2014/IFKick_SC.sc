@@ -29,24 +29,7 @@ IFKick_SC {
 	}
 
 	*preSet {
-		SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
-			gate=1, wnoise=2.8,
-			amp=0.5,out=0, freq=110, freq2=59, freq3=29, pan = 0 |
 
-			var env, env1, env1m, ses;
-			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
-			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.29], [-4, -5]));
-			env1m = env1.midicps;
-
-			ses = LFPulse.ar(env1m, 0, 0.5, env, -0.5);
-			ses = (ses + WhiteNoise.ar(wnoise))*env;
-			ses = LPF.ar(ses, env1m, env)*0.8;
-			ses = ses + SinOsc.ar(env1m, 0.5, env);
-			ses = ses.clip2(8);
-			ses = ses * mul;
-			ses = Limiter.ar(ses,0.9);
-			Out.ar(out, Pan2.ar(ses, pan, amp*1.1));
-		}).add;
 
 	}
 
@@ -67,10 +50,6 @@ IFKick_SC {
 		~tmKick = PatternProxy( Pseq([1], inf));
 		~tmKickP= Pseq([~tmKick], inf).asStream;
 
-		~attKick =0.001;
-		~decKick =0.8;
-		~relKick =0.04;
-		~susLevKick = 0.01;
 
 		~transKick = PatternProxy( Pseq([0], inf));
 		~transKickP = Pseq([~transKick], inf).asStream;
@@ -133,7 +112,9 @@ IFKick_SC {
 		room:0.1
 		).play;*/
 
-		Pbind(\instrument, \IFKick_SC,
+		Pbind(
+			\chan, ~kickCh,
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
 			\octave, Pseq([~octKickP.next], 1)+~octMulKick,
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree,  Pseq([~nt1KickP.next], 1),
@@ -141,14 +122,6 @@ IFKick_SC {
 			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick*~susTD,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\harmonic, Pseq([~strKickP.next], 1)+~harmKick,
-			\pan, Pbrown(-0.4, 0.4, 0.125, inf),
-			\att, ~attKick,
-			\dec, ~decKick,
-			\rel, ~relKick,
-			\susLev, ~susLevKick,
-			\wnoise,3,
-			\group, ~piges,
-			\out, Pseq([~busKick], inf )
 		).play(quant:0);
 
 		//this.count2;
