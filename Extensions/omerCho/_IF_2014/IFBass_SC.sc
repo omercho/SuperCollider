@@ -21,7 +21,7 @@ IFBass_SC {
 
 	*globals{
 
-		~chBass=0;
+		~chBass=2;
 		~bassLate=0.0;
 		~timesBass=1;
 		~octMulBass=0;
@@ -99,7 +99,7 @@ IFBass_SC {
 		val=i;
 		Pbind(
 			\chan, ~chBass,
-			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1BassP.next/val],1)], 1),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),

@@ -22,7 +22,7 @@ IFSamp_SC {
 
 	*globals{
 
-		~chSamp=5;
+		~chSamp=4;
 		~sampLate=0.00;
 		~timesSamp=1;
 		~octMulSamp=4;

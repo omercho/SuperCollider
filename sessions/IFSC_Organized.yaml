@@ -53,12 +53,6 @@ editors: !QVariantMap
         documentIndex: 9
         position: 103
       - !QVariantMap
-        documentIndex: 15
-        position: 4636
-      - !QVariantMap
-        documentIndex: 19
-        position: 5009
-      - !QVariantMap
         documentIndex: 7
         position: 134
       - !QVariantMap
@@ -71,53 +65,59 @@ editors: !QVariantMap
         documentIndex: 16
         position: 101
       - !QVariantMap
-        documentIndex: 17
-        position: 99
-      - !QVariantMap
-        documentIndex: 12
-        position: 145
-      - !QVariantMap
-        documentIndex: 11
-        position: 2836
-      - !QVariantMap
-        documentIndex: 13
-        position: 119
-      - !QVariantMap
         documentIndex: 25
         position: 592
-      - !QVariantMap
-        documentIndex: 6
-        position: 67
       - !QVariantMap
         documentIndex: 27
         position: 1972
       - !QVariantMap
-        documentIndex: 14
-        position: 2384
+        documentIndex: 24
+        position: 710
       - !QVariantMap
-        documentIndex: 1
-        position: 98
+        documentIndex: 28
+        position: 1237
+      - !QVariantMap
+        documentIndex: 17
+        position: 99
+      - !QVariantMap
+        documentIndex: 11
+        position: 2836
+      - !QVariantMap
+        documentIndex: 12
+        position: 1076
+      - !QVariantMap
+        documentIndex: 14
+        position: 1966
+      - !QVariantMap
+        documentIndex: 13
+        position: 2115
+      - !QVariantMap
+        documentIndex: 19
+        position: 5009
       - !QVariantMap
         documentIndex: 2
         position: 39
       - !QVariantMap
-        documentIndex: 24
-        position: 710
+        documentIndex: 1
+        position: 98
       - !QVariantMap
         documentIndex: 0
-        position: 7
+        position: 9
       - !QVariantMap
         documentIndex: 4
         position: 740
       - !QVariantMap
-        documentIndex: 5
-        position: 2325
-      - !QVariantMap
         documentIndex: 3
-        position: 50851
+        position: 508
       - !QVariantMap
-        documentIndex: 28
-        position: 1237
+        documentIndex: 6
+        position: 67
+      - !QVariantMap
+        documentIndex: 15
+        position: 2073
+      - !QVariantMap
+        documentIndex: 5
+        position: 1865
   state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
 mainWindow:
   detached: !QVariantMap

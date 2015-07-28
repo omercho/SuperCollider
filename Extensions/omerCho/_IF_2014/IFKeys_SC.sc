@@ -21,7 +21,7 @@ IFKeys_SC {
 
 	*globals{
 
-		~chKeys=0;
+		~chKeys=3;
 		~keysLate= 0.0;
 		~timesKeys=1;
 		~octMulKeys=0;
@@ -97,7 +97,7 @@ IFKeys_SC {
 	*p1 {|i=1|
 		Pbind(
 			\chan, ~chKeys,
-			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([Pseq([~dur1KeysP.next/i],1)], 1),
 			\degree, Pseq([~nt1KeysP.next], 1),
 			\amp, Pseq([~amp1KeysP.next], 1),

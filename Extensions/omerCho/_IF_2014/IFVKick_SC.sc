@@ -19,8 +19,8 @@ IFVKick_SC {
 
 	*globals{
 
-		~chVKick=9;
-		~vBeatsLate=0.00;
+		~chVKick=1;
+		~vBeatsLate=0.0;
 		~timesVKick=1;
 		~octMulVKick=0;
 		~trVKick=0;
@@ -80,7 +80,7 @@ IFVKick_SC {
 		var val;
 		val=i;
 		Pbind(
-			\type, \midi, \midiout,~vBeats,\chan, ~chVKick,
+			\type, \midi, \midiout,~md1,\chan, ~chVKick,
 			\scale, Pfunc({Scale.chromatic}, inf), \octave, 0,
 			\dur, Pseq([~dur1VKickP.next/val], val),
 			\note, Pseq([~nt1VKickP.next], inf),
