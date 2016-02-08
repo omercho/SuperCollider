@@ -59,22 +59,21 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAssAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAegAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAekAAAHoAAAATAD///8AAAMFAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAOFAAAAAAAAAC0AAAaPAAADhQAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAADQfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADQQAAAGYA////AAAAAQAAAo4AAANB/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZgAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZkAAAGoAAAATAD///8AAANCAAADQQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Ableton_ClockFromAbleton.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+51/150107_Ctrl2Traktor_ClockFromTraktor.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/send2ableton.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/UMA_MIDI_Instruments.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_HUSO_TD3/TD3MIDI_01.scd
-    - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131211_midiTraktor_01.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCLoad.sc
-    - /Users/omercho/Dropbox/SC/~CoolZounds/GVerb01_100228.scd
-    - /Users/omercho/Dropbox/SC/~CoolZounds/atesProduct_100301_01.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
+    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150110_MIDI2Abl_Unstable_01.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaMainERG.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaDragm.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_CtlAbleton.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_BufPat.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

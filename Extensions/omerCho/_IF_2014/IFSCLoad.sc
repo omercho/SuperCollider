@@ -26,8 +26,9 @@ IFSCLoad{
 				VBass.globals; VBass.preSet01;
 				0.1.wait;
 				VKeys.globals; VKeys.preSet01;
+				0.1.wait;
 
-				IFVKick_SC.globals; IFVKick_SC.preSet; IFVKick_SC.default; IFVKick_SC.osc;
+				/*IFVKick_SC.globals; IFVKick_SC.preSet; IFVKick_SC.default; IFVKick_SC.osc;
 				0.1.wait;
 				IFVSnr_SC.globals; IFVSnr_SC.preSet; IFVSnr_SC.default; IFVSnr_SC.osc;
 				0.1.wait;
@@ -35,15 +36,18 @@ IFSCLoad{
 				0.1.wait;
 				IFVHat_SC.globals; IFVHat_SC.preSet; IFVHat_SC.default; IFVHat_SC.osc;
 				0.1.wait;
-				IFVPcm_SC.globals; IFVPcm_SC.preSet; IFVPcm_SC.default; IFVPcm_SC.osc;
+				IFVPcm_SC.globals; IFVPcm_SC.preSet; IFVPcm_SC.default; IFVPcm_SC.osc;*/
+				IFKick.globals; IFKick.preSet; IFKick.default; IFKick.osc;
 				0.1.wait;
-				IFBass_SC.globals; IFBass_SC.preSet; IFBass_SC.default; IFBass_SC.osc;
+				IFSnr.globals; IFSnr.preSet; IFSnr.default;
 				0.1.wait;
-				IFKeys_SC.globals; IFKeys_SC.preSet; IFKeys_SC.default; IFKeys_SC.osc;
+				IFHat.globals; IFHat.preSet; IFHat.default;
 				0.1.wait;
-				IFKick_SC.globals; IFKick_SC.preSet; IFKick_SC.default; IFKick_SC.osc;
+				IFBass.globals; IFBass.preSet; IFBass.default; IFBass.osc;
 				0.1.wait;
-				IFSamp_SC.globals; IFSamp_SC.preSet; IFSamp_SC.default; IFSamp_SC.osc;
+				IFKeys.globals; IFKeys.preSet; IFKeys.default; IFKeys.osc;
+				0.1.wait;
+				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
 
 
 				0.1.wait;

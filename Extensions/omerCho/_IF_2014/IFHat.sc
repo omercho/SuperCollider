@@ -53,7 +53,7 @@ IFHat.times(4);
 
 		~transHat = PatternProxy( Pseq([0], inf));
 		~transHatP = Pseq([~transHat], inf).asStream;
-		~octHat = PatternProxy( Pseq([4], inf));
+		~octHat = PatternProxy( Pseq([3], inf));
 		~octHatP = Pseq([~octHat], inf).asStream;
 		~legHat = PatternProxy( Pseq([3.0], inf));
 		~legHatP = Pseq([~legHat], inf).asStream;

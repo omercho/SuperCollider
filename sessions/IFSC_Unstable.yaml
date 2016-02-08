@@ -1,0 +1,144 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCLoad.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Project.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFOSC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMain.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSnr.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFHat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSCTracks.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/VBeats_SC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_Synths.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFKick_SC_Erg.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSamp_SC_ERG.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/mainERG.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI2Analogs.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/vBeatsErg.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/send2ableton.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_CtlAbleton.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaDragm.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_Cinderella_PV.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_Cinderella01.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_BufPat.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaMainERG.scd
+  - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150110_MIDI2Abl_Unstable_01.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 21
+        position: 1961
+      - !QVariantMap
+        documentIndex: 18
+        position: 30290
+      - !QVariantMap
+        documentIndex: 13
+        position: 101
+      - !QVariantMap
+        documentIndex: 15
+        position: 99
+      - !QVariantMap
+        documentIndex: 17
+        position: 888
+      - !QVariantMap
+        documentIndex: 16
+        position: 283
+      - !QVariantMap
+        documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 8
+        position: 1087
+      - !QVariantMap
+        documentIndex: 22
+        position: 1237
+      - !QVariantMap
+        documentIndex: 12
+        position: 10
+      - !QVariantMap
+        documentIndex: 6
+        position: 1837
+      - !QVariantMap
+        documentIndex: 10
+        position: 2721
+      - !QVariantMap
+        documentIndex: 11
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 2573
+      - !QVariantMap
+        documentIndex: 24
+        position: 339
+      - !QVariantMap
+        documentIndex: 25
+        position: 3600
+      - !QVariantMap
+        documentIndex: 26
+        position: 804
+      - !QVariantMap
+        documentIndex: 27
+        position: 1824
+      - !QVariantMap
+        documentIndex: 28
+        position: 74
+      - !QVariantMap
+        documentIndex: 5
+        position: 1749
+      - !QVariantMap
+        documentIndex: 23
+        position: 750
+      - !QVariantMap
+        documentIndex: 14
+        position: 2163
+      - !QVariantMap
+        documentIndex: 20
+        position: 592
+      - !QVariantMap
+        documentIndex: 19
+        position: 0
+      - !QVariantMap
+        documentIndex: 29
+        position: 11
+      - !QVariantMap
+        documentIndex: 30
+        position: 0
+      - !QVariantMap
+        documentIndex: 31
+        position: 0
+      - !QVariantMap
+        documentIndex: 32
+        position: 122
+      - !QVariantMap
+        documentIndex: 1
+        position: 98
+      - !QVariantMap
+        documentIndex: 4
+        position: 349
+      - !QVariantMap
+        documentIndex: 3
+        position: 574
+      - !QVariantMap
+        documentIndex: 2
+        position: 40
+      - !QVariantMap
+        documentIndex: 0
+        position: 1612
+  state: AAAA/wAAAAAAAAABAAABWAEAAAABAQAAAAI=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAOFAAAAAAAAAC0AAAaPAAADhQAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAADQfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADQQAAAGYA////AAAAAQAAAo4AAANB/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZgAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZkAAAGoAAAATAD///8AAANCAAADQQAAAAEAAAACAAAAAQAAAAL8AAAAAA==

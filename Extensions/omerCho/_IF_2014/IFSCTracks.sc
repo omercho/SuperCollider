@@ -16,15 +16,13 @@ IFSCTracks{
 						1.do {
 
 							//~md1Clock.play;
-							IFKick_SC(~tmMulKickP.next*~tmKickP.next);
-							IFVKick_SC(~tmVKickP.next);
-							IFVSnr_SC(~tmVSnrP.next);
-							IFVTom_SC(~tmVTomP.next);
-							IFVHat_SC(~tmVHatP.next);
-							IFVPcm_SC(~tmVPcmP.next);
-							IFKeys_SC(~tmKeysP.next);
-							IFBass_SC(~tmBassP.next);
-							IFSamp_SC(~tmSampP.next);
+							IFKick(~tmMulKickP.next*~tmKickP.next);
+							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
+							IFHat(~tmMulHatP.next*~tmHatP.next);
+
+							IFBass(~tmBassP.next);
+							IFKeys(~tmKeysP.next);
+							IFSamp(~tmSampP.next);
 
 							~durMul*((~durP.next)).wait;
 						};

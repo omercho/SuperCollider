@@ -18,7 +18,7 @@ IFSC_MIDI {
 		//MIDIClient.init;	// scan all midi sources
 		//MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
 		MIDIIn.connectAll;
-		~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
+		//~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 
