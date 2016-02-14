@@ -13,8 +13,6 @@ VBass {
 		~vBass = MIDIOut.newByName("MIDIMATE II", "Port 1");
 
 
-		//~vBass = MIDIOut.newByName("", "SC-Abl");
-
 		~slideTime    = 5;   //*1
 		~expr    = 11;  //*1,3
 
@@ -54,6 +52,7 @@ VBass {
 	*preSet01 {
 
 		~vBass.control(0, ~slideTime, 20); // slideTime
+		~tOSCAdrr.sendMsg('sltBass', 20);
 		~vBass.control(0, ~expr, 120); //expression
 		~vBass.control(0, ~octVB, ~oct3); //octave
 		~vBass.control(0, ~lfoRate, 0); //LFO Rate
@@ -65,7 +64,7 @@ VBass {
 		~vBass.control(0, ~vcoPitch3, 127); //VCO3
 
 		~vBass.control(0, ~egAtt, 0);
-		~vBass.control(0, ~egDec, 120); //LFO Pitch Intencity
+		~vBass.control(0, ~egDec, 120);
 		~vBass.control(0, ~cutOff, 120); //LFO CutOff Intencity
 
 		~vBass.control(0, ~gateTime, 0);

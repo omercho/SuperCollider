@@ -514,8 +514,8 @@ IFMain {
 	~sus1Kick.source  =  Pseq([0.4], inf);
 	~tmKick.source    =  Pseq([1], inf);
 //CH -1- [ Snare ]------------------------------ [Snare] - Ch -1- //
-	~nt1Snr.source  =  Pseq([Pseq([~nt+3],4),Pseq([~nt+0, ~nt+7],8)], inf);
-	~amp1Snr.source =  Pseq([ 0.0, 0.0, 0.0, 0.0, 0.9], inf);
+	~nt1Snr.source  =  Pseq([Pseq([~nt+0],4),Pseq([~nt+0, ~nt+2],8)], inf);
+	~amp1Snr.source =  Pseq([ 0.0, 0.5, 0.0, 0.0, 0.9], inf);
 	~sus1Snr.source =  Pseq([0.2, 0.2, 0.2, 0.2]*0.8, inf);
 	~tmSnr.source   =  Pseq([2], inf);
 //CH -2- [ HAT ]-------------------------------- [ HAT ] - Ch -2- //

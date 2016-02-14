@@ -11,7 +11,7 @@ IFHat.times(4);
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; });
+		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.cntrl; });
 		}
 	}
 
@@ -113,6 +113,59 @@ IFHat.times(4);
 
 		//this.count2;
 		//this.timesCount;
+	}
+
+	*cntrl {
+
+		//----Hat-------
+		~octHatMulBut.free;
+		~octHatMulBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulHat = ~octMulHat+1;
+				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
+
+			});
+
+			},
+			'/octHatMul'
+		);
+
+		~octHatZeroBut.free;
+		~octHatZeroBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulHat = 0;
+				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
+
+			});
+
+			},
+			'/octHatZero'
+		);
+
+		~octHatDivBut.free;
+		~octHatDivBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulHat = ~octMulHat-1;
+				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
+
+			});
+
+			},
+			'/octHatDiv'
+		);
+
 	}
 
 

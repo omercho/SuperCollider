@@ -59,12 +59,13 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAOFAAAAAAAAAC0AAAaPAAADhQAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAC+AAADQfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADQQAAAGYA////AAAAAQAAAo4AAANB/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZgAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZkAAAGoAAAATAD///8AAANCAAADQQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAANBAAAAAAAAAC0AAAaPAAADQQAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAAC/fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC/QAAAGYA////AAAAAQAAAfAAAAL9/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAXcAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAXgAAAGFAAAATAD///8AAAOtAAAC/QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc

@@ -11,7 +11,7 @@ IFSnr.times(4);
 
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; });
+		Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.cntrl; });
 		}
 	}
 
@@ -103,6 +103,59 @@ IFSnr.times(4);
 
 		//this.count2;
 		//this.timesCount;
+	}
+
+	*cntrl{
+
+		//----Snr-------
+		~octSnrMulBut.free;
+		~octSnrMulBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulSnr = ~octMulSnr+1;
+				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
+
+			});
+
+			},
+			'/octSnrMul'
+		);
+
+		~octSnrZeroBut.free;
+		~octSnrZeroBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulSnr = 0;
+				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
+
+			});
+
+			},
+			'/octSnrZero'
+		);
+
+		~octSnrDivBut.free;
+		~octSnrDivBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulSnr = ~octMulSnr-1;
+				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
+
+			});
+
+			},
+			'/octSnrDiv'
+		);
+
 	}
 
 	//Snr Beat Counter

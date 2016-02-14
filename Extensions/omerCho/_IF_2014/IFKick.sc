@@ -18,7 +18,7 @@ IFKick {
 	*globals{
 
 		~kickCh=0;
-		~kickLate= 0.02;
+		~kickLate= 0.00;
 		~kickTimes=1;
 		~octMulKick=0;
 		~trKick=0;
@@ -83,7 +83,7 @@ IFKick {
 
 					1.do{
 						~tOSCAdrr.sendMsg('kickLed', led);
-						2/~sus1Kick.asStream.value.wait;
+						4/~sus1Kick.asStream.value.wait;
 						~tOSCAdrr.sendMsg('kickLed', 0);
 					};
 
@@ -110,7 +110,7 @@ IFKick {
 			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
 			\degree,  Pseq([~nt1KickP.next], 1),
 			\amp, Pseq([~amp1KickP.next], 1),
-			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick*~susTD,
+			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
 			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
 			\harmonic, Pseq([~strKickP.next], 1)+~harmKick,
 		).play(quant:0);
@@ -138,8 +138,8 @@ IFKick {
 			'/susKick'
 		);
 
-		~decSnrFader.free;
-		~decSnrFader= OSCFunc({
+		~decKickFader.free;
+		~decKickFader= OSCFunc({
 			arg msg;
 			~decKick=msg[1]*2;
 			msg[1].postln
@@ -175,6 +175,55 @@ IFKick {
 			});
 			},
 			'/padKick'
+		);
+
+		//----Kick-------
+		~octKickMulBut.free;
+		~octKickMulBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = ~octMulKick+1;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+			},
+			'/octKickMul'
+		);
+
+		~octKickZeroBut.free;
+		~octKickZeroBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = 0;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+			},
+			'/octKickZero'
+		);
+
+		~octKickDivBut.free;
+		~octKickDivBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = ~octMulKick-1;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+			},
+			'/octKickDiv'
 		);
 
 	}

@@ -29,60 +29,34 @@
 		}
 	}
 
-	*resetCounts{
-		~countMain = 0;
+	*loadAll {
 
+		this.globals;
+		this.preSetAll;
+		this.setTempo(120);
 	}
 
-	*preSetAll{
-		"IFSC SetAll".postln;
-
-
-
-		~harmKick=0;~harmSnr=0;~harmHat=0;
-		~harmBass=0;~harmKeys=0;~harmSamp=0;
-
-		~lfoMulBass=0.2; ~tOSCAdrr.sendMsg('lfoMulBass', 0.2);
-		~lfoMulKeys=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys', 0.5);
-		~lfoMulSamp=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.4);
-
-	}
-
-
-	*preSet_1{
-		"Set1".postln;
-
-
-
-		~harmKick=0;~harmSnr=0;~harmHat=0;
-		~harmBass=0;~harmKeys=0;~harmSamp=0;
-
-		~lfoMulBass=0.7; ~tOSCAdrr.sendMsg('lfoMulBass', 0.7);
-		~lfoMulKeys=0.8; ~tOSCAdrr.sendMsg('lfoMulKeys', 0.8);
-		~lfoMulSamp=0.6; ~tOSCAdrr.sendMsg('lfoMulSamp', 0.6);
-
-	}
-
-	*times{arg kickT, snrT, hatT, bassT, sampT, ortaT, flatT, res1T;
-
-
-		IFKick.times(kickT); IFSnr.times(snrT); IFHat.times(hatT);
-		IFBass.times(bassT); IFSamp.times(sampT);
-		IFOrta.times(ortaT); IFFlat.times(flatT);
-		IFRes1.times(res1T);
-	}
-
-	*setTempo {arg tempo;
-		Tempo.bpm = tempo;
-		//Ableton.tap4;
-	}
 
 	*globals{
 
-		~susTD=1;
+		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
+		//~tOSCAdrr = NetAddr.new("169.254.132.166", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("169.254.108.24", 57130); // vaggelisLocalNetwork
+
+
+		//MIDIClient.init;	// scan all midi sources
+		//MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
+		MIDIIn.connectAll;
+		//~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
+		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
+
+		//~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
+		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
+		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
+
 
 		~abLate=0.00;
-
 
 		~durMul = 1.0;
 
@@ -153,6 +127,56 @@
 			~part4=0; ~part5=0; ~part6=0;
 			~part7=0; ~part8=0;
 		};~part9Reset.fork;
+
+	}
+
+	*preSetAll{
+		"IFSC SetAll".postln;
+
+
+
+		~harmKick=0;~harmSnr=0;~harmHat=0;
+		~harmBass=0;~harmKeys=0;~harmSamp=0;
+
+		~lfoMulBass1=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.2);
+		~lfoMulKeys1=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.5);
+		~lfoMulSamp1=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.4);
+
+	}
+
+
+	*preSet_1{
+		"Set1".postln;
+
+
+
+		~harmKick=0;~harmSnr=0;~harmHat=0;
+		~harmBass=0;~harmKeys=0;~harmSamp=0;
+
+		~lfoMulBass1=0.7; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.7);
+		~lfoMulKeys1=0.8; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.8);
+		~lfoMulSamp1=0.6; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.6);
+
+	}
+
+	*times{arg kickT, snrT, hatT, bassT, sampT, ortaT, flatT, res1T;
+
+
+		IFKick.times(kickT); IFSnr.times(snrT); IFHat.times(hatT);
+		IFBass.times(bassT); IFSamp.times(sampT);
+		IFOrta.times(ortaT); IFFlat.times(flatT);
+		IFRes1.times(res1T);
+	}
+
+	*setTempo {arg tempo;
+		Tempo.bpm = tempo;
+		Ableton.tap4;
+	}
+
+
+
+	*resetCounts{
+		~countMain = 0;
 
 	}
 

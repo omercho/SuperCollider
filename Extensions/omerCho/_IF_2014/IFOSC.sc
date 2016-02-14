@@ -6,7 +6,6 @@ IFOSC {
 				1.0.wait;
 				this.globals;
 				this.mulFaders;
-				this.sets;
 				this.main;
 				this.parts;
 				this.bridge;
@@ -22,48 +21,19 @@ IFOSC {
 		}
 	}
 
-	*globals {
-
-		//~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
-		~tOSCAdrr = NetAddr.new("169.254.159.37", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("169.254.108.24", 57130); // vaggelisLocalNetwork
-
-
+	*loadAll {
+		this.main;
+		this.parts;
+		this.bridge;
+		this.note;
+		this.noteBass;
+		this.noteKeys;
+		this.noteSamp;
+		this.trans;
 	}
 
-	*mulFaders{
-
-		//-------------------------------------------
-		~volKickFad.free;
-		~volKickFad= OSCFunc({
-			arg msg; ~vKickSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volKick', msg[1]);
-		}, '/volKick');
-
-		//-------------------------------------------
-		~volBassFad.free;
-		~volBassFad= OSCFunc({
-			arg msg; ~vBassSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volBass', msg[1]);
-		}, '/volBass');
-		//-------------------------------------------
-		~volKeysFad.free;
-		~volKeysFad= OSCFunc({
-			arg msg; ~vKeysSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volKeys', msg[1]);
-		}, '/volKeys');
-		//-------------------------------------------
-		~volSampFad.free;
-		~volSampFad= OSCFunc({
-			arg msg; ~vSampSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volSamp', msg[1]);
-		}, '/volSamp');
-
-	}
-
-	*sets {
 
 
-
-	}
 
 	*main {
 
@@ -81,6 +51,31 @@ IFOSC {
 
 			},
 			'/cutAll'
+		);
+
+		~harmXY.free;
+		~harmXY= OSCFunc({
+			arg msg;
+
+			~harmKick=msg[1];~harmSnr=msg[1];~harmHat=msg[1];
+			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2];
+
+			//~tOSCAdrr.sendMsg('noteLabel', msg[1]);
+			},
+			'/harmXY/1'
+		);
+
+		~harm_0.free;
+		~harm_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Harmonic 0".postln;
+				~harmKick=0;
+				~harmBass=0;~harmKeys=0;~harmSamp=0;
+				//~tOSCAdrr.sendMsg('noteLabel', '0');
+			});
+			},
+			'/harm0'
 		);
 
 		~susAllMulFader.free;
@@ -108,14 +103,24 @@ IFOSC {
 			arg msg,val;
 
 			val=msg[1];
-			~attKick=val; ~tOSCAdrr.sendMsg('attKick', val);
-			~attSnr=val; ~tOSCAdrr.sendMsg('attSnr', val);
-			~attHat=val; ~tOSCAdrr.sendMsg('attHat', val);
+			~md1.control(1, 41, msg[1]*127);~tOSCAdrr.sendMsg('chainKick', val);
+			~md1.control(1, 42, msg[1]*127);~tOSCAdrr.sendMsg('chainSnr', val);
+			~md1.control(1, 43, msg[1]*127);~tOSCAdrr.sendMsg('chainHat', val);
+
+			},
+			'/chainAll'
+		);
+
+		~attAllFader.free;
+		~attAllFader= OSCFunc({
+			arg msg,val;
+
+			val=msg[1];
 			~attBass=val; ~tOSCAdrr.sendMsg('attBass', val);
 			~attKeys=val; ~tOSCAdrr.sendMsg('attKeys', val);
 			~attSamp=val; ~tOSCAdrr.sendMsg('attSamp', val);
 			},
-			'/chainAll'
+			'/attAll'
 		);
 
 		~tempoFader.free;
@@ -146,14 +151,10 @@ IFOSC {
 			arg msg;
 			if(msg[1]==1,{
 				{"TRUE".postln;
-				IFSC.stopEffects;
-				IFSC.unLoadBuses;
-				IFSC.unLoadGroups;}.fork
+				}.fork
 				},{
 					{"FALSE".postln;
-					IFSC.loadGroups;
-					IFSC.loadBuses;
-					IFSC.playEffects;}.fork;
+					}.fork;
 
 			});
 
@@ -222,141 +223,6 @@ IFOSC {
 			'/track4'
 		);
 
-
-		//_-_-_-_-_-_-_-_-SYNTH-_-_-_-_-_-_-_-_
-		~volCleanFad.free;
-		~volCleanFad= OSCFunc({
-			arg msg;
-			~cln.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volClean', msg[1]);
-		}, '/volClean');
-		//-------------------------------------------
-		~volFlowFad.free;
-		~volFlowFad= OSCFunc({
-			arg msg; ~flo.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volFlow', msg[1]);
-		}, '/volFlow');
-		//-------------------------------------------
-		~volDelayFad.free;
-		~volDelayFad= OSCFunc({
-			arg msg; ~dly.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volDelay', msg[1]);
-		}, '/volDelay');
-		//-------------------------------------------
-		~volMainFad.free;
-		~volMainFad= OSCFunc({
-			arg msg; ~rev.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volReverb', msg[1]);
-		}, '/volReverb');
-
-		//Flow
-		~flowXY.free;
-		~flowXY= OSCFunc({
-			arg msg, inc, exp;
-			inc= (msg[1]);
-			exp= (msg[2]);
-
-			~flo.set(\ampInc, inc, \ampExp, exp);
-			~tOSCAdrr.sendMsg('ampIncLabel', inc);
-			~tOSCAdrr.sendMsg('ampExpLabel', exp);
-
-			},
-			'/flowXY'
-		);
-		~flowAmpScale.free;
-		~flowAmpScale= OSCFunc({
-			arg msg;
-
-			~flo.set(\ampScale, msg[1]);
-
-			},
-			'/flowAmpScale'
-		);
-
-		~delayXY.free;
-		~delayXY= OSCFunc({
-			arg msg, dec, del;
-			dec= (msg[2])*4;
-			del= (msg[1]);
-
-			~dly.set( \decay, dec, \delay, del);
-			~tOSCAdrr.sendMsg('delayLabel', del);
-			~tOSCAdrr.sendMsg('decayLabel', dec);
-
-			},
-			'/delayXY'
-		);
-
-		~delay0.free;
-		~delay0= OSCFunc({
-			arg msg;
-			~dly.set(\delay, 0);
-			~tOSCAdrr.sendMsg('delayLabel', 0);
-			~tOSCAdrr.sendMsg('delayXY', 0,0);
-			},
-			'/delay0'
-		);
-
-		~delay05.free;
-		~delay05= OSCFunc({
-			arg msg;
-			~dly.set(\delay, 0.31);
-			~tOSCAdrr.sendMsg('delayLabel', 0.25);
-			~tOSCAdrr.sendMsg('delayXY',0, 0.25);
-			},
-			'/delay05'
-		);
-
-		~delay1.free;
-		~delay1= OSCFunc({
-			arg msg;
-			~dly.set(\delay, 0.43);
-			~tOSCAdrr.sendMsg('delayLabel', 0.5);
-			~tOSCAdrr.sendMsg('delayXY',0, 0.5);
-			},
-			'/delay1'
-		);
-
-		~reverbXY.free;
-		~reverbXY= OSCFunc({
-			arg msg;
-
-
-			~rev.set(\mix, msg[2], \room, msg[1]);
-
-			},
-			'/reverbXY'
-		);
-
-		~reverbDamp.free;
-		~reverbDamp= OSCFunc({
-			arg msg;
-
-			~rev.set(\damp, msg[1]);
-
-			},
-			'/reverbDamp'
-		);
-
-		~mFX1Del.free;
-		~mFX1Del= OSCFunc({
-			arg msg;
-
-			~cln.set(\delay, msg[2]);
-
-			},
-			'/masterFX1/1'
-		);
-
-		~mFX1DelOff.free;
-		~mFX1DelOff=MIDIFunc.cc( {
-			arg vel;
-
-			if ( vel==0, {
-
-				~cln.set(\delay, 0);
-
-			});
-
-
-
-		}, chan:1, ccNum:6);
 
 
 	}
@@ -579,30 +445,7 @@ IFOSC {
 		//~transKick.source = PatternProxy( Pseq([0], inf));
 		//~transKick.sourceP= Pseq([~transKick.source], inf).asStream;
 
-		~harmXY.free;
-		~harmXY= OSCFunc({
-			arg msg;
 
-			~harmKick=msg[1];~harmSnr=msg[1];~harmHat=msg[1];
-			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2];
-
-			//~tOSCAdrr.sendMsg('noteLabel', msg[1]);
-			},
-			'/harmXY/1'
-		);
-
-		~harm_0.free;
-		~harm_0 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"Harmonic 0".postln;
-				~harmKick=0;
-				~harmBass=0;~harmKeys=0;~harmSamp=0;
-				//~tOSCAdrr.sendMsg('noteLabel', '0');
-			});
-			},
-			'/harm0'
-		);
 
 
 		~noteFader.free;
@@ -1001,304 +844,7 @@ IFOSC {
 
 	}
 
-	*oct {
 
-		//----Kick-------
-		~octKickMulBut.free;
-		~octKickMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = ~octMulKick+1;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickMul'
-		);
-
-		~octKickZeroBut.free;
-		~octKickZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = 0;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickZero'
-		);
-
-		~octKickDivBut.free;
-		~octKickDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = ~octMulKick-1;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickDiv'
-		);
-
-		//----Snr-------
-		~octSnrMulBut.free;
-		~octSnrMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSnr = ~octMulSnr+1;
-				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
-
-			});
-
-			},
-			'/octSnrMul'
-		);
-
-		~octSnrZeroBut.free;
-		~octSnrZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSnr = 0;
-				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
-
-			});
-
-			},
-			'/octSnrZero'
-		);
-
-		~octSnrDivBut.free;
-		~octSnrDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSnr = ~octMulSnr-1;
-				~tOSCAdrr.sendMsg('octSnrLabel', ~octMulSnr);
-
-			});
-
-			},
-			'/octSnrDiv'
-		);
-
-		//----Hat-------
-		~octHatMulBut.free;
-		~octHatMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulHat = ~octMulHat+1;
-				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
-
-			});
-
-			},
-			'/octHatMul'
-		);
-
-		~octHatZeroBut.free;
-		~octHatZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulHat = 0;
-				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
-
-			});
-
-			},
-			'/octHatZero'
-		);
-
-		~octHatDivBut.free;
-		~octHatDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulHat = ~octMulHat-1;
-				~tOSCAdrr.sendMsg('octHatLabel', ~octMulHat);
-
-			});
-
-			},
-			'/octHatDiv'
-		);
-
-		//----Keys-------
-		~octKeysMulBut.free;
-		~octKeysMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKeys = ~octMulKeys+1;
-				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
-			});
-
-			},
-			'/octKeysMul'
-		);
-
-		~octKeysZeroBut.free;
-		~octKeysZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKeys = 0;
-				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
-			});
-
-			},
-			'/octKeysZero'
-		);
-
-		~octKeysDivBut.free;
-		~octKeysDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKeys = ~octMulKeys-1;
-				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
-			});
-
-			},
-			'/octKeysDiv'
-		);
-
-		//----Bass-------
-		~octBassMulBut.free;
-		~octBassMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulBass = ~octMulBass+1;
-				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
-			});
-
-			},
-			'/octBassMul'
-		);
-
-		~octBassZeroBut.free;
-		~octBassZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulBass = 0;
-				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
-			});
-
-			},
-			'/octBassZero'
-		);
-
-		~octBassDivBut.free;
-		~octBassDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulBass = ~octMulBass-1;
-				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
-			});
-
-			},
-			'/octBassDiv'
-		);
-
-		//----Samp-------
-		~octSampMulBut.free;
-		~octSampMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSamp = ~octMulSamp+1;
-				~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
-
-			});
-
-			},
-			'/octSampMul'
-		);
-
-		~octSampZeroBut.free;
-		~octSampZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSamp = 0;
-				~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
-
-			});
-
-			},
-			'/octSampZero'
-		);
-
-		~octSampDivBut.free;
-		~octSampDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulSamp = ~octMulSamp-1;
-				~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
-
-			});
-
-			},
-			'/octSampDiv'
-		);
-
-
-	}
 
 	*trans {
 

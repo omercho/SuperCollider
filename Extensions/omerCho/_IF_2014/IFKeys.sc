@@ -28,7 +28,8 @@ IFKeys {
 		~rootKeys=0;
 		~harmKeys=0;
 		~susMulKeys=1;
-		~lfoMulKeys=0;
+		~lfoMulKeys1=0;
+		~lfoMulKeys2=0;
 		~trKeys=0;
 
 	}
@@ -101,26 +102,25 @@ IFKeys {
 			\dur, Pseq([Pseq([~dur1KeysP.next/i],1)], 1),
 			\degree, Pseq([~nt1KeysP.next], 1),
 			\amp, Pseq([~amp1KeysP.next], 1),
-			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys*~susTD,
+			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys,
 			\mtranspose, Pseq([~transKeysP.next], 1)+~trKeys,
 			\octave, Pseq([~octKeysP.next], 1)+~octMulKeys,
-
 			\harmonic, Pseq([~strKeysP.next], 1)+~harmKeys
 		).play;
 
 		Pbind(//LFO RATE
 			\type, \midi, \midicmd, \control,
-			\chan, 0, \midiout,~md1, \ctlNum, ~lfoRate,
+			\chan, 0, \midiout,~md1, \ctlNum, 2,
 			\delta, Pseq([~delta1KeysP.next], 2),
-			\control, Pseq([~lfoRtKeysP.next], 2)*~lfoMulKeys,
+			\control, Pseq([~lfoRtKeysP.next], 2)*~lfoMulKeys1,
 
 		).play;
 
 		Pbind(//LFO CUT
 			\type, \midi, \midicmd, \control,
-			\chan, 0, \midiout,~md1, \ctlNum, ~lfoCut,
+			\chan, 0, \midiout,~md1, \ctlNum, 3,
 			\delta, Pseq([~delta2KeysP.next], 2),
-			\control, Pseq([~lfoCtKeysP.next], 2)*~lfoMulKeys,
+			\control, Pseq([~lfoCtKeysP.next], 2)*~lfoMulKeys2,
 
 		).play;
 
@@ -163,12 +163,35 @@ IFKeys {
 			'/attKeys'
 		);
 
-		~lfoMulKeysFad.free;
-		~lfoMulKeysFad= OSCFunc({
+		~midiSusKeys.free;
+		~midiSusKeys=MIDIFunc.cc( {
+			arg vel;
+			~vKeys.control(0, ~envSus, vel);
+
+		}, chan:1, ccNum:54);
+
+		~midiDecKeys.free;
+		~midiDecKeys=MIDIFunc.cc( {
+			arg vel;
+			vel.postln;
+			~vKeys.control(0, ~envDec, vel);
+
+		}, chan:1, ccNum:33);
+
+		~lfoMulKeysFad1.free;
+		~lfoMulKeysFad1= OSCFunc({
 			arg msg;
-			~lfoMulKeys=msg[1];
+			~lfoMulKeys1=msg[1];
 			},
-			'/lfoMulKeys'
+			'/lfoMulKeys1'
+		);
+
+		~lfoMulKeysFad2.free;
+		~lfoMulKeysFad2= OSCFunc({
+			arg msg;
+			~lfoMulKeys2=msg[1];
+			},
+			'/lfoMulKeys2'
 		);
 
 		~tmKeysFader.free;
@@ -180,43 +203,7 @@ IFKeys {
 			'/timesKeys'
 		);
 
-		//MUTES
-		~vKeysMtCln.free;
-		~vKeysMtCln= OSCFunc({
-			arg msg;
 
-			~vKeysSynth.set(\mtCln, msg[1]);
-
-			},
-			'/mtClnKeys'
-		);
-		~vKeysMtDly.free;
-		~vKeysMtDly= OSCFunc({
-			arg msg;
-
-			~vKeysSynth.set(\mtDly, msg[1]);
-
-			},
-			'/mtDlyKeys'
-		);
-		~vKeysMtRev.free;
-		~vKeysMtRev= OSCFunc({
-			arg msg;
-
-			~vKeysSynth.set(\mtRev, msg[1]);
-
-			},
-			'/mtRevKeys'
-		);
-		~vKeysMtFlo.free;
-		~vKeysMtFlo= OSCFunc({
-			arg msg;
-
-			~vKeysSynth.set(\mtFlo, msg[1]);
-
-			},
-			'/mtFloKeys'
-		);
 
 		~padKeys.free;
 		~padKeys = OSCFunc({
@@ -228,6 +215,55 @@ IFKeys {
 			});
 			},
 			'/padKeys'
+		);
+
+		//----Keys-------
+		~octKeysMulBut.free;
+		~octKeysMulBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKeys = ~octMulKeys+1;
+				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
+
+			});
+
+			},
+			'/octKeysMul'
+		);
+
+		~octKeysZeroBut.free;
+		~octKeysZeroBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKeys = 0;
+				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
+
+			});
+
+			},
+			'/octKeysZero'
+		);
+
+		~octKeysDivBut.free;
+		~octKeysDivBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKeys = ~octMulKeys-1;
+				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
+
+			});
+
+			},
+			'/octKeysDiv'
 		);
 
 	}
