@@ -18,6 +18,7 @@
 		MIDIClient.init;	// scan all midi sources
 		MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		~abLate=0.00;
 
 	}
 
@@ -41,7 +42,8 @@
 		{
 			Pbind(
 				\type, \midi, \midicmd, \control,
-				\midiout,~md1, \chan, 15, \ctlNum, 2,\delta, Pseq([1], 4),\control, Pseq([100], 4)
+				\midiout,~md1, \chan, 15, \ctlNum, 2,
+				\delta, Pseq([1], 4),\control, Pseq([100], 4)
 			).play;
 			4.01.wait;
 			//this.stop;

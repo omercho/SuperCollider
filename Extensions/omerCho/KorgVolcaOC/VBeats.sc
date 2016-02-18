@@ -117,43 +117,6 @@ VBeats {
 		}, '/volBeats');
 
 
-	//MUTES
-	~vBeatsMtCln.free;
-	~vBeatsMtCln= OSCFunc({
-		arg msg;
-
-		~vBeatsSynth.set(\mtCln, msg[1]);
-
-		},
-		'/mtClnBeats'
-	);
-	~vBeatsMtDly.free;
-	~vBeatsMtDly= OSCFunc({
-		arg msg;
-
-		~vBeatsSynth.set(\mtDly, msg[1]);
-
-		},
-		'/mtDlyBeats'
-	);
-	~vBeatsMtRev.free;
-	~vBeatsMtRev= OSCFunc({
-		arg msg;
-
-		~vBeatsSynth.set(\mtRev, msg[1]);
-
-		},
-		'/mtRevBeats'
-	);
-	~vBeatsMtFlo.free;
-	~vBeatsMtFlo= OSCFunc({
-		arg msg;
-
-		~vBeatsSynth.set(\mtFlo, msg[1]);
-
-		},
-		'/mtFloBeats'
-	);
 
 
 

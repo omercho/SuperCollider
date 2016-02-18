@@ -19,8 +19,8 @@ IFVKick_SC {
 
 	*globals{
 
-		~chVKick=1;
-		~vBeatsLate=0.0;
+		~chVKick=9;
+		~vBeatsLate=Tempo.bpm*(1/267.92);
 		~timesVKick=1;
 		~octMulVKick=0;
 		~trVKick=0;
@@ -35,7 +35,7 @@ IFVKick_SC {
 
 	*default {
 
-		~nt1VKick = PatternProxy( Pseq([~vKick], inf));
+		~nt1VKick = PatternProxy( Pseq([0], inf));
 		~nt1VKickP = Pseq([~nt1VKick], inf).asStream;
 		~dur1VKick = PatternProxy( Pseq([1], inf));
 		~dur1VKickP = Pseq([~dur1VKick], inf).asStream;
@@ -80,7 +80,7 @@ IFVKick_SC {
 		var val;
 		val=i;
 		Pbind(
-			\type, \midi, \midiout,~md1,\chan, ~chVKick,
+			\type, \midi, \midiout,~vBeats,\chan, ~chVKick,
 			\scale, Pfunc({Scale.chromatic}, inf), \octave, 0,
 			\dur, Pseq([~dur1VKickP.next/val], val),
 			\note, Pseq([~nt1VKickP.next], inf),

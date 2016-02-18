@@ -23,6 +23,13 @@ IFSCTracks{
 							IFBass(~tmBassP.next);
 							IFKeys(~tmKeysP.next);
 							IFSamp(~tmSampP.next);
+							IFRes1(~tmRes1P.next);
+							~vBeatsLate=Tempo.bpm*(1/267.92);
+							IFVKick_SC(~tmVKickP.next);
+							IFVSnr_SC(~tmVSnrP.next);
+							IFVTom_SC(~tmVTomP.next);
+							IFVHat_SC(~tmVHatP.next);
+							IFVPcm_SC(~tmVPcmP.next);
 
 							~durMul*((~durP.next)).wait;
 						};
@@ -66,8 +73,11 @@ IFSCTracks{
 				"------------dur2".postln;
 				~tOSCAdrr.sendMsg('durLabel', '2');
 				~dur.source = Pseq([
-					Pseq([1], 7),
-					Pseq([0.5,0.5], 1)
+					Pseq([0.5], 2),
+					Pseq([1], 2),
+					Pseq([0.5,0.5], 1),
+					Pseq([0.25], 4),
+					Pseq([1], 3),
 				], inf)*~durMulP;
 
 			});
@@ -298,6 +308,17 @@ IFSCTracks{
 			});
 			},
 			'/set1'
+		);
+		~set2But.free;
+		~set2But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFSCProjectGlobals.preSet_2;
+
+			});
+			},
+			'/set2'
 		);
 
 	}

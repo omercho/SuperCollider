@@ -41,24 +41,13 @@
 
 		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
 		//~tOSCAdrr = NetAddr.new("169.254.132.166", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("169.254.108.24", 57130); // vaggelisLocalNetwork
 
-
-		//MIDIClient.init;	// scan all midi sources
-		//MIDIClient.sources do: { | s, i | MIDIIn.connect(i, s) }; // connect all midi sources
-		MIDIIn.connectAll;
-		//~sc1 = MIDIOut.newByName("IAC Driver", "SC1");
+		//MIDIIn.connectAll;
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
-
 		//~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
-		//~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // create the NetAddr
-		//~tOSCAdrr = NetAddr.new("169.254.44.119", 57130); // create the NetAddr
 
-
-		~abLate=0.00;
-
-		~durMul = 1.0;
+		~durMul = 1.0; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.2);
 
 		~nt=0;
 
@@ -139,7 +128,9 @@
 		~harmBass=0;~harmKeys=0;~harmSamp=0;
 
 		~lfoMulBass1=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.2);
+		~lfoMulBass2=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.5);
 		~lfoMulKeys1=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.5);
+		~lfoMulKeys2=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.5);
 		~lfoMulSamp1=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.4);
 
 	}

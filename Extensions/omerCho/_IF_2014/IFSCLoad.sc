@@ -41,6 +41,8 @@ IFSCLoad{
 				0.1.wait;
 				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
 				0.1.wait;
+				IFRes1.globals; IFRes1.preSet;
+				0.1.wait;
 				IFSC_MIDI.latency;
 
 			});

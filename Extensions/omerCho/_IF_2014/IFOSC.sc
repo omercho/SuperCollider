@@ -40,14 +40,22 @@ IFOSC {
 
 		~cutAllXY.free;
 		~cutAllXY= OSCFunc({
-			arg msg;
+			arg msg,vel1, vel2;
 
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
 
-			~vBass.control(0, ~cutOff, msg[1]*127);
+			~md1.control(10, 6, vel1); // VBass VCFilter CutOff
+			~vBass.control(0, ~cutOff, vel1);
 
-			~vKeys.control(0, ~vcfCut, msg[2]*127); //VCFilter CutOff
+			~vBass.control(0, ~gateTime, vel2);
 
-			~cutSamp=msg[1];
+			~md1.control(10, 7, vel2); //VKeys VCFilter CutOff
+			~vKeys.control(0, ~vcfCut, vel2);
+
+			~md1.control(10, 8, vel1); // IFSamp VCFilter CutOff
+
+			~md1.control(10, 9, vel2); //IFSamp VCFilter CutOff
 
 			},
 			'/cutAll'
@@ -102,10 +110,10 @@ IFOSC {
 		~chainAllFader= OSCFunc({
 			arg msg,val;
 
-			val=msg[1];
-			~md1.control(1, 41, msg[1]*127);~tOSCAdrr.sendMsg('chainKick', val);
-			~md1.control(1, 42, msg[1]*127);~tOSCAdrr.sendMsg('chainSnr', val);
-			~md1.control(1, 43, msg[1]*127);~tOSCAdrr.sendMsg('chainHat', val);
+			val=msg[1]*127;
+			~md1.control(2, 8, val);//~tOSCAdrr.sendMsg('chainKick', val);
+			~md1.control(3, 8, val);//~tOSCAdrr.sendMsg('chainSnr', val);
+			~md1.control(4, 8, val);//~tOSCAdrr.sendMsg('chainHat', val);
 
 			},
 			'/chainAll'
@@ -115,18 +123,19 @@ IFOSC {
 		~attAllFader= OSCFunc({
 			arg msg,val;
 
-			val=msg[1];
-			~attBass=val; ~tOSCAdrr.sendMsg('attBass', val);
-			~attKeys=val; ~tOSCAdrr.sendMsg('attKeys', val);
-			~attSamp=val; ~tOSCAdrr.sendMsg('attSamp', val);
+			val=msg[1]*127;
+			~md1.control(5, 5, val); ~tOSCAdrr.sendMsg('attBass', val);
+			~md1.control(6, 5, val); ~tOSCAdrr.sendMsg('attKeys', val);
+			~md1.control(7, 5, val); ~tOSCAdrr.sendMsg('attSamp', val);
 			},
 			'/attAll'
 		);
 
 		~tempoFader.free;
 		~tempoFader= OSCFunc({
-			arg msg;
-
+			arg msg,val;
+			val=msg[1];
+			//~vBeatsLate=val/(1/100);
 			IFSCProjectGlobals.setTempo(msg[1]);
 			~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
 			~tOSCAdrr.sendMsg('tempoFader', msg[1]);
@@ -146,8 +155,8 @@ IFOSC {
 			},
 			'/tmMulDrum'
 		);
-		~killAllBut.free;
-		~killAllBut= OSCFunc({
+		~killAblBut.free;
+		~killAblBut= OSCFunc({
 			arg msg;
 			if(msg[1]==1,{
 				{"TRUE".postln;
@@ -159,23 +168,23 @@ IFOSC {
 			});
 
 			},
-			'/killAll'
+			'/killAbl'
 		);
 
 
-		~recordBut.free;
-		~recordBut = OSCFunc({
+		~tapAblBut.free;
+		~tapAblBut = OSCFunc({
 			arg msg;
 
 			if ( msg[1]==1, {
-				   {Server.default.prepareForRecord; 0.1.wait; Server.default.record;}.fork;
+				   Ableton.tap4;
 				},{
-					Server.default.stopRecording;
+
 				}
 			);
 
 			},
-			'/record'
+			'/tapAbl'
 		);
 
 
@@ -208,6 +217,7 @@ IFOSC {
 			arg msg;
 
 			~track3.fork;
+			~tOSCAdrr.sendMsg('trackLabel','TRACK 3');
 
 			},
 			'/track3'
@@ -218,6 +228,7 @@ IFOSC {
 			arg msg;
 
 			~track4.fork;
+			~tOSCAdrr.sendMsg('trackLabel','TRACK 4');
 
 			},
 			'/track4'

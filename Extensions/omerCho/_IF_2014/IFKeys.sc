@@ -108,29 +108,35 @@ IFKeys {
 			\harmonic, Pseq([~strKeysP.next], 1)+~harmKeys
 		).play;
 
-		Pbind(//LFO RATE
+		Pbind(//LFO CUT ABL INT
 			\type, \midi, \midicmd, \control,
-			\chan, 0, \midiout,~md1, \ctlNum, 2,
+			\midiout,~md1, \chan, 10, \ctlNum, 3,
 			\delta, Pseq([~delta1KeysP.next], 2),
-			\control, Pseq([~lfoRtKeysP.next], 2)*~lfoMulKeys1,
-
+			\control, Pseq([~lfoCtKeysP.next], 2)*~lfoMulKeys1,
 		).play;
 
-		Pbind(//LFO CUT
+		Pbind(//LFO CUT KEYS INT
+			\midicmd, \control, \type, \midi,
+			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoCut,
+			\delta, Pseq([~delta1KeysP.value], 2),
+			\control, Pseq([~lfoCtKeysP.value], 2)*~lfoMulKeys1,
+		).play;
+
+		Pbind(//LFO RATE ABL
 			\type, \midi, \midicmd, \control,
-			\chan, 0, \midiout,~md1, \ctlNum, 3,
+			\midiout,~md1, \chan, 10, \ctlNum, 2,
 			\delta, Pseq([~delta2KeysP.next], 2),
-			\control, Pseq([~lfoCtKeysP.next], 2)*~lfoMulKeys2,
-
+			\control, Pseq([~lfoRtKeysP.next], 2)*~lfoMulKeys2,
 		).play;
 
-		/*Pbind(//LFO CUT
-		\chan, 0, \midicmd, \control,
-		\type, \midi, \midiout,~vKeys, \ctlNum, ~vcfCut,
-		\delta, Pseq([~delta3KeysP.next], 4),
-		\control, Pseq([~vcfCtKeysP.next], 4)*~lfoMulKeys,
+		Pbind(//LFO RATE KEYS
+			\midicmd, \control, \type, \midi,
+			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoRate,
+			\delta, Pseq([~delta2KeysP.value], 2),
+			\control, Pseq([~lfoRtKeysP.value], 2)*~lfoMulKeys2,
+		).play;
 
-		).play;*/
+
 
 		//this.count2;
 		//this.timesCount;
@@ -143,32 +149,34 @@ IFKeys {
 		~xy1Keys.free;
 		~xy1Keys= OSCFunc({
 			arg msg;
-
-
-
-
 			~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
 			~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
-
 			},
 			'/xy1Keys'
 		);
 
-		~attKeysFader.free;
+		/*~attKeysFader.free; //THE OSC FORMAT CONTROL
 		~attKeysFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
 			~vKeys.control(0, ~envAtt, val+0.01);
 			},
 			'/attKeys'
-		);
+		);*/
+
+		~midiAttKeys.free;
+		~midiAttKeys=MIDIFunc.cc( {
+			arg vel;
+			~vKeys.control(0, ~envAtt, vel);
+
+		}, chan:6, ccNum:5);
 
 		~midiSusKeys.free;
 		~midiSusKeys=MIDIFunc.cc( {
 			arg vel;
 			~vKeys.control(0, ~envSus, vel);
 
-		}, chan:1, ccNum:54);
+		}, chan:6, ccNum:6);
 
 		~midiDecKeys.free;
 		~midiDecKeys=MIDIFunc.cc( {
@@ -176,12 +184,12 @@ IFKeys {
 			vel.postln;
 			~vKeys.control(0, ~envDec, vel);
 
-		}, chan:1, ccNum:33);
+		}, chan:6, ccNum:7);
 
 		~lfoMulKeysFad1.free;
 		~lfoMulKeysFad1= OSCFunc({
 			arg msg;
-			~lfoMulKeys1=msg[1];
+			~lfoMulKeys1=msg[1]*1.2;
 			},
 			'/lfoMulKeys1'
 		);
@@ -189,7 +197,7 @@ IFKeys {
 		~lfoMulKeysFad2.free;
 		~lfoMulKeysFad2= OSCFunc({
 			arg msg;
-			~lfoMulKeys2=msg[1];
+			~lfoMulKeys2=msg[1]*1.2;
 			},
 			'/lfoMulKeys2'
 		);
@@ -221,15 +229,10 @@ IFKeys {
 		~octKeysMulBut.free;
 		~octKeysMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~octMulKeys = ~octMulKeys+1;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
 			});
-
 			},
 			'/octKeysMul'
 		);
@@ -237,15 +240,10 @@ IFKeys {
 		~octKeysZeroBut.free;
 		~octKeysZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~octMulKeys = 0;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
 			});
-
 			},
 			'/octKeysZero'
 		);
@@ -253,15 +251,10 @@ IFKeys {
 		~octKeysDivBut.free;
 		~octKeysDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~octMulKeys = ~octMulKeys-1;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
-
 			});
-
 			},
 			'/octKeysDiv'
 		);

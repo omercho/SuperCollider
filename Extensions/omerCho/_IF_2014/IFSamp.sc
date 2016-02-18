@@ -119,7 +119,7 @@ IFSamp {
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1, \chan, 0, \ctlNum, 4,
+			\midiout,~md1, \chan, 10, \ctlNum, 4,
 			\delta, Pseq([~delta1SampP.next], 2),
 			\control, Pseq([~lfo1SampP.next], 2)*~lfoMulSamp1,
 
@@ -127,7 +127,7 @@ IFSamp {
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1,\chan, 0,  \ctlNum, 5,
+			\midiout,~md1,\chan, 10,  \ctlNum, 5,
 			\delta, Pseq([~delta2SampP.next], 2),
 			\control, Pseq([~lfo2SampP.next], 2)*~lfoMulSamp2,
 

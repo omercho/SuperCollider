@@ -113,18 +113,32 @@ IFBass {
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1, \chan, 0, \ctlNum, 0,
+			\midiout,~md1, \chan, 10, \ctlNum, 0,
 			\delta, Pseq([~delta1BassP.next], 2),
 			\control, Pseq([~lfo1BassP.next], 2)*~lfoMulBass1,
 
 		).play;
 
+		Pbind(//LFO CUT BASS INT
+			\midicmd, \control, \type, \midi,
+			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoInt,
+			\delta, Pseq([~delta1KeysP.value], 2),
+			\control, Pseq([~lfo1BassP.value], 2)*~lfoMulBass1,
+		).play;
+
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~md1,\chan, 0,  \ctlNum, 1,
+			\midiout,~md1,\chan, 10,  \ctlNum, 1,
 			\delta, Pseq([~delta2BassP.next], 2),
 			\control, Pseq([~lfo2BassP.next], 2)*~lfoMulBass2,
 
+		).play;
+
+		Pbind(//LFO CUT BASS RATE
+			\midicmd, \control, \type, \midi,
+			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoRate,
+			\delta, Pseq([~delta2KeysP.value], 2),
+			\control, Pseq([~lfo2BassP.value], 2)*~lfoMulBass2,
 		).play;
 
 
@@ -156,37 +170,36 @@ IFBass {
 			'/attBass'
 		);*/
 
+		~midiAttBass.free;
+		~midiAttBass=MIDIFunc.cc( {
+			arg vel;
+			//vel.postln;
+			~vBass.control(0, ~egAtt, vel);
+			//~tOSCAdrr.sendMsg('attBass', vel/127);
+		}, chan:5, ccNum:5);
+
 		~midiSltBass.free;
 		~midiSltBass=MIDIFunc.cc( {
 			arg vel;
 			vel.postln;
-			~tOSCAdrr.sendMsg('sltBass', vel);
 			~vBass.control(0, ~slideTime, vel);
+			~tOSCAdrr.sendMsg('sltBass', vel*(1/127));
+		}, chan:5, ccNum:6);
 
-		}, chan:1, ccNum:53);
-
-		~midiAttBass.free;
-		~midiAttBass=MIDIFunc.cc( {
-			arg vel;
-			vel.postln;
-			~vBass.control(0, ~egAtt, vel);
-			~tOSCAdrr.sendMsg('attBass', vel/127);
-
-		}, chan:1, ccNum:54);
 
 		~midiDecBass.free;
 		~midiDecBass=MIDIFunc.cc( {
 			arg vel;
 			vel.postln;
 			~vBass.control(0, ~egDec, vel);
-			~tOSCAdrr.sendMsg('decBass', vel);
+			//~tOSCAdrr.sendMsg('decBass', vel);
 
-		}, chan:1, ccNum:28);
+		}, chan:5, ccNum:7);
 
 		~lfoMulBassFad1.free;
 		~lfoMulBassFad1= OSCFunc({
 			arg msg;
-			~lfoMulBass1=msg[1];
+			~lfoMulBass1=msg[1]*1.2;
 			},
 			'/lfoMulBass1'
 		);
@@ -194,7 +207,7 @@ IFBass {
 		~lfoMulBassFad2.free;
 		~lfoMulBassFad2= OSCFunc({
 			arg msg;
-			~lfoMulBass2=msg[1];
+			~lfoMulBass2=msg[1]*1.2;
 			},
 			'/lfoMulBass2'
 		);
@@ -207,8 +220,6 @@ IFBass {
 			},
 			'/timesBass'
 		);
-
-
 
 		~padBass.free;
 		~padBass = OSCFunc({
@@ -226,15 +237,11 @@ IFBass {
 		~octBassMulBut.free;
 		~octBassMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
 
 				~octMulBass = ~octMulBass+1;
 				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
 			});
-
 			},
 			'/octBassMul'
 		);
@@ -242,15 +249,11 @@ IFBass {
 		~octBassZeroBut.free;
 		~octBassZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
 
 				~octMulBass = 0;
 				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
 			});
-
 			},
 			'/octBassZero'
 		);
@@ -258,20 +261,17 @@ IFBass {
 		~octBassDivBut.free;
 		~octBassDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~octMulBass = ~octMulBass-1;
 				~tOSCAdrr.sendMsg('octBassLabel', ~octMulBass);
-
 			});
-
 			},
 			'/octBassDiv'
 		);
-
 	}
+
+
+
 
 	//Bass Beat Counter
 	*count3 {

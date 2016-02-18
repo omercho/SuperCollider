@@ -60,21 +60,20 @@ IDE:
       help-dock: ""
       post-dock: ""
     geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAANBAAAAAAAAAC0AAAaPAAADQQAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAAC/fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC/QAAAGYA////AAAAAQAAAfAAAAL9/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAXcAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAXgAAAGFAAAATAD///8AAAOtAAAC/QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAAC/fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC/QAAAGYA////AAAAAQAAAmsAAAL9/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAXcAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAXgAAAGFAAAATAD///8AAAMyAAAC/QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBeats.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRes1.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVPcm_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTom_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVHat_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVKick_SC.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDI_Erg.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSC_MIDI.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCMIDI.sc
-    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150110_MIDI2Abl_Unstable_01.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaMainERG.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_CinderellaDragm.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_CtlAbleton.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+59SEP/150903_1325_Cinderella_BufPat.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H
