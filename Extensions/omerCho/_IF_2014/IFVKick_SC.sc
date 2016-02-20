@@ -20,6 +20,7 @@ IFVKick_SC {
 	*globals{
 
 		~chVKick=9;
+		~vBeatsLate=0;
 		~vBeatsLate=Tempo.bpm*(1/267.92);
 		~timesVKick=1;
 		~octMulVKick=0;

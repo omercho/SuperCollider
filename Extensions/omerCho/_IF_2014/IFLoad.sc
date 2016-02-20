@@ -1,15 +1,15 @@
 /*
-IFSCLoad.load;
+IFLoad.load;
 */
 
-IFSCLoad{
+IFLoad{
 	*load{
 		//////--------
 		fork{
 			Server.default.doWhenBooted({
 
 				0.1.wait;
-				IFSCProjectGlobals.loadAll;
+				IFProjectGlobals.loadAll;
 				0.1.wait;
 				IFOSC.loadAll;
 				0.1.wait;
@@ -19,7 +19,6 @@ IFSCLoad{
 				0.1.wait;
 				VKeys.globals; VKeys.preSet01;
 				0.1.wait;
-
 				IFVKick_SC.globals; IFVKick_SC.preSet; IFVKick_SC.default; IFVKick_SC.osc;
 				0.1.wait;
 				IFVSnr_SC.globals; IFVSnr_SC.preSet; IFVSnr_SC.default; IFVSnr_SC.osc;
@@ -42,8 +41,10 @@ IFSCLoad{
 				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
 				0.1.wait;
 				IFRes1.globals; IFRes1.preSet;
-				0.1.wait;
 				IFSC_MIDI.latency;
+				0.1.wait;
+				"Track: Not loaded".postln;
+				~tOSCAdrr.sendMsg('trackLabel', 'Track: Not loaded');
 
 			});
 		};

@@ -68,7 +68,7 @@ IFOSC {
 			~harmKick=msg[1];~harmSnr=msg[1];~harmHat=msg[1];
 			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2];
 
-			//~tOSCAdrr.sendMsg('noteLabel', msg[1]);
+			~tOSCAdrr.sendMsg('harm0', 1);
 			},
 			'/harmXY/1'
 		);
@@ -78,9 +78,9 @@ IFOSC {
 			arg msg;
 			if ( msg[1]==1, {
 				"Harmonic 0".postln;
-				~harmKick=0;
+				~harmKick=0;~harmSnr=0;~harmHat=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0;
-				//~tOSCAdrr.sendMsg('noteLabel', '0');
+				~tOSCAdrr.sendMsg('harm0', 0);
 			});
 			},
 			'/harm0'
@@ -136,7 +136,7 @@ IFOSC {
 			arg msg,val;
 			val=msg[1];
 			//~vBeatsLate=val/(1/100);
-			IFSCProjectGlobals.setTempo(msg[1]);
+			IFProjectGlobals.setTempo(msg[1]);
 			~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
 			~tOSCAdrr.sendMsg('tempoFader', msg[1]);
 
@@ -193,7 +193,7 @@ IFOSC {
 		~trackOSC_1= OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				IFSCTracks.track1;
+				IFTracks.track1;
 				"TRACK 1".postln;
 				~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 			});
@@ -204,10 +204,11 @@ IFOSC {
 		~trackOSC_2.free;
 		~trackOSC_2= OSCFunc({
 			arg msg;
-
-			~track2.fork;
-			~tOSCAdrr.sendMsg('trackLabel','TRACK 2');
-
+			if ( msg[1]==1, {
+				IFTracks.track2;
+				"TRACK 2".postln;
+				~tOSCAdrr.sendMsg('trackLabel','TRACK 2');
+			});
 			},
 			'/track2'
 		);
