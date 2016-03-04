@@ -1,14 +1,14 @@
 
 /*
-IFVTom_SC(1);
-IFVTom_SC.p1(2);
+IFVTom(1);
+IFVTom.p1(2);
 
 ~octVTomL=4;
 
 */
 
 
-IFVTom_SC {
+IFVTom {
 
 
 	*initClass {
@@ -67,10 +67,16 @@ IFVTom_SC {
 
 				~vBeatsLate.wait;
 				this.p1(val);
-				/*led= 1*~amp1VTomLP.next;
-				case {~amp1VTomLP.value==1} {
-					this.led(val, ~levVTomLP.next);
-					};*/
+				led= ~amp1VTom.asStream.value;
+				if ( led>0.0, {
+					1.do{
+						~tOSCAdrr.sendMsg('/vTomLed', led);
+						0.2.wait;
+						~tOSCAdrr.sendMsg('/vTomLed', 0.0);
+					};
+					},{
+						~tOSCAdrr.sendMsg('/vTomLed', 0.0);
+				});
 				~durMulP*((~dur1VTomP.next)/val).wait;
 			}}.fork;
 		}

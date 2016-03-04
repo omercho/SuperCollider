@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAM/AAAAAAAAAC0AAAaPAAADPwAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAAC+/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC+wAAAGYA////AAAAAQAAAmsAAAL7/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAW8AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAXAAAAGLAAAATAD///8AAAMyAAAC+wAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPmAAAAAAAAAC0AAAaPAAAD5gAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAADovwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADogAAAGYA////AAAAAQAAAl4AAAOi/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAgUAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAgYAAAGcAAAATAD///8AAAM/AAADogAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFLoad.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFProjectGlobals.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFTracks.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMainTrack2.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBeats.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRes1.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVPcm_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTom_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVHat_SC.sc
+    - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC.scd
+    - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFSpeechERG.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFCounter.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/SonicLife.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCHercules.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFMainTrack1ERG.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTom.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

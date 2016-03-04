@@ -8,7 +8,7 @@ IFVHat_SC.p1(2);
 */
 
 
-IFVHat_SC {
+IFVHat {
 
 
 	*initClass {
@@ -71,10 +71,16 @@ IFVHat_SC {
 
 				~vBeatsLate.wait;
 				this.p1(val);
-				/*led= 1*~amp1VHatLP.next;
-				case {~amp1VHatLP.value==1} {
-					this.led(val, ~levVHatLP.next);
-					};*/
+				led= ~amp1VHat.asStream.value;
+				if ( led>0.0, {
+					1.do{
+						~tOSCAdrr.sendMsg('/vHatLed', led);
+						0.2.wait;
+						~tOSCAdrr.sendMsg('/vHatLed', 0.0);
+					};
+					},{
+						~tOSCAdrr.sendMsg('/vHatLed', 0.0);
+				});
 				~durMulP*((~dur1VHatP.next)/val).wait;
 			}}.fork;
 		}
@@ -166,9 +172,9 @@ IFVHat_SC {
 		arg msg;
 
 		~decVHatMul=msg[1];
-		~tOSCAdrr.sendMsg('/decVHatC', msg[1]);
+		~tOSCAdrr.sendMsg('/decVHat', msg[1]);
 		},
-		'/decVHatC'
+		'/decVHat'
 	);
 
 

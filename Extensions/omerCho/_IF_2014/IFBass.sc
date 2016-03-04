@@ -50,7 +50,8 @@ IFBass {
 		~sus1Bass = PatternProxy( Pseq([1], inf));
 		~sus1BassP = Pseq([~sus1Bass], inf).asStream;
 
-
+		~tmMulBass = PatternProxy( Pseq([1], inf));
+		~tmMulBassP= Pseq([~tmMulBass], inf).asStream;
 		~tmBass = PatternProxy( Pseq([1], inf));
 		~tmBassP= Pseq([~tmBass], inf).asStream;
 

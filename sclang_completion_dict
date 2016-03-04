@@ -183,6 +183,7 @@ IFMIDI2Analogs
 IFMIDI_Erg
 IFMain
 IFMain01
+IFMainTrack1ERG
 IFMainTwoPlusInf01
 IFNoteOSC
 IFNoteOSC2
@@ -195,6 +196,7 @@ IFSC_Synths
 IFSC_Track01
 IFSamp_SC_ERG
 IFSnr_SC_Erg
+IFSpeechERG
 IF_RECORD
 IFtransOSC
 IRand

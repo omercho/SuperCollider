@@ -8,12 +8,12 @@ IFVPcm_SC.p1(2);
 */
 
 
-IFVPcm_SC {
+IFVPcm {
 
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});
+			//Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});
 		}
 	}
 

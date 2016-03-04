@@ -11,7 +11,7 @@ IFVSnr_SC.p1(1);
 */
 
 
-IFVSnr_SC {
+IFVSnr {
 
 
 	*initClass {
@@ -64,10 +64,10 @@ IFVSnr_SC {
 
 				~vBeatsLate.wait;
 				this.p1(val);
-				/*led= ~amp1VSnrP;
+				led= ~amp1VSnrP;
 				case {led==1} {
 					this.led(val, ~levVSnrP);
-					};*/
+					};
 				~durMulP*((~dur1VSnrP.next)/val).wait;
 			}}.fork;
 		}

@@ -48,6 +48,8 @@ IFKeys {
 		~sus1Keys = PatternProxy( Pseq([0.2], inf));
 		~sus1KeysP = Pseq([~sus1Keys], inf).asStream;
 
+		~tmMulKeys = PatternProxy( Pseq([1], inf));
+		~tmMulKeysP= Pseq([~tmMulKeys], inf).asStream;
 		~tmKeys = PatternProxy( Pseq([1], inf));
 		~tmKeysP = Pseq([~tmKeys], inf).asStream;
 
@@ -96,16 +98,18 @@ IFKeys {
 	}
 
 	*p1 {|i=1|
+		var val;
+		val=i;
 		Pbind(
 			\chan, ~chKeys,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1KeysP.next/i],1)], 1),
-			\degree, Pseq([~nt1KeysP.next], 1),
-			\amp, Pseq([~amp1KeysP.next], 1),
-			\sustain, Pseq([~sus1KeysP.next],1)*~susMulKeys,
-			\mtranspose, Pseq([~transKeysP.next], 1)+~trKeys,
-			\octave, Pseq([~octKeysP.next], 1)+~octMulKeys,
-			\harmonic, Pseq([~strKeysP.next], 1)+~harmKeys
+			\dur, Pseq([~dur1KeysP.next/val],val),
+			\degree, Pseq([~nt1KeysP.next], inf),
+			\amp, Pseq([~amp1KeysP.next], inf),
+			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
+			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys,
+			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~strKeysP.next], inf)+~harmKeys
 		).play;
 
 		Pbind(//LFO CUT ABL INT

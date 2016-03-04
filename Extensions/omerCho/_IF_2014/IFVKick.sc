@@ -1,6 +1,6 @@
 
 /*
-IFVKick.times(2);
+IFVKick(1);
 IFVKick.pat_1;
 
 ~octVKick=4;
@@ -8,7 +8,7 @@ IFVKick.pat_1;
 */
 
 
-IFVKick_SC {
+IFVKick {
 
 
 	*initClass {
@@ -23,9 +23,6 @@ IFVKick_SC {
 		~vBeatsLate=0;
 		~vBeatsLate=Tempo.bpm*(1/267.92);
 		~timesVKick=1;
-		~octMulVKick=0;
-		~trVKick=0;
-		~lfoMulVKick=0;
 
 
 
@@ -58,20 +55,20 @@ IFVKick_SC {
 		val=i;
 		case
 		{ i == val }  {
-			{val.do{var led;
+			{val.do{var led=1 , ledNum;
 
 				~vBeatsLate.wait;
 				this.p1(val);
-				/*led= ~amp1VKick.asStream.value;
+				led= led* ~amp1VKick.asStream.value;
 				if ( led>0.0, {
 					1.do{
 						~tOSCAdrr.sendMsg('vKickLed', led);
-						0.2.wait;
+						0.09.wait;
 						~tOSCAdrr.sendMsg('vKickLed', 0.0);
 					};
 					},{
-						~tOSCAdrr.sendMsg('vKickLed', 0.0);
-				});*/
+
+				});
 				~durMulP*((~dur1VKickP.next)/val).wait;
 			}}.fork;
 		}

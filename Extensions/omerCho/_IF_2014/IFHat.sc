@@ -40,7 +40,7 @@ IFHat.times(4);
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
 		~dur1Hat = PatternProxy( Pseq([1], inf));
-		~dur1HatP = Pseq([~dur1Snr], inf).asStream;
+		~dur1HatP = Pseq([~dur1Hat], inf).asStream;
 		~amp1Hat = PatternProxy( Pseq([1], inf));
 		~amp1HatP = Pseq([~amp1Hat], inf).asStream;
 		~sus1Hat = PatternProxy( Pseq([1], inf));
@@ -118,6 +118,47 @@ IFHat.times(4);
 	*cntrl {
 
 		//----Hat-------
+		//TIME
+		~tmMulHatBut1.free;
+		~tmMulHatBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulHat.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmHatLabel', 1);
+
+			});
+
+			},
+			'/tmMulHat1'
+		);
+		~tmMulHatBut2.free;
+		~tmMulHatBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulHat.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmHatLabel', 2);
+
+			});
+
+			},
+			'/tmMulHat2'
+		);
+		~tmMulHatBut3.free;
+		~tmMulHatBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulHat.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmHatLabel', 3);
+
+			});
+
+			},
+			'/tmMulHat3'
+		);
+
 		~octHatMulBut.free;
 		~octHatMulBut= OSCFunc({
 			arg msg;

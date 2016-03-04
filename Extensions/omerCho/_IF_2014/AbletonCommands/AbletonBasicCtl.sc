@@ -29,7 +29,7 @@
 
 	*stop {
 
-		~md1.control(15, 1, 100); //Start Live
+		~md1.control(15, 1, 100); //Stop Live
 	}
 
 	*tap {

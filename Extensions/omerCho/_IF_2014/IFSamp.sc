@@ -55,6 +55,8 @@ IFSamp {
 		~sus1Samp = PatternProxy( Pseq([1], inf));
 		~sus1SampP = Pseq([~sus1Samp], inf).asStream;
 
+		~tmMulSamp = PatternProxy( Pseq([1], inf));
+		~tmMulSampP= Pseq([~tmMulSamp], inf).asStream;
 		~tmSamp = PatternProxy( Pseq([1], inf));
 		~tmSampP= Pseq([~tmSamp], inf).asStream;
 

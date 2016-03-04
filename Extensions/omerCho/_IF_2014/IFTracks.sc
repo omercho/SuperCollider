@@ -16,23 +16,20 @@ IFTracks{
 						1.do {
 
 							//~md1Clock.play;
-
+							IFCounter.count;
 							IFKick(~tmMulKickP.next*~tmKickP.next);
 							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 							IFHat(~tmMulHatP.next*~tmHatP.next);
 
-							IFBass(~tmBassP.next*~tmBassP.next);
-							IFKeys(~tmKeysP.next*~tmKeysP.next);
-							IFSamp(~tmSampP.next*~tmSampP.next);
+							IFBass(~tmMulBassP.next*~tmBassP.next);
+							IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+							IFSamp(~tmMulSampP.next*~tmSampP.next);
 
 							IFRes1(~tmRes1P.next);
 
-							~vBeatsLate=Tempo.bpm*(1/267.91897);
-							IFVKick_SC(~tmVKickP.next);
-							IFVSnr_SC(~tmVSnrP.next);
-							IFVTom_SC(~tmVTomP.next);
-							IFVHat_SC(~tmVHatP.next);
-							IFVPcm_SC(~tmVPcmP.next);
+							//~vBeatsLate=Tempo.bpm*(1/267.91897);
+							//Ableton.tap4;
+
 
 							~durMul*((~durP.next)).wait;
 						};
@@ -46,6 +43,7 @@ IFTracks{
 			if ( msg[1]==0, {
 				"IF Main STOP".postln;
 				~ifPlay.stop;
+				//Ableton.stop;
 				//~md1Clock.stop;
 
 			});
@@ -60,7 +58,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 				"------------dur1".postln;
-				~tOSCAdrr.sendMsg('durLabel', '1');
+				~tOSCAdrr.sendMsg('durLabel', '1 Straight');
 
 				~dur.source = Pseq([1], inf)*~durMulP;
 
@@ -294,7 +292,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSetAll;
+				IFProjectGlobals.preSetAll;
 
 			});
 			},
@@ -306,7 +304,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSet_1;
+				IFProjectGlobals.preSet_1;
 
 			});
 			},
@@ -317,7 +315,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSet_2;
+				IFProjectGlobals.preSet_2;
 
 			});
 			},
@@ -354,11 +352,10 @@ IFTracks{
 
 							IFRes1(~tmRes1P.next);
 
-							IFVKick_SC(~tmVKickP.next);
-							IFVSnr_SC(~tmVSnrP.next);
-							IFVTom_SC(~tmVTomP.next);
-							IFVHat_SC(~tmVHatP.next);
-							IFVPcm_SC(~tmVPcmP.next);
+							IFVKick(~tmVKickP.next);
+							IFVSnr(~tmVSnrP.next);
+							IFVTom(~tmVTomP.next);
+							IFVHat(~tmVHatP.next);
 
 							~durMul*((~durP.next)).wait;
 						};
@@ -406,8 +403,8 @@ IFTracks{
 					Pseq([1], 2),
 					Pseq([0.5,0.5], 1),
 					Pseq([0.25], 4),
-					Pseq([1], 3),
-				], inf)*~durMulP;
+					Pseq([1], 2),
+				], inf)*2*~durMulP;
 
 			});
 			},
@@ -620,7 +617,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSetAll;
+				IFProjectGlobals.preSetAll;
 
 			});
 			},
@@ -632,7 +629,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSet_1;
+				IFProjectGlobals.preSet_1;
 
 			});
 			},
@@ -643,7 +640,7 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSCProjectGlobals.preSet_2;
+				IFProjectGlobals.preSet_2;
 
 			});
 			},

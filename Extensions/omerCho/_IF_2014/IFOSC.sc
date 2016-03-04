@@ -80,10 +80,59 @@ IFOSC {
 				"Harmonic 0".postln;
 				~harmKick=0;~harmSnr=0;~harmHat=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0;
+
+				~strSnr.source    =  Pshuf([1], inf);
+				~strSnr.source    =  Pshuf([1], inf);
+				~strHat.source    =  Pshuf([1], inf);
+				~strBass.source    =  Pshuf([1], inf);
+				~strKeys.source    =  Pshuf([1], inf);
+				~strSamp.source    =  Pshuf([1], inf);
 				~tOSCAdrr.sendMsg('harm0', 0);
+				~tOSCAdrr.sendMsg('shufHarm', 0);
 			});
 			},
 			'/harm0'
+		);
+
+		~shufHarmBut.free;
+		~shufHarmBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Harmonics Shuffle".postln;
+				~strKick.source  =  Pshuf([0.2,0.8,2.3,1.2, 1.1,2.8,1.8,0.4], inf);
+				~strSnr.source   =  Pshuf([1.1,0.4,2,1.2, 1.1,3,1.8,0.4], inf);
+				~strHat.source   =  Pshuf([0.1,0.4,2,1.2, 1.1,3,1.8,0.4], inf);
+				~strBass.source  =  Pshuf([0.2,0.8,2.3,1.2, 1.1,2.8,1.8,0.4], inf);
+				~strKeys.source  =  Pshuf([0.9,0.4,2,1.2, 1.1,3,1.8,0.4], inf);
+				~strSamp.source  =  Pshuf([1,0.4,2,1.2, 1.1,3,1.8,0.4], inf);
+
+				~tOSCAdrr.sendMsg('shufHarm', 1);
+			},{
+					~tOSCAdrr.sendMsg('shufHarm', 1);
+			}
+			);
+			},
+			'/shufHarm'
+		);
+
+		~shufTransBut.free;
+		~shufTransBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Transpose Shuffle".postln;
+
+				~transBass.source  = Pshuf([(-4),2,7,(-7), (-2),3,6,(-6)], inf);
+				~transKeys.source  = Pshuf([(-4),2,7,(-7), (-2),3,6,(-6)], inf);
+				~transSamp.source  = Pshuf([(-4),2,7,(-7), (-2),3,6,(-6)], inf);
+
+			},{
+					~transBass.source  = Pshuf([0], inf);
+					~transKeys.source  = Pshuf([0], inf);
+					~transSamp.source  = Pshuf([0], inf);
+			}
+			);
+			},
+			'/shufTrans'
 		);
 
 		~susAllMulFader.free;
@@ -116,7 +165,20 @@ IFOSC {
 			~md1.control(4, 8, val);//~tOSCAdrr.sendMsg('chainHat', val);
 
 			},
-			'/chainAll'
+			'/chainDrum'
+		);
+
+		~chainAllFader.free;
+		~chainAllFader= OSCFunc({
+			arg msg,val;
+
+			val=msg[1]*127;
+			~md1.control(6, 8, val);//~tOSCAdrr.sendMsg('chainBass', val);
+			~md1.control(7, 8, val);//~tOSCAdrr.sendMsg('chainKeys', val);
+			~md1.control(8, 8, val);//~tOSCAdrr.sendMsg('chainSamp', val);
+
+			},
+			'/chainAlll'
 		);
 
 		~attAllFader.free;

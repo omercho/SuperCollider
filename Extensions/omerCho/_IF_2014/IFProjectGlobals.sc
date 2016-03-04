@@ -32,24 +32,21 @@
 	*loadAll {
 
 		this.globals;
-		this.preSetAll;
+
 		this.setTempo(120);
+		this.preSetAll;
 	}
 
 
 	*globals{
 
 		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
-		//~tOSCAdrr = NetAddr.new("169.254.132.166", 57130); // create the NetAddr
 
-		//MIDIIn.connectAll;
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 		//~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
 
-		~durMul = 1.0; //~tOSCAdrr.sendMsg('lfoMulBass1', 0.2);
 
-		~nt=0;
 
 		~countMain=0;
 
@@ -127,9 +124,9 @@
 		~tOSCAdrr.sendMsg('durLabel', '1');
 		~dur.source = Pseq([1], inf)*~durMulP;
 
-		"Duration Mul: 1".postln;
-				~tOSCAdrr.sendMsg('durMulLabel', '1');
-				~durMul=1;
+		"Duration Mul: 1/2".postln;
+		~tOSCAdrr.sendMsg('durMulLabel', '1/2');
+		~durMul.source = Pseq([1/2], inf);
 
 		~vBeatsLate=Tempo.bpm*(1/267.91897);
 
@@ -137,15 +134,24 @@
 		~harmBass=0;~harmKeys=0;~harmSamp=0;
 		~tOSCAdrr.sendMsg('harm0', 0);
 
-		~tOSCAdrr.sendMsg('cutAll',0, 0.2);
-		~tOSCAdrr.sendMsg('cutAll',1, 0.2);
+		~cutSet1=0.2;// Y
+		~tOSCAdrr.sendMsg('/cutAll','0', ~cutSet1);
+		~md1.control(10, 6, ~cutSet1); // VBass VCFilter CutOff
+		~vBass.control(0, ~cutOff, ~cutSet1);
+		~md1.control(10, 8, ~cutSet1); // IFSamp VCFilter CutOff
+		~cutSet2=0.4;// X
+		~tOSCAdrr.sendMsg('/cutAll','1', ~cutSet2);
+		~vBass.control(0, ~gateTime, ~cutSet2);
+		~md1.control(10, 7, ~cutSet2); //VKeys VCFilter CutOff
+		~vKeys.control(0, ~vcfCut, ~cutSet2);
+		~md1.control(10, 9, ~cutSet2); //IFSamp VCFilter CutOff
 
 		~lfoMulBass1=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.1);
 		~lfoMulBass2=0.1; ~tOSCAdrr.sendMsg('lfoMulBass2', 0.05);
 		~lfoMulKeys1=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.2);
 		~lfoMulKeys2=0.5; ~tOSCAdrr.sendMsg('lfoMulKeys2', 0.1);
 		~lfoMulSamp1=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.4);
-		~lfoMulSamp2=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp2', 0.2);
+		~lfoMulSamp2=0.4; ~tOSCAdrr.sendMsg('lfoMulSamp2', 0.5);
 
 	}
 

@@ -92,13 +92,13 @@ IFSnr.times(4);
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1SnrP.next/val],1)], 1),
-			\degree, Pseq([~nt1SnrP.next], 1),
-			\amp, Pseq([~amp1SnrP.next], 1),
-			\sustain, Pseq([~sus1SnrP.next],1)*~susMulSnr,
-			\mtranspose, Pseq([~transSnrP.next], 1)+~trSnr,
-			\octave, Pseq([~octSnrP.next], 1)+~octMulSnr,
-			\harmonic, Pseq([~strSnrP.next], 1)+~harmSnr
+			\dur, Pseq([Pseq([~dur1SnrP.next/val],val)], 1),
+			\degree, Pseq([~nt1SnrP.next], inf),
+			\amp, Pseq([~amp1SnrP.next], inf),
+			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
+			\mtranspose, Pseq([~transSnrP.next], inf)+~trSnr,
+			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
+			\harmonic, Pseq([~strSnrP.next], inf)+~harmSnr
 		).play;
 
 		//this.count2;
@@ -108,6 +108,48 @@ IFSnr.times(4);
 	*cntrl{
 
 		//----Snr-------
+
+		//TIME
+		~tmMulSnrBut1.free;
+		~tmMulSnrBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulSnr.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmSnrLabel', 1);
+
+			});
+
+			},
+			'/tmMulSnr1'
+		);
+		~tmMulSnrBut2.free;
+		~tmMulSnrBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulSnr.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmSnrLabel', 2);
+
+			});
+
+			},
+			'/tmMulSnr2'
+		);
+		~tmMulSnrBut3.free;
+		~tmMulSnrBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulSnr.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmSnrLabel', 3);
+
+			});
+
+			},
+			'/tmMulSnr3'
+		);
+
 		~octSnrMulBut.free;
 		~octSnrMulBut= OSCFunc({
 			arg msg;

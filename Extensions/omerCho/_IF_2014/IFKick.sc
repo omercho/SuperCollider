@@ -106,13 +106,13 @@ IFKick {
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
-			\octave, Pseq([~octKickP.next], 1)+~octMulKick,
-			\dur, Pseq([Pseq([~dur1KickP.next/val],1)], 1),
-			\degree,  Pseq([~nt1KickP.next], 1),
-			\amp, Pseq([~amp1KickP.next], 1),
-			\sustain, Pseq([~sus1KickP.next],1)*~susMulKick,
-			\mtranspose, Pseq([~transKickP.next], 1)+~trKick,
-			\harmonic, Pseq([~strKickP.next], 1)+~harmKick,
+			\dur, Pseq([~dur1KickP.next/val],1),
+			\degree,  Pseq([~nt1KickP.next], inf),
+			\amp, Pseq([~amp1KickP.next], inf),
+			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
+			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
+			\mtranspose, Pseq([~transKickP.next], inf)+~trKick,
+			\harmonic, Pseq([~strKickP.next], inf)+~harmKick,
 		).play(quant:0);
 
 		//this.count2;
@@ -123,7 +123,7 @@ IFKick {
 		~attKickFader.free;
 		~attKickFader= OSCFunc({
 			arg msg,val;
-			val=msg[1]*2;
+			val=msg[1];
 			~attKick=val+0.01;
 			},
 			'/attKick'
@@ -132,7 +132,7 @@ IFKick {
 		~susLevKickFader.free;
 		~susLevKickFader= OSCFunc({
 			arg msg;
-			~susLevKick=msg[1]*2;
+			~susLevKick=msg[1];
 			msg[1].postln
 			},
 			'/susKick'
@@ -141,12 +141,52 @@ IFKick {
 		~decKickFader.free;
 		~decKickFader= OSCFunc({
 			arg msg;
-			~decKick=msg[1]*2;
+			~decKick=msg[1];
 			msg[1].postln
 			},
 			'/decKick'
 		);
 
+		//TIME
+		~tmMulKickBut1.free;
+		~tmMulKickBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 1);
+
+			});
+
+			},
+			'/tmMulKick1'
+		);
+		~tmMulKickBut2.free;
+		~tmMulKickBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 2);
+
+			});
+
+			},
+			'/tmMulKick2'
+		);
+		~tmMulKickBut3.free;
+		~tmMulKickBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 3);
+
+			});
+
+			},
+			'/tmMulKick3'
+		);
 		~tmKickFader.free;
 		~tmKickFader= OSCFunc({
 			arg msg;
@@ -155,22 +195,13 @@ IFKick {
 			},
 			'/timesKick'
 		);
-		~tmMulKickBut.free;
-		~tmMulKickBut= OSCFunc({
-			arg msg;
-			~tmMulKick.source = msg[1];
-
-			},
-			'/tmMulKick'
-		);
-
 
 		~padKick.free;
 		~padKick = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFKick(~tmKickP.next);
+				IFKick(~tmMulKickP.next*~tmKickP.next);
 
 			});
 			},
