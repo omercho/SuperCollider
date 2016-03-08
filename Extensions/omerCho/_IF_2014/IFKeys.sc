@@ -103,7 +103,7 @@ IFKeys {
 		Pbind(
 			\chan, ~chKeys,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1KeysP.next/val],val),
+			\dur, Pseq([~dur1KeysP.next/(val/2)],1),
 			\degree, Pseq([~nt1KeysP.next], inf),
 			\amp, Pseq([~amp1KeysP.next], inf),
 			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
@@ -115,29 +115,29 @@ IFKeys {
 		Pbind(//LFO CUT ABL INT
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 10, \ctlNum, 3,
-			\delta, Pseq([~delta1KeysP.next], 2),
-			\control, Pseq([~lfoCtKeysP.next], 2)*~lfoMulKeys1,
+			\delta, Pseq([~delta1KeysP.next], 1),
+			\control, Pseq([~lfoCtKeysP.next], 1)*~lfoMulKeys1,
 		).play;
 
 		Pbind(//LFO CUT KEYS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoCut,
-			\delta, Pseq([~delta1KeysP.value], 2),
-			\control, Pseq([~lfoCtKeysP.value], 2)*~lfoMulKeys1,
+			\delta, Pseq([~delta1KeysP.value], 1),
+			\control, Pseq([~lfoCtKeysP.value], 1)*~lfoMulKeys1,
 		).play;
 
 		Pbind(//LFO RATE ABL
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 10, \ctlNum, 2,
-			\delta, Pseq([~delta2KeysP.next], 2),
-			\control, Pseq([~lfoRtKeysP.next], 2)*~lfoMulKeys2,
+			\delta, Pseq([~delta2KeysP.next], 1),
+			\control, Pseq([~lfoRtKeysP.next], 1)*~lfoMulKeys2,
 		).play;
 
 		Pbind(//LFO RATE KEYS
 			\midicmd, \control, \type, \midi,
 			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoRate,
-			\delta, Pseq([~delta2KeysP.value], 2),
-			\control, Pseq([~lfoRtKeysP.value], 2)*~lfoMulKeys2,
+			\delta, Pseq([~delta2KeysP.value], 1),
+			\control, Pseq([~lfoRtKeysP.value], 1)*~lfoMulKeys2,
 		).play;
 
 
@@ -206,6 +206,46 @@ IFKeys {
 			'/lfoMulKeys2'
 		);
 
+		//TIME
+		~tmMulKeysBut1.free;
+		~tmMulKeysBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKeys.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmKeysLabel', 1);
+
+			});
+
+			},
+			'/tmMulKeys1'
+		);
+		~tmMulKeysBut2.free;
+		~tmMulKeysBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKeys.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmKeysLabel', 2);
+
+			});
+
+			},
+			'/tmMulKeys2'
+		);
+		~tmMulKeysBut3.free;
+		~tmMulKeysBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKeys.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmKeysLabel', 3);
+
+			});
+
+			},
+			'/tmMulKeys3'
+		);
 		~tmKeysFader.free;
 		~tmKeysFader= OSCFunc({
 			arg msg;

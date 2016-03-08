@@ -92,7 +92,7 @@ IFSnr.times(4);
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1SnrP.next/val],val)], 1),
+			\dur, Pseq([~dur1SnrP.next/val], 1),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,

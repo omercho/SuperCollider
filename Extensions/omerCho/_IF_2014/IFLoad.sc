@@ -1,5 +1,7 @@
 /*
 IFLoad.load;
+
+IFTracks.track1; "TRACK 1".postln; ~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 */
 
 IFLoad{
@@ -11,18 +13,24 @@ IFLoad{
 				IFProjectGlobals.setTempo(120);
 				IFCounter.zero;
 				0.1.wait;
-				IFOSC.loadAll;
+				IFCntrl.loadAll;
+				0.1.wait;
+				IFPitch.loadAll;
+				0.1.wait;
+				IFTracks.loadButtons;
+				0.1.wait;
 				SonicLife.load;
 				0.1.wait;
-				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
 				VBass.globals; VBass.preSet01;
 				0.1.wait;
 				VKeys.globals; VKeys.preSet01;
 
+				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
 				//IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
 				//IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
 				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
+
 				0.1.wait;
 				IFKick.globals; IFKick.preSet; IFKick.default; IFKick.osc;
 				0.1.wait;
@@ -37,9 +45,9 @@ IFLoad{
 				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
 				0.1.wait;
 				IFRes1.globals; IFRes1.preSet;
-				//IFSC_MIDI.latency;
 				0.1.wait;
 				IFProjectGlobals.preSetAll;
+				0.1.wait;
 				"Track: Not loaded".postln;
 				~tOSCAdrr.sendMsg('trackLabel', 'Track: Not loaded');
 

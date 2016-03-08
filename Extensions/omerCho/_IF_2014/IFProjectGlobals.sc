@@ -134,17 +134,18 @@
 		~harmBass=0;~harmKeys=0;~harmSamp=0;
 		~tOSCAdrr.sendMsg('harm0', 0);
 
-		~cutSet1=0.2;// Y
-		~tOSCAdrr.sendMsg('/cutAll','0', ~cutSet1);
-		~md1.control(10, 6, ~cutSet1); // VBass VCFilter CutOff
-		~vBass.control(0, ~cutOff, ~cutSet1);
-		~md1.control(10, 8, ~cutSet1); // IFSamp VCFilter CutOff
-		~cutSet2=0.4;// X
+		~cutSet2=0.2;// X
 		~tOSCAdrr.sendMsg('/cutAll','1', ~cutSet2);
 		~vBass.control(0, ~gateTime, ~cutSet2);
 		~md1.control(10, 7, ~cutSet2); //VKeys VCFilter CutOff
 		~vKeys.control(0, ~vcfCut, ~cutSet2);
 		~md1.control(10, 9, ~cutSet2); //IFSamp VCFilter CutOff
+		~cutSet1=0.2;// Y
+		~tOSCAdrr.sendMsg('/cutAll','0', ~cutSet1);
+		~md1.control(10, 6, ~cutSet1); // VBass VCFilter CutOff
+		~vBass.control(0, ~cutOff, ~cutSet1);
+		~md1.control(10, 8, ~cutSet1); // IFSamp VCFilter CutOff
+
 
 		~lfoMulBass1=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.1);
 		~lfoMulBass2=0.1; ~tOSCAdrr.sendMsg('lfoMulBass2', 0.05);

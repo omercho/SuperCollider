@@ -108,7 +108,7 @@ IFSamp {
 		Pbind(
 			\chan, ~chSamp,
 			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1SampP.next],1)], 1),
+			\dur, Pseq([~dur1SampP.next],1),
 			\degree, Pseq([~nt1SampP.next], 1),
 			\amp, Pseq([~amp1SampP.next], 1),
 			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
@@ -122,7 +122,7 @@ IFSamp {
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 10, \ctlNum, 4,
-			\delta, Pseq([~delta1SampP.next], 2),
+			\delta, Pseq([~delta1SampP.next], 1),
 			\control, Pseq([~lfo1SampP.next], 2)*~lfoMulSamp1,
 
 		).play;
@@ -130,8 +130,8 @@ IFSamp {
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1,\chan, 10,  \ctlNum, 5,
-			\delta, Pseq([~delta2SampP.next], 2),
-			\control, Pseq([~lfo2SampP.next], 2)*~lfoMulSamp2,
+			\delta, Pseq([~delta2SampP.next], 1),
+			\control, Pseq([~lfo2SampP.next], 1)*~lfoMulSamp2,
 
 		).play;
 
@@ -193,7 +193,46 @@ IFSamp {
 			},
 			'/lfoMulSamp2'
 		);
+		//TIME
+		~tmMulSampBut1.free;
+		~tmMulSampBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
 
+				~tmMulSamp.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmSampLabel', 1);
+
+			});
+
+			},
+			'/tmMulSamp1'
+		);
+		~tmMulSampBut2.free;
+		~tmMulSampBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulSamp.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmSampLabel', 2);
+
+			});
+
+			},
+			'/tmMulSamp2'
+		);
+		~tmMulSampBut3.free;
+		~tmMulSampBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulSamp.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmSampLabel', 3);
+
+			});
+
+			},
+			'/tmMulSamp3'
+		);
 		~tmSampFader.free;
 		~tmSampFader= OSCFunc({
 			arg msg;

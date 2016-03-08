@@ -60,11 +60,13 @@ IDE:
       help-dock: ""
       post-dock: ""
     geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPmAAAAAAAAAC0AAAaPAAAD5gAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAADxAAADovwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADogAAAGYA////AAAAAQAAAl4AAAOi/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAgUAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAgYAAAGcAAAATAD///8AAAM/AAADogAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACDAAADovwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADogAAAGYA////AAAAAQAAAoYAAAOi/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAgUAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAgYAAAGcAAAATAD///8AAAOFAAADogAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFCntrl.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFPitch.sc
     - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC.scd
     - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFSpeechERG.scd
@@ -73,8 +75,6 @@ IDE:
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCHercules.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFMainTrack1ERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTom.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

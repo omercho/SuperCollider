@@ -72,25 +72,23 @@ IFKick {
 		case
 		{ i == val }  {
 			{val.do{var led;
-				led= ~amp1Kick.asStream.value;
+				led= ~amp1Kick.value;
 
 				//~kickLate=~abLate;
 				~kickLate.wait;
 
 				this.p1(val);
 
-				if ( led>0, {
 
-					1.do{
-						~tOSCAdrr.sendMsg('kickLed', led);
-						4/~sus1Kick.asStream.value.wait;
+
+				~kickLedFork={
+
+						~tOSCAdrr.sendMsg('kickLed', 1);
+						0.25.wait;
 						~tOSCAdrr.sendMsg('kickLed', 0);
-					};
 
-					},{
-						~tOSCAdrr.sendMsg('kickLed', 0.0);
+				}.fork;
 
-				});
 
 				~durMulP*((~dur1KickP.next)/val).wait;
 			}}.fork;

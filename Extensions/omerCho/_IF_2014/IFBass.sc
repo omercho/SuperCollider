@@ -213,6 +213,46 @@ IFBass {
 			'/lfoMulBass2'
 		);
 
+		//TIME
+		~tmMulBassBut1.free;
+		~tmMulBassBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulBass.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmBassLabel', 1);
+
+			});
+
+			},
+			'/tmMulBass1'
+		);
+		~tmMulBassBut2.free;
+		~tmMulBassBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulBass.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmBassLabel', 2);
+
+			});
+
+			},
+			'/tmMulBass2'
+		);
+		~tmMulBassBut3.free;
+		~tmMulBassBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulBass.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmBassLabel', 3);
+
+			});
+
+			},
+			'/tmMulBass3'
+		);
 		~tmBassFader.free;
 		~tmBassFader= OSCFunc({
 			arg msg;

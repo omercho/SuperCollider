@@ -1,5 +1,55 @@
 IFTracks{
 
+	*loadButtons{
+		~trackOSC_1.free;
+		~trackOSC_1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFTracks.track1;
+				"TRACK 1".postln;
+				~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
+			});
+			},
+			'/track1'
+		);
+
+		~trackOSC_2.free;
+		~trackOSC_2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFTracks.track2;
+				"TRACK 2".postln;
+				~tOSCAdrr.sendMsg('trackLabel','TRACK 2');
+			});
+			},
+			'/track2'
+		);
+
+		~trackOSC_3.free;
+		~trackOSC_3= OSCFunc({
+			arg msg;
+
+			~track3.fork;
+			~tOSCAdrr.sendMsg('trackLabel','TRACK 3');
+
+			},
+			'/track3'
+		);
+
+		~trackOSC_4.free;
+		~trackOSC_4= OSCFunc({
+			arg msg;
+
+			~track4.fork;
+			~tOSCAdrr.sendMsg('trackLabel','TRACK 4');
+
+			},
+			'/track4'
+		);
+
+
+	}
+
 	*track1 {
 
 		IFMainTrack1.load;
@@ -401,9 +451,9 @@ IFTracks{
 				~dur.source = Pseq([
 					Pseq([0.5], 2),
 					Pseq([1], 2),
-					Pseq([0.5,0.5], 1),
+					Pseq([0.5], 2),
 					Pseq([0.25], 4),
-					Pseq([1], 2),
+					Pseq([1], 3),
 				], inf)*2*~durMulP;
 
 			});
@@ -436,10 +486,10 @@ IFTracks{
 				"------------dur4".postln;
 				~tOSCAdrr.sendMsg('durLabel', '4');
 				~dur.source = Pseq([
-					Pseq([1], 2),
-					Pseq([0.5], 4),
-					Pseq([1.25], 1),
-					Pseq([0.75], 2)
+					Pseq([0.5], 2),
+					Pseq([1], 3),
+					Pseq([0.5], 2),
+					Pseq([1], 3)
 				], inf)*~durMulP;
 
 
@@ -455,11 +505,11 @@ IFTracks{
 				"------------durAks1".postln;
 				~tOSCAdrr.sendMsg('durLabel', 'Aks');
 				~dur.source = Pseq([
-					Pseq([0.5,0.5,0.75], 1),
+					Pseq([0.5,0.5,0.75,0.25], 1),
 					Pseq([0.5,0.75], 1),
-					Pseq([0.5,0.5,0.75], 1),
+					Pseq([0.5,0.5,0.75,], 1),
 					Pseq([0.5,0.75], 2)
-				], inf)*~durMulP;
+				], inf)*2*~durMulP;
 
 			});
 			},
