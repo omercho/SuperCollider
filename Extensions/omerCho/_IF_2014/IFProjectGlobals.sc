@@ -13,6 +13,7 @@
 		StartUp add: {
 			/*Server.default.doWhenBooted({
 				0.5.wait;
+			~mdClock.play
 				IFSC.loadGroups;
 				0.25.wait;
 				IFSC.loadBuses;
@@ -40,79 +41,13 @@
 
 	*globals{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
 
 		~md1 = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		~mdClock = MIDIClockOut("IAC Driver", "Clock", TempoClock.default);
+
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
-		//~md1Clock = MIDIClockOut("MIDIMATE II", "Port 1");
 
-
-
-		~countMain=0;
-
-		~mainCountersReset = {
-			~countMain=0;
-		};
-		~mainCountersReset.fork;
-		~part0Reset = {
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part0Reset.fork;
-		~part1Reset = {
-			~part0=0;
-			          ~part2=0; ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part1Reset.fork;
-		~part2Reset = {
-			~part0=0;
-			~part1=0;           ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part2Reset.fork;
-		~part3Reset = {
-			~part0=0;
-			~part1=0; ~part2=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part3Reset.fork;
-		~part4Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			          ~part5=0; ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part4Reset.fork;
-		~part5Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0;           ~part6=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part5Reset.fork;
-		~part6Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0; ~part5=0;
-			~part7=0; ~part8=0; ~part9=0;
-		};~part6Reset.fork;
-				~part7Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			          ~part8=0; ~part9=0;
-		};~part7Reset.fork;
-				~part8Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0;           ~part9=0;
-		};~part8Reset.fork;
-				~part9Reset = {
-			~part0=0;
-			~part1=0; ~part2=0; ~part3=0;
-			~part4=0; ~part5=0; ~part6=0;
-			~part7=0; ~part8=0;
-		};~part9Reset.fork;
 
 	}
 
@@ -181,8 +116,9 @@
 	}
 
 	*setTempo {arg tempo;
-		Tempo.bpm = tempo;
-		Ableton.tap4;
+		Tempo.bpm=tempo;
+		//Tempo.bpm = tempo;
+		//Ableton.tap4;
 	}
 
 
@@ -199,6 +135,8 @@
 /*
 
 IFProjectGlobals.times(kickT:1, snrT:1, hatT:1, bassT:1, sampT:1, ortaT:1, flatT:1, res1T:1);
+
+~mdClock.tempo=140;
 
 */
 

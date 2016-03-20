@@ -61,7 +61,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 0".postln;
-				//~transKick.source=0;~transSnr.source=0;~transHat.source=0;
+				~transKick.source=0;//~transSnr.source=0;~transHat.source=0;
 				~transBass.source=0;~transKeys.source=0;~transSamp.source=0;
 				~tOSCAdrr.sendMsg('noteLabel', '0');
 			});
@@ -74,7 +74,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 1".postln;
-				//~transKick.source=1;~transSnr.source=1;~transHat.source=1;
+				~transKick.source=1;//~transSnr.source=1;~transHat.source=1;
 				~transBass.source=1;~transKeys.source=1;~transSamp.source=1;
 				~tOSCAdrr.sendMsg('noteLabel', '1');
 			});
@@ -88,7 +88,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 2".postln;
-				//~transKick.source=2;~transSnr.source=2;~transHat.source=2;
+				~transKick.source=2;//~transSnr.source=2;~transHat.source=2;
 				~transBass.source=2;~transKeys.source=2;~transSamp.source=2;
 				~tOSCAdrr.sendMsg('noteLabel', '2');
 			});
@@ -101,7 +101,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 3".postln;
-				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
+				~transKick.source=3;//~transSnr.source=3;~transHat.source=3;
 				~transBass.source=3;~transKeys.source=3;~transSamp.source=3;
 				~tOSCAdrr.sendMsg('noteLabel', '3');
 			});
@@ -114,7 +114,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 4".postln;
-				//~transKick.source=4;~transSnr.source=4;~transHat.source=4;
+				~transKick.source=4;//~transSnr.source=4;~transHat.source=4;
 				~transBass.source=4;~transKeys.source=4;~transSamp.source=4;
 				~tOSCAdrr.sendMsg('noteLabel', '4');
 			});
@@ -127,7 +127,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 5".postln;
-				//~transKick.source=5;~transSnr.source=5;~transHat.source=5;
+				~transKick.source=5;//~transSnr.source=5;~transHat.source=5;
 				~transBass.source=5;~transKeys.source=5;~transSamp.source=5;
 				~tOSCAdrr.sendMsg('noteLabel', '5');
 			});
@@ -140,7 +140,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 6".postln;
-				//~transKick.source=6;~transSnr.source=6;~transHat.source=6;
+				~transKick.source=6;//~transSnr.source=6;~transHat.source=6;
 				~transBass.source=6;~transKeys.source=6;~transSamp.source=6;
 				~tOSCAdrr.sendMsg('noteLabel', '6');
 			});
@@ -153,7 +153,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 7".postln;
-				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
+				~transKick.source=7;//~transSnr.source=7;~transHat.source=7;
 				~transBass.source=7;~transKeys.source=7;~transSamp.source=7;
 				~tOSCAdrr.sendMsg('noteLabel', '7');
 			});
@@ -166,7 +166,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 8".postln;
-				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
+				~transKick.source=8;//~transSnr.source=8;~transHat.source=8;
 				~transBass.source=8;~transKeys.source=8;~transSamp.source=8;
 				~tOSCAdrr.sendMsg('noteLabel', '8');
 			});
@@ -179,7 +179,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 9".postln;
-				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
+				~transKick.source=9;//~transSnr.source=9;~transHat.source=9;
 				~transBass.source=9;~transKeys.source=9;~transSamp.source=9;
 				~tOSCAdrr.sendMsg('noteLabel', '9');
 			});
@@ -192,7 +192,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 10".postln;
-				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
+				~transKick.source=10;//~transSnr.source=10;~transHat.source=10;
 				~transBass.source=10;~transKeys.source=10;~transSamp.source=10;
 				~tOSCAdrr.sendMsg('noteLabel', '10');
 			});
@@ -205,7 +205,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 11".postln;
-				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
+				~transKick.source=11;//~transSnr.source=11;~transHat.source=11;
 				~transBass.source=11;~transKeys.source=11;~transSamp.source=11;
 				~tOSCAdrr.sendMsg('noteLabel', '11');
 			});
@@ -218,7 +218,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 12".postln;
-				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
+				~transKick.source=12;//~transSnr.source=12;~transHat.source=12;
 				~transBass.source=12;~transKeys.source=12;~transSamp.source=12;
 				~tOSCAdrr.sendMsg('noteLabel', '12');
 			});
@@ -231,7 +231,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 13".postln;
-				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
+				~transKick.source=13;//~transSnr.source=13;~transHat.source=13;
 				~transBass.source=13;~transKeys.source=13;~transSamp.source=13;
 				~tOSCAdrr.sendMsg('noteLabel', '13');
 			});
@@ -244,7 +244,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 14".postln;
-				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
+				~transKick.source=14;//~transSnr.source=14;~transHat.source=14;
 				~transBass.source=14;~transKeys.source=14;~transSamp.source=14;
 				~tOSCAdrr.sendMsg('noteLabel', '14');
 			});
@@ -258,7 +258,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -1".postln;
-				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
+				~transKick.source=(-1);//~transSnr.source=(-1);~transHat.source=(-1);
 				~transBass.source=(-1);~transKeys.source=(-1);~transSamp.source=(-1);
 				~tOSCAdrr.sendMsg('noteLabel', '-1');
 			});
@@ -272,7 +272,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -2".postln;
-				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
+				~transKick.source=(-2);//~transSnr.source=(-2);~transHat.source=(-2);
 				~transBass.source=(-2);~transKeys.source=(-2);~transSamp.source=(-2);
 				~tOSCAdrr.sendMsg('noteLabel', '-2');
 			});
@@ -285,7 +285,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -3".postln;
-				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
+				~transKick.source=(-3);//~transSnr.source=(-3);~transHat.source=(-3);
 				~transBass.source=(-3);~transKeys.source=(-3);~transSamp.source=(-3);
 				~tOSCAdrr.sendMsg('noteLabel', '-3');
 			});
@@ -298,7 +298,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -4".postln;
-				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
+				~transKick.source=(-4);//~transSnr.source=(-4);~transHat.source=(-4);
 				~transBass.source=(-4);~transKeys.source=(-4);~transSamp.source=(-4);
 				~tOSCAdrr.sendMsg('noteLabel', '-4');
 			});
@@ -311,7 +311,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -5".postln;
-				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
+				~transKick.source=(-5);//~transSnr.source=(-5);~transHat.source=(-5);
 				~transBass.source=(-5);~transKeys.source=(-5);~transSamp.source=(-5);
 				~tOSCAdrr.sendMsg('noteLabel', '-5');
 			});
@@ -324,7 +324,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -6".postln;
-				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
+				~transKick.source=(-6);//~transSnr.source=(-6);~transHat.source=(-6);
 				~transBass.source=(-6);~transKeys.source=(-6);~transSamp.source=(-6);
 				~tOSCAdrr.sendMsg('noteLabel', '-6');
 			});
@@ -337,7 +337,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -7".postln;
-				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
+				~transKick.source=(-7);//~transSnr.source=(-7);~transHat.source=(-7);
 				~transBass.source=(-7);~transKeys.source=(-7);~transSamp.source=(-7);
 				~tOSCAdrr.sendMsg('noteLabel', '-7');
 			});
@@ -350,7 +350,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -8".postln;
-				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
+				~transKick.source=(-8);//~transSnr.source=(-8);~transHat.source=(-8);
 				~transBass.source=(-8);~transKeys.source=(-8);~transSamp.source=(-8);
 				~tOSCAdrr.sendMsg('noteLabel', '-8');
 			});
@@ -363,7 +363,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -9".postln;
-				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
+				~transKick.source=(-9);//~transSnr.source=(-9);~transHat.source=(-9);
 				~transBass.source=(-9);~transKeys.source=(-9);~transSamp.source=(-9);
 				~tOSCAdrr.sendMsg('noteLabel', '-9');
 			});
@@ -376,7 +376,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -10".postln;
-				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
+				~transKick.source=(-10);//~transSnr.source=(-10);~transHat.source=(-10);
 				~transBass.source=(-10);~transKeys.source=(-10);~transSamp.source=(-10);
 				~tOSCAdrr.sendMsg('noteLabel', '-10');
 			});
@@ -389,7 +389,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -11".postln;
-				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
+				~transKick.source=(-11);//~transSnr.source=(-11);~transHat.source=(-11);
 				~transBass.source=(-11);~transKeys.source=(-11);~transSamp.source=(-11);
 				~tOSCAdrr.sendMsg('noteLabel', '-11');
 			});
@@ -402,7 +402,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -12".postln;
-				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
+				~transKick.source=(-12);//~transSnr.source=(-12);~transHat.source=(-12);
 				~transBass.source=(-12);~transKeys.source=(-12);~transSamp.source=(-12);
 				~tOSCAdrr.sendMsg('noteLabel', '-12');
 			});
@@ -415,7 +415,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -13".postln;
-				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
+				~transKick.source=(-13);//~transSnr.source=(-13);~transHat.source=(-13);
 				~transBass.source=(-13);~transKeys.source=(-13);~transSamp.source=(-13);
 				~tOSCAdrr.sendMsg('noteLabel', '-13');
 			});
@@ -428,7 +428,7 @@ IFPitch {
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE -14".postln;
-				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
+				~transKick.source=(-14);//~transSnr.source=(-14);~transHat.source=(-14);
 				~transBass.source=(-14);~transKeys.source=(-14);~transSamp.source=(-14);
 				~tOSCAdrr.sendMsg('noteLabel', '-14');
 			});

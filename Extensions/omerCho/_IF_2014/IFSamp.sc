@@ -62,7 +62,7 @@ IFSamp {
 
 		~transSamp = PatternProxy( Pseq([0], inf));
 		~transSampP = Pseq([~transSamp], inf).asStream;
-		~octSamp = PatternProxy( Pseq([0], inf));
+		~octSamp = PatternProxy( Pseq([4], inf));
 		~octSampP = Pseq([~octSamp], inf).asStream;
 
 		~legSamp= PatternProxy( Pseq([0.0], inf));
@@ -123,7 +123,7 @@ IFSamp {
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1, \chan, 10, \ctlNum, 4,
 			\delta, Pseq([~delta1SampP.next], 1),
-			\control, Pseq([~lfo1SampP.next], 2)*~lfoMulSamp1,
+			\control, Pseq([~lfo1SampP.next], 1)*~lfoMulSamp1,
 
 		).play;
 

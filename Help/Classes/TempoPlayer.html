@@ -1,0 +1,124 @@
+<html><head><title>TempoPlayer</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#Libraries>crucial>Players'>Libraries>crucial>Players</a>, <a href='./../Browse.html#Libraries>crucial>Scheduling'>Libraries>crucial>Scheduling</a></div>
+<h1>TempoPlayer</h1>
+<div id='summary'>a control rate player that plays the TempoBus [which is the current Tempo]</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/Players/TempoPlayer.sc'>TempoPlayer.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/KrPlayer.html">KrPlayer</a> : <a href="../Classes/AbstractPlayer.html">AbstractPlayer</a> : <a href="../Classes/AbstractFunction.html">AbstractFunction</a> : <a href="../Classes/Object.html">Object</a></div>
+<div id='related'>See also: <a href="./../Classes/Tempo.html">Tempo</a>, <a href="./../Classes/TempoBus.html">TempoBus</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*new'>new</a> </li>
+<li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+</ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#-tempo'>tempo</a> </li>
+<li class='toc3'><a href='#-kr'>kr</a> </li>
+<li class='toc3'><a href='#-synthArg'>synthArg</a> </li>
+<li class='toc3'><a href='#-makeResourcesToBundle'>makeResourcesToBundle</a> </li>
+<li class='toc3'><a href='#-makePatchOut'>makePatchOut</a> </li>
+<li class='toc3'><a href='#-freeResourcesToBundle'>freeResourcesToBundle</a> </li>
+<li class='toc3'><a href='#-spawnAtTime'>spawnAtTime</a> </li>
+<li class='toc3'><a href='#-spawnToBundle'>spawnToBundle</a> </li>
+<li class='toc3'><a href='#-loadDefFileToBundle'>loadDefFileToBundle</a> </li>
+<li class='toc3'><a href='#-asSynthDef'>asSynthDef</a> </li>
+<li class='toc3'><a href='#-spec'>spec</a> </li>
+<li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#examples'>Examples</a></li>
+<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>Outputs the current tempo in beats per seconds. All TempoPlayers share the same TempoBus, and so don't incur any additional resources.
+<p>The TempoPlayer is an input to the patch, and creates a TempoBus and supplies that control to the instr synth def. Move the tempo slider.<pre class='code prettyprint lang-sc'>(
+    Instr(\helpTempoPlayer,{ arg tempo;
+        tempo.dump;
+        Impulse.ar( tempo )
+    },[
+        \tempo
+    ]);
+
+    Patch(\helpTempoPlayer,[
+        TempoPlayer.new
+    ]).gui
+)</pre>
+
+<p>A TempoBus belongs to a specific server for its whole object-lifetime. A TempoPlayer is only told which server it is to play on when it is asked to prepare for play by its parent object. A TempoPlayer can be saved in a larger musical structure and that structure is capable of being played on disparate servers.
+<p>the symbol \tempo is registered in Spec.specs as a TempoSpec<pre class='code prettyprint lang-sc'>\tempo.asSpec.insp</pre>
+
+<p>whose defaultControl is a TempoPlayer<pre class='code prettyprint lang-sc'>\tempo.asSpec.defaultControl.insp=</pre>
+
+<p>so that the argname tempo in an Instr would by default result in a TempoPlayer for a Patch using that Instr.<pre class='code prettyprint lang-sc'>Patch({ arg tempo;
+    Impulse.ar( tempo )
+}).gui</pre>
+
+<p>execute this many times<pre class='code prettyprint lang-sc'>(
+
+Patch({ arg tempo;
+    Impulse.ar( tempo )
+},[
+    TempoPlayer.new
+
+]).play(atTime: 1)
+
+)</pre>
+<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*new' href='./../Overviews/Methods.html#new'>new</a> (<span class='argstr'>tempo</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>tempo<td class='argumentdesc'></table></div><h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-tempo' href='./../Overviews/Methods.html#tempo'>tempo</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-tempo' href='./../Overviews/Methods.html#tempo'>tempo</a> = value</h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-kr' href='./../Overviews/Methods.html#kr'>kr</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-synthArg' href='./../Overviews/Methods.html#synthArg'>synthArg</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-makeResourcesToBundle' href='./../Overviews/Methods.html#makeResourcesToBundle'>makeResourcesToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-makePatchOut' href='./../Overviews/Methods.html#makePatchOut'>makePatchOut</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-freeResourcesToBundle' href='./../Overviews/Methods.html#freeResourcesToBundle'>freeResourcesToBundle</a> (<span class='argstr'>bundle</span>)</h3>
+<div class='method'><h4>Arguments:</h4>
+<table class='arguments'>
+<tr><td class='argumentname'>bundle<td class='argumentdesc'></table></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawnAtTime' href='./../Overviews/Methods.html#spawnAtTime'>spawnAtTime</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spawnToBundle' href='./../Overviews/Methods.html#spawnToBundle'>spawnToBundle</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-loadDefFileToBundle' href='./../Overviews/Methods.html#loadDefFileToBundle'>loadDefFileToBundle</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-asSynthDef' href='./../Overviews/Methods.html#asSynthDef'>asSynthDef</a> </h3>
+<div class='method'></div><h3 class='imethodname'><span class='methprefix'>-</span><a name='-spec' href='./../Overviews/Methods.html#spec'>spec</a></h3>
+<h3 class='imethodname'><span class='methprefix'>-</span><a name='-spec' href='./../Overviews/Methods.html#spec'>spec</a> = value</h3>
+<div class='method'></div><h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='examples'>Examples</a></h2>
+
+<p>You can also create the player inside the synth def:<pre class='code prettyprint lang-sc'>(
+    Instr(\helpTempoPlayer,{
+        var t;
+        t = TempoPlayer.new; // default global tempo
+        Impulse.ar( t.kr )
+    });
+
+    Patch(\helpTempoPlayer).play(atTime:1)
+)</pre>
+
+<p>You can even just use Tempo.kr<pre class='code prettyprint lang-sc'>(
+    Instr(\helpTempoPlayer,{
+        Impulse.ar( Tempo.kr )
+    });
+
+    Patch(\helpTempoPlayer).play(atTime:1)
+)</pre>
+
+<p><div class='doclink'>source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/TempoPlayer.schelp'>/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/crucial-library-master/HelpSource/Classes/TempoPlayer.schelp</a><br>link::Classes/TempoPlayer::<br>sc version: 3.6.5</div></div></body></html>

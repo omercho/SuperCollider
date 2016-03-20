@@ -123,15 +123,15 @@ IFBass {
 		Pbind(//LFO CUT BASS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoInt,
-			\delta, Pseq([~delta1KeysP.value], 2),
-			\control, Pseq([~lfo1BassP.value], 2)*~lfoMulBass1,
+			\delta, Pseq([~delta1KeysP.value], 1),
+			\control, Pseq([~lfo1BassP.value], 1)*~lfoMulBass1,
 		).play;
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
 			\midiout,~md1,\chan, 10,  \ctlNum, 1,
-			\delta, Pseq([~delta2BassP.next], 2),
-			\control, Pseq([~lfo2BassP.next], 2)*~lfoMulBass2,
+			\delta, Pseq([~delta2BassP.next], 1),
+			\control, Pseq([~lfo2BassP.next], 1)*~lfoMulBass2,
 
 		).play;
 
@@ -182,16 +182,16 @@ IFBass {
 		~midiSltBass.free;
 		~midiSltBass=MIDIFunc.cc( {
 			arg vel;
-			vel.postln;
+			//vel.postln;
 			~vBass.control(0, ~slideTime, vel);
-			~tOSCAdrr.sendMsg('sltBass', vel*(1/127));
+			//~tOSCAdrr.sendMsg('sltBass', vel*(1/127));
 		}, chan:5, ccNum:6);
 
 
 		~midiDecBass.free;
 		~midiDecBass=MIDIFunc.cc( {
 			arg vel;
-			vel.postln;
+			//vel.postln;
 			~vBass.control(0, ~egDec, vel);
 			//~tOSCAdrr.sendMsg('decBass', vel);
 
@@ -200,7 +200,7 @@ IFBass {
 		~lfoMulBassFad1.free;
 		~lfoMulBassFad1= OSCFunc({
 			arg msg;
-			~lfoMulBass1=msg[1]*1.2;
+			~lfoMulBass1=msg[1]*1.1;
 			},
 			'/lfoMulBass1'
 		);
@@ -208,7 +208,7 @@ IFBass {
 		~lfoMulBassFad2.free;
 		~lfoMulBassFad2= OSCFunc({
 			arg msg;
-			~lfoMulBass2=msg[1]*1.2;
+			~lfoMulBass2=msg[1]*1.1;
 			},
 			'/lfoMulBass2'
 		);

@@ -103,7 +103,7 @@ IFKick {
 
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl1}, inf),
+			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KickP.next/val],1),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~amp1KickP.next], inf),

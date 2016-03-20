@@ -78,29 +78,35 @@ editors: !QVariantMap
         documentIndex: 23
         position: 2295
       - !QVariantMap
-        documentIndex: 1
-        position: 39
-      - !QVariantMap
-        documentIndex: 3
-        position: 2811
-      - !QVariantMap
         documentIndex: 12
         position: 892
       - !QVariantMap
         documentIndex: 13
         position: 1011
       - !QVariantMap
-        documentIndex: 8
-        position: 1023
-      - !QVariantMap
         documentIndex: 11
         position: 894
       - !QVariantMap
         documentIndex: 2
-        position: 1038
+        position: 1062
+      - !QVariantMap
+        documentIndex: 8
+        position: 1023
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 3
+        position: 2742
+      - !QVariantMap
+        documentIndex: 1
+        position: 5321
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
       - !QVariantMap
         documentIndex: 0
-        position: 304
+        position: 24
     - !QVariantList
       - !QVariantMap
         documentIndex: 18
@@ -127,12 +133,6 @@ editors: !QVariantMap
         documentIndex: 29
         position: 382
       - !QVariantMap
-        documentIndex: 20
-        position: 212
-      - !QVariantMap
-        documentIndex: 21
-        position: 1054
-      - !QVariantMap
         documentIndex: 14
         position: 1517
       - !QVariantMap
@@ -142,52 +142,58 @@ editors: !QVariantMap
         documentIndex: 19
         position: 0
       - !QVariantMap
-        documentIndex: 10
-        position: 2310
-      - !QVariantMap
-        documentIndex: 1
-        position: 2774
-      - !QVariantMap
         documentIndex: 9
         position: 1718
       - !QVariantMap
-        documentIndex: 13
-        position: 1920
+        documentIndex: 4
+        position: 825
+      - !QVariantMap
+        documentIndex: 6
+        position: 784
+      - !QVariantMap
+        documentIndex: 0
+        position: 1343
       - !QVariantMap
         documentIndex: 8
-        position: 1467
+        position: 208
       - !QVariantMap
-        documentIndex: 11
-        position: 4629
+        documentIndex: 21
+        position: 1054
+      - !QVariantMap
+        documentIndex: 20
+        position: 651
+      - !QVariantMap
+        documentIndex: 7
+        position: 405
+      - !QVariantMap
+        documentIndex: 2
+        position: 1539
+      - !QVariantMap
+        documentIndex: 1
+        position: 631
+      - !QVariantMap
+        documentIndex: 3
+        position: 542
       - !QVariantMap
         documentIndex: 12
         position: 2641
       - !QVariantMap
-        documentIndex: 0
-        position: 416
+        documentIndex: 13
+        position: 2707
+      - !QVariantMap
+        documentIndex: 10
+        position: 2310
+      - !QVariantMap
+        documentIndex: 11
+        position: 3210
       - !QVariantMap
         documentIndex: 5
-        position: 0
-      - !QVariantMap
-        documentIndex: 6
-        position: 3
-      - !QVariantMap
-        documentIndex: 7
-        position: 329
-      - !QVariantMap
-        documentIndex: 3
-        position: 11670
-      - !QVariantMap
-        documentIndex: 2
-        position: 86
-      - !QVariantMap
-        documentIndex: 4
-        position: 367
-  state: AAAA/wAAAAAAAAACAAAAeQAAAw4BAAAAAQEAAAAC
+        position: 1933
+  state: AAAA/wAAAAAAAAACAAAAhAAAArABAAAAAQEAAAAC
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPmAAAAAAAAAC0AAAaPAAAD5gAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACDAAADovwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADogAAAGYA////AAAAAQAAAoYAAAOi/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAgUAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAgYAAAGcAAAATAD///8AAAOFAAADogAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAAAAAAkAAAAFwAABkcAAAM2AAAAJAAAAC0AAAZHAAADNgAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAAB1AAAC8vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC8gAAAGYA////AAAAAQAAAisAAALy/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAaYAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAacAAAFLAAAATAD///8AAAOCAAAC8gAAAAEAAAACAAAAAQAAAAL8AAAAAA==

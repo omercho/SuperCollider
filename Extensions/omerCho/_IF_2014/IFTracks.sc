@@ -59,14 +59,17 @@ IFTracks{
 			arg msg;
 			if ( msg[1]==1, {
 				"IF Main PLAY".postln;
+				//~mdClock.start;//TempoClock to IAC MIDI
+
 				~mainSet_00.fork(quant:0);
 				~ifPlay={|tm=4|
 
 					inf.do{
 						1.do {
 
-							//~md1Clock.play;
+
 							IFCounter.count;
+
 							IFKick(~tmMulKickP.next*~tmKickP.next);
 							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 							IFHat(~tmMulHatP.next*~tmHatP.next);
@@ -93,8 +96,9 @@ IFTracks{
 			if ( msg[1]==0, {
 				"IF Main STOP".postln;
 				~ifPlay.stop;
+				//~mdClock.stop;//TempoClock to IAC MIDI
 				//Ableton.stop;
-				//~md1Clock.stop;
+
 
 			});
 			},
