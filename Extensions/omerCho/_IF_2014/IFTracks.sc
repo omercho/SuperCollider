@@ -54,58 +54,128 @@ IFTracks{
 
 		IFMainTrack1.load;
 
-		~togMain.free;
-		~togMain = OSCFunc({
+
+
+		//--------------  RootPlayerVariations
+		~root00But.free;
+		~root00But = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"IF Main PLAY".postln;
-				//~mdClock.start;//TempoClock to IAC MIDI
 
-				~mainSet_00.fork(quant:0);
-				~ifPlay={|tm=4|
+				IFRoot.set00;
 
-					inf.do{
-						1.do {
-
-
-							IFCounter.count;
-
-							IFKick(~tmMulKickP.next*~tmKickP.next);
-							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
-							IFHat(~tmMulHatP.next*~tmHatP.next);
-
-							IFBass(~tmMulBassP.next*~tmBassP.next);
-							IFKeys(~tmMulKeysP.next*~tmKeysP.next);
-							IFSamp(~tmMulSampP.next*~tmSampP.next);
-
-							IFRes1(~tmRes1P.next);
-
-							//~vBeatsLate=Tempo.bpm*(1/267.91897);
-							//Ableton.tap4;
-
-
-							~durMul*((~durP.next)).wait;
-						};
-					};
-
-				}.fork;
-
-
-			});
-
-			if ( msg[1]==0, {
-				"IF Main STOP".postln;
-				~ifPlay.stop;
-				//~mdClock.stop;//TempoClock to IAC MIDI
-				//Ableton.stop;
-
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '1');
+					~tOSCAdrr.sendMsg('rootSet01', '0');
+					~tOSCAdrr.sendMsg('rootSet02', '0');
+					~tOSCAdrr.sendMsg('rootSet03', '0');
+					~tOSCAdrr.sendMsg('rootSet04', '0');
+					~tOSCAdrr.sendMsg('rootSet05', '0');
 
 			});
 			},
-			'/1/toggleMain'
+			'/rootSet00'
+		);
+		~root01But.free;
+		~root01But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFRoot.set01;
+
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '0');
+					~tOSCAdrr.sendMsg('rootSet01', '1');
+					~tOSCAdrr.sendMsg('rootSet02', '0');
+					~tOSCAdrr.sendMsg('rootSet03', '0');
+					~tOSCAdrr.sendMsg('rootSet04', '0');
+					~tOSCAdrr.sendMsg('rootSet05', '0');
+
+			});
+			},
+			'/rootSet01'
+		);
+		~root02But.free;
+		~root02But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFRoot.set02;
+
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '0');
+					~tOSCAdrr.sendMsg('rootSet01', '0');
+					~tOSCAdrr.sendMsg('rootSet02', '1');
+					~tOSCAdrr.sendMsg('rootSet03', '0');
+					~tOSCAdrr.sendMsg('rootSet04', '0');
+					~tOSCAdrr.sendMsg('rootSet05', '0');
+
+			});
+			},
+			'/rootSet02'
+		);
+		~root03But.free;
+		~root03But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+
+				IFRoot.set03;
+
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '0');
+					~tOSCAdrr.sendMsg('rootSet01', '0');
+					~tOSCAdrr.sendMsg('rootSet02', '0');
+					~tOSCAdrr.sendMsg('rootSet03', '1');
+					~tOSCAdrr.sendMsg('rootSet04', '0');
+					~tOSCAdrr.sendMsg('rootSet05', '0');
+
+			});
+			},
+			'/rootSet03'
+		);
+		~root04But.free;
+		~root04But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+
+				IFRoot.set04;
+
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '0');
+					~tOSCAdrr.sendMsg('rootSet01', '0');
+					~tOSCAdrr.sendMsg('rootSet02', '0');
+					~tOSCAdrr.sendMsg('rootSet03', '0');
+					~tOSCAdrr.sendMsg('rootSet04', '1');
+					~tOSCAdrr.sendMsg('rootSet05', '0');
+
+			});
+			},
+			'/rootSet04'
+		);
+		~root05But.free;
+		~root05But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+
+				IFRoot.set05;
+
+			},{
+					~tOSCAdrr.sendMsg('rootSet00', '0');
+					~tOSCAdrr.sendMsg('rootSet01', '0');
+					~tOSCAdrr.sendMsg('rootSet02', '0');
+					~tOSCAdrr.sendMsg('rootSet03', '0');
+					~tOSCAdrr.sendMsg('rootSet04', '0');
+					~tOSCAdrr.sendMsg('rootSet05', '1');
+
+			});
+			},
+			'/rootSet05'
 		);
 
-		//---------------- DUR Buttons ---------------//
+		//---------------- DUR Buttons
 
 		~dur1But.free;
 		~dur1But = OSCFunc({
@@ -116,42 +186,67 @@ IFTracks{
 
 				~dur.source = Pseq([1], inf)*~durMulP;
 
+			},{
+					~tOSCAdrr.sendMsg('dur1', '1');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '0');
+
 			});
 			},
 			'/dur1'
 		);
-
 		~dur2But.free;
 		~dur2But = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				"------------dur2".postln;
-				~tOSCAdrr.sendMsg('durLabel', '2');
-				~dur.source = Pseq([
-					Pseq([0.5], 2),
-					Pseq([1], 2),
-					Pseq([0.5,0.5], 1),
-					Pseq([0.25], 4),
-					Pseq([1], 3),
-				], inf)*~durMulP;
-
-			});
-			},
-			'/dur2'
-		);
-
-		~dur3But.free;
-		~dur3But = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
 				"------------dur3".postln;
-				~tOSCAdrr.sendMsg('durLabel', '3');
+				~tOSCAdrr.sendMsg('durLabel', '2');
 				~dur.source = Pseq([
 					Pseq([1], 3),
 					Pseq([0.5], 2),
 					Pseq([1], 3),
 					Pseq([0.5], 2)
 				], inf)*~durMulP;
+
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '1');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '0');
+
+			});
+			},
+			'/dur2'
+		);
+		~dur3But.free;
+		~dur3But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"------------dur2".postln;
+				~tOSCAdrr.sendMsg('durLabel', '3');
+				~dur.source = Pseq([
+					Pseq([0.5], 2),
+					Pseq([1], 2),
+					Pseq([0.5], 2),
+					Pseq([0.3], 3),
+					Pseq([1], 3)
+				], inf)*~durMulP;
+
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '1');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '0');
 
 			});
 			},
@@ -165,12 +260,22 @@ IFTracks{
 				"------------dur4".postln;
 				~tOSCAdrr.sendMsg('durLabel', '4');
 				~dur.source = Pseq([
-					Pseq([1], 2),
+					Pseq([0.3], 3),
 					Pseq([0.5], 4),
 					Pseq([1.25], 1),
-					Pseq([0.75], 2)
+					Pseq([0.75], 2),
+					Pseq([1], 3)
 				], inf)*~durMulP;
 
+
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '1');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '0');
 
 			});
 			},
@@ -184,11 +289,20 @@ IFTracks{
 				"------------durAks1".postln;
 				~tOSCAdrr.sendMsg('durLabel', 'Aks');
 				~dur.source = Pseq([
-					Pseq([0.5,0.5,0.75], 1),
-					Pseq([0.5,0.75], 1),
-					Pseq([0.5,0.5,0.75], 1),
-					Pseq([0.5,0.75], 2)
+					Pseq([0.5,0.5,0.75,0.25], 1),
+					Pseq([1,0.75,0.25], 1),
+					Pseq([0.5,0.5,0.75,0.25], 1),
+					Pseq([0.5,0.75,0.5,0.25], 2)
 				], inf)*~durMulP;
+
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '1');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '0');
 
 			});
 			},
@@ -207,6 +321,15 @@ IFTracks{
 					Pshuf([0.5,0.25,0.25], 1),
 					Pshuf([0.5,0.75], 2)
 				], inf)*~durMulP;
+
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '1');
+					~tOSCAdrr.sendMsg('durRand1', '0');
 
 			});
 			},
@@ -228,6 +351,15 @@ IFTracks{
 					Pxrand([0.5,0.75], 2)
 				], inf)*~durMulP;
 
+			},{
+					~tOSCAdrr.sendMsg('dur1', '0');
+					~tOSCAdrr.sendMsg('dur2', '0');
+					~tOSCAdrr.sendMsg('dur3', '0');
+					~tOSCAdrr.sendMsg('dur4', '0');
+					~tOSCAdrr.sendMsg('durAks1', '0');
+					~tOSCAdrr.sendMsg('durShuf1', '0');
+					~tOSCAdrr.sendMsg('durRand1', '1');
+
 			});
 			},
 			'/durRand1'
@@ -244,6 +376,11 @@ IFTracks{
 
 				~durMul.source = Pseq([1/4], inf);
 
+			},{
+					~tOSCAdrr.sendMsg('durMul1_4', '1');
+					~tOSCAdrr.sendMsg('durMul1_2', '0');
+					~tOSCAdrr.sendMsg('durMul1', '0');
+
 			});
 			},
 			'/durMul1_4'
@@ -258,6 +395,11 @@ IFTracks{
 
 				~durMul.source = Pseq([1/2], inf);
 
+			},{
+					~tOSCAdrr.sendMsg('durMul1_4', '0');
+					~tOSCAdrr.sendMsg('durMul1_2', '1');
+					~tOSCAdrr.sendMsg('durMul1', '0');
+
 			});
 			},
 			'/durMul1_2'
@@ -271,6 +413,11 @@ IFTracks{
 				~tOSCAdrr.sendMsg('durMulLabel', '1');
 
 				~durMul.source = Pseq([1], inf);
+
+			},{
+					~tOSCAdrr.sendMsg('durMul1_4', '0');
+					~tOSCAdrr.sendMsg('durMul1_2', '0');
+					~tOSCAdrr.sendMsg('durMul1', '1');
 
 			});
 			},
@@ -375,6 +522,28 @@ IFTracks{
 			},
 			'/set2'
 		);
+		~set3But.free;
+		~set3But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFProjectGlobals.preSet_3;
+
+			});
+			},
+			'/set3'
+		);
+		~set4But.free;
+		~set4But = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFProjectGlobals.preSet_4;
+
+			});
+			},
+			'/set4'
+		);
 
 	}
 	//TRACK 1 END
@@ -394,7 +563,7 @@ IFTracks{
 					inf.do{
 						1.do {
 
-							//~md1Clock.play;
+							//~mdClock.play;
 							~vBeatsLate=Tempo.bpm*(1/267.92);
 							IFKick(~tmMulKickP.next*~tmKickP.next);
 							IFSnr(~tmMulSnrP.next*~tmSnrP.next);
@@ -423,7 +592,7 @@ IFTracks{
 			if ( msg[1]==0, {
 				"IF Main STOP".postln;
 				~ifPlay.stop;
-				//~md1Clock.stop;
+				//~mdOutClock.stop;
 
 			});
 			},

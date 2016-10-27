@@ -22,7 +22,6 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVHat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/AbletonCommands/AbletonBasicCtl.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_notInUse/IFSC_MIDI.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFMainTrack1ERG.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVSnr.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFVTom.sc
@@ -31,6 +30,9 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/SonicLife.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFSpeechERG.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFQC_Test.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRoutine.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDIIn.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFExt.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -40,9 +42,6 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 4
         position: 0
-      - !QVariantMap
-        documentIndex: 23
-        position: 302
       - !QVariantMap
         documentIndex: 16
         position: 2179
@@ -56,158 +55,182 @@ editors: !QVariantMap
         documentIndex: 20
         position: 2703
       - !QVariantMap
-        documentIndex: 26
+        documentIndex: 25
         position: 1024
       - !QVariantMap
-        documentIndex: 25
+        documentIndex: 24
         position: 317
       - !QVariantMap
         documentIndex: 22
-        position: 576
+        position: 584
       - !QVariantMap
         documentIndex: 14
-        position: 1417
+        position: 1433
       - !QVariantMap
-        documentIndex: 9
-        position: 1631
-      - !QVariantMap
-        documentIndex: 10
-        position: 598
-      - !QVariantMap
-        documentIndex: 24
-        position: 2295
+        documentIndex: 23
+        position: 6824
       - !QVariantMap
         documentIndex: 12
         position: 892
       - !QVariantMap
-        documentIndex: 13
-        position: 1011
-      - !QVariantMap
         documentIndex: 11
-        position: 894
+        position: 891
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
+      - !QVariantMap
+        documentIndex: 21
+        position: 116
+      - !QVariantMap
+        documentIndex: 15
+        position: 0
+      - !QVariantMap
+        documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 28
+        position: 14
+      - !QVariantMap
+        documentIndex: 1
+        position: 7109
       - !QVariantMap
         documentIndex: 2
         position: 759
       - !QVariantMap
-        documentIndex: 6
+        documentIndex: 31
         position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 0
-      - !QVariantMap
-        documentIndex: 3
-        position: 2742
-      - !QVariantMap
-        documentIndex: 1
-        position: 5375
+        documentIndex: 33
+        position: 18
       - !QVariantMap
         documentIndex: 8
-        position: 1023
-      - !QVariantMap
-        documentIndex: 15
-        position: 0
-      - !QVariantMap
-        documentIndex: 0
-        position: 1328
-      - !QVariantMap
-        documentIndex: 21
-        position: 119
-    - !QVariantList
-      - !QVariantMap
-        documentIndex: 27
-        position: 4174
-      - !QVariantMap
-        documentIndex: 29
-        position: 14
-      - !QVariantMap
-        documentIndex: 30
-        position: 382
-      - !QVariantMap
-        documentIndex: 9
-        position: 1718
-      - !QVariantMap
-        documentIndex: 8
-        position: 208
-      - !QVariantMap
-        documentIndex: 12
-        position: 2641
-      - !QVariantMap
-        documentIndex: 13
-        position: 2707
+        position: 4528
       - !QVariantMap
         documentIndex: 10
-        position: 2310
+        position: 600
       - !QVariantMap
-        documentIndex: 28
-        position: 5038
-      - !QVariantMap
-        documentIndex: 31
-        position: 601
-      - !QVariantMap
-        documentIndex: 4
-        position: 825
+        documentIndex: 9
+        position: 1633
       - !QVariantMap
         documentIndex: 6
-        position: 919
-      - !QVariantMap
-        documentIndex: 7
-        position: 405
+        position: 0
       - !QVariantMap
         documentIndex: 3
-        position: 157
+        position: 2870
       - !QVariantMap
-        documentIndex: 2
-        position: 282
-      - !QVariantMap
-        documentIndex: 11
-        position: 35
+        documentIndex: 13
+        position: 1011
       - !QVariantMap
         documentIndex: 0
-        position: 1323
+        position: 7
+    - !QVariantList
       - !QVariantMap
-        documentIndex: 1
-        position: 842
-      - !QVariantMap
-        documentIndex: 24
-        position: 1193
-      - !QVariantMap
-        documentIndex: 21
-        position: 651
-      - !QVariantMap
-        documentIndex: 22
-        position: 151
-      - !QVariantMap
-        documentIndex: 23
-        position: 0
-      - !QVariantMap
-        documentIndex: 20
-        position: 0
-      - !QVariantMap
-        documentIndex: 19
-        position: 381
-      - !QVariantMap
-        documentIndex: 18
-        position: 2101
+        documentIndex: 14
+        position: 1715
       - !QVariantMap
         documentIndex: 17
         position: 1436
       - !QVariantMap
-        documentIndex: 14
-        position: 1517
+        documentIndex: 24
+        position: 0
+      - !QVariantMap
+        documentIndex: 25
+        position: 0
+      - !QVariantMap
+        documentIndex: 26
+        position: 4289
+      - !QVariantMap
+        documentIndex: 28
+        position: 14
+      - !QVariantMap
+        documentIndex: 15
+        position: 663
+      - !QVariantMap
+        documentIndex: 32
+        position: 34
+      - !QVariantMap
+        documentIndex: 27
+        position: 11205
+      - !QVariantMap
+        documentIndex: 30
+        position: 601
+      - !QVariantMap
+        documentIndex: 31
+        position: 2068
       - !QVariantMap
         documentIndex: 16
         position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 462
+        documentIndex: 29
+        position: 724
       - !QVariantMap
-        documentIndex: 15
-        position: 442
-  state: AAAA/wAAAAAAAAACAAAA+gAAAbQBAAAAAQEAAAAC
+        documentIndex: 23
+        position: 5384
+      - !QVariantMap
+        documentIndex: 19
+        position: 381
+      - !QVariantMap
+        documentIndex: 7
+        position: 547
+      - !QVariantMap
+        documentIndex: 4
+        position: 825
+      - !QVariantMap
+        documentIndex: 21
+        position: 835
+      - !QVariantMap
+        documentIndex: 22
+        position: 1642
+      - !QVariantMap
+        documentIndex: 6
+        position: 10392
+      - !QVariantMap
+        documentIndex: 3
+        position: 1168
+      - !QVariantMap
+        documentIndex: 0
+        position: 764
+      - !QVariantMap
+        documentIndex: 11
+        position: 4682
+      - !QVariantMap
+        documentIndex: 20
+        position: 0
+      - !QVariantMap
+        documentIndex: 18
+        position: 2101
+      - !QVariantMap
+        documentIndex: 8
+        position: 2239
+      - !QVariantMap
+        documentIndex: 9
+        position: 2246
+      - !QVariantMap
+        documentIndex: 10
+        position: 2219
+      - !QVariantMap
+        documentIndex: 5
+        position: 2372
+      - !QVariantMap
+        documentIndex: 2
+        position: 3396
+      - !QVariantMap
+        documentIndex: 12
+        position: 1097
+      - !QVariantMap
+        documentIndex: 1
+        position: 5619
+      - !QVariantMap
+        documentIndex: 13
+        position: 3470
+      - !QVariantMap
+        documentIndex: 33
+        position: 1989
+  state: AAAA/wAAAAAAAAACAAAAZAAAArcBAAAAAQEAAAAC
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAADuAAAAZAAABkQAAANaAAAA7gAAAHoAAAZEAAADWgAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAAB1AAACyfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACyQAAAGYA////AAAAAQAAAf8AAALJ/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZMAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZQAAAE1AAAATAD///8AAALhAAACyQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAAAAAE0AAAAVAAAByIAAAQuAAABNAAAAGoAAAciAAAELgAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACOAAADrfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADrQAAAGYA////AAAAAQAAAiYAAAOt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAGPAAAATAD///8AAAM5AAADrQAAAAEAAAACAAAAAQAAAAL8AAAAAA==

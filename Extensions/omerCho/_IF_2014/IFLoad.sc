@@ -1,6 +1,6 @@
 /*
 IFLoad.load;
-IFTracks.track1; "TRACK 1".postln; ~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
+IFTracks.track1; "TRACK 1".postln;~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 */
 
 IFLoad{
@@ -18,11 +18,11 @@ IFLoad{
 				0.1.wait;
 				IFTracks.loadButtons;
 				0.1.wait;
-				SonicLife.load;
+				//SonicLife.load;
 				0.1.wait;
-				VBass.globals; VBass.preSet01;
+				//VBass.globals; VBass.preSet01;
 				0.1.wait;
-				VKeys.globals; VKeys.preSet01;
+				//VKeys.globals; VKeys.preSet01;
 
 				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
 				//IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
@@ -44,6 +44,10 @@ IFLoad{
 				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
 				0.1.wait;
 				IFRes1.globals; IFRes1.preSet;
+				0.1.wait;
+				IFExt.load;
+				0.1.wait;
+				IFRoot.load;
 				0.1.wait;
 				IFProjectGlobals.preSetAll;
 				0.1.wait;

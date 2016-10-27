@@ -41,13 +41,13 @@ classvar <>counter3 = 0;
 
 
 	*preSet{
-		~md1.control(~res1Ch, 1, 94); //resonator Note
-		~md1.control(~res1Ch, 2, 94); //resonator Decay
-		~md1.control(~res1Ch, 3, 68); //resonator Filter freq
-		~md1.control(~res1Ch, 4, 100); //resonator Color
-		~md1.control(~res1Ch, 5, 120); //resonator Note gain
-		~md1.control(~res1Ch, 6, 100); //resonator Width
-		~md1.control(~res1Ch, 7, 74); //resonator Gain
+		~mdOut.control(~res1Ch, 1, 94); //resonator Note
+		~mdOut.control(~res1Ch, 2, 94); //resonator Decay
+		~mdOut.control(~res1Ch, 3, 68); //resonator Filter freq
+		~mdOut.control(~res1Ch, 4, 100); //resonator Color
+		~mdOut.control(~res1Ch, 5, 120); //resonator Note gain
+		~mdOut.control(~res1Ch, 6, 100); //resonator Width
+		~mdOut.control(~res1Ch, 7, 74); //resonator Gain
 
 	}
 
@@ -72,7 +72,7 @@ classvar <>counter3 = 0;
 
 		Pbind(//resonator note
 			\chan, ~res1Ch, \ctlNum, 1,
-			\type, \midi, \midicmd, \control, \midiout,~md1,
+			\type, \midi, \midicmd, \control, \midiout,~mdOut,
 			\dur, Pseq([Pseq([~dur1Res1P.next/i],1)], 1),
 			\control, Pseq([~nt1Res1P.next].degreeToKey(~scl2), inf),
 			\octave, 4
@@ -106,7 +106,7 @@ classvar <>counter3 = 0;
 			var val;
 			val = Pslide((30..100).mirror, inf,3,1,0).asStream;
 			240.do{
-				~md1.control(~res1Ch, ~res1Mac2, val.next);
+				~mdOut.control(~res1Ch, ~res1Mac2, val.next);
 			(~dur.next*(1/8)).wait;
 			}
 		}.fork;

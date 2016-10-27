@@ -26,6 +26,33 @@ IFCntrl {
 
 	*main {
 
+		~togMain.free;
+		~togMain = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"IF Main PLAY".postln;
+				//~mdClock.start;//TempoClock to IAC MIDI
+
+				//~mainSet_00.fork(quant:0);
+				IFRoot.play;
+				~tOSCAdrr.sendMsg('/1/toggleMain', 1);
+
+
+			});
+
+			if ( msg[1]==0, {
+				"IF Main STOP".postln;
+				IFRoot.stop;
+				//~mdClock.stop;//TempoClock to IAC MIDI
+				//Ableton.stop;
+				~tOSCAdrr.sendMsg('/1/toggleMain', 0);
+
+
+			});
+			},
+			'/1/toggleMain'
+		);
+
 		~tempoFader.free;
 		~tempoFader= OSCFunc({
 			arg msg,val;
@@ -63,11 +90,6 @@ IFCntrl {
 			},
 			'/tempoDiv'
 		);
-
-
-		~tOSCAdrr.sendMsg('tempoLabel', Tempo.bpm/2);
-		~tOSCAdrr.sendMsg('tempoFader', Tempo.bpm/2);
-		IFProjectGlobals.setTempo(Tempo.bpm/2);
 
 		~tempoClockBut.free;
 		~tempoClockLedCount = 0;
@@ -114,20 +136,44 @@ IFCntrl {
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
 
-			~md1.control(10, 20, vel1); // Snr Cut
-			~md1.control(10, 21, vel2); // Snr Cut
-			//~vBass.control(0, ~cutOff, vel1);
+			~tOSCAdrr.sendMsg('/cutDrum',msg[1], msg[2]);
+			~mdOut.control(10, 20, vel1);
+			~mdOut.control(10, 21, vel2);
 
 			},
 			'/cutDrum'
 		);
+
+		~cutAllXY.free;
+		~cutAllXY= OSCFunc({
+			arg msg,vel1, vel2;
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+
+			~mdOut.control(10, 6, vel1); // IFVBass CutY
+			~mdOut.control(10, 7, vel1); // IFVKeys CutY
+			~mdOut.control(10, 8, vel1); // IFSamps CutY
+			//~vBass.control(0, ~cutOff, vel1);
+			~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
+
+			~mdOut.control(10, 9, vel2); // IFVBass CutX
+			~mdOut.control(10, 10, vel2); // IFVKeys CutX
+			~mdOut.control(10, 11, vel2); // IFSamp CutX
+			//~vBass.control(0, ~gateTime, vel2);
+			//~vKeys.control(0, ~vcfCut, vel2);
+
+
+			},
+			'/cutAll'
+		);
+
 
 		~harmXY.free;
 		~harmXY= OSCFunc({
 			arg msg;
 
 			~harmKick=msg[1];~harmSnr=msg[1];~harmHat=msg[1]+1*1.5;
-			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2];
+			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2]; ~hrmMulExt=msg[1];
 
 			~tOSCAdrr.sendMsg('harm0', 1);
 			},
@@ -140,7 +186,7 @@ IFCntrl {
 			if ( msg[1]==1, {
 				"Harmonic 0".postln;
 				~harmKick=0;~harmSnr=0;~harmHat=0;
-				~harmBass=0;~harmKeys=0;~harmSamp=0;
+				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
 
 				~strSnr.source     =  Pshuf([1], inf);
 				~strSnr.source     =  Pshuf([1], inf);
@@ -181,12 +227,13 @@ IFCntrl {
 			arg msg;
 			if ( msg[1]==1, {
 				"Transpose Shuffle".postln;
-
+				~tOSCAdrr.sendMsg('/shufTrans', 1);
 				~transBass.source  = Pshuf([(-5),2,7,(-7), (-2),1,6,(-3)], inf);
 				~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
 				~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
 
 				},{
+					~tOSCAdrr.sendMsg('/shufTrans', 0);
 					~transBass.source  = Pshuf([0], inf);
 					~transKeys.source  = Pshuf([0], inf);
 					~transSamp.source  = Pshuf([0], inf);
@@ -200,6 +247,7 @@ IFCntrl {
 		~susMelMulFader= OSCFunc({
 			arg msg;
 			//~susMulSnr=msg[1];
+			~tOSCAdrr.sendMsg('/susMel', msg[1]);
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
 			},
 			'/susMel'
@@ -208,6 +256,7 @@ IFCntrl {
 		~susDrumMulFader.free;
 		~susDrumMulFader= OSCFunc({
 			arg msg;
+			~tOSCAdrr.sendMsg('/susDrum', msg[1]);
 			~susMulKick=msg[1];~susMulSnr=msg[1];~susMulHat=msg[1];
 
 			},
@@ -219,11 +268,11 @@ IFCntrl {
 		~chainDrumFader.free;
 		~chainDrumFader= OSCFunc({
 			arg msg,val;
-
 			val=msg[1]*127;
-			~md1.control(2, 8, val);//~tOSCAdrr.sendMsg('chainKick', val);
-			~md1.control(3, 8, val);//~tOSCAdrr.sendMsg('chainSnr', val);
-			~md1.control(4, 8, val);//~tOSCAdrr.sendMsg('chainHat', val);
+			~tOSCAdrr.sendMsg('/chainDrum', msg[1]);
+			~mdOut.control(2, 8, val);//~tOSCAdrr.sendMsg('chainKick', val);
+			~mdOut.control(3, 8, val);//~tOSCAdrr.sendMsg('chainSnr', val);
+			~mdOut.control(4, 8, val);//~tOSCAdrr.sendMsg('chainHat', val);
 
 			},
 			'/chainDrum'
@@ -232,11 +281,11 @@ IFCntrl {
 		~chainAllFader.free;
 		~chainAllFader= OSCFunc({
 			arg msg,val;
-
 			val=msg[1]*127;
-			~md1.control(5, 8, val);//~tOSCAdrr.sendMsg('chainBass', val);
-			~md1.control(6, 8, val);//~tOSCAdrr.sendMsg('chainKeys', val);
-			~md1.control(7, 8, val);//~tOSCAdrr.sendMsg('chainSamp', val);
+			~tOSCAdrr.sendMsg('/chainAll', msg[1]);
+			~mdOut.control(5, 8, val);//~tOSCAdrr.sendMsg('chainBass', val);
+			~mdOut.control(6, 8, val);//~tOSCAdrr.sendMsg('chainKeys', val);
+			~mdOut.control(7, 8, val);//~tOSCAdrr.sendMsg('chainSamp', val);
 
 			},
 			'/chainAll'
@@ -245,11 +294,12 @@ IFCntrl {
 		~attMelFader.free;
 		~attMelFader= OSCFunc({
 			arg msg,val;
-
 			val=msg[1]*127;
-			~md1.control(5, 5, val); ~tOSCAdrr.sendMsg('attBass', val);
-			~md1.control(6, 5, val); ~tOSCAdrr.sendMsg('attKeys', val);
-			~md1.control(7, 5, val); ~tOSCAdrr.sendMsg('attSamp', val);
+			~tOSCAdrr.sendMsg('/attMel', msg[1]);
+			~mdOut.control(5, 5, val); ~tOSCAdrr.sendMsg('attBass', val);
+			~mdOut.control(6, 5, val); ~tOSCAdrr.sendMsg('attKeys', val);
+			~mdOut.control(7, 5, val); ~tOSCAdrr.sendMsg('attSamp', val);
+
 			},
 			'/attMel'
 		);
@@ -379,12 +429,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 1*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 1*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -396,12 +446,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 0*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 0*127); // VSamp Mute
 
 			});
 			},
@@ -413,12 +463,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 1*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 1*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -430,12 +480,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 0*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 0*127); // VSamp Mute
 
 			});
 			},
@@ -448,12 +498,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 0*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 0*127); // VSamp Mute
 
 			});
 			},
@@ -466,12 +516,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -484,12 +534,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 0*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 0*127); // VSamp Mute
 
 			});
 			},
@@ -502,12 +552,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 1*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 0*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 1*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 0*127); // VSamp Mute
 
 			});
 			},
@@ -519,12 +569,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 0*127); // VKick Mute
-				~md1.control(3, 0, 1*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 0*127); // VKick Mute
+				~mdOut.control(3, 0, 1*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -537,12 +587,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -555,12 +605,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -573,12 +623,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 1*127); // VHat Mute
-				~md1.control(5, 0, 0*127); // VBass Mute
-				~md1.control(6, 0, 1*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 1*127); // VHat Mute
+				~mdOut.control(5, 0, 0*127); // VBass Mute
+				~mdOut.control(6, 0, 1*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -591,12 +641,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 1*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 1*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},
@@ -608,12 +658,12 @@ IFCntrl {
 			if ( msg[1]==1, {
 
 				//~tOSCAdrr.sendMsg('muteKick', 0);
-				~md1.control(2, 0, 1*127); // VKick Mute
-				~md1.control(3, 0, 0*127); // VSnr Mute
-				~md1.control(4, 0, 0*127); // VHat Mute
-				~md1.control(5, 0, 1*127); // VBass Mute
-				~md1.control(6, 0, 0*127); // VKeys Mute
-				~md1.control(7, 0, 1*127); // VSamp Mute
+				~mdOut.control(2, 0, 1*127); // VKick Mute
+				~mdOut.control(3, 0, 0*127); // VSnr Mute
+				~mdOut.control(4, 0, 0*127); // VHat Mute
+				~mdOut.control(5, 0, 1*127); // VBass Mute
+				~mdOut.control(6, 0, 0*127); // VKeys Mute
+				~mdOut.control(7, 0, 1*127); // VSamp Mute
 
 			});
 			},

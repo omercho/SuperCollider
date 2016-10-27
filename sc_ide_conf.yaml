@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAkAAAAFwAABkcAAAM2AAAAJAAAAC0AAAZHAAADNgAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAAB1AAAC8vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC8gAAAGYA////AAAAAQAAAisAAALy/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAaYAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAacAAAFLAAAATAD///8AAAOCAAAC8gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAE0AAAAVAAAByIAAAQuAAABNAAAAGoAAAciAAAELgAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACOAAADrfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADrQAAAGYA////AAAAAQAAAiYAAAOt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAGPAAAATAD///8AAAM5AAADrQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFExt.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFMIDIIn.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRoutine.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFQC_Test.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFRoot.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFCntrl.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFPitch.sc
     - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC.scd
     - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFSpeechERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFCounter.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/SonicLife.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCMIDI/OCHercules.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/_ERG_scdFiles/IFMainTrack1ERG.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

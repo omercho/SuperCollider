@@ -24,15 +24,13 @@ IFSnr.times(4);
 		~harmSnr=0;
 		~susMulSnr=1;
 		~trSnr=0;
-
 		~octMulSnr=0;
-
 		~snrVolC=1;
 	}
 
 	*preSet {
 
-		~md1.control(~snrCh, ~snrVolC, 100); //SnareVol
+		~mdOut.control(~snrCh, ~snrVolC, 100); //SnareVol
 
 	}
 
@@ -57,7 +55,7 @@ IFSnr.times(4);
 
 		~transSnr = PatternProxy( Pseq([0], inf));
 		~transSnrP = Pseq([~transSnr], inf).asStream;
-		~octSnr = PatternProxy( Pseq([4], inf));
+		~octSnr = PatternProxy( Pseq([3], inf));
 		~octSnrP = Pseq([~octSnr], inf).asStream;
 		//~legSnr = PatternProxy( Pseq([0.0], inf));
 		//~legSnrP = Pseq([~legSnr], inf).asStream;
@@ -91,7 +89,7 @@ IFSnr.times(4);
 		val=i;
 		Pbind(
 			\chan, ~snrCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([~dur1SnrP.next/val], 1),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
@@ -108,6 +106,36 @@ IFSnr.times(4);
 	*cntrl{
 
 		//----Snr-------
+
+		~attSnrFader.free;
+		~attSnrFader= OSCFunc({
+			arg msg,val;
+			val=msg[1];
+			~tOSCAdrr.sendMsg('attSnr', msg[1]);
+			//~attSnr=val+0.01;
+			},
+			'/attSnr'
+		);
+
+		~susLevSnrFader.free;
+		~susLevSnrFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('susSnr', msg[1]);
+			//~susLevSnr=msg[1];
+
+			},
+			'/susSnr'
+		);
+
+		~decSnrFader.free;
+		~decSnrFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('decSnr', msg[1]);
+			//~decSnr=msg[1];
+
+			},
+			'/decSnr'
+		);
 
 		//TIME
 		~tmMulSnrBut1.free;

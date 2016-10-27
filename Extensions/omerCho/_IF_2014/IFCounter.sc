@@ -44,7 +44,7 @@ classvar <>counter=0;
 			var val;
 			val = Pslide((30..100).mirror, inf,3,1,0).asStream;
 			240.do{
-				~md1.control(~res1Ch, ~res1Mac2, val.next);
+				~mdOut.control(~res1Ch, ~res1Mac2, val.next);
 			(~dur.next*(1/8)).wait;
 			}
 		}.fork;*/

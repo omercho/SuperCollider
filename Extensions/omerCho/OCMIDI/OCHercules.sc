@@ -3,7 +3,7 @@ OCHercules {
 	*initClass {
 		StartUp add: {
 
-			this.initMIDI;
+			//this.initMIDI;
 		}
 	}
 
@@ -129,7 +129,7 @@ OCHercules {
 ~hercLeftEar.free;
 ~hercLeftEar=MIDIFunc.noteOn( {//center left ear ----LED
 	arg vel;
-	~md1.control(0, ~envAtt, vel);
+	~mdOut.control(0, ~envAtt, vel);
 	~mdHerc.noteOn(0, 57, 127); //center left ear ----LED
 
 }, chan:0, ccNum:55);

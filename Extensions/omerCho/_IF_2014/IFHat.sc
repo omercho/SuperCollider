@@ -24,15 +24,13 @@ IFHat.times(4);
 		~rootHat=0;
 		~susMulHat=1;
 		~trHat=0;
-
-
 		~octMulHat=0;
 		~hatVolC=1;
 	}
 
 	*preSet {
 
-		~md1.control(~hatCh, ~hatVolC, 100); //HatVol
+		~mdOut.control(~hatCh, ~hatVolC, 100); //HatVol
 	}
 
 	*default {
@@ -55,8 +53,9 @@ IFHat.times(4);
 		~transHatP = Pseq([~transHat], inf).asStream;
 		~octHat = PatternProxy( Pseq([3], inf));
 		~octHatP = Pseq([~octHat], inf).asStream;
-		~legHat = PatternProxy( Pseq([3.0], inf));
+		~legHat = PatternProxy( Pseq([0.0], inf));
 		~legHatP = Pseq([~legHat], inf).asStream;
+
 		~strHat = PatternProxy( Pseq([1.0], inf));
 		~strHatP = Pseq([~strHat], inf).asStream;
 
@@ -100,7 +99,7 @@ IFHat.times(4);
 
 		Pbind(
 			\chan, ~hatCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([Pseq([~dur1HatP.next/val],1)], 1),
 			\degree, Pseq([~nt1HatP.next], 1),
 			\amp, Pseq([~amp1HatP.next], 1),
@@ -118,6 +117,37 @@ IFHat.times(4);
 	*cntrl {
 
 		//----Hat-------
+
+		~attHatFader.free;
+		~attHatFader= OSCFunc({
+			arg msg,val;
+			val=msg[1];
+			~tOSCAdrr.sendMsg('attHat', msg[1]);
+			//~attHat=val+0.01;
+			},
+			'/attHat'
+		);
+
+		~susLevHatFader.free;
+		~susLevHatFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('susHat', msg[1]);
+			//~susLevHat=msg[1];
+
+			},
+			'/susHat'
+		);
+
+		~decHatFader.free;
+		~decHatFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('decHat', msg[1]);
+			//~decHat=msg[1];
+
+			},
+			'/decHat'
+		);
+
 		//TIME
 		~tmMulHatBut1.free;
 		~tmMulHatBut1= OSCFunc({

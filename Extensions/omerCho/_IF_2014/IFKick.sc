@@ -79,8 +79,6 @@ IFKick {
 
 				this.p1(val);
 
-
-
 				~kickLedFork={
 
 						~tOSCAdrr.sendMsg('kickLed', 1);
@@ -88,7 +86,6 @@ IFKick {
 						~tOSCAdrr.sendMsg('kickLed', 0);
 
 				}.fork;
-
 
 				~durMulP*((~dur1KickP.next)/val).wait;
 			}}.fork;
@@ -103,7 +100,7 @@ IFKick {
 
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~md1, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([~dur1KickP.next/val],1),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~amp1KickP.next], inf),
@@ -122,7 +119,8 @@ IFKick {
 		~attKickFader= OSCFunc({
 			arg msg,val;
 			val=msg[1];
-			~attKick=val+0.01;
+			~tOSCAdrr.sendMsg('attKick', msg[1]);
+			//~attKick=val+0.01;
 			},
 			'/attKick'
 		);
@@ -130,8 +128,9 @@ IFKick {
 		~susLevKickFader.free;
 		~susLevKickFader= OSCFunc({
 			arg msg;
-			~susLevKick=msg[1];
-			msg[1].postln
+			~tOSCAdrr.sendMsg('susKick', msg[1]);
+			//~susLevKick=msg[1];
+
 			},
 			'/susKick'
 		);
@@ -139,8 +138,9 @@ IFKick {
 		~decKickFader.free;
 		~decKickFader= OSCFunc({
 			arg msg;
-			~decKick=msg[1];
-			msg[1].postln
+			~tOSCAdrr.sendMsg('decKick', msg[1]);
+			//~decKick=msg[1];
+
 			},
 			'/decKick'
 		);
