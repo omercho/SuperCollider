@@ -9,7 +9,7 @@ IFPitch {
 			/*Server.default.doWhenBooted({
 				1.0.wait;
 
-				this.note;
+				this.noteMel;
 				this.noteBass;
 				this.noteKeys;
 				this.noteSamp;
@@ -56,6 +56,70 @@ IFPitch {
 		);
 
 
+		~shufTransTogBut.free;
+		~shufTransTogBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Transpose Shuffle".postln;
+				~tOSCAdrr.sendMsg('shufTrans', 1);
+				~transBass.source  = Pshuf([(-5),2,7,(-7), (-2),1,6,(-3)], inf);
+				~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
+				~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
+
+				},{
+					~tOSCAdrr.sendMsg('shufTrans', 0);
+					~transBass.source  = Pshuf([0], inf);
+					~transKeys.source  = Pshuf([0], inf);
+					~transSamp.source  = Pshuf([0], inf);
+				}
+			);
+			},
+			'/shufTransTog'
+		);
+
+		~shufTransBut.free;
+		~countShuf=0;
+		~shufTransBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				//"Transpose Shuffle".postln;
+				~countShuf = ~countShuf + 1;
+
+				~countShuf.switch(
+					0,{~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
+						~tOSCAdrr.sendMsg('shufTrans', 0);
+					},
+					1, {
+
+						"Modal Transpose Shuffle".postln;
+						~tOSCAdrr.sendMsg('shufTransLabel', 'ON');
+						~tOSCAdrr.sendMsg('shufTrans', 1);
+						~transBass.source  = Pshuf([(-4),2,4,(-7), (-2),1,7,(-3)], inf);
+						~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
+						~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
+					},
+					2,{
+						~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
+						~tOSCAdrr.sendMsg('shufTrans', 0);
+						~transBass.source  = Pshuf([0], inf);
+						~transKeys.source  = Pshuf([0], inf);
+						~transSamp.source  = Pshuf([0], inf);
+						~countShuf=0;
+					}
+				)
+				},{
+
+
+				}
+			);
+			},
+			'/shufTrans'
+		);
+
+
+
+
 		~note_0.free;
 		~note_0 = OSCFunc({
 			arg msg;
@@ -65,6 +129,8 @@ IFPitch {
 				~transBass.source=0;~transKeys.source=0;~transSamp.source=0;
 				~transExt.source=0;
 				~tOSCAdrr.sendMsg('noteLabel', '0');
+				~tOSCAdrr.sendMsg('shufTrans', 0);
+				~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
 			});
 			},
 			'/nt_0'

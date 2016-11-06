@@ -71,31 +71,16 @@ editors: !QVariantMap
         position: 6824
       - !QVariantMap
         documentIndex: 12
-        position: 892
+        position: 879
       - !QVariantMap
         documentIndex: 11
         position: 891
-      - !QVariantMap
-        documentIndex: 5
-        position: 0
-      - !QVariantMap
-        documentIndex: 21
-        position: 116
-      - !QVariantMap
-        documentIndex: 15
-        position: 0
       - !QVariantMap
         documentIndex: 7
         position: 0
       - !QVariantMap
         documentIndex: 28
         position: 14
-      - !QVariantMap
-        documentIndex: 1
-        position: 7109
-      - !QVariantMap
-        documentIndex: 2
-        position: 759
       - !QVariantMap
         documentIndex: 31
         position: 0
@@ -107,22 +92,37 @@ editors: !QVariantMap
         position: 4528
       - !QVariantMap
         documentIndex: 10
-        position: 600
+        position: 598
       - !QVariantMap
         documentIndex: 9
-        position: 1633
-      - !QVariantMap
-        documentIndex: 6
-        position: 0
+        position: 1631
       - !QVariantMap
         documentIndex: 3
-        position: 2870
+        position: 2723
       - !QVariantMap
         documentIndex: 13
         position: 1011
       - !QVariantMap
+        documentIndex: 15
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 759
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 21
+        position: 777
+      - !QVariantMap
+        documentIndex: 1
+        position: 7172
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
+      - !QVariantMap
         documentIndex: 0
-        position: 7
+        position: 8
     - !QVariantList
       - !QVariantMap
         documentIndex: 14
@@ -142,9 +142,6 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 28
         position: 14
-      - !QVariantMap
-        documentIndex: 15
-        position: 663
       - !QVariantMap
         documentIndex: 32
         position: 34
@@ -170,29 +167,11 @@ editors: !QVariantMap
         documentIndex: 19
         position: 381
       - !QVariantMap
-        documentIndex: 7
-        position: 547
-      - !QVariantMap
-        documentIndex: 4
-        position: 825
-      - !QVariantMap
         documentIndex: 21
         position: 835
       - !QVariantMap
         documentIndex: 22
         position: 1642
-      - !QVariantMap
-        documentIndex: 6
-        position: 10392
-      - !QVariantMap
-        documentIndex: 3
-        position: 1168
-      - !QVariantMap
-        documentIndex: 0
-        position: 764
-      - !QVariantMap
-        documentIndex: 11
-        position: 4682
       - !QVariantMap
         documentIndex: 20
         position: 0
@@ -200,37 +179,58 @@ editors: !QVariantMap
         documentIndex: 18
         position: 2101
       - !QVariantMap
+        documentIndex: 33
+        position: 2265
+      - !QVariantMap
         documentIndex: 8
         position: 2239
       - !QVariantMap
         documentIndex: 9
-        position: 2246
+        position: 356
       - !QVariantMap
         documentIndex: 10
-        position: 2219
+        position: 325
       - !QVariantMap
-        documentIndex: 5
-        position: 2372
-      - !QVariantMap
-        documentIndex: 2
-        position: 3396
-      - !QVariantMap
-        documentIndex: 12
-        position: 1097
-      - !QVariantMap
-        documentIndex: 1
-        position: 5619
+        documentIndex: 11
+        position: 4682
       - !QVariantMap
         documentIndex: 13
-        position: 3470
+        position: 317
       - !QVariantMap
-        documentIndex: 33
-        position: 1989
-  state: AAAA/wAAAAAAAAACAAAAZAAAArcBAAAAAQEAAAAC
+        documentIndex: 12
+        position: 31
+      - !QVariantMap
+        documentIndex: 0
+        position: 764
+      - !QVariantMap
+        documentIndex: 7
+        position: 226
+      - !QVariantMap
+        documentIndex: 15
+        position: 230
+      - !QVariantMap
+        documentIndex: 4
+        position: 825
+      - !QVariantMap
+        documentIndex: 2
+        position: 763
+      - !QVariantMap
+        documentIndex: 6
+        position: 2842
+      - !QVariantMap
+        documentIndex: 1
+        position: 1163
+      - !QVariantMap
+        documentIndex: 5
+        position: 3918
+      - !QVariantMap
+        documentIndex: 3
+        position: 8784
+  state: AAAA/wAAAAAAAAACAAAAZAAAAu0BAAAAAQEAAAAC
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAAE0AAAAVAAAByIAAAQuAAABNAAAAGoAAAciAAAELgAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACOAAADrfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADrQAAAGYA////AAAAAQAAAiYAAAOt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAGPAAAATAD///8AAAM5AAADrQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAAAAADLAAAAIQAABhYAAAO6AAAAywAAADcAAAYWAAADugAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACOAAADbPwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADbAAAAGYA////AAAAAQAAAY8AAANs/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAfoAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAfsAAAFxAAAATAD///8AAAMtAAADbAAAAAEAAAACAAAAAQAAAAL8AAAAAA==

@@ -41,8 +41,8 @@
 
 	*globals{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
-
+		//~tOSCAdrr = NetAddr.new("192.168.1.7", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 5001); // router OTE
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");

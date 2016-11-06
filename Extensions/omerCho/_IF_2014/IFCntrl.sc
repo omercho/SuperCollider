@@ -172,7 +172,8 @@ IFCntrl {
 		~harmXY= OSCFunc({
 			arg msg;
 
-			~harmKick=msg[1];~harmSnr=msg[1];~harmHat=msg[1]+1*1.5;
+			//~harmKick=msg[1];
+			~harmSnr=msg[1];~harmHat=msg[1]+1*1.5;
 			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2]; ~hrmMulExt=msg[1];
 
 			~tOSCAdrr.sendMsg('harm0', 1);
@@ -185,10 +186,11 @@ IFCntrl {
 			arg msg;
 			if ( msg[1]==1, {
 				"Harmonic 0".postln;
-				~harmKick=0;~harmSnr=0;~harmHat=0;
+				//~harmKick=0;
+				~harmSnr=0;~harmHat=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
 
-				~strSnr.source     =  Pshuf([1], inf);
+				~strKick.source     =  Pshuf([1], inf);
 				~strSnr.source     =  Pshuf([1], inf);
 				~strHat.source     =  Pshuf([1], inf);
 				~strBass.source    =  Pshuf([1], inf);
@@ -220,27 +222,6 @@ IFCntrl {
 			);
 			},
 			'/shufHarm'
-		);
-
-		~shufTransBut.free;
-		~shufTransBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"Transpose Shuffle".postln;
-				~tOSCAdrr.sendMsg('/shufTrans', 1);
-				~transBass.source  = Pshuf([(-5),2,7,(-7), (-2),1,6,(-3)], inf);
-				~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
-				~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-
-				},{
-					~tOSCAdrr.sendMsg('/shufTrans', 0);
-					~transBass.source  = Pshuf([0], inf);
-					~transKeys.source  = Pshuf([0], inf);
-					~transSamp.source  = Pshuf([0], inf);
-				}
-			);
-			},
-			'/shufTrans'
 		);
 
 		~susMelMulFader.free;
