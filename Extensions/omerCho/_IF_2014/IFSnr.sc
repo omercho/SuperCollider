@@ -37,30 +37,25 @@ IFSnr.times(4);
 
 
 	*default {
-
-		~nt1Snr = PatternProxy( Pseq([0], inf));
-		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
-		~dur1Snr = PatternProxy( Pseq([1], inf));
-		~dur1SnrP = Pseq([~dur1Snr], inf).asStream;
 		~amp1Snr = PatternProxy( Pseq([1], inf));
 		~amp1SnrP = Pseq([~amp1Snr], inf).asStream;
+		~octSnr = PatternProxy( Pseq([3], inf));
+		~octSnrP = Pseq([~octSnr], inf).asStream;
+		~nt1Snr = PatternProxy( Pseq([0], inf));
+		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
 		~sus1Snr = PatternProxy( Pseq([1], inf));
 		~sus1SnrP = Pseq([~sus1Snr], inf).asStream;
-
-		~tmMulSnr = PatternProxy( Pseq([1], inf));
-		~tmMulSnrP= Pseq([~tmMulSnr], inf).asStream;
-
-		~tmSnr = PatternProxy( Pseq([1], inf));
-		~tmSnrP= Pseq([~tmSnr], inf).asStream;
+		~dur1Snr = PatternProxy( Pseq([1], inf));
+		~dur1SnrP = Pseq([~dur1Snr], inf).asStream;
 
 		~transSnr = PatternProxy( Pseq([0], inf));
 		~transSnrP = Pseq([~transSnr], inf).asStream;
-		~octSnr = PatternProxy( Pseq([3], inf));
-		~octSnrP = Pseq([~octSnr], inf).asStream;
-		//~legSnr = PatternProxy( Pseq([0.0], inf));
-		//~legSnrP = Pseq([~legSnr], inf).asStream;
+
 		~strSnr = PatternProxy( Pseq([1.0], inf));
 		~strSnrP = Pseq([~strSnr], inf).asStream;
+
+		~actSnr = PatternProxy( Pseq([1], inf));
+		~actSnrP= Pseq([~actSnr], inf).asStream;
 
 	}
 
@@ -90,7 +85,7 @@ IFSnr.times(4);
 		Pbind(
 			\chan, ~snrCh,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~dur1SnrP.next/val], 1),
+			\dur, Pseq([~dur1SnrP.next/val], ~actSnrP),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
@@ -105,23 +100,102 @@ IFSnr.times(4);
 
 	*cntrl{
 
-		//----Snr-------
+		~actSnrBut.free;
+		~actSnrBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actSnr.source=1;
+				~behOut.control(3, 2, 127);
+			},{
+					~actSnr.source=0;
+					~behOut.control(3, 2, 0);
+			});
+			},
+			'/activSnr'
+		);
+		~actSnrMD.free;
+		~actSnrMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~actSnr.source=1;
+				~tOSCAdrr.sendMsg('activSnr', 1);
+				},{
+					~actSnr.source=0;
+					~tOSCAdrr.sendMsg('activSnr', 0);
+			});
+		}, chan:3, ccNum:2);
+
+		//TIME
+
+		~time2SnrBut.free;
+		~countTime2Snr=0;
+		~time2SnrBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Snr = ~countTime2Snr + 1;
+				~countTime2Snr.switch(
+					0,{},
+					1, {
+						~behOut.control(3, 9, 127);
+						~tOSCAdrr.sendMsg('time2Snr', 1);
+						~tOSCAdrr.sendMsg('tmSnrLabel', 2);
+						~tmMulSnr.source = Pseq([2], inf);
+					},
+					2,{
+						~behOut.control(3, 9, 0);
+						~tOSCAdrr.sendMsg('time2Snr', 0);
+						~tOSCAdrr.sendMsg('tmSnrLabel', 1);
+						~tmMulSnr.source = Pseq([1], inf);
+						~countTime2Snr=0;
+					}
+				)}
+			);
+			},
+			'/time2Snr'
+		);
+
+		~time2SnrMD.free;
+		~time2SnrMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~countTime2Snr = ~countTime2Snr + 1;
+				~tOSCAdrr.sendMsg('time2Snr', 1);
+				~tOSCAdrr.sendMsg('tmSnrLabel', 2);
+				~tmMulSnr.source = Pseq([2], inf);
+				},{
+					~tOSCAdrr.sendMsg('time2Snr', 0);
+					~tOSCAdrr.sendMsg('tmSnrLabel', 1);
+					~tmMulSnr.source = Pseq([1], inf);
+					~countTime2Snr=0;
+			});
+		}, chan:3, ccNum:9);
+
+		~volSnrFader.free;
+		~volSnrFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volSnr', msg[1]);
+			~mdOut.control(3, 1, vel);
+			},
+			'/volSnr'
+		);
 
 		~attSnrFader.free;
 		~attSnrFader= OSCFunc({
-			arg msg,val;
-			val=msg[1];
+			arg msg,vel;
+			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attSnr', msg[1]);
-			//~attSnr=val+0.01;
+			~mdOut.control(3, 5, vel);
 			},
-			'/attSnr'
+			'attSnr'
 		);
 
 		~susLevSnrFader.free;
 		~susLevSnrFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('susSnr', msg[1]);
-			//~susLevSnr=msg[1];
+			~susLevSnr=msg[1];
+			~mdOut.control(3, 6, msg[1]*127);
 
 			},
 			'/susSnr'
@@ -131,13 +205,37 @@ IFSnr.times(4);
 		~decSnrFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('decSnr', msg[1]);
-			//~decSnr=msg[1];
-
+			~decSnr=msg[1];
+			~mdOut.control(3, 7, msg[1]*127);
 			},
 			'/decSnr'
 		);
 
+		~chainSnrFader.free;
+		~chainSnrFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('chainSnr', msg[1]);
+			~mdOut.control(3, 8, msg[1]*127);
+			},
+			'/chainSnr'
+		);
+
+		~sendSnrXY.free;
+		~sendSnrXY= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			~mdOut.control(3, 4, vel1); // IFSnr
+			~mdOut.control(3, 3, vel2); // IFSnr
+			~tOSCAdrr.sendMsg('sendSnr', msg[1], msg[2]);
+
+			},
+			'sendSnr'
+		);
+
 		//TIME
+
 		~tmMulSnrBut1.free;
 		~tmMulSnrBut1= OSCFunc({
 			arg msg;

@@ -30,32 +30,78 @@
 		}
 	}
 
-	*loadAll {
+	*load {
 
-		this.globals;
-
+		this.setAddr;
+		this.shiftButtons;
 		this.setTempo(120);
-		this.preSetAll;
+		//this.preSetAll;
+		~nt=(0);
 	}
 
-
-	*globals{
+	*setAddr{
 
 		//~tOSCAdrr = NetAddr.new("192.168.1.7", 57130); // router OTE
-		~tOSCAdrr = NetAddr.new("192.168.1.2", 5001); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 5001); // router StudioVag
+		//~tOSCAdrr = NetAddr.new("192.168.1.3", 5001); // connX
+		~local = NetAddr("localhost", 57120);
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
+		~behOut = MIDIOut.newByName("BCF2000", "BCF2000");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 
-
 	}
 
+	*setTempo {arg tempo;
+		Tempo.bpm=tempo;
+		~tmp1=120;
+		~tOSCAdrr.sendMsg('tempoLabel', tempo);
+		//~mdOut.control(15, 3, tempo); //ableton global tempo
+		//Tempo.bpm = tempo;
+		//Ableton.tap4;
+	}
+
+	*shiftButtons {
+		~shiftTrackBut.free;
+		~shiftTrackBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFSixteen.tracks;
+				},{
+					IFSixteen.defaults;
+			});
+			},
+			'/shiftTrack'
+		);
+		~shiftPartBut.free;
+		~shiftPartBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFSixteen.parts;
+				},{
+					IFSixteen.defaults;
+			});
+			},
+			'/shiftTrack'
+		);
+		~shiftPresetBut.free;
+		~shiftPresetBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFSixteen.presets;
+				},{
+					IFSixteen.defaults;
+			});
+			},
+			'/shiftTrack'
+		);
+	}
 	*preSetAll{
 		"Preset: Default".postln;
 		~tOSCAdrr.sendMsg('presetLabel','Default');
 
-		"Duration Pattern: 1 Straight".postln;
-		~tOSCAdrr.sendMsg('durLabel', '1');
+		"Duration Pattern: Straight".postln;
+		~tOSCAdrr.sendMsg('durLabel', 'Straight');
 		~dur.source = Pseq([1], inf)*~durMulP;
 		~tOSCAdrr.sendMsg('dur1', '1');
 		~tOSCAdrr.sendMsg('dur2', '0');
@@ -72,125 +118,66 @@
 		~tOSCAdrr.sendMsg('durMul1_2', '1');
 		~tOSCAdrr.sendMsg('durMul1', '0');
 
-		//~vBeatsLate=Tempo.bpm*(1/267.91897);
 		"Kick Set".postln;
-		~volKickMsg=0.9; ~mdOut.control(2, 1, ~volKickMsg*127);
-		~sndXKickMsg=0.0; ~mdOut.control(2, 3, ~sndXKickMsg*127);
-		~sndYKickMsg=0.0; ~mdOut.control(2, 4, ~sndYKickMsg*127);
-		~attKickMsg=0.0; ~mdOut.control(2, 5, ~attKickMsg*127);
-		~susKickMsg=0.0; ~mdOut.control(2, 6, ~susKickMsg*127);
-		~decKickMsg=0.0; ~mdOut.control(2, 7, ~decKickMsg*127);
-		~chnKickMsg=0.0; ~mdOut.control(2, 8, ~chnKickMsg*127);
-		~tOSCAdrr.sendMsg('volKick', ~volKickMsg);
-		~tOSCAdrr.sendMsg('kickSends', ~sndXKickMsg, ~sndYKickMsg);
-		~tOSCAdrr.sendMsg('attKick', ~attKickMsg);
-		~tOSCAdrr.sendMsg('decKick', ~decKickMsg);
-		~tOSCAdrr.sendMsg('susKick', ~susKickMsg);
-		~tOSCAdrr.sendMsg('chainKick', ~chnKickMsg);
+		~local.sendMsg('volKick', 0.99);
+		~local.sendMsg('sendKick', 0.0, 0.0);
+		~local.sendMsg('attKick', 0.0);
+		~local.sendMsg('susKick', 0.5);
+		~local.sendMsg('decKick', 0.7);
+		~local.sendMsg('chainKick', 0.0);
 
 		"Snr Set".postln;
-		~volSnrMsg=1.0; ~mdOut.control(3, 1, ~volSnrMsg*127);
-		~sndXSnrMsg=0.0; ~mdOut.control(3, 3, ~sndXSnrMsg*127);
-		~sndYSnrMsg=0.0; ~mdOut.control(3, 4, ~sndYSnrMsg*127);
-		~attSnrMsg=0.0; ~mdOut.control(3, 5, ~attSnrMsg*127);
-		~susSnrMsg=0.0; ~mdOut.control(3, 6, ~susSnrMsg*127);
-		~decSnrMsg=0.0; ~mdOut.control(3, 7, ~decSnrMsg*127);
-		~chnSnrMsg=0.0; ~mdOut.control(3, 8, ~chnSnrMsg*127);
-		~tOSCAdrr.sendMsg('volSnr', ~volSnrMsg);
-		~tOSCAdrr.sendMsg('snrSends', ~sndXSnrMsg, ~sndYSnrMsg);
-		~tOSCAdrr.sendMsg('attSnr', ~attSnrMsg);
-		~tOSCAdrr.sendMsg('decSnr', ~decSnrMsg);
-		~tOSCAdrr.sendMsg('susSnr', ~susSnrMsg);
-		~tOSCAdrr.sendMsg('chainSnr', ~chnSnrMsg);
+		~local.sendMsg('volSnr', 0.99);
+		~local.sendMsg('sendSnr', 0.3, 0.1);
+		~local.sendMsg('attSnr', 0.0);
+		~local.sendMsg('susSnr', 0.5);
+		~local.sendMsg('decSnr', 0.5);
+		~local.sendMsg('chainSnr', 0.05);
 
 		"Hat Set".postln;
-		~volHatMsg=1.0; ~mdOut.control(4, 1, ~volHatMsg*127);
-		~sndXHatMsg=0.0; ~mdOut.control(4, 3, ~sndXHatMsg*127);
-		~sndYHatMsg=0.0; ~mdOut.control(4, 4, ~sndYHatMsg*127);
-		~attHatMsg=0.0; ~mdOut.control(4, 5, ~attHatMsg*127);
-		~susHatMsg=0.0; ~mdOut.control(4, 6, ~susHatMsg*127);
-		~decHatMsg=0.0; ~mdOut.control(4, 7, ~decHatMsg*127);
-		~chnHatMsg=0.0; ~mdOut.control(4, 8, ~chnHatMsg*127);
-		~tOSCAdrr.sendMsg('volHat', ~volHatMsg);
-		~tOSCAdrr.sendMsg('hatSends', ~sndXHatMsg, ~sndYHatMsg);
-		~tOSCAdrr.sendMsg('attHat', ~attHatMsg);
-		~tOSCAdrr.sendMsg('decHat', ~decHatMsg);
-		~tOSCAdrr.sendMsg('susHat', ~susHatMsg);
-		~tOSCAdrr.sendMsg('chainHat', ~chnHatMsg);
+		~local.sendMsg('volHat', 0.99);
+		~local.sendMsg('sendHat', 0.0, 0.0);
+		~local.sendMsg('attHat', 0.05);
+		~local.sendMsg('susHat', 0.05);
+		~local.sendMsg('decHat', 0.4);
+		~local.sendMsg('chainHat', 0.05);
 
 		"Bass Set".postln;
-		~volBassMsg=1.0; ~mdOut.control(5, 1, ~volBassMsg*127);
-		~sndXBassMsg=0.0; ~mdOut.control(5, 3, ~sndXBassMsg*127);
-		~sndYBassMsg=0.0; ~mdOut.control(5, 4, ~sndYBassMsg*127);
-		~attBassMsg=0.0; ~mdOut.control(5, 5, ~attBassMsg*127);
-		~susBassMsg=0.0; ~mdOut.control(5, 6, ~susBassMsg*127);
-		~decBassMsg=0.0; ~mdOut.control(5, 7, ~decBassMsg*127);
-		~chnBassMsg=0.0; ~mdOut.control(5, 8, ~chnBassMsg*127);
-		~lfoMulBass1=0.2; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.2);
-		~lfoMulBass2=0.1; ~tOSCAdrr.sendMsg('lfoMulBass2', 0.1);
-		~tOSCAdrr.sendMsg('volBass', ~volBassMsg);
-		~tOSCAdrr.sendMsg('bassSends', ~sndXBassMsg, ~sndYBassMsg);
-		~tOSCAdrr.sendMsg('attBass', ~attBassMsg);
-		~tOSCAdrr.sendMsg('decBass', ~decBassMsg);
-		~tOSCAdrr.sendMsg('susBass', ~susBassMsg);
-		~tOSCAdrr.sendMsg('chainBass', ~chnBassMsg);
+		~local.sendMsg('volBass', 0.95);
+		~local.sendMsg('sendBass', 0.1, 0.0);
+		~local.sendMsg('attBass', 0.05);
+		~local.sendMsg('susBass', 0.5);
+		~local.sendMsg('decBass', 0.2);
+		~local.sendMsg('chainBass', 0.0);
+		~local.sendMsg('lfoMulBass1',0.00);
+		~local.sendMsg('lfoMulBass2',0.00);
 
 		"Keys Set".postln;
-		~volKeysMsg=1.0; ~mdOut.control(6, 1, ~volKeysMsg*127);
-		~sndXKeysMsg=0.0; ~mdOut.control(6, 3, ~sndXKeysMsg*127);
-		~sndYKeysMsg=0.0; ~mdOut.control(6, 4, ~sndYKeysMsg*127);
-		~attKeysMsg=0.0; ~mdOut.control(6, 5, ~attKeysMsg*127);
-		~susKeysMsg=0.0; ~mdOut.control(6, 6, ~susKeysMsg*127);
-		~decKeysMsg=0.0; ~mdOut.control(6, 7, ~decKeysMsg*127);
-		~chnKeysMsg=0.0; ~mdOut.control(6, 8, ~chnKeysMsg*127);
-		~lfoMulKeys1=0.2; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.2);
-		~lfoMulKeys2=0.1; ~tOSCAdrr.sendMsg('lfoMulKeys2', 0.1);
-		~tOSCAdrr.sendMsg('volKeys', ~volKeysMsg);
-		~tOSCAdrr.sendMsg('keysSends', ~sndXKeysMsg, ~sndYKeysMsg);
-		~tOSCAdrr.sendMsg('attKeys', ~attKeysMsg);
-		~tOSCAdrr.sendMsg('decKeys', ~decKeysMsg);
-		~tOSCAdrr.sendMsg('susKeys', ~susKeysMsg);
-		~tOSCAdrr.sendMsg('chainKeys', ~chnKeysMsg);
+		~local.sendMsg('volKeys', 0.95);
+		~local.sendMsg('sendKeys', 0.0, 0.6);
+		~local.sendMsg('attKeys', 0.05);
+		~local.sendMsg('susKeys', 0.3);
+		~local.sendMsg('decKeys', 0.05);
+		~local.sendMsg('chainKeys', 0.05);
+		~local.sendMsg('lfoMulKeys1',0.0);
+		~local.sendMsg('lfoMulKeys2',0.01);
 
 		"Samp Set".postln;
-		~volSampMsg=1.0; ~mdOut.control(7, 1, ~volSampMsg*127);
-		~sndXSampMsg=0.0; ~mdOut.control(7, 3, ~sndXSampMsg*127);
-		~sndYSampMsg=0.0; ~mdOut.control(7, 4, ~sndYSampMsg*127);
-		~attSampMsg=0.0; ~mdOut.control(7, 5, ~attSampMsg*127);
-		~susSampMsg=0.0; ~mdOut.control(7, 6, ~susSampMsg*127);
-		~decSampMsg=0.0; ~mdOut.control(7, 7, ~decSampMsg*127);
-		~chnSampMsg=0.0; ~mdOut.control(7, 8, ~chnSampMsg*127);
-		~lfoMulSamp1=0.2; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.2);
-		~lfoMulSamp2=0.1; ~tOSCAdrr.sendMsg('lfoMulSamp2', 0.1);
-		~tOSCAdrr.sendMsg('volSamp', ~volSampMsg);
-		~tOSCAdrr.sendMsg('sampSends', ~sndXSampMsg, ~sndYSampMsg);
-		~tOSCAdrr.sendMsg('attSamp', ~attSampMsg);
-		~tOSCAdrr.sendMsg('decSamp', ~decSampMsg);
-		~tOSCAdrr.sendMsg('susSamp', ~susSampMsg);
-		~tOSCAdrr.sendMsg('chainSamp', ~chnSampMsg);
+		~local.sendMsg('volSamp', 0.8);
+		~local.sendMsg('sendSamp', 0.0, 0.3);
+		~local.sendMsg('attSamp', 0.05);
+		~local.sendMsg('susSamp', 0.05);
+		~local.sendMsg('decSamp', 0.3);
+		~local.sendMsg('chainSamp', 0.0);
+		~local.sendMsg('lfoMulSamp1',0.2);
+		~local.sendMsg('lfoMulSamp2',0.4);
 
-		~harmKick=0;~harmSnr=0;~harmHat=0;
-		~harmBass=0;~harmKeys=0;~harmSamp=0;
-		~tOSCAdrr.sendMsg('harm0', 0);
+		"Global Set".postln;
+		~local.sendMsg('harm0',1);
+		~local.sendMsg('cutAll',0.2, 0.2);
+		~local.sendMsg('cutDrum',0.2, 0.2);
 
-		~cutAllSet1=0.2;// Y
-		~mdOut.control(10, 6, ~cutAllSet1); // VBass CUT Y
-		~mdOut.control(10, 7, ~cutAllSet1); //VKeys CUT Y
-		~mdOut.control(10, 8, ~cutAllSet1); // IFSamp Morf
-		//~vBass.control(0, ~cutOff, ~cutSet1);
-		~cutAllSet2=0.2;// X
-		~mdOut.control(10, 9, ~cutAllSet2); //IFVBass CUTX
-		~mdOut.control(10, 10, ~cutAllSet2); //IFVKeys CUT X
-		~mdOut.control(10, 11, ~cutAllSet2); //IFSamp CUT X
-		//~vBass.control(0, ~gateTime, ~cutSet2);
-		//~vKeys.control(0, ~vcfCut, ~cutSet2);
-		~tOSCAdrr.sendMsg('/cutAll',~cutAllSet1, ~cutAllSet2);
 
-		~cutDrumSet1=0.0;// Y
-		~mdOut.control(10, 20, ~cutDrumSet1);
-		~cutDrumSet2=0.0;// X
-		~mdOut.control(10, 21, ~cutDrumSet2);
-		~tOSCAdrr.sendMsg('/cutDrum',~cutDrumSet1, ~cutDrumSet2);
 
 	}
 
@@ -198,14 +185,6 @@
 	*preSet_1{
 		"Set1".postln;
 
-
-
-		~harmKick=0;~harmSnr=0;~harmHat=0;
-		~harmBass=0;~harmKeys=0;~harmSamp=0;
-
-		~lfoMulBass1=0.7; ~tOSCAdrr.sendMsg('lfoMulBass1', 0.7);
-		~lfoMulKeys1=0.8; ~tOSCAdrr.sendMsg('lfoMulKeys1', 0.8);
-		~lfoMulSamp1=0.6; ~tOSCAdrr.sendMsg('lfoMulSamp1', 0.6);
 
 	}
 
@@ -217,14 +196,7 @@
 		IFRes1.times(res1T);
 	}
 
-	*setTempo {arg tempo;
-		Tempo.bpm=tempo;
-		~tmp1=90;
-		//~mdOut.control(15, 3, tempo); //ableton global tempo
-		~tOSCAdrr.sendMsg('tempoLabel', tempo);
-		//Tempo.bpm = tempo;
-		//Ableton.tap4;
-	}
+
 
 
 

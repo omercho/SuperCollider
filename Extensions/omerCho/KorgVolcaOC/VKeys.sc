@@ -74,7 +74,7 @@ VKeys {
 		~vKeys.control(0, ~envDec, 60); //Envelope Generator Decay/Release
 		~vKeys.control(0, ~envSus, 30); //Envelope Generator Sustain
 
-		~vKeys.control(0, ~dlyTime, 60); //Delay Time
+		~vKeys.control(0, ~dlyTime, 0); //Delay Time
 		~vKeys.control(0, ~dlyFeed, 0); //Delay FeedBack
 
 	}

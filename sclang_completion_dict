@@ -175,6 +175,7 @@ Hilbert
 HilbertFIR
 HusoAmplitude
 IEnvGen
+IFAllMidiRef
 IFFT
 IFHat_SC_ERG
 IFKick_SC_Erg
@@ -196,6 +197,7 @@ IFSCTracks
 IFSC_Synths
 IFSC_Track01
 IFSamp_SC_ERG
+IFSeq_ERG
 IFSpeechERG
 IF_RECORD
 IFtransOSC

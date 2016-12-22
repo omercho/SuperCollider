@@ -63,19 +63,24 @@ IFTracks{
 			if ( msg[1]==1, {
 
 				IFRoot.set00;
+				~tOSCAdrr.sendMsg('rootSet00', '1');
+				~tOSCAdrr.sendMsg('rootSet01', '0');
+				~tOSCAdrr.sendMsg('rootSet02', '0');
+				~tOSCAdrr.sendMsg('rootSet03', '0');
+				~tOSCAdrr.sendMsg('rootSet04', '0');
+				~tOSCAdrr.sendMsg('rootSet05', '0');
 
 			},{
-					~tOSCAdrr.sendMsg('rootSet00', '1');
-					~tOSCAdrr.sendMsg('rootSet01', '0');
-					~tOSCAdrr.sendMsg('rootSet02', '0');
-					~tOSCAdrr.sendMsg('rootSet03', '0');
-					~tOSCAdrr.sendMsg('rootSet04', '0');
-					~tOSCAdrr.sendMsg('rootSet05', '0');
+
 
 			});
 			},
 			'/rootSet00'
 		);
+
+		//loading the Root00But
+		~local.sendMsg('rootSet00', 1);
+
 		~root01But.free;
 		~root01But = OSCFunc({
 			arg msg;
@@ -293,7 +298,7 @@ IFTracks{
 					Pseq([1,0.75,0.25], 1),
 					Pseq([0.5,0.5,0.75,0.25], 1),
 					Pseq([0.5,0.75,0.5,0.25], 2)
-				], inf)*~durMulP;
+				], inf)*~durMulP*2;
 
 			},{
 					~tOSCAdrr.sendMsg('dur1', '0');
@@ -320,7 +325,7 @@ IFTracks{
 					Pshuf([0.25,0.75], 1),
 					Pshuf([0.5,0.25,0.25], 1),
 					Pshuf([0.5,0.75], 2)
-				], inf)*~durMulP;
+				], inf)*~durMulP*2;
 
 			},{
 					~tOSCAdrr.sendMsg('dur1', '0');
@@ -349,7 +354,7 @@ IFTracks{
 					Pxrand([0.25,0.75], 1),
 					Pxrand([0.5,0.25,0.25], 1),
 					Pxrand([0.5,0.75], 2)
-				], inf)*~durMulP;
+				], inf)*~durMulP*2;
 
 			},{
 					~tOSCAdrr.sendMsg('dur1', '0');

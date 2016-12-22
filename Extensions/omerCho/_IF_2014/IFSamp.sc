@@ -62,6 +62,10 @@ IFSamp {
 
 		~transSamp = PatternProxy( Pseq([0], inf));
 		~transSampP = Pseq([~transSamp], inf).asStream;
+
+		~transShufSamp = PatternProxy( Pseq([0], inf));
+		~transShufSampP = Pseq([~transShufSamp], inf).asStream;
+
 		~octSamp = PatternProxy( Pseq([3], inf));
 		~octSampP = Pseq([~octSamp], inf).asStream;
 
@@ -79,6 +83,9 @@ IFSamp {
 		~lfo1SampP = Pseq([~lfo1Samp], inf).asStream;
 		~lfo2Samp = PatternProxy( Pseq([1], inf));
 		~lfo2SampP = Pseq([~lfo2Samp], inf).asStream;
+
+		~actSamp = PatternProxy( Pseq([1], inf));
+		~actSampP= Pseq([~actSamp], inf).asStream;
 
 
 	}
@@ -108,11 +115,11 @@ IFSamp {
 		Pbind(
 			\chan, ~chSamp,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1SampP.next],1),
+			\dur, Pseq([~dur1SampP.next/val],~actSampP),
 			\degree, Pseq([~nt1SampP.next], 1),
 			\amp, Pseq([~amp1SampP.next], 1),
 			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
-			\mtranspose, Pseq([~transSampP.next], 1)+~trSamp,
+			\mtranspose, Pseq([~transSampP.next], 1)+~trSamp+~transShufSampP.next,
 			\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
 			\harmonic, Pseq([~strSampP.next], 1)+~harmSamp
 
@@ -121,7 +128,7 @@ IFSamp {
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 10, \ctlNum, 4,
+			\midiout,~mdOut, \chan, 7, \ctlNum, 40,
 			\delta, Pseq([~delta1SampP.next], 1),
 			\control, Pseq([~lfo1SampP.next], 1)*~lfoMulSamp1,
 
@@ -129,7 +136,7 @@ IFSamp {
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut,\chan, 10,  \ctlNum, 5,
+			\midiout,~mdOut,\chan, 7,  \ctlNum, 41,
 			\delta, Pseq([~delta2SampP.next], 1),
 			\control, Pseq([~lfo2SampP.next], 1)*~lfoMulSamp2,
 
@@ -141,15 +148,94 @@ IFSamp {
 
 	*osc{
 
+		~actSampBut.free;
+		~actSampBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actSamp.source=1;
+				~behOut.control(7, 2, 127);
+			},{
+					~actSamp.source=0;
+					~behOut.control(7, 2, 0);
+			});
+			},
+			'/activSamp'
+		);
+		~actSampMD.free;
+		~actSampMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~actSamp.source=1;
+				~tOSCAdrr.sendMsg('activSamp', 1);
+				},{
+					~actSamp.source=0;
+					~tOSCAdrr.sendMsg('activSamp', 0);
+			});
+		}, chan:7, ccNum:2);
+
+		//TIME
+
+		~time2SampBut.free;
+		~countTime2Samp=0;
+		~time2SampBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Samp = ~countTime2Samp + 1;
+				~countTime2Samp.switch(
+					0,{},
+					1, {
+						~behOut.control(7, 9, 127);
+						~tOSCAdrr.sendMsg('time2Samp', 1);
+						~tOSCAdrr.sendMsg('tmSampLabel', 2);
+						~tmMulSamp.source = Pseq([2], inf);
+					},
+					2,{
+						~behOut.control(7, 9, 0);
+						~tOSCAdrr.sendMsg('time2Samp', 0);
+						~tOSCAdrr.sendMsg('tmSampLabel', 1);
+						~tmMulSamp.source = Pseq([1], inf);
+						~countTime2Samp=0;
+					}
+				)}
+			);
+			},
+			'/time2Samp'
+		);
+
+		~time2SampMD.free;
+		~time2SampMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~countTime2Samp = ~countTime2Samp + 1;
+				~tOSCAdrr.sendMsg('time2Samp', 1);
+				~tOSCAdrr.sendMsg('tmSampLabel', 2);
+				~tmMulSamp.source = Pseq([2], inf);
+				},{
+					~tOSCAdrr.sendMsg('time2Samp', 0);
+					~tOSCAdrr.sendMsg('tmSampLabel', 1);
+					~tmMulSamp.source = Pseq([1], inf);
+					~countTime2Samp=0;
+			});
+		}, chan:7, ccNum:9);
+
+		~volSampFader.free;
+		~volSampFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volSamp', msg[1]);
+			~mdOut.control(7, 1, vel);
+			},
+			'/volSamp'
+		);
 
 		~attSampFader.free;
 		~attSampFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*2;
+			arg msg,vel;
+			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attSamp', msg[1]);
-			~attSamp=msg[1];
+			~mdOut.control(7, 5, vel);
 			},
-			'/attSamp'
+			'attSamp'
 		);
 
 		~susLevSampFader.free;
@@ -157,6 +243,7 @@ IFSamp {
 			arg msg;
 			~tOSCAdrr.sendMsg('susSamp', msg[1]);
 			~susLevSamp=msg[1];
+			~mdOut.control(7, 6, msg[1]*127);
 
 			},
 			'/susSamp'
@@ -167,21 +254,46 @@ IFSamp {
 			arg msg;
 			~tOSCAdrr.sendMsg('decSamp', msg[1]);
 			~decSamp=msg[1];
+			~mdOut.control(7, 7, msg[1]*127);
 			},
 			'/decSamp'
+		);
+
+		~chainSampFader.free;
+		~chainSampFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('chainSamp', msg[1]);
+			~mdOut.control(7, 8, msg[1]*127);
+			},
+			'/chainSamp'
+		);
+
+		~sendSampXY.free;
+		~sendSampXY= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			~mdOut.control(7, 4, vel1); // IFSamp
+			~mdOut.control(7, 3, vel2); // IFSamp
+			~tOSCAdrr.sendMsg('sendSamp', msg[1], msg[2]);
+
+			},
+			'sendSamp'
 		);
 
 		~xy1Samp.free;
 		~xy1Samp= OSCFunc({
 			arg msg,vel1,vel2;
 
-			vel1=msg[1];
-			vel2=msg[2];
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
 			~mdOut.control(7, 11, vel1); // IFSamp
 			~mdOut.control(7, 12, vel2); // IFSamp
+			~tOSCAdrr.sendMsg('xy1Samp', msg[1], msg[2]);
 
 			},
-			'/xy1Samp'
+			'xy1Samp'
 		);
 
 		~lfoMulSampFad1.free;
@@ -202,6 +314,7 @@ IFSamp {
 			'/lfoMulSamp2'
 		);
 		//TIME
+
 		~tmMulSampBut1.free;
 		~tmMulSampBut1= OSCFunc({
 			arg msg;

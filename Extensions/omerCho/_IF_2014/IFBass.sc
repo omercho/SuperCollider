@@ -42,13 +42,12 @@ IFBass {
 		~sus1Bass = PatternProxy( Pseq([1], inf));
 		~sus1BassP = Pseq([~sus1Bass], inf).asStream;
 
-		~tmMulBass = PatternProxy( Pseq([1], inf));
-		~tmMulBassP= Pseq([~tmMulBass], inf).asStream;
-		~tmBass = PatternProxy( Pseq([1], inf));
-		~tmBassP= Pseq([~tmBass], inf).asStream;
-
 		~transBass = PatternProxy( Pseq([0], inf));
 		~transBassP = Pseq([~transBass], inf).asStream;
+		~transShufBass = PatternProxy( Pseq([0], inf));
+		~transShufBassP = Pseq([~transShufBass], inf).asStream;
+
+
 		~octBass = PatternProxy( Pseq([4], inf));
 		~octBassP = Pseq([~octBass], inf).asStream;
 		~legBass = PatternProxy( Pseq([0.0], inf));
@@ -56,15 +55,19 @@ IFBass {
 		~strBass = PatternProxy( Pseq([1.0], inf));
 		~strBassP = Pseq([~strBass], inf).asStream;
 
-		~delta1Bass = PatternProxy( Pseq([0.5], inf));
+		~delta1Bass = PatternProxy( Pseq([1/1], inf));
 		~delta1BassP = Pseq([~delta1Bass], inf).asStream;
-		~delta2Bass = PatternProxy( Pseq([0.5], inf));
+		~delta2Bass = PatternProxy( Pseq([1/1], inf));
 		~delta2BassP = Pseq([~delta2Bass], inf).asStream;
 
-		~lfo1Bass = PatternProxy( Pseq([40], inf));
+		~lfo1Bass = PatternProxy( Pseq([10], inf));
 		~lfo1BassP = Pseq([~lfo1Bass], inf).asStream;
-		~lfo2Bass = PatternProxy( Pseq([40], inf));
+		~lfo2Bass = PatternProxy( Pseq([10], inf));
 		~lfo2BassP = Pseq([~lfo2Bass], inf).asStream;
+
+		~actBass = PatternProxy( Pseq([1], inf));
+		~actBassP= Pseq([~actBass], inf).asStream;
+
 	}
 
 	*new{|i=1|
@@ -91,49 +94,47 @@ IFBass {
 		Pbind(
 			\chan, ~chBass,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([Pseq([~dur1BassP.next/val],1)], 1),
+			\dur, Pseq([~dur1BassP.next/val],~actBassP),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),
 			\sustain, Pseq([~sus1BassP.next],1)*~susMulBass,
-			\mtranspose, Pseq([~transBassP.next], 1)+~trBass,
+			\mtranspose, Pseq([~transBassP.next], 1)+~trBass+~transShufBassP.next,
 			\octave, Pseq([~octBassP.next], 1)+~octMulBass,
 			//\root, Pseq([~legBassP.next], 1),
 			\harmonic, Pseq([~strBassP.next], 1)+~harmBass
 		).play;
 
+
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 10, \ctlNum, 0,
-			\delta, Pseq([~delta1BassP.next], 2),
-			\control, Pseq([~lfo1BassP.next], 2)*~lfoMulBass1,
+			\midiout,~mdOut, \chan, 5, \ctlNum, 40,
+			\delta, Pseq([~delta1BassP.next], 1),
+			\control, Pseq([~lfo1BassP.next], 1)*~lfoMulBass1,
 
 		).play;
-
-
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut,\chan, 10,  \ctlNum, 1,
+			\midiout,~mdOut,\chan, 5,  \ctlNum, 41,
 			\delta, Pseq([~delta2BassP.next], 1),
 			\control, Pseq([~lfo2BassP.next], 1)*~lfoMulBass2,
 
 		).play;
 
-		/*
+
 		//VBass
 		Pbind(//LFO CUT BASS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoInt,
-			\delta, Pseq([~delta1KeysP.value], 1),
+			\delta, Pseq([~delta1BassP.next], 1),
 			\control, Pseq([~lfo1BassP.value], 1)*~lfoMulBass1,
 		).play;
-
 		Pbind(//LFO CUT BASS RATE
 			\midicmd, \control, \type, \midi,
 			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoRate,
-			\delta, Pseq([~delta2KeysP.value], 2),
-			\control, Pseq([~lfo2BassP.value], 2)*~lfoMulBass2,
+			\delta, Pseq([~delta2BassP.next], 1),
+			\control, Pseq([~lfo2BassP.value], 1)*~lfoMulBass2,
 		).play;
-		*/
+
 
 
 		//this.count2;
@@ -162,72 +163,151 @@ IFBass {
 			'/phrase01Bass'
 		);
 
-		/*
-		~midiAttBass.free;
-		~midiAttBass=MIDIFunc.cc( {
+		~actBassBut.free;
+		~actBassBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actBass.source=1;
+				~behOut.control(5, 2, 127);
+			},{
+					~actBass.source=0;
+					~behOut.control(5, 2, 0);
+			});
+			},
+			'/activBass'
+		);
+		~actBassMD.free;
+		~actBassMD=MIDIFunc.cc( {
 			arg vel;
-			//vel.postln;
-			~vBass.control(0, ~egAtt, vel);
-			//~tOSCAdrr.sendMsg('attBass', vel/127);
-		}, chan:5, ccNum:5);
+			if ( vel==127, {
+				~actBass.source=1;
+				~tOSCAdrr.sendMsg('activBass', 1);
+				},{
+					~actBass.source=0;
+					~tOSCAdrr.sendMsg('activBass', 0);
+			});
+		}, chan:5, ccNum:2);
 
-		~midiSltBass.free;
-		~midiSltBass=MIDIFunc.cc( {
+		//TIME
+
+		~time2BassBut.free;
+		~countTime2Bass=0;
+		~time2BassBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Bass = ~countTime2Bass + 1;
+				~countTime2Bass.switch(
+					0,{},
+					1, {
+						~behOut.control(5, 9, 127);
+						~tOSCAdrr.sendMsg('time2Bass', 1);
+						~tOSCAdrr.sendMsg('tmBassLabel', 2);
+						~tmMulBass.source = Pseq([2], inf);
+					},
+					2,{
+						~behOut.control(5, 9, 0);
+						~tOSCAdrr.sendMsg('time2Bass', 0);
+						~tOSCAdrr.sendMsg('tmBassLabel', 1);
+						~tmMulBass.source = Pseq([1], inf);
+						~countTime2Bass=0;
+					}
+				)}
+			);
+			},
+			'/time2Bass'
+		);
+
+		~time2BassMD.free;
+		~time2BassMD=MIDIFunc.cc( {
 			arg vel;
-			//vel.postln;
-			~vBass.control(0, ~slideTime, vel);
-			//~tOSCAdrr.sendMsg('sltBass', vel*(1/127));
-		}, chan:5, ccNum:6);
+			if ( vel==127, {
+				~countTime2Bass = ~countTime2Bass + 1;
+				~tOSCAdrr.sendMsg('time2Bass', 1);
+				~tOSCAdrr.sendMsg('tmBassLabel', 2);
+				~tmMulBass.source = Pseq([2], inf);
+				},{
+					~tOSCAdrr.sendMsg('time2Bass', 0);
+					~tOSCAdrr.sendMsg('tmBassLabel', 1);
+					~tmMulBass.source = Pseq([1], inf);
+					~countTime2Bass=0;
+			});
+		}, chan:5, ccNum:9);
 
+		~volBassFader.free;
+		~volBassFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volBass', msg[1]);
+			~mdOut.control(5, 1, vel);
+			},
+			'/volBass'
+		);
 
-		~midiDecBass.free;
-		~midiDecBass=MIDIFunc.cc( {
-			arg vel;
-			//vel.postln;
-			~vBass.control(0, ~egDec, vel);
-			//~tOSCAdrr.sendMsg('decBass', vel);
-
-		}, chan:5, ccNum:7);
-		*/
-
-		~oscAttBass.free;
-		~oscAttBass= OSCFunc({
+		~attBassFader.free;
+		~attBassFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
 			~tOSCAdrr.sendMsg('attBass', msg[1]);
-			//~vBass.control(0, ~egAtt, val+0.01);
+			~vBass.control(0, ~egAtt, val+0.01);
+			~mdOut.control(5, 5, val);
 
 			},
 			'/attBass'
 		);
 
-		~oscSusBass.free;
-		~oscSusBass= OSCFunc({
+		~susBassFader.free;
+		~susBassFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
 			~tOSCAdrr.sendMsg('susBass', msg[1]);
-			//~vBass.control(0, ~egAtt, val+0.01);
+			~vBass.control(0, ~slideTime, val);
+			~mdOut.control(5, 6, val);
 			},
 			'/susBass'
 		);
 
-		~oscDecBass.free;
-		~oscDecBass= OSCFunc({
+		~decBassFader.free;
+		~decBassFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
 			~tOSCAdrr.sendMsg('decBass', msg[1]);
-			//~vBass.control(0, ~egAtt, val+0.01);
+			~vBass.control(0, ~egDec, val);
+			~mdOut.control(5, 7, val);
 			},
 			'/decBass'
+		);
+
+		~chainBassFader.free;
+		~chainBassFader= OSCFunc({
+			arg msg, val;
+			val=msg[1]*127;
+			~tOSCAdrr.sendMsg('chainBass', msg[1]);
+			~mdOut.control(5, 8, val);
+			},
+			'/chainBass'
+		);
+
+		~sendBassFader.free;
+		~sendBassFader= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			~mdOut.control(5, 4, vel1); // IFBass
+			~mdOut.control(5, 3, vel2); // IFBass
+			~tOSCAdrr.sendMsg('sendBass', msg[1], msg[2]);
+
+			},
+			'/sendBass'
 		);
 
 		~xy1Bass.free;
 		~xy1Bass= OSCFunc({
 			arg msg;
 
-			//~vBass.control(0, ~vcoPitch2, msg[2]*127);
-			//~tOSCAdrr.sendMsg('sltBass', vel);
-			//~vBass.control(0, ~vcoPitch3, msg[1]*127);
+			~vBass.control(0, ~vcoPitch2, msg[2]*127);
+			~vBass.control(0, ~vcoPitch3, msg[1]*127);
+			~tOSCAdrr.sendMsg('xy1Bass', msg[1], msg[2]);
 
 			},
 			'/xy1Bass'
@@ -252,6 +332,7 @@ IFBass {
 		);
 
 		//TIME
+
 		~tmMulBassBut1.free;
 		~tmMulBassBut1= OSCFunc({
 			arg msg;

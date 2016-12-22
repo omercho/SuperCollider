@@ -39,6 +39,10 @@ IFVKick {
 		~dur1VKickP = Pseq([~dur1VKick], inf).asStream;
 		~amp1VKick = PatternProxy( Pseq([0.9], inf));
 		~amp1VKickP = Pseq([~amp1VKick], inf).asStream;
+
+
+		~tmMulVKick = PatternProxy( Pseq([1], inf));
+		~tmMulVKickP= Pseq([~tmMulVKick], inf).asStream;
 		~tmVKick = PatternProxy( Pseq([1], inf));
 		~tmVKickP= Pseq([~tmVKick], inf).asStream;
 

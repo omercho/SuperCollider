@@ -12,9 +12,12 @@ VBeats {
 
 		//~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vBeats = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
+		//~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
 
-		//~vBeats = MIDIOut.newByName("", "SC-Abl");
+		~vBeats = MIDIOut.newByName("BCF2000", "BCF2000");
+
+		//~vBeatsLate=Tempo.bpm*(1/267.91897); //with Edirols MIDI Out
+		~vBeatsLate=Tempo.bpm*(1);
 
 		~stutterTime  = 54;
 		~stutterDepth = 55; //
@@ -126,7 +129,7 @@ VBeats {
 
 *preSet01 {
 
-	~vBeats.control(0, ~kickLev, 120);
+	~vBeats.control(10, ~kickLev, 20);
 
 
 

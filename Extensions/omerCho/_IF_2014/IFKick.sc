@@ -18,6 +18,7 @@ IFKick {
 	*globals{
 
 		~kickCh=0;
+		~actKick=1;
 		~kickLate= 0.00;
 		~kickTimes=1;
 		~octMulKick=0;
@@ -26,6 +27,8 @@ IFKick {
 		~harmKick=0;
 		~susMulKick=1;
 		~drumVolC=0; ~kickVolC=1;
+
+
 	}
 
 	*preSet {
@@ -44,15 +47,11 @@ IFKick {
 		~sus1Kick = PatternProxy( Pseq([0.05], inf));
 		~sus1KickP = Pseq([~sus1Kick], inf).asStream;
 
-		~tmMulKick = PatternProxy( Pseq([1], inf));
-		~tmMulKickP= Pseq([~tmMulKick], inf).asStream;
-
-		~tmKick = PatternProxy( Pseq([1], inf));
-		~tmKickP= Pseq([~tmKick], inf).asStream;
 
 
 		~transKick = PatternProxy( Pseq([0], inf));
 		~transKickP = Pseq([~transKick], inf).asStream;
+
 		~octKick = PatternProxy( Pseq([3], inf));
 		~octKickP = Pseq([~octKick], inf).asStream;
 
@@ -61,6 +60,9 @@ IFKick {
 
 		~volKick = PatternProxy( Pseq([1], inf));
 		~volKickP= Pseq([~volKick], inf).asStream;
+
+		~actKick = PatternProxy( Pseq([1], inf));
+		~actKickP= Pseq([~actKick], inf).asStream;
 
 
 
@@ -81,7 +83,7 @@ IFKick {
 
 				~kickLedFork={
 
-						~tOSCAdrr.sendMsg('kickLed', 1);
+						~tOSCAdrr.sendMsg('kickLed', ~actKickP);
 						0.25.wait;
 						~tOSCAdrr.sendMsg('kickLed', 0);
 
@@ -101,7 +103,7 @@ IFKick {
 		Pbind(
 			\chan, ~kickCh,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~dur1KickP.next/val],1),
+			\dur, Pseq([~dur1KickP.next/val],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
@@ -115,21 +117,103 @@ IFKick {
 	}
 
 	*osc{
+
+		~actKickBut.free;
+		~actKickBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actKick.source=1;
+				~behOut.control(2, 2, 127);
+			},{
+					~actKick.source=0;
+					~behOut.control(2, 2, 0);
+			});
+			},
+			'/activKick'
+		);
+		~actKickMD.free;
+		~actKickMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~actKick.source=1;
+				~tOSCAdrr.sendMsg('activKick', 1);
+				},{
+					~actKick.source=0;
+					~tOSCAdrr.sendMsg('activKick', 0);
+			});
+		}, chan:2, ccNum:2);
+
+		//TIME
+
+		~time2KickBut.free;
+		~countTime2Kick=0;
+		~time2KickBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Kick = ~countTime2Kick + 1;
+				~countTime2Kick.switch(
+					0,{},
+					1, {
+						~behOut.control(2, 9, 127);
+						~tOSCAdrr.sendMsg('time2Kick', 1);
+						~tOSCAdrr.sendMsg('tmKickLabel', 2);
+						~tmMulKick.source = Pseq([2], inf);
+					},
+					2,{
+						~behOut.control(2, 9, 0);
+						~tOSCAdrr.sendMsg('time2Kick', 0);
+						~tOSCAdrr.sendMsg('tmKickLabel', 1);
+						~tmMulKick.source = Pseq([1], inf);
+						~countTime2Kick=0;
+					}
+				)}
+			);
+			},
+			'/time2Kick'
+		);
+
+		~time2KickMD.free;
+		~time2KickMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~countTime2Kick = ~countTime2Kick + 1;
+				~tOSCAdrr.sendMsg('time2Kick', 1);
+				~tOSCAdrr.sendMsg('tmKickLabel', 2);
+				~tmMulKick.source = Pseq([2], inf);
+				},{
+					~tOSCAdrr.sendMsg('time2Kick', 0);
+					~tOSCAdrr.sendMsg('tmKickLabel', 1);
+					~tmMulKick.source = Pseq([1], inf);
+					~countTime2Kick=0;
+			});
+		}, chan:2, ccNum:9);
+
+		~volKickFader.free;
+		~volKickFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volKick', msg[1]);
+			~mdOut.control(2, 1, vel);
+			},
+			'/volKick'
+		);
+
 		~attKickFader.free;
 		~attKickFader= OSCFunc({
-			arg msg,val;
-			val=msg[1];
+			arg msg,vel;
+			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attKick', msg[1]);
-			//~attKick=val+0.01;
+			~mdOut.control(2, 5, vel);
 			},
-			'/attKick'
+			'attKick'
 		);
 
 		~susLevKickFader.free;
 		~susLevKickFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('susKick', msg[1]);
-			//~susLevKick=msg[1];
+			~susLevKick=msg[1];
+			~mdOut.control(2, 6, msg[1]*127);
 
 			},
 			'/susKick'
@@ -139,13 +223,37 @@ IFKick {
 		~decKickFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('decKick', msg[1]);
-			//~decKick=msg[1];
-
+			~decKick=msg[1];
+			~mdOut.control(2, 7, msg[1]*127);
 			},
 			'/decKick'
 		);
 
+		~chainKickFader.free;
+		~chainKickFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('chainKick', msg[1]);
+			~mdOut.control(2, 8, msg[1]*127);
+			},
+			'/chainKick'
+		);
+
+		~sendKickXY.free;
+		~sendKickXY= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			~mdOut.control(2, 4, vel1); // IFKick
+			~mdOut.control(2, 3, vel2); // IFKick
+			~tOSCAdrr.sendMsg('sendKick', msg[1], msg[2]);
+
+			},
+			'sendKick'
+		);
+
 		//TIME
+
 		~tmMulKickBut1.free;
 		~tmMulKickBut1= OSCFunc({
 			arg msg;

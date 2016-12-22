@@ -23,7 +23,9 @@ IFPitch {
 
 	*loadAll {
 
-		this.note;
+		this.buttons;
+		this.shufTrans;
+		//this.note;
 		this.noteBass;
 		this.noteKeys;
 		this.noteSamp;
@@ -31,16 +33,54 @@ IFPitch {
 	}
 
 
-
-	*note {
-
-		/////////////////////----- Note -------//////////////
-
-		//~transKick.source = PatternProxy( Pseq([0], inf));
-		//~transKick.sourceP= Pseq([~transKick.source], inf).asStream;
+	*buttons{
 
 
+		~pitchAllBut.free;
+		~countPAll=0;
+		~pitchAllBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
 
+				//"Transpose Shuffle".postln;
+				~countPAll = ~countPAll + 1;
+
+				~countPAll.switch(
+					0,{
+						"PITCH SWITCH 0".postln;
+					},
+					1, {
+
+						"PITCH SWITCH ON".postln;
+						~tOSCAdrr.sendMsg('pitchBass', 1);
+						~tOSCAdrr.sendMsg('pitchKeys', 1);
+						~tOSCAdrr.sendMsg('pitchSamp', 1);
+						~tOSCAdrr.sendMsg('pitchExt', 1);
+
+					},
+					2,{
+
+						"PITCH SWITCH OFF".postln;
+						~tOSCAdrr.sendMsg('pitchBass', 0);
+						~tOSCAdrr.sendMsg('pitchKeys', 0);
+						~tOSCAdrr.sendMsg('pitchSamp', 0);
+						~tOSCAdrr.sendMsg('pitchExt', 0);
+						~countPAll=0;
+					}
+				)
+				},{
+					// else
+
+				}
+			);
+			},
+			'/pitchAll'
+		);
+
+
+	}
+
+	*shufTrans{
 
 		~noteFader.free;
 		~noteFader= OSCFunc({
@@ -95,16 +135,16 @@ IFPitch {
 						"Modal Transpose Shuffle".postln;
 						~tOSCAdrr.sendMsg('shufTransLabel', 'ON');
 						~tOSCAdrr.sendMsg('shufTrans', 1);
-						~transBass.source  = Pshuf([(-4),2,4,(-7), (-2),1,7,(-3)], inf);
-						~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
-						~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
+						~transShufBass.source  = Pshuf([(-4),2,4,(-7), (-2),1,7,(-3)], inf);
+						~transShufKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
+						~transShufSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
 					},
 					2,{
 						~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
 						~tOSCAdrr.sendMsg('shufTrans', 0);
-						~transBass.source  = Pshuf([0], inf);
-						~transKeys.source  = Pshuf([0], inf);
-						~transSamp.source  = Pshuf([0], inf);
+						~transShufBass.source  = Pshuf([0], inf);
+						~transShufKeys.source  = Pshuf([0], inf);
+						~transShufSamp.source  = Pshuf([0], inf);
 						~countShuf=0;
 					}
 				)
@@ -118,7 +158,9 @@ IFPitch {
 		);
 
 
+	}
 
+	*note {
 
 		~note_0.free;
 		~note_0 = OSCFunc({
@@ -129,8 +171,6 @@ IFPitch {
 				~transBass.source=0;~transKeys.source=0;~transSamp.source=0;
 				~transExt.source=0;
 				~tOSCAdrr.sendMsg('noteLabel', '0');
-				~tOSCAdrr.sendMsg('shufTrans', 0);
-				~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
 			});
 			},
 			'/nt_0'

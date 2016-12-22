@@ -1,24 +1,9 @@
 IFCntrl {
 
-	*initClass {
-		StartUp add: {
-			/*Server.default.doWhenBooted({
-			1.0.wait;
-			this.globals;
-			this.mulFaders;
-			this.main;
-			this.parts;
-			this.bridge;
-
-			});*/
-		}
-	}
-
 	*loadAll {
 		this.main;
 		this.mutes;
 		this.parts;
-		this.bridge;
 	}
 
 
@@ -130,6 +115,7 @@ IFCntrl {
 		);
 
 
+
 		~cutDrumXY.free;
 		~cutDrumXY= OSCFunc({
 			arg msg,vel1, vel2;
@@ -149,20 +135,17 @@ IFCntrl {
 			arg msg,vel1, vel2;
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
+			~mdOut.control(5, 13, vel1); // IFVBass CutX
+			~mdOut.control(6, 13, vel1); // IFVKeys CutX
+			~mdOut.control(7, 13, vel1); // IFSamp CutX
+			~vKeys.control(0, ~vcfCut, vel1/1.8);
+			~vBass.control(0, ~gateTime, vel1);
 
-			~mdOut.control(10, 6, vel1); // IFVBass CutY
-			~mdOut.control(10, 7, vel1); // IFVKeys CutY
-			~mdOut.control(10, 8, vel1); // IFSamps CutY
-			//~vBass.control(0, ~cutOff, vel1);
+			~mdOut.control(5, 14, vel2); // IFVBass CutY
+			~mdOut.control(6, 14, vel2); // IFVKeys CutY
+			~mdOut.control(7, 14, vel2); // IFSamps CutY
+			~vBass.control(0, ~cutOff, vel2);
 			~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
-
-			~mdOut.control(10, 9, vel2); // IFVBass CutX
-			~mdOut.control(10, 10, vel2); // IFVKeys CutX
-			~mdOut.control(10, 11, vel2); // IFSamp CutX
-			//~vBass.control(0, ~gateTime, vel2);
-			//~vKeys.control(0, ~vcfCut, vel2);
-
-
 			},
 			'/cutAll'
 		);
@@ -227,7 +210,6 @@ IFCntrl {
 		~susMelMulFader.free;
 		~susMelMulFader= OSCFunc({
 			arg msg;
-			//~susMulSnr=msg[1];
 			~tOSCAdrr.sendMsg('/susMel', msg[1]);
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
 			},
@@ -333,7 +315,7 @@ IFCntrl {
 			arg msg;
 			if ( msg[1]==1, {
 
-				~tmKickRand=[1,2,3,1].choose;
+				~tmKickRand=[1,2,1].choose;
 				~tmMulKick.source = Pseq([~tmKickRand], inf);
 				~tOSCAdrr.sendMsg('tmKickLabel', ~tmKickRand);
 
@@ -341,19 +323,19 @@ IFCntrl {
 				~tmMulSnr.source = Pseq([~tmSnrRand], inf);
 				~tOSCAdrr.sendMsg('tmSnrLabel', ~tmSnrRand);
 
-				~tmHatRand=[1,2,3,1].choose;
+				~tmHatRand=[1,2,1].choose;
 				~tmMulHat.source = Pseq([~tmHatRand], inf);
 				~tOSCAdrr.sendMsg('tmHatLabel', ~tmHatRand);
 
-				~tmBassRand=[1,2,3,1].choose;
+				~tmBassRand=[1,2,1].choose;
 				~tmMulBass.source = Pseq([~tmBassRand], inf);
 				~tOSCAdrr.sendMsg('tmBassLabel', ~tmBassRand);
 
-				~tmKeysRand=[1,2,3,1].choose;
+				~tmKeysRand=[1,2,1].choose;
 				~tmMulKeys.source = Pseq([~tmKeysRand], inf);
 				~tOSCAdrr.sendMsg('tmKeysLabel', ~tmKeysRand);
 
-				~tmSampRand=[1,2,3,1].choose;
+				~tmSampRand=[1,2,1].choose;
 				~tmMulSamp.source = Pseq([~tmSampRand], inf);
 				~tOSCAdrr.sendMsg('tmSampLabel', ~tmSampRand);
 			});
@@ -763,98 +745,18 @@ IFCntrl {
 
 	}
 
-	*bridge {/////////////////////----- Bridges -------//////////////
-		~bridge1.free;
-		~bridge1 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge1".postln;
+	*initClass {
+		StartUp add: {
+			/*Server.default.doWhenBooted({
+			1.0.wait;
+			this.globals;
+			this.mulFaders;
+			this.main;
+			this.parts;
 
-				~mainBridge_01.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg1');
-			});
-			},
-			'/bridge1'
-		);
 
-		~bridge2.free;
-		~bridge2 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge2".postln;
-
-				~mainBridge_02.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg2');
-			});
-			},
-			'/bridge2'
-		);
-
-		~bridge3.free;
-		~bridge3 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge3".postln;
-
-				~mainBridge_03.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg3');
-			});
-			},
-			'/bridge3'
-		);
-
-		~bridge4.free;
-		~bridge4 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge4".postln;
-
-				~mainBridge_04.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg4');
-			});
-			},
-			'/bridge4'
-		);
-
-		~bridge5.free;
-		~bridge5 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge5".postln;
-
-				~mainBridge_05.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg5');
-			});
-			},
-			'/bridge5'
-		);
-
-		~bridge6.free;
-		~bridge6 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge6".postln;
-
-				~mainBridge_06.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg6');
-			});
-			},
-			'/bridge6'
-		);
-
-		~bridge7.free;
-		~bridge7 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"bridge7".postln;
-
-				~mainBridge_07.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'brg7');
-			});
-			},
-			'/bridge7'
-		);
-
+			});*/
+		}
 	}
 
 	*freeAll {

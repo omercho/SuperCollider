@@ -198,7 +198,7 @@ IFExt{
 						Pseq([1/4],2),
 						Pseq([2/1],1)
 					], inf),
-					\degree, Pslide([~nt+13,~nt+0,~nt+8,~nt+0,~nt+12,~nt+3],  inf, 3,2,0),
+					\degree, Pslide([~nt+10,~nt+0,~nt+8,~nt+0,~nt+12,~nt+3],  inf, 3,2,0),
 					\amp, Pslide([0.9, 0.5, 0.6, 0.7, 0.4, 0.9], inf, 3,1,0),
 					\sustain, Pslide([0.2, 0.3, 0.8, 0.7, 0.2, 0.1 ]*0.9,inf, 3,1,0)*~susMulExt,
 					\mtranspose, Pseq([~transExtP.next], inf)+~trExt,
@@ -261,7 +261,7 @@ IFExt{
 						Pseq([1/8],8),
 						Pseq([1],1)
 					], inf),
-					\degree, Pslide([~nt+13,~nt+0,~nt+8,~nt+0,~nt+12,~nt+3],  inf, 3,2,0),
+					\degree, Pslide([~nt+11,~nt+0,~nt+8,~nt+0,~nt+12,~nt+3],  inf, 3,2,0),
 					\amp, Pslide([0.9, 0.5, 0.6, 0.7, 0.4, 0.9], inf, 3,1,0),
 					\sustain, Pslide([0.2, 0.3, 0.8, 0.7, 0.2, 0.1 ]*0.9,inf, 3,1,0)*~susMulExt,
 					\mtranspose, Pseq([~transExtP.next], inf)+~trExt,
@@ -293,7 +293,7 @@ IFExt{
 						Pseq([1/4],2),
 						Pseq([1/1],1)
 					], inf),
-					\degree, Pslide([~nt+13,~nt+0,~nt+8,~nt+0,~nt+12,~nt+3],  inf, 3,2,0),
+					\degree, Pslide([~nt+9,~nt+0,~nt+8,~nt+0,~nt+10,~nt+3],  inf, 3,2,0),
 					\amp, Pslide([0.9, 0.5, 0.6, 0.7, 0.4, 0.9], inf, 3,1,0),
 					\sustain, Pslide([0.2, 0.3, 0.8, 0.7, 0.2, 0.1 ]*0.9,inf, 3,1,0)*~susMulExt,
 					\mtranspose, Pseq([~transExtP.next], inf)+~trExt,

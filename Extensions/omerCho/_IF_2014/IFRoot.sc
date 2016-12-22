@@ -22,8 +22,10 @@ IFRoot {
 				1.do {
 
 
-					IFCounter.count;
-
+					IFSequence.step(~stepNumP.next);
+					//IFCounter.step(~stepNumCntP.next);
+					//~local.sendMsg('seqRec', 1);
+					//IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
@@ -32,7 +34,9 @@ IFRoot {
 					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
 					IFSamp(~tmMulSampP.next*~tmSampP.next);
 
-					IFRes1(~tmRes1P.next);
+					IFMast(~tmMulMastP.next*~tmMastP.next);
+
+					//IFRes1(~tmRes1P.next);
 
 					//~vBeatsLate=Tempo.bpm*(1/267.91897);
 					//Ableton.tap4;
@@ -56,7 +60,7 @@ IFRoot {
 
 					IFCounter.count;
 					IFRes1(~tmRes1P.next);
-
+					//IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
@@ -86,7 +90,7 @@ IFRoot {
 
 					IFCounter.count;
 					IFRes1(~tmRes1P.next);
-
+					IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
@@ -120,7 +124,7 @@ IFRoot {
 
 					IFCounter.count;
 					IFRes1(~tmRes1P.next);
-
+					IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
@@ -157,7 +161,7 @@ IFRoot {
 
 					IFCounter.count;
 					IFRes1(~tmRes1P.next);
-
+					IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
 					IFSamp(~tmMulSampP.next*~tmSampP.next);
@@ -192,7 +196,7 @@ IFRoot {
 
 					IFCounter.count;
 					IFRes1(~tmRes1P.next);
-
+					IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
 					IFBass(~tmMulBassP.next*~tmBassP.next);

@@ -20,7 +20,8 @@ classvar <>counter3 = 0;
 	*globals{
 
 		~res1Ch=11;
-		~res1Times=3;
+		~res2Ch=12;
+		~res1Times=1;
 		~octRes1=4;
 		~resLate=0;
 
@@ -48,6 +49,16 @@ classvar <>counter3 = 0;
 		~mdOut.control(~res1Ch, 5, 120); //resonator Note gain
 		~mdOut.control(~res1Ch, 6, 100); //resonator Width
 		~mdOut.control(~res1Ch, 7, 74); //resonator Gain
+		~mdOut.control(~res1Ch, 8, 64); //resonator Gain
+
+		~mdOut.control(~res2Ch, 1, 94); //resonator Note
+		~mdOut.control(~res2Ch, 2, 94); //resonator Decay
+		~mdOut.control(~res2Ch, 3, 68); //resonator Filter freq
+		~mdOut.control(~res2Ch, 4, 100); //resonator Color
+		~mdOut.control(~res2Ch, 5, 120); //resonator Note gain
+		~mdOut.control(~res2Ch, 6, 100); //resonator Width
+		~mdOut.control(~res2Ch, 7, 74); //resonator Gain
+		~mdOut.control(~res2Ch, 8, 64); //resonator Gain
 
 	}
 
@@ -71,7 +82,7 @@ classvar <>counter3 = 0;
 	*p1 {|i=1|
 
 		Pbind(//resonator note
-			\chan, ~res1Ch, \ctlNum, 1,
+			\chan, ~res1Ch, \ctlNum, ~res1Mac1,
 			\type, \midi, \midicmd, \control, \midiout,~mdOut,
 			\dur, Pseq([Pseq([~dur1Res1P.next/i],1)], 1),
 			\control, Pseq([~nt1Res1P.next].degreeToKey(~scl2), inf),

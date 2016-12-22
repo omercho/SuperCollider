@@ -32,8 +32,10 @@ IFRoutine{
 			};
 		}.fork;
 
-		~mdOut.noteOn(6,90,127);
-		~mdOut.noteOff(6,90,127);
+		~mdOut.noteOn(4,60,127);
+		~mdOut.noteOff(4,60,127);
+		~vKeys.noteOn(0,~cM2,127);~vKeys.noteOn(0,~eM3,127);
+		~vKeys.noteOff(0,~cM2,127);~vKeys.noteOff(0,~eM3,127);
 		~extRout = Pbind(
 			\chan, 6,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),

@@ -62,7 +62,7 @@
 		~mdOut.allNotesOff(8);
 		~mdOut.allNotesOff(9);
 		~mdOut.allNotesOff(10);
-		~mdOut.control(15, 1, 100); //Stop Live
+		//~mdOut.control(15, 1, 100); //Stop Live
 
 
 

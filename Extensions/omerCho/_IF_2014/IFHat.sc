@@ -44,11 +44,6 @@ IFHat.times(4);
 		~sus1Hat = PatternProxy( Pseq([1], inf));
 		~sus1HatP = Pseq([~sus1Hat], inf).asStream;
 
-		~tmMulHat = PatternProxy( Pseq([1], inf));
-		~tmMulHatP= Pseq([~tmMulHat], inf).asStream;
-		~tmHat = PatternProxy( Pseq([1], inf));
-		~tmHatP= Pseq([~tmHat], inf).asStream;
-
 		~transHat = PatternProxy( Pseq([0], inf));
 		~transHatP = Pseq([~transHat], inf).asStream;
 		~octHat = PatternProxy( Pseq([3], inf));
@@ -58,6 +53,9 @@ IFHat.times(4);
 
 		~strHat = PatternProxy( Pseq([1.0], inf));
 		~strHatP = Pseq([~strHat], inf).asStream;
+
+		~actHat = PatternProxy( Pseq([1], inf));
+		~actHatP= Pseq([~actHat], inf).asStream;
 
 	}
 
@@ -100,7 +98,7 @@ IFHat.times(4);
 		Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([Pseq([~dur1HatP.next/val],1)], 1),
+			\dur, Pseq([~dur1HatP.next/val],~actHatP),
 			\degree, Pseq([~nt1HatP.next], 1),
 			\amp, Pseq([~amp1HatP.next], 1),
 			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
@@ -116,23 +114,102 @@ IFHat.times(4);
 
 	*cntrl {
 
-		//----Hat-------
+		~actHatBut.free;
+		~actHatBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actHat.source=1;
+				~behOut.control(4, 2, 127);
+			},{
+					~actHat.source=0;
+					~behOut.control(4, 2, 0);
+			});
+			},
+			'/activHat'
+		);
+		~actHatMD.free;
+		~actHatMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~actHat.source=1;
+				~tOSCAdrr.sendMsg('activHat', 1);
+				},{
+					~actHat.source=0;
+					~tOSCAdrr.sendMsg('activHat', 0);
+			});
+		}, chan:4, ccNum:2);
+
+		//TIME
+
+		~time2HatBut.free;
+		~countTime2Hat=0;
+		~time2HatBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Hat = ~countTime2Hat + 1;
+				~countTime2Hat.switch(
+					0,{},
+					1, {
+						~behOut.control(4, 9, 127);
+						~tOSCAdrr.sendMsg('time2Hat', 1);
+						~tOSCAdrr.sendMsg('tmHatLabel', 2);
+						~tmMulHat.source = Pseq([2], inf);
+					},
+					2,{
+						~behOut.control(4, 9, 0);
+						~tOSCAdrr.sendMsg('time2Hat', 0);
+						~tOSCAdrr.sendMsg('tmHatLabel', 1);
+						~tmMulHat.source = Pseq([1], inf);
+						~countTime2Hat=0;
+					}
+				)}
+			);
+			},
+			'/time2Hat'
+		);
+
+		~time2HatMD.free;
+		~time2HatMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~countTime2Hat = ~countTime2Hat + 1;
+				~tOSCAdrr.sendMsg('time2Hat', 1);
+				~tOSCAdrr.sendMsg('tmHatLabel', 2);
+				~tmMulHat.source = Pseq([2], inf);
+				},{
+					~tOSCAdrr.sendMsg('time2Hat', 0);
+					~tOSCAdrr.sendMsg('tmHatLabel', 1);
+					~tmMulHat.source = Pseq([1], inf);
+					~countTime2Hat=0;
+			});
+		}, chan:4, ccNum:9);
+
+		~volHatFader.free;
+		~volHatFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volHat', msg[1]);
+			~mdOut.control(4, 1, vel);
+			},
+			'/volHat'
+		);
 
 		~attHatFader.free;
 		~attHatFader= OSCFunc({
-			arg msg,val;
-			val=msg[1];
+			arg msg,vel;
+			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attHat', msg[1]);
-			//~attHat=val+0.01;
+			~mdOut.control(4, 5, vel);
 			},
-			'/attHat'
+			'attHat'
 		);
 
 		~susLevHatFader.free;
 		~susLevHatFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('susHat', msg[1]);
-			//~susLevHat=msg[1];
+			~susLevHat=msg[1];
+			~mdOut.control(4, 6, msg[1]*127);
 
 			},
 			'/susHat'
@@ -142,13 +219,37 @@ IFHat.times(4);
 		~decHatFader= OSCFunc({
 			arg msg;
 			~tOSCAdrr.sendMsg('decHat', msg[1]);
-			//~decHat=msg[1];
-
+			~decHat=msg[1];
+			~mdOut.control(4, 7, msg[1]*127);
 			},
 			'/decHat'
 		);
 
+		~chainHatFader.free;
+		~chainHatFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('chainHat', msg[1]);
+			~mdOut.control(4, 8, msg[1]*127);
+			},
+			'/chainHat'
+		);
+
+		~sendHatXY.free;
+		~sendHatXY= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			~mdOut.control(4, 4, vel1); // IFHat
+			~mdOut.control(4, 3, vel2); // IFHat
+			~tOSCAdrr.sendMsg('sendHat', msg[1], msg[2]);
+
+			},
+			'sendHat'
+		);
+
 		//TIME
+
 		~tmMulHatBut1.free;
 		~tmMulHatBut1= OSCFunc({
 			arg msg;
