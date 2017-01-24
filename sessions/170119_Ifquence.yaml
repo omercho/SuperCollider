@@ -69,7 +69,6 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSeqDurSnr.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFSeqDurHat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_IF_2014/IFProcessing.scd
-  - ""
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -209,9 +208,6 @@ editors: !QVariantMap
         documentIndex: 6
         position: 15274
       - !QVariantMap
-        documentIndex: 62
-        position: 266
-      - !QVariantMap
         documentIndex: 63
         position: 0
       - !QVariantMap
@@ -253,6 +249,9 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 0
         position: 64
+      - !QVariantMap
+        documentIndex: 62
+        position: 266
     - !QVariantList
       - !QVariantMap
         documentIndex: 18

@@ -192,6 +192,7 @@ IFNoteOSC3
 IFOSC_ERG
 IFOctOSC
 IFPartsOSC
+IFProcessing
 IFQC_Test
 IFSCTracks
 IFSC_Synths
