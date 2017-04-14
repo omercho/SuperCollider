@@ -60,6 +60,7 @@ CheckBadValues
 ClearBuf
 Clip
 ClipNoise
+Cntrl2Traktor
 CoinGate
 CombC
 CombL
@@ -658,6 +659,7 @@ _NCIRCONTrOll01
 _NCIRCONTrOll02
 _TransBeings1ERG
 _TransBeings1ERG1
+apc40Erg
 filter
 flowerg
 globalsErg

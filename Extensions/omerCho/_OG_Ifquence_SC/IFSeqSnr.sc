@@ -15,6 +15,7 @@ IFSeqSnr {
 		IFSeqSusSnr.loadAll;
 		IFSeqTmSnr.loadAll;
 		IFSeqDurSnr.loadAll;
+		IFSeqStSnr.loadAll;
 		this.on;
 	}
 
@@ -404,7 +405,7 @@ IFSeqSnr {
 	}
 
 	*st09 {|i|
-		~cntSeqSnr01=i;
+		~cntSeqSnr09=i;
 		~seqSnr09.source = Pseq([i], 1);
 		~tOSCAdrr.sendMsg('ledSnr09', i);
 	}
@@ -472,6 +473,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr01.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr01.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr01.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr01.next], inf);
 	}
 	*step02{
 		~amp1Snr.source  =  Pseq([~seqSnr02.next*~seqVelSnr02.next], inf);
@@ -480,6 +482,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr02.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr02.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr02.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr02.next], inf);
 	}
 	*step03{
 		~amp1Snr.source  =  Pseq([~seqSnr03.next*~seqVelSnr03.next], inf);
@@ -488,6 +491,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr03.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr03.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr03.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr03.next], inf);
 	}
 	*step04{
 		~amp1Snr.source  =  Pseq([~seqSnr04.next*~seqVelSnr04.next], inf);
@@ -496,6 +500,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr04.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr04.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr04.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr04.next], inf);
 	}
 	*step05{
 		~amp1Snr.source  =  Pseq([~seqSnr05.next*~seqVelSnr05.next], inf);
@@ -504,6 +509,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr05.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr05.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr05.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr05.next], inf);
 	}
 	*step06{
 		~amp1Snr.source  =  Pseq([~seqSnr06.next*~seqVelSnr06.next], inf);
@@ -512,6 +518,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr06.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr06.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr06.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr06.next], inf);
 	}
 	*step07{
 		~amp1Snr.source  =  Pseq([~seqSnr07.next*~seqVelSnr07.next], inf);
@@ -520,6 +527,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr07.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr07.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr07.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr07.next], inf);
 	}
 	*step08{
 		~amp1Snr.source  =  Pseq([~seqSnr08.next*~seqVelSnr08.next], inf);
@@ -528,6 +536,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr08.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr08.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr08.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr08.next], inf);
 	}
 	*step09{
 		~amp1Snr.source  =  Pseq([~seqSnr09.next*~seqVelSnr09.next], inf);
@@ -536,6 +545,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr09.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr09.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr09.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr09.next], inf);
 	}
 	*step10{
 		~amp1Snr.source  =  Pseq([~seqSnr10.next*~seqVelSnr10.next], inf);
@@ -544,6 +554,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr10.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr10.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr10.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr10.next], inf);
 	}
 	*step11{
 		~amp1Snr.source  =  Pseq([~seqSnr11.next*~seqVelSnr11.next], inf);
@@ -552,6 +563,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr11.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr11.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr11.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr11.next], inf);
 	}
 	*step12{
 		~amp1Snr.source  =  Pseq([~seqSnr12.next*~seqVelSnr12.next], inf);
@@ -560,6 +572,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr12.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr12.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr12.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr12.next], inf);
 	}
 	*step13{
 		~amp1Snr.source  =  Pseq([~seqSnr13.next*~seqVelSnr13.next], inf);
@@ -568,6 +581,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr13.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr13.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr13.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr13.next], inf);
 	}
 	*step14{
 		~amp1Snr.source  =  Pseq([~seqSnr14.next*~seqVelSnr14.next], inf);
@@ -576,6 +590,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr14.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr14.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr14.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr14.next], inf);
 	}
 	*step15{
 		~amp1Snr.source  =  Pseq([~seqSnr15.next*~seqVelSnr15.next], inf);
@@ -584,6 +599,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr15.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr15.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr15.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr15.next], inf);
 	}
 	*step16{
 		~amp1Snr.source  =  Pseq([~seqSnr16.next*~seqVelSnr16.next], inf);
@@ -592,6 +608,7 @@ IFSeqSnr {
 		~sus1Snr.source  =  Pseq([~seqSusSnr16.next], inf);
 		~tmSnr.source    =  Pseq([~seqTmSnr16.next], inf);
 		~dur1Snr.source    =  Pseq([~seqDurSnr16.next], inf);
+		~ampStSnr.source  =  Pseq([~seqStSnr16.next], inf);
 	}
 
 	*stGrp {|i|

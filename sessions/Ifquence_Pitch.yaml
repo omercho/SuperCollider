@@ -1,0 +1,182 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFLoad.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTracks.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTrack01.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFMainTrack1.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFMainTrack2.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCounter.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFPitch.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoutine.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSequence.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSixteen.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFAllMidiRef.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProcessing.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFPreset.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSnr.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFHat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSamp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRes1.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFMast.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFPitchKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFPitchVChord.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/OCPuppets/OCPuppet.sc
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 8
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 10
+        position: 0
+      - !QVariantMap
+        documentIndex: 11
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
+      - !QVariantMap
+        documentIndex: 14
+        position: 0
+      - !QVariantMap
+        documentIndex: 15
+        position: 0
+      - !QVariantMap
+        documentIndex: 17
+        position: 0
+      - !QVariantMap
+        documentIndex: 18
+        position: 0
+      - !QVariantMap
+        documentIndex: 20
+        position: 0
+      - !QVariantMap
+        documentIndex: 22
+        position: 0
+      - !QVariantMap
+        documentIndex: 23
+        position: 0
+      - !QVariantMap
+        documentIndex: 19
+        position: 4
+      - !QVariantMap
+        documentIndex: 4
+        position: 0
+      - !QVariantMap
+        documentIndex: 3
+        position: 0
+      - !QVariantMap
+        documentIndex: 5
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 0
+      - !QVariantMap
+        documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 13
+        position: 110
+      - !QVariantMap
+        documentIndex: 21
+        position: 0
+      - !QVariantMap
+        documentIndex: 1
+        position: 2834
+      - !QVariantMap
+        documentIndex: 24
+        position: 13
+      - !QVariantMap
+        documentIndex: 0
+        position: 63
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 17
+        position: 1468
+      - !QVariantMap
+        documentIndex: 4
+        position: 0
+      - !QVariantMap
+        documentIndex: 19
+        position: 3493
+      - !QVariantMap
+        documentIndex: 21
+        position: 0
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 16
+        position: 2929
+      - !QVariantMap
+        documentIndex: 23
+        position: 0
+      - !QVariantMap
+        documentIndex: 5
+        position: 1531
+      - !QVariantMap
+        documentIndex: 13
+        position: 120
+      - !QVariantMap
+        documentIndex: 14
+        position: 5451
+      - !QVariantMap
+        documentIndex: 10
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 277
+      - !QVariantMap
+        documentIndex: 3
+        position: 0
+      - !QVariantMap
+        documentIndex: 7
+        position: 2261
+      - !QVariantMap
+        documentIndex: 11
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 25
+        position: 0
+      - !QVariantMap
+        documentIndex: 26
+        position: 2131
+      - !QVariantMap
+        documentIndex: 27
+        position: 310
+      - !QVariantMap
+        documentIndex: 0
+        position: 3398
+      - !QVariantMap
+        documentIndex: 1
+        position: 331
+      - !QVariantMap
+        documentIndex: 24
+        position: 425
+  state: AAAA/wAAAAAAAAACAAAAmQAAAkcBAAAAAQEAAAAC
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywABAAAAAAAlAAAAKAAABo8AAANQAAAAJQAAAD4AAAaPAAADUAAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACZAAAC+/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAC+wAAAGYA////AAAAAQAAAnUAAAL7/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAiwAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAi0AAADOAAAATAD///8AAANbAAAC+wAAAAEAAAACAAAAAQAAAAL8AAAAAA==

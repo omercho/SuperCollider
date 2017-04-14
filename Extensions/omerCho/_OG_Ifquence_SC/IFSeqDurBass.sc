@@ -76,7 +76,9 @@ IFSeqDurBass {
 					0,{},
 					1,{IFSeqDurBass.stGrp(1);},
 					2,{IFSeqDurBass.stGrp(2);},
-					3,{IFSeqDurBass.stGrp(3);
+					3,{IFSeqDurBass.stGrp(3);},
+					4,{IFSeqDurBass.stGrp(4);},
+					5,{IFSeqDurBass.stGrp(5);
 						~cntSeqDurUpBass01=0;
 					}
 				)}

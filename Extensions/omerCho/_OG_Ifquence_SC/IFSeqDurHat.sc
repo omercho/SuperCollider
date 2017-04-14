@@ -8,23 +8,23 @@ IFSeqDurHat {
 
 	*loadProxy {
 
-		~seqDurHat01 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat02 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat03 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat04 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat05 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat06 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat07 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat08 = PatternProxy( Pseq([0.5], 1));
+		~seqDurHat01 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat02 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat03 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat04 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat05 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat06 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat07 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat08 = PatternProxy( Pseq([1.0], 1));
 
-		~seqDurHat09 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat10 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat11 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat12 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat13 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat14 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat15 = PatternProxy( Pseq([0.5], 1));
-		~seqDurHat16 = PatternProxy( Pseq([0.5], 1));
+		~seqDurHat09 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat10 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat11 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat12 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat13 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat14 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat15 = PatternProxy( Pseq([1.0], 1));
+		~seqDurHat16 = PatternProxy( Pseq([1.0], 1));
 
 	}
 
@@ -76,7 +76,9 @@ IFSeqDurHat {
 					0,{},
 					1,{IFSeqDurHat.stGrp(1);},
 					2,{IFSeqDurHat.stGrp(2);},
-					3,{IFSeqDurHat.stGrp(3);
+					3,{IFSeqDurHat.stGrp(3);},
+					4,{IFSeqDurHat.stGrp(4);},
+					5,{IFSeqDurHat.stGrp(5);
 						~cntSeqDurUpHat01=0;
 					}
 				)}

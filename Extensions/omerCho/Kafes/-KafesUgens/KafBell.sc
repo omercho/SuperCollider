@@ -16,6 +16,8 @@ fork{
 		( dur + (0.1*(i%10)) ).yield;
 	}
 }
+
+KafBell.ar(freq: 440, out: [0,1].choose).play;
 */
 
 KafBell : UGen {

@@ -3,7 +3,6 @@ IFCntrl {
 	*loadAll {
 		this.main;
 		this.mutes;
-		this.parts;
 	}
 
 
@@ -120,7 +119,19 @@ IFCntrl {
 			'/tempoClock'
 		);
 
+		~noteFad.free;
+		~noteFad= OSCFunc({
+			arg msg;
 
+			//~transKick.source= msg[1]+Pseq([0], inf);
+			//~transSnr.source=msg[1]+Pseq([0], inf);
+			//~transHat.source=msg[1]+Pseq([0], inf);
+			~tOSCAdrr.sendMsg('noteFader',msg[1]);
+			~mdOut.control(3, 15, msg[1]*127); //Snr X-Transpose
+			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
+			},
+			'/noteFader'
+		);
 
 		~cutDrumXY.free;
 		~cutDrumXY= OSCFunc({
@@ -134,6 +145,153 @@ IFCntrl {
 
 			},
 			'/cutDrum'
+		);
+
+		~xySendsAllMain.free;
+		~xySendsAllMain= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1];
+			vel2=msg[2];
+
+			~tOSCAdrr.sendMsg('/allMainSends',msg[1], msg[2]);
+			~mdOut.control(1, 4, msg[2]*127);
+			~mdOut.control(1, 5, msg[1]*127);
+			~mdOut.control(1, 13, msg[2]*127);
+
+			},
+			'/allMainSends'
+		);
+
+		~xySendsDrum.free;
+		~xySendsDrum= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1];
+			vel2=msg[2];
+
+			~tOSCAdrr.sendMsg('/drumSends',msg[1], msg[2]);
+			~mdOut.control(10, 23, msg[2]*127);
+			~mdOut.control(10, 24, msg[1]*127);
+			~mdOut.control(10, 25, msg[2]*127);
+
+			},
+			'/drumSends'
+		);
+		~xySendsMel.free;
+		~xySendsMel= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1];
+			vel2=msg[2];
+
+			~tOSCAdrr.sendMsg('/melSends',msg[1], msg[2]);
+			~mdOut.control(10, 73, msg[2]*127);
+			~mdOut.control(10, 74, msg[1]*127);
+			~mdOut.control(10, 75, msg[2]*127);
+
+			},
+			'/melSends'
+		);
+
+		~sendOff.free;
+		~sendOff = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~local.sendMsg('allMainSends',0.0, 0.0);
+				~local.sendMsg('melSends',0.0, 0.0);
+				~local.sendMsg('drumSends',0.0, 0.0);
+				~local.sendMsg('sendKick', 0.0, 0.0);
+				~local.sendMsg('sendSnr', 0.0, 0.0);
+				~local.sendMsg('sendHat', 0.0, 0.0);
+				~local.sendMsg('sendBass', 0.0, 0.0);
+				~local.sendMsg('sendKeys', 0.0, 0.0);
+				~local.sendMsg('sendSamp', 0.0, 0.0);
+				~local.sendMsg('extSends',0.2,0.3);
+
+			});
+			},
+			'/sendsOff'
+		);
+
+		~octRandAllBut.free;
+		~octRandAllBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1,{
+				~octMulKick = [0,1,2,3].choose;
+				~octMulSnr = [0,1,2,3].choose;
+				~octMulHat = [0,1,2,3].choose;
+				~octMulBass = [0,1,2,3].choose;
+				~octMulKeys = [0,1,2,3].choose;
+				~octMulSamp = [0,1,2,3].choose;
+				~octMulExt= [0,1,2,3].choose;
+				},
+				{
+
+				~local.sendMsg('octKickZero',1);
+				~local.sendMsg('octSnrZero',1);
+				~local.sendMsg('octHatZero',1);
+				~local.sendMsg('octBassZero',1);
+				~local.sendMsg('octKeysZero',1);
+				~local.sendMsg('octSampZero',1);
+				~local.sendMsg('octExtZero',1);
+
+			});
+			},
+			'/octRandAll'
+		);
+
+
+
+		~sendOn.free;
+		~sendOn = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~local.sendMsg('allMainSends',0.5, 0.5);
+				~local.sendMsg('melSends',0.5, 0.5);
+				~local.sendMsg('drumSends',0.5, 0.5);
+				~local.sendMsg('sendKick', 0.5, 0.5);
+				~local.sendMsg('sendSnr', 0.5, 0.5);
+				~local.sendMsg('sendHat', 0.5, 0.5);
+				~local.sendMsg('sendBass', 0.5, 0.5);
+				~local.sendMsg('sendKeys', 0.5, 0.5);
+				~local.sendMsg('sendSamp', 0.5, 0.5);
+				~local.sendMsg('extSends',0.2,0.3);
+
+			});
+			},
+			'/sendsOn'
+		);
+
+		~xyAllMasterFx.free;
+		~xyAllMasterFx= OSCFunc({
+			arg msg,vel1,vel2;
+
+			vel1=msg[1];
+			vel2=msg[2];
+
+			~tOSCAdrr.sendMsg('AllMasterFXxy1',msg[1], msg[2]);
+			~mdOut.control(12, 1, msg[2]*127);
+			~mdOut.control(12, 2, msg[1]*127);
+			~mdOut.control(11, 1, msg[1]*127);
+			~mdOut.control(11, 2, msg[2]*127);
+
+
+			},
+			'AllMasterFXxy1'
+		);
+
+		~fxFad.free;
+		~fxFad= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('/fxFader', msg[1]);
+			~mdOut.control(12, 8, msg[1]*127); //SendB / Rev Chain
+			~mdOut.control(11, 8, msg[1]*127);
+
+			},
+			'/fxFader'
 		);
 
 		~cutAllXY.free;
@@ -213,19 +371,21 @@ IFCntrl {
 			'/shufHarm'
 		);
 
+		~susMelLedVal;
 		~susMelMulFader.free;
 		~susMelMulFader= OSCFunc({
 			arg msg;
-			~tOSCAdrr.sendMsg('/susMel', msg[1]);
+			~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=msg[1]);
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
 			},
 			'/susMel'
 		);
 
+		~susDrumLedVal;
 		~susDrumMulFader.free;
 		~susDrumMulFader= OSCFunc({
 			arg msg;
-			~tOSCAdrr.sendMsg('/susDrum', msg[1]);
+			~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=msg[1]);
 			~susMulKick=msg[1];~susMulSnr=msg[1];~susMulHat=msg[1];
 
 			},
@@ -642,114 +802,7 @@ IFCntrl {
 
 	}
 
-	*parts {//----- Parts
 
-		~part_0.free;
-		~part_0 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part0".postln;
-
-				~mainSet_00.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'part0');
-			});
-			},
-			'/part0'
-		);
-
-
-		~part_1.free;
-		~part_1 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part1".postln;
-
-				~mainSet_01.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt01');
-			});
-			},
-			'/part1'
-		);
-
-		~part_2.free;
-		~part_2 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part2".postln;
-
-				~mainSet_02.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt02');
-			});
-			},
-			'/part2'
-		);
-
-		~part_3.free;
-		~part_3 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part3".postln;
-
-				~mainSet_03.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt03');
-			});
-			},
-			'/part3'
-		);
-
-		~part_4.free;
-		~part_4 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part4".postln;
-
-				~mainSet_04.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt04');
-			});
-			},
-			'/part4'
-		);
-
-		~part_5.free;
-		~part_5 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part5".postln;
-
-				~mainSet_05.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt05');
-			});
-			},
-			'/part5'
-		);
-
-		~part_6.free;
-		~part_6 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part6".postln;
-
-				~mainSet_06.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt06');
-			});
-			},
-			'/part6'
-		);
-
-		~part_7.free;
-		~part_7 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part7".postln;
-
-				~mainSet_07.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt07');
-			});
-			},
-			'/part7'
-		);
-
-	}
 
 	*initClass {
 		StartUp add: {

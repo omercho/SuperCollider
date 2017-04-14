@@ -7,6 +7,20 @@
 PostAllMIDI.on;
 PostAllMIDI.off;
 
+//to find the srcID of MIDIOut sources
+~mdOut.uid;
+~mdTouch.uid;
+~apc40.uid;
+
+//to find MIDIIn src
+(
+c = NoteOnResponder({ |src,chan,note,vel|
+        [src,chan,note,vel].postln;
+    });
+    c.learn; // wait for the first note
+)
+NoteOnResponder.removeAll
+
 */
 
 PostAllMIDI {

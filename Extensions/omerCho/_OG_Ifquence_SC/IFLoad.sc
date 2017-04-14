@@ -1,17 +1,11 @@
 /*
-IFSequence.step(~stepNumP.next);
+
+PostAllMIDI.on;
+PostAllMIDI.off;
 
 IFLoad.load;
 IFLoad.loadVolca;
-IFTracks.track1; "TRACK 1".postln;~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 
-~dur1KickP.next;
-~tmKickP.next;
-~tmMulKickP.next;
-~dur1SnrP.next;
-~dur1HatP.next;
-~dur1BassP.next;
-(~tmKeysP.next;)*(~tmMulKeysP.next;)
 */
 IFLoad{
 	*loadVolca{
@@ -35,36 +29,33 @@ IFLoad{
 				IFPitchExt.loadAll;
 				IFPitchVChord.loadAll;
 				0.1.wait;
-				//SonicLife.load;
-				0.1.wait;
 				VBass.globals; VBass.preSet01; VKeys.globals; VKeys.preSet01;
+				//0.1.wait;
+				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
+				//IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
+				//IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
+				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
+				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
-				VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
-				IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
-				IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
-				IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
-				IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
+				IFKick.load;
 				0.1.wait;
-				IFKick.globals; IFKick.preSet; IFKick.default; IFKick.osc;
+				IFSnr.load;
 				0.1.wait;
-				IFSnr.globals; IFSnr.preSet; IFSnr.default;
+				IFHat.load;
 				0.1.wait;
-				IFHat.globals; IFHat.preSet; IFHat.default;
+				IFBass.load;
 				0.1.wait;
-				IFBass.globals; IFBass.preSet; IFBass.default; IFBass.oscMIDI;
+				IFKeys.load;
 				0.1.wait;
-				IFKeys.globals; IFKeys.preSet; IFKeys.default; IFKeys.osc;
+				IFSamp.load;
 				0.1.wait;
-				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
-				0.1.wait;
-				IFRes1.globals; IFRes1.preSet;
+				IFRes1.load;
 				IFMast.load;
 				0.1.wait;
 				IFExt.load;
 				0.1.wait;
 				IFRoot.load;
 				0.1.wait;
-				IFProjectGlobals.preSetAll;
 				IFSeqSteps.load;
 				0.1.wait;
 				"Track: Not loaded".postln;
@@ -95,36 +86,33 @@ IFLoad{
 				IFPitchExt.loadAll;
 				IFPitchVChord.loadAll;
 				0.1.wait;
-				//SonicLife.load;
-				0.1.wait;
 				//VBass.globals; VBass.preSet01; VKeys.globals; VKeys.preSet01;
-				0.1.wait;
+				//0.1.wait;
 				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
 				//IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
 				//IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
 				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
-				IFKick.globals; IFKick.preSet; IFKick.default; IFKick.osc;
+				IFKick.load;
 				0.1.wait;
-				IFSnr.globals; IFSnr.preSet; IFSnr.default;
+				IFSnr.load;
 				0.1.wait;
-				IFHat.globals; IFHat.preSet; IFHat.default;
+				IFHat.load;
 				0.1.wait;
-				IFBass.globals; IFBass.preSet; IFBass.default; IFBass.oscMIDI;
+				IFBass.load;
 				0.1.wait;
-				IFKeys.globals; IFKeys.preSet; IFKeys.default; IFKeys.osc;
+				IFKeys.load;
 				0.1.wait;
-				IFSamp.globals; IFSamp.preSet; IFSamp.default; IFSamp.osc;
+				IFSamp.load;
 				0.1.wait;
-				IFRes1.globals; IFRes1.preSet;
+				IFRes1.load;
 				IFMast.load;
 				0.1.wait;
 				IFExt.load;
 				0.1.wait;
 				IFRoot.load;
 				0.1.wait;
-				IFProjectGlobals.preSetAll;
 				IFSeqSteps.load;
 				0.1.wait;
 				"Track: Not loaded".postln;
@@ -136,3 +124,30 @@ IFLoad{
 
 
 }
+
+/*
+~mdOut.allNotesOff(0);
+		~mdOut.allNotesOff(1);
+		~mdOut.allNotesOff(2);
+		~mdOut.allNotesOff(3);
+		~mdOut.allNotesOff(4);
+		~mdOut.allNotesOff(5);
+		~mdOut.allNotesOff(6);
+		~mdOut.allNotesOff(7);
+		~mdOut.allNotesOff(8);
+		~mdOut.allNotesOff(9);
+		~mdOut.allNotesOff(10);
+        ~mdOut.allNotesOff(11);
+		~mdOut.allNotesOff(12);
+		~mdOut.allNotesOff(13);
+		~mdOut.allNotesOff(14);
+		~mdOut.allNotesOff(15);
+		~mdOut.allNotesOff(16);
+		~vKeys.allNotesOff(11);
+		~vKeys.allNotesOff(12);
+		~vKeys.allNotesOff(13);
+		~vKeys.allNotesOff(14);
+		~vKeys.allNotesOff(15);
+		~vKeys.allNotesOff(16);
+
+*/

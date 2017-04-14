@@ -16,6 +16,13 @@ IFBass {
 		}
 	}
 
+	*load {
+		this.globals;
+		this.proxy;
+		this.osc;
+		this.apc40;
+		//this.beh;
+	}
 	*globals{
 		~chBass=3;
 		~bassLate=0.0;
@@ -29,9 +36,7 @@ IFBass {
 		~lfoMulBass2=0;
 	}
 
-	*preSet{}
-
-	*default {
+	*proxy {
 
 		~nt1Bass = PatternProxy( Pseq([0], inf));
 		~nt1BassP = Pseq([~nt1Bass], inf).asStream;
@@ -67,6 +72,16 @@ IFBass {
 
 		~actBass = PatternProxy( Pseq([1], inf));
 		~actBassP= Pseq([~actBass], inf).asStream;
+
+		//StaticBass
+		~actStBass = PatternProxy( Pseq([0], inf));
+		~actStBassP= Pseq([~actStBass], inf).asStream;
+		~durStBass = PatternProxy( Pseq([1], inf));
+		~durStBassP = Pseq([~durStBass], inf).asStream;
+		~ampStBass = PatternProxy( Pseq([0,0,0,0,1], inf));
+		~ampStBassP = Pseq([~ampStBass], inf).asStream;
+		~ntStBass = PatternProxy( Pseq([67], inf));
+		~ntStBassP = Pseq([~ntStBass], inf).asStream;
 
 	}
 
@@ -135,47 +150,91 @@ IFBass {
 			\control, Pseq([~lfo2BassP.value], 1)*~lfoMulBass2,
 		).play;
 
+	}//p1
+	*stat01 {|i=1|
+		var val;
+		val=i;
+		~staticBassPat=Pbind(
+			\chan, ~chBass,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~durStBassP.next],~actStBassP.next),
+			\degree, Pseq([~ntStBassP.next], inf),
+			\amp, Pseq([~ampStBassP.next], inf)
+		).play;
+	}//stat01
 
+	*apc40{
 
-		//this.count2;
-		//this.timesCount;
-	}
+		~volBass_APC.free;
+		~volBass_APC=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volBass', vel/127);
+			~mdOut.control(5, 1, vel);
 
+		},srcID:~apc40InID, chan:3, ccNum:7);
 
-	*oscMIDI{
+		//Act ButA
+		//Bass Activate
+		~cntActLine4ButA=0;
+		~mdActLine4ButA.free;
+		~mdActLine4ButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine4ButA = ~cntActLine4ButA + 1;
+				~cntActLine4ButA.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine4ButA(1);
+					},
+					2,{
+						IFAPC40.actLine4ButA(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButA);
 
-		~phrase01Bass.free;
-		~phrase01Bass= OSCFunc({
-			arg msg,vel;
-			vel=msg[1]*127;
-			if ( msg[1]==1, {
+		//Act ButB
+		//Bass Time Div2
+		~cntActLine4ButB=0;
+		~mdActLine4ButB.free;
+		~mdActLine4ButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine4ButB = ~cntActLine4ButB + 1;
+				~cntActLine4ButB.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine4ButB(1);
+					},
+					2,{
+						IFAPC40.actLine4ButB(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButB);
 
-			//~nt1Bass.source   =  Pslide([~nt+0,~nt+1,~nt+7,~nt+0,~nt+1,~nt+0],  inf, 4,1,0);
-			~amp1Bass.source  =  Pslide([0.9, 0.9, 0.8, 0.7, 0.9, 0.5],         inf, 4,1,0);
-			~sus1Bass.source  =  Pslide([0.8, 0.3, 0.8, 0.7, 0.8, 0.1 ]*1.9,    inf, 4,1,0);
-			~tmBass.source    =  Pseq([2,1,1,1], inf);
-			~dur1Bass.source  =  Pseq([1/2,1], inf);
-			~lfo1Bass.source  =  Pseq([120,20,70,98, 0,110,60,20], inf);
-			~lfo2Bass.source  =  Pseq([110,30,110,50], inf);
+		//Act ButC
+		//Static Bass Activate
+		~cntActLine4ButC=0;
+		~mdActLine4ButC.free;
+		~mdActLine4ButC=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine4ButC = ~cntActLine4ButC + 1;
+				~cntActLine4ButC.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine4ButC(1);
+					},
+					2,{
+						IFAPC40.actLine4ButC(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButC);
+	}//*apc40
 
-			});
-			},
-			'/phrase01Bass'
-		);
-
-		~actBassBut.free;
-		~actBassBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~actBass.source=1;
-				~behOut.control(5, 2, 127);
-			},{
-					~actBass.source=0;
-					~behOut.control(5, 2, 0);
-			});
-			},
-			'/activBass'
-		);
+	*beh{
 		~actBassMD.free;
 		~actBassMD=MIDIFunc.cc( {
 			arg vel;
@@ -187,36 +246,6 @@ IFBass {
 					~tOSCAdrr.sendMsg('activBass', 0);
 			});
 		}, chan:5, ccNum:2);
-
-		//TIME
-
-		~time2BassBut.free;
-		~countTime2Bass=0;
-		~time2BassBut= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
-				~countTime2Bass = ~countTime2Bass + 1;
-				~countTime2Bass.switch(
-					0,{},
-					1, {
-						~behOut.control(5, 9, 127);
-						~tOSCAdrr.sendMsg('time2Bass', 1);
-						~tOSCAdrr.sendMsg('tmBassLabel', 2);
-						~tmMulBass.source = Pseq([2], inf);
-					},
-					2,{
-						~behOut.control(5, 9, 0);
-						~tOSCAdrr.sendMsg('time2Bass', 0);
-						~tOSCAdrr.sendMsg('tmBassLabel', 1);
-						~tmMulBass.source = Pseq([1], inf);
-						~countTime2Bass=0;
-					}
-				)}
-			);
-			},
-			'/time2Bass'
-		);
-
 		~time2BassMD.free;
 		~time2BassMD=MIDIFunc.cc( {
 			arg vel;
@@ -232,6 +261,73 @@ IFBass {
 					~countTime2Bass=0;
 			});
 		}, chan:5, ccNum:9);
+	}
+	*osc{
+
+		~phrase01Bass.free;
+		~phrase01Bass= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			if ( msg[1]==1, {
+
+				//~nt1Bass.source   =  Pslide([~nt+0,~nt+1,~nt+7,~nt+0,~nt+1,~nt+0],  inf, 4,1,0);
+				~amp1Bass.source  =  Pslide([0.9, 0.9, 0.8, 0.7, 0.9, 0.5],         inf, 4,1,0);
+				~sus1Bass.source  =  Pslide([0.8, 0.3, 0.8, 0.7, 0.8, 0.1 ]*1.9,    inf, 4,1,0);
+				~tmBass.source    =  Pseq([2,1,1,1], inf);
+				~dur1Bass.source  =  Pseq([1/2,1], inf);
+				~lfo1Bass.source  =  Pseq([120,20,70,98, 0,110,60,20], inf);
+				~lfo2Bass.source  =  Pseq([110,30,110,50], inf);
+
+			});
+			},
+			'/phrase01Bass'
+		);
+
+		~actBassBut.free;
+		~actBassBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actBass.source=1;
+				~apc40.noteOn(3, 48, 127); //Trk4_But 1
+				//~behOut.control(5, 2, 127);
+				},{
+					~actBass.source=0;
+					~apc40.noteOff(3, 48, 127); //Trk4_But 1
+					//~behOut.control(5, 2, 0);
+			});
+			},
+			'/activBass'
+		);
+
+		~time2BassBut.free;
+		~countTime2Bass=0;
+		~time2BassBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Bass = ~countTime2Bass + 1;
+				~countTime2Bass.switch(
+					0,{},
+					1, {
+						//~behOut.control(5, 9, 127);
+						~apc40.noteOn(3, 49, 127); //Trk4_But 2
+						~tOSCAdrr.sendMsg('time2Bass', 1);
+						~tOSCAdrr.sendMsg('tmBassLabel', 2);
+						~tmMulBass.source = Pseq([2], inf);
+					},
+					2,{
+						//~behOut.control(5, 9, 0);
+						~apc40.noteOff(3, 49, 127); //Trk4_But 2
+						~tOSCAdrr.sendMsg('time2Bass', 0);
+						~tOSCAdrr.sendMsg('tmBassLabel', 1);
+						~tmMulBass.source = Pseq([1], inf);
+						~countTime2Bass=0;
+					}
+				)}
+			);
+			},
+			'/time2Bass'
+		);
+
 
 		~volBassFader.free;
 		~volBassFader= OSCFunc({
@@ -268,11 +364,13 @@ IFBass {
 
 		~decBassFader.free;
 		~decBassFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*127;
-			~tOSCAdrr.sendMsg('decBass', msg[1]);
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('decBass', val);
 			~vBass.control(0, ~egDec, val);
-			~mdOut.control(5, 7, val);
+			~mdOut.control(5, 7, vel);
+			~nobD5_m1Val= vel;
 			},
 			'/decBass'
 		);

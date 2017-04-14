@@ -6,10 +6,9 @@ IFSixteen {
 		~seqStepBut01 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([1], inf);
-
+				~stepNum.source  =  Pseq([2,10,15,10,2], inf);
 			},{
-					~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep01'
@@ -19,10 +18,10 @@ IFSixteen {
 		~seqStepBut02 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([2], inf);
+				~stepNum.source  =  Pseq([4,3,2], inf);
 
 			},{
-					~stepNum.source  =  Pseq([2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep02'
@@ -32,10 +31,10 @@ IFSixteen {
 		~seqStepBut03 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([3], inf);
 
+				IFSeqSteps.shuf;
 			},{
-					~stepNum.source  =  Pseq([3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep03'
@@ -45,10 +44,10 @@ IFSixteen {
 		~seqStepBut04 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([4], inf);
 
+				IFSeqSteps.random;
 			},{
-					~stepNum.source  =  Pseq([4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep04'
@@ -60,7 +59,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([5], inf);
 
 			},{
-					~stepNum.source  =  Pseq([5,6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep05'
@@ -72,7 +71,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([6], inf);
 
 			},{
-					~stepNum.source  =  Pseq([6,7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep06'
@@ -84,7 +83,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([7], inf);
 
 			},{
-					~stepNum.source  =  Pseq([7,8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep07'
@@ -93,10 +92,10 @@ IFSixteen {
 		~seqStepBut08 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([8], inf);
+				IFSeqSteps.first8;
 
 			},{
-					~stepNum.source  =  Pseq([8,9,10,11,12,13,14,15,16], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep08'
@@ -105,10 +104,10 @@ IFSixteen {
 		~seqStepBut09 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([9], inf);
+				IFSeqSteps.second8;
 
 			},{
-					~stepNum.source  =  Pseq([9,10,11,12,13,14,15,16], inf);
+					//IFSeqSteps.forward;
 			});
 			},
 			'/seqStep09'
@@ -117,7 +116,9 @@ IFSixteen {
 		~seqStepBut10 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				IFSeqSteps.preset01;
+				~stepNum.source  =  Pseq([10], inf);
+			},{
+					IFSeqSteps.second8;
 			});
 			},
 			'/seqStep10'
@@ -338,9 +339,7 @@ IFSixteen {
 		~seqStepBut01 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				IFTracks.track1;
-				"TRACK 1".postln;
-				~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
+				IFTrack01.loadAtStart;
 			});
 			},
 			'/seqStep01'
@@ -350,9 +349,7 @@ IFSixteen {
 		~seqStepBut02 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				IFTracks.track2;
-				"TRACK 2".postln;
-				~tOSCAdrr.sendMsg('trackLabel','TRACK 2');
+				IFTrack02.loadAtStart;
 			});
 			},
 			'/seqStep02'
@@ -362,7 +359,7 @@ IFSixteen {
 		~seqStepBut03 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-
+				IFTrack03.loadAtStart;
 			});
 			},
 			'/seqStep03'
@@ -489,189 +486,6 @@ IFSixteen {
 
 	}//tracks
 
-	*parts {
-		~seqStepBut01.free;
-		~seqStepBut01 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part01".postln;
-				~mainSet_01.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt01');
-			});
-			},
-			'/seqStep01'
-		);
-
-		~seqStepBut02.free;
-		~seqStepBut02 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part02".postln;
-				~mainSet_02.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt02');
-			});
-			},
-			'/seqStep02'
-		);
-
-		~seqStepBut03.free;
-		~seqStepBut03 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part03".postln;
-				~mainSet_03.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt03');
-			});
-			},
-			'/seqStep03'
-		);
-
-		~seqStepBut04.free;
-		~seqStepBut04 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part04".postln;
-				~mainSet_04.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt04');
-			});
-			},
-			'/seqStep04'
-		);
-		~seqStepBut05.free;
-		~seqStepBut05 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part05".postln;
-				~mainSet_05.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt05');
-			});
-			},
-			'/seqStep05'
-		);
-		~seqStepBut06.free;
-		~seqStepBut06 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part06".postln;
-				~mainSet_06.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt06');
-			});
-			},
-			'/seqStep06'
-		);
-		~seqStepBut07.free;
-		~seqStepBut07 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part07".postln;
-				~mainSet_07.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt07');
-			});
-			},
-			'/seqStep07'
-		);
-		~seqStepBut08.free;
-		~seqStepBut08 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part08".postln;
-				~mainSet_08.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt08');
-			});
-			},
-			'/seqStep08'
-		);
-		~seqStepBut09.free;
-		~seqStepBut09 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part09".postln;
-				~mainSet_09.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt09');
-			});
-			},
-			'/seqStep09'
-		);
-		~seqStepBut10.free;
-		~seqStepBut10 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part10".postln;
-				~mainSet_10.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt10');
-			});
-			},
-			'/seqStep10'
-		);
-		~seqStepBut11.free;
-		~seqStepBut11 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part11".postln;
-				~mainSet_11.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt11');
-			});
-			},
-			'/seqStep11'
-		);
-		~seqStepBut12.free;
-		~seqStepBut12 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part12".postln;
-				~mainSet_12.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt12');
-			});
-			},
-			'/seqStep12'
-		);
-		~seqStepBut13.free;
-		~seqStepBut13 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part13".postln;
-				~mainSet_13.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt13');
-			});
-			},
-			'/seqStep13'
-		);
-		~seqStepBut14.free;
-		~seqStepBut14 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part14".postln;
-				~mainSet_14.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt14');
-			});
-			},
-			'/seqStep14'
-		);
-		~seqStepBut15.free;
-		~seqStepBut15 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part15".postln;
-				~mainSet_15.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt15');
-			});
-			},
-			'/seqStep15'
-		);
-
-		~seqStepBut16.free;
-		~seqStepBut16 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"part16".postln;
-				~mainSet_16.fork(quant:0);
-				~tOSCAdrr.sendMsg('partLabel', 'pt16');
-			});
-			},
-			'/seqStep16'
-		);
-
-	}//parts
 
 	*durations {
 		~seqStepBut01.free;
@@ -679,8 +493,13 @@ IFSixteen {
 			arg msg;
 			if ( msg[1]==1, {
 				"Duration Pattern 1".postln;
-				~tOSCAdrr.sendMsg('durLabel', 'Strght 01');
-				~durP.source = Pseq([1], inf)*~durMulP.next;
+				~tOSCAdrr.sendMsg('durLabel', 'Strght 02');
+				~dur.source = Pseq([
+			~seqDurPat01,~seqDurPat02,~seqDurPat03,~seqDurPat04,
+			~seqDurPat05,~seqDurPat06,~seqDurPat07,~seqDurPat08,
+			~seqDurPat09,~seqDurPat10,~seqDurPat11,~seqDurPat12,
+			~seqDurPat13,~seqDurPat14,~seqDurPat15,~seqDurPat16
+		],inf)*~durMulP.next;
 			});
 			},
 			'/seqStep01'
@@ -691,7 +510,7 @@ IFSixteen {
 			arg msg;
 			if ( msg[1]==1, {
 				"Duration Pattern 2".postln;
-				~tOSCAdrr.sendMsg('durLabel', 'Strght 02');
+				~tOSCAdrr.sendMsg('durLabel', 'Strght 01');
 				~dur.source = Pseq([1], inf)*~durMulP.next;
 			});
 			},
@@ -864,158 +683,6 @@ IFSixteen {
 
 	}//durations
 
-	*presets {
-		~seqStepBut01.free;
-		~seqStepBut01 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				IFTrack01.preset01;
-			});
-			},
-			'/seqStep01'
-		);
-
-		~seqStepBut02.free;
-		~seqStepBut02 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				IFTrack01.preset02;
-			});
-			},
-			'/seqStep02'
-		);
-
-		~seqStepBut03.free;
-		~seqStepBut03 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep03'
-		);
-
-		~seqStepBut04.free;
-		~seqStepBut04 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep04'
-		);
-		~seqStepBut05.free;
-		~seqStepBut05 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep05'
-		);
-		~seqStepBut06.free;
-		~seqStepBut06 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep06'
-		);
-		~seqStepBut07.free;
-		~seqStepBut07 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep07'
-		);
-		~seqStepBut08.free;
-		~seqStepBut08 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep08'
-		);
-		~seqStepBut09.free;
-		~seqStepBut09 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep09'
-		);
-		~seqStepBut10.free;
-		~seqStepBut10 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep10'
-		);
-		~seqStepBut11.free;
-		~seqStepBut11 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep11'
-		);
-		~seqStepBut12.free;
-		~seqStepBut12 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep12'
-		);
-		~seqStepBut13.free;
-		~seqStepBut13 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep13'
-		);
-		~seqStepBut14.free;
-		~seqStepBut14 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep14'
-		);
-		~seqStepBut15.free;
-		~seqStepBut15 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep15'
-		);
-
-		~seqStepBut16.free;
-		~seqStepBut16 = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-			});
-			},
-			'/seqStep16'
-		);
-
-	}//presets
-
 	*scales {
 		~seqStepBut01.free;
 		~seqStepBut01 = OSCFunc({
@@ -1173,5 +840,9 @@ IFSixteen {
 		);
 
 	}//scales
+
+
+
+
 
 }

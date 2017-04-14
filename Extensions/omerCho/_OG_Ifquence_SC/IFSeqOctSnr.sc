@@ -78,10 +78,7 @@ IFSeqOctSnr {
 					5,{IFSeqOctSnr.stGrp(4);},
 					6,{IFSeqOctSnr.stGrp(5);},
 					7,{IFSeqOctSnr.stGrp(6);},
-					8,{IFSeqOctSnr.stGrp(7);},
-					9,{IFSeqOctSnr.stGrp(8);},
-					10,{IFSeqOctSnr.stGrp(9);},
-					11,{IFSeqOctSnr.stGrp(10);
+					8,{IFSeqOctSnr.stGrp(7);
 						~cntSeqOctUpSnr01=0;
 					}
 				)}
@@ -100,23 +97,23 @@ IFSeqOctSnr {
 				~cntSeqOctRandSnr01.switch(
 					0,{},
 					1,{
-						IFSeqOctSnr.st01((0..10).choose);
-						IFSeqOctSnr.st02((0..10).choose);
-						IFSeqOctSnr.st03((0..10).choose);
-						IFSeqOctSnr.st04((0..10).choose);
-						IFSeqOctSnr.st05((0..10).choose);
-						IFSeqOctSnr.st06((0..10).choose);
-						IFSeqOctSnr.st07((0..10).choose);
-						IFSeqOctSnr.st08((0..10).choose);
+						IFSeqOctSnr.st01((0..7).choose);
+						IFSeqOctSnr.st02((0..7).choose);
+						IFSeqOctSnr.st03((0..7).choose);
+						IFSeqOctSnr.st04((0..7).choose);
+						IFSeqOctSnr.st05((0..7).choose);
+						IFSeqOctSnr.st06((0..7).choose);
+						IFSeqOctSnr.st07((0..7).choose);
+						IFSeqOctSnr.st08((0..7).choose);
 
-						IFSeqOctSnr.st09((0..10).choose);
-						IFSeqOctSnr.st10((0..10).choose);
-						IFSeqOctSnr.st11((0..10).choose);
-						IFSeqOctSnr.st12((0..10).choose);
-						IFSeqOctSnr.st13((0..10).choose);
-						IFSeqOctSnr.st14((0..10).choose);
-						IFSeqOctSnr.st15((0..10).choose);
-						IFSeqOctSnr.st16((0..10).choose);
+						IFSeqOctSnr.st09((0..7).choose);
+						IFSeqOctSnr.st10((0..7).choose);
+						IFSeqOctSnr.st11((0..7).choose);
+						IFSeqOctSnr.st12((0..7).choose);
+						IFSeqOctSnr.st13((0..7).choose);
+						IFSeqOctSnr.st14((0..7).choose);
+						IFSeqOctSnr.st15((0..7).choose);
+						IFSeqOctSnr.st16((0..7).choose);
 						~cntSeqOctRandSnr01=0;
 					}
 				)}
@@ -145,10 +142,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st01(4);},
 					6, {IFSeqOctSnr.st01(5);},
 					7, {IFSeqOctSnr.st01(6);},
-					8, {IFSeqOctSnr.st01(7);},
-					9, {IFSeqOctSnr.st01(8);},
-					10,{IFSeqOctSnr.st01(9);},
-					11,{IFSeqOctSnr.st01(10);
+					8, {IFSeqOctSnr.st01(7);
 						~cntSeqOctSnr01=0;
 					}
 				)}
@@ -170,11 +164,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st02(4);},
 					6, {IFSeqOctSnr.st02(5);},
 					7, {IFSeqOctSnr.st02(6);},
-					8, {IFSeqOctSnr.st02(7);},
-					9, {IFSeqOctSnr.st02(8);},
-					10, {IFSeqOctSnr.st02(9);},
-					11,{
-						IFSeqOctSnr.st02(10);
+					8, {IFSeqOctSnr.st02(7);
 						~cntSeqOctSnr02=0;
 					}
 				)}
@@ -196,11 +186,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st03(4);},
 					6, {IFSeqOctSnr.st03(5);},
 					7, {IFSeqOctSnr.st03(6);},
-					8, {IFSeqOctSnr.st03(7);},
-					9, {IFSeqOctSnr.st03(8);},
-					10, {IFSeqOctSnr.st03(9);},
-					11,{
-						IFSeqOctSnr.st03(10);
+					8, {IFSeqOctSnr.st03(7);
 						~cntSeqOctSnr03=0;
 					}
 				)}
@@ -222,11 +208,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st04(4);},
 					6, {IFSeqOctSnr.st04(5);},
 					7, {IFSeqOctSnr.st04(6);},
-					8, {IFSeqOctSnr.st04(7);},
-					9, {IFSeqOctSnr.st04(8);},
-					10, {IFSeqOctSnr.st04(9);},
-					11,{
-						IFSeqOctSnr.st04(10);
+					8, {IFSeqOctSnr.st04(7);
 						~cntSeqOctSnr04=0;
 					}
 				)}
@@ -248,11 +230,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st05(4);},
 					6, {IFSeqOctSnr.st05(5);},
 					7, {IFSeqOctSnr.st05(6);},
-					8, {IFSeqOctSnr.st05(7);},
-					9, {IFSeqOctSnr.st05(8);},
-					10, {IFSeqOctSnr.st05(9);},
-					11,{
-						IFSeqOctSnr.st05(10);
+					8, {IFSeqOctSnr.st05(7);
 						~cntSeqOctSnr05=0;
 					}
 				)}
@@ -274,11 +252,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st06(4);},
 					6, {IFSeqOctSnr.st06(5);},
 					7, {IFSeqOctSnr.st06(6);},
-					8, {IFSeqOctSnr.st06(7);},
-					9, {IFSeqOctSnr.st06(8);},
-					10, {IFSeqOctSnr.st06(9);},
-					11,{
-						IFSeqOctSnr.st06(10);
+					8, {IFSeqOctSnr.st06(7);
 						~cntSeqOctSnr06=0;
 					}
 				)}
@@ -300,11 +274,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st07(4);},
 					6, {IFSeqOctSnr.st07(5);},
 					7, {IFSeqOctSnr.st07(6);},
-					8, {IFSeqOctSnr.st07(7);},
-					9, {IFSeqOctSnr.st07(8);},
-					10, {IFSeqOctSnr.st07(9);},
-					11,{
-						IFSeqOctSnr.st07(10);
+					8, {IFSeqOctSnr.st07(7);
 						~cntSeqOctSnr07=0;
 					}
 				)}
@@ -326,11 +296,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st08(4);},
 					6, {IFSeqOctSnr.st08(5);},
 					7, {IFSeqOctSnr.st08(6);},
-					8, {IFSeqOctSnr.st08(7);},
-					9, {IFSeqOctSnr.st08(8);},
-					10, {IFSeqOctSnr.st08(9);},
-					11,{
-						IFSeqOctSnr.st08(10);
+					8, {IFSeqOctSnr.st08(7);
 						~cntSeqOctSnr08=0;
 					}
 				)}
@@ -352,11 +318,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st09(4);},
 					6, {IFSeqOctSnr.st09(5);},
 					7, {IFSeqOctSnr.st09(6);},
-					8, {IFSeqOctSnr.st09(7);},
-					9, {IFSeqOctSnr.st09(8);},
-					10, {IFSeqOctSnr.st09(9);},
-					11,{
-						IFSeqOctSnr.st09(10);
+					8, {IFSeqOctSnr.st09(7);
 						~cntSeqOctSnr09=0;
 					}
 				)}
@@ -378,11 +340,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st10(4);},
 					6, {IFSeqOctSnr.st10(5);},
 					7, {IFSeqOctSnr.st10(6);},
-					8, {IFSeqOctSnr.st10(7);},
-					9, {IFSeqOctSnr.st10(8);},
-					10, {IFSeqOctSnr.st10(9);},
-					11,{
-						IFSeqOctSnr.st10(10);
+					8, {IFSeqOctSnr.st10(7);
 						~cntSeqOctSnr10=0;
 					}
 				)}
@@ -404,11 +362,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st11(4);},
 					6, {IFSeqOctSnr.st11(5);},
 					7, {IFSeqOctSnr.st11(6);},
-					8, {IFSeqOctSnr.st11(7);},
-					9, {IFSeqOctSnr.st11(8);},
-					10, {IFSeqOctSnr.st11(9);},
-					11,{
-						IFSeqOctSnr.st11(10);
+					8, {IFSeqOctSnr.st11(7);
 						~cntSeqOctSnr11=0;
 					}
 				)}
@@ -430,11 +384,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st12(4);},
 					6, {IFSeqOctSnr.st12(5);},
 					7, {IFSeqOctSnr.st12(6);},
-					8, {IFSeqOctSnr.st12(7);},
-					9, {IFSeqOctSnr.st12(8);},
-					10, {IFSeqOctSnr.st12(9);},
-					11,{
-						IFSeqOctSnr.st12(10);
+					8, {IFSeqOctSnr.st12(7);
 						~cntSeqOctSnr12=0;
 					}
 				)}
@@ -456,11 +406,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st13(4);},
 					6, {IFSeqOctSnr.st13(5);},
 					7, {IFSeqOctSnr.st13(6);},
-					8, {IFSeqOctSnr.st13(7);},
-					9, {IFSeqOctSnr.st13(8);},
-					10, {IFSeqOctSnr.st13(9);},
-					11,{
-						IFSeqOctSnr.st13(10);
+					8, {IFSeqOctSnr.st13(7);
 						~cntSeqOctSnr13=0;
 					}
 				)}
@@ -482,11 +428,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st14(4);},
 					6, {IFSeqOctSnr.st14(5);},
 					7, {IFSeqOctSnr.st14(6);},
-					8, {IFSeqOctSnr.st14(7);},
-					9, {IFSeqOctSnr.st14(8);},
-					10, {IFSeqOctSnr.st14(9);},
-					11,{
-						IFSeqOctSnr.st14(10);
+					8, {IFSeqOctSnr.st14(7);
 						~cntSeqOctSnr14=0;
 					}
 				)}
@@ -508,11 +450,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st15(4);},
 					6, {IFSeqOctSnr.st15(5);},
 					7, {IFSeqOctSnr.st15(6);},
-					8, {IFSeqOctSnr.st15(7);},
-					9, {IFSeqOctSnr.st15(8);},
-					10, {IFSeqOctSnr.st15(9);},
-					11,{
-						IFSeqOctSnr.st15(10);
+					8, {IFSeqOctSnr.st15(7);
 						~cntSeqOctSnr15=0;
 					}
 				)}
@@ -534,11 +472,7 @@ IFSeqOctSnr {
 					5, {IFSeqOctSnr.st16(4);},
 					6, {IFSeqOctSnr.st16(5);},
 					7, {IFSeqOctSnr.st16(6);},
-					8, {IFSeqOctSnr.st16(7);},
-					9, {IFSeqOctSnr.st16(8);},
-					10, {IFSeqOctSnr.st16(9);},
-					11,{
-						IFSeqOctSnr.st16(10);
+					8, {IFSeqOctSnr.st16(7);
 						~cntSeqOctSnr16=0;
 					}
 				)}

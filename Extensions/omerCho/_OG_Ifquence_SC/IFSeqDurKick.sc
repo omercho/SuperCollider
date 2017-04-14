@@ -76,7 +76,9 @@ IFSeqDurKick {
 					0,{},
 					1,{IFSeqDurKick.stGrp(1);},
 					2,{IFSeqDurKick.stGrp(2);},
-					3,{IFSeqDurKick.stGrp(3);
+					3,{IFSeqDurKick.stGrp(3);},
+					4,{IFSeqDurKick.stGrp(4);},
+					5,{IFSeqDurKick.stGrp(5);
 						~cntSeqDurUpKick01=0;
 					}
 				)}

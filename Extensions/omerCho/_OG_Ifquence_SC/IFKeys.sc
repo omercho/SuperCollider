@@ -11,12 +11,18 @@ IFKeys {
 	classvar <>counter3 = 0;
 
 
-	*initClass {
+	*initClass{
 		StartUp add: {
 			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default;this.osc; });*/
 		}
 	}
-
+	*load{
+		this.globals;
+		this.proxy;
+		this.osc;
+		this.apc40;
+		//this.beh;
+	}
 	*globals{
 
 		~chKeys=4;
@@ -32,11 +38,7 @@ IFKeys {
 
 	}
 
-	*preSet{}
-
-
-	*default {
-
+	*proxy{
 		~nt1Keys = PatternProxy( Pseq([0], inf));
 		~nt1KeysP = Pseq([~nt1Keys], inf).asStream;
 		~dur1Keys = PatternProxy( Pseq([1], inf));
@@ -81,6 +83,16 @@ IFKeys {
 
 		~actKeys = PatternProxy( Pseq([1], inf));
 		~actKeysP= Pseq([~actKeys], inf).asStream;
+
+		//StaticKeys
+		~actStKeys = PatternProxy( Pseq([0], inf));
+		~actStKeysP= Pseq([~actStKeys], inf).asStream;
+		~durStKeys = PatternProxy( Pseq([1], inf));
+		~durStKeysP = Pseq([~durStKeys], inf).asStream;
+		~ampStKeys = PatternProxy( Pseq([0,0,0,0,1], inf));
+		~ampStKeysP = Pseq([~ampStKeys], inf).asStream;
+		~ntStKeys = PatternProxy( Pseq([67], inf));
+		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;
 
 
 	}
@@ -150,30 +162,93 @@ IFKeys {
 			\control, Pseq([~lfoRtKeysP.value], inf)*~lfoMulKeys2,
 		).play;
 
+	}//p1
+	*stat01 {|i=1|
+		var val;
+		val=i;
+		~staticKeysPat=Pbind(
+			\chan, ~chKeys,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~durStKeysP.next],~actStKeysP.next),
+			\degree, Pseq([~ntStKeysP.next], inf),
+			\amp, Pseq([~ampStKeysP.next], inf)
+		).play;
+	}//stat01
 
 
-		//this.count2;
-		//this.timesCount;
-	}
+	*apc40{
 
+		~volKeys_APC.free;
+		~volKeys_APC=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volKeys', vel/127);
+			~mdOut.control(6, 1, vel);
 
+		},srcID:~apc40InID, chan:4, ccNum:7);
 
-	*osc{
+		//Act ButA
+		//Keys Activate
+		~cntActLine5ButA=0;
+		~mdActLine5ButA.free;
+		~mdActLine5ButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine5ButA = ~cntActLine5ButA + 1;
+				~cntActLine5ButA.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine5ButA(1);
+					},
+					2,{
+						IFAPC40.actLine5ButA(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButA);
 
+		//Act ButB
+		//Keys Time Div2
+		~cntActLine5ButB=0;
+		~mdActLine5ButB.free;
+		~mdActLine5ButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine5ButB = ~cntActLine5ButB + 1;
+				~cntActLine5ButB.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine5ButB(1);
+					},
+					2,{
+						IFAPC40.actLine5ButB(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButB);
 
-		~actKeysBut.free;
-		~actKeysBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~actKeys.source=1;
-				~behOut.control(6, 2, 127);
-			},{
-					~actKeys.source=0;
-					~behOut.control(6, 2, 0);
-			});
-			},
-			'/activKeys'
-		);
+		//Act ButC
+		//Static Keys Activate
+		~cntActLine5ButC=0;
+		~mdActLine5ButC.free;
+		~mdActLine5ButC=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine5ButC = ~cntActLine5ButC + 1;
+				~cntActLine5ButC.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine5ButC(1);
+					},
+					2,{
+						IFAPC40.actLine5ButC(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButC);
+
+	}//*apc40
+
+	*beh{
 		~actKeysMD.free;
 		~actKeysMD=MIDIFunc.cc( {
 			arg vel;
@@ -185,36 +260,6 @@ IFKeys {
 					~tOSCAdrr.sendMsg('activKeys', 0);
 			});
 		}, chan:6, ccNum:2);
-
-		//TIME
-
-		~time2KeysBut.free;
-		~countTime2Keys=0;
-		~time2KeysBut= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
-				~countTime2Keys = ~countTime2Keys + 1;
-				~countTime2Keys.switch(
-					0,{},
-					1, {
-						~behOut.control(6, 9, 127);
-						~tOSCAdrr.sendMsg('time2Keys', 1);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
-						~tmMulKeys.source = Pseq([2], inf);
-					},
-					2,{
-						~behOut.control(6, 9, 0);
-						~tOSCAdrr.sendMsg('time2Keys', 0);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
-						~tmMulKeys.source = Pseq([1], inf);
-						~countTime2Keys=0;
-					}
-				)}
-			);
-			},
-			'/time2Keys'
-		);
-
 		~time2KeysMD.free;
 		~time2KeysMD=MIDIFunc.cc( {
 			arg vel;
@@ -230,7 +275,53 @@ IFKeys {
 					~countTime2Keys=0;
 			});
 		}, chan:6, ccNum:9);
+	}
+	*osc{
 
+		~actKeysBut.free;
+		~actKeysBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actKeys.source=1;
+				~apc40.noteOn(4, 48, 127); //Trk5_But 1
+				//~behOut.control(6, 2, 127);
+			},{
+					~actKeys.source=0;
+					~apc40.noteOff(4, 48, 127); //Trk5_But 1
+					//~behOut.control(6, 2, 0);
+			});
+			},
+			'/activKeys'
+		);
+
+		~time2KeysBut.free;
+		~countTime2Keys=0;
+		~time2KeysBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+				~countTime2Keys = ~countTime2Keys + 1;
+				~countTime2Keys.switch(
+					0,{},
+					1, {
+						//~behOut.control(6, 9, 127);
+						~apc40.noteOn(4, 49, 127); //Trk5_But 2
+						~tOSCAdrr.sendMsg('time2Keys', 1);
+						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
+						~tmMulKeys.source = Pseq([2], inf);
+					},
+					2,{
+						//~behOut.control(6, 9, 0);
+						~apc40.noteOff(4, 49, 127); //Trk5_But 2
+						~tOSCAdrr.sendMsg('time2Keys', 0);
+						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
+						~tmMulKeys.source = Pseq([1], inf);
+						~countTime2Keys=0;
+					}
+				)}
+			);
+			},
+			'/time2Keys'
+		);
 
 		~volKeysFader.free;
 		~volKeysFader= OSCFunc({

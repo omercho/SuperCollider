@@ -76,7 +76,9 @@ IFSeqDurSamp {
 					0,{},
 					1,{IFSeqDurSamp.stGrp(1);},
 					2,{IFSeqDurSamp.stGrp(2);},
-					3,{IFSeqDurSamp.stGrp(3);
+					3,{IFSeqDurSamp.stGrp(3);},
+					4,{IFSeqDurSamp.stGrp(4);},
+					5,{IFSeqDurSamp.stGrp(5);
 						~cntSeqDurUpSamp01=0;
 					}
 				)}

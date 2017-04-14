@@ -15,6 +15,7 @@ IFSeqBass {
 		IFSeqSusBass.loadAll;
 		IFSeqTmBass.loadAll;
 		IFSeqDurBass.loadAll;
+		IFSeqStBass.loadAll;
 		this.on;
 	}
 
@@ -409,7 +410,7 @@ IFSeqBass {
 	}
 
 	*st09 {|i|
-		~cntSeqBass01=i;
+		~cntSeqBass09=i;
 		~seqBass09.source = Pseq([i], 1);
 		~tOSCAdrr.sendMsg('ledBass09', i);
 	}
@@ -472,11 +473,12 @@ IFSeqBass {
 
 	*step01{
 		~amp1Bass.source  =  Pseq([~seqBass01.next*~seqVelBass01.next], inf);
-		~octBass.source   =  Pseq([~seqOctBass01.next], inf);
+		~octBass.source = Pseq([~seqOctBass01.next], inf);
 		~nt1Bass.source   =  Pseq([~seqNtBass01.next], inf);
 		~sus1Bass.source  =  Pseq([~seqSusBass01.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass01.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass01.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass01.next], inf);
 	}
 	*step02{
 		~amp1Bass.source  =  Pseq([~seqBass02.next*~seqVelBass02.next], inf);
@@ -485,6 +487,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass02.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass02.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass02.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass02.next], inf);
 	}
 	*step03{
 		~amp1Bass.source  =  Pseq([~seqBass03.next*~seqVelBass03.next], inf);
@@ -493,6 +496,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass03.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass03.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass03.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass03.next], inf);
 	}
 	*step04{
 		~amp1Bass.source  =  Pseq([~seqBass04.next*~seqVelBass04.next], inf);
@@ -501,6 +505,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass04.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass04.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass04.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass04.next], inf);
 	}
 	*step05{
 		~amp1Bass.source  =  Pseq([~seqBass05.next*~seqVelBass05.next], inf);
@@ -509,6 +514,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass05.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass05.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass05.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass05.next], inf);
 	}
 	*step06{
 		~amp1Bass.source  =  Pseq([~seqBass06.next*~seqVelBass06.next], inf);
@@ -517,6 +523,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass06.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass06.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass06.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass06.next], inf);
 	}
 	*step07{
 		~amp1Bass.source  =  Pseq([~seqBass07.next*~seqVelBass07.next], inf);
@@ -525,6 +532,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass07.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass07.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass07.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass07.next], inf);
 	}
 	*step08{
 		~amp1Bass.source  =  Pseq([~seqBass08.next*~seqVelBass08.next], inf);
@@ -533,6 +541,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass08.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass08.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass08.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass08.next], inf);
 	}
 	*step09{
 		~amp1Bass.source  =  Pseq([~seqBass09.next*~seqVelBass09.next], inf);
@@ -541,6 +550,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass09.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass09.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass09.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass09.next], inf);
 	}
 	*step10{
 		~amp1Bass.source  =  Pseq([~seqBass10.next*~seqVelBass10.next], inf);
@@ -549,6 +559,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass10.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass10.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass10.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass10.next], inf);
 	}
 	*step11{
 		~amp1Bass.source  =  Pseq([~seqBass11.next*~seqVelBass11.next], inf);
@@ -557,6 +568,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass11.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass11.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass11.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass11.next], inf);
 	}
 	*step12{
 		~amp1Bass.source  =  Pseq([~seqBass12.next*~seqVelBass12.next], inf);
@@ -565,6 +577,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass12.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass12.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass12.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass12.next], inf);
 	}
 	*step13{
 		~amp1Bass.source  =  Pseq([~seqBass13.next*~seqVelBass13.next], inf);
@@ -573,6 +586,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass13.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass13.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass13.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass13.next], inf);
 	}
 	*step14{
 		~amp1Bass.source  =  Pseq([~seqBass14.next*~seqVelBass14.next], inf);
@@ -581,6 +595,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass14.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass14.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass14.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass14.next], inf);
 	}
 	*step15{
 		~amp1Bass.source  =  Pseq([~seqBass15.next*~seqVelBass15.next], inf);
@@ -589,6 +604,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass15.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass15.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass15.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass15.next], inf);
 	}
 	*step16{
 		~amp1Bass.source  =  Pseq([~seqBass16.next*~seqVelBass16.next], inf);
@@ -597,6 +613,7 @@ IFSeqBass {
 		~sus1Bass.source  =  Pseq([~seqSusBass16.next], inf);
 		~tmBass.source    =  Pseq([~seqTmBass16.next], inf);
 		~dur1Bass.source    =  Pseq([~seqDurBass16.next], inf);
+		~ampStBass.source  =  Pseq([~seqStBass16.next], inf);
 	}
 
 	*stGrp {|i|

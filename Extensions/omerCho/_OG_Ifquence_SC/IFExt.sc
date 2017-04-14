@@ -84,6 +84,16 @@ IFExt{
 	*oscMIDI{
 
 
+		~volExtFader.free;
+		~volExtFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volExt', msg[1]);
+			~mdOut.control(8, 22, vel);
+			},
+			'/volExt'
+		);
+
 		~susExtMulFader.free;
 		~susExtMulFader= OSCFunc({
 			arg msg;
@@ -111,8 +121,11 @@ IFExt{
 
 			vel1=msg[1];
 			vel2=msg[2];
+
+			~tOSCAdrr.sendMsg('/extSends',msg[1], msg[2]);
 			~mdOut.control(8, 4, msg[1]*127);
 			~mdOut.control(8, 3, msg[2]*127);
+			~mdOut.control(8, 5, msg[2]*127);
 
 			},
 			'/extSends'
@@ -327,3 +340,30 @@ IFExt{
 	}
 
 }
+
+/*
+~mdOut.allNotesOff(0);
+		~mdOut.allNotesOff(1);
+		~mdOut.allNotesOff(2);
+		~mdOut.allNotesOff(3);
+		~mdOut.allNotesOff(4);
+		~mdOut.allNotesOff(5);
+		~mdOut.allNotesOff(6);
+		~mdOut.allNotesOff(7);
+		~mdOut.allNotesOff(8);
+		~mdOut.allNotesOff(9);
+		~mdOut.allNotesOff(10);
+        ~mdOut.allNotesOff(11);
+		~mdOut.allNotesOff(12);
+		~mdOut.allNotesOff(13);
+		~mdOut.allNotesOff(14);
+		~mdOut.allNotesOff(15);
+		~mdOut.allNotesOff(16);
+		~vKeys.allNotesOff(11);
+		~vKeys.allNotesOff(12);
+		~vKeys.allNotesOff(13);
+		~vKeys.allNotesOff(14);
+		~vKeys.allNotesOff(15);
+		~vKeys.allNotesOff(16);
+
+*/

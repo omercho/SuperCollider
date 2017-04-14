@@ -78,10 +78,7 @@ IFSeqOctKick {
 					5,{IFSeqOctKick.stGrp(4);},
 					6,{IFSeqOctKick.stGrp(5);},
 					7,{IFSeqOctKick.stGrp(6);},
-					8,{IFSeqOctKick.stGrp(7);},
-					9,{IFSeqOctKick.stGrp(8);},
-					10,{IFSeqOctKick.stGrp(9);},
-					11,{IFSeqOctKick.stGrp(10);
+					8,{IFSeqOctKick.stGrp(7);
 						~cntSeqOctUpKick01=0;
 					}
 				)}
@@ -100,23 +97,23 @@ IFSeqOctKick {
 				~cntSeqOctRandKick01.switch(
 					0,{},
 					1,{
-						IFSeqOctKick.st01((0..10).choose);
-						IFSeqOctKick.st02((0..10).choose);
-						IFSeqOctKick.st03((0..10).choose);
-						IFSeqOctKick.st04((0..10).choose);
-						IFSeqOctKick.st05((0..10).choose);
-						IFSeqOctKick.st06((0..10).choose);
-						IFSeqOctKick.st07((0..10).choose);
-						IFSeqOctKick.st08((0..10).choose);
+						IFSeqOctKick.st01((0..7).choose);
+						IFSeqOctKick.st02((0..7).choose);
+						IFSeqOctKick.st03((0..7).choose);
+						IFSeqOctKick.st04((0..7).choose);
+						IFSeqOctKick.st05((0..7).choose);
+						IFSeqOctKick.st06((0..7).choose);
+						IFSeqOctKick.st07((0..7).choose);
+						IFSeqOctKick.st08((0..7).choose);
 
-						IFSeqOctKick.st09((0..10).choose);
-						IFSeqOctKick.st10((0..10).choose);
-						IFSeqOctKick.st11((0..10).choose);
-						IFSeqOctKick.st12((0..10).choose);
-						IFSeqOctKick.st13((0..10).choose);
-						IFSeqOctKick.st14((0..10).choose);
-						IFSeqOctKick.st15((0..10).choose);
-						IFSeqOctKick.st16((0..10).choose);
+						IFSeqOctKick.st09((0..7).choose);
+						IFSeqOctKick.st10((0..7).choose);
+						IFSeqOctKick.st11((0..7).choose);
+						IFSeqOctKick.st12((0..7).choose);
+						IFSeqOctKick.st13((0..7).choose);
+						IFSeqOctKick.st14((0..7).choose);
+						IFSeqOctKick.st15((0..7).choose);
+						IFSeqOctKick.st16((0..7).choose);
 						~cntSeqOctRandKick01=0;
 					}
 				)}
@@ -145,10 +142,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st01(4);},
 					6, {IFSeqOctKick.st01(5);},
 					7, {IFSeqOctKick.st01(6);},
-					8, {IFSeqOctKick.st01(7);},
-					9, {IFSeqOctKick.st01(8);},
-					10,{IFSeqOctKick.st01(9);},
-					11,{IFSeqOctKick.st01(10);
+					8, {IFSeqOctKick.st01(7);
 						~cntSeqOctKick01=0;
 					}
 				)}
@@ -170,11 +164,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st02(4);},
 					6, {IFSeqOctKick.st02(5);},
 					7, {IFSeqOctKick.st02(6);},
-					8, {IFSeqOctKick.st02(7);},
-					9, {IFSeqOctKick.st02(8);},
-					10, {IFSeqOctKick.st02(9);},
-					11,{
-						IFSeqOctKick.st02(10);
+					8, {IFSeqOctKick.st02(7);
 						~cntSeqOctKick02=0;
 					}
 				)}
@@ -196,11 +186,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st03(4);},
 					6, {IFSeqOctKick.st03(5);},
 					7, {IFSeqOctKick.st03(6);},
-					8, {IFSeqOctKick.st03(7);},
-					9, {IFSeqOctKick.st03(8);},
-					10, {IFSeqOctKick.st03(9);},
-					11,{
-						IFSeqOctKick.st03(10);
+					8, {IFSeqOctKick.st03(7);
 						~cntSeqOctKick03=0;
 					}
 				)}
@@ -222,11 +208,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st04(4);},
 					6, {IFSeqOctKick.st04(5);},
 					7, {IFSeqOctKick.st04(6);},
-					8, {IFSeqOctKick.st04(7);},
-					9, {IFSeqOctKick.st04(8);},
-					10, {IFSeqOctKick.st04(9);},
-					11,{
-						IFSeqOctKick.st04(10);
+					8, {IFSeqOctKick.st04(7);
 						~cntSeqOctKick04=0;
 					}
 				)}
@@ -248,11 +230,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st05(4);},
 					6, {IFSeqOctKick.st05(5);},
 					7, {IFSeqOctKick.st05(6);},
-					8, {IFSeqOctKick.st05(7);},
-					9, {IFSeqOctKick.st05(8);},
-					10, {IFSeqOctKick.st05(9);},
-					11,{
-						IFSeqOctKick.st05(10);
+					8, {IFSeqOctKick.st05(7);
 						~cntSeqOctKick05=0;
 					}
 				)}
@@ -274,11 +252,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st06(4);},
 					6, {IFSeqOctKick.st06(5);},
 					7, {IFSeqOctKick.st06(6);},
-					8, {IFSeqOctKick.st06(7);},
-					9, {IFSeqOctKick.st06(8);},
-					10, {IFSeqOctKick.st06(9);},
-					11,{
-						IFSeqOctKick.st06(10);
+					8, {IFSeqOctKick.st06(7);
 						~cntSeqOctKick06=0;
 					}
 				)}
@@ -300,11 +274,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st07(4);},
 					6, {IFSeqOctKick.st07(5);},
 					7, {IFSeqOctKick.st07(6);},
-					8, {IFSeqOctKick.st07(7);},
-					9, {IFSeqOctKick.st07(8);},
-					10, {IFSeqOctKick.st07(9);},
-					11,{
-						IFSeqOctKick.st07(10);
+					8, {IFSeqOctKick.st07(7);
 						~cntSeqOctKick07=0;
 					}
 				)}
@@ -326,11 +296,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st08(4);},
 					6, {IFSeqOctKick.st08(5);},
 					7, {IFSeqOctKick.st08(6);},
-					8, {IFSeqOctKick.st08(7);},
-					9, {IFSeqOctKick.st08(8);},
-					10, {IFSeqOctKick.st08(9);},
-					11,{
-						IFSeqOctKick.st08(10);
+					8, {IFSeqOctKick.st08(7);
 						~cntSeqOctKick08=0;
 					}
 				)}
@@ -352,11 +318,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st09(4);},
 					6, {IFSeqOctKick.st09(5);},
 					7, {IFSeqOctKick.st09(6);},
-					8, {IFSeqOctKick.st09(7);},
-					9, {IFSeqOctKick.st09(8);},
-					10, {IFSeqOctKick.st09(9);},
-					11,{
-						IFSeqOctKick.st09(10);
+					8, {IFSeqOctKick.st09(7);
 						~cntSeqOctKick09=0;
 					}
 				)}
@@ -378,11 +340,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st10(4);},
 					6, {IFSeqOctKick.st10(5);},
 					7, {IFSeqOctKick.st10(6);},
-					8, {IFSeqOctKick.st10(7);},
-					9, {IFSeqOctKick.st10(8);},
-					10, {IFSeqOctKick.st10(9);},
-					11,{
-						IFSeqOctKick.st10(10);
+					8, {IFSeqOctKick.st10(7);
 						~cntSeqOctKick10=0;
 					}
 				)}
@@ -404,11 +362,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st11(4);},
 					6, {IFSeqOctKick.st11(5);},
 					7, {IFSeqOctKick.st11(6);},
-					8, {IFSeqOctKick.st11(7);},
-					9, {IFSeqOctKick.st11(8);},
-					10, {IFSeqOctKick.st11(9);},
-					11,{
-						IFSeqOctKick.st11(10);
+					8, {IFSeqOctKick.st11(7);
 						~cntSeqOctKick11=0;
 					}
 				)}
@@ -430,11 +384,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st12(4);},
 					6, {IFSeqOctKick.st12(5);},
 					7, {IFSeqOctKick.st12(6);},
-					8, {IFSeqOctKick.st12(7);},
-					9, {IFSeqOctKick.st12(8);},
-					10, {IFSeqOctKick.st12(9);},
-					11,{
-						IFSeqOctKick.st12(10);
+					8, {IFSeqOctKick.st12(7);
 						~cntSeqOctKick12=0;
 					}
 				)}
@@ -456,11 +406,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st13(4);},
 					6, {IFSeqOctKick.st13(5);},
 					7, {IFSeqOctKick.st13(6);},
-					8, {IFSeqOctKick.st13(7);},
-					9, {IFSeqOctKick.st13(8);},
-					10, {IFSeqOctKick.st13(9);},
-					11,{
-						IFSeqOctKick.st13(10);
+					8, {IFSeqOctKick.st13(7);
 						~cntSeqOctKick13=0;
 					}
 				)}
@@ -482,11 +428,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st14(4);},
 					6, {IFSeqOctKick.st14(5);},
 					7, {IFSeqOctKick.st14(6);},
-					8, {IFSeqOctKick.st14(7);},
-					9, {IFSeqOctKick.st14(8);},
-					10, {IFSeqOctKick.st14(9);},
-					11,{
-						IFSeqOctKick.st14(10);
+					8, {IFSeqOctKick.st14(7);
 						~cntSeqOctKick14=0;
 					}
 				)}
@@ -508,11 +450,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st15(4);},
 					6, {IFSeqOctKick.st15(5);},
 					7, {IFSeqOctKick.st15(6);},
-					8, {IFSeqOctKick.st15(7);},
-					9, {IFSeqOctKick.st15(8);},
-					10, {IFSeqOctKick.st15(9);},
-					11,{
-						IFSeqOctKick.st15(10);
+					8, {IFSeqOctKick.st15(7);
 						~cntSeqOctKick15=0;
 					}
 				)}
@@ -534,11 +472,7 @@ IFSeqOctKick {
 					5, {IFSeqOctKick.st16(4);},
 					6, {IFSeqOctKick.st16(5);},
 					7, {IFSeqOctKick.st16(6);},
-					8, {IFSeqOctKick.st16(7);},
-					9, {IFSeqOctKick.st16(8);},
-					10, {IFSeqOctKick.st16(9);},
-					11,{
-						IFSeqOctKick.st16(10);
+					8, {IFSeqOctKick.st16(7);
 						~cntSeqOctKick16=0;
 					}
 				)}

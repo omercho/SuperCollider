@@ -36,20 +36,21 @@
 		this.shiftButtons;
 		this.setTempo(120);
 		IFSixteen.defaults;
-		//this.preSetAll;
 		~nt=(0);
 	}
 
 	*setAddr{
 
 		//~tOSCAdrr = NetAddr.new("192.168.1.7", 57130); // router OTE
-		~tOSCAdrr = NetAddr.new("192.168.1.6", 5001); // router StudioVag
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 5001); // router StudioVag
 		//~tOSCAdrr = NetAddr.new("192.168.1.3", 5001); // connX
 		~local = NetAddr("localhost", 57120);
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		~behOut = MIDIOut.newByName("BCF2000", "Port 1");
+		~mdOutID= (-1290330895);
+		IFAPC40.loadSource;
+		//~behOut = MIDIOut.newByName("BCF2000", "Port 1");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
-		~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);
+		//~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 
 	}
@@ -79,7 +80,7 @@
 		~shiftPartsBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				IFSixteen.parts;
+				IFSixteen.partsTrack01;
 				},{
 					IFSixteen.defaults;
 			});
@@ -120,114 +121,17 @@
 			},
 			'/shiftScales'
 		);
-
-	}
-	*preSetAll{
-		"Preset: Default".postln;
-		~tOSCAdrr.sendMsg('presetLabel','Default');
-
-		"Duration Mul: 1/2".postln;
-		~tOSCAdrr.sendMsg('durMulLabel', '1/2');
-		~durMul.source = Pseq([1/2], inf);
-		~tOSCAdrr.sendMsg('durMul1_4', '0');
-		~tOSCAdrr.sendMsg('durMul1_2', '1');
-		~tOSCAdrr.sendMsg('durMul1', '0');
-
-		"Duration Pattern: Straight".postln;
-		~tOSCAdrr.sendMsg('durLabel', 'Straight');
-		~dur.source = Pseq([1], inf)*~durMulP.next;
-		~tOSCAdrr.sendMsg('dur1', '1');
-		~tOSCAdrr.sendMsg('dur2', '0');
-		~tOSCAdrr.sendMsg('dur3', '0');
-		~tOSCAdrr.sendMsg('dur4', '0');
-		~tOSCAdrr.sendMsg('durAks1', '0');
-		~tOSCAdrr.sendMsg('durShuf1', '0');
-		~tOSCAdrr.sendMsg('durRand1', '0');
-
-		"Kick Set".postln;
-		~local.sendMsg('volKick', 0.99);
-		~local.sendMsg('sendKick', 0.0, 0.0);
-		~local.sendMsg('attKick', 0.0);
-		~local.sendMsg('susKick', 0.5);
-		~local.sendMsg('decKick', 0.7);
-		~local.sendMsg('chainKick', 0.0);
-
-		"Snr Set".postln;
-		~local.sendMsg('volSnr', 0.99);
-		~local.sendMsg('sendSnr', 0.3, 0.1);
-		~local.sendMsg('attSnr', 0.0);
-		~local.sendMsg('susSnr', 0.5);
-		~local.sendMsg('decSnr', 0.5);
-		~local.sendMsg('chainSnr', 0.05);
-
-		"Hat Set".postln;
-		~local.sendMsg('volHat', 0.99);
-		~local.sendMsg('sendHat', 0.0, 0.0);
-		~local.sendMsg('attHat', 0.05);
-		~local.sendMsg('susHat', 0.05);
-		~local.sendMsg('decHat', 0.4);
-		~local.sendMsg('chainHat', 0.05);
-
-		"Bass Set".postln;
-		~local.sendMsg('volBass', 0.95);
-		~local.sendMsg('sendBass', 0.1, 0.0);
-		~local.sendMsg('attBass', 0.05);
-		~local.sendMsg('susBass', 0.5);
-		~local.sendMsg('decBass', 0.2);
-		~local.sendMsg('chainBass', 0.0);
-		~local.sendMsg('lfoMulBass1',0.00);
-		~local.sendMsg('lfoMulBass2',0.00);
-
-		"Keys Set".postln;
-		~local.sendMsg('volKeys', 0.95);
-		~local.sendMsg('sendKeys', 0.0, 0.6);
-		~local.sendMsg('attKeys', 0.05);
-		~local.sendMsg('susKeys', 0.3);
-		~local.sendMsg('decKeys', 0.05);
-		~local.sendMsg('chainKeys', 0.05);
-		~local.sendMsg('lfoMulKeys1',0.0);
-		~local.sendMsg('lfoMulKeys2',0.01);
-
-		"Samp Set".postln;
-		~local.sendMsg('volSamp', 0.8);
-		~local.sendMsg('sendSamp', 0.0, 0.3);
-		~local.sendMsg('attSamp', 0.05);
-		~local.sendMsg('susSamp', 0.05);
-		~local.sendMsg('decSamp', 0.3);
-		~local.sendMsg('chainSamp', 0.0);
-		~local.sendMsg('lfoMulSamp1',0.2);
-		~local.sendMsg('lfoMulSamp2',0.4);
-
-		"Global Set".postln;
-		~local.sendMsg('harm0',1);
-		~local.sendMsg('cutAll',0.2, 0.2);
-		~local.sendMsg('cutDrum',0.2, 0.2);
-
-
-
-	}
-
-
-	*preSet_1{
-		"Set1".postln;
-
-
-	}
-
-	*times{arg kickT, snrT, hatT, bassT, keysT, sampT, res1T;
-
-
-		IFKick.times(kickT); IFSnr.times(snrT); IFHat.times(hatT);
-		IFBass.times(bassT); IFKeys.times(keysT);  IFSamp.times(sampT);
-		IFRes1.times(res1T);
-	}
-
-
-
-
-
-	*resetCounts{
-		~countMain = 0;
+		~shiftDirectionsBut.free;
+		~shiftDirectionsBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				IFSixteen.directions;
+				},{
+					IFSixteen.defaults;
+			});
+			},
+			'/shiftDirect'
+		);
 
 	}
 

@@ -9,11 +9,12 @@ Puppet {
 }
 
 /*
-~pup1 = Puppet.new(50);
-
+~pup = Puppet.new(50);
+~pup2= Puppet.new(250);
 ~pup.dump;
 ~pup.myfreq;
 ~pup.myfreq_(100);
 ~pup.blip;
-~pup.myfreq_(100).blip;
+~pup2.blip;
+~pup.myfreq_(400).blip;
 */

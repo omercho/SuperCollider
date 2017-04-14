@@ -19,7 +19,13 @@ IFSamp {
 			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc; });*/
 		}
 	}
-
+	*load{
+		this.globals;
+		this.proxy;
+		this.osc;
+		this.apc40;
+		//this.beh;
+	}
 	*globals{
 
 		~chSamp=5;
@@ -37,12 +43,7 @@ IFSamp {
 
 	}
 
-	*preSet{
-
-	}
-
-
-	*default {
+	*proxy{
 
 		//~samplerEvent = Event.default.put(\freq, { ~midinote.midicps / ~sampleBaseFreq });
 
@@ -86,6 +87,16 @@ IFSamp {
 
 		~actSamp = PatternProxy( Pseq([1], inf));
 		~actSampP= Pseq([~actSamp], inf).asStream;
+
+		//StaticSamp
+		~actStSamp = PatternProxy( Pseq([0], inf));
+		~actStSampP= Pseq([~actStSamp], inf).asStream;
+		~durStSamp = PatternProxy( Pseq([1], inf));
+		~durStSampP = Pseq([~durStSamp], inf).asStream;
+		~ampStSamp = PatternProxy( Pseq([0,0,0,0,1], inf));
+		~ampStSampP = Pseq([~ampStSamp], inf).asStream;
+		~ntStSamp = PatternProxy( Pseq([67], inf));
+		~ntStSampP = Pseq([~ntStSamp], inf).asStream;
 
 
 	}
@@ -144,25 +155,92 @@ IFSamp {
 
 		).play;
 
-		//this.count2;
-		//this.timesCount;
-	}
+	}//p1
+	*stat01 {|i=1|
+		var val;
+		val=i;
+		~staticSampPat=Pbind(
+			\chan, ~chSamp,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~durStSampP.next],~actStSampP.next),
+			\degree, Pseq([~ntStSampP.next], inf),
+			\amp, Pseq([~ampStSampP.next], inf)
+		).play;
+	}//stat01
 
-	*osc{
+	*apc40{
 
-		~actSampBut.free;
-		~actSampBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~actSamp.source=1;
-				~behOut.control(7, 2, 127);
-			},{
-					~actSamp.source=0;
-					~behOut.control(7, 2, 0);
-			});
-			},
-			'/activSamp'
-		);
+		~volSamp_APC.free;
+		~volSamp_APC=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volSamp', vel/127);
+			~mdOut.control(7, 1, vel);
+
+		},srcID:~apc40InID, chan:5, ccNum:7);
+
+		//Act ButA
+		//Samp Activate
+		~cntActLine6ButA=0;
+		~mdActLine6ButA.free;
+		~mdActLine6ButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButA = ~cntActLine6ButA + 1;
+				~cntActLine6ButA.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine6ButA(1);
+					},
+					2,{
+						IFAPC40.actLine6ButA(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButA);
+
+		//Act ButB
+		//Samp Time Div2
+		~cntActLine6ButB=0;
+		~mdActLine6ButB.free;
+		~mdActLine6ButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButB = ~cntActLine6ButB + 1;
+				~cntActLine6ButB.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine6ButB(1);
+					},
+					2,{
+						IFAPC40.actLine6ButB(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButB);
+
+		//Act ButC
+		//Static Samp Activate
+		~cntActLine6ButC=0;
+		~mdActLine6ButC.free;
+		~mdActLine6ButC=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButC = ~cntActLine6ButC + 1;
+				~cntActLine6ButC.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine6ButC(1);
+					},
+					2,{
+						IFAPC40.actLine6ButC(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButC);
+
+	}//*apc40
+
+	*beh{
 		~actSampMD.free;
 		~actSampMD=MIDIFunc.cc( {
 			arg vel;
@@ -174,36 +252,6 @@ IFSamp {
 					~tOSCAdrr.sendMsg('activSamp', 0);
 			});
 		}, chan:7, ccNum:2);
-
-		//TIME
-
-		~time2SampBut.free;
-		~countTime2Samp=0;
-		~time2SampBut= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
-				~countTime2Samp = ~countTime2Samp + 1;
-				~countTime2Samp.switch(
-					0,{},
-					1, {
-						~behOut.control(7, 9, 127);
-						~tOSCAdrr.sendMsg('time2Samp', 1);
-						~tOSCAdrr.sendMsg('tmSampLabel', 2);
-						~tmMulSamp.source = Pseq([2], inf);
-					},
-					2,{
-						~behOut.control(7, 9, 0);
-						~tOSCAdrr.sendMsg('time2Samp', 0);
-						~tOSCAdrr.sendMsg('tmSampLabel', 1);
-						~tmMulSamp.source = Pseq([1], inf);
-						~countTime2Samp=0;
-					}
-				)}
-			);
-			},
-			'/time2Samp'
-		);
-
 		~time2SampMD.free;
 		~time2SampMD=MIDIFunc.cc( {
 			arg vel;
@@ -219,6 +267,55 @@ IFSamp {
 					~countTime2Samp=0;
 			});
 		}, chan:7, ccNum:9);
+	}
+
+	*osc{
+
+		~actSampBut.free;
+		~actSampBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actSamp.source=1;
+				~apc40.noteOn(5, 48, 127); //Trk6_But 1
+				//~behOut.control(7, 2, 127);
+			},{
+					~actSamp.source=0;
+					~apc40.noteOff(5, 48, 127); //Trk6_But 1
+					//~behOut.control(7, 2, 0);
+			});
+			},
+			'/activSamp'
+		);
+
+		~time2SampBut.free;
+		~countTime2Samp=0;
+		~time2SampBut= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~countTime2Samp = ~countTime2Samp + 1;
+				~countTime2Samp.switch(
+					0,{},
+					1, {
+						//~behOut.control(7, 9, 127);
+						~apc40.noteOn(5, 49, 127); //Trk6_But 2
+						~tOSCAdrr.sendMsg('time2Samp', 1);
+						~tOSCAdrr.sendMsg('tmSampLabel', 2);
+						~tmMulSamp.source = Pseq([2], inf);
+					},
+					2,{
+						//~behOut.control(7, 9, 0);
+						~apc40.noteOff(5, 49, 127); //Trk6_But 2
+						~tOSCAdrr.sendMsg('time2Samp', 0);
+						~tOSCAdrr.sendMsg('tmSampLabel', 1);
+						~tmMulSamp.source = Pseq([1], inf);
+						~countTime2Samp=0;
+					}
+				)}
+			);
+			},
+			'/time2Samp'
+		);
+
 
 		~volSampFader.free;
 		~volSampFader= OSCFunc({

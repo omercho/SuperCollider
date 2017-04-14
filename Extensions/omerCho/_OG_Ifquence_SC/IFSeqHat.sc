@@ -15,6 +15,7 @@ IFSeqHat {
 		IFSeqSusHat.loadAll;
 		IFSeqTmHat.loadAll;
 		IFSeqDurHat.loadAll;
+		IFSeqStHat.loadAll;
 		this.on;
 	}
 
@@ -404,7 +405,7 @@ IFSeqHat {
 	}
 
 	*st09 {|i|
-		~cntSeqHat01=i;
+		~cntSeqHat09=i;
 		~seqHat09.source = Pseq([i], 1);
 		~tOSCAdrr.sendMsg('ledHat09', i);
 	}
@@ -472,6 +473,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat01.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat01.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat01.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat01.next], inf);
 	}
 	*step02{
 		~amp1Hat.source  =  Pseq([~seqHat02.next*~seqVelHat02.next], inf);
@@ -480,6 +482,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat02.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat02.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat02.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat02.next], inf);
 	}
 	*step03{
 		~amp1Hat.source  =  Pseq([~seqHat03.next*~seqVelHat03.next], inf);
@@ -488,6 +491,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat03.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat03.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat03.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat03.next], inf);
 	}
 	*step04{
 		~amp1Hat.source  =  Pseq([~seqHat04.next*~seqVelHat04.next], inf);
@@ -496,6 +500,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat04.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat04.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat04.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat04.next], inf);
 	}
 	*step05{
 		~amp1Hat.source  =  Pseq([~seqHat05.next*~seqVelHat05.next], inf);
@@ -504,6 +509,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat05.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat05.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat05.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat05.next], inf);
 	}
 	*step06{
 		~amp1Hat.source  =  Pseq([~seqHat06.next*~seqVelHat06.next], inf);
@@ -512,6 +518,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat06.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat06.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat06.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat06.next], inf);
 	}
 	*step07{
 		~amp1Hat.source  =  Pseq([~seqHat07.next*~seqVelHat07.next], inf);
@@ -520,6 +527,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat07.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat07.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat07.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat07.next], inf);
 	}
 	*step08{
 		~amp1Hat.source  =  Pseq([~seqHat08.next*~seqVelHat08.next], inf);
@@ -528,6 +536,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat08.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat08.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat08.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat08.next], inf);
 	}
 	*step09{
 		~amp1Hat.source  =  Pseq([~seqHat09.next*~seqVelHat09.next], inf);
@@ -536,6 +545,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat09.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat09.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat09.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat09.next], inf);
 	}
 	*step10{
 		~amp1Hat.source  =  Pseq([~seqHat10.next*~seqVelHat10.next], inf);
@@ -544,6 +554,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat10.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat10.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat10.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat10.next], inf);
 	}
 	*step11{
 		~amp1Hat.source  =  Pseq([~seqHat11.next*~seqVelHat11.next], inf);
@@ -552,6 +563,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat11.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat11.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat11.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat11.next], inf);
 	}
 	*step12{
 		~amp1Hat.source  =  Pseq([~seqHat12.next*~seqVelHat12.next], inf);
@@ -560,6 +572,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat12.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat12.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat12.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat12.next], inf);
 	}
 	*step13{
 		~amp1Hat.source  =  Pseq([~seqHat13.next*~seqVelHat13.next], inf);
@@ -568,6 +581,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat13.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat13.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat13.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat13.next], inf);
 	}
 	*step14{
 		~amp1Hat.source  =  Pseq([~seqHat14.next*~seqVelHat14.next], inf);
@@ -576,6 +590,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat14.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat14.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat14.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat14.next], inf);
 	}
 	*step15{
 		~amp1Hat.source  =  Pseq([~seqHat15.next*~seqVelHat15.next], inf);
@@ -584,6 +599,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat15.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat15.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat15.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat15.next], inf);
 	}
 	*step16{
 		~amp1Hat.source  =  Pseq([~seqHat16.next*~seqVelHat16.next], inf);
@@ -592,6 +608,7 @@ IFSeqHat {
 		~sus1Hat.source  =  Pseq([~seqSusHat16.next], inf);
 		~tmHat.source    =  Pseq([~seqTmHat16.next], inf);
 		~dur1Hat.source    =  Pseq([~seqDurHat16.next], inf);
+		~ampStHat.source  =  Pseq([~seqStHat16.next], inf);
 	}
 	*stGrp {|i|
 

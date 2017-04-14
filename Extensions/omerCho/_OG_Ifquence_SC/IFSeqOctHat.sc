@@ -78,10 +78,7 @@ IFSeqOctHat {
 					5,{IFSeqOctHat.stGrp(4);},
 					6,{IFSeqOctHat.stGrp(5);},
 					7,{IFSeqOctHat.stGrp(6);},
-					8,{IFSeqOctHat.stGrp(7);},
-					9,{IFSeqOctHat.stGrp(8);},
-					10,{IFSeqOctHat.stGrp(9);},
-					11,{IFSeqOctHat.stGrp(10);
+					8,{IFSeqOctHat.stGrp(7);
 						~cntSeqOctUpHat01=0;
 					}
 				)}
@@ -100,23 +97,23 @@ IFSeqOctHat {
 				~cntSeqOctRandHat01.switch(
 					0,{},
 					1,{
-						IFSeqOctHat.st01((0..10).choose);
-						IFSeqOctHat.st02((0..10).choose);
-						IFSeqOctHat.st03((0..10).choose);
-						IFSeqOctHat.st04((0..10).choose);
-						IFSeqOctHat.st05((0..10).choose);
-						IFSeqOctHat.st06((0..10).choose);
-						IFSeqOctHat.st07((0..10).choose);
-						IFSeqOctHat.st08((0..10).choose);
+						IFSeqOctHat.st01((0..7).choose);
+						IFSeqOctHat.st02((0..7).choose);
+						IFSeqOctHat.st03((0..7).choose);
+						IFSeqOctHat.st04((0..7).choose);
+						IFSeqOctHat.st05((0..7).choose);
+						IFSeqOctHat.st06((0..7).choose);
+						IFSeqOctHat.st07((0..7).choose);
+						IFSeqOctHat.st08((0..7).choose);
 
-						IFSeqOctHat.st09((0..10).choose);
-						IFSeqOctHat.st10((0..10).choose);
-						IFSeqOctHat.st11((0..10).choose);
-						IFSeqOctHat.st12((0..10).choose);
-						IFSeqOctHat.st13((0..10).choose);
-						IFSeqOctHat.st14((0..10).choose);
-						IFSeqOctHat.st15((0..10).choose);
-						IFSeqOctHat.st16((0..10).choose);
+						IFSeqOctHat.st09((0..7).choose);
+						IFSeqOctHat.st10((0..7).choose);
+						IFSeqOctHat.st11((0..7).choose);
+						IFSeqOctHat.st12((0..7).choose);
+						IFSeqOctHat.st13((0..7).choose);
+						IFSeqOctHat.st14((0..7).choose);
+						IFSeqOctHat.st15((0..7).choose);
+						IFSeqOctHat.st16((0..7).choose);
 						~cntSeqOctRandHat01=0;
 					}
 				)}
@@ -145,10 +142,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st01(4);},
 					6, {IFSeqOctHat.st01(5);},
 					7, {IFSeqOctHat.st01(6);},
-					8, {IFSeqOctHat.st01(7);},
-					9, {IFSeqOctHat.st01(8);},
-					10,{IFSeqOctHat.st01(9);},
-					11,{IFSeqOctHat.st01(10);
+					8, {IFSeqOctHat.st01(7);
 						~cntSeqOctHat01=0;
 					}
 				)}
@@ -170,11 +164,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st02(4);},
 					6, {IFSeqOctHat.st02(5);},
 					7, {IFSeqOctHat.st02(6);},
-					8, {IFSeqOctHat.st02(7);},
-					9, {IFSeqOctHat.st02(8);},
-					10, {IFSeqOctHat.st02(9);},
-					11,{
-						IFSeqOctHat.st02(10);
+					8, {IFSeqOctHat.st02(7);
 						~cntSeqOctHat02=0;
 					}
 				)}
@@ -196,11 +186,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st03(4);},
 					6, {IFSeqOctHat.st03(5);},
 					7, {IFSeqOctHat.st03(6);},
-					8, {IFSeqOctHat.st03(7);},
-					9, {IFSeqOctHat.st03(8);},
-					10, {IFSeqOctHat.st03(9);},
-					11,{
-						IFSeqOctHat.st03(10);
+					8, {IFSeqOctHat.st03(7);
 						~cntSeqOctHat03=0;
 					}
 				)}
@@ -222,11 +208,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st04(4);},
 					6, {IFSeqOctHat.st04(5);},
 					7, {IFSeqOctHat.st04(6);},
-					8, {IFSeqOctHat.st04(7);},
-					9, {IFSeqOctHat.st04(8);},
-					10, {IFSeqOctHat.st04(9);},
-					11,{
-						IFSeqOctHat.st04(10);
+					8, {IFSeqOctHat.st04(7);
 						~cntSeqOctHat04=0;
 					}
 				)}
@@ -248,11 +230,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st05(4);},
 					6, {IFSeqOctHat.st05(5);},
 					7, {IFSeqOctHat.st05(6);},
-					8, {IFSeqOctHat.st05(7);},
-					9, {IFSeqOctHat.st05(8);},
-					10, {IFSeqOctHat.st05(9);},
-					11,{
-						IFSeqOctHat.st05(10);
+					8, {IFSeqOctHat.st05(7);
 						~cntSeqOctHat05=0;
 					}
 				)}
@@ -274,11 +252,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st06(4);},
 					6, {IFSeqOctHat.st06(5);},
 					7, {IFSeqOctHat.st06(6);},
-					8, {IFSeqOctHat.st06(7);},
-					9, {IFSeqOctHat.st06(8);},
-					10, {IFSeqOctHat.st06(9);},
-					11,{
-						IFSeqOctHat.st06(10);
+					8, {IFSeqOctHat.st06(7);
 						~cntSeqOctHat06=0;
 					}
 				)}
@@ -300,11 +274,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st07(4);},
 					6, {IFSeqOctHat.st07(5);},
 					7, {IFSeqOctHat.st07(6);},
-					8, {IFSeqOctHat.st07(7);},
-					9, {IFSeqOctHat.st07(8);},
-					10, {IFSeqOctHat.st07(9);},
-					11,{
-						IFSeqOctHat.st07(10);
+					8, {IFSeqOctHat.st07(7);
 						~cntSeqOctHat07=0;
 					}
 				)}
@@ -326,11 +296,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st08(4);},
 					6, {IFSeqOctHat.st08(5);},
 					7, {IFSeqOctHat.st08(6);},
-					8, {IFSeqOctHat.st08(7);},
-					9, {IFSeqOctHat.st08(8);},
-					10, {IFSeqOctHat.st08(9);},
-					11,{
-						IFSeqOctHat.st08(10);
+					8, {IFSeqOctHat.st08(7);
 						~cntSeqOctHat08=0;
 					}
 				)}
@@ -352,11 +318,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st09(4);},
 					6, {IFSeqOctHat.st09(5);},
 					7, {IFSeqOctHat.st09(6);},
-					8, {IFSeqOctHat.st09(7);},
-					9, {IFSeqOctHat.st09(8);},
-					10, {IFSeqOctHat.st09(9);},
-					11,{
-						IFSeqOctHat.st09(10);
+					8, {IFSeqOctHat.st09(7);
 						~cntSeqOctHat09=0;
 					}
 				)}
@@ -378,11 +340,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st10(4);},
 					6, {IFSeqOctHat.st10(5);},
 					7, {IFSeqOctHat.st10(6);},
-					8, {IFSeqOctHat.st10(7);},
-					9, {IFSeqOctHat.st10(8);},
-					10, {IFSeqOctHat.st10(9);},
-					11,{
-						IFSeqOctHat.st10(10);
+					8, {IFSeqOctHat.st10(7);
 						~cntSeqOctHat10=0;
 					}
 				)}
@@ -404,11 +362,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st11(4);},
 					6, {IFSeqOctHat.st11(5);},
 					7, {IFSeqOctHat.st11(6);},
-					8, {IFSeqOctHat.st11(7);},
-					9, {IFSeqOctHat.st11(8);},
-					10, {IFSeqOctHat.st11(9);},
-					11,{
-						IFSeqOctHat.st11(10);
+					8, {IFSeqOctHat.st11(7);
 						~cntSeqOctHat11=0;
 					}
 				)}
@@ -430,11 +384,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st12(4);},
 					6, {IFSeqOctHat.st12(5);},
 					7, {IFSeqOctHat.st12(6);},
-					8, {IFSeqOctHat.st12(7);},
-					9, {IFSeqOctHat.st12(8);},
-					10, {IFSeqOctHat.st12(9);},
-					11,{
-						IFSeqOctHat.st12(10);
+					8, {IFSeqOctHat.st12(7);
 						~cntSeqOctHat12=0;
 					}
 				)}
@@ -456,11 +406,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st13(4);},
 					6, {IFSeqOctHat.st13(5);},
 					7, {IFSeqOctHat.st13(6);},
-					8, {IFSeqOctHat.st13(7);},
-					9, {IFSeqOctHat.st13(8);},
-					10, {IFSeqOctHat.st13(9);},
-					11,{
-						IFSeqOctHat.st13(10);
+					8, {IFSeqOctHat.st13(7);
 						~cntSeqOctHat13=0;
 					}
 				)}
@@ -482,11 +428,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st14(4);},
 					6, {IFSeqOctHat.st14(5);},
 					7, {IFSeqOctHat.st14(6);},
-					8, {IFSeqOctHat.st14(7);},
-					9, {IFSeqOctHat.st14(8);},
-					10, {IFSeqOctHat.st14(9);},
-					11,{
-						IFSeqOctHat.st14(10);
+					8, {IFSeqOctHat.st14(7);
 						~cntSeqOctHat14=0;
 					}
 				)}
@@ -508,11 +450,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st15(4);},
 					6, {IFSeqOctHat.st15(5);},
 					7, {IFSeqOctHat.st15(6);},
-					8, {IFSeqOctHat.st15(7);},
-					9, {IFSeqOctHat.st15(8);},
-					10, {IFSeqOctHat.st15(9);},
-					11,{
-						IFSeqOctHat.st15(10);
+					8, {IFSeqOctHat.st15(7);
 						~cntSeqOctHat15=0;
 					}
 				)}
@@ -534,11 +472,7 @@ IFSeqOctHat {
 					5, {IFSeqOctHat.st16(4);},
 					6, {IFSeqOctHat.st16(5);},
 					7, {IFSeqOctHat.st16(6);},
-					8, {IFSeqOctHat.st16(7);},
-					9, {IFSeqOctHat.st16(8);},
-					10, {IFSeqOctHat.st16(9);},
-					11,{
-						IFSeqOctHat.st16(10);
+					8, {IFSeqOctHat.st16(7);
 						~cntSeqOctHat16=0;
 					}
 				)}

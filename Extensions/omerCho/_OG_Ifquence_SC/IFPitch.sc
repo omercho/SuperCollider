@@ -82,7 +82,7 @@ IFPitch {
 
 	*shufTrans{
 
-		~noteFader.free;
+		/*~noteFader.free;
 		~noteFader= OSCFunc({
 			arg msg;
 
@@ -93,10 +93,10 @@ IFPitch {
 			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
 			},
 			'/noteFader'
-		);
+		);*/
 
 
-		~shufTransTogBut.free;
+		/*~shufTransTogBut.free;
 		~shufTransTogBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
@@ -115,9 +115,9 @@ IFPitch {
 			);
 			},
 			'/shufTransTog'
-		);
+		);*/
 
-		~shufTransBut.free;
+		/*~shufTransBut.free;
 		~countShuf=0;
 		~shufTransBut = OSCFunc({
 			arg msg;
@@ -155,7 +155,7 @@ IFPitch {
 			);
 			},
 			'/shufTrans'
-		);
+		);*/
 
 
 	}

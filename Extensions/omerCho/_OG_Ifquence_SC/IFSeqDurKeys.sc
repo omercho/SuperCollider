@@ -76,7 +76,9 @@ IFSeqDurKeys {
 					0,{},
 					1,{IFSeqDurKeys.stGrp(1);},
 					2,{IFSeqDurKeys.stGrp(2);},
-					3,{IFSeqDurKeys.stGrp(3);
+					3,{IFSeqDurKeys.stGrp(3);},
+					4,{IFSeqDurKeys.stGrp(4);},
+					5,{IFSeqDurKeys.stGrp(5);
 						~cntSeqDurUpKeys01=0;
 					}
 				)}

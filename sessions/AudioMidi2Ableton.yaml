@@ -7,7 +7,6 @@ documents: !QVariantList
   - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/stpMid01.scd
   - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/ifisfB/scKaf01.scd
   - /Users/omercho/Library/Application Support/SuperCollider/startupOC/Note_hz.scd
-  - /Users/omercho/Dropbox/SC/__SCVvarius/tutorial/SCBook0211_code/code/Ch 17 Tunings/Ch17code.scd
   - /Users/omercho/Dropbox/SC/__SC2013/+38DEC/131225_ifthisif02_d.scd
   - /Users/omercho/Dropbox/SC/__SC2014/+39JAN/140101_demoReel01_06.scd
   - /Users/omercho/Dropbox/SC/__SC2013/+33JUL/130719_0244_KafesQC.scd
@@ -16,22 +15,19 @@ editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 11
+        documentIndex: 10
         position: 0
       - !QVariantMap
-        documentIndex: 12
+        documentIndex: 11
         position: 536
       - !QVariantMap
-        documentIndex: 9
-        position: 1583
-      - !QVariantMap
         documentIndex: 8
-        position: 2289
+        position: 1583
       - !QVariantMap
         documentIndex: 7
         position: 4393
       - !QVariantMap
-        documentIndex: 10
+        documentIndex: 9
         position: 4616
       - !QVariantMap
         documentIndex: 5

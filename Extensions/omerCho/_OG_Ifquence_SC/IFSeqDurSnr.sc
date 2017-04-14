@@ -76,7 +76,9 @@ IFSeqDurSnr {
 					0,{},
 					1,{IFSeqDurSnr.stGrp(1);},
 					2,{IFSeqDurSnr.stGrp(2);},
-					3,{IFSeqDurSnr.stGrp(3);
+					3,{IFSeqDurSnr.stGrp(3);},
+					4,{IFSeqDurSnr.stGrp(4);},
+					5,{IFSeqDurSnr.stGrp(5);
 						~cntSeqDurUpSnr01=0;
 					}
 				)}

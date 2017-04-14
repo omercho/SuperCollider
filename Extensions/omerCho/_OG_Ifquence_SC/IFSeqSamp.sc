@@ -15,6 +15,7 @@ IFSeqSamp {
 		IFSeqSusSamp.loadAll;
 		IFSeqTmSamp.loadAll;
 		IFSeqDurSamp.loadAll;
+		IFSeqStSamp.loadAll;
 		this.on;
 	}
 
@@ -409,7 +410,7 @@ IFSeqSamp {
 	}
 
 	*st09 {|i|
-		~cntSeqSamp01=i;
+		~cntSeqSamp09=i;
 		~seqSamp09.source = Pseq([i], 1);
 		~tOSCAdrr.sendMsg('ledSamp09', i);
 	}
@@ -477,6 +478,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp01.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp01.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp01.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp01.next], inf);
 	}
 	*step02{
 		~amp1Samp.source  =  Pseq([~seqSamp02.next*~seqVelSamp02.next], inf);
@@ -485,6 +487,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp02.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp02.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp02.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp02.next], inf);
 	}
 	*step03{
 		~amp1Samp.source  =  Pseq([~seqSamp03.next*~seqVelSamp03.next], inf);
@@ -493,6 +496,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp03.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp03.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp03.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp03.next], inf);
 	}
 	*step04{
 		~amp1Samp.source  =  Pseq([~seqSamp04.next*~seqVelSamp04.next], inf);
@@ -501,6 +505,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp04.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp04.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp04.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp04.next], inf);
 	}
 	*step05{
 		~amp1Samp.source  =  Pseq([~seqSamp05.next*~seqVelSamp05.next], inf);
@@ -509,6 +514,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp05.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp05.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp05.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp05.next], inf);
 	}
 	*step06{
 		~amp1Samp.source  =  Pseq([~seqSamp06.next*~seqVelSamp06.next], inf);
@@ -517,6 +523,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp06.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp06.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp06.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp06.next], inf);
 	}
 	*step07{
 		~amp1Samp.source  =  Pseq([~seqSamp07.next*~seqVelSamp07.next], inf);
@@ -525,6 +532,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp07.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp07.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp07.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp07.next], inf);
 	}
 	*step08{
 		~amp1Samp.source  =  Pseq([~seqSamp08.next*~seqVelSamp08.next], inf);
@@ -533,6 +541,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp08.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp08.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp08.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp08.next], inf);
 	}
 	*step09{
 		~amp1Samp.source  =  Pseq([~seqSamp09.next*~seqVelSamp09.next], inf);
@@ -541,6 +550,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp09.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp09.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp09.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp09.next], inf);
 	}
 	*step10{
 		~amp1Samp.source  =  Pseq([~seqSamp10.next*~seqVelSamp10.next], inf);
@@ -549,6 +559,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp10.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp10.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp10.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp10.next], inf);
 	}
 	*step11{
 		~amp1Samp.source  =  Pseq([~seqSamp11.next*~seqVelSamp11.next], inf);
@@ -557,6 +568,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp11.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp11.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp11.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp11.next], inf);
 	}
 	*step12{
 		~amp1Samp.source  =  Pseq([~seqSamp12.next*~seqVelSamp12.next], inf);
@@ -565,6 +577,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp12.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp12.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp12.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp12.next], inf);
 	}
 	*step13{
 		~amp1Samp.source  =  Pseq([~seqSamp13.next*~seqVelSamp13.next], inf);
@@ -573,6 +586,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp13.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp13.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp13.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp13.next], inf);
 	}
 	*step14{
 		~amp1Samp.source  =  Pseq([~seqSamp14.next*~seqVelSamp14.next], inf);
@@ -581,6 +595,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp14.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp14.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp14.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp14.next], inf);
 	}
 	*step15{
 		~amp1Samp.source  =  Pseq([~seqSamp15.next*~seqVelSamp15.next], inf);
@@ -589,6 +604,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp15.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp15.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp15.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp15.next], inf);
 	}
 	*step16{
 		~amp1Samp.source  =  Pseq([~seqSamp16.next*~seqVelSamp16.next], inf);
@@ -597,6 +613,7 @@ IFSeqSamp {
 		~sus1Samp.source  =  Pseq([~seqSusSamp16.next], inf);
 		~tmSamp.source    =  Pseq([~seqTmSamp16.next], inf);
 		~dur1Samp.source    =  Pseq([~seqDurSamp16.next], inf);
+		~ampStSamp.source  =  Pseq([~seqStSamp16.next], inf);
 	}
 	*stGrp {|i|
 

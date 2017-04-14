@@ -15,6 +15,7 @@ IFSeqKick {
 		IFSeqSusKick.loadAll;
 		IFSeqTmKick.loadAll;
 		IFSeqDurKick.loadAll;
+		IFSeqStKick.loadAll;
 		this.on;
 	}
 
@@ -37,6 +38,7 @@ IFSeqKick {
 		~seqKick14 = PatternProxy( Pseq([0], 1));
 		~seqKick15 = PatternProxy( Pseq([0], 1));
 		~seqKick16 = PatternProxy( Pseq([0], 1));
+
 	}
 
 
@@ -404,7 +406,7 @@ IFSeqKick {
 	}
 
 	*st09 {|i|
-		~cntSeqKick01=i;
+		~cntSeqKick09=i;
 		~seqKick09.source = Pseq([i], 1);
 		~tOSCAdrr.sendMsg('ledKick09', i);
 	}
@@ -472,6 +474,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick01.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick01.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick01.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick01.next], inf);
 	}
 	*step02{
 		~amp1Kick.source  =  Pseq([~seqKick02.next*~seqVelKick02.next], inf);
@@ -480,6 +483,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick02.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick02.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick02.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick02.next], inf);
 	}
 	*step03{
 		~amp1Kick.source  =  Pseq([~seqKick03.next*~seqVelKick03.next], inf);
@@ -488,6 +492,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick03.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick03.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick03.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick03.next], inf);
 	}
 	*step04{
 		~amp1Kick.source  =  Pseq([~seqKick04.next*~seqVelKick04.next], inf);
@@ -496,6 +501,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick04.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick04.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick04.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick04.next], inf);
 	}
 	*step05{
 		~amp1Kick.source  =  Pseq([~seqKick05.next*~seqVelKick05.next], inf);
@@ -504,6 +510,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick05.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick05.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick05.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick05.next], inf);
 	}
 	*step06{
 		~amp1Kick.source  =  Pseq([~seqKick06.next*~seqVelKick06.next], inf);
@@ -512,6 +519,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick06.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick06.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick06.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick06.next], inf);
 	}
 	*step07{
 		~amp1Kick.source  =  Pseq([~seqKick07.next*~seqVelKick07.next], inf);
@@ -520,6 +528,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick07.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick07.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick07.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick07.next], inf);
 	}
 	*step08{
 		~amp1Kick.source  =  Pseq([~seqKick08.next*~seqVelKick08.next], inf);
@@ -528,6 +537,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick08.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick08.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick08.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick08.next], inf);
 	}
 	*step09{
 		~amp1Kick.source  =  Pseq([~seqKick09.next*~seqVelKick09.next], inf);
@@ -536,6 +546,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick09.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick09.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick09.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick09.next], inf);
 	}
 	*step10{
 		~amp1Kick.source  =  Pseq([~seqKick10.next*~seqVelKick10.next], inf);
@@ -544,6 +555,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick10.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick10.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick10.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick10.next], inf);
 	}
 	*step11{
 		~amp1Kick.source  =  Pseq([~seqKick11.next*~seqVelKick11.next], inf);
@@ -552,6 +564,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick11.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick11.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick11.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick11.next], inf);
 	}
 	*step12{
 		~amp1Kick.source  =  Pseq([~seqKick12.next*~seqVelKick12.next], inf);
@@ -560,6 +573,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick12.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick12.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick12.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick12.next], inf);
 	}
 	*step13{
 		~amp1Kick.source  =  Pseq([~seqKick13.next*~seqVelKick13.next], inf);
@@ -568,6 +582,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick13.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick13.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick13.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick13.next], inf);
 	}
 	*step14{
 		~amp1Kick.source  =  Pseq([~seqKick14.next*~seqVelKick14.next], inf);
@@ -576,6 +591,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick14.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick14.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick14.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick14.next], inf);
 	}
 	*step15{
 		~amp1Kick.source  =  Pseq([~seqKick15.next*~seqVelKick15.next], inf);
@@ -584,6 +600,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick15.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick15.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick15.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick15.next], inf);
 	}
 	*step16{
 		~amp1Kick.source  =  Pseq([~seqKick16.next*~seqVelKick16.next], inf);
@@ -592,6 +609,7 @@ IFSeqKick {
 		~sus1Kick.source  =  Pseq([~seqSusKick16.next], inf);
 		~tmKick.source    =  Pseq([~seqTmKick16.next], inf);
 		~dur1Kick.source    =  Pseq([~seqDurKick16.next], inf);
+		~ampStKick.source  =  Pseq([~seqStKick16.next], inf);
 	}
 	*stGrp {|i|
 

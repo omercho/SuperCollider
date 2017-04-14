@@ -23,15 +23,14 @@ classvar <>counter3 = 0;
 		}
 	}
 	*load{
-		this.globals; this.loadProxy; this.preSet;
+		this.globals; this.loadProxy; this.preSet; this.apc40;
 	}
 
 	*globals{
 
-		~chMast=14;
+		~chMast=13;
 		~timesMast=1;
 		~octMast=4;
-		~resLate=0;
 
 		~macrMast1=1; ~macrMast2=2;
 		~macrMast3=3; ~macrMast4=4;
@@ -41,35 +40,10 @@ classvar <>counter3 = 0;
 
 	}
 
-	*defaultButtons {
-		~actMastBut.free;
-		~actMastBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~actMast.source=1;
-				~behOut.control(15, 0, 127);
-			},{
-					~actMast.source=0;
-					~behOut.control(15, 0, 0);
-			});
-			},
-			'/activMast'
-		);
-		~actMastMD.free;
-		~actMastMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actMast.source=1;
-				~tOSCAdrr.sendMsg('activMast', 1);
-				},{
-					~actMast.source=0;
-					~tOSCAdrr.sendMsg('activMast', 0);
-			});
-		}, chan:15, ccNum:0);
-
-	}
-
 	*loadProxy {
+		~volMast = PatternProxy( Pseq([1], inf));
+		~volMastP= Pseq([~volMast], inf).asStream;
+
 		~ccMast = PatternProxy( Pseq([0], inf));
 		~ccMastP = Pseq([~ccMast], inf).asStream;
 
@@ -87,6 +61,7 @@ classvar <>counter3 = 0;
 
 		~actMast = PatternProxy( Pseq([0], inf));
 		~actMastP= Pseq([~actMast], inf).asStream;
+
 	}
 
 
@@ -121,7 +96,7 @@ classvar <>counter3 = 0;
 
 	*p1 {|i=1|
 
-		Pbind(//resonator note
+		Pbind(//Mast Filter
 			\chan, ~chMast,
 			\type, \midi, \midicmd, \control, \midiout,~mdOut,
 			\ctlNum, Pseq([Pseq([~ccMastP.next],1)], inf),
@@ -129,6 +104,107 @@ classvar <>counter3 = 0;
 			\control, Pseq([~ccValMastP.next], inf)
 		).play;
 		//this.count3;
+	}
+
+	*apc40{
+		~volMast_APC.free;
+		~volMast_APC=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volMast', vel/127);
+			~mdOut.control(13, 9, vel);
+
+		},srcID:~apc40InID, chan:~apcLine7, ccNum:7);
+
+		//Act ButA
+		//Mast Activate
+		~cntActLine7ButA=0;
+		~mdActLine7ButA.free;
+		~mdActLine7ButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButA = ~cntActLine7ButA + 1;
+				~cntActLine7ButA.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine7ButA(1);
+					},
+					2,{
+						IFAPC40.actLine7ButA(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButA);
+
+		//Act ButB
+		//Mast Time Div2
+		~cntActLine7ButB=0;
+		~mdActLine7ButB.free;
+		~mdActLine7ButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButB = ~cntActLine7ButB + 1;
+				~cntActLine7ButB.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine7ButB(1);
+					},
+					2,{
+						IFAPC40.actLine7ButB(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButB);
+
+		//Act ButC
+		//Static Mast Activate
+		~cntActLine7ButC=0;
+		~mdActLine7ButC.free;
+		~mdActLine7ButC=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButC = ~cntActLine7ButC + 1;
+				~cntActLine7ButC.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine7ButC(1);
+					},
+					2,{
+						IFAPC40.actLine7ButC(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButC);
+
+
+	}//*apc40
+
+
+	*defaultButtons {
+		~actMastBut.free;
+		~actMastBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actMast.source=1;
+				~behOut.control(15, 0, 127);
+			},{
+					~actMast.source=0;
+					~behOut.control(15, 0, 0);
+			});
+			},
+			'/activMast'
+		);
+		~actMastMD.free;
+		~actMastMD=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~actMast.source=1;
+				~tOSCAdrr.sendMsg('activMast', 1);
+				},{
+					~actMast.source=0;
+					~tOSCAdrr.sendMsg('activMast', 0);
+			});
+		}, chan:15, ccNum:0);
+
 	}
 
 	//Mast Beat Counter
