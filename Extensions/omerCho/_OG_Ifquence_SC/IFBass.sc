@@ -36,6 +36,13 @@ IFBass {
 		~lfoMulBass2=0;
 	}
 
+	*octave{|val|
+		~octBass.source = Pseq([val], inf);
+	}
+	*octMul{|val|
+		~octMulBass = val;
+		~tOSCAdrr.sendMsg('octBassLabel', val);
+	}
 	*proxy {
 
 		~nt1Bass = PatternProxy( Pseq([0], inf));
@@ -191,7 +198,7 @@ IFBass {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButA);
 
 		//Act ButB
 		//Bass Time Div2
@@ -211,7 +218,7 @@ IFBass {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButB);
 
 		//Act ButC
 		//Static Bass Activate
@@ -231,7 +238,7 @@ IFBass {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine4, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButC);
 	}//*apc40
 
 	*beh{
@@ -368,8 +375,8 @@ IFBass {
 			val=msg[1];
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('decBass', val);
-			~vBass.control(0, ~egDec, val);
-			~mdOut.control(5, 7, vel);
+			~vBass.control(0, ~egDec, vel);
+			~mdOut.control(5, 127, vel);
 			~nobD5_m1Val= vel;
 			},
 			'/decBass'

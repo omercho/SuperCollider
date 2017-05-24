@@ -49,6 +49,9 @@ IFHat {
 
 		~transHat = PatternProxy( Pseq([0], inf));
 		~transHatP = Pseq([~transHat], inf).asStream;
+		~transShufHat = PatternProxy( Pseq([0], inf));
+		~transShufHatP = Pseq([~transShufHat], inf).asStream;
+
 		~octHat = PatternProxy( Pseq([3], inf));
 		~octHatP = Pseq([~octHat], inf).asStream;
 		~legHat = PatternProxy( Pseq([0.0], inf));
@@ -100,7 +103,7 @@ IFHat {
 			\degree, Pseq([~nt1HatP.next], 1),
 			\amp, Pseq([~amp1HatP.next], 1),
 			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
-			\mtranspose, Pseq([~transHatP.next], 1)+~trHat,
+			\mtranspose, Pseq([~transHatP.next], 1)+~trHat+~transShufHatP.next,
 			\octave, Pseq([~octHatP.next], 1)+~octMulHat,
 			\harmonic, Pseq([~strHatP.next], 1)+~harmHat
 		).play;
@@ -152,7 +155,7 @@ IFHat {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine3, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButA);
 
 		//Act ButB
 		//Hat Time Div2
@@ -172,7 +175,7 @@ IFHat {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine3, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButB);
 
 		//Act ButC
 		//Static Hat Activate
@@ -192,7 +195,7 @@ IFHat {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine3, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButC);
 
 	}//*apc40
 
@@ -342,8 +345,8 @@ IFHat {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('decHat', val);
 			~decHat= val;
-			~mdOut.control(4, 7, vel);
-			~nobD3_m1Val= vel;
+			~mdOut.control(4, 127, vel);
+			//~nobD3_m1Val= vel;
 			},
 			'/decHat'
 		);

@@ -24,8 +24,12 @@ IFSequence {
 	}
 
 	*step{|i|
+		this.st(i);
+	}
+
+	/**step{|i|
 		case
-		{ i == 1 } { this.st01;  }
+		{ i == 1 } { this.st(i);  }
 		{ i == 2 } { this.st02; }
 		{ i == 3 } { this.st03; }
 		{ i == 4 } { this.st04; }
@@ -42,7 +46,7 @@ IFSequence {
 		{ i == 14 } { this.st14; }
 		{ i == 15 } { this.st15; }
 		{ i == 16 } { this.st16; };
-	}
+	}*/
 	*cntrl{
 
 		~seqFreeAllBut.free;
@@ -190,6 +194,17 @@ IFSequence {
 		);
 
 
+	}
+	*st{|index|
+		this.led(index);
+		IFAPC40_Launch.led(index);
+		IFSeqKick.stepPack(index);
+		IFSeqSnr.stepPack(index);
+		IFSeqHat.stepPack(index);
+		IFSeqBass.stepPack(index);
+		IFSeqKeys.stepPack(index);
+		IFSeqSamp.stepPack(index);
+		IFSeqPat.stepPack(index);
 	}
 
 	*st01{
@@ -355,7 +370,25 @@ IFSequence {
 
 
 
-	*led{|i|
+	*led{|index|
+		index.switch(
+			1,{this.led01;},
+			2,{this.led02;},
+			3,{this.led03;},
+			4,{this.led04;},
+			5,{this.led05;},
+			6,{this.led06;},
+			7,{this.led07;},
+			8,{this.led08;},
+			9,{this.led09;},
+			10,{this.led10;},
+			11,{this.led11;},
+			12,{this.led12;},
+			13,{this.led13;},
+			14,{this.led14;},
+			15,{this.led15;},
+			16,{this.led16;}
+		);
 
 	}
 	*led01 {|delay=0.3|

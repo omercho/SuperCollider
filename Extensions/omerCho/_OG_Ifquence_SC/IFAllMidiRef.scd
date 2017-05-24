@@ -14,23 +14,23 @@
 ~mdOut.control(0, 61, ~midiVel); //Mel Audio / Mid
 ~mdOut.control(0, 62, ~midiVel); //Mel Audio / Low
 
-~mdOut.control(0, 71, ~midiVel); //Track 01
-~mdOut.control(0, 72, ~midiVel); //Track 02
-~mdOut.control(0, 73, ~midiVel); //Track 03
-~mdOut.control(0, 74, ~midiVel); //Track 04
-~mdOut.control(0, 75, ~midiVel); //Track 05
-~mdOut.control(0, 76, ~midiVel); //Track 06
-~mdOut.control(0, 77, ~midiVel); //Track 07
-~mdOut.control(0, 78, ~midiVel); //Track 08
+~mdOut.control(0, 71, ~midiVel); //SampSetTrack 01
+~mdOut.control(0, 72, ~midiVel); //SampSetTrack 02
+~mdOut.control(0, 73, ~midiVel); //SampSetTrack 03
+~mdOut.control(0, 74, ~midiVel); //SampSetTrack 04
+~mdOut.control(0, 75, ~midiVel); //SampSetTrack 05
+~mdOut.control(0, 76, ~midiVel); //SampSetTrack 06
+~mdOut.control(0, 77, ~midiVel); //SampSetTrack 07
+~mdOut.control(0, 78, ~midiVel); //SampSetTrack 08
 
-~mdOut.control(0, 81, ~midiVel); //Track 01
-~mdOut.control(0, 82, ~midiVel); //Track 02
-~mdOut.control(0, 83, ~midiVel); //Track 03
-~mdOut.control(0, 84, ~midiVel); //Track 04
-~mdOut.control(0, 85, ~midiVel); //Track 05
-~mdOut.control(0, 86, ~midiVel); //Track 06
-~mdOut.control(0, 87, ~midiVel); //Track 07
-~mdOut.control(0, 88, ~midiVel); //Track 08
+~mdOut.control(0, 81, ~midiVel); //ExtSetTrack 01
+~mdOut.control(0, 82, ~midiVel); //ExtSetTrack 02
+~mdOut.control(0, 83, ~midiVel); //ExtSetTrack 03
+~mdOut.control(0, 84, ~midiVel); //ExtSetTrack 04
+~mdOut.control(0, 85, ~midiVel); //ExtSetTrack 05
+~mdOut.control(0, 86, ~midiVel); //ExtSetTrack 06
+~mdOut.control(0, 87, ~midiVel); //ExtSetTrack 07
+~mdOut.control(0, 88, ~midiVel); //ExtSetTrack 08
 
 ~mdOut.control(1, 0, ~midiVel); //AllMaster / Track Vol
 ~mdOut.control(1, 1, ~midiVel); //AllMaster / Speaker On
@@ -340,3 +340,8 @@
 },srcID:~apc40InID, chan:0);
 
 )
+
+~temp=15
+~temp=~temp+1;~mdOut.control(5, 127, ~temp); //Mel Audio / High
+
+~apc40.control(0, 50, 90); //NobDown 1

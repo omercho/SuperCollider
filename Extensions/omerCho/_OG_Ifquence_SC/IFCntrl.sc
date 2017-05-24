@@ -119,6 +119,23 @@ IFCntrl {
 			'/tempoClock'
 		);
 
+		~durResp.free;
+		~durResp = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Duration Pattern 1".postln;
+				~tOSCAdrr.sendMsg('durLabel', 'Strght 02');
+				~dur.source = Pseq([
+					~seqDurPat01,~seqDurPat02,~seqDurPat03,~seqDurPat04,
+					~seqDurPat05,~seqDurPat06,~seqDurPat07,~seqDurPat08,
+					~seqDurPat09,~seqDurPat10,~seqDurPat11,~seqDurPat12,
+					~seqDurPat13,~seqDurPat14,~seqDurPat15,~seqDurPat16
+				],inf)*~durMulP.next;
+			});
+			},
+			'/durResponder'
+		);
+
 		~noteFad.free;
 		~noteFad= OSCFunc({
 			arg msg;
@@ -131,6 +148,17 @@ IFCntrl {
 			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
 			},
 			'/noteFader'
+		);
+		~melFad.free;
+		~melFad= OSCFunc({
+			arg msg;
+
+			~tOSCAdrr.sendMsg('melFader',msg[1]);
+			~mdOut.control(7, 8, msg[1]*127); //Samp Chain
+			~vKeys.control(0, ~vcfEg, msg[1]*127); //VCFilter Envelope Intencity
+			~vBass.control(0, ~gateTime, msg[1]*127);
+			},
+			'/melFader'
 		);
 
 		~cutDrumXY.free;
@@ -229,13 +257,13 @@ IFCntrl {
 				},
 				{
 
-				~local.sendMsg('octKickZero',1);
-				~local.sendMsg('octSnrZero',1);
-				~local.sendMsg('octHatZero',1);
-				~local.sendMsg('octBassZero',1);
-				~local.sendMsg('octKeysZero',1);
-				~local.sendMsg('octSampZero',1);
-				~local.sendMsg('octExtZero',1);
+					~local.sendMsg('octKickZero',1);
+					~local.sendMsg('octSnrZero',1);
+					~local.sendMsg('octHatZero',1);
+					~local.sendMsg('octBassZero',1);
+					~local.sendMsg('octKeysZero',1);
+					~local.sendMsg('octSampZero',1);
+					~local.sendMsg('octExtZero',1);
 
 			});
 			},
@@ -321,7 +349,7 @@ IFCntrl {
 
 			//~harmKick=msg[1];
 			~harmSnr=msg[1];~harmHat=msg[1]+1*1.5;
-			~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2]; ~hrmMulExt=msg[1];
+			//~harmBass=msg[2];~harmKeys=msg[2];~harmSamp=msg[2]; ~hrmMulExt=msg[1];
 
 			~tOSCAdrr.sendMsg('harm0', 1);
 			},
@@ -340,9 +368,9 @@ IFCntrl {
 				~strKick.source     =  Pshuf([1], inf);
 				~strSnr.source     =  Pshuf([1], inf);
 				~strHat.source     =  Pshuf([1], inf);
-				~strBass.source    =  Pshuf([1], inf);
-				~strKeys.source    =  Pshuf([1], inf);
-				~strSamp.source    =  Pshuf([1], inf);
+				//~strBass.source    =  Pshuf([1], inf);
+				//~strKeys.source    =  Pshuf([1], inf);
+				//~strSamp.source    =  Pshuf([1], inf);
 				~tOSCAdrr.sendMsg('harm0', 0);
 				~tOSCAdrr.sendMsg('shufHarm', 0);
 			});
@@ -358,9 +386,9 @@ IFCntrl {
 				~strKick.source  =  Pshuf([0.5,0.8,1.2,1.7, 1.1,2.8,1.8,0.4], inf);
 				~strSnr.source   =  Pshuf([1.1,0.4,2.5,1.2, 1.1,3.0,1.8,0.4], inf);
 				~strHat.source   =  Pshuf([0.1,0.4,2.2,1.2, 1.1,3.2,1.8,0.4], inf);
-				~strBass.source  =  Pshuf([0.5,0.8,2.3,1.2, 1.1,1.8,1.8,0.4], inf);
-				~strKeys.source  =  Pshuf([0.5,0.4,2.0,1.2, 1.1,2.6,1.8,0.4], inf);
-				~strSamp.source  =  Pshuf([1.0,0.4,2.0,1.2, 1.1,3.4,1.8,0.4], inf);
+				//~strBass.source  =  Pshuf([0.5,0.8,2.3,1.2, 1.1,1.8,1.8,0.4], inf);
+				//~strKeys.source  =  Pshuf([0.5,0.4,2.0,1.2, 1.1,2.6,1.8,0.4], inf);
+				//~strSamp.source  =  Pshuf([1.0,0.4,2.0,1.2, 1.1,3.4,1.8,0.4], inf);
 
 				~tOSCAdrr.sendMsg('shufHarm', 1);
 				},{
@@ -374,9 +402,12 @@ IFCntrl {
 		~susMelLedVal;
 		~susMelMulFader.free;
 		~susMelMulFader= OSCFunc({
-			arg msg;
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=msg[1]);
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
+			~nobD8_m1Val=vel+2;
 			},
 			'/susMel'
 		);
@@ -384,10 +415,12 @@ IFCntrl {
 		~susDrumLedVal;
 		~susDrumMulFader.free;
 		~susDrumMulFader= OSCFunc({
-			arg msg;
-			~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=msg[1]);
-			~susMulKick=msg[1];~susMulSnr=msg[1];~susMulHat=msg[1];
-
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=val);
+			~susMulKick=val+0.15;~susMulSnr=val+0.2;~susMulHat=val+0.15;
+			~nobD4_m1Val=vel+2;
 			},
 			'/susDrum'
 		);

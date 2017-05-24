@@ -31,16 +31,16 @@ IFRoot {
 
 		~ifRootPlayer=TaskProxy.new;
 
-/*
+		/*
 		~dur.source = Pseq([
-			~seqDurPat01,~seqDurPat02,~seqDurPat03,~seqDurPat04,
-			~seqDurPat05,~seqDurPat06,~seqDurPat07,~seqDurPat08,
-			~seqDurPat09,~seqDurPat10,~seqDurPat11,~seqDurPat12,
-			~seqDurPat13,~seqDurPat14,~seqDurPat15,~seqDurPat16
+		~seqDurPat01,~seqDurPat02,~seqDurPat03,~seqDurPat04,
+		~seqDurPat05,~seqDurPat06,~seqDurPat07,~seqDurPat08,
+		~seqDurPat09,~seqDurPat10,~seqDurPat11,~seqDurPat12,
+		~seqDurPat13,~seqDurPat14,~seqDurPat15,~seqDurPat16
 		],inf);
 		~durMul.source = Pseq([1/2],inf);
 		IFSeqDurPat.stGrp(2);
-*/
+		*/
 
 	}
 	*play{~ifRootPlayer.play(TempoClock.default, quant: 0);}
@@ -49,7 +49,7 @@ IFRoot {
 	*set00{
 		"IFRoot Player 00".postln;
 		~ifRootPlayer.source={
-
+			//~cntApcUpdate=0;
 			inf.do{
 				1.do {
 
@@ -67,7 +67,16 @@ IFRoot {
 
 					IFRes1(~tmMulRes1P.next*~tmRes1P.next);
 
-					IFAPC40.update;
+
+
+					/*~cntApcUpdate = ~cntApcUpdate + 1;
+					~cntApcUpdate.switch(
+						0,{},
+						16,{
+							IFAPC40.update;
+							~cntApcUpdate=0;
+						}
+					);*/
 					((~durP.next)*(~durMulP.next)).wait;
 				};
 			};
@@ -255,40 +264,40 @@ IFRoot {
 }
 
 /*
-	*set00{
-		"IFRoot Player 00".postln;
-		~ifRootPlayer.source={
+*set00{
+"IFRoot Player 00".postln;
+~ifRootPlayer.source={
 
-			inf.do{
-				1.do {
-
-
-					IFSequence.step(~stepNumP.next);
-					//IFCounter.step(~stepNumCntP.next);
-					//~local.sendMsg('seqRec', 1);
-					//IFVKick(~tmMulVKickP.next*~tmVKickP.next);
-					IFKick(~tmMulKickP.next*~tmKickP.next);
-					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
-					IFHat(~tmMulHatP.next*~tmHatP.next);
-
-					IFBass(~tmMulBassP.next*~tmBassP.next);
-					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
-					IFSamp(~tmMulSampP.next*~tmSampP.next);
-
-					IFMast(~tmMulMastP.next*~tmMastP.next);
-
-					IFRes1(~tmRes1P.next);
-
-					//~vBeatsLate=Tempo.bpm*(1/267.91897);
-					//Ableton.tap4;
+inf.do{
+1.do {
 
 
-					((~durP.next)*(~durMulP.next)).wait;
-				};
-			};
+IFSequence.step(~stepNumP.next);
+//IFCounter.step(~stepNumCntP.next);
+//~local.sendMsg('seqRec', 1);
+//IFVKick(~tmMulVKickP.next*~tmVKickP.next);
+IFKick(~tmMulKickP.next*~tmKickP.next);
+IFSnr(~tmMulSnrP.next*~tmSnrP.next);
+IFHat(~tmMulHatP.next*~tmHatP.next);
 
-		};
+IFBass(~tmMulBassP.next*~tmBassP.next);
+IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+IFSamp(~tmMulSampP.next*~tmSampP.next);
 
-	}
+IFMast(~tmMulMastP.next*~tmMastP.next);
+
+IFRes1(~tmRes1P.next);
+
+//~vBeatsLate=Tempo.bpm*(1/267.91897);
+//Ableton.tap4;
+
+
+((~durP.next)*(~durMulP.next)).wait;
+};
+};
+
+};
+
+}
 
 */

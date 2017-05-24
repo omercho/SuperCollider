@@ -56,7 +56,7 @@ VKeys {
 
 		~vKeys.control(0, ~expr, 120); //expression
 
-		~vKeys.control(0, ~voice, ~poly); //voice
+		~vKeys.control(0, ~voice, ~uni); //voice
 		~vKeys.control(0, ~octVK, ~oct3); //octave
 
 		~vKeys.control(0, ~vcoDetune, 6); //detune

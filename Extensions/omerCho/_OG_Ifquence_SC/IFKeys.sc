@@ -37,7 +37,13 @@ IFKeys {
 		~trKeys=0;
 
 	}
-
+	*octave{|val|
+		~octKeys.source = Pseq([val], inf);
+	}
+	*octMul{|val|
+		~octMulKeys = val;
+		~tOSCAdrr.sendMsg('octKeysLabel', val);
+	}
 	*proxy{
 		~nt1Keys = PatternProxy( Pseq([0], inf));
 		~nt1KeysP = Pseq([~nt1Keys], inf).asStream;
@@ -204,7 +210,7 @@ IFKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButA);
 
 		//Act ButB
 		//Keys Time Div2
@@ -224,7 +230,7 @@ IFKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButB);
 
 		//Act ButC
 		//Static Keys Activate
@@ -244,7 +250,7 @@ IFKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine5, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButC);
 
 	}//*apc40
 
@@ -357,11 +363,13 @@ IFKeys {
 
 		~decKeysFader.free;
 		~decKeysFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*127;
-			~tOSCAdrr.sendMsg('decKeys', msg[1]);
-			~vKeys.control(0, ~envDec, val+0.01);
-			~mdOut.control(6, 7, val);
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('decKeys', val);
+			~vKeys.control(0, ~envDec, vel+0.01);
+			~mdOut.control(6, 127, vel);
+			~nobD6_m1Val= vel;
 			},
 			'/decKeys'
 		);

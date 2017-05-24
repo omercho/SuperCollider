@@ -113,7 +113,7 @@ classvar <>counter3 = 0;
 			~tOSCAdrr.sendMsg('volMast', vel/127);
 			~mdOut.control(13, 9, vel);
 
-		},srcID:~apc40InID, chan:~apcLine7, ccNum:7);
+		},srcID:~apc40InID, chan:~apcLn7, ccNum:7);
 
 		//Act ButA
 		//Mast Activate
@@ -133,7 +133,7 @@ classvar <>counter3 = 0;
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButA);
 
 		//Act ButB
 		//Mast Time Div2
@@ -153,7 +153,7 @@ classvar <>counter3 = 0;
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButB);
 
 		//Act ButC
 		//Static Mast Activate
@@ -173,7 +173,7 @@ classvar <>counter3 = 0;
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine7, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButC);
 
 
 	}//*apc40

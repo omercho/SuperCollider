@@ -46,6 +46,8 @@ IFSnr {
 
 		~transSnr = PatternProxy( Pseq([0], inf));
 		~transSnrP = Pseq([~transSnr], inf).asStream;
+		~transShufSnr = PatternProxy( Pseq([0], inf));
+		~transShufSnrP = Pseq([~transShufSnr], inf).asStream;
 
 		~octSnr = PatternProxy( Pseq([3], inf));
 		~octSnrP = Pseq([~octSnr], inf).asStream;
@@ -99,7 +101,7 @@ IFSnr {
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
-			\mtranspose, Pseq([~transSnrP.next], inf)+~trSnr,
+			\mtranspose, Pseq([~transSnrP.next], inf)+~trSnr+~transShufSnrP.next,
 			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
 			\harmonic, Pseq([~strSnrP.next], inf)+~harmSnr
 		).play;
@@ -147,7 +149,7 @@ IFSnr {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine2, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButA);
 
 		//Act ButB
 		//Snr Time Div2
@@ -167,7 +169,7 @@ IFSnr {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine2, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButB);
 
 		//Act ButC
 		//Static Snr Activate
@@ -187,7 +189,7 @@ IFSnr {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine2, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButC);
 	}//*apc40
 
 	*beh{
@@ -284,7 +286,7 @@ IFSnr {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attSnr', msg[1]);
 			~mdOut.control(3, 5, vel);
-			~nobD2_m2Val= msg[1]*127;
+			//~nobD2_m2Val= msg[1]*127;
 			},
 			'attSnr'
 		);
@@ -306,8 +308,8 @@ IFSnr {
 			arg msg;
 			~tOSCAdrr.sendMsg('decSnr', msg[1]);
 			~decSnr=msg[1];
-			~mdOut.control(3, 7, msg[1]*127);
-			~nobD2_m1Val= msg[1]*127;
+			~mdOut.control(3, 127, msg[1]*127);
+			//~nobD2_m1Val= msg[1]*127;
 			},
 			'/decSnr'
 		);

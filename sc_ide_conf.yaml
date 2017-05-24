@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAEAAAAGwAABowAAAO4AAAABAAAADEAAAaMAAADuAAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAADcPwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADcAAAAGYA////AAAAAQAAAXAAAANw/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh4AAAFSAAAATAD///8AAASsAAADcAAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAYgAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAASbAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStSamp.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqSamp.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSamp.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStKeys.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqKeys.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStBass.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqBass.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqKick.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStHat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStSnr.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchVChord.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchExt.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchSamp.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchKeys.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchBass.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
+    - /Users/omercho/Dropbox/SC/Vaggelis_MachinePadMutes.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Preceive.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Posc.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/J_110224/IBuffers.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

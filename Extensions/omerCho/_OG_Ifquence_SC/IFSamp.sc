@@ -4,6 +4,7 @@ IFSamp.times(2);
 IFSamp.pat_1;
 
 ~octSamp=4;
+~octSamp.source = 5;
 
 */
 
@@ -31,7 +32,7 @@ IFSamp {
 		~chSamp=5;
 		~sampLate=0.00;
 		~timesSamp=1;
-		~octMulSamp=0;
+		~octMulSamp=2;
 		~rootFreqSamp=~c5; // 261=C4|523=C5
 		~harmSamp=0;
 		~susMulSamp=1;
@@ -41,6 +42,13 @@ IFSamp {
 
 
 
+	}
+	*octave{|val|
+		~octSamp.source = Pseq([val], inf);
+	}
+	*octMul{|val|
+		~octMulSamp = val;
+		~tOSCAdrr.sendMsg('octSampLabel', val);
 	}
 
 	*proxy{
@@ -67,7 +75,7 @@ IFSamp {
 		~transShufSamp = PatternProxy( Pseq([0], inf));
 		~transShufSampP = Pseq([~transShufSamp], inf).asStream;
 
-		~octSamp = PatternProxy( Pseq([3], inf));
+		~octSamp = PatternProxy( Pseq([4], inf));
 		~octSampP = Pseq([~octSamp], inf).asStream;
 
 		~legSamp= PatternProxy( Pseq([0.0], inf));
@@ -196,7 +204,7 @@ IFSamp {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButA);
 
 		//Act ButB
 		//Samp Time Div2
@@ -216,7 +224,7 @@ IFSamp {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButB);
 
 		//Act ButC
 		//Static Samp Activate
@@ -236,7 +244,7 @@ IFSamp {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine6, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButC);
 
 	}//*apc40
 
@@ -350,10 +358,13 @@ IFSamp {
 
 		~decSampFader.free;
 		~decSampFader= OSCFunc({
-			arg msg;
-			~tOSCAdrr.sendMsg('decSamp', msg[1]);
-			~decSamp=msg[1];
-			~mdOut.control(7, 7, msg[1]*127);
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('decSamp', val);
+			~decSamp=val;
+			~mdOut.control(7, 127, vel);
+			~nobD7_m1Val= vel;
 			},
 			'/decSamp'
 		);
@@ -484,8 +495,9 @@ IFSamp {
 
 			if ( msg[1]==1, {
 
-				~octMulSamp = ~octMulSamp+1;
-				~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
+				//~octMulSamp = ~octMulSamp+1;
+				//~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
+				IFSamp.octMul(~octMulSamp+1)
 
 			});
 
@@ -500,8 +512,7 @@ IFSamp {
 
 			if ( msg[1]==1, {
 
-				~octMulSamp = 0;
-				~tOSCAdrr.sendMsg('octSampLabel', ~octMulSamp);
+				IFSamp.octMul(0)
 
 			});
 
@@ -524,34 +535,6 @@ IFSamp {
 			},
 			'/octSampDiv'
 		);
-
-	}
-
-	//Samp Beat Counter
-	*count3 {
-		1.do{
-			counter3 = counter3 + 1;
-			counter3.switch(
-				3, {
-					("            SampCnt"+counter3).postln;
-					this.ctl_2;
-					counter3 = 0;
-
-				}
-
-			)
-		}
-
-	}
-
-
-	*ctl_1 {
-
-
-	}
-
-	*ctl_2 {
-		("Samp CTL 2").postln;
 
 	}
 

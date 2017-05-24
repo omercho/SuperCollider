@@ -85,6 +85,7 @@ IFTrack01 {
 						~transShufBass.source  = Pshuf([0,2,4,(7), (-2),1,12,(-1)], inf);
 						~transShufKeys.source  = Pshuf([(-1),3,2,(-7), (-2),4,6,(-1)], inf);
 						~transShufSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
+						~apc40.noteOn(~apcLn4, ~lnchBut4, 6); //But 1
 					},
 					2,{
 						~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
@@ -92,6 +93,7 @@ IFTrack01 {
 						~transShufBass.source  = Pshuf([0], inf);
 						~transShufKeys.source  = Pshuf([0], inf);
 						~transShufSamp.source  = Pshuf([0], inf);
+						~apc40.noteOn(~apcLn4, ~lnchBut4, 5); //But 1
 						~countShuf=0;
 					}
 				)
@@ -102,6 +104,43 @@ IFTrack01 {
 			);
 			},
 			'/shufTrans'
+		);
+
+		//------------shufDrum
+		~shufDrumBut.free;
+		~countShufDrum=0;
+		//~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
+		//~tOSCAdrr.sendMsg('shufTrans', 0);
+		~shufDrumBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				//"Transpose Shuffle".postln;
+				~countShufDrum = ~countShufDrum + 1;
+
+				~countShufDrum.switch(
+					0,{},
+					1, {
+						//~transShufKick.source  = Pshuf([0,2,4,(7), (-2),1,12,(-1)], inf);
+						~transShufSnr.source  = Pshuf([(-1),3,2,(-7), (-2),4,6,(-1)], inf);
+						~transShufHat.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
+						~apc40.noteOn(~apcLn4, ~lnchBut5, 6); //But 1
+					},
+					2,{
+						//~transShufKick.source  = Pshuf([0], inf);
+						~transShufSnr.source  = Pshuf([0], inf);
+						~transShufHat.source  = Pshuf([0], inf);
+						~apc40.noteOn(~apcLn4, ~lnchBut5, 5); //But 1
+						~countShufDrum=0;
+					}
+				)
+				},{
+
+
+				}
+			);
+			},
+			'/shufDrum'
 		);
 	}
 
@@ -130,6 +169,7 @@ IFTrack01 {
 
 		"Duration Pattern: Straight".postln;
 		IFSeqDurPat.stGrp(3);
+		~local.sendMsg('durResponder',1);
 		~tOSCAdrr.sendMsg('durLabel', 'Straight');
 
 		"Duration Mul: 1/2".postln;
@@ -152,6 +192,18 @@ IFTrack01 {
 		~local.sendMsg('noteFader',0.5);//SnrXpose
 		~local.sendMsg('fxFader',0.0);
 		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
+
+		~vKeys.control(0, ~voice, ~uni); //voice
+		IFAPC40_NobDown.md1SetVals(v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1);
+		/*IFAPC40_NobDown.md2SetVals(
+			v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2
+		);*/
+		IFAPC40_NobUp.md1SetVals(
+			v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1
+		);
+		/*IFAPC40_NobUp.md2SetVals(
+			v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2
+		);*/
 
 
 
@@ -188,6 +240,7 @@ IFTrack01 {
 		~local.sendMsg('chainBass', 0.0);
 		~local.sendMsg('lfoMulBass1',0.00);
 		~local.sendMsg('lfoMulBass2',0.00);
+		IFBass.octMul(0);
 
 		"Keys Set".postln;
 		~local.sendMsg('volKeys', 0.95);
@@ -198,6 +251,7 @@ IFTrack01 {
 		~local.sendMsg('chainKeys', 0.05);
 		~local.sendMsg('lfoMulKeys1',0.0);
 		~local.sendMsg('lfoMulKeys2',0.01);
+		IFKeys.octMul(1);
 
 		"Samp Set".postln;
 		~local.sendMsg('volSamp', 0.9);
@@ -208,7 +262,8 @@ IFTrack01 {
 		~local.sendMsg('chainSamp', 0.5);
 		~local.sendMsg('lfoMulSamp1',0.2);
 		~local.sendMsg('lfoMulSamp2',0.4);
-		~local.sendMsg('octSampZero',1);
+		//~local.sendMsg('octSampZero',1);
+		IFSamp.octMul(2);
 
 		"Ext Set".postln;
 		~local.sendMsg('volExt',0.8);

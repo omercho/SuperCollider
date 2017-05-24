@@ -55,6 +55,8 @@ IFKick {
 
 		~transKick = PatternProxy( Pseq([0], inf));
 		~transKickP = Pseq([~transKick], inf).asStream;
+		~transShufKick = PatternProxy( Pseq([0], inf));
+		~transShufKickP = Pseq([~transShufKick], inf).asStream;
 
 		~octKick = PatternProxy( Pseq([3], inf));
 		~octKickP = Pseq([~octKick], inf).asStream;
@@ -112,7 +114,7 @@ IFKick {
 			\amp, Pseq([~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
 			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
-			\mtranspose, Pseq([~transKickP.next], inf)+~trKick,
+			\mtranspose, Pseq([~transKickP.next], inf)+~trKick+~transShufKickP.next,
 			\harmonic, Pseq([~strKickP.next], inf)+~harmKick,
 		).play(quant:0);
 
@@ -157,7 +159,7 @@ IFKick {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine1, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButA);
 
 		//Act ButB
 		//Kick Time Div2
@@ -177,7 +179,7 @@ IFKick {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine1, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButB);
 
 		//Act ButC
 		//Static Kick Activate
@@ -197,7 +199,7 @@ IFKick {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLine1, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButC);
 
 
 	}//*apc40
@@ -293,7 +295,7 @@ IFKick {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attKick', msg[1]);
 			~mdOut.control(2, 5, vel);
-			~nobD1_m2Val= msg[1]*127;
+			//~nobD1_m2Val= msg[1]*127;
 			},
 			'attKick'
 		);
@@ -317,8 +319,8 @@ IFKick {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('decKick', val);
 			~decKick= val;
-			~mdOut.control(2, 7, vel);
-			~nobD1_m1Val= vel;
+			~mdOut.control(2, 127, vel);
+			//~nobD1_m1Val= vel;
 			},
 			'/decKick'
 		);
