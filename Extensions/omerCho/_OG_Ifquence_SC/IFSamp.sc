@@ -386,6 +386,7 @@ IFSamp {
 			vel2=msg[2]*127;
 			~mdOut.control(7, 4, vel1); // IFSamp
 			~mdOut.control(7, 3, vel2); // IFSamp
+			~mdOut.control(7, 10, vel2); // IFSamp
 			~tOSCAdrr.sendMsg('sendSamp', msg[1], msg[2]);
 
 			},

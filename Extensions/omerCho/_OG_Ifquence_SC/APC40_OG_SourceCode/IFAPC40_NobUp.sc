@@ -190,38 +190,38 @@ IFAPC40_NobUp{
 		~valueUD=val/127;
 		index.switch(
 			1,{
-				~local.sendMsg('attKick', ~valueUD);
+				~local.sendMsg('decKick', ~valueUD);
 				~nobU1_m1Val=val;
 
 			},
 			2,{
-				~local.sendMsg('attSnr', ~valueUD);
+				~local.sendMsg('attKeys', ~valueUD);
 				~nobU2_m1Val=val;
 			},
 			3,{
-				~local.sendMsg('attHat', ~valueUD);
+				~local.sendMsg('sendSamp', ~valueUD.sin,~valueUD.sin*2);
 				~nobU3_m1Val=val;
-			},
-			5,{
-				~local.sendMsg('attBass', ~valueUD);
-				~nobU5_m1Val=val;
 			},
 			4,{
 
-				//~local.sendMsg('cutDrum', ~valueUD.sin*3,~valueUD.sin*2);
+				~local.sendMsg('xy1Keys', ~valueUD.sin*1.5,~valueUD.sin*1.3);
 				~nobU4_m1Val=val;
 			},
+			5,{
+				~local.sendMsg('decBass', ~valueUD);
+				~nobU5_m1Val=val;
+			},
 			6,{
-				~local.sendMsg('attKeys', ~valueUD);
+				~local.sendMsg('decKeys', ~valueUD);
 				~nobU6_m1Val=val;
 			},
 			7,{
-				~local.sendMsg('attSamp', ~valueUD);
+				~local.sendMsg('decSamp', ~valueUD);
 				~nobU7_m1Val=val;
 			},
 			8,{
 
-				//~local.sendMsg('cutAll',  ~valueUD.sin*2,~valueUD.sin);
+				~local.sendMsg('AllMasterFXxy1', ~valueUD.sin*1.5,~valueUD.sin*1.3);
 				~nobU8_m1Val=val;
 			}
 		);
@@ -242,16 +242,16 @@ IFAPC40_NobUp{
 		~valueUD=val/127;
 		index.switch(
 			1,{
-				~local.sendMsg('decKick', ~valueUD);
+				//~local.sendMsg('decKick', ~valueUD);
 				~nobU1_m2Val=val;
 
 			},
 			2,{
-				~local.sendMsg('decSnr', ~valueUD);
+				//~local.sendMsg('decSnr', ~valueUD);
 				~nobU2_m2Val=val;
 			},
 			3,{
-				~local.sendMsg('decHat', ~valueUD);
+				//~local.sendMsg('decHat', ~valueUD);
 				~nobU3_m2Val=val;
 			},
 			4,{
@@ -259,15 +259,15 @@ IFAPC40_NobUp{
 				~nobU4_m2Val=val;
 			},
 			5,{
-				~local.sendMsg('decBass', ~valueUD);
+				//~local.sendMsg('decBass', ~valueUD);
 				~nobU5_m2Val=val;
 			},
 			6,{
-				~local.sendMsg('decKeys', ~valueUD);
+				//~local.sendMsg('decKeys', ~valueUD);
 				~nobU6_m2Val=val;
 			},
 			7,{
-				~local.sendMsg('decSamp', ~valueUD);
+				//~local.sendMsg('decSamp', ~valueUD);
 				~nobU7_m2Val=val;
 			},
 			8,{

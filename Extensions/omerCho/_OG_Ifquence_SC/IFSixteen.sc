@@ -8,7 +8,7 @@ IFSixteen {
 			if ( msg[1]==1, {
 				~stepNum.source  =  Pseq([2,10,15,10,2], inf);
 			},{
-					IFSeqSteps.forward;
+					IFSeqSteps.first8;
 			});
 			},
 			'/seqStep01'
@@ -21,7 +21,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([4,3,2], inf);
 
 			},{
-					IFSeqSteps.forward;
+					~stepNum.source  =  Pseq([1,2,3,4], inf);
 			});
 			},
 			'/seqStep02'
@@ -59,7 +59,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([5], inf);
 
 			},{
-					IFSeqSteps.forward;
+					~stepNum.source  =  Pseq([5,6,7,8], inf);
 			});
 			},
 			'/seqStep05'

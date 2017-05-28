@@ -60,11 +60,14 @@ IDE:
       help-dock: ""
       post-dock: ""
     geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAYgAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAASbAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAARcAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAAUMAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFShuf.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBass.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchVChord.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchExt.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchSamp.sc
@@ -72,9 +75,6 @@ IDE:
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchBass.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
     - /Users/omercho/Dropbox/SC/Vaggelis_MachinePadMutes.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Preceive.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Posc.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/J_110224/IBuffers.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

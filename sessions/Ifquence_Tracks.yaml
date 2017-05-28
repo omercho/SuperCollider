@@ -37,15 +37,15 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_NobDown.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_NobUp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_Launch.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Posc.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/PsendPreceive/Preceive.sc
-  - /Users/omercho/Dropbox/SC/Vaggelis_MachinePadMutes.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchKeys.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchSamp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchExt.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchVChord.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VKeys.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFShuf.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantMap
@@ -62,13 +62,13 @@ editors: !QVariantMap
             position: 0
           - !QVariantMap
             documentIndex: 23
-            position: 3072
+            position: 3198
           - !QVariantMap
             documentIndex: 24
-            position: 5667
+            position: 5661
           - !QVariantMap
             documentIndex: 21
-            position: 4451
+            position: 4574
           - !QVariantMap
             documentIndex: 9
             position: 110
@@ -82,39 +82,39 @@ editors: !QVariantMap
             documentIndex: 12
             position: 111
           - !QVariantMap
-            documentIndex: 2
-            position: 8178
-          - !QVariantMap
-            documentIndex: 11
-            position: 10352
-          - !QVariantMap
             documentIndex: 1
             position: 882
           - !QVariantMap
             documentIndex: 4
-            position: 4424
+            position: 3324
           - !QVariantMap
             documentIndex: 3
             position: 1061
           - !QVariantMap
-            documentIndex: 34
-            position: 3384
-          - !QVariantMap
-            documentIndex: 35
-            position: 163
-          - !QVariantMap
             documentIndex: 36
             position: 309
           - !QVariantMap
-            documentIndex: 38
-            position: 2039
+            documentIndex: 34
+            position: 3336
+          - !QVariantMap
+            documentIndex: 2
+            position: 2048
+          - !QVariantMap
+            documentIndex: 35
+            position: 472
+          - !QVariantMap
+            documentIndex: 11
+            position: 10352
+          - !QVariantMap
+            documentIndex: 26
+            position: 8511
+          - !QVariantMap
+            documentIndex: 25
+            position: 11531
           - !QVariantMap
             documentIndex: 0
             position: 63
         - !QVariantList
-          - !QVariantMap
-            documentIndex: 27
-            position: 9226
           - !QVariantMap
             documentIndex: 28
             position: 16325
@@ -123,34 +123,16 @@ editors: !QVariantMap
             position: 1389
           - !QVariantMap
             documentIndex: 19
-            position: 2878
-          - !QVariantMap
-            documentIndex: 21
-            position: 6243
+            position: 2874
           - !QVariantMap
             documentIndex: 12
             position: 111
-          - !QVariantMap
-            documentIndex: 3
-            position: 1332
-          - !QVariantMap
-            documentIndex: 22
-            position: 6169
-          - !QVariantMap
-            documentIndex: 23
-            position: 7194
-          - !QVariantMap
-            documentIndex: 11
-            position: 12341
           - !QVariantMap
             documentIndex: 10
             position: 2530
           - !QVariantMap
             documentIndex: 33
             position: 0
-          - !QVariantMap
-            documentIndex: 9
-            position: 121
           - !QVariantMap
             documentIndex: 5
             position: 0
@@ -164,27 +146,6 @@ editors: !QVariantMap
             documentIndex: 8
             position: 574
           - !QVariantMap
-            documentIndex: 36
-            position: 1056
-          - !QVariantMap
-            documentIndex: 37
-            position: 0
-          - !QVariantMap
-            documentIndex: 39
-            position: 381
-          - !QVariantMap
-            documentIndex: 40
-            position: 551
-          - !QVariantMap
-            documentIndex: 44
-            position: 0
-          - !QVariantMap
-            documentIndex: 45
-            position: 0
-          - !QVariantMap
-            documentIndex: 46
-            position: 0
-          - !QVariantMap
             documentIndex: 41
             position: 0
           - !QVariantMap
@@ -192,29 +153,68 @@ editors: !QVariantMap
             position: 0
           - !QVariantMap
             documentIndex: 43
+            position: 0
+          - !QVariantMap
+            documentIndex: 38
+            position: 0
+          - !QVariantMap
+            documentIndex: 39
+            position: 0
+          - !QVariantMap
+            documentIndex: 40
             position: 1413
-          - !QVariantMap
-            documentIndex: 35
-            position: 5096
-          - !QVariantMap
-            documentIndex: 34
-            position: 3939
           - !QVariantMap
             documentIndex: 26
             position: 543
           - !QVariantMap
-            documentIndex: 24
-            position: 498
-          - !QVariantMap
             documentIndex: 25
             position: 300
           - !QVariantMap
+            documentIndex: 3
+            position: 1332
+          - !QVariantMap
+            documentIndex: 24
+            position: 1117
+          - !QVariantMap
+            documentIndex: 21
+            position: 966
+          - !QVariantMap
+            documentIndex: 22
+            position: 1008
+          - !QVariantMap
+            documentIndex: 23
+            position: 857
+          - !QVariantMap
+            documentIndex: 27
+            position: 9226
+          - !QVariantMap
+            documentIndex: 7
+            position: 1212
+          - !QVariantMap
+            documentIndex: 35
+            position: 7117
+          - !QVariantMap
+            documentIndex: 34
+            position: 712
+          - !QVariantMap
             documentIndex: 2
-            position: 110
+            position: 6462
+          - !QVariantMap
+            documentIndex: 11
+            position: 6391
+          - !QVariantMap
+            documentIndex: 9
+            position: 327
           - !QVariantMap
             documentIndex: 4
-            position: 2599
-      state: AAAA/wAAAAAAAAACAAAAugAAAvwBAAAAAQEAAAAC
+            position: 2067
+          - !QVariantMap
+            documentIndex: 36
+            position: 5901
+          - !QVariantMap
+            documentIndex: 37
+            position: 3176
+      state: AAAA/wAAAAAAAAACAAAAfAAAAzoBAAAAAQEAAAAC
     - !QVariantList
       - !QVariantMap
         documentIndex: 6
@@ -232,21 +232,6 @@ editors: !QVariantMap
         documentIndex: 17
         position: 0
       - !QVariantMap
-        documentIndex: 23
-        position: 3307
-      - !QVariantMap
-        documentIndex: 22
-        position: 2711
-      - !QVariantMap
-        documentIndex: 25
-        position: 4563
-      - !QVariantMap
-        documentIndex: 24
-        position: 4119
-      - !QVariantMap
-        documentIndex: 26
-        position: 5479
-      - !QVariantMap
         documentIndex: 31
         position: 656
       - !QVariantMap
@@ -261,9 +246,6 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 10
         position: 1864
-      - !QVariantMap
-        documentIndex: 9
-        position: 191
       - !QVariantMap
         documentIndex: 8
         position: 0
@@ -280,17 +262,8 @@ editors: !QVariantMap
         documentIndex: 32
         position: 15871
       - !QVariantMap
-        documentIndex: 19
-        position: 3663
-      - !QVariantMap
-        documentIndex: 18
-        position: 496
-      - !QVariantMap
         documentIndex: 1
         position: 468
-      - !QVariantMap
-        documentIndex: 21
-        position: 2526
       - !QVariantMap
         documentIndex: 7
         position: 0
@@ -299,33 +272,66 @@ editors: !QVariantMap
         position: 4986
       - !QVariantMap
         documentIndex: 2
-        position: 8658
+        position: 9423
       - !QVariantMap
         documentIndex: 33
         position: 3167
       - !QVariantMap
-        documentIndex: 35
-        position: 0
+        documentIndex: 21
+        position: 5952
+      - !QVariantMap
+        documentIndex: 22
+        position: 3683
+      - !QVariantMap
+        documentIndex: 23
+        position: 4042
+      - !QVariantMap
+        documentIndex: 24
+        position: 4119
+      - !QVariantMap
+        documentIndex: 18
+        position: 496
+      - !QVariantMap
+        documentIndex: 19
+        position: 4324
       - !QVariantMap
         documentIndex: 34
-        position: 2690
+        position: 2672
       - !QVariantMap
-        documentIndex: 36
-        position: 3595
+        documentIndex: 44
+        position: 1149
       - !QVariantMap
-        documentIndex: 40
-        position: 840
+        documentIndex: 45
+        position: 883
       - !QVariantMap
         documentIndex: 4
-        position: 5592
+        position: 30893
+      - !QVariantMap
+        documentIndex: 9
+        position: 3801
+      - !QVariantMap
+        documentIndex: 26
+        position: 7817
+      - !QVariantMap
+        documentIndex: 25
+        position: 5151
+      - !QVariantMap
+        documentIndex: 35
+        position: 6665
+      - !QVariantMap
+        documentIndex: 36
+        position: 5997
       - !QVariantMap
         documentIndex: 37
-        position: 4619
-  state: AAAA/wAAAAAAAAACAAACfQAAAh0BAAAAAQEAAAAB
+        position: 5944
+      - !QVariantMap
+        documentIndex: 46
+        position: 3036
+  state: AAAA/wAAAAAAAAACAAAC9AAAAhcBAAAAAQEAAAAB
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
   geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAYgAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAASbAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAARcAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAAUMAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==

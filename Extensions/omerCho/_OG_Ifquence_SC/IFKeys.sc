@@ -393,6 +393,7 @@ IFKeys {
 			~tOSCAdrr.sendMsg('sendKeys', msg[1], msg[2]);
 			~mdOut.control(6, 4, vel1); // IFKeys
 			~mdOut.control(6, 3, vel2); // IFKeys
+			~mdOut.control(6, 10, vel2); // IFKeys sendC
 
 			},
 			'/sendKeys'
@@ -403,6 +404,7 @@ IFKeys {
 			arg msg;
 			~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
 			~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+			~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
 			},
 			'/xy1Keys'
 		);

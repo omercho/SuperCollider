@@ -209,11 +209,11 @@ IFAPC40_NobDown{
 				~nobD2_m1Val=val;
 			},
 			3,{
-				~local.sendMsg('drumSends', ~valueND.sin*3,~valueND.sin*2);
+				~local.sendMsg('susDrum', ~valueND);
 				~nobD3_m1Val=val;
 			},
 			4,{
-				~local.sendMsg('susDrum', ~valueND);
+				~local.sendMsg('drumSends', ~valueND.sin*3,~valueND.sin*2);
 				~nobD4_m1Val=val;
 			},
 			5,{
