@@ -1,5 +1,8 @@
 
 IFShuf{
+	*load{
+		this.loadVarResps;
+	}
 	*transKickOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 		~transShufKick.source  = Pshuf([
 			(stp1),(stp2),(stp3),(stp4),
@@ -226,14 +229,14 @@ IFShuf{
 	*harmDrumOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 
 		"Harmonics Shuffle".postln;
-		~strKick.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
-		~strSnr.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
-		~strHat.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmKick.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmSnr.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmHat.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
 	}
 	*harmDrumOff{
-		~strKick.source=Pshuf([1], inf);
-		~strSnr.source=Pshuf([1], inf);
-		~strHat.source=Pshuf([1], inf);
+		~hrmKick.source=Pshuf([1], inf);
+		~hrmSnr.source=Pshuf([1], inf);
+		~hrmHat.source=Pshuf([1], inf);
 	}
 	*harmDrum{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 		~shufHarmDrumBut.free;
@@ -261,8 +264,82 @@ IFShuf{
 				}
 			);
 			},
-			'/shufHarm'
+			'/shufDrumHarm'
 		);
+		~harmDrum_0.free;
+		~harmDrum_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Harmonic 0".postln;
+				~harmKick=0;
+				~harmSnr=0;~harmHat=0;
+				//~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
+
+				~tOSCAdrr.sendMsg('harm0', 0);
+				~tOSCAdrr.sendMsg('shufDrumHarm', 0);
+			});
+			},
+			'/harmDrum0'
+		);
+
+
+	}
+	*harmMelOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+
+		~hrmBass.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmKeys.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmSamp.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+	}
+	*harmMelOff{
+		~hrmBass.source=Pshuf([1], inf);
+		~hrmKeys.source=Pshuf([1], inf);
+		~hrmSamp.source=Pshuf([1], inf);
+	}
+	*harmMel{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+		~shufHarmMelBut.free;
+		~countShufHarmMel=0;
+		~shufHarmMelBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				//"Transpose Shuffle".postln;
+				~countShufHarmMel = ~countShufHarmMel + 1;
+
+				~countShufHarmMel.switch(
+					0,{},
+					1, {
+						this.harmMelOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+						~apc40.noteOn(~apcLn4, ~lnchBut4, 6); //But 1
+					},
+					2,{
+						this.harmMelOff;
+						~apc40.noteOn(~apcLn4, ~lnchBut4, 0); //But 1
+						~local.sendMsg('harmMel0', 1);
+						~countShufHarmMel=0;
+					}
+				)
+				}
+			);
+			},
+			'/shufMelHarm'
+		);
+		~harmMel_0.free;
+		~harmMel_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Harmonic 0".postln;
+				//~harmKick=0;
+				//~harmSnr=0;~harmHat=0;
+				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
+
+				~tOSCAdrr.sendMsg('harm0', 0);
+				~tOSCAdrr.sendMsg('shufMelHarm', 0);
+			});
+			},
+			'/harmMel0'
+		);
+	}
+	*loadVarResps{
 		~harmXY.free;
 		~harmXY= OSCFunc({
 			arg msg;
@@ -285,21 +362,20 @@ IFShuf{
 				~harmSnr=0;~harmHat=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
 
-				//~strKick.source     =  Pshuf([1], inf);
-				//~strSnr.source     =  Pshuf([1], inf);
-				//~strHat.source     =  Pshuf([1], inf);
-				//~strBass.source    =  Pshuf([1], inf);
-				//~strKeys.source    =  Pshuf([1], inf);
-				//~strSamp.source    =  Pshuf([1], inf);
+				//~hrmKick.source     =  Pshuf([1], inf);
+				//~hrmSnr.source     =  Pshuf([1], inf);
+				//~hrmHat.source     =  Pshuf([1], inf);
+				//~hrmBass.source    =  Pshuf([1], inf);
+				//~hrmKeys.source    =  Pshuf([1], inf);
+				//~hrmSamp.source    =  Pshuf([1], inf);
 				~tOSCAdrr.sendMsg('harm0', 0);
-				~tOSCAdrr.sendMsg('shufHarm', 0);
+				~tOSCAdrr.sendMsg('shufDrumHarm', 0);
+				~tOSCAdrr.sendMsg('shufMelHarm', 0);
 			});
 			},
 			'/harm0'
 		);
-
 	}
-
 
 }
 /*

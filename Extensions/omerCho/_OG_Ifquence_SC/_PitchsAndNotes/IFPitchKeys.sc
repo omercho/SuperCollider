@@ -36,34 +36,49 @@ IFPitchKeys {
 				~countPKeys = ~countPKeys + 1;
 
 				~countPKeys.switch(
-					0,{
-						"PITCHKeys SWITCH 0".postln;
-					},
+					0,{},
 					1, {
-
 						"PITCHKeys SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 1);
 						IFPitchKeys.noteKeysOn;
-
-
+						~apc40.noteOn(~apcLn1, 63, 1); //But 6
 					},
 					2,{
-
 						"PITCHKeys SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 0);
 						~countPKeys=0;
 						IFPitchKeys.noteKeysOff;
+						~apc40.noteOn(~apcLn1, 63, 1); //But 6
 					}
-				)
-				},{
-					// else
-
-				}
+				)}
 			);
 			},
 			'/pitchKeys'
 		);
 
+		//APC Pitch Keys Button
+		~countPKeysApc=0;
+		~apcPKeysButton.free;
+		~apcPKeysButton=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~countPKeysApc = ~countPKeysApc + 1;
+				~countPKeysApc.switch(
+					0,{},
+					1, {
+
+						~local.sendMsg('pitchKeys', 1);
+
+
+					},
+					2,{
+						~local.sendMsg('pitchKeys', 1);
+						~countPKeysApc=0;
+
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:63);
 	}
 
 	*noteKeysOn {

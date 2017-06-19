@@ -28,9 +28,10 @@ classvar <>counter3 = 0;
 
 	*globals{
 
-		~chMast=13;
+		~chMast=11;
 		~timesMast=1;
 		~octMast=4;
+		~mastLate=0;
 
 		~macrMast1=1; ~macrMast2=2;
 		~macrMast3=3; ~macrMast4=4;
@@ -44,7 +45,7 @@ classvar <>counter3 = 0;
 		~volMast = PatternProxy( Pseq([1], inf));
 		~volMastP= Pseq([~volMast], inf).asStream;
 
-		~ccMast = PatternProxy( Pseq([0], inf));
+		~ccMast = PatternProxy( Pseq([1], inf));
 		~ccMastP = Pseq([~ccMast], inf).asStream;
 
 		~ccValMast = PatternProxy( Pseq([1], inf));
@@ -66,14 +67,14 @@ classvar <>counter3 = 0;
 
 
 	*preSet{
-		~mdOut.control(~chMast, 1, 94); //resonator Note
-		~mdOut.control(~chMast, 2, 94); //resonator Decay
-		~mdOut.control(~chMast, 3, 68); //resonator Filter freq
-		~mdOut.control(~chMast, 4, 100); //resonator Color
-		~mdOut.control(~chMast, 5, 120); //resonator Note gain
-		~mdOut.control(~chMast, 6, 100); //resonator Width
-		~mdOut.control(~chMast, 7, 74); //resonator Gain
-		~mdOut.control(~chMast, 8, 64); //resonator Gain
+		~mdOut.control(~chMast, 1, 94); //mac_1
+		~mdOut.control(~chMast, 2, 94); //mac_2
+		~mdOut.control(~chMast, 3, 68); //mac_3
+		~mdOut.control(~chMast, 4, 100); //mac_4
+		~mdOut.control(~chMast, 5, 120); //mac_5
+		~mdOut.control(~chMast, 6, 100); //mac_6
+		~mdOut.control(~chMast, 7, 74); //mac_7
+		~mdOut.control(~chMast, 8, 64); //mac_8
 
 	}
 
@@ -84,7 +85,7 @@ classvar <>counter3 = 0;
 		{ i == val }  {
 			{val.do{
 
-				~resLate.wait;
+				~mastLate.wait;
 
 				this.p1(val);
 
@@ -207,40 +208,5 @@ classvar <>counter3 = 0;
 
 	}
 
-	//Mast Beat Counter
-	*count3 {
 
-		counter3 = counter3 + 1;
-		counter3.switch(
-			3, {
-				("            MastCnt"+counter3).postln;
-				this.ctl_3;
-				counter3 = 0;
-
-			}
-
-		)
-	}
-
-
-	*ctl_1 {}
-
-	*ctl_2 {}
-
-	*ctl_3 {
-		~mcrMast2.stop;
-		~mcrMast2={
-			var val;
-			val = Pslide((30..100).mirror, inf,3,1,0).asStream;
-			240.do{
-				~mdOut.control(~chMast, ~macrMast2, val.next);
-			(~dur.next*(1/8)).wait;
-			}
-		}.fork;
-
-	}
-
-	*ctl_9 {}
-
-	*ctl_18 {}
 }

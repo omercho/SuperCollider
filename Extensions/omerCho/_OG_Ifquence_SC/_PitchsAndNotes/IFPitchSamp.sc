@@ -36,41 +36,47 @@ IFPitchSamp {
 				~countPSamp = ~countPSamp + 1;
 
 				~countPSamp.switch(
-					0,{
-						"PITCHSamp SWITCH 0".postln;
-					},
-					1, {
-
-						"PITCHSamp SWITCH ON".postln;
+					0,{},
+					1, {"PITCHSamp SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchSamp', 1);
 						IFPitchSamp.noteSampOn;
-
-
+						~apc40.noteOn(~apcLn1, 64, 1); //But 7
 					},
-					2,{
-
-						"PITCHSamp SWITCH OFF".postln;
+					2,{"PITCHSamp SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchSamp', 0);
 						~countPSamp=0;
 						IFPitchSamp.noteSampOff;
+						~apc40.noteOn(~apcLn1, 64, 0); //But 7
 					}
 				)
-				},{
-					// else
-
 				}
-			);
-			},
+			);},
 			'/pitchSamp'
 		);
 
+		//APC Pitch Samp Button
+		~countPSampApc=0;
+		~apcPSampButton.free;
+		~apcPSampButton=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~countPSampApc = ~countPSampApc + 1;
+				~countPSampApc.switch(
+					0,{},
+					1, {
+						~local.sendMsg('pitchSamp', 1);
+					},
+					2,{
+						~local.sendMsg('pitchSamp', 1);
+						~countPSampApc=0;
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:64);
 	}
 
 	*noteSampOn {
-
 		/////////////////////----- Note -------//////////////
-
-
 		~noteSamp_0.free;
 		~noteSamp_0 = OSCFunc({
 			arg msg;

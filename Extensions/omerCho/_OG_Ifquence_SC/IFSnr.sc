@@ -48,12 +48,14 @@ IFSnr {
 		~transSnrP = Pseq([~transSnr], inf).asStream;
 		~transShufSnr = PatternProxy( Pseq([0], inf));
 		~transShufSnrP = Pseq([~transShufSnr], inf).asStream;
+		~extraShufSnr = PatternProxy( Pshuf([0], inf));
+		~extraShufSnrP = Pseq([~extraShufSnr], inf).asStream;
 
 		~octSnr = PatternProxy( Pseq([3], inf));
 		~octSnrP = Pseq([~octSnr], inf).asStream;
 
-		~strSnr = PatternProxy( Pseq([1.0], inf));
-		~strSnrP = Pseq([~strSnr], inf).asStream;
+		~hrmSnr = PatternProxy( Pseq([1.0], inf));
+		~hrmSnrP = Pseq([~hrmSnr], inf).asStream;
 
 		~volSnr = PatternProxy( Pseq([1], inf));
 		~volSnrP= Pseq([~volSnr], inf).asStream;
@@ -61,7 +63,7 @@ IFSnr {
 		~actSnr = PatternProxy( Pseq([1], inf));
 		~actSnrP= Pseq([~actSnr], inf).asStream;
 
-		//StaticSnr
+		/*//StaticSnr
 		~actStSnr = PatternProxy( Pseq([0], inf));
 		~actStSnrP= Pseq([~actStSnr], inf).asStream;
 		~durStSnr = PatternProxy( Pseq([1], inf));
@@ -69,7 +71,7 @@ IFSnr {
 		~ampStSnr = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStSnrP = Pseq([~ampStSnr], inf).asStream;
 		~ntStSnr = PatternProxy( Pseq([67], inf));
-		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;
+		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;*/
 
 	}//*proxy
 
@@ -101,24 +103,25 @@ IFSnr {
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
-			\mtranspose, Pseq([~transSnrP.next], inf)+~trSnr+~transShufSnrP.next,
+			\mtranspose, Pseq([~transSnrP.next
+			], inf)+~trSnr+~transShufSnrP.next+~extraShufSnrP.next,
 			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
-			\harmonic, Pseq([~strSnrP.next], inf)+~harmSnr
+			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
 		).play;
 
 	}
 
-	*stat01 {|i=1|
-		var val;
-		val=i;
-		~staticSnrPat=Pbind(
-			\chan, ~snrCh,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durStSnrP.next],~actStSnrP.next),
-			\degree, Pseq([~ntStSnrP.next], inf),
-			\amp, Pseq([~ampStSnrP.next], inf)
-		).play(TempoClock.default, quant: 1);
-	}
+	/**stat01 {|i=1|
+	var val;
+	val=i;
+	~staticSnrPat=Pbind(
+	\chan, ~snrCh,
+	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+	\dur, Pseq([~durStSnrP.next],~actStSnrP.next),
+	\degree, Pseq([~ntStSnrP.next], inf),
+	\amp, Pseq([~ampStSnrP.next], inf)
+	).play;
+	}*/
 
 	*apc40{
 
@@ -171,25 +174,7 @@ IFSnr {
 			);
 		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButB);
 
-		//Act ButC
-		//Static Snr Activate
-		~cntActLine2ButC=0;
-		~mdActLine2ButC.free;
-		~mdActLine2ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine2ButC = ~cntActLine2ButC + 1;
-				~cntActLine2ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine2ButC(1);
-					},
-					2,{
-						IFAPC40.actLine2ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButC);
+
 	}//*apc40
 
 	*beh{
@@ -243,27 +228,26 @@ IFSnr {
 		~countTime2Snr=0;
 		~time2SnrBut= OSCFunc({
 			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
-				~countTime2Snr = ~countTime2Snr + 1;
-				~countTime2Snr.switch(
-					0,{},
-					1, {
-						//~behOut.control(3, 9, 127);
-						~apc40.noteOn(1, 49, 127);
-						~tOSCAdrr.sendMsg('time2Snr', 1);
-						~tOSCAdrr.sendMsg('tmSnrLabel', 2);
-						~tmMulSnr.source = Pseq([2], inf);
-					},
-					2,{
-						//~behOut.control(3, 9, 0);
-						~apc40.noteOff(1, 49, 127);
-						~tOSCAdrr.sendMsg('time2Snr', 0);
-						~tOSCAdrr.sendMsg('tmSnrLabel', 1);
-						~tmMulSnr.source = Pseq([1], inf);
-						~countTime2Snr=0;
-					}
-				)}
-			);
+			~countTime2Snr = ~countTime2Snr + 1;
+			~countTime2Snr.switch(
+				1,{
+
+
+					~apc40.noteOn(1, 49, 127);
+					~tOSCAdrr.sendMsg('time2Snr', 1);
+					~tOSCAdrr.sendMsg('tmSnrLabel', 2);
+					~tmMulSnr.source = Pseq([2], inf);
+					~extraShufSnr.source = Pshuf([10,11,12,13,14], inf);
+				},
+				2,{
+
+					~apc40.noteOff(1, 49, 127);
+					~tOSCAdrr.sendMsg('time2Snr', 0);
+					~tOSCAdrr.sendMsg('tmSnrLabel', 1);
+					~tmMulSnr.source = Pseq([1], inf);
+					~extraShufSnr.source = Pshuf([0], inf);
+					~countTime2Snr=0;
+			});
 			},
 			'/time2Snr'
 		);

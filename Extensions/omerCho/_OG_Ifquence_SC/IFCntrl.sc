@@ -136,27 +136,37 @@ IFCntrl {
 			'/durResponder'
 		);
 
-		~noteFad.free;
-		~noteFad= OSCFunc({
+		~snrXPoseFad.free;
+		~snrXPoseFad= OSCFunc({
 			arg msg;
 
 			//~transKick.source= msg[1]+Pseq([0], inf);
 			//~transSnr.source=msg[1]+Pseq([0], inf);
 			//~transHat.source=msg[1]+Pseq([0], inf);
-			~tOSCAdrr.sendMsg('noteFader',msg[1]);
+			~tOSCAdrr.sendMsg('snrXPose',msg[1]);
 			~mdOut.control(3, 15, msg[1]*127); //Snr X-Transpose
 			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
 			},
-			'/noteFader'
+			'/snrXPose'
 		);
 		~melFad.free;
 		~melFad= OSCFunc({
 			arg msg;
+			if ( ~volcaBoolean==1, {
+				~tOSCAdrr.sendMsg('melFader',msg[1]);
+				~mdOut.control(7, 8, msg[1]*127); //Samp Chain
+				~vKeys.control(0, ~vcfEg, msg[1]*127); //VCFilter Envelope Intencity
+				~vBass.control(0, ~gateTime, msg[1]*127);
 
-			~tOSCAdrr.sendMsg('melFader',msg[1]);
-			~mdOut.control(7, 8, msg[1]*127); //Samp Chain
-			~vKeys.control(0, ~vcfEg, msg[1]*127); //VCFilter Envelope Intencity
-			~vBass.control(0, ~gateTime, msg[1]*127);
+				},
+				{
+					~tOSCAdrr.sendMsg('melFader',msg[1]);
+					~mdOut.control(7, 8, msg[1]*127); //Samp Chain
+					//~vKeys.control(0, ~vcfEg, msg[1]*127); //VCFilter Envelope Intencity
+					//~vBass.control(0, ~gateTime, msg[1]*127);
+
+				}
+			);
 			},
 			'/melFader'
 		);
@@ -182,13 +192,15 @@ IFCntrl {
 			vel1=msg[1];
 			vel2=msg[2];
 
-			~tOSCAdrr.sendMsg('/allMainSends',msg[1], msg[2]);
-			~mdOut.control(1, 4, msg[2]*127);
-			~mdOut.control(1, 5, msg[1]*127);
-			~mdOut.control(1, 13, msg[2]*127);
+			~tOSCAdrr.sendMsg('/sendDrumMelC',msg[1], msg[2]);
+			//~mdOut.control(1, 4, msg[2]*127);
+			//~mdOut.control(1, 5, msg[1]*127);
+			//~mdOut.control(1, 13, msg[2]*127);
+			~mdOut.control(10, 25, msg[1]*127);
+			~mdOut.control(10, 75, msg[2]*127);
 
 			},
-			'/allMainSends'
+			'/sendDrumMelC'
 		);
 
 		~xySendsDrum.free;
@@ -199,9 +211,9 @@ IFCntrl {
 			vel2=msg[2];
 
 			~tOSCAdrr.sendMsg('/drumSends',msg[1], msg[2]);
-			~mdOut.control(10, 23, msg[2]*127);
-			~mdOut.control(10, 24, msg[1]*127);
-			~mdOut.control(10, 25, msg[2]*127);
+			~mdOut.control(10, 23, msg[1]*127);
+			~mdOut.control(10, 24, msg[2]*127);
+			//~mdOut.control(10, 25, msg[2]*127);
 
 			},
 			'/drumSends'
@@ -214,9 +226,9 @@ IFCntrl {
 			vel2=msg[2];
 
 			~tOSCAdrr.sendMsg('/melSends',msg[1], msg[2]);
-			~mdOut.control(10, 73, msg[2]*127);
-			~mdOut.control(10, 74, msg[1]*127);
-			~mdOut.control(10, 75, msg[2]*127);
+			~mdOut.control(10, 73, msg[1]*127);
+			~mdOut.control(10, 74, msg[2]*127);
+			//~mdOut.control(10, 75, msg[2]*127);
 
 			},
 			'/melSends'
@@ -227,7 +239,7 @@ IFCntrl {
 			arg msg;
 			if ( msg[1]==1, {
 
-				~local.sendMsg('allMainSends',0.0, 0.0);
+				~local.sendMsg('sendDrumMelC',0.0, 0.0);
 				~local.sendMsg('melSends',0.0, 0.0);
 				~local.sendMsg('drumSends',0.0, 0.0);
 				~local.sendMsg('sendKick', 0.0, 0.0);
@@ -247,23 +259,23 @@ IFCntrl {
 		~octRandAllBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1,{
-				~octMulKick = [0,1,2,3].choose;
-				~octMulSnr = [0,1,2,3].choose;
-				~octMulHat = [0,1,2,3].choose;
+				//~octMulKick = [0,1,2,3].choose;
+				//~octMulSnr = [0,1,2,3].choose;
+				//~octMulHat = [0,1,2,3].choose;
 				~octMulBass = [0,1,2,3].choose;
 				~octMulKeys = [0,1,2,3].choose;
 				~octMulSamp = [0,1,2,3].choose;
-				~octMulExt= [0,1,2,3].choose;
+				//~octMulExt= [0,1,2,3].choose;
 				},
 				{
 
-					~local.sendMsg('octKickZero',1);
-					~local.sendMsg('octSnrZero',1);
-					~local.sendMsg('octHatZero',1);
+					//~local.sendMsg('octKickZero',1);
+					//~local.sendMsg('octSnrZero',1);
+					//~local.sendMsg('octHatZero',1);
 					~local.sendMsg('octBassZero',1);
 					~local.sendMsg('octKeysZero',1);
 					~local.sendMsg('octSampZero',1);
-					~local.sendMsg('octExtZero',1);
+					//~local.sendMsg('octExtZero',1);
 
 			});
 			},
@@ -277,7 +289,7 @@ IFCntrl {
 			arg msg;
 			if ( msg[1]==1, {
 
-				~local.sendMsg('allMainSends',0.5, 0.5);
+				~local.sendMsg('sendDrumMelC',0.5, 0.5);
 				~local.sendMsg('melSends',0.5, 0.5);
 				~local.sendMsg('drumSends',0.5, 0.5);
 				~local.sendMsg('sendKick', 0.5, 0.5);
@@ -301,10 +313,15 @@ IFCntrl {
 			vel2=msg[2];
 
 			~tOSCAdrr.sendMsg('AllMasterFXxy1',msg[1], msg[2]);
-			~mdOut.control(12, 1, msg[2]*127);
-			~mdOut.control(12, 2, msg[1]*127);
+
 			~mdOut.control(11, 1, msg[1]*127);
 			~mdOut.control(11, 2, msg[2]*127);
+			~mdOut.control(12, 1, msg[1]*127);
+			~mdOut.control(12, 2, msg[2]*127);
+			~mdOut.control(~chMast, 5, msg[1]*127);
+			~mdOut.control(~chMast, 6,  msg[2]*127);
+			~mdOut.control(~chMast, 7, msg[1]*127);
+			~mdOut.control(~chMast, 8,  msg[2]*127);
 
 
 			},
@@ -327,17 +344,30 @@ IFCntrl {
 			arg msg,vel1, vel2;
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
-			~mdOut.control(5, 13, vel1); // IFVBass CutX
-			~mdOut.control(6, 13, vel1); // IFVKeys CutX
-			~mdOut.control(7, 13, vel1); // IFSamp CutX
-			~vKeys.control(0, ~vcfCut, vel1/1.8);
-			~vBass.control(0, ~gateTime, vel1);
+			if ( ~volcaBoolean==1, {
+				~mdOut.control(5, 13, vel1); // IFVBass CutX
+				~mdOut.control(6, 13, vel1); // IFVKeys CutX
+				~mdOut.control(7, 13, vel1); // IFSamp CutX
+				~vKeys.control(0, ~vcfCut, vel1/1.8);
+				~vBass.control(0, ~gateTime, vel1);
 
-			~mdOut.control(5, 14, vel2); // IFVBass CutY
-			~mdOut.control(6, 14, vel2); // IFVKeys CutY
-			~mdOut.control(7, 14, vel2); // IFSamps CutY
-			~vBass.control(0, ~cutOff, vel2);
-			~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
+				~mdOut.control(5, 14, vel2); // IFVBass CutY
+				~mdOut.control(6, 14, vel2); // IFVKeys CutY
+				~mdOut.control(7, 14, vel2); // IFSamps CutY
+				~vBass.control(0, ~cutOff, vel2);
+				~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
+				},
+				{
+					~mdOut.control(5, 13, vel1); // IFVBass CutX
+					~mdOut.control(6, 13, vel1); // IFVKeys CutX
+					~mdOut.control(7, 13, vel1); // IFSamp CutX
+
+					~mdOut.control(5, 14, vel2); // IFVBass CutY
+					~mdOut.control(6, 14, vel2); // IFVKeys CutY
+					~mdOut.control(7, 14, vel2); // IFSamps CutY
+					~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
+				}
+			);
 			},
 			'/cutAll'
 		);

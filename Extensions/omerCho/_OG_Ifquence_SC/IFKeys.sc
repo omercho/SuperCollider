@@ -69,8 +69,8 @@ IFKeys {
 		~octKeysP = Pseq([~octKeys], inf).asStream;
 		~legKeys = PatternProxy( Pseq([0.0], inf));
 		~legKeysP = Pseq([~legKeys], inf).asStream;
-		~strKeys = PatternProxy( Pseq([1.0], inf));
-		~strKeysP = Pseq([~strKeys], inf).asStream;
+		~hrmKeys = PatternProxy( Pseq([1.0], inf));
+		~hrmKeysP = Pseq([~hrmKeys], inf).asStream;
 		//~delta1Keys.source=0.5;
 		~delta1Keys = PatternProxy( Pseq([1/1], inf));
 		~delta1KeysP = Pseq([~delta1Keys], inf).asStream;
@@ -90,7 +90,7 @@ IFKeys {
 		~actKeys = PatternProxy( Pseq([1], inf));
 		~actKeysP= Pseq([~actKeys], inf).asStream;
 
-		//StaticKeys
+		/*//StaticKeys
 		~actStKeys = PatternProxy( Pseq([0], inf));
 		~actStKeysP= Pseq([~actStKeys], inf).asStream;
 		~durStKeys = PatternProxy( Pseq([1], inf));
@@ -98,7 +98,7 @@ IFKeys {
 		~ampStKeys = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStKeysP = Pseq([~ampStKeys], inf).asStream;
 		~ntStKeys = PatternProxy( Pseq([67], inf));
-		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;
+		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;*/
 
 
 	}
@@ -134,7 +134,7 @@ IFKeys {
 			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
 			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
 			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-			\harmonic, Pseq([~strKeysP.next], inf)+~harmKeys
+			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
 		).play;
 
 		Pbind(//LFO CUT ABL INT
@@ -169,7 +169,7 @@ IFKeys {
 		).play;
 
 	}//p1
-	*stat01 {|i=1|
+	/**stat01 {|i=1|
 		var val;
 		val=i;
 		~staticKeysPat=Pbind(
@@ -179,7 +179,7 @@ IFKeys {
 			\degree, Pseq([~ntStKeysP.next], inf),
 			\amp, Pseq([~ampStKeysP.next], inf)
 		).play;
-	}//stat01
+	}//stat01*/
 
 
 	*apc40{
@@ -234,7 +234,7 @@ IFKeys {
 
 		//Act ButC
 		//Static Keys Activate
-		~cntActLine5ButC=0;
+		/*~cntActLine5ButC=0;
 		~mdActLine5ButC.free;
 		~mdActLine5ButC=MIDIFunc.noteOn({
 			arg vel;
@@ -250,7 +250,7 @@ IFKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButC);*/
 
 	}//*apc40
 
@@ -291,7 +291,7 @@ IFKeys {
 				~actKeys.source=1;
 				~apc40.noteOn(4, 48, 127); //Trk5_But 1
 				//~behOut.control(6, 2, 127);
-			},{
+				},{
 					~actKeys.source=0;
 					~apc40.noteOff(4, 48, 127); //Trk5_But 1
 					//~behOut.control(6, 2, 0);
@@ -304,27 +304,24 @@ IFKeys {
 		~countTime2Keys=0;
 		~time2KeysBut= OSCFunc({
 			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+
 				~countTime2Keys = ~countTime2Keys + 1;
 				~countTime2Keys.switch(
 					0,{},
 					1, {
-						//~behOut.control(6, 9, 127);
 						~apc40.noteOn(4, 49, 127); //Trk5_But 2
 						~tOSCAdrr.sendMsg('time2Keys', 1);
 						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
 						~tmMulKeys.source = Pseq([2], inf);
 					},
 					2,{
-						//~behOut.control(6, 9, 0);
 						~apc40.noteOff(4, 49, 127); //Trk5_But 2
 						~tOSCAdrr.sendMsg('time2Keys', 0);
 						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
 						~tmMulKeys.source = Pseq([1], inf);
 						~countTime2Keys=0;
 					}
-				)}
-			);
+				);
 			},
 			'/time2Keys'
 		);
@@ -343,33 +340,51 @@ IFKeys {
 		~attKeysFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
-			~tOSCAdrr.sendMsg('attKeys', msg[1]);
-			~vKeys.control(0, ~envAtt, val);
-			~mdOut.control(6, 5, val);
+			if ( ~volcaBoolean==1, {
+				~tOSCAdrr.sendMsg('attKeys', msg[1]);
+				~vKeys.control(0, ~envAtt, val);
+				~mdOut.control(6, 5, val);
+				},{
+					~tOSCAdrr.sendMsg('attKeys', msg[1]);
+					~mdOut.control(6, 5, val);
+			});
 			},
 			'/attKeys'
 		);
+
 
 		~susKeysFader.free;
 		~susKeysFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*127;
-			~tOSCAdrr.sendMsg('susKeys', msg[1]);
-			~vKeys.control(0, ~envSus, val+0.01);
-			~mdOut.control(6, 6, val);
+			if ( ~volcaBoolean==1, {
+				~tOSCAdrr.sendMsg('susKeys', msg[1]);
+				~vKeys.control(0, ~envSus, val+0.01);
+				~mdOut.control(6, 6, val);
+				},{
+					~tOSCAdrr.sendMsg('susKeys', msg[1]);
+					~mdOut.control(6, 6, val);
+			});
 			},
 			'/susKeys'
 		);
+
 
 		~decKeysFader.free;
 		~decKeysFader= OSCFunc({
 			arg msg,val,vel;
 			val=msg[1];
 			vel=msg[1]*127;
-			~tOSCAdrr.sendMsg('decKeys', val);
-			~vKeys.control(0, ~envDec, vel+0.01);
-			~mdOut.control(6, 127, vel);
-			~nobD6_m1Val= vel;
+			if ( ~volcaBoolean==1, {
+				~tOSCAdrr.sendMsg('decKeys', val);
+				~vKeys.control(0, ~envDec, vel+0.01);
+				~mdOut.control(6, 127, vel);
+				~nobD6_m1Val= vel;
+				},{
+					~tOSCAdrr.sendMsg('decKeys', val);
+					~mdOut.control(6, 127, vel);
+					~nobD6_m1Val= vel;
+			});
 			},
 			'/decKeys'
 		);
@@ -402,12 +417,22 @@ IFKeys {
 		~xy1Keys.free;
 		~xy1Keys= OSCFunc({
 			arg msg;
-			~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
-			~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
-			~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+			if ( ~volcaBoolean==1, {
+				~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
+				~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+				~mdOut.control(6, 11, msg[2]*127);
+				~mdOut.control(6, 12, msg[1]*127);
+				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+				},{
+
+					~mdOut.control(6, 11, msg[2]*127);
+					~mdOut.control(6, 12, msg[1]*127);
+					~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+			});
 			},
 			'/xy1Keys'
 		);
+
 
 		/**/
 
@@ -526,37 +551,6 @@ IFKeys {
 			},
 			'/octKeysDiv'
 		);
-
-	}
-
-
-
-
-	//Keys Beat Counter
-	*count3 {
-		1.do{
-			counter3 = counter3 + 1;
-			counter3.switch(
-				3, {
-					("            KeysCnt"+counter3).postln;
-					this.ctl_2;
-					counter3 = 0;
-
-				}
-
-			)
-		}
-
-	}
-
-
-	*ctl_1 {
-
-
-	}
-
-	*ctl_2 {
-		("Keys CTL 2").postln;
 
 	}
 

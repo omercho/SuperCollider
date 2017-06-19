@@ -3,9 +3,9 @@ IFTrack01 {
 		~trackCase=1;
 		IFAPC40.tsLeds(1,0,0,0,0,0,0,0);
 		IFRoot.set00;
-		IFTrack01.setGlb01;
-		IFTrack01.apcParts;
-		IFTrack01.setActs;
+		this.setGlb01;
+		this.apcParts;
+		this.setActs;
 		~shiftPartsBut.free;
 		~shiftPartsBut = OSCFunc({
 			arg msg;
@@ -36,30 +36,6 @@ IFTrack01 {
 		~mdOut.control(0, 86, 0); //Track 06
 		~mdOut.control(0, 87, 0); //Track 07
 		~mdOut.control(0, 88, 0); //Track 08
-		//StaticSnr
-		~ntStKick.source = Pseq([67], inf);
-		~durStKick.source  =  Pseq([1/2], inf);
-		//~ampStSnr.source  =  Pseq([0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0], inf);
-		//StaticSnr
-		~ntStSnr.source = Pseq([67], inf);
-		~durStSnr.source  =  Pseq([1/2], inf);
-		//~ampStSnr.source  =  Pseq([1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], inf);
-		//StaticHat
-		~ntStHat.source = Pseq([67], inf);
-		~durStHat.source  =  Pseq([1/2], inf);
-		//~ampStHat.source  =  Pseq([0,1], inf);
-		//StaticBass
-		~ntStBass.source = Pseq([5], inf);
-		~durStBass.source  =  Pseq([1/2], inf);
-		//~ampStBass.source  =  Pseq([0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0], inf);
-		//StaticKeys
-		~ntStKeys.source = Pseq([0], inf);
-		~durStKeys.source  =  Pseq([1/2], inf);
-		//~ampStKeys.source  =  Pseq([0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0], inf);
-		//StaticSamp
-		~ntStSamp.source = Pseq([2], inf);
-		~durStSamp.source  =  Pseq([1/2], inf);
-		//~ampStSamp.source  =  Pseq([0,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0], inf);
 
 		// SHUFFLES from IFShuf
 		IFShuf.loadKick(0,1,2,3,4,5,6,7,8);
@@ -69,15 +45,16 @@ IFTrack01 {
 		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
 		IFShuf.loadSamp(0,-1,2,-3,2,-5,6,0,0);
 		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
+		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
 
 
 	}
 
 	*setActs{
-		IFAPC40.actLine1(1,0,0);
+		IFAPC40.actLine1(0,0,0);
 		IFAPC40.actLine2(1,0,0);
-		IFAPC40.actLine3(1,0,1);
-		IFAPC40.actLine4(1,1,0);
+		IFAPC40.actLine3(1,0,0);
+		IFAPC40.actLine4(1,0,0);
 		IFAPC40.actLine5(1,0,0);
 		IFAPC40.actLine6(1,0,0);
 
@@ -91,7 +68,7 @@ IFTrack01 {
 		~scl2= Scale.chinese;
 		~tOSCAdrr.sendMsg('scaleLabel', 'Chinese');
 
-		~tmp1=120;
+		~tmp1=123;
 		~tOSCAdrr.sendMsg('tempoLabel', ~tmp1);
 		~tOSCAdrr.sendMsg('tempoFader', ~tmp1);
 		~nt=(0);
@@ -113,16 +90,16 @@ IFTrack01 {
 
 		~local.sendMsg('cutAll',0.4, 0.25);
 		~local.sendMsg('cutDrum',0.0, 0.0);
-		~local.sendMsg('allMainSends',0.0, 0.0);
+		~local.sendMsg('sendDrumMelC',0.0, 0.0);
 		~local.sendMsg('melSends',0.0, 0.0);
 		~local.sendMsg('drumSends',0.0, 0.0);
 		~local.sendMsg('susMel',0.2);
 		~local.sendMsg('susDrum',0.2);
-		~local.sendMsg('noteFader',0.5);//SnrXpose
+		~local.sendMsg('snrXPose',0.5);//SnrXpose
 		~local.sendMsg('fxFader',0.0);
 		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
 
-		~vKeys.control(0, ~voice, ~uni); //voice
+		//~vKeys.control(0, ~voice, ~uni); //voice
 		IFAPC40_NobDown.md1SetVals(
 			v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1
 		);
@@ -158,8 +135,8 @@ IFTrack01 {
 		~local.sendMsg('volHat', 0.95);
 		~local.sendMsg('sendHat', 0.0, 0.0);
 		~local.sendMsg('attHat', 0.0);
-		~local.sendMsg('susHat', 0.0);
-		~local.sendMsg('decHat', 0.00);
+		~local.sendMsg('susHat', 0.3);
+		~local.sendMsg('decHat', 0.2);
 		~local.sendMsg('chainHat', 0.0);
 
 		"Bass Set".postln;
@@ -175,7 +152,7 @@ IFTrack01 {
 
 		"Keys Set".postln;
 		~local.sendMsg('volKeys', 0.95);
-		~local.sendMsg('sendKeys', 0.0, 0.3);
+		~local.sendMsg('sendKeys', 0.0, 0.0);
 		~local.sendMsg('attKeys', 0.05);
 		~local.sendMsg('susKeys', 0.3);
 		~local.sendMsg('decKeys', 0.05);
@@ -194,7 +171,7 @@ IFTrack01 {
 		~local.sendMsg('lfoMulSamp1',0.2);
 		~local.sendMsg('lfoMulSamp2',0.4);
 		//~local.sendMsg('octSampZero',1);
-		IFSamp.octMul(2);
+		IFSamp.octMul(1);
 
 		"Ext Set".postln;
 		~local.sendMsg('volExt',0.8);
@@ -207,23 +184,27 @@ IFTrack01 {
 
 		"part01".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
-		IFSeqKick.stGrpSet    (1,0,0,0, 1,1,0,0,  1,0,1,0, 0,1,0,0);
+		//CH -1- [ Kick ]
+		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
 		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
 		IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
+		IFSeqNtKick.stGrp  (4);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusKick.stGrpSet (3,0,0,0, 1,0,0,0,  1,0,0,0, 1,0,0,0);
+		IFSeqSusKick.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
-		IFSeqStKick.stGrpSet  (1,0,0,0, 0,0,0,0,  1,0,0,0, 0,0,0,0);
+		IFSeqStKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		~ntStKick.source = Pseq([0], inf);
 		//CH -1- [ Snare ]
-		IFSeqSnr.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		IFSeqSnr.stGrpSet    (1,0,1,0, 1,1,1,0,  1,0,1,0, 1,1,1,0);
 		IFSeqOctSnr.stGrpSet (2,0,0,0, 2,0,0,0,  1,0,0,0, 1,0,0,0);
 		IFSeqNtSnr.stGrpSet  (4,2,0,3, 3,5,0,6,  1,8,0,9, 2,3,4,5);
 		IFSeqVelSnr.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusSnr.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
-		IFSeqStSnr.stGrpSet  (0,0,0,0, 0,0,1,0,  0,0,0,0, 0,0,1,0);
+		IFSeqStSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
+		~ntStSnr.source = Pseq([0], inf);
 		//CH -2- [ HAT ]
 		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,0, 1,1,1,1);
 		IFSeqOctHat.stGrpSet (1,0,0,0, 2,0,0,0,  2,4,0,0, 2,0,1,0);
@@ -232,27 +213,32 @@ IFTrack01 {
 		IFSeqSusHat.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
 		IFSeqTmHat.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurHat.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
-		IFSeqStHat.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
+		IFSeqStHat.stGrpSet  (0,1,0,1, 0,1,0,1,  0,1,0,1, 0,1,0,1);
+		~ntStHat.source = Pseq([0], inf);
 		//CH -4- [Bass]
-		IFSeqBass.stGrpSet    (1,0,0,0, 0,0,0,0,  1,0,0,0, 0,0,0,0);
-		IFSeqOctBass.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
+		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqOctBass.stGrpSet (3,3,3,4, 3,3,3,3,  3,3,3,4, 3,3,3,0);
 		IFSeqNtBass.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
-		IFSeqVelBass.stGrpSet (3,0,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusBass.stGrpSet (5,2,3,0, 3,0,0,0,  3,0,0,0, 3,0,0,0);
+		IFSeqVelBass.stGrpSet (0,3,0,3, 0,3,0,3,  3,0,3,0, 3,0,3,0);
+		IFSeqSusBass.stGrpSet (2,2,3,5, 0,3,0,5,   3,4,5,0, 3,0,5,0);
 		IFSeqTmBass.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurBass.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStBass.stGrpSet  (1,0,0,0, 0,0,0,0,  1,0,0,0, 0,0,0,0);
+		~ntStBass.source = Pseq([0], inf);
+		~durStBass.source  =  Pseq([1/2], inf);
 		~lfo1Bass.source  =  Pseq([30,90,70,18, 0,10,60,20], inf);
 		~lfo2Bass.source  =  Pseq([0,20,30,50, 0,20,100,50], inf);
 		//CH -5- [Keys]
-		IFSeqKeys.stGrpSet    (0,0,1,0, 0,0,0,0,  0,1,0,0, 1,0,0,0);
-		IFSeqOctKeys.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
+		IFSeqKeys.stGrpSet    (1,0,1,1, 1,1,0,0,  1,0,1,1, 1,1,0,0);
+		IFSeqOctKeys.stGrpSet (3,3,2,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
 		IFSeqNtKeys.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
-		IFSeqVelKeys.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusKeys.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
+		IFSeqVelKeys.stGrpSet (3,0,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
+		IFSeqSusKeys.stGrpSet (5,0,0,0, 4,0,0,0,  5,0,0,0, 4,0,0,0);
 		IFSeqTmKeys.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKeys.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStKeys.stGrpSet  (0,0,1,0, 0,0,0,1,  0,0,0,0, 1,0,0,0);
+		~ntStKeys.source = Pseq([0], inf);
+		~durStKeys.source  =  Pseq([1/2], inf);
 		~lfoRtKeys.source =  Pseq([20,40,40,10], inf);
 		~lfoCtKeys.source =  Pseq([10,20,50,50], inf);
 		//CH -6- [SAMP]
@@ -264,16 +250,19 @@ IFTrack01 {
 		IFSeqTmSamp.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStSamp.stGrpSet  (0,0,0,0, 0,0,0,1,  0,0,0,0, 0,1,0,1);
+		~ntStSamp.source = Pseq([0], inf);
+		~durStSamp.source  =  Pseq([1/2], inf);
 		~lfo1Samp.source  =  Pseq([90,1,7,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
 		//Mas
-		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pxrand([1,24,70,50,120,0,38,100], inf);
 		~dur1Mast.source=Pxrand([1/2,1/4], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 
 	}//////                                      - 1 -
 
@@ -285,11 +274,11 @@ IFTrack01 {
 		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
 		IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusKick.stGrpSet (3,0,0,0, 1,0,0,0,  1,0,0,0, 1,0,0,0);
+		IFSeqSusKick.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		//CH -1- [ Snare ]
-		IFSeqSnr.stGrpSet    (0,1,1,0, 1,0,1,0,  1,0,1,0, 1,1,1,0);
+		IFSeqSnr.stGrpSet    (1,1,1,0, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqOctSnr.stGrpSet (2,0,0,0, 2,0,0,0,  1,0,0,0, 1,0,0,0);
 		IFSeqNtSnr.stGrpSet  (4,2,0,3, 3,5,0,6,  1,8,0,9, 2,3,4,5);
 		IFSeqVelSnr.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
@@ -336,13 +325,14 @@ IFTrack01 {
 		~lfo1Samp.source  =  Pseq([90,1,70,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
 		//Mast
-		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pseq([1,24,0,50,120], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 
 	}//////                                      - 2 -
 
@@ -402,11 +392,12 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,7,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
-		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4], inf);
+		~nt1Res.source=Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
+		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pseq([1,24,0,50,120], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
 	}//////                                      - 3 -
@@ -467,11 +458,12 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,11,70,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
-		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
+		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pseq([0,124,10,0,12], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
 	}//////                                      - 4 -
@@ -532,10 +524,11 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,7,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
 		~ccValMast.source=Pseq([1,24,0,50,120], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
@@ -597,10 +590,11 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,7,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
 		~ccValMast.source=Pseq([1,24,0,50,120], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
@@ -662,10 +656,11 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,70,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([60,10,80,99,6,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+3,~nt+0,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
 		~ccValMast.source=Pseq([100,24,0,50,120], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);
@@ -727,10 +722,11 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,111,70,9, 80,110,70,1], inf);
 		~lfo2Samp.source  =  Pseq([6,110,80,99,60,10,80,99], inf);
-		//Res1
-		~nt1Res1.source   =  Pseq([~nt+0,~nt+11,~nt+13,~nt+2,~nt+12,~nt+0,~nt+6,~nt+10], inf);
-		~dur1Res1.source  =  Pseq([1]*1, inf);
-		~tmRes1.source    =  Pseq([1], inf);
+		//Res
+		~ccRes.source=Pxrand([1,2,3,4,5,6,7,8], inf);
+		~nt1Res.source   =  Pseq([~nt+0,~nt+11,~nt+13,~nt+2,~nt+12,~nt+0,~nt+6,~nt+10], inf);
+		~dur1Res.source  =  Pseq([1]*1, inf);
+		~tmRes.source    =  Pseq([1], inf);
 		~ccMast.source=Pxrand([1,2,3,4,5,6,7,8], inf);
 		~ccValMast.source=Pseq([20,124,10,60,12], inf);
 		~dur1Mast.source=Pxrand([1/2], inf);

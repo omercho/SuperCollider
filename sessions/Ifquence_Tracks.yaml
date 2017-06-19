@@ -15,10 +15,8 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqBass.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqPat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqDurPat.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqNtBass.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqNtPat.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRes1.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFMast.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRes1.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFExt.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFKick.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSnr.sc
@@ -34,8 +32,8 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqSamp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqStSamp.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_NobDown.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_NobUp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_NobDown.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/APC40_OG_SourceCode/IFAPC40_Launch.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchBass.sc
@@ -48,290 +46,241 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFShuf.sc
 editors: !QVariantMap
   elements: !QVariantList
-    - !QVariantMap
-      elements: !QVariantList
-        - !QVariantList
-          - !QVariantMap
-            documentIndex: 14
-            position: 0
-          - !QVariantMap
-            documentIndex: 15
-            position: 1006
-          - !QVariantMap
-            documentIndex: 7
-            position: 0
-          - !QVariantMap
-            documentIndex: 23
-            position: 3198
-          - !QVariantMap
-            documentIndex: 24
-            position: 5661
-          - !QVariantMap
-            documentIndex: 21
-            position: 4574
-          - !QVariantMap
-            documentIndex: 9
-            position: 110
-          - !QVariantMap
-            documentIndex: 8
-            position: 0
-          - !QVariantMap
-            documentIndex: 13
-            position: 16870
-          - !QVariantMap
-            documentIndex: 12
-            position: 111
-          - !QVariantMap
-            documentIndex: 1
-            position: 882
-          - !QVariantMap
-            documentIndex: 4
-            position: 3324
-          - !QVariantMap
-            documentIndex: 3
-            position: 1061
-          - !QVariantMap
-            documentIndex: 36
-            position: 309
-          - !QVariantMap
-            documentIndex: 34
-            position: 3336
-          - !QVariantMap
-            documentIndex: 2
-            position: 2048
-          - !QVariantMap
-            documentIndex: 35
-            position: 472
-          - !QVariantMap
-            documentIndex: 11
-            position: 10352
-          - !QVariantMap
-            documentIndex: 26
-            position: 8511
-          - !QVariantMap
-            documentIndex: 25
-            position: 11531
-          - !QVariantMap
-            documentIndex: 0
-            position: 63
-        - !QVariantList
-          - !QVariantMap
-            documentIndex: 28
-            position: 16325
-          - !QVariantMap
-            documentIndex: 18
-            position: 1389
-          - !QVariantMap
-            documentIndex: 19
-            position: 2874
-          - !QVariantMap
-            documentIndex: 12
-            position: 111
-          - !QVariantMap
-            documentIndex: 10
-            position: 2530
-          - !QVariantMap
-            documentIndex: 33
-            position: 0
-          - !QVariantMap
-            documentIndex: 5
-            position: 0
-          - !QVariantMap
-            documentIndex: 0
-            position: 0
-          - !QVariantMap
-            documentIndex: 1
-            position: 691
-          - !QVariantMap
-            documentIndex: 8
-            position: 574
-          - !QVariantMap
-            documentIndex: 41
-            position: 0
-          - !QVariantMap
-            documentIndex: 42
-            position: 0
-          - !QVariantMap
-            documentIndex: 43
-            position: 0
-          - !QVariantMap
-            documentIndex: 38
-            position: 0
-          - !QVariantMap
-            documentIndex: 39
-            position: 0
-          - !QVariantMap
-            documentIndex: 40
-            position: 1413
-          - !QVariantMap
-            documentIndex: 26
-            position: 543
-          - !QVariantMap
-            documentIndex: 25
-            position: 300
-          - !QVariantMap
-            documentIndex: 3
-            position: 1332
-          - !QVariantMap
-            documentIndex: 24
-            position: 1117
-          - !QVariantMap
-            documentIndex: 21
-            position: 966
-          - !QVariantMap
-            documentIndex: 22
-            position: 1008
-          - !QVariantMap
-            documentIndex: 23
-            position: 857
-          - !QVariantMap
-            documentIndex: 27
-            position: 9226
-          - !QVariantMap
-            documentIndex: 7
-            position: 1212
-          - !QVariantMap
-            documentIndex: 35
-            position: 7117
-          - !QVariantMap
-            documentIndex: 34
-            position: 712
-          - !QVariantMap
-            documentIndex: 2
-            position: 6462
-          - !QVariantMap
-            documentIndex: 11
-            position: 6391
-          - !QVariantMap
-            documentIndex: 9
-            position: 327
-          - !QVariantMap
-            documentIndex: 4
-            position: 2067
-          - !QVariantMap
-            documentIndex: 36
-            position: 5901
-          - !QVariantMap
-            documentIndex: 37
-            position: 3176
-      state: AAAA/wAAAAAAAAACAAAAfAAAAzoBAAAAAQEAAAAC
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 12
+        position: 111
+      - !QVariantMap
+        documentIndex: 10
+        position: 2530
+      - !QVariantMap
+        documentIndex: 31
+        position: 0
+      - !QVariantMap
+        documentIndex: 39
+        position: 0
+      - !QVariantMap
+        documentIndex: 41
+        position: 0
+      - !QVariantMap
+        documentIndex: 36
+        position: 0
+      - !QVariantMap
+        documentIndex: 38
+        position: 1848
+      - !QVariantMap
+        documentIndex: 25
+        position: 9226
+      - !QVariantMap
+        documentIndex: 35
+        position: 11637
+      - !QVariantMap
+        documentIndex: 9
+        position: 686
+      - !QVariantMap
+        documentIndex: 11
+        position: 7063
+      - !QVariantMap
+        documentIndex: 17
+        position: 1947
+      - !QVariantMap
+        documentIndex: 21
+        position: 2521
+      - !QVariantMap
+        documentIndex: 3
+        position: 1333
+      - !QVariantMap
+        documentIndex: 6
+        position: 0
+      - !QVariantMap
+        documentIndex: 7
+        position: 1212
+      - !QVariantMap
+        documentIndex: 8
+        position: 653
+      - !QVariantMap
+        documentIndex: 16
+        position: 267
+      - !QVariantMap
+        documentIndex: 33
+        position: 168
+      - !QVariantMap
+        documentIndex: 5
+        position: 4567
+      - !QVariantMap
+        documentIndex: 23
+        position: 10017
+      - !QVariantMap
+        documentIndex: 22
+        position: 9373
+      - !QVariantMap
+        documentIndex: 2
+        position: 6457
+      - !QVariantMap
+        documentIndex: 4
+        position: 1504
+      - !QVariantMap
+        documentIndex: 26
+        position: 16325
+      - !QVariantMap
+        documentIndex: 19
+        position: 6383
+      - !QVariantMap
+        documentIndex: 0
+        position: 1238
+      - !QVariantMap
+        documentIndex: 1
+        position: 4591
+      - !QVariantMap
+        documentIndex: 24
+        position: 1553
+      - !QVariantMap
+        documentIndex: 20
+        position: 3397
+      - !QVariantMap
+        documentIndex: 34
+        position: 578
+      - !QVariantMap
+        documentIndex: 32
+        position: 3732
+      - !QVariantMap
+        documentIndex: 37
+        position: 925
+      - !QVariantMap
+        documentIndex: 40
+        position: 1315
     - !QVariantList
       - !QVariantMap
         documentIndex: 6
-        position: 36197
-      - !QVariantMap
-        documentIndex: 0
-        position: 471
+        position: 36196
       - !QVariantMap
         documentIndex: 5
         position: 29
       - !QVariantMap
-        documentIndex: 20
-        position: 0
-      - !QVariantMap
-        documentIndex: 17
-        position: 0
-      - !QVariantMap
-        documentIndex: 31
+        documentIndex: 29
         position: 656
       - !QVariantMap
-        documentIndex: 3
-        position: 1427
-      - !QVariantMap
-        documentIndex: 27
+        documentIndex: 25
         position: 3657
       - !QVariantMap
-        documentIndex: 29
+        documentIndex: 27
         position: 9334
       - !QVariantMap
         documentIndex: 10
         position: 1864
       - !QVariantMap
-        documentIndex: 8
-        position: 0
+        documentIndex: 26
+        position: 10052
       - !QVariantMap
         documentIndex: 28
-        position: 10052
+        position: 16204
+      - !QVariantMap
+        documentIndex: 30
+        position: 15871
+      - !QVariantMap
+        documentIndex: 31
+        position: 3167
+      - !QVariantMap
+        documentIndex: 42
+        position: 1149
+      - !QVariantMap
+        documentIndex: 43
+        position: 883
+      - !QVariantMap
+        documentIndex: 35
+        position: 5950
+      - !QVariantMap
+        documentIndex: 3
+        position: 1428
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
       - !QVariantMap
         documentIndex: 13
         position: 16215
       - !QVariantMap
-        documentIndex: 30
-        position: 16204
+        documentIndex: 18
+        position: 0
       - !QVariantMap
-        documentIndex: 32
-        position: 15871
+        documentIndex: 20
+        position: 3783
       - !QVariantMap
-        documentIndex: 1
-        position: 468
+        documentIndex: 21
+        position: 4046
+      - !QVariantMap
+        documentIndex: 22
+        position: 4119
+      - !QVariantMap
+        documentIndex: 24
+        position: 7817
+      - !QVariantMap
+        documentIndex: 8
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 13438
       - !QVariantMap
         documentIndex: 7
         position: 0
       - !QVariantMap
-        documentIndex: 11
-        position: 4986
+        documentIndex: 17
+        position: 1974
+      - !QVariantMap
+        documentIndex: 1
+        position: 1124
+      - !QVariantMap
+        documentIndex: 0
+        position: 645
       - !QVariantMap
         documentIndex: 2
-        position: 9423
+        position: 7492
       - !QVariantMap
-        documentIndex: 33
-        position: 3167
-      - !QVariantMap
-        documentIndex: 21
-        position: 5952
-      - !QVariantMap
-        documentIndex: 22
-        position: 3683
+        documentIndex: 11
+        position: 5343
       - !QVariantMap
         documentIndex: 23
-        position: 4042
-      - !QVariantMap
-        documentIndex: 24
-        position: 4119
-      - !QVariantMap
-        documentIndex: 18
-        position: 496
-      - !QVariantMap
-        documentIndex: 19
-        position: 4324
+        position: 9686
       - !QVariantMap
         documentIndex: 34
-        position: 2672
+        position: 6572
+      - !QVariantMap
+        documentIndex: 33
+        position: 6184
+      - !QVariantMap
+        documentIndex: 16
+        position: 1201
       - !QVariantMap
         documentIndex: 44
-        position: 1149
+        position: 5535
       - !QVariantMap
-        documentIndex: 45
-        position: 883
+        documentIndex: 19
+        position: 1181
+      - !QVariantMap
+        documentIndex: 32
+        position: 4145
       - !QVariantMap
         documentIndex: 4
-        position: 30893
+        position: 5339
       - !QVariantMap
-        documentIndex: 9
-        position: 3801
-      - !QVariantMap
-        documentIndex: 26
-        position: 7817
-      - !QVariantMap
-        documentIndex: 25
-        position: 5151
-      - !QVariantMap
-        documentIndex: 35
-        position: 6665
+        documentIndex: 14
+        position: 528
       - !QVariantMap
         documentIndex: 36
-        position: 5997
+        position: 1144
       - !QVariantMap
         documentIndex: 37
-        position: 5944
+        position: 1346
       - !QVariantMap
-        documentIndex: 46
-        position: 3036
-  state: AAAA/wAAAAAAAAACAAAC9AAAAhcBAAAAAQEAAAAB
+        documentIndex: 38
+        position: 1318
+      - !QVariantMap
+        documentIndex: 39
+        position: 1376
+  state: AAAA/wAAAAAAAAACAAACpgAAAn8BAAAAAQEAAAAB
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAABrAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAARcAAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAlkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAloAAAF3AAAATAD///8AAAUMAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAANUAAAAAAAAAC0AAAaPAAADVAAAAAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADEPwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADEAAAAGYA////AAAAAQAAAQIAAAMQ/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAbEAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAbIAAAFeAAAATAD///8AAAUmAAADEAAAAAEAAAACAAAAAQAAAAL8AAAAAA==

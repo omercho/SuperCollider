@@ -57,13 +57,13 @@ IFHat {
 		~legHat = PatternProxy( Pseq([0.0], inf));
 		~legHatP = Pseq([~legHat], inf).asStream;
 
-		~strHat = PatternProxy( Pseq([1.0], inf));
-		~strHatP = Pseq([~strHat], inf).asStream;
+		~hrmHat = PatternProxy( Pseq([1.0], inf));
+		~hrmHatP = Pseq([~hrmHat], inf).asStream;
 
 		~actHat = PatternProxy( Pseq([1], inf));
 		~actHatP= Pseq([~actHat], inf).asStream;
 
-		//StaticHat
+		/*//StaticHat
 		~actStHat = PatternProxy( Pseq([0], inf));
 		~actStHatP= Pseq([~actStHat], inf).asStream;
 		~durStHat = PatternProxy( Pseq([1], inf));
@@ -71,7 +71,7 @@ IFHat {
 		~ampStHat = PatternProxy( Pseq([0,1], inf));
 		~ampStHatP = Pseq([~ampStHat], inf).asStream;
 		~ntStHat = PatternProxy( Pseq([67], inf));
-		~ntStHatP = Pseq([~ntStHat], inf).asStream;
+		~ntStHatP = Pseq([~ntStHat], inf).asStream;*/
 
 	}//proxy
 
@@ -105,18 +105,18 @@ IFHat {
 			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
 			\mtranspose, Pseq([~transHatP.next], 1)+~trHat+~transShufHatP.next,
 			\octave, Pseq([~octHatP.next], 1)+~octMulHat,
-			\harmonic, Pseq([~strHatP.next], 1)+~harmHat
+			\harmonic, Pseq([~hrmHatP.next], 1)+~harmHat
 		).play;
 
-		~staticHatPat=Pbind(
+		/*~staticHatPat=Pbind(
 			\chan, ~hatCh,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([~durStHatP.next],~actStHatP),
 			\degree, Pseq([~ntStHatP.next], inf),
 			\amp, Pseq([~ampStHatP.next], inf)
-		).play(TempoClock.default, quant: 2);
+		).play(TempoClock.default, quant: 0);*/
 	}
-	*stat01 {|i=1|
+	/**stat01 {|i=1|
 		var val;
 		val=i;
 		~staticHatPat=Pbind(
@@ -125,8 +125,8 @@ IFHat {
 			\dur, Pseq([~durStHatP.next],~actStHatP),
 			\degree, Pseq([~ntStHatP.next], inf),
 			\amp, Pseq([~ampStHatP.next], inf)
-		).play(TempoClock.default, quant: 2);
-	}
+		).play(TempoClock.default, quant: 0);
+	}*/
 
 	*apc40{
 		~volHat_APC.free;
@@ -177,7 +177,7 @@ IFHat {
 			);
 		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButB);
 
-		//Act ButC
+		/*//Act ButC
 		//Static Hat Activate
 		~cntActLine3ButC=0;
 		~mdActLine3ButC.free;
@@ -195,7 +195,7 @@ IFHat {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButC);*/
 
 	}//*apc40
 
@@ -280,7 +280,7 @@ IFHat {
 		~countTime2Hat=0;
 		~time2HatBut= OSCFunc({
 			arg msg;
-			if ( msg[1]==1, {//"Transpose Shuffle".postln;
+
 				~countTime2Hat = ~countTime2Hat + 1;
 				~countTime2Hat.switch(
 					0,{},
@@ -298,9 +298,7 @@ IFHat {
 						~tOSCAdrr.sendMsg('tmHatLabel', 1);
 						~tmMulHat.source = Pseq([1], inf);
 						~countTime2Hat=0;
-					}
-				)}
-			);
+					});
 			},
 			'/time2Hat'
 		);

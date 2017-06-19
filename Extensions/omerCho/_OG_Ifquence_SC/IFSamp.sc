@@ -80,8 +80,8 @@ IFSamp {
 
 		~legSamp= PatternProxy( Pseq([0.0], inf));
 		~legSampP = Pseq([~legSamp], inf).asStream;
-		~strSamp = PatternProxy( Pseq([1.0], inf));
-		~strSampP = Pseq([~strSamp], inf).asStream;
+		~hrmSamp = PatternProxy( Pseq([1.0], inf));
+		~hrmSampP = Pseq([~hrmSamp], inf).asStream;
 
 		~delta1Samp = PatternProxy( Pseq([1/4], inf));
 		~delta1SampP = Pseq([~delta1Samp], inf).asStream;
@@ -96,7 +96,7 @@ IFSamp {
 		~actSamp = PatternProxy( Pseq([1], inf));
 		~actSampP= Pseq([~actSamp], inf).asStream;
 
-		//StaticSamp
+		/*//StaticSamp
 		~actStSamp = PatternProxy( Pseq([0], inf));
 		~actStSampP= Pseq([~actStSamp], inf).asStream;
 		~durStSamp = PatternProxy( Pseq([1], inf));
@@ -104,7 +104,7 @@ IFSamp {
 		~ampStSamp = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStSampP = Pseq([~ampStSamp], inf).asStream;
 		~ntStSamp = PatternProxy( Pseq([67], inf));
-		~ntStSampP = Pseq([~ntStSamp], inf).asStream;
+		~ntStSampP = Pseq([~ntStSamp], inf).asStream;*/
 
 
 	}
@@ -142,7 +142,7 @@ IFSamp {
 			\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
 			\mtranspose, Pseq([~transSampP.next], 1)+~trSamp+~transShufSampP.next,
 			\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
-			\harmonic, Pseq([~strSampP.next], 1)+~harmSamp
+			\harmonic, Pseq([~hrmSampP.next], 1)+~harmSamp
 
 
 		).play;
@@ -164,7 +164,7 @@ IFSamp {
 		).play;
 
 	}//p1
-	*stat01 {|i=1|
+	/**stat01 {|i=1|
 		var val;
 		val=i;
 		~staticSampPat=Pbind(
@@ -174,7 +174,7 @@ IFSamp {
 			\degree, Pseq([~ntStSampP.next], inf),
 			\amp, Pseq([~ampStSampP.next], inf)
 		).play;
-	}//stat01
+	}//stat01*/
 
 	*apc40{
 
@@ -228,7 +228,7 @@ IFSamp {
 
 		//Act ButC
 		//Static Samp Activate
-		~cntActLine6ButC=0;
+		/*~cntActLine6ButC=0;
 		~mdActLine6ButC.free;
 		~mdActLine6ButC=MIDIFunc.noteOn({
 			arg vel;
@@ -244,7 +244,7 @@ IFSamp {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButC);*/
 
 	}//*apc40
 
@@ -299,27 +299,23 @@ IFSamp {
 		~countTime2Samp=0;
 		~time2SampBut= OSCFunc({
 			arg msg;
-			if ( msg[1]==1, {
 				~countTime2Samp = ~countTime2Samp + 1;
 				~countTime2Samp.switch(
 					0,{},
 					1, {
-						//~behOut.control(7, 9, 127);
 						~apc40.noteOn(5, 49, 127); //Trk6_But 2
 						~tOSCAdrr.sendMsg('time2Samp', 1);
 						~tOSCAdrr.sendMsg('tmSampLabel', 2);
 						~tmMulSamp.source = Pseq([2], inf);
 					},
 					2,{
-						//~behOut.control(7, 9, 0);
 						~apc40.noteOff(5, 49, 127); //Trk6_But 2
 						~tOSCAdrr.sendMsg('time2Samp', 0);
 						~tOSCAdrr.sendMsg('tmSampLabel', 1);
 						~tmMulSamp.source = Pseq([1], inf);
 						~countTime2Samp=0;
 					}
-				)}
-			);
+				);
 			},
 			'/time2Samp'
 		);

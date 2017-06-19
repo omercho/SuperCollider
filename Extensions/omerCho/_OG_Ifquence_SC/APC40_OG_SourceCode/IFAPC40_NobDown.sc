@@ -205,15 +205,15 @@ IFAPC40_NobDown{
 
 			},
 			2,{
-				~local.sendMsg('noteFader', ~valueND);
+				~local.sendMsg('susDrum', ~valueND);
 				~nobD2_m1Val=val;
 			},
 			3,{
-				~local.sendMsg('susDrum', ~valueND);
+				~local.sendMsg('snrXPose', ~valueND);
 				~nobD3_m1Val=val;
 			},
 			4,{
-				~local.sendMsg('drumSends', ~valueND.sin*3,~valueND.sin*2);
+				~local.sendMsg('drumSends', ~valueND,~valueND);
 				~nobD4_m1Val=val;
 			},
 			5,{
@@ -221,15 +221,15 @@ IFAPC40_NobDown{
 				~nobD5_m1Val=val;
 			},
 			6,{
-				~local.sendMsg('melFader', ~valueND);
+				~local.sendMsg('susMel', ~valueND);
 				~nobD6_m1Val=val;
 			},
 			7,{
-				~local.sendMsg('susMel', ~valueND);
+				~local.sendMsg('melSends', ~valueND,~valueND);
 				~nobD7_m1Val=val;
 			},
 			8,{
-				~local.sendMsg('melSends', ~valueND.sin*3,~valueND.sin*2);
+				~local.sendMsg('sendDrumMelC', ~valueND/1.7,~valueND);
 				~nobD8_m1Val=val;
 			}
 		);
@@ -250,35 +250,40 @@ IFAPC40_NobDown{
 		~valueND=val/127;
 		index.switch(
 			1,{
-				~local.sendMsg('lfoMulBass1', ~valueND);
+				~local.sendMsg('lfoMulBass1', ~valueND/1.75);
+				~local.sendMsg('lfoMulBass2', ~valueND);
 				~nobD1_m2Val=val;
 
 			},
 			2,{
-				~local.sendMsg('lfoMulKeys1', ~valueND);
+				~local.sendMsg('lfoMulKeys1', ~valueND/1.5);
+				~local.sendMsg('lfoMulKeys2', ~valueND);
 				~nobD2_m2Val=val;
 			},
 			3,{
-				~local.sendMsg('lfoMulSamp1', ~valueND);
+				~local.sendMsg('lfoMulSamp1', ~valueND/1.25);
+				~local.sendMsg('lfoMulSamp2', ~valueND);
 				~nobD3_m2Val=val;
 			},
 			4,{//-FX
 				~local.sendMsg('fxFader',~valueND);
+				~local.sendMsg('melFader', ~valueND);
 				~nobD4_m2Val=val;
 			},
 			5,{
-				~local.sendMsg('lfoMulBass2', ~valueND);
+
 				~nobD5_m2Val=val;
 			},
 			6,{
-				~local.sendMsg('lfoMulKeys2', ~valueND);
+
 				~nobD6_m2Val=val;
 			},
 			7,{
-				~local.sendMsg('lfoMulSamp2', ~valueND);
+				~local.sendMsg('sendSamp', ~valueUD.sin,~valueUD.sin*2);
 				~nobD7_m2Val=val;
 			},
 			8,{//-FX
+
 				~local.sendMsg('fxDecay', ~valueND);
 				~nobD8_m2Val=val;
 			}

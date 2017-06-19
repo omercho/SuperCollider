@@ -10,7 +10,7 @@ IFAPC40.update;
 */
 
 IFAPC40{
-	*loadSource{
+	*load{
 
 		~apc40 = MIDIOut.newByName("Akai APC40", "Akai APC40");
 		~apc40OutID=34339974;
@@ -202,12 +202,6 @@ IFAPC40{
 		~actKick.source=val;
 		~cntActLine1ButA=val;
 	}
-	*actLine1ButB{|val|
-		~apc40.noteOn(~apcLn1, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Kick', val);
-		~tmMulKick.source = Pseq([val+1], inf);
-		~cntActLine1ButB=val;
-	}
 	*actLine1ButC{|val|
 		~apc40.noteOn(~apcLn1, ~actButC, val); //But C
 		~tOSCAdrr.sendMsg('activStKick', val);
@@ -226,12 +220,7 @@ IFAPC40{
 		~actSnr.source=val;
 		~cntActLine2ButA=val;
 	}
-	*actLine2ButB{|val|
-		~apc40.noteOn(~apcLn2, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Snr', val);
-		~tmMulSnr.source = Pseq([val+1], inf);
-		~cntActLine2ButB=val;
-	}
+
 	*actLine2ButC{|val|
 		~apc40.noteOn(~apcLn2, ~actButC, val); //But C
 		~tOSCAdrr.sendMsg('activStSnr', val);
@@ -249,12 +238,6 @@ IFAPC40{
 		~tOSCAdrr.sendMsg('activHat', val);
 		~actHat.source=val;
 		~cntActLine3ButA=val;
-	}
-	*actLine3ButB{|val|
-		~apc40.noteOn(~apcLn3, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Hat', val);
-		~tmMulHat.source = Pseq([val+1], inf);
-		~cntActLine3ButB=val;
 	}
 	*actLine3ButC{|val|
 		~apc40.noteOn(~apcLn3, ~actButC, val); //But C
@@ -274,12 +257,6 @@ IFAPC40{
 		~actBass.source=val;
 		~cntActLine4ButA=val;
 	}
-	*actLine4ButB{|val|
-		~apc40.noteOn(~apcLn4, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Bass', val);
-		~tmMulBass.source = Pseq([val+1], inf);
-		~cntActLine4ButB=val;
-	}
 	*actLine4ButC{|val|
 		~apc40.noteOn(~apcLn4, ~actButC, val); //But C
 		~tOSCAdrr.sendMsg('activStBass', val);
@@ -297,12 +274,6 @@ IFAPC40{
 		~tOSCAdrr.sendMsg('activKeys', val);
 		~actKeys.source=val;
 		~cntActLine5ButA=val;
-	}
-	*actLine5ButB{|val|
-		~apc40.noteOn(~apcLn5, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Keys', val);
-		~tmMulKeys.source = Pseq([val+1], inf);
-		~cntActLine5ButB=val;
 	}
 	*actLine5ButC{|val|
 		~apc40.noteOn(~apcLn5, ~actButC, val); //But C
@@ -322,12 +293,6 @@ IFAPC40{
 		~actSamp.source=val;
 		~cntActLine6ButA=val;
 	}
-	*actLine6ButB{|val|
-		~apc40.noteOn(~apcLn6, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Samp', val);
-		~tmMulSamp.source = Pseq([val+1], inf);
-		~cntActLine6ButB=val;
-	}
 	*actLine6ButC{|val|
 		~apc40.noteOn(~apcLn6, ~actButC, val); //But C
 		~tOSCAdrr.sendMsg('activStSamp', val);
@@ -346,12 +311,6 @@ IFAPC40{
 		~actMast.source=val;
 		~cntActLine7ButA=val;
 	}
-	*actLine7ButB{|val|
-		~apc40.noteOn(~apcLn7, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Mast', val);
-		~tmMulMast.source = Pseq([val+1], inf);
-		~cntActLine7ButB=val;
-	}
 	*actLine7ButC{|val|
 		~apc40.noteOn(~apcLn7, ~actButC, val); //But C
 		~tOSCAdrr.sendMsg('activStMast', val);
@@ -366,21 +325,64 @@ IFAPC40{
 	}
 	*actLine8ButA{|val|
 		~apc40.noteOn(~apcLn8, ~actButA, val); //But A
-		~tOSCAdrr.sendMsg('activRes1', val);
-		~actRes1.source=val;
+		~tOSCAdrr.sendMsg('activRes', val);
+		~actRes.source=val;
 		~cntActLine8ButA=val;
-	}
-	*actLine8ButB{|val|
-		~apc40.noteOn(~apcLn8, ~actButB, val); //But B
-		~tOSCAdrr.sendMsg('time2Res1', val);
-		~tmMulRes1.source = Pseq([val+1], inf);
-		~cntActLine8ButB=val;
 	}
 	*actLine8ButC{|val|
 		~apc40.noteOn(~apcLn8, ~actButC, val); //But C
-		~tOSCAdrr.sendMsg('activStRes1', val);
+		~tOSCAdrr.sendMsg('activStRes', val);
 		//~actStHat.source=val;
 		~cntActLine8ButC=val;
+	}
+	//////////////////B_B
+	*actLine1ButB{|val|
+		~apc40.noteOn(~apcLn1, ~actButB, val); //But B
+		~local.sendMsg('time2Kick', 1);
+		//~tmMulKick.source = Pseq([val+1], inf);
+		~cntActLine1ButB=val;
+	}
+	*actLine2ButB{|val|
+		~apc40.noteOn(~apcLn2, ~actButB, val); //But B
+		~local.sendMsg('time2Snr', val);
+		//~tmMulSnr.source = Pseq([val+1], inf);
+		~cntActLine2ButB=val;
+	}
+	*actLine3ButB{|val|
+		~apc40.noteOn(~apcLn3, ~actButB, val); //But B
+		~local.sendMsg('time2Hat', val);
+		//~tmMulHat.source = Pseq([val+1], inf);
+		~cntActLine3ButB=val;
+	}
+	*actLine4ButB{|val|
+		~apc40.noteOn(~apcLn4, ~actButB, val); //But B
+		~local.sendMsg('time2Bass', val);
+		//~tmMulBass.source = Pseq([val+1], inf);
+		~cntActLine4ButB=val;
+	}
+	*actLine5ButB{|val|
+		~apc40.noteOn(~apcLn5, ~actButB, val); //But B
+		~local.sendMsg('time2Keys', val);
+		//~tmMulKeys.source = Pseq([val+1], inf);
+		~cntActLine5ButB=val;
+	}
+	*actLine6ButB{|val|
+		~apc40.noteOn(~apcLn6, ~actButB, val); //But B
+		~local.sendMsg('time2Samp', val);
+		//~tmMulSamp.source = Pseq([val+1], inf);
+		~cntActLine6ButB=val;
+	}
+	*actLine7ButB{|val|
+		~apc40.noteOn(~apcLn7, ~actButB, val); //But B
+		~tOSCAdrr.sendMsg('time2Mast', val);
+		~tmMulMast.source = Pseq([val+1], inf);
+		~cntActLine7ButB=val;
+	}
+	*actLine8ButB{|val|
+		~apc40.noteOn(~apcLn8, ~actButB, val); //But B
+		~tOSCAdrr.sendMsg('time2Res', val);
+		~tmMulRes.source = Pseq([val+1], inf);
+		~cntActLine8ButB=val;
 	}
 
 	*tracks{

@@ -36,8 +36,8 @@
 ~mdOut.control(1, 1, ~midiVel); //AllMaster / Speaker On
 ~mdOut.control(1, 2, ~midiVel); //AllMaster / BeatRep DevOn
 ~mdOut.control(1, 3, ~midiVel); //AllMasterFX / BeatRep DevOn
-~mdOut.control(1, 4, ~midiVel); //AllMaster / Send A
-~mdOut.control(1, 5, ~midiVel); //AllMaster / Send B
+//~mdOut.control(1, 4, ~midiVel); //AllMaster / Send A
+//~mdOut.control(1, 5, ~midiVel); //AllMaster / Send B
 ~mdOut.control(1, 6, ~midiVel); //AllMasterFX / Speaker On
 ~mdOut.control(1, 127, ~midiVel); //AllMasterFX / Track Vol
 ~mdOut.control(1, 8, ~midiVel); //AllMasterFX /
@@ -158,7 +158,7 @@
 ~mdOut.control(8, 2, ~midiVel); //IFExt / Rls
 ~mdOut.control(8, 3, ~midiVel); //IFExt / SendA
 ~mdOut.control(8, 4, ~midiVel); //IFExt / SendB
-~mdOut.control(8, 5, ~midiVel); //IFExt / SendB
+~mdOut.control(8, 5, ~midiVel); //IFExt / SendC
 
 ~mdOut.control(8, 20, ~midiVel); //IFStaticHat Act ---- MIDIIn
 ~mdOut.control(8, 21, ~midiVel); //IFStaticClap Act ---- MIDIIn
@@ -181,17 +181,30 @@
 ~mdOut.control(10, 77, ~midiVel); //Mel Audio / Mid
 ~mdOut.control(10, 78, ~midiVel); //Mel Audio / High
 
+//IFMast MIDIChannel: SC_11 - Abl_12
+~mdOut.control(~chMast, 0, ~midiVel); //IFMast / Activate ---- MIDIIn
+~mdOut.control(~chMast, 1, ~midiVel); //IFMast / m1
+~mdOut.control(~chMast, 2, ~midiVel); //IFMast / m2
+~mdOut.control(~chMast, 3, ~midiVel); //IFMast / m3
+~mdOut.control(~chMast, 4, ~midiVel); //IFMast / m4
+~mdOut.control(~chMast, 5, ~midiVel); //IFMast / m5
+~mdOut.control(~chMast, 6, ~midiVel); //IFMast / m6
+~mdOut.control(~chMast, 7, ~midiVel); //IFMast / m7
+~mdOut.control(~chMast, 8, ~midiVel); //IFMast / m8
+~mdOut.control(~chMast, 9, ~midiVel); //IFMast / VolFader
 
-~mdOut.control(11, 1, ~midiVel); //SendA / Res Note
-~mdOut.control(11, 2, ~midiVel); //SendA / Res Decay
-~mdOut.control(11, 3, ~midiVel); //SendA / Res ll+lll
-~mdOut.control(11, 4, ~midiVel); //SendA / Res lV+V
-~mdOut.control(11, 5, ~midiVel); //SendA / Res ColMat
-~mdOut.control(11, 6, ~midiVel); //SendA / Res l Gain
-~mdOut.control(11, 7, ~midiVel); //SendA / Res Width
-~mdOut.control(11, 8, ~midiVel); //SendA / Res Chain
-~mdOut.control(11, 9, ~midiVel); //SendA / Res Chain
+//IFRes MIDIChannel: SC_12 - Abl_13
+~mdOut.control(~chRes, 1, ~midiVel); //SendA / Res Note
+~mdOut.control(~chRes, 2, ~midiVel); //SendA / Res Decay
+~mdOut.control(~chRes, 3, ~midiVel); //SendA / Res ll+lll
+~mdOut.control(~chRes, 4, ~midiVel); //SendA / Res lV+V
+~mdOut.control(~chRes, 5, ~midiVel); //SendA / Res ColMat
+~mdOut.control(~chRes, 6, ~midiVel); //SendA / Res l Gain
+~mdOut.control(~chRes, 7, ~midiVel); //SendA / Res Width
+~mdOut.control(~chRes, 8, ~midiVel); //SendA / Res Chain
+~mdOut.control(~chRes, 9, ~midiVel); //SendA / Res Chain
 
+//IFRev MIDIChannel: SC_13 - Abl_14
 ~mdOut.control(12, 1, ~midiVel); //SendB / Rev Reverb
 ~mdOut.control(12, 2, ~midiVel); //SendB / Rev Delay
 ~mdOut.control(12, 3, ~midiVel); //SendB / Rev Mac3
@@ -200,18 +213,6 @@
 ~mdOut.control(12, 6, ~midiVel); //SendB / Rev Mac6
 ~mdOut.control(12, 7, ~midiVel); //SendB / Rev Mac7
 ~mdOut.control(12, 8, ~midiVel); //SendB / Rev Chain
-
-//IFMast
-~mdOut.control(13, 0, ~midiVel); //IFMast / Activate ---- MIDIIn
-~mdOut.control(13, 1, ~midiVel); //IFMast / m1
-~mdOut.control(13, 2, ~midiVel); //IFMast / m2
-~mdOut.control(13, 3, ~midiVel); //IFMast / m3
-~mdOut.control(13, 4, ~midiVel); //IFMast / m4
-~mdOut.control(13, 5, ~midiVel); //IFMast / m5
-~mdOut.control(13, 6, ~midiVel); //IFMast / m6
-~mdOut.control(13, 7, ~midiVel); //IFMast / m7
-~mdOut.control(13, 8, ~midiVel); //IFMast / m8
-~mdOut.control(13, 9, ~midiVel); //IFMast / VolFader
 
 //Ableton Globals
 ~mdOut.control(15, 0, ~midiVel); //Ableton / Start

@@ -117,12 +117,12 @@ IFTrack02 {
 
 		~local.sendMsg('cutAll',0.4, 0.35);
 		~local.sendMsg('cutDrum',0.0, 0.0);
-		~local.sendMsg('allMainSends',0.0, 0.0);
+		~local.sendMsg('sendDrumMelC',0.0, 0.0);
 		~local.sendMsg('melSends',0.0, 0.0);
 		~local.sendMsg('drumSends',0.0, 0.0);
 		~local.sendMsg('susMel',2.5);
 		~local.sendMsg('susDrum',0.2);
-		~local.sendMsg('noteFader',0.5);//SnrXpose
+		~local.sendMsg('snrXPose',0.5);//SnrXpose
 		~local.sendMsg('fxFader',0.0);
 		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
 

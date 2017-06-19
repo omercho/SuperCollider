@@ -6,9 +6,9 @@ IFSixteen {
 		~seqStepBut01 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~stepNum.source  =  Pseq([2,10,15,10,2], inf);
+				IFSeqSteps.first8;
 			},{
-					IFSeqSteps.first8;
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep01'
@@ -21,7 +21,7 @@ IFSixteen {
 				~stepNum.source  =  Pseq([4,3,2], inf);
 
 			},{
-					~stepNum.source  =  Pseq([1,2,3,4], inf);
+					IFSeqSteps.forward;
 			});
 			},
 			'/seqStep02'
@@ -32,7 +32,7 @@ IFSixteen {
 			arg msg;
 			if ( msg[1]==1, {
 
-				IFSeqSteps.shuf;
+				~stepNum.source  =  Pseq([1,2,3,4], inf);
 			},{
 					IFSeqSteps.forward;
 			});

@@ -1,15 +1,12 @@
 
 /*
-IFRes1(2);
-IFRes1.p1;
+IFRes(2);
+IFRes.p1;
 PostAllMIDI.on;
 */
 
 
-IFRes1 {
-var <>rs1Time = 1;
-classvar <>counter3 = 0;
-
+IFRes {
 
 	*initClass {
 		StartUp add: {
@@ -17,48 +14,56 @@ classvar <>counter3 = 0;
 		}
 	}
 	*load{
-		this.globals; this.loadProxy; this.preSet; this.apc40;
+		this.globals;
+		this.loadProxy;
+		this.preSet;
+		this.apc40;
 	}
 
 	*globals{
 
-		~res1Ch=11;
-		~res2Ch=12;
-		~res1Times=1;
-		~octRes1=4;
+		~chRes=12;
+		~resTimes=1;
+		~octRes=4;
 		~resLate=0;
 
-		~res1Mac1=1; ~res1Mac2=2;
-		~res1Mac3=3; ~res1Mac4=4;
-		~res1Mac5=5; ~res1Mac6=6;
-		~res1Mac7=7; ~res1Mac8=8;
+		~resMac1=1; ~resMac2=2;
+		~resMac3=3; ~resMac4=4;
+		~resMac5=5; ~resMac6=6;
+		~resMac7=7; ~resMac8=8;
 	}
 
 	*loadProxy{
-		~nt1Res1 = PatternProxy( Pseq([1], inf));
-		~nt1Res1P = Pseq([~nt1Res1]+12, inf).asStream;
 
-		~dur1Res1 = PatternProxy( Pseq([1], inf));
-		~dur1Res1P = Pseq([~dur1Res1], inf).asStream;
+		~ccRes = PatternProxy( Pseq([0], inf));
+		~ccResP = Pseq([~ccRes], inf).asStream;
+		~ccValRes = PatternProxy( Pseq([0], inf));
+		~ccValResP = Pseq([~ccValRes], inf).asStream;
 
-		~tmRes1 = PatternProxy( Pseq([1], inf));
-		~tmRes1P = Pseq([~tmRes1], inf).asStream;
-		~tmMulRes1 = PatternProxy( Pseq([1], inf));
-		~tmMulRes1P = Pseq([~tmMulRes1], inf).asStream;
+		~nt1Res = PatternProxy( Pseq([1], inf));
+		~nt1ResP = Pseq([~nt1Res]+12, inf).asStream;
 
-		~actRes1 = PatternProxy( Pseq([0], inf));
-		~actRes1P= Pseq([~actRes1], inf).asStream;
+		~dur1Res = PatternProxy( Pseq([1], inf));
+		~dur1ResP = Pseq([~dur1Res], inf).asStream;
+
+		~tmRes = PatternProxy( Pseq([1], inf));
+		~tmResP = Pseq([~tmRes], inf).asStream;
+		~tmMulRes = PatternProxy( Pseq([1], inf));
+		~tmMulResP = Pseq([~tmMulRes], inf).asStream;
+
+		~actRes = PatternProxy( Pseq([0], inf));
+		~actResP= Pseq([~actRes], inf).asStream;
 	}
 
 	*preSet{
-		~mdOut.control(~res1Ch, 1, 94); //resonator Note
-		~mdOut.control(~res1Ch, 2, 94); //resonator Decay
-		~mdOut.control(~res1Ch, 3, 68); //resonator Filter freq
-		~mdOut.control(~res1Ch, 4, 100); //resonator Color
-		~mdOut.control(~res1Ch, 5, 120); //resonator Note gain
-		~mdOut.control(~res1Ch, 6, 100); //resonator Width
-		~mdOut.control(~res1Ch, 7, 74); //resonator Gain
-		~mdOut.control(~res1Ch, 8, 64); //resonator Gain
+		~mdOut.control(~chRes, 1, 94); //resonator Note
+		~mdOut.control(~chRes, 2, 94); //resonator Decay
+		~mdOut.control(~chRes, 3, 68); //resonator Filter freq
+		~mdOut.control(~chRes, 4, 100); //resonator Color
+		~mdOut.control(~chRes, 5, 120); //resonator Note gain
+		~mdOut.control(~chRes, 6, 100); //resonator Width
+		~mdOut.control(~chRes, 7, 74); //resonator Gain
+		~mdOut.control(~chRes, 8, 64); //resonator Gain
 
 	}
 
@@ -73,7 +78,7 @@ classvar <>counter3 = 0;
 
 				this.p1(val);
 
-				~durMulP*((~dur1Res1P.next)/val).wait;
+				~durMulP*((~dur1ResP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -82,10 +87,11 @@ classvar <>counter3 = 0;
 	*p1 {|i=1|
 
 		Pbind(//resonator note
-			\chan, ~res1Ch, \ctlNum, ~res1Mac1,
+			\chan, ~chRes,
 			\type, \midi, \midicmd, \control, \midiout,~mdOut,
-			\dur, Pseq([Pseq([~dur1Res1P.next/i],1)], ~actRes1P.next),
-			\control, Pseq([~nt1Res1P.next].degreeToKey(~scl2), inf),
+			\ctlNum, Pseq([Pseq([~ccResP.next],1)], inf),
+			\dur, Pseq([Pseq([~dur1ResP.next/i],1)], ~actResP.next),
+			\control, Pseq([~nt1ResP.next].degreeToKey(~scl2), inf),
 			\octave, 4
 		).play;
 		//this.count3;
@@ -163,40 +169,4 @@ classvar <>counter3 = 0;
 
 	}//*apc40
 
-	//Res1 Beat Counter
-	*count3 {
-
-		counter3 = counter3 + 1;
-		counter3.switch(
-			3, {
-				("            Res1Cnt"+counter3).postln;
-				this.ctl_3;
-				counter3 = 0;
-
-			}
-
-		)
-	}
-
-
-	*ctl_1 {}
-
-	*ctl_2 {}
-
-	*ctl_3 {
-		~res1Mcr2.stop;
-		~res1Mcr2={
-			var val;
-			val = Pslide((30..100).mirror, inf,3,1,0).asStream;
-			240.do{
-				~mdOut.control(~res1Ch, ~res1Mac2, val.next);
-			(~dur.next*(1/8)).wait;
-			}
-		}.fork;
-
-	}
-
-	*ctl_9 {}
-
-	*ctl_18 {}
 }

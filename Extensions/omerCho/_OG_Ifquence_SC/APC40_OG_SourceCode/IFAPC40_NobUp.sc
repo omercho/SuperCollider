@@ -195,11 +195,13 @@ IFAPC40_NobUp{
 
 			},
 			2,{
-				~local.sendMsg('attKeys', ~valueUD);
+				~local.sendMsg('decSnr', ~valueUD);
+				~local.sendMsg('decHat', ~valueUD);
+				~local.sendMsg('susHat', (~valueUD+0.5)/2);
 				~nobU2_m1Val=val;
 			},
 			3,{
-				~local.sendMsg('sendSamp', ~valueUD.sin,~valueUD.sin*2);
+				~local.sendMsg('xy1Keys', ~valueUD.sin*1.5,~valueUD.sin*1.3);
 				~nobU3_m1Val=val;
 			},
 			4,{
@@ -216,12 +218,13 @@ IFAPC40_NobUp{
 				~nobU6_m1Val=val;
 			},
 			7,{
+
 				~local.sendMsg('decSamp', ~valueUD);
 				~nobU7_m1Val=val;
 			},
 			8,{
 
-				~local.sendMsg('AllMasterFXxy1', ~valueUD.sin*1.5,~valueUD.sin*1.3);
+				~local.sendMsg('attKeys', ~valueUD/2);
 				~nobU8_m1Val=val;
 			}
 		);
@@ -247,11 +250,11 @@ IFAPC40_NobUp{
 
 			},
 			2,{
-				//~local.sendMsg('decSnr', ~valueUD);
+
 				~nobU2_m2Val=val;
 			},
 			3,{
-				//~local.sendMsg('decHat', ~valueUD);
+
 				~nobU3_m2Val=val;
 			},
 			4,{
@@ -267,11 +270,11 @@ IFAPC40_NobUp{
 				~nobU6_m2Val=val;
 			},
 			7,{
-				//~local.sendMsg('decSamp', ~valueUD);
+
 				~nobU7_m2Val=val;
 			},
 			8,{
-				//~local.sendMsg('susMel', ~valueUD);
+				~local.sendMsg('AllMasterFXxy1', ~valueUD.sin*1.5,~valueUD.sin*1.3);
 				~nobU8_m2Val=val;
 			}
 		);

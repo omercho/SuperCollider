@@ -42,6 +42,7 @@ IFPitchBass {
 						"PITCHBass SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchBass', 1);
 						IFPitchBass.noteBassOn;
+						~apc40.noteOn(~apcLn1, 62, 1); //But 5
 
 
 					},
@@ -51,6 +52,7 @@ IFPitchBass {
 						~tOSCAdrr.sendMsg('pitchBass', 0);
 						~countPBass=0;
 						IFPitchBass.noteBassOff;
+						~apc40.noteOn(~apcLn1, 62, 0); //But 5
 					}
 				)
 				},{
@@ -62,6 +64,29 @@ IFPitchBass {
 			'/pitchBass'
 		);
 
+		//APC Pitch Bass Button
+		~countPBassApc=0;
+		~apcPBassButton.free;
+		~apcPBassButton=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~countPBassApc = ~countPBassApc + 1;
+				~countPBassApc.switch(
+					0,{},
+					1, {
+
+						~local.sendMsg('pitchBass', 1);
+
+
+					},
+					2,{
+						~local.sendMsg('pitchBass', 1);
+						~countPBassApc=0;
+
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:62);
 	}
 
 	*noteBassOn {

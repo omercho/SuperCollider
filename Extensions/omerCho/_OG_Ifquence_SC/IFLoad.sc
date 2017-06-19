@@ -8,9 +8,15 @@ IFLoad.loadVolca;
 
 */
 IFLoad{
+	*initClass {
+		StartUp add: {
+		Server.default.doWhenBooted({ this.loadVolca; });
+		}
+	}
 	*loadVolca{
 		fork{
 			Server.default.doWhenBooted({
+				~volcaBoolean=1;
 				IFProjectGlobals.load;
 				0.1.wait;
 				IFSequence.loadAll;
@@ -28,6 +34,7 @@ IFLoad{
 				IFPitchSamp.loadAll;
 				IFPitchExt.loadAll;
 				IFPitchVChord.loadAll;
+				IFShuf.load;
 				0.1.wait;
 				VBass.globals; VBass.preSet01; VKeys.globals; VKeys.preSet01;
 				//0.1.wait;
@@ -37,6 +44,7 @@ IFLoad{
 				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
+				IFStat.load;
 				IFKick.load;
 				0.1.wait;
 				IFSnr.load;
@@ -49,7 +57,7 @@ IFLoad{
 				0.1.wait;
 				IFSamp.load;
 				0.1.wait;
-				IFRes1.load;
+				IFRes.load;
 				IFMast.load;
 				0.1.wait;
 				IFExt.load;
@@ -68,6 +76,7 @@ IFLoad{
 	*load{
 		fork{
 			Server.default.doWhenBooted({
+				~volcaBoolean=0;
 				IFProjectGlobals.load;
 				0.1.wait;
 				IFSequence.loadAll;
@@ -85,6 +94,7 @@ IFLoad{
 				IFPitchSamp.loadAll;
 				IFPitchExt.loadAll;
 				IFPitchVChord.loadAll;
+				IFShuf.load;
 				0.1.wait;
 				//VBass.globals; VBass.preSet01; VKeys.globals; VKeys.preSet01;
 				//0.1.wait;
@@ -94,6 +104,7 @@ IFLoad{
 				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
+				IFStat.load;
 				IFKick.load;
 				0.1.wait;
 				IFSnr.load;
@@ -106,7 +117,7 @@ IFLoad{
 				0.1.wait;
 				IFSamp.load;
 				0.1.wait;
-				IFRes1.load;
+				IFRes.load;
 				IFMast.load;
 				0.1.wait;
 				IFExt.load;

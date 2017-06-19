@@ -24,7 +24,7 @@ IFPitch {
 	*loadAll {
 
 		this.buttons;
-		this.shufTrans;
+		//this.shufTrans;
 		//this.note;
 		this.noteBass;
 		this.noteKeys;
@@ -80,85 +80,6 @@ IFPitch {
 
 	}
 
-	*shufTrans{
-
-		/*~noteFader.free;
-		~noteFader= OSCFunc({
-			arg msg;
-
-			//~transKick.source= msg[1]+Pseq([0], inf);
-			//~transSnr.source=msg[1]+Pseq([0], inf);
-			//~transHat.source=msg[1]+Pseq([0], inf);
-
-			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
-			},
-			'/noteFader'
-		);*/
-
-
-		/*~shufTransTogBut.free;
-		~shufTransTogBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				"Transpose Shuffle".postln;
-				~tOSCAdrr.sendMsg('shufTrans', 1);
-				~transBass.source  = Pshuf([(-5),2,7,(-7), (-2),1,6,(-3)], inf);
-				~transKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
-				~transSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-
-				},{
-					~tOSCAdrr.sendMsg('shufTrans', 0);
-					~transBass.source  = Pshuf([0], inf);
-					~transKeys.source  = Pshuf([0], inf);
-					~transSamp.source  = Pshuf([0], inf);
-				}
-			);
-			},
-			'/shufTransTog'
-		);*/
-
-		/*~shufTransBut.free;
-		~countShuf=0;
-		~shufTransBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				//"Transpose Shuffle".postln;
-				~countShuf = ~countShuf + 1;
-
-				~countShuf.switch(
-					0,{~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
-						~tOSCAdrr.sendMsg('shufTrans', 0);
-					},
-					1, {
-
-						"Modal Transpose Shuffle".postln;
-						~tOSCAdrr.sendMsg('shufTransLabel', 'ON');
-						~tOSCAdrr.sendMsg('shufTrans', 1);
-						~transShufBass.source  = Pshuf([(-4),2,4,(-7), (-2),1,7,(-3)], inf);
-						~transShufKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
-						~transShufSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-					},
-					2,{
-						~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
-						~tOSCAdrr.sendMsg('shufTrans', 0);
-						~transShufBass.source  = Pshuf([0], inf);
-						~transShufKeys.source  = Pshuf([0], inf);
-						~transShufSamp.source  = Pshuf([0], inf);
-						~countShuf=0;
-					}
-				)
-				},{
-
-
-				}
-			);
-			},
-			'/shufTrans'
-		);*/
-
-
-	}
 
 	*note {
 

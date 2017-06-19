@@ -5,7 +5,6 @@
 
 
 	IFProjectGlobals {
-	classvar <>kickT, <>snrT, <>hatT, <>bassT, <>sampT, <>ortaT, <>flatT, <>res1T;
 	classvar <>tempo= 120;
 
 
@@ -47,7 +46,7 @@
 		~local = NetAddr("localhost", 57120);
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdOutID= (-1290330895);
-		IFAPC40.loadSource;
+		IFAPC40.load;
 		//~behOut = MIDIOut.newByName("BCF2000", "Port 1");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
 		//~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);

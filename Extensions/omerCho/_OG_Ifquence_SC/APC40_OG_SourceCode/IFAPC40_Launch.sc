@@ -30,7 +30,7 @@ IFAPC40_Launch{
 
 	}//globals
 
-//Notes
+	//Notes
 	*makeNoteResponders{
 		//NoteLine1
 		IFAPC40_Launch.noteButL1(~apcLn1,\lncNote_3);
@@ -122,18 +122,18 @@ IFAPC40_Launch{
 		},srcID:~apc40InID, chan:channel,noteNum:~lnchBut3);
 
 		/*MIDIdef.noteOff(nameOff, {
-			arg chan,noteNum;
+		arg chan,noteNum;
 
-			channel.switch(
-				~apcLn1,{~local.sendMsg('seqStep0l', 0);},
-				~apcLn2,{~local.sendMsg('seqStep02', 0);},
-				~apcLn3,{~local.sendMsg('seqStep03', 0);},
-				~apcLn4,{~local.sendMsg('seqStep04', 0);},
-				~apcLn5,{~local.sendMsg('seqStep05', 0);},
-				~apcLn6,{~local.sendMsg('seqStep06', 0);},
-				~apcLn7,{~local.sendMsg('seqStep07', 0);},
-				~apcLn8,{~local.sendMsg('seqStep08', 0);}
-			);
+		channel.switch(
+		~apcLn1,{~local.sendMsg('seqStep0l', 0);},
+		~apcLn2,{~local.sendMsg('seqStep02', 0);},
+		~apcLn3,{~local.sendMsg('seqStep03', 0);},
+		~apcLn4,{~local.sendMsg('seqStep04', 0);},
+		~apcLn5,{~local.sendMsg('seqStep05', 0);},
+		~apcLn6,{~local.sendMsg('seqStep06', 0);},
+		~apcLn7,{~local.sendMsg('seqStep07', 0);},
+		~apcLn8,{~local.sendMsg('seqStep08', 0);}
+		);
 
 		},srcID:~apc40InID, chan:channel,noteNum:~lnchBut3);*/
 	}
@@ -160,7 +160,7 @@ IFAPC40_Launch{
 					~apc40.noteOn(~apcLn3, ~lnchBut4, 2); //But 1
 				},
 				~apcLn4,{/////---------------Shuf
-					~local.sendMsg('shufTrans', 1);
+					~local.sendMsg('shufMelHarm', 1);
 					//this.noteButsReset;
 					//~apc40.noteOn(~apcLn4, ~lnchBut4, 6); //But 1
 				},
@@ -211,7 +211,7 @@ IFAPC40_Launch{
 					//~apc40.noteOn(~apcLn3, ~lnchBut5, 2); //But 1
 				},
 				~apcLn4,{/////---------------Shuf
-					~local.sendMsg('shufHarm', 1);
+					~local.sendMsg('shufDrumHarm', 1);
 					//this.noteButsReset;
 					//~apc40.noteOn(~apcLn4, ~lnchBut5, 6); //But 1
 				},
@@ -270,8 +270,8 @@ IFAPC40_Launch{
 		//~apc40.noteOn(~apcLn7, 57, 1); //But 7
 		~apc40.noteOn(~apcLn8, 57, 1); //But 8
 	}
-////////////////////////
-//Step Sequencer Sixteen
+	////////////////////////
+	//Step Sequencer Sixteen
 	*makeStepResponders{
 
 		IFAPC40_Launch.button01(~apcLn1,\lncStepOn01, \lncStepOff01);
@@ -386,10 +386,72 @@ IFAPC40_Launch{
 		);
 	}
 	*ledOnOff {|line, launch|
+		line.switch(
+			~apcLn1,{
+				this.ledForkRed(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn2,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn3,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn4,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn5,{
+				this.ledForkRed(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn6,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn7,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			},
+			~apcLn8,{
+				this.ledForkYellow(line,
+					if ( launch==~lnchBut1, {~lnchBut1;},{~lnchBut2;});
+				);
+			}
+
+
+
+		)
+
+	}
+	*ledForkRed{|line, launch|
+		fork{
+			~apc40.noteOn(line, launch, 0); //But 1
+			0.3.wait;
+			~apc40.noteOn(line, launch, 3); //But 1
+		};
+	}
+	*ledForkYellow{|line, launch|
 		fork{
 			~apc40.noteOn(line, launch, 0); //But 1
 			0.3.wait;
 			~apc40.noteOn(line, launch, 5); //But 1
+		};
+	}
+	*ledForkGreen{|line, launch|
+		fork{
+			~apc40.noteOn(line, launch, 0); //But 1
+			0.3.wait;
+			~apc40.noteOn(line, launch, 1); //But 1
 		};
 	}
 
@@ -397,20 +459,22 @@ IFAPC40_Launch{
 
 		//Sequencer
 		//Lounch
-		~apc40.noteOn(~apcLn1, 53, 5); //But 1
+		~apc40.noteOn(~apcLn1, 53, 3); //But 1
 		~apc40.noteOn(~apcLn2, 53, 5); //But 2
 		~apc40.noteOn(~apcLn3, 53, 5); //But 3
 		~apc40.noteOn(~apcLn4, 53, 5); //But 4
-		~apc40.noteOn(~apcLn5, 53, 5); //But 5
+
+		~apc40.noteOn(~apcLn5, 53, 3); //But 5
 		~apc40.noteOn(~apcLn6, 53, 5); //But 6
 		~apc40.noteOn(~apcLn7, 53, 5); //But 7
 		~apc40.noteOn(~apcLn8, 53, 5); //But 8
 		//Lounch 2
-		~apc40.noteOn(~apcLn1, 54, 5); //But 1
+		~apc40.noteOn(~apcLn1, 54, 3); //But 1
 		~apc40.noteOn(~apcLn2, 54, 5); //But 2
 		~apc40.noteOn(~apcLn3, 54, 5); //But 3
 		~apc40.noteOn(~apcLn4, 54, 5); //But 4
-		~apc40.noteOn(~apcLn5, 54, 5); //But 5
+
+		~apc40.noteOn(~apcLn5, 54, 3); //But 5
 		~apc40.noteOn(~apcLn6, 54, 5); //But 6
 		~apc40.noteOn(~apcLn7, 54, 5); //But 7
 		~apc40.noteOn(~apcLn8, 54, 5); //But 8
