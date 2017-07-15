@@ -12,9 +12,9 @@ VBeats {
 
 		//~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vBeats = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		//~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
+		~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
 
-		~vBeats = MIDIOut.newByName("BCF2000", "Port 1");
+		//~vBeats = MIDIOut.newByName("BCF2000", "Port 1");
 
 		//~vBeatsLate=Tempo.bpm*(1/267.91897); //with Edirols MIDI Out
 		~vBeatsLate=Tempo.bpm*(1);
@@ -116,7 +116,9 @@ VBeats {
 //-------------------------------------------
 		~volBeatsFad.free;
 		~volBeatsFad= OSCFunc({
-			arg msg; ~vBeatsSynth.set(\vol, msg[1]); ~tOSCAdrr.sendMsg('volBeats', msg[1]);
+			arg msg;
+			~vBeatsSynth.set(\vol, msg[1]);
+			~tOSCAdrr.sendMsg('volBeats', msg[1]);
 		}, '/volBeats');
 
 

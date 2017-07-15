@@ -24,13 +24,14 @@ IFStat {
 
 	*globals{
 
-		~chStat=7;
+		~chStatKick=8;
+		~chStat=8;
 		~octStKick=0;
-		~octStSnr=1;
-		~octStHat=2;
-		~octStTom=3;
-		~octStClap=4;
-		~octStKrot=5;
+		~octStSnr=0;
+		~octStHat=0;
+		~octStTom=0;
+		~octStClap=0;
+		~octStKrot=0;
 
 
 	}
@@ -44,7 +45,7 @@ IFStat {
 		~durStKickP = Pseq([~durStKick], inf).asStream;
 		~ampStKick = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStKickP = Pseq([~ampStKick], inf).asStream;
-		~ntStKick = PatternProxy( Pseq([0], inf));
+		~ntStKick = PatternProxy( Pseq([36], inf));
 		~ntStKickP = Pseq([~ntStKick], inf).asStream;
 		//StaticSnr
 		~actStSnr = PatternProxy( Pseq([0], inf));
@@ -53,7 +54,7 @@ IFStat {
 		~durStSnrP = Pseq([~durStSnr], inf).asStream;
 		~ampStSnr = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStSnrP = Pseq([~ampStSnr], inf).asStream;
-		~ntStSnr = PatternProxy( Pseq([67], inf));
+		~ntStSnr = PatternProxy( Pseq([38], inf));
 		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;
 		//StaticHat
 		~actStHat = PatternProxy( Pseq([0], inf));
@@ -62,34 +63,34 @@ IFStat {
 		~durStHatP = Pseq([~durStHat], inf).asStream;
 		~ampStHat = PatternProxy( Pseq([0,1], inf));
 		~ampStHatP = Pseq([~ampStHat], inf).asStream;
-		~ntStHat = PatternProxy( Pseq([67], inf));
+		~ntStHat = PatternProxy( Pseq([42,42,42,46], inf));
 		~ntStHatP = Pseq([~ntStHat], inf).asStream;
-		//StaticBass
+		//StaticToms
 		~actStBass = PatternProxy( Pseq([0], inf));
 		~actStBassP= Pseq([~actStBass], inf).asStream;
 		~durStBass = PatternProxy( Pseq([1], inf));
 		~durStBassP = Pseq([~durStBass], inf).asStream;
-		~ampStBass = PatternProxy( Pseq([0,0,0,0,1], inf));
+		~ampStBass = PatternProxy( Pseq([0,1,1,0], inf));
 		~ampStBassP = Pseq([~ampStBass], inf).asStream;
-		~ntStBass = PatternProxy( Pseq([67], inf));
+		~ntStBass = PatternProxy( Pseq([43,43,43,50], inf));
 		~ntStBassP = Pseq([~ntStBass], inf).asStream;
-		//StaticKeys
+		//StaticClap
 		~actStKeys = PatternProxy( Pseq([0], inf));
 		~actStKeysP= Pseq([~actStKeys], inf).asStream;
 		~durStKeys = PatternProxy( Pseq([1], inf));
 		~durStKeysP = Pseq([~durStKeys], inf).asStream;
 		~ampStKeys = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStKeysP = Pseq([~ampStKeys], inf).asStream;
-		~ntStKeys = PatternProxy( Pseq([67], inf));
+		~ntStKeys = PatternProxy( Pseq([39], inf));
 		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;
-		//StaticSamp
+		//StaticAgog
 		~actStSamp = PatternProxy( Pseq([0], inf));
 		~actStSampP= Pseq([~actStSamp], inf).asStream;
 		~durStSamp = PatternProxy( Pseq([1], inf));
 		~durStSampP = Pseq([~durStSamp], inf).asStream;
 		~ampStSamp = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampStSampP = Pseq([~ampStSamp], inf).asStream;
-		~ntStSamp = PatternProxy( Pseq([67], inf));
+		~ntStSamp = PatternProxy( Pseq([67,75,75,75], inf));
 		~ntStSampP = Pseq([~ntStSamp], inf).asStream;
 
 	}//*proxy
@@ -99,7 +100,7 @@ IFStat {
 		var val;
 		val=i;
 		~staticKickPat=Pbind(
-			\chan, ~chStat,
+			\chan, ~chStatKick,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octStKick,
 			\dur, Pseq([~durStKickP.next],~actStKickP.next),
@@ -129,14 +130,14 @@ IFStat {
 			\dur, Pseq([~durStHatP.next],~actStHatP),
 			\degree, Pseq([~ntStHatP.next], inf),
 			\amp, Pseq([~ampStHatP.next], inf)
-		).play(TempoClock.default, quant: 0);
+		).play;
 	}
 	*ln04 {|i=1|
 		var val;
 		val=i;
 		~staticBassPat=Pbind(
 			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octStTom,
 			\dur, Pseq([~durStBassP.next],~actStBassP.next),
 			\degree, Pseq([~ntStBassP.next], inf),
@@ -148,7 +149,7 @@ IFStat {
 		val=i;
 		~staticKeysPat=Pbind(
 			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octStClap,
 			\dur, Pseq([~durStKeysP.next],~actStKeysP.next),
 			\degree, Pseq([~ntStKeysP.next], inf),
@@ -160,7 +161,7 @@ IFStat {
 		val=i;
 		~staticSampPat=Pbind(
 			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octStKrot,
 			\dur, Pseq([~durStSampP.next],~actStSampP.next),
 			\degree, Pseq([~ntStSampP.next], inf),

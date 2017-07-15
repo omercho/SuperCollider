@@ -1,3 +1,4 @@
+/*
 //ALL MIDI NOTES
 
 // SC Channel 0 = Abl Channel 1
@@ -5,6 +6,20 @@
 
 //Channel, ControlNumber CC
 
+//to find the srcID of MIDIOut sources
+~mdOut.uid;
+~mdTouch.uid;
+~apc40.uid;
+
+//to find MIDIIn src
+(
+c = NoteOnResponder({ |src,chan,note,vel|
+        [src,chan,note,vel].postln;
+    });
+    c.learn; // wait for the first note
+)
+NoteOnResponder.removeAll
+*/
 ~midiVel=127;
 
 //----Ableton

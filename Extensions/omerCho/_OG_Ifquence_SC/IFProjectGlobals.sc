@@ -47,6 +47,7 @@
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdOutID= (-1290330895);
 		IFAPC40.load;
+		IFMIDIMix.load;
 		//~behOut = MIDIOut.newByName("BCF2000", "Port 1");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
 		//~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);

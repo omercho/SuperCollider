@@ -194,7 +194,7 @@ IFTrack01 {
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		~ntStKick.source = Pseq([0], inf);
+		~ntStKick.source = Pseq([36], inf);
 		//CH -1- [ Snare ]
 		IFSeqSnr.stGrpSet    (1,0,1,0, 1,1,1,0,  1,0,1,0, 1,1,1,0);
 		IFSeqOctSnr.stGrpSet (2,0,0,0, 2,0,0,0,  1,0,0,0, 1,0,0,0);
@@ -204,7 +204,7 @@ IFTrack01 {
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
-		~ntStSnr.source = Pseq([0], inf);
+		~ntStSnr.source = Pseq([38], inf);
 		//CH -2- [ HAT ]
 		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,0, 1,1,1,1);
 		IFSeqOctHat.stGrpSet (1,0,0,0, 2,0,0,0,  2,4,0,0, 2,0,1,0);
@@ -214,7 +214,7 @@ IFTrack01 {
 		IFSeqTmHat.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurHat.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStHat.stGrpSet  (0,1,0,1, 0,1,0,1,  0,1,0,1, 0,1,0,1);
-		~ntStHat.source = Pseq([0], inf);
+		~ntStHat.source = Pseq([42,42,42,46], inf);
 		//CH -4- [Bass]
 		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqOctBass.stGrpSet (3,3,3,4, 3,3,3,3,  3,3,3,4, 3,3,3,0);
@@ -224,7 +224,7 @@ IFTrack01 {
 		IFSeqTmBass.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurBass.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStBass.stGrpSet  (1,0,0,0, 0,0,0,0,  1,0,0,0, 0,0,0,0);
-		~ntStBass.source = Pseq([0], inf);
+		~ntStBass.source = Pseq([43,43,43,50], inf);
 		~durStBass.source  =  Pseq([1/2], inf);
 		~lfo1Bass.source  =  Pseq([30,90,70,18, 0,10,60,20], inf);
 		~lfo2Bass.source  =  Pseq([0,20,30,50, 0,20,100,50], inf);
@@ -237,7 +237,7 @@ IFTrack01 {
 		IFSeqTmKeys.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKeys.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStKeys.stGrpSet  (0,0,1,0, 0,0,0,1,  0,0,0,0, 1,0,0,0);
-		~ntStKeys.source = Pseq([0], inf);
+		~ntStKeys.source = Pseq([39], inf);
 		~durStKeys.source  =  Pseq([1/2], inf);
 		~lfoRtKeys.source =  Pseq([20,40,40,10], inf);
 		~lfoCtKeys.source =  Pseq([10,20,50,50], inf);
@@ -250,7 +250,7 @@ IFTrack01 {
 		IFSeqTmSamp.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFSeqStSamp.stGrpSet  (0,0,0,0, 0,0,0,1,  0,0,0,0, 0,1,0,1);
-		~ntStSamp.source = Pseq([0], inf);
+		~ntStSamp.source = Pseq([67,75,75,75], inf);
 		~durStSamp.source  =  Pseq([1/2], inf);
 		~lfo1Samp.source  =  Pseq([90,1,7,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);

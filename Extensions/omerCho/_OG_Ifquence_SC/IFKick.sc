@@ -16,7 +16,6 @@ IFKick {
 		this.proxy;
 		this.osc;
 		this.apc40;
-		//this.beh;
 
 	}
 
@@ -106,7 +105,7 @@ IFKick {
 
 		Pbind(
 			\chan, ~kickCh,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KickP.next],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~amp1KickP.next], inf),
@@ -203,36 +202,6 @@ IFKick {
 
 	}//*apc40
 
-	*beh{
-		~actKickMD_Beh.free;
-		~actKickMD_Beh=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actKick.source=1;
-				~tOSCAdrr.sendMsg('activKick', 1);
-				},{
-					~actKick.source=0;
-					~tOSCAdrr.sendMsg('activKick', 0);
-			});
-		}, chan:2, ccNum:2);
-
-
-		~time2KickMD.free;
-		~time2KickMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Kick = ~countTime2Kick + 1;
-				~tOSCAdrr.sendMsg('time2Kick', 1);
-				~tOSCAdrr.sendMsg('tmKickLabel', 2);
-				~tmMulKick.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Kick', 0);
-					~tOSCAdrr.sendMsg('tmKickLabel', 1);
-					~tmMulKick.source = Pseq([1], inf);
-					~countTime2Kick=0;
-			});
-		}, chan:2, ccNum:9);
-	}
 	*osc{
 
 		~actKickBut.free;
@@ -240,11 +209,9 @@ IFKick {
 			arg msg;
 			if ( msg[1]==1, {
 				~actKick.source=1;
-				//~behOut.control(2, 2, 127);
 				~apc40.noteOn(0, 48, 127); //Trk1_But 1
 				},{
 					~actKick.source=0;
-					//~behOut.control(2, 2, 0);
 					~apc40.noteOff(0, 48, 127); //Trk1_But 1
 			});
 			},
@@ -262,7 +229,7 @@ IFKick {
 					~tOSCAdrr.sendMsg('time2Kick', 1);
 					~tOSCAdrr.sendMsg('tmKickLabel', 2);
 					~tmMulKick.source = Pseq([2], inf);
-					~extraShufKick.source = Pshuf([10,11,12,13,14], inf);
+					~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
 				},
 				2,{
 					~apc40.noteOff(0, 49, 127);

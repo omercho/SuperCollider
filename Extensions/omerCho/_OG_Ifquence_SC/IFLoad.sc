@@ -10,7 +10,7 @@ IFLoad.loadVolca;
 IFLoad{
 	*initClass {
 		StartUp add: {
-		Server.default.doWhenBooted({ this.loadVolca; });
+		Server.default.doWhenBooted({this.loadVolca; });
 		}
 	}
 	*loadVolca{
@@ -37,12 +37,12 @@ IFLoad{
 				IFShuf.load;
 				0.1.wait;
 				VBass.globals; VBass.preSet01; VKeys.globals; VKeys.preSet01;
-				//0.1.wait;
-				//VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
-				//IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
-				//IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
-				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
-				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
+				0.1.wait;
+				VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
+				IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
+				IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
+				IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
+				IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
 				IFStat.load;
 				IFKick.load;
