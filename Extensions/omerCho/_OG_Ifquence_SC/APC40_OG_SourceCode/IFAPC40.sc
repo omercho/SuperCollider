@@ -1,29 +1,52 @@
 /*
 PostAllMIDI.on;
 PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+
 IFAPC40.loadSource;
 IFAPC40.resetLeds;
 IFAPC40.globalMode(1);
 IFAPC40.nobDown(mode:1);
 IFAPC40.update;
 
+
+
+*/
+
+/*
+//to find the srcID of MIDIOut sources
+~mdOut.uid;
+~mdTouch.uid;
+~apc40.uid;
+
+//to find MIDIIn src
+(
+c = NoteOnResponder({ |src,chan,note,vel|
+        [src,chan,note,vel].postln;
+    });
+    c.learn; // wait for the first note
+)
+NoteOnResponder.removeAll
 */
 
 IFAPC40{
 	*load{
 
-		~apc40 = MIDIOut.newByName("Akai APC40", "Akai APC40");
-		~apc40OutID=34339974;
-		~apc40InID=1665708355;
+		~apc40 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST3 APCMn");
+		~apc40OutID=(-2027289954);
+		~apc40InID=(-1298760971);
 		this.globals;
-		this.globalMode(1);
-		this.cueNob;
+		//this.globalMode(1);
+		//this.cueNob;
 		this.resetLeds;
 		this.shiftButton;
 		this.psrButtonsPlay;
 
-		IFAPC40_NobDown.load;
-		IFAPC40_NobUp.load;
+		//IFAPC40_NobDown.load;
+		//IFAPC40_NobUp.load;
 		IFAPC40_Launch.load;
 
 	}//loadAtStart
@@ -41,16 +64,25 @@ IFAPC40{
 		~apcLn8=7;
 		~apcLnMaster=0;
 		//Nums
-		~actButA=48;~actButB=49;~actButC=50;
-		~tsBut=51;
-		~apcPlayBut=91;
+		~actButA1=0;~actButB1=8;~actButC1=16;
+		~actButA2=1;~actButB2=9;~actButC2=17;
+		~actButA3=2;~actButB3=10;~actButC3=18;
+		~actButA4=3;~actButB4=11;~actButC4=19;
+		~actButA5=4;~actButB5=12;~actButC5=20;
+		~actButA6=5;~actButB6=13;~actButC6=21;
+		~actButA7=6;~actButB7=14;~actButC7=22;
+		~actButA8=7;~actButB8=15;~actButC8=23;
+
+		~tsBut1=64;~tsBut2=65;~tsBut3=66;~tsBut4=67;
+		~tsBut5=68;~tsBut6=69;~tsBut7=70;~tsBut8=71;
+		~apcPlayBut=82;
+
 		~apcStopBut=92;
 		~apcRecBut=93;
 		~apcBankUpBut=94;
 		~apcBankDownBut=95;
 		~apcBankRightBut=96;
 		~apcBankLeftBut=97;
-		~apcTapBut=99;
 		~apcPlusBut=100;
 		~apcMinusBut=101;
 
@@ -112,48 +144,7 @@ IFAPC40{
 
 	}
 
-	*cueNob{
-		~cueLev_APC.free;
-		~cueLev_APC=MIDIFunc.cc( {
-			arg vel,led,val;
-			val=0.01;
-			vel.switch(
-				127,{
-					127.postln;
-					~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=~susDrumLedVal+val);
-					~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=~susMelLedVal-val);
-					~susMulKick=~susMulKick+val;
-					~susMulSnr=~susMulSnr+val;
-					~susMulHat=~susMulHat+val;
-					~susMulBass=~susMulBass-val;
-					~susMulKeys=~susMulKeys-val;
-					~susMulSamp=~susMulSamp-val;
-					~nobD4_m1Val=~nobD4_m1Val-val;
-					~nobD8_m1Val=~nobD8_m1Val+val;
 
-				},
-				1,{
-
-					1.postln;
-					~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=~susDrumLedVal-val);
-					~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=~susMelLedVal+val);
-					~susMulKick=~susMulKick-val;
-					~susMulSnr=~susMulSnr-val;
-					~susMulHat=~susMulHat-val;
-					~susMulBass=~susMulBass+val;
-					~susMulKeys=~susMulKeys+val;
-					~susMulSamp=~susMulSamp+val;
-					~nobD4_m1Val=~nobD4_m1Val+val;
-					~nobD8_m1Val=~nobD8_m1Val-val;
-				},
-				126,{},
-				125,{},
-				2,{},
-				3,{}
-			);
-
-		},srcID:~apc40InID, chan:0, ccNum:47);
-	}
 
 	//PLAY STOP REC Buttons
 	*psrButtonsPlay{
@@ -179,7 +170,7 @@ IFAPC40{
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:~apcTapBut);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:~apcPlayBut);
 	}
 
 	//Activate Buttons Methods
@@ -197,7 +188,7 @@ IFAPC40{
 		this.actLine1ButC(val3);
 	}
 	*actLine1ButA{|val|
-		~apc40.noteOn(~apcLn1, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA1, val); //But A
 		~tOSCAdrr.sendMsg('activKick', val);
 		~actKick.source=val;
 		~cntActLine1ButA=val;
@@ -210,7 +201,7 @@ IFAPC40{
 		this.actLine2ButC(val3);
 	}
 	*actLine2ButA{|val|
-		~apc40.noteOn(~apcLn2, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA2, val); //But A
 		~tOSCAdrr.sendMsg('activSnr', val);
 		~actSnr.source=val;
 		~cntActLine2ButA=val;
@@ -224,7 +215,7 @@ IFAPC40{
 		this.actLine3ButC(val3);
 	}
 	*actLine3ButA{|val|
-		~apc40.noteOn(~apcLn3, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA3, val); //But A
 		~tOSCAdrr.sendMsg('activHat', val);
 		~actHat.source=val;
 		~cntActLine3ButA=val;
@@ -237,7 +228,7 @@ IFAPC40{
 		this.actLine4ButC(val3);
 	}
 	*actLine4ButA{|val|
-		~apc40.noteOn(~apcLn4, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA4, val); //But A
 		~tOSCAdrr.sendMsg('activBass', val);
 		~actBass.source=val;
 		~cntActLine4ButA=val;
@@ -250,7 +241,7 @@ IFAPC40{
 		this.actLine5ButC(val3);
 	}
 	*actLine5ButA{|val|
-		~apc40.noteOn(~apcLn5, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA5, val); //But A
 		~tOSCAdrr.sendMsg('activKeys', val);
 		~actKeys.source=val;
 		~cntActLine5ButA=val;
@@ -263,7 +254,7 @@ IFAPC40{
 		this.actLine6ButC(val3);
 	}
 	*actLine6ButA{|val|
-		~apc40.noteOn(~apcLn6, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA6, val); //But A
 		~tOSCAdrr.sendMsg('activSamp', val);
 		~actSamp.source=val;
 		~cntActLine6ButA=val;
@@ -276,7 +267,7 @@ IFAPC40{
 		this.actLine7ButC(val3);
 	}
 	*actLine7ButA{|val|
-		~apc40.noteOn(~apcLn7, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA7, val); //But A
 		~tOSCAdrr.sendMsg('activMast', val);
 		~actMast.source=val;
 		~cntActLine7ButA=val;
@@ -289,7 +280,7 @@ IFAPC40{
 		this.actLine8ButC(val3);
 	}
 	*actLine8ButA{|val|
-		~apc40.noteOn(~apcLn8, ~actButA, val); //But A
+		~apc40.noteOn(~apcLn1, ~actButA8, val); //But A
 		~tOSCAdrr.sendMsg('activRes', val);
 		~actRes.source=val;
 		~cntActLine8ButA=val;
@@ -297,49 +288,49 @@ IFAPC40{
 
 	//////////////////B_B
 	*actLine1ButB{|val|
-		~apc40.noteOn(~apcLn1, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB1, val); //But B
 		~local.sendMsg('time2Kick', 1);
 		//~tmMulKick.source = Pseq([val+1], inf);
 		~cntActLine1ButB=val;
 	}
 	*actLine2ButB{|val|
-		~apc40.noteOn(~apcLn2, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB2, val); //But B
 		~local.sendMsg('time2Snr', val);
 		//~tmMulSnr.source = Pseq([val+1], inf);
 		~cntActLine2ButB=val;
 	}
 	*actLine3ButB{|val|
-		~apc40.noteOn(~apcLn3, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB3, val); //But B
 		~local.sendMsg('time2Hat', val);
 		//~tmMulHat.source = Pseq([val+1], inf);
 		~cntActLine3ButB=val;
 	}
 	*actLine4ButB{|val|
-		~apc40.noteOn(~apcLn4, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB4, val); //But B
 		~local.sendMsg('time2Bass', val);
 		//~tmMulBass.source = Pseq([val+1], inf);
 		~cntActLine4ButB=val;
 	}
 	*actLine5ButB{|val|
-		~apc40.noteOn(~apcLn5, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB5, val); //But B
 		~local.sendMsg('time2Keys', val);
 		//~tmMulKeys.source = Pseq([val+1], inf);
 		~cntActLine5ButB=val;
 	}
 	*actLine6ButB{|val|
-		~apc40.noteOn(~apcLn6, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB6, val); //But B
 		~local.sendMsg('time2Samp', val);
 		//~tmMulSamp.source = Pseq([val+1], inf);
 		~cntActLine6ButB=val;
 	}
 	*actLine7ButB{|val|
-		~apc40.noteOn(~apcLn7, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB7, val); //But B
 		~tOSCAdrr.sendMsg('time2Mast', val);
 		~tmMulMast.source = Pseq([val+1], inf);
 		~cntActLine7ButB=val;
 	}
 	*actLine8ButB{|val|
-		~apc40.noteOn(~apcLn8, ~actButB, val); //But B
+		~apc40.noteOn(~apcLn1, ~actButB8, val); //But B
 		~tOSCAdrr.sendMsg('time2Res', val);
 		~tmMulRes.source = Pseq([val+1], inf);
 		~cntActLine8ButB=val;
@@ -347,49 +338,49 @@ IFAPC40{
 
 	/////////B_C
 	*actLine1ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC1, val); //But C
 		~tOSCAdrr.sendMsg('activStKick', val);
 		~actStKick.source=val;
 		~cntActLine1ButC=val;
 	}
 	*actLine2ButC{|val|
-		~apc40.noteOn(~apcLn2, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC2, val); //But C
 		~tOSCAdrr.sendMsg('activStSnr', val);
 		~actStSnr.source=val;
 		~cntActLine2ButC=val;
 	}
 	*actLine3ButC{|val|
-		~apc40.noteOn(~apcLn3, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC3, val); //But C
 		~tOSCAdrr.sendMsg('activStHat', val);
 		~actStHat.source=val;
 		~cntActLine3ButC=val;
 	}
 	*actLine4ButC{|val|
-		~apc40.noteOn(~apcLn4, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC4, val); //But C
 		~tOSCAdrr.sendMsg('activStBass', val);
 		~actStBass.source=val;
 		~cntActLine4ButC=val;
 	}
 	*actLine5ButC{|val|
-		~apc40.noteOn(~apcLn5, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC5, val); //But C
 		~tOSCAdrr.sendMsg('activStKeys', val);
 		~actStKeys.source=val;
 		~cntActLine5ButC=val;
 	}
 	*actLine6ButC{|val|
-		~apc40.noteOn(~apcLn6, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC6, val); //But C
 		~tOSCAdrr.sendMsg('activStSamp', val);
 		~actStSamp.source=val;
 		~cntActLine6ButC=val;
 	}
 	*actLine7ButC{|val|
-		~apc40.noteOn(~apcLn7, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC7, val); //But C
 		~tOSCAdrr.sendMsg('activStMast', val);
 		//~actStHat.source=val;
 		~cntActLine7ButC=val;
 	}
 	*actLine8ButC{|val|
-		~apc40.noteOn(~apcLn8, ~actButC, val); //But C
+		~apc40.noteOn(~apcLn1, ~actButC8, val); //But C
 		~tOSCAdrr.sendMsg('activStRes', val);
 		//~actStHat.source=val;
 		~cntActLine8ButC=val;
@@ -402,165 +393,109 @@ IFAPC40{
 			if ( vel==127, {
 				IFTrack01.loadAtStart;
 			});
-		},srcID:~apc40InID, chan:0, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:64);
 		~apc_TS02.free;
 		~apc_TS02=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 				IFTrack02.loadAtStart;
 			});
-		},srcID:~apc40InID, chan:1, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:65);
 		~apc_TS03.free;
 		~apc_TS03=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 				IFTrack03.loadAtStart;
 			});
-		},srcID:~apc40InID, chan:2, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:66);
 		~apc_TS04.free;
 		~apc_TS04=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 
 			});
-		},srcID:~apc40InID, chan:3, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:67);
 		~apc_TS05.free;
 		~apc_TS05=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 
 			});
-		},srcID:~apc40InID, chan:4, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:68);
 		~apc_TS06.free;
 		~apc_TS06=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 
 			});
-		},srcID:~apc40InID, chan:5, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:69);
 		~apc_TS07.free;
 		~apc_TS07=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 
 			});
-		},srcID:~apc40InID, chan:6, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:70);
 		~apc_TS08.free;
 		~apc_TS08=MIDIFunc.noteOn( {
 			arg vel;
 			if ( vel==127, {
 
 			});
-		},srcID:~apc40InID, chan:7, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:71);
 
 	}//tracks
 
-	*globalMode{|case|
-		case.switch(
-			0,{
-				~apc40.sysex(Int8Array[
-					0xf0,
-					0x47,
-					0x00,
-					0x73,
-					0x60,
-					0x00,
-					0x04,
-					0x40,//40-41-42
-					09,
-					00,
-					05,
-					0xf7
-				]);
-			},
-			1,{
-				~apc40.sysex(Int8Array[
-					0xf0,
-					0x47,
-					0x00,
-					0x73,
-					0x60,
-					0x00,
-					0x04,
-					0x41,//40-41-42
-					09,
-					00,
-					05,
-					0xf7
-				]);
-			},
-			2,{
-				~apc40.sysex(Int8Array[
-					0xf0,
-					0x47,
-					0x00,
-					0x73,
-					0x60,
-					0x00,
-					0x04,
-					0x42,//40-41-42
-					09,
-					00,
-					05,
-					0xf7
-				]);
-			}
-		);
-	}
 	*tsLed{|chan,led|
 		~apc40.noteOn(chan, 51, led);
 	}
 	*tsLeds{|led1,led2,led3,led4,led5,led6,led7,led8|
-		~apc40.noteOn(~apcLn1, ~tsBut, led1); //But 1
-		~apc40.noteOn(~apcLn2, ~tsBut, led2); //But 2
-		~apc40.noteOn(~apcLn3, ~tsBut, led3); //But 3
-		~apc40.noteOn(~apcLn4, ~tsBut, led4); //But 4
-		~apc40.noteOn(~apcLn5, ~tsBut, led5); //But 5
-		~apc40.noteOn(~apcLn6, ~tsBut, led6); //But 6
-		~apc40.noteOn(~apcLn7, ~tsBut, led7); //But 7
-		~apc40.noteOn(~apcLn8, ~tsBut, led8); //But 8
+		~apc40.noteOn(~apcLn1, ~tsBut1, led1); //But 1
+		~apc40.noteOn(~apcLn1, ~tsBut2, led2); //But 2
+		~apc40.noteOn(~apcLn1, ~tsBut3, led3); //But 3
+		~apc40.noteOn(~apcLn1, ~tsBut4, led4); //But 4
+		~apc40.noteOn(~apcLn1, ~tsBut5, led5); //But 5
+		~apc40.noteOn(~apcLn1, ~tsBut6, led6); //But 6
+		~apc40.noteOn(~apcLn1, ~tsBut7, led7); //But 7
+		~apc40.noteOn(~apcLn1, ~tsBut8, led8); //But 8
 	}
 
-	/*
-	IFAPC40.ndButLeds(1,0,0,0,0,0,0,0);
-	IFAPC40.nobDown(mode:2);
-	*/
 	*resetLeds{
 		//Toggles Active - Times2 - Static
-		~apc40.noteOn(0, 48, 0); //But 1
-		~apc40.noteOn(0, 49, 0); //But 2
-		~apc40.noteOn(0, 50, 0); //But 3
-		~apc40.noteOn(1, 48, 0); //But 1
-		~apc40.noteOn(1, 49, 0); //But 2
-		~apc40.noteOn(1, 50, 0); //But 3
-		~apc40.noteOn(2, 48, 0); //But 1
-		~apc40.noteOn(2, 49, 0); //But 2
-		~apc40.noteOn(2, 50, 0); //But 3
-		~apc40.noteOn(3, 48, 0); //But 1
-		~apc40.noteOn(3, 49, 0); //But 2
-		~apc40.noteOn(3, 50, 0); //But 3
-		~apc40.noteOn(4, 48, 0); //But 1
-		~apc40.noteOn(4, 49, 0); //But 2
-		~apc40.noteOn(4, 50, 0); //But 3
-		~apc40.noteOn(5, 48, 0); //But 1
-		~apc40.noteOn(5, 49, 0); //But 2
-		~apc40.noteOn(5, 50, 0); //But 3
-		~apc40.noteOn(6, 48, 0); //But 1
-		~apc40.noteOn(6, 49, 0); //But 2
-		~apc40.noteOn(6, 50, 0); //But 3
-		~apc40.noteOn(7, 48, 0); //But 1
-		~apc40.noteOn(7, 49, 0); //But 2
-		~apc40.noteOn(7, 50, 0); //But 3
+		~apc40.noteOn(0, 0, 0); //But 1
+		~apc40.noteOn(0, 1, 0); //But 2
+		~apc40.noteOn(0, 2, 0); //But 3
+		~apc40.noteOn(0, 3, 0); //But 1
+		~apc40.noteOn(0, 4, 0); //But 2
+		~apc40.noteOn(0, 5, 0); //But 3
+		~apc40.noteOn(0, 6, 0); //But 1
+		~apc40.noteOn(0, 7, 0); //But 2
+		~apc40.noteOn(0, 8, 0); //But 3
+		~apc40.noteOn(0, 9, 0); //But 1
+		~apc40.noteOn(0, 10, 0); //But 2
+		~apc40.noteOn(0, 11, 0); //But 3
+		~apc40.noteOn(0, 12, 0); //But 1
+		~apc40.noteOn(0, 13, 0); //But 2
+		~apc40.noteOn(0, 14, 0); //But 3
+		~apc40.noteOn(0, 15, 0); //But 1
+		~apc40.noteOn(0, 16, 0); //But 2
+		~apc40.noteOn(0, 17, 0); //But 3
+		~apc40.noteOn(0, 18, 0); //But 1
+		~apc40.noteOn(0, 19, 0); //But 2
+		~apc40.noteOn(0, 20, 0); //But 3
+		~apc40.noteOn(0, 21, 0); //But 1
+		~apc40.noteOn(0, 22, 0); //But 2
+		~apc40.noteOn(0, 23, 0); //But 3
 		//Track Selection Only One Function
-		~apc40.noteOn(0, 51, 0); //But 1
-		~apc40.noteOn(1, 51, 0); //But 2
-		~apc40.noteOn(2, 51, 0); //But 3
-		~apc40.noteOn(3, 51, 0); //But 4
-		~apc40.noteOn(4, 51, 0); //But 5
-		~apc40.noteOn(5, 51, 0); //But 6
-		~apc40.noteOn(6, 51, 0); //But 7
-		~apc40.noteOn(7, 51, 0); //But 8
-		~apc40.noteOn(0, 80, 0); //But Master
+		~apc40.noteOn(0, 64, 0); //But 1
+		~apc40.noteOn(1, 65, 0); //But 2
+		~apc40.noteOn(2, 66, 0); //But 3
+		~apc40.noteOn(3, 67, 0); //But 4
+		~apc40.noteOn(4, 68, 0); //But 5
+		~apc40.noteOn(5, 69, 0); //But 6
+		~apc40.noteOn(6, 70, 0); //But 7
+		~apc40.noteOn(7, 71, 0); //But 8
+		~apc40.noteOn(0, 72, 0); //But Master
 		//ClipStop 2 Functions
 		~apc40.noteOn(0, 52, 0); //But 1
 		~apc40.noteOn(1, 52, 0); //But 2
@@ -577,6 +512,9 @@ IFAPC40{
 		~apc40.noteOn(~apcLn1, 84, 0); //But Scene 3
 		~apc40.noteOn(~apcLn1, 85, 0); //But Scene 4
 		~apc40.noteOn(~apcLn1, 86, 0); //But Scene 5
+		~apc40.noteOn(~apcLn1, 87, 0); //But Scene 6
+		~apc40.noteOn(~apcLn1, 88, 0); //But Scene 7
+		~apc40.noteOn(~apcLn1, 89, 0); //But Scene 8
 
 	}
 }
@@ -730,7 +668,7 @@ if ( vel==127, {
 },1665708355,3,48,nil);
 
 
-~apc40ID.value
+~apc40.uid;
 
 
 ~apc40.noteOn(0, 52, 0); //But 3
@@ -749,5 +687,104 @@ if ( vel==127, {
 05,
 0xf7
 ]);
+
+
+*cueNob{
+		~cueLev_APC.free;
+		~cueLev_APC=MIDIFunc.cc( {
+			arg vel,led,val;
+			val=0.01;
+			vel.switch(
+				127,{
+					127.postln;
+					~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=~susDrumLedVal+val);
+					~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=~susMelLedVal-val);
+					~susMulKick=~susMulKick+val;
+					~susMulSnr=~susMulSnr+val;
+					~susMulHat=~susMulHat+val;
+					~susMulBass=~susMulBass-val;
+					~susMulKeys=~susMulKeys-val;
+					~susMulSamp=~susMulSamp-val;
+					~nobD4_m1Val=~nobD4_m1Val-val;
+					~nobD8_m1Val=~nobD8_m1Val+val;
+
+				},
+				1,{
+
+					1.postln;
+					~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=~susDrumLedVal-val);
+					~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=~susMelLedVal+val);
+					~susMulKick=~susMulKick-val;
+					~susMulSnr=~susMulSnr-val;
+					~susMulHat=~susMulHat-val;
+					~susMulBass=~susMulBass+val;
+					~susMulKeys=~susMulKeys+val;
+					~susMulSamp=~susMulSamp+val;
+					~nobD4_m1Val=~nobD4_m1Val+val;
+					~nobD8_m1Val=~nobD8_m1Val-val;
+				},
+				126,{},
+				125,{},
+				2,{},
+				3,{}
+			);
+
+		},srcID:~apc40InID, chan:0, ccNum:47);
+	}
+
+
+*globalMode{|case|
+		case.switch(
+			0,{
+				/*~apc40.sysex(Int8Array[
+					0xf0,
+					0x47,
+					0x00,
+					0x73,
+					0x60,
+					0x00,
+					0x04,
+					0x40,//40-41-42
+					09,
+					00,
+					05,
+					0xf7
+				]);*/
+			},
+			1,{
+				/*~apc40.sysex(Int8Array[
+					0xf0,
+					0x47,
+					0x00,
+					0x73,
+					0x60,
+					0x00,
+					0x04,
+					0x41,//40-41-42
+					09,
+					00,
+					05,
+					0xf7
+				]);*/
+			},
+			2,{
+				/*~apc40.sysex(Int8Array[
+					0xf0,
+					0x47,
+					0x00,
+					0x73,
+					0x60,
+					0x00,
+					0x04,
+					0x42,//40-41-42
+					09,
+					00,
+					05,
+					0xf7
+				]);*/
+			}
+		);
+	}
+
 
 */

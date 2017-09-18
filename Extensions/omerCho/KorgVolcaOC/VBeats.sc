@@ -12,8 +12,8 @@ VBeats {
 
 		//~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vBeats = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
-
+		//~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
+		~vBeats = MIDIOut.newByName("UM-2G","1");
 		//~vBeats = MIDIOut.newByName("BCF2000", "Port 1");
 
 		//~vBeatsLate=Tempo.bpm*(1/267.91897); //with Edirols MIDI Out

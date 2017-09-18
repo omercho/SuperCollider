@@ -17,21 +17,24 @@ IFStat {
 	*load {
 		this.globals;
 		this.proxy;
-		this.apc40;
+		this.mdMix;
+		this.preSet;
 
 
 	}
 
 	*globals{
 
-		~chStatKick=8;
-		~chStat=8;
-		~octStKick=0;
-		~octStSnr=0;
-		~octStHat=0;
-		~octStTom=0;
-		~octStClap=0;
-		~octStKrot=0;
+		~chVKick=9;
+		~chVBeats=9;
+		~octVKick=0;
+		~octVSnr=0;
+		~octVHat=0;
+		~octVClap=0;
+		~octVTomL=0;
+		~octVTomH=0;
+		~octVCrsh=0;
+		~octVPcm=0;
 
 
 	}
@@ -39,59 +42,77 @@ IFStat {
 	*proxy {
 
 		//Static_01_Kick
-		~actStKick = PatternProxy( Pseq([0], inf));
-		~actStKickP= Pseq([~actStKick], inf).asStream;
-		~durStKick = PatternProxy( Pseq([1], inf));
-		~durStKickP = Pseq([~durStKick], inf).asStream;
-		~ampStKick = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStKickP = Pseq([~ampStKick], inf).asStream;
-		~ntStKick = PatternProxy( Pseq([36], inf));
-		~ntStKickP = Pseq([~ntStKick], inf).asStream;
-		//StaticSnr
-		~actStSnr = PatternProxy( Pseq([0], inf));
-		~actStSnrP= Pseq([~actStSnr], inf).asStream;
-		~durStSnr = PatternProxy( Pseq([1], inf));
-		~durStSnrP = Pseq([~durStSnr], inf).asStream;
-		~ampStSnr = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStSnrP = Pseq([~ampStSnr], inf).asStream;
-		~ntStSnr = PatternProxy( Pseq([38], inf));
-		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;
-		//StaticHat
-		~actStHat = PatternProxy( Pseq([0], inf));
-		~actStHatP= Pseq([~actStHat], inf).asStream;
-		~durStHat = PatternProxy( Pseq([1], inf));
-		~durStHatP = Pseq([~durStHat], inf).asStream;
-		~ampStHat = PatternProxy( Pseq([0,1], inf));
-		~ampStHatP = Pseq([~ampStHat], inf).asStream;
-		~ntStHat = PatternProxy( Pseq([42,42,42,46], inf));
-		~ntStHatP = Pseq([~ntStHat], inf).asStream;
-		//StaticToms
-		~actStBass = PatternProxy( Pseq([0], inf));
-		~actStBassP= Pseq([~actStBass], inf).asStream;
-		~durStBass = PatternProxy( Pseq([1], inf));
-		~durStBassP = Pseq([~durStBass], inf).asStream;
-		~ampStBass = PatternProxy( Pseq([0,1,1,0], inf));
-		~ampStBassP = Pseq([~ampStBass], inf).asStream;
-		~ntStBass = PatternProxy( Pseq([43,43,43,50], inf));
-		~ntStBassP = Pseq([~ntStBass], inf).asStream;
-		//StaticClap
-		~actStKeys = PatternProxy( Pseq([0], inf));
-		~actStKeysP= Pseq([~actStKeys], inf).asStream;
-		~durStKeys = PatternProxy( Pseq([1], inf));
-		~durStKeysP = Pseq([~durStKeys], inf).asStream;
-		~ampStKeys = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStKeysP = Pseq([~ampStKeys], inf).asStream;
-		~ntStKeys = PatternProxy( Pseq([39], inf));
-		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;
-		//StaticAgog
-		~actStSamp = PatternProxy( Pseq([0], inf));
-		~actStSampP= Pseq([~actStSamp], inf).asStream;
-		~durStSamp = PatternProxy( Pseq([1], inf));
-		~durStSampP = Pseq([~durStSamp], inf).asStream;
-		~ampStSamp = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStSampP = Pseq([~ampStSamp], inf).asStream;
-		~ntStSamp = PatternProxy( Pseq([67,75,75,75], inf));
-		~ntStSampP = Pseq([~ntStSamp], inf).asStream;
+		~actVKick = PatternProxy( Pseq([0], inf));
+		~actVKickP= Pseq([~actVKick], inf).asStream;
+		~durVKick = PatternProxy( Pseq([1], inf));
+		~durVKickP = Pseq([~durVKick], inf).asStream;
+		~ampVKick = PatternProxy( Pseq([1,0], inf));
+		~ampVKickP = Pseq([~ampVKick], inf).asStream;
+		~ntVKick = PatternProxy( Pseq([[~vKick]], inf));
+		~ntVKickP = Pseq([~ntVKick], inf).asStream;
+		//2StaticSnr
+		~actVSnr = PatternProxy( Pseq([0], inf));
+		~actVSnrP= Pseq([~actVSnr], inf).asStream;
+		~durVSnr = PatternProxy( Pseq([1], inf));
+		~durVSnrP = Pseq([~durVSnr], inf).asStream;
+		~ampVSnr = PatternProxy( Pseq([0,0,0,1], inf));
+		~ampVSnrP = Pseq([~ampVSnr], inf).asStream;
+		~ntVSnr = PatternProxy( Pseq([[~vSnr]], inf));
+		~ntVSnrP = Pseq([~ntVSnr], inf).asStream;
+		//3 StaticHat
+		~actVHat = PatternProxy( Pseq([0], inf));
+		~actVHatP= Pseq([~actVHat], inf).asStream;
+		~durVHat = PatternProxy( Pseq([1], inf));
+		~durVHatP = Pseq([~durVHat], inf).asStream;
+		~ampVHat = PatternProxy( Pseq([1], inf));
+		~ampVHatP = Pseq([~ampVHat], inf).asStream;
+		~ntVHat = PatternProxy( Pseq([~vHatC,~vHatC,~vHatC,~vHatO], inf));
+		~ntVHatP = Pseq([~ntVHat], inf).asStream;
+		//4 StaticClap
+		~actVClap = PatternProxy( Pseq([0], inf));
+		~actVClapP= Pseq([~actVClap], inf).asStream;
+		~durVClap = PatternProxy( Pseq([1], inf));
+		~durVClapP = Pseq([~durVClap], inf).asStream;
+		~ampVClap = PatternProxy( Pseq([0,0,0,1], inf));
+		~ampVClapP = Pseq([~ampVClap], inf).asStream;
+		~ntVClap = PatternProxy( Pseq([~vClap], inf));
+		~ntVClapP = Pseq([~ntVClap], inf).asStream;
+		//5 StaticTomL
+		~actVTomL = PatternProxy( Pseq([0], inf));
+		~actVTomLP= Pseq([~actVTomL], inf).asStream;
+		~durVTomL = PatternProxy( Pseq([1], inf));
+		~durVTomLP = Pseq([~durVTomL], inf).asStream;
+		~ampVTomL = PatternProxy( Pseq([0,1,1,0,1], inf));
+		~ampVTomLP = Pseq([~ampVTomL], inf).asStream;
+		~ntVTomL = PatternProxy( Pseq([[~vTomL]], inf));
+		~ntVTomLP = Pseq([~ntVTomL], inf).asStream;
+		//6 StaticTomH
+		~actVTomH = PatternProxy( Pseq([0], inf));
+		~actVTomHP= Pseq([~actVTomH], inf).asStream;
+		~durVTomH = PatternProxy( Pseq([1], inf));
+		~durVTomHP = Pseq([~durVTomH], inf).asStream;
+		~ampVTomH = PatternProxy( Pseq([0,1,1,0,1], inf));
+		~ampVTomHP = Pseq([~ampVTomH], inf).asStream;
+		~ntVTomH = PatternProxy( Pseq([[~vTomH]], inf));
+		~ntVTomHP = Pseq([~ntVTomH], inf).asStream;
+		//7 StaticCrsh
+		~actVCrsh = PatternProxy( Pseq([0], inf));
+		~actVCrshP= Pseq([~actVCrsh], inf).asStream;
+		~durVCrsh = PatternProxy( Pseq([1], inf));
+		~durVCrshP = Pseq([~durVCrsh], inf).asStream;
+		~ampVCrsh = PatternProxy( Pseq([0,1,0,1], inf));
+		~ampVCrshP = Pseq([~ampVCrsh], inf).asStream;
+		~ntVCrsh = PatternProxy( Pseq([~vCrsh], inf));
+		~ntVCrshP = Pseq([~ntVCrsh], inf).asStream;
+		//8 StaticAgog
+		~actVPcm = PatternProxy( Pseq([0], inf));
+		~actVPcmP= Pseq([~actVPcm], inf).asStream;
+		~durVPcm = PatternProxy( Pseq([1], inf));
+		~durVPcmP = Pseq([~durVPcm], inf).asStream;
+		~ampVPcm = PatternProxy( Pseq([0,1,0,1], inf));
+		~ampVPcmP = Pseq([~ampVPcm], inf).asStream;
+		~ntVPcm = PatternProxy( Pseq([~vAgog,~vCalv], inf));
+		~ntVPcmP = Pseq([~ntVPcm], inf).asStream;
 
 	}//*proxy
 
@@ -99,202 +120,168 @@ IFStat {
 	*ln01 {|i=1|
 		var val;
 		val=i;
-		~staticKickPat=Pbind(
-			\chan, ~chStatKick,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStKick,
-			\dur, Pseq([~durStKickP.next],~actStKickP.next),
-			\degree, Pseq([~ntStKickP.next], inf),
-			\amp, Pseq([~ampStKickP.next], inf)
+		~stVKickPat=Pbind(
+			\chan, ~chVKick,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVKick,
+			\dur, Pseq([~durVKickP.next],~actVKickP.next),
+			\degree, Pseq([~ntVKickP.next], inf),
+			\amp, Pseq([~ampVKickP.next], inf)
 		).play;
 	}//stat01
 	*ln02 {|i=1|
 		var val;
 		val=i;
-		~staticSnrPat=Pbind(
-			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStSnr,
-			\dur, Pseq([~durStSnrP.next],~actStSnrP.next),
-			\degree, Pseq([~ntStSnrP.next], inf),
-			\amp, Pseq([~ampStSnrP.next], inf)
+		~stVSnrPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVSnr,
+			\dur, Pseq([~durVSnrP.next],~actVSnrP.next),
+			\degree, Pseq([~ntVSnrP.next], inf),
+			\amp, Pseq([~ampVSnrP.next], inf)
 		).play;
 	}
 	*ln03 {|i=1|
 		var val;
 		val=i;
-		~staticHatPat=Pbind(
-			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStHat,
-			\dur, Pseq([~durStHatP.next],~actStHatP),
-			\degree, Pseq([~ntStHatP.next], inf),
-			\amp, Pseq([~ampStHatP.next], inf)
+		~stVHatPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVHat,
+			\dur, Pseq([~durVHatP.next],~actVHatP),
+			\degree, Pseq([~ntVHatP.next], inf),
+			\amp, Pseq([~ampVHatP.next], inf)
 		).play;
 	}
 	*ln04 {|i=1|
 		var val;
 		val=i;
-		~staticBassPat=Pbind(
-			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStTom,
-			\dur, Pseq([~durStBassP.next],~actStBassP.next),
-			\degree, Pseq([~ntStBassP.next], inf),
-			\amp, Pseq([~ampStBassP.next], inf)
+		~stVClapPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVClap,
+			\dur, Pseq([~durVClapP.next],~actVClapP.next),
+			\degree, Pseq([~ntVClapP.next], inf),
+			\amp, Pseq([~ampVClapP.next], inf)
 		).play;
+
 	}
 	*ln05 {|i=1|
 		var val;
 		val=i;
-		~staticKeysPat=Pbind(
-			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStClap,
-			\dur, Pseq([~durStKeysP.next],~actStKeysP.next),
-			\degree, Pseq([~ntStKeysP.next], inf),
-			\amp, Pseq([~ampStKeysP.next], inf)
+		~stVTomLPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVTomL,
+			\dur, Pseq([~durVTomLP.next],~actVTomLP.next),
+			\degree, Pseq([~ntVTomLP.next], inf),
+			\amp, Pseq([~ampVTomLP.next], inf)
 		).play;
 	}//stat01
 	*ln06 {|i=1|
 		var val;
 		val=i;
-		~staticSampPat=Pbind(
-			\chan, ~chStat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\octave,~octStKrot,
-			\dur, Pseq([~durStSampP.next],~actStSampP.next),
-			\degree, Pseq([~ntStSampP.next], inf),
-			\amp, Pseq([~ampStSampP.next], inf)
+		~stVTomHPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVTomH,
+			\dur, Pseq([~durVTomHP.next],~actVTomHP.next),
+			\degree, Pseq([~ntVTomHP.next], inf),
+			\amp, Pseq([~ampVTomHP.next], inf)
+		).play;
+	}//stat01
+	*ln07 {|i=1|
+		var val;
+		val=i;
+		~stVCrshPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVCrsh,
+			\dur, Pseq([~durVCrshP.next],~actVCrshP.next),
+			\degree, Pseq([~ntVCrshP.next], inf),
+			\amp, Pseq([~ampVCrshP.next], inf)
+		).play;
+	}//stat01
+	*ln08 {|i=1|
+		var val;
+		val=i;
+		~stVPcmPat=Pbind(
+			\chan, ~chVBeats,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\octave,~octVPcm,
+			\dur, Pseq([~durVPcmP.next],~actVPcmP.next),
+			\degree, Pseq([~ntVPcmP.next], inf),
+			\amp, Pseq([~ampVPcmP.next], inf)
 		).play;
 	}//stat01
 
-	*apc40{
-		~volKick_APC.free;
-		~volKick_APC=MIDIFunc.cc( {
+	*mdMix{
+
+
+
+		/*~decVHatC_Mix.free;
+		~decVHatC_Mix=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volKick', vel/127);
-			~mdOut.control(2, 1, vel);
+			~tOSCAdrr.sendMsg('decVTom', vel/127);
+			~vBeats.control(9, ~tomDec, vel);
 
-		},srcID:~apc40InID, chan:0, ccNum:7);
+		},srcID:~mdMixInID, chan:~mdMixLn2, ccNum:33);
 
-
-
-		//Act ButC
-		//Static Kick Activate
-		~cntActLine1ButC=0;
-		~mdActLine1ButC.free;
-		~mdActLine1ButC=MIDIFunc.noteOn({
+		~volVHat_Mix.free;
+		~volVHat_Mix=MIDIFunc.cc( {
 			arg vel;
-			if ( vel==127, {
-				~cntActLine1ButC = ~cntActLine1ButC + 1;
-				~cntActLine1ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine1ButC(1);
-					},
-					2,{
-						IFAPC40.actLine1ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButC);
-		//Act ButC
-		//Static Snr Activate
-		~cntActLine2ButC=0;
-		~mdActLine2ButC.free;
-		~mdActLine2ButC=MIDIFunc.noteOn({
+			~tOSCAdrr.sendMsg('volVHat', vel/127);
+			~vBeats.control(9, ~hatCLev, vel);
+			~vBeats.control(9, ~hatOLev, vel);
+
+		},srcID:~mdMixInID, chan:~mdMixLn3, ccNum:30);
+
+		~volVPCM_Mix.free;
+		~volVPCM_Mix=MIDIFunc.cc( {
 			arg vel;
-			if ( vel==127, {
-				~cntActLine2ButC = ~cntActLine2ButC + 1;
-				~cntActLine2ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine2ButC(1);
-					},
-					2,{
-						IFAPC40.actLine2ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButC);
+			//~tOSCAdrr.sendMsg('volVKick', vel/127);
+			~vBeats.control(9, ~calvLev, vel);
+			~vBeats.control(9, ~agogLev, vel);
+			~vBeats.control(9, ~clapLev, vel);
+			~vBeats.control(9, ~crshLev, vel);
 
-		//Act ButC
-		//Static Hat Activate
-		~cntActLine3ButC=0;
-		~mdActLine3ButC.free;
-		~mdActLine3ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine3ButC = ~cntActLine3ButC + 1;
-				~cntActLine3ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine3ButC(1);
-					},
-					2,{
-						IFAPC40.actLine3ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButC);
-
-		~cntActLine4ButC=0;
-		~mdActLine4ButC.free;
-		~mdActLine4ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine4ButC = ~cntActLine4ButC + 1;
-				~cntActLine4ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine4ButC(1);
-					},
-					2,{
-						IFAPC40.actLine4ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButC);
-
-		~cntActLine5ButC=0;
-		~mdActLine5ButC.free;
-		~mdActLine5ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine5ButC = ~cntActLine5ButC + 1;
-				~cntActLine5ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine5ButC(1);
-					},
-					2,{
-						IFAPC40.actLine5ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButC);
-
-		~cntActLine6ButC=0;
-		~mdActLine6ButC.free;
-		~mdActLine6ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine6ButC = ~cntActLine6ButC + 1;
-				~cntActLine6ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.actLine6ButC(1);
-					},
-					2,{
-						IFAPC40.actLine6ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButC);
+		},srcID:~mdMixInID, chan:~mdMixLn4, ccNum:30);*/
 
 
-	}//*apc40
 
+
+
+	}//*mdMix
+
+
+
+	*preSet{
+		//~ampVKick.source= Pseq([1,1,0,0], inf);
+		//~ampVKick.source  =  Pseq([~seqVKick01.next/**~seqVelVKick01.next*/], inf);
+		/*~ampVKick.source= Pseq([
+			~seqVKick01,~seqVKick02,~seqVKick03,~seqVKick04,
+			~seqVKick05,~seqVKick06,~seqVKick07,~seqVKick08,
+			~seqVKick09,~seqVKick10,~seqVKick11,~seqVKick12,
+			~seqVKick13,~seqVKick14,~seqVKick15,~seqVKick16
+		], inf);*/
+		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		//~ntVKick.source = Pseq([36], inf);
+		IFSeqVSnr.stGrpSet  (0,1,1,0, 1,0,1,0,  0,0,1,0, 0,1,1,0);
+		//~ntVSnr.source = Pseq([38], inf);
+		IFSeqVHat.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,0,1);
+		~ntVHat.source = Pseq([42,42,42,42,42,42,42,46], inf);
+		IFSeqVTomL.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
+		//~ntVTomL.source = Pseq([43,43,43,50], inf);
+		IFSeqVTomH.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
+		//~ntVTomH.source = Pseq([43,43,43,50], inf);
+		IFSeqVClap.stGrpSet  (0,0,1,0, 0,0,1,1,  0,0,0,0, 1,0,0,0);
+		//~ntVClap.source = Pseq([39], inf);
+		//~durVClap.source  =  Pseq([1/2], inf);
+		IFSeqVCrsh.stGrpSet  (0,0,0,0, 0,0,0,1,  0,0,0,0, 0,1,0,1);
+		//~ntVCrsh.source = Pseq([67,75,75,75], inf);
+		IFSeqVPcm.stGrpSet  (1,0,1,0, 1,0,1,1,  0,0,1,1, 0,1,0,1);
+		~ntVPcm.source = Pseq([~vCalv,~vCalv,~vCalv,~vCalv,~vAgog], inf);
+
+	}
 }
 

@@ -40,9 +40,7 @@
 
 	*setAddr{
 
-		//~tOSCAdrr = NetAddr.new("192.168.1.7", 57130); // router OTE
-		~tOSCAdrr = NetAddr.new("192.168.1.2", 5001); // router StudioVag
-		//~tOSCAdrr = NetAddr.new("192.168.1.3", 5001); // connX
+		~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdOutID= (-1290330895);
@@ -57,7 +55,7 @@
 
 	*setTempo {arg tempo;
 		Tempo.bpm=tempo;
-		~tmp1=120;
+		~tmp1=110;
 		~tOSCAdrr.sendMsg('tempoLabel', tempo);
 		//~mdOut.control(15, 3, tempo); //ableton global tempo
 		//Tempo.bpm = tempo;

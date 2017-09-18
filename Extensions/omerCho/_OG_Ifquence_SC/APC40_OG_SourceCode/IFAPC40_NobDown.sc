@@ -34,11 +34,11 @@ IFAPC40_NobDown{
 		~nD_m8Num=65;
 		//Proxies-------------------
 		//mode:1
-		this.md1SetVals(v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1);
+		//this.md1SetVals(v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1);
 /*		~nobD1_m1Val=0;~nobD2_m1Val=0;~nobD3_m1Val=0;~nobD4_m1Val=0;
 		~nobD5_m1Val=0;~nobD6_m1Val=0;~nobD7_m1Val=0;~nobD8_m1Val=0;*/
 		//mode:2
-		this.md2SetVals(v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2);
+		//this.md2SetVals(v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2);
 /*		~nobD1_m2Val=0;~nobD2_m2Val=0;~nobD3_m2Val=0;~nobD4_m2Val=0;
 		~nobD5_m2Val=0;~nobD6_m2Val=0;~nobD7_m2Val=0;~nobD8_m2Val=0;*/
 

@@ -42,7 +42,7 @@ IFPitchExt {
 						"PITCHExt SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchExt', 1);
 						IFPitchExt.noteExtOn;
-						~apc40.noteOn(~apcLn1, 65, 1); //But 8
+						~apc40.noteOn(~apcLn1, 86, 1); //But 8
 
 
 					},
@@ -52,7 +52,7 @@ IFPitchExt {
 						~tOSCAdrr.sendMsg('pitchExt', 0);
 						~countPExt=0;
 						IFPitchExt.noteExtOff;
-						~apc40.noteOn(~apcLn1, 65, 0); //But 8
+						~apc40.noteOn(~apcLn1, 86, 0); //But 8
 					}
 				)
 				},{
@@ -86,7 +86,7 @@ IFPitchExt {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:65);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:86);
 
 	}
 

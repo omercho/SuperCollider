@@ -1,4 +1,11 @@
 /*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+
 IFSequence.step(16);
 IFSequence.led02;
 */
@@ -16,6 +23,15 @@ IFSequence {
 		IFSeqKeys.loadAll;
 		IFSeqSamp.loadAll;
 		IFSeqPat.loadAll;
+
+		IFSeqVKick.loadAll;
+		IFSeqVSnr.loadAll;
+		IFSeqVHat.loadAll;
+		IFSeqVClap.loadAll;
+		IFSeqVTomL.loadAll;
+		IFSeqVTomH.loadAll;
+		IFSeqVCrsh.loadAll;
+		IFSeqVPcm.loadAll;
 
 	}
 	*loadProxy {
@@ -205,6 +221,15 @@ IFSequence {
 		IFSeqKeys.stepPack(index);
 		IFSeqSamp.stepPack(index);
 		IFSeqPat.stepPack(index);
+
+		IFSeqVKick.stepPack(index);
+		IFSeqVSnr.stepPack(index);
+		IFSeqVHat.stepPack(index);
+		IFSeqVClap.stepPack(index);
+		IFSeqVTomL.stepPack(index);
+		IFSeqVTomH.stepPack(index);
+		IFSeqVCrsh.stepPack(index);
+		IFSeqVPcm.stepPack(index);
 	}
 
 	*st01{
@@ -216,6 +241,8 @@ IFSequence {
 		IFSeqKeys.stepPack(1);
 		IFSeqSamp.stepPack(1);
 		IFSeqPat.stepPack(1);
+		IFSeqVKick.stepPack(1);
+		IFSeqVTomL.stepPack(1);
 	}
 	*st02{
 		this.led02;
@@ -226,6 +253,8 @@ IFSequence {
 		IFSeqKeys.stepPack(2);
 		IFSeqSamp.stepPack(2);
 		IFSeqPat.stepPack(2);
+		IFSeqVKick.stepPack(2);
+		IFSeqVTomL.stepPack(2);
 	}
 	*st03{
 		this.led03;
@@ -236,6 +265,8 @@ IFSequence {
 		IFSeqKeys.stepPack(3);
 		IFSeqSamp.stepPack(3);
 		IFSeqPat.stepPack(3);
+		IFSeqVKick.stepPack(3);
+		IFSeqVTomL.stepPack(3);
 	}
 	*st04{
 		this.led04;
@@ -246,6 +277,8 @@ IFSequence {
 		IFSeqKeys.stepPack(4);
 		IFSeqSamp.stepPack(4);
 		IFSeqPat.stepPack(4);
+		IFSeqVKick.stepPack(4);
+		IFSeqVTomL.stepPack(4);
 	}
 	*st05{
 		this.led05;
@@ -256,6 +289,8 @@ IFSequence {
 		IFSeqKeys.stepPack(5);
 		IFSeqSamp.stepPack(5);
 		IFSeqPat.stepPack(5);
+		IFSeqVKick.stepPack(5);
+		IFSeqVTomL.stepPack(5);
 	}
 	*st06{
 		this.led06;
@@ -266,6 +301,8 @@ IFSequence {
 		IFSeqKeys.stepPack(6);
 		IFSeqSamp.stepPack(6);
 		IFSeqPat.stepPack(6);
+		IFSeqVKick.stepPack(6);
+		IFSeqVTomL.stepPack(6);
 	}
 	*st07{
 		this.led07;
@@ -276,6 +313,8 @@ IFSequence {
 		IFSeqKeys.stepPack(7);
 		IFSeqSamp.stepPack(7);
 		IFSeqPat.stepPack(7);
+		IFSeqVKick.stepPack(7);
+		IFSeqVTomL.stepPack(7);
 	}
 	*st08{
 		this.led08;
@@ -286,6 +325,8 @@ IFSequence {
 		IFSeqKeys.stepPack(8);
 		IFSeqSamp.stepPack(8);
 		IFSeqPat.stepPack(8);
+		IFSeqVKick.stepPack(8);
+		IFSeqVTomL.stepPack(8);
 	}
 	*st09{
 		this.led09;
@@ -296,6 +337,8 @@ IFSequence {
 		IFSeqKeys.stepPack(9);
 		IFSeqSamp.stepPack(9);
 		IFSeqPat.stepPack(9);
+		IFSeqVKick.stepPack(9);
+		IFSeqVTomL.stepPack(9);
 	}
 	*st10{
 		this.led10;
@@ -306,6 +349,8 @@ IFSequence {
 		IFSeqKeys.stepPack(10);
 		IFSeqSamp.stepPack(10);
 		IFSeqPat.stepPack(10);
+		IFSeqVKick.stepPack(10);
+		IFSeqVTomL.stepPack(10);
 	}
 	*st11{
 		this.led11;
@@ -316,6 +361,8 @@ IFSequence {
 		IFSeqKeys.stepPack(11);
 		IFSeqSamp.stepPack(11);
 		IFSeqPat.stepPack(11);
+		IFSeqVKick.stepPack(11);
+		IFSeqVTomL.stepPack(11);
 	}
 	*st12{
 		this.led12;
@@ -326,6 +373,8 @@ IFSequence {
 		IFSeqKeys.stepPack(12);
 		IFSeqSamp.stepPack(12);
 		IFSeqPat.stepPack(12);
+		IFSeqVKick.stepPack(12);
+		IFSeqVTomL.stepPack(12);
 	}
 	*st13{
 		this.led13;
@@ -336,6 +385,8 @@ IFSequence {
 		IFSeqKeys.stepPack(13);
 		IFSeqSamp.stepPack(13);
 		IFSeqPat.stepPack(13);
+		IFSeqVKick.stepPack(13);
+		IFSeqVTomL.stepPack(13);
 	}
 	*st14{
 		this.led14;
@@ -346,6 +397,8 @@ IFSequence {
 		IFSeqKeys.stepPack(14);
 		IFSeqSamp.stepPack(14);
 		IFSeqPat.stepPack(14);
+		IFSeqVKick.stepPack(14);
+		IFSeqVTomL.stepPack(14);
 	}
 	*st15{
 		this.led15;
@@ -356,6 +409,8 @@ IFSequence {
 		IFSeqKeys.stepPack(15);
 		IFSeqSamp.stepPack(15);
 		IFSeqPat.stepPack(15);
+		IFSeqVKick.stepPack(15);
+		IFSeqVTomL.stepPack(15);
 	}
 	*st16{
 		this.led16;
@@ -366,6 +421,8 @@ IFSequence {
 		IFSeqKeys.stepPack(16);
 		IFSeqSamp.stepPack(16);
 		IFSeqPat.stepPack(16);
+		IFSeqVKick.stepPack(16);
+		IFSeqVTomL.stepPack(16);
 	}
 
 

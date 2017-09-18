@@ -59,21 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAADAAAAFwAABpIAAALtAAAAAwAAAC0AAAaSAAAC7QAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAACqfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAACqQAAAGYA////AAAAAQAAAR4AAAKp/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsAAAAAAAAAATkAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAAAAAAKpAAAATAD///8AAAUKAAACqQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAADAAAAFwAABpIAAAN/AAAAAwAAAC0AAAaSAAADfwAAAAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACyAAADO/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADOwAAAGYA////AAAAAQAAAkoAAAM7/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAeEAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAeIAAAFZAAAATAD///8AAAOSAAADOwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/VBeats_MainPatterns.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/KorgVolcaOC/VBeats.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/MidiMix_OG_SourceCode/IFMIDIMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/MidiMix_OG_SourceCode/MidiMixTestDrive.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFStat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqNtKick.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/IFSpeechERG.scd
-    - /Users/omercho/Dropbox/SC/__SC2016/160301_HumanVoiceByNC.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-iConnectMIDI/IFiConnectMIDI4.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/IFSC_Synths.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVPcm.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVTomH.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVTomL.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVCrsh.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVClap.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVHat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFVolca/IFVKick.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVSnr.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

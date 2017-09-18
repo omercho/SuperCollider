@@ -23,9 +23,6 @@ IFPitchSamp {
 	}
 
 	*buttons {
-
-		"Transpose Shuffle LOOOOOOOAAAADDD".postln;
-
 		~pitchSampBut.free;
 		~countPSamp=0;
 		~pitchSampBut = OSCFunc({
@@ -40,13 +37,13 @@ IFPitchSamp {
 					1, {"PITCHSamp SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchSamp', 1);
 						IFPitchSamp.noteSampOn;
-						~apc40.noteOn(~apcLn1, 64, 1); //But 7
+						~apc40.noteOn(~apcLn1, 87, 1); //But 7
 					},
 					2,{"PITCHSamp SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchSamp', 0);
 						~countPSamp=0;
 						IFPitchSamp.noteSampOff;
-						~apc40.noteOn(~apcLn1, 64, 0); //But 7
+						~apc40.noteOn(~apcLn1, 87, 0); //But 7
 					}
 				)
 				}
@@ -72,7 +69,7 @@ IFPitchSamp {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:64);
+		},srcID:~apc40InID, chan:~apcLn1, noteNum:87);
 	}
 
 	*noteSampOn {
