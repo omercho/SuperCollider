@@ -2,7 +2,14 @@
 //Omer Chatziserif
 //Sunday, 19 Jan 2014, 20:38
 //Corfu, Greece
+/*
+PostAllMIDI.on;
+PostAllMIDI.off;
 
+IFLoad.load;
+IFLoad.loadVolca;
+
+*/
 
 	IFProjectGlobals {
 	classvar <>tempo= 120;
@@ -35,21 +42,37 @@
 		this.shiftButtons;
 		this.setTempo(120);
 		IFSixteen.defaults;
+		IFMIDIMix.load;
+		IFAPC40.load;
+		//IFAPC40_Launch.load;
+		IFLaunchSteps.load;
+		IFLaunchNotes.load;
 		~nt=(0);
+
+		/*
+		IFProjectGlobals.setAddr;
+		IFProjectGlobals.shiftButtons;
+		IFProjectGlobals.setTempo(120);
+		IFSixteen.defaults;
+		*/
 	}
 
 	*setAddr{
 
 		~tOSCAdrr = NetAddr.new("192.168.1.6", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
+
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdOutID= (-1290330895);
-		IFAPC40.load;
-		IFMIDIMix.load;
-		//~behOut = MIDIOut.newByName("BCF2000", "Port 1");
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
+
+		~vBass = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 ESI1");
+		~vKeys = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST5 ESI2");
+
 		//~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
+
+		//IFProjectGlobals.setTempo(124);
 
 	}
 

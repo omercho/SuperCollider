@@ -6,7 +6,7 @@
 
 //Channel, ControlNumber CC
 
-//to find the srcID of MIDIOut sources
+//to find the MIDIOut srcID of sources
 ~mdOut.uid;
 ~mdTouch.uid;
 ~apc40.uid;

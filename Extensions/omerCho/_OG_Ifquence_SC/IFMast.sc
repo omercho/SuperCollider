@@ -67,14 +67,14 @@ classvar <>counter3 = 0;
 
 
 	*preSet{
-		~mdOut.control(~chMast, 1, 94); //mac_1
+		/*~mdOut.control(~chMast, 1, 94); //mac_1
 		~mdOut.control(~chMast, 2, 94); //mac_2
 		~mdOut.control(~chMast, 3, 68); //mac_3
 		~mdOut.control(~chMast, 4, 100); //mac_4
 		~mdOut.control(~chMast, 5, 120); //mac_5
 		~mdOut.control(~chMast, 6, 100); //mac_6
 		~mdOut.control(~chMast, 7, 74); //mac_7
-		~mdOut.control(~chMast, 8, 64); //mac_8
+		~mdOut.control(~chMast, 8, 64); //mac_8*/
 
 	}
 
@@ -114,67 +114,67 @@ classvar <>counter3 = 0;
 			~tOSCAdrr.sendMsg('volMast', vel/127);
 			~mdOut.control(13, 9, vel);
 
-		},srcID:~apc40InID, chan:~apcLn7, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd7);
 
 		//Act ButA
 		//Mast Activate
-		~cntActLine7ButA=0;
-		~mdActLine7ButA.free;
-		~mdActLine7ButA=MIDIFunc.noteOn({
+		~cntActLine7ButA7=0;
+		~mdActLine7ButA7.free;
+		~mdActLine7ButA7=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine7ButA = ~cntActLine7ButA + 1;
-				~cntActLine7ButA.switch(
+				~cntActLine7ButA7 = ~cntActLine7ButA7 + 1;
+				~cntActLine7ButA7.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine7ButA(1);
+						IFAPC40.actLine7ButA7(1);
 					},
 					2,{
-						IFAPC40.actLine7ButA(0);
+						IFAPC40.actLine7ButA7(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA7);
 
-		//Act ButB
+		//Act ButB7
 		//Mast Time Div2
-		~cntActLine7ButB=0;
-		~mdActLine7ButB.free;
-		~mdActLine7ButB=MIDIFunc.noteOn({
+		~cntActLine7ButB7=0;
+		~mdActLine7ButB7.free;
+		~mdActLine7ButB7=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine7ButB = ~cntActLine7ButB + 1;
-				~cntActLine7ButB.switch(
+				~cntActLine7ButB7 = ~cntActLine7ButB7 + 1;
+				~cntActLine7ButB7.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine7ButB(1);
+						IFAPC40.actLine7ButB7(1);
 					},
 					2,{
-						IFAPC40.actLine7ButB(0);
+						IFAPC40.actLine7ButB7(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB7);
 
-		//Act ButC
+		//Act ButC7
 		//Static Mast Activate
-		~cntActLine7ButC=0;
-		~mdActLine7ButC.free;
-		~mdActLine7ButC=MIDIFunc.noteOn({
+		~cntActLine7ButC7=0;
+		~mdActLine7ButC7.free;
+		~mdActLine7ButC7=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine7ButC = ~cntActLine7ButC + 1;
-				~cntActLine7ButC.switch(
+				~cntActLine7ButC7 = ~cntActLine7ButC7 + 1;
+				~cntActLine7ButC7.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine7ButC(1);
+						IFAPC40.actLine7ButC7(1);
 					},
 					2,{
-						IFAPC40.actLine7ButC(0);
+						IFAPC40.actLine7ButC7(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn7, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC7);
 
 
 	}//*apc40
@@ -186,10 +186,10 @@ classvar <>counter3 = 0;
 			arg msg;
 			if ( msg[1]==1, {
 				~actMast.source=1;
-				~behOut.control(15, 0, 127);
+
 			},{
 					~actMast.source=0;
-					~behOut.control(15, 0, 0);
+
 			});
 			},
 			'/activMast'

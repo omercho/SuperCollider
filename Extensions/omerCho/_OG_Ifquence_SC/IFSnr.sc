@@ -132,79 +132,69 @@ IFSnr {
 			~tOSCAdrr.sendMsg('volSnr', vel/127);
 			~mdOut.control(3, 1, vel);
 
-		},srcID:~apc40InID, chan:1, ccNum:7);
+		},srcID:~apc40InID, chan:1, ccNum:~apcFd2);
 
-		//Act ButA
+		//Act ButA2
 		//Snr Activate
-		~cntActLine2ButA=0;
-		~mdActLine2ButA.free;
-		~mdActLine2ButA=MIDIFunc.noteOn({
+		~cntActLine2ButA2=0;
+		~mdActLine2ButA2.free;
+		~mdActLine2ButA2=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine2ButA = ~cntActLine2ButA + 1;
-				~cntActLine2ButA.switch(
+				~cntActLine2ButA2 = ~cntActLine2ButA2 + 1;
+				~cntActLine2ButA2.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine2ButA(1);
+						IFAPC40.actLine2ButA2(1);
 					},
 					2,{
-						IFAPC40.actLine2ButA(0);
+						IFAPC40.actLine2ButA2(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA2);
 
-		//Act ButB
+		//Act ButC2
 		//Snr Time Div2
-		~cntActLine2ButB=0;
-		~mdActLine2ButB.free;
-		~mdActLine2ButB=MIDIFunc.noteOn({
+		~cntActLine2ButC2=0;
+		~mdActLine2ButC2.free;
+		~mdActLine2ButC2=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine2ButB = ~cntActLine2ButB + 1;
-				~cntActLine2ButB.switch(
+				~cntActLine2ButC2 = ~cntActLine2ButC2 + 1;
+				~cntActLine2ButC2.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine2ButB(1);
+						IFAPC40.actLine2ButC2(1);
 					},
 					2,{
-						IFAPC40.actLine2ButB(0);
+						IFAPC40.actLine2ButC2(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn2, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC2);
+		//Act ButC3
+		//Static Snr Activate
+		~cntActLine2ButC2=0;
+		~mdActLine2ButC2.free;
+		~mdActLine2ButC2=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine2ButC2 = ~cntActLine2ButC2 + 1;
+				~cntActLine2ButC2.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine2ButC2(1);
+					},
+					2,{
+						IFAPC40.actLine2ButC2(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC2);
 
 
 	}//*apc40
-
-	*beh{
-		~actSnrMD.free;
-		~actSnrMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actSnr.source=1;
-				~tOSCAdrr.sendMsg('activSnr', 1);
-				},{
-					~actSnr.source=0;
-					~tOSCAdrr.sendMsg('activSnr', 0);
-			});
-		}, chan:3, ccNum:2);
-		~time2SnrMD.free;
-		~time2SnrMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Snr = ~countTime2Snr + 1;
-				~tOSCAdrr.sendMsg('time2Snr', 1);
-				~tOSCAdrr.sendMsg('tmSnrLabel', 2);
-				~tmMulSnr.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Snr', 0);
-					~tOSCAdrr.sendMsg('tmSnrLabel', 1);
-					~tmMulSnr.source = Pseq([1], inf);
-					~countTime2Snr=0;
-			});
-		}, chan:3, ccNum:9);
-	}//*beh
 
 	*osc{
 
@@ -213,11 +203,11 @@ IFSnr {
 			arg msg;
 			if ( msg[1]==1, {
 				~actSnr.source=1;
-				~apc40.noteOn(1, 48, 127); //Trk1_But 1
+				~apc40.noteOn(~apcMnCh, 48, ~actButA2); //Trk1_But 1
 				//~behOut.control(3, 2, 127);
 				},{
 					~actSnr.source=0;
-					~apc40.noteOff(1, 48, 127); //Trk1_But 1
+					~apc40.noteOff(~apcMnCh, 48, ~actButA2); //Trk1_But 1
 					//~behOut.control(3, 2, 0);
 			});
 			},
@@ -233,7 +223,7 @@ IFSnr {
 				1,{
 
 
-					~apc40.noteOn(1, 49, 127);
+					~apc40.noteOn(~apcMnCh, ~actButB2, 1);
 					~tOSCAdrr.sendMsg('time2Snr', 1);
 					~tOSCAdrr.sendMsg('tmSnrLabel', 2);
 					~tmMulSnr.source = Pseq([2], inf);
@@ -241,7 +231,7 @@ IFSnr {
 				},
 				2,{
 
-					~apc40.noteOff(1, 49, 127);
+					~apc40.noteOn(~apcMnCh, ~actButB2, 0);
 					~tOSCAdrr.sendMsg('time2Snr', 0);
 					~tOSCAdrr.sendMsg('tmSnrLabel', 1);
 					~tmMulSnr.source = Pseq([1], inf);

@@ -184,98 +184,70 @@ IFSamp {
 			~tOSCAdrr.sendMsg('volSamp', vel/127);
 			~mdOut.control(7, 1, vel);
 
-		},srcID:~apc40InID, chan:5, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd6);
 
-		//Act ButA
+		//Act ButA6
 		//Samp Activate
-		~cntActLine6ButA=0;
-		~mdActLine6ButA.free;
-		~mdActLine6ButA=MIDIFunc.noteOn({
+		~cntActLine6ButA6=0;
+		~mdActLine6ButA6.free;
+		~mdActLine6ButA6=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine6ButA = ~cntActLine6ButA + 1;
-				~cntActLine6ButA.switch(
+				~cntActLine6ButA6 = ~cntActLine6ButA6 + 1;
+				~cntActLine6ButA6.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine6ButA(1);
+						IFAPC40.actLine6ButA6(1);
 					},
 					2,{
-						IFAPC40.actLine6ButA(0);
+						IFAPC40.actLine6ButA6(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA6);
 
-		//Act ButB
+		//Act ButB6
 		//Samp Time Div2
-		~cntActLine6ButB=0;
-		~mdActLine6ButB.free;
-		~mdActLine6ButB=MIDIFunc.noteOn({
+		~cntActLine6ButB6=0;
+		~mdActLine6ButB6.free;
+		~mdActLine6ButB6=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine6ButB = ~cntActLine6ButB + 1;
-				~cntActLine6ButB.switch(
+				~cntActLine6ButB6 = ~cntActLine6ButB6 + 1;
+				~cntActLine6ButB6.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine6ButB(1);
+						IFAPC40.actLine6ButB6(1);
 					},
 					2,{
-						IFAPC40.actLine6ButB(0);
+						IFAPC40.actLine6ButB6(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB6);
 
-		//Act ButC
+		//Act ButC6
 		//Static Samp Activate
-		/*~cntActLine6ButC=0;
-		~mdActLine6ButC.free;
-		~mdActLine6ButC=MIDIFunc.noteOn({
+		~cntActLine6ButC6=0;
+		~mdActLine6ButC6.free;
+		~mdActLine6ButC6=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine6ButC = ~cntActLine6ButC + 1;
-				~cntActLine6ButC.switch(
+				~cntActLine6ButC6 = ~cntActLine6ButC6 + 1;
+				~cntActLine6ButC6.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine6ButC(1);
+						IFAPC40.actLine6ButC6(1);
 					},
 					2,{
-						IFAPC40.actLine6ButC(0);
+						IFAPC40.actLine6ButC6(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn6, noteNum:~actButC);*/
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC6);
 
 	}//*apc40
 
-	*beh{
-		~actSampMD.free;
-		~actSampMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actSamp.source=1;
-				~tOSCAdrr.sendMsg('activSamp', 1);
-				},{
-					~actSamp.source=0;
-					~tOSCAdrr.sendMsg('activSamp', 0);
-			});
-		}, chan:7, ccNum:2);
-		~time2SampMD.free;
-		~time2SampMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Samp = ~countTime2Samp + 1;
-				~tOSCAdrr.sendMsg('time2Samp', 1);
-				~tOSCAdrr.sendMsg('tmSampLabel', 2);
-				~tmMulSamp.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Samp', 0);
-					~tOSCAdrr.sendMsg('tmSampLabel', 1);
-					~tmMulSamp.source = Pseq([1], inf);
-					~countTime2Samp=0;
-			});
-		}, chan:7, ccNum:9);
-	}
 
 	*osc{
 
@@ -284,11 +256,11 @@ IFSamp {
 			arg msg;
 			if ( msg[1]==1, {
 				~actSamp.source=1;
-				~apc40.noteOn(5, 48, 127); //Trk6_But 1
+				~apc40.noteOn(~apcMnCh, ~actButA6, 127);
 				//~behOut.control(7, 2, 127);
 			},{
 					~actSamp.source=0;
-					~apc40.noteOff(5, 48, 127); //Trk6_But 1
+					~apc40.noteOff(~apcMnCh, ~actButA6, 127);
 					//~behOut.control(7, 2, 0);
 			});
 			},
@@ -303,13 +275,13 @@ IFSamp {
 				~countTime2Samp.switch(
 					0,{},
 					1, {
-						~apc40.noteOn(5, 49, 127); //Trk6_But 2
+						~apc40.noteOn(~apcMnCh, ~actButB6, 1);
 						~tOSCAdrr.sendMsg('time2Samp', 1);
 						~tOSCAdrr.sendMsg('tmSampLabel', 2);
 						~tmMulSamp.source = Pseq([2], inf);
 					},
 					2,{
-						~apc40.noteOff(5, 49, 127); //Trk6_But 2
+						~apc40.noteOn(~apcMnCh, ~actButB6, 0);
 						~tOSCAdrr.sendMsg('time2Samp', 0);
 						~tOSCAdrr.sendMsg('tmSampLabel', 1);
 						~tmMulSamp.source = Pseq([1], inf);

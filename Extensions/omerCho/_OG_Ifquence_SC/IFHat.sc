@@ -133,130 +133,73 @@ IFHat {
 		~volHat_APC=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volHat', vel/127);
-			~mdOut.control(4, 1, vel);
+			~mdOut.control(~apcMnCh, 1, vel);
 
-		},srcID:~apc40InID, chan:2, ccNum:7);
+		},srcID:~apc40InID, chan:2, ccNum:~apcFd3);
 
-		//Act ButA
+		//Act ButA3
 		//Hat Activate
-		~cntActLine3ButA=0;
-		~mdActLine3ButA.free;
-		~mdActLine3ButA=MIDIFunc.noteOn({
+		~cntActLine3ButA3=0;
+		~mdActLine3ButA3.free;
+		~mdActLine3ButA3=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine3ButA = ~cntActLine3ButA + 1;
-				~cntActLine3ButA.switch(
+				~cntActLine3ButA3 = ~cntActLine3ButA3 + 1;
+				~cntActLine3ButA3.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine3ButA(1);
+						IFAPC40.actLine3ButA3(1);
 					},
 					2,{
-						IFAPC40.actLine3ButA(0);
+						IFAPC40.actLine3ButA3(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA3);
 
-		//Act ButB
+		//Act ButB3
 		//Hat Time Div2
-		~cntActLine3ButB=0;
-		~mdActLine3ButB.free;
-		~mdActLine3ButB=MIDIFunc.noteOn({
+		~cntActLine3ButB3=0;
+		~mdActLine3ButB3.free;
+		~mdActLine3ButB3=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine3ButB = ~cntActLine3ButB + 1;
-				~cntActLine3ButB.switch(
+				~cntActLine3ButB3 = ~cntActLine3ButB3 + 1;
+				~cntActLine3ButB3.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine3ButB(1);
+						IFAPC40.actLine3ButB3(1);
 					},
 					2,{
-						IFAPC40.actLine3ButB(0);
+						IFAPC40.actLine3ButB3(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB3);
 
-		/*//Act ButC
+		//Act ButC3
 		//Static Hat Activate
-		~cntActLine3ButC=0;
-		~mdActLine3ButC.free;
-		~mdActLine3ButC=MIDIFunc.noteOn({
+		~cntActLine3ButC3=0;
+		~mdActLine3ButC3.free;
+		~mdActLine3ButC3=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine3ButC = ~cntActLine3ButC + 1;
-				~cntActLine3ButC.switch(
+				~cntActLine3ButC3 = ~cntActLine3ButC3 + 1;
+				~cntActLine3ButC3.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine3ButC(1);
+						IFAPC40.actLine3ButC3(1);
 					},
 					2,{
-						IFAPC40.actLine3ButC(0);
+						IFAPC40.actLine3ButC3(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn3, noteNum:~actButC);*/
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC3);
 
 	}//*apc40
 
-	*beh{
-		~actHatMD.free;
-		~actHatMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actHat.source=1;
-				~tOSCAdrr.sendMsg('activHat', 1);
-				},{
-					~actHat.source=0;
-					~tOSCAdrr.sendMsg('activHat', 0);
-			});
-		}, chan:4, ccNum:2);
 
-		~time2HatMD.free;
-		~time2HatMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Hat = ~countTime2Hat + 1;
-				~tOSCAdrr.sendMsg('time2Hat', 1);
-				~tOSCAdrr.sendMsg('tmHatLabel', 2);
-				~tmMulHat.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Hat', 0);
-					~tOSCAdrr.sendMsg('tmHatLabel', 1);
-					~tmMulHat.source = Pseq([1], inf);
-					~countTime2Hat=0;
-			});
-		}, chan:4, ccNum:9);
-
-
-		~actStHatActMD.free;
-		~actStHatActMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actStHat.source=1;
-				~tOSCAdrr.sendMsg('activStHat', 1);
-				},{
-					~actStHat.source=0;
-					~tOSCAdrr.sendMsg('activStHat', 0);
-			});
-		}, chan:8, ccNum:20);
-		~stableHatMD.free;
-		~stableHatMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~ntStHat.source = Pseq([67], inf);
-				~durStHat.source  =  Pseq([1/2], inf);
-				~ampStHat.source  =  Pseq([0,1], inf);
-
-
-				},{
-					~ntStHat.source = Pseq([67], inf);
-					~durStHat.source  =  Pseq([1/2], inf);
-					~ampStHat.source  =  Pseq([0,0,0,1], inf);
-
-			});
-		}, chan:8, ccNum:21);
-	}//beh
 
 	*osc {
 
@@ -265,11 +208,11 @@ IFHat {
 			arg msg;
 			if ( msg[1]==1, {
 				~actHat.source=1;
-				~apc40.noteOn(2, 48, 127); //Trk1_But 1
+				~apc40.noteOn(~apcMnCh, ~actButA3, 127); //Trk1_But 1
 				//~behOut.control(4, 2, 127);
 				},{
 					~actHat.source=0;
-					~apc40.noteOff(2, 48, 127); //Trk1_But 1
+					~apc40.noteOff(~apcMnCh, ~actButA3, 127); //Trk1_But 1
 					//~behOut.control(4, 2, 0);
 			});
 			},
@@ -285,15 +228,15 @@ IFHat {
 				~countTime2Hat.switch(
 					0,{},
 					1, {
-						//~behOut.control(4, 9, 127);
-						~apc40.noteOn(2, 49, 127);
+
+						~apc40.noteOn(~apcMnCh, ~actButB3, 1);
 						~tOSCAdrr.sendMsg('time2Hat', 1);
 						~tOSCAdrr.sendMsg('tmHatLabel', 2);
 						~tmMulHat.source = Pseq([2], inf);
 					},
 					2,{
-						//~behOut.control(4, 9, 0);
-						~apc40.noteOff(2, 49, 127);
+
+						~apc40.noteOn(~apcMnCh, ~actButB3, 0);
 						~tOSCAdrr.sendMsg('time2Hat', 0);
 						~tOSCAdrr.sendMsg('tmHatLabel', 1);
 						~tmMulHat.source = Pseq([1], inf);

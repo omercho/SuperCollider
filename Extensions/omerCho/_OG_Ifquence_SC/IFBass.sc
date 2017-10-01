@@ -1,4 +1,10 @@
 /*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
 IFBass.times(2);
 IFBass.pat_1;
 ~octBass=4;
@@ -24,7 +30,7 @@ IFBass {
 		//this.beh;
 	}
 	*globals{
-		~chBass=3;
+		~chBass=0;
 		~bassLate=0.0;
 		~timesBass=1;
 		~octMulBass=0;
@@ -116,7 +122,7 @@ IFBass {
 		val=i;
 		Pbind(
 			\chan, ~chBass,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1BassP.next],~actBassP),
 			\degree, Pseq([~nt1BassP.next], 1),
 			\amp, Pseq([~amp1BassP.next], 1),
@@ -159,15 +165,15 @@ IFBass {
 
 	}//p1
 	/**stat01 {|i=1|
-		var val;
-		val=i;
-		~staticBassPat=Pbind(
-			\chan, ~chBass,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~durStBassP.next],~actStBassP.next),
-			\degree, Pseq([~ntStBassP.next], inf),
-			\amp, Pseq([~ampStBassP.next], inf)
-		).play;
+	var val;
+	val=i;
+	~staticBassPat=Pbind(
+	\chan, ~chBass,
+	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+	\dur, Pseq([~durStBassP.next],~actStBassP.next),
+	\degree, Pseq([~ntStBassP.next], inf),
+	\amp, Pseq([~ampStBassP.next], inf)
+	).play;
 	}//stat01*/
 
 	*apc40{
@@ -178,97 +184,70 @@ IFBass {
 			~tOSCAdrr.sendMsg('volBass', vel/127);
 			~mdOut.control(5, 1, vel);
 
-		},srcID:~apc40InID, chan:3, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd4);
 
-		//Act ButA
+		//Act ButA4
 		//Bass Activate
-		~cntActLine4ButA=0;
-		~mdActLine4ButA.free;
-		~mdActLine4ButA=MIDIFunc.noteOn({
+		~cntActLine4ButA4=0;
+		~mdActLine4ButA4.free;
+		~mdActLine4ButA4=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine4ButA = ~cntActLine4ButA + 1;
-				~cntActLine4ButA.switch(
+				~cntActLine4ButA4 = ~cntActLine4ButA4 + 1;
+				~cntActLine4ButA4.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine4ButA(1);
+						IFAPC40.actLine4ButA4(1);
 					},
 					2,{
-						IFAPC40.actLine4ButA(0);
+						IFAPC40.actLine4ButA4(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA4);
 
-		//Act ButB
+		//Act ButB4
 		//Bass Time Div2
-		~cntActLine4ButB=0;
-		~mdActLine4ButB.free;
-		~mdActLine4ButB=MIDIFunc.noteOn({
+		~cntActLine4ButB4=0;
+		~mdActLine4ButB4.free;
+		~mdActLine4ButB4=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine4ButB = ~cntActLine4ButB + 1;
-				~cntActLine4ButB.switch(
+				~cntActLine4ButB4 = ~cntActLine4ButB4 + 1;
+				~cntActLine4ButB4.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine4ButB(1);
+						IFAPC40.actLine4ButB4(1);
 					},
 					2,{
-						IFAPC40.actLine4ButB(0);
+						IFAPC40.actLine4ButB4(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB4);
 
 		//Act ButC
 		//Static Bass Activate
-		/*~cntActLine4ButC=0;
-		~mdActLine4ButC.free;
-		~mdActLine4ButC=MIDIFunc.noteOn({
+		~cntActLine4ButC4=0;
+		~mdActLine4ButC4.free;
+		~mdActLine4ButC4=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine4ButC = ~cntActLine4ButC + 1;
-				~cntActLine4ButC.switch(
+				~cntActLine4ButC4 = ~cntActLine4ButC4 + 1;
+				~cntActLine4ButC4.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine4ButC(1);
+						IFAPC40.actLine4ButC4(1);
 					},
 					2,{
-						IFAPC40.actLine4ButC(0);
+						IFAPC40.actLine4ButC4(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButC);*/
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC4);
 	}//*apc40
 
-	*beh{
-		~actBassMD.free;
-		~actBassMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actBass.source=1;
-				~tOSCAdrr.sendMsg('activBass', 1);
-				},{
-					~actBass.source=0;
-					~tOSCAdrr.sendMsg('activBass', 0);
-			});
-		}, chan:5, ccNum:2);
-		~time2BassMD.free;
-		~time2BassMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Bass = ~countTime2Bass + 1;
-				~tOSCAdrr.sendMsg('time2Bass', 1);
-				~tOSCAdrr.sendMsg('tmBassLabel', 2);
-				~tmMulBass.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Bass', 0);
-					~tOSCAdrr.sendMsg('tmBassLabel', 1);
-					~tmMulBass.source = Pseq([1], inf);
-					~countTime2Bass=0;
-			});
-		}, chan:5, ccNum:9);
-	}
+
 	*osc{
 
 		~phrase01Bass.free;
@@ -295,12 +274,10 @@ IFBass {
 			arg msg;
 			if ( msg[1]==1, {
 				~actBass.source=1;
-				~apc40.noteOn(3, 48, 127); //Trk4_But 1
-				//~behOut.control(5, 2, 127);
+				~apc40.noteOn(~apcMnCh, ~actButA4, 127); //Trk4_But 1
 				},{
 					~actBass.source=0;
-					~apc40.noteOff(3, 48, 127); //Trk4_But 1
-					//~behOut.control(5, 2, 0);
+					~apc40.noteOff(~apcMnCh, ~actButA4, 127); //Trk4_But 1
 			});
 			},
 			'/activBass'
@@ -311,23 +288,24 @@ IFBass {
 		~time2BassBut= OSCFunc({
 			arg msg;
 
-				~countTime2Bass = ~countTime2Bass + 1;
-				~countTime2Bass.switch(
-					0,{},
-					1, {
-						~apc40.noteOn(3, 49, 127); //Trk4_But 2
-						~tOSCAdrr.sendMsg('time2Bass', 1);
-						~tOSCAdrr.sendMsg('tmBassLabel', 2);
-						~tmMulBass.source = Pseq([2], inf);
-					},
-					2,{
-						~apc40.noteOff(3, 49, 127); //Trk4_But 2
-						~tOSCAdrr.sendMsg('time2Bass', 0);
-						~tOSCAdrr.sendMsg('tmBassLabel', 1);
-						~tmMulBass.source = Pseq([1], inf);
-						~countTime2Bass=0;
-					}
-				);
+			~countTime2Bass = ~countTime2Bass + 1;
+			~countTime2Bass.switch(
+				0,{},
+				1, {
+					~apc40.noteOn(~apcMnCh, ~actButB4, 1); //Trk4_But 2
+					~tOSCAdrr.sendMsg('time2Bass', 1);
+					~tOSCAdrr.sendMsg('tmBassLabel', 2);
+					~tmMulBass.source = Pseq([2], inf);
+				},
+				2,{
+
+					~tOSCAdrr.sendMsg('time2Bass', 0);
+					~tOSCAdrr.sendMsg('tmBassLabel', 1);
+					~tmMulBass.source = Pseq([1], inf);
+					~apc40.noteOn(~apcMnCh, ~actButB4, 0); //Trk4_But 2
+					~countTime2Bass=0;
+				}
+			);
 			},
 			'/time2Bass'
 		);

@@ -13,9 +13,18 @@ IFiConnectMIDI4.stopPatterns;
 IFiConnectMIDI4{
 	*load{
 
+		~hstPort1=(1045905020);~hstPort2=(914608399);
+		~hstPort3=(-694708014);~hstPort4=(563831859);
+		~hstPort5=(1843132735);~hstPort6=(1105562645);
+		~hstPort7=(-1298760971);~hstPort8=(763699131);
+		~hstPort9=(1351388686);~hstPort10=(1820442188);
+		~hstPort11=(-421217710);~hstPort12=(-1481845706);
+		//~hstPort13=();~hstPort14=();
+		//~hstPort15=();~hstPort16=();
+
 		~iC_iPhone = MIDIOut.newByName("iConnectMIDI4+", "USB3 USB1 iPh");
-		~iC_iPhoneOutID=(-1638161785);
-		~iC_iPhoneInID=(-446583275);
+		~iC_iPhoneOutID=(-426163114);
+		~iC_iPhoneInID=~hstPort1;
 		~iC_iPhoneClockOut = MIDIClockOut("iConnectMIDI4+", "USB3 USB1 iPh", TempoClock.default);
 
 		~iC_ESI1 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 ESI1");
@@ -74,14 +83,14 @@ IFiConnectMIDI4{
 }
 
 /*
-~iCUSB1.uid
+~iC_iPhone.uid;
 
-~iCUSB1.noteOn(0, 1, 127); //But 1
+~iC_iPhone.noteOn(0, 1, 127); //But 1
 ~iC_ESI1.noteOn(0, 37, 127); //But 1
-~iCUSB1.noteOn(15, 38, 127); //But 1
-~iCUSB1.noteOn(15, 39, 127); //But 1
-~iCUSB1.noteOn(15, 40, 127); //But 1
-~iCUSB1.noteOn(15, 41, 127); //But 1
+~iC_iPhone.noteOn(15, 38, 127); //But 1
+~iC_iPhone.noteOn(15, 39, 127); //But 1
+~iC_iPhone.noteOn(15, 40, 127); //But 1
+~iC_iPhone.noteOn(15, 41, 127); //But 1
 
 
 ~iCElstc1=Pbind(

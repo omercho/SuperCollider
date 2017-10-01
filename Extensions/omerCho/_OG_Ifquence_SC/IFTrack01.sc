@@ -892,7 +892,7 @@ IFTrack01 {
 				IFTrack01.part01;
 				IFAPC40.tsLeds(1,0,0,0,0,0,0,0);
 			});
-		},srcID:~apc40InID, chan:0, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut1);
 		~apc_TS02.free;
 		~apc_TS02=MIDIFunc.noteOn( {
 			arg vel;
@@ -901,7 +901,7 @@ IFTrack01 {
 				IFTrack01.part02;
 				IFAPC40.tsLeds(0,1,0,0,0,0,0,0);
 			});
-		},srcID:~apc40InID, chan:1, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut2);
 		~apc_TS03.free;
 		~apc_TS03=MIDIFunc.noteOn( {
 			arg vel;
@@ -910,7 +910,7 @@ IFTrack01 {
 				IFTrack01.part03;
 				IFAPC40.tsLeds(0,0,1,0,0,0,0,0);
 			});
-		},srcID:~apc40InID, chan:2, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut3);
 		~apc_TS04.free;
 		~apc_TS04=MIDIFunc.noteOn( {
 			arg vel;
@@ -919,7 +919,7 @@ IFTrack01 {
 				IFTrack01.part04;
 				IFAPC40.tsLeds(0,0,0,1,0,0,0,0);
 			});
-		},srcID:~apc40InID, chan:3, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut4);
 		~apc_TS05.free;
 		~apc_TS05=MIDIFunc.noteOn( {
 			arg vel;
@@ -928,7 +928,7 @@ IFTrack01 {
 				IFTrack01.part05;
 				IFAPC40.tsLeds(0,0,0,0,1,0,0,0);
 			});
-		},srcID:~apc40InID, chan:4, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut5);
 		~apc_TS06.free;
 		~apc_TS06=MIDIFunc.noteOn( {
 			arg vel;
@@ -937,7 +937,7 @@ IFTrack01 {
 				IFTrack01.part06;
 				IFAPC40.tsLeds(0,0,0,0,0,1,0,0);
 			});
-		},srcID:~apc40InID, chan:5, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut6);
 		~apc_TS07.free;
 		~apc_TS07=MIDIFunc.noteOn( {
 			arg vel;
@@ -946,7 +946,7 @@ IFTrack01 {
 				IFTrack01.part07;
 				IFAPC40.tsLeds(0,0,0,0,0,0,1,0);
 			});
-		},srcID:~apc40InID, chan:6, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut7);
 		~apc_TS08.free;
 		~apc_TS08=MIDIFunc.noteOn( {
 			arg vel;
@@ -955,7 +955,7 @@ IFTrack01 {
 				IFTrack01.part08;
 				IFAPC40.tsLeds(0,0,0,0,0,0,0,1);
 			});
-		},srcID:~apc40InID, chan:7, noteNum:51);
+		},srcID:~apc40InID, chan:0, noteNum:~tsBut8);
 
 	}//apcParts
 

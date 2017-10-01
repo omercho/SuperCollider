@@ -102,8 +102,8 @@ IFVSamp {
 
 	*midiMix{
 
-		~volVSamp_APC.free;
-		~volVSamp_APC=MIDIFunc.cc( {
+		~volVSamp_MDMix.free;
+		~volVSamp_MDMix=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVSamp', vel/127);
 			~vSamp.control(~smp01, ~smpLvl, vel);
@@ -112,20 +112,20 @@ IFVSamp {
 
 		//Act ButA
 		//VSamp Activate
-		~cntMDMixActLine5ButA=0;
-		~mdMDMixActLine4ButA.free;
-		~mdMDMixActLine4ButA=MIDIFunc.noteOn({
+		~cntMDMixact5ButA=0;
+		~mdMDMixact4ButA.free;
+		~mdMDMixact4ButA=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntMDMixActLine5ButA = ~cntMDMixActLine5ButA + 1;
-				~cntMDMixActLine5ButA.switch(
+				~cntMDMixact5ButA = ~cntMDMixact5ButA + 1;
+				~cntMDMixact5ButA.switch(
 					0,{},
 					1, {
 
-						IFMIDIMix.actLine5ButA(1);
+						IFMIDIMix.act5ButA(1);
 					},
 					2,{
-						IFMIDIMix.actLine5ButA(0);
+						IFMIDIMix.act5ButA(0);
 					}
 				)}
 			);
@@ -133,20 +133,20 @@ IFVSamp {
 
 		//Act ButB
 		//VSamp Time Div2
-		~cntMDMixActLine5ButB=0;
-		~mdMDMixActLine4ButB.free;
-		~mdMDMixActLine4ButB=MIDIFunc.noteOn({
+		~cntMDMixact5ButB=0;
+		~mdMDMixact4ButB.free;
+		~mdMDMixact4ButB=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntMDMixActLine5ButB = ~cntMDMixActLine5ButB + 1;
-				~cntMDMixActLine5ButB.switch(
+				~cntMDMixact5ButB = ~cntMDMixact5ButB + 1;
+				~cntMDMixact5ButB.switch(
 					0,{},
 					1, {
-						"asfhn".postln;
-						IFMIDIMix.actLine5ButB(1);
+						"IFVSamp_char:145".postln;
+						IFMIDIMix.act5ButB(1);
 					},
 					2,{
-						IFMIDIMix.actLine5ButB(0);
+						IFMIDIMix.act5ButB(0);
 					}
 				)}
 			);
@@ -154,24 +154,24 @@ IFVSamp {
 
 		//Act ButC
 		//Static VSamp Activate
-		/*~cntMDMixActLine5ButC=0;
-		~mdMDMixActLine4ButC.free;
-		~mdMDMixActLine4ButC=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntMDMixActLine5ButC = ~cntMDMixActLine5ButC + 1;
-				~cntMDMixActLine5ButC.switch(
-					0,{},
-					1, {
-						IFAPC40.MDMixActLine4ButC(1);
-					},
-					2,{
-						IFAPC40.MDMixActLine4ButC(0);
-					}
-				)}
-			);
-		},srcID:~apc40InID, chan:~apcLn4, noteNum:~actButC);*/
-	}//*apc40
+		/*~cntMDMixact5ButC=0;
+		~mdMDMixact4ButC.free;
+		~mdMDMixact4ButC=MIDIFunc.noteOn({
+		arg vel;
+		if ( vel==127, {
+		~cntMDMixact5ButC = ~cntMDMixact5ButC + 1;
+		~cntMDMixact5ButC.switch(
+		0,{},
+		1, {
+		IFMDMix40.MDMixact4ButC(1);
+		},
+		2,{
+		IFMDMix40.MDMixact4ButC(0);
+		}
+		)}
+		);
+		},srcID:~MDMix40InID, chan:~MDMixLn4, noteNum:~actButC);*/
+	}//MDMix40
 
 
 	*osc{
@@ -182,11 +182,11 @@ IFVSamp {
 			arg msg;
 			if ( msg[1]==1, {
 				~actVSamp.source=1;
-				~apc40.noteOn(3, 48, 127); //Trk4_But 1
+				//~MDMix40.noteOn(3, 48, 127);
 				//~behOut.control(5, 2, 127);
 				},{
 					~actVSamp.source=0;
-					~apc40.noteOff(3, 48, 127); //Trk4_But 1
+					//~MDMix40.noteOff(3, 48, 127); //Trk4_But 1
 					//~behOut.control(5, 2, 0);
 			});
 			},
@@ -198,23 +198,23 @@ IFVSamp {
 		~time2VSampBut= OSCFunc({
 			arg msg;
 
-				~countTime2VSamp = ~countTime2VSamp + 1;
-				~countTime2VSamp.switch(
-					0,{},
-					1, {
-						~apc40.noteOn(3, 49, 127); //Trk4_But 2
-						~tOSCAdrr.sendMsg('time2VSamp', 1);
-						~tOSCAdrr.sendMsg('tmVSampLabel', 2);
-						~tmMulVSamp.source = Pseq([2], inf);
-					},
-					2,{
-						~apc40.noteOff(3, 49, 127); //Trk4_But 2
-						~tOSCAdrr.sendMsg('time2VSamp', 0);
-						~tOSCAdrr.sendMsg('tmVSampLabel', 1);
-						~tmMulVSamp.source = Pseq([1], inf);
-						~countTime2VSamp=0;
-					}
-				);
+			~countTime2VSamp = ~countTime2VSamp + 1;
+			~countTime2VSamp.switch(
+				0,{},
+				1, {
+					//~MDMix40.noteOn(3, 49, 127); //Trk4_But 2
+					~tOSCAdrr.sendMsg('time2VSamp', 1);
+					~tOSCAdrr.sendMsg('tmVSampLabel', 2);
+					~tmMulVSamp.source = Pseq([2], inf);
+				},
+				2,{
+					//~MDMix40.noteOff(3, 49, 127); //Trk4_But 2
+					~tOSCAdrr.sendMsg('time2VSamp', 0);
+					~tOSCAdrr.sendMsg('tmVSampLabel', 1);
+					~tmMulVSamp.source = Pseq([1], inf);
+					~countTime2VSamp=0;
+				}
+			);
 			},
 			'/time2VSamp'
 		);

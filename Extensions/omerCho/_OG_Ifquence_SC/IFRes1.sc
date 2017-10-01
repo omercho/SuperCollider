@@ -56,14 +56,14 @@ IFRes {
 	}
 
 	*preSet{
-		~mdOut.control(~chRes, 1, 94); //resonator Note
-		~mdOut.control(~chRes, 2, 94); //resonator Decay
-		~mdOut.control(~chRes, 3, 68); //resonator Filter freq
-		~mdOut.control(~chRes, 4, 100); //resonator Color
-		~mdOut.control(~chRes, 5, 120); //resonator Note gain
-		~mdOut.control(~chRes, 6, 100); //resonator Width
-		~mdOut.control(~chRes, 7, 74); //resonator Gain
-		~mdOut.control(~chRes, 8, 64); //resonator Gain
+		//~mdOut.control(~chRes, 1, 94); //resonator Note
+		//~mdOut.control(~chRes, 2, 94); //resonator Decay
+		//~mdOut.control(~chRes, 3, 68); //resonator Filter freq
+		//~mdOut.control(~chRes, 4, 100); //resonator Color
+		//~mdOut.control(~chRes, 5, 120); //resonator Note gain
+		//~mdOut.control(~chRes, 6, 100); //resonator Width
+		//~mdOut.control(~chRes, 7, 74); //resonator Gain
+		//~mdOut.control(~chRes, 8, 64); //resonator Gain
 
 	}
 
@@ -98,73 +98,73 @@ IFRes {
 	}
 
 	*apc40{
-		~volMast_APC.free;
-		~volMast_APC=MIDIFunc.cc( {
+		~volRes1_APC.free;
+		~volRes1_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volMast', vel/127);
+			~tOSCAdrr.sendMsg('volRes1', vel/127);
 			~mdOut.control(11, 9, vel);
 
-		},srcID:~apc40InID, chan:~apcLn8, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd8);
 
-		//Act ButA
-		//Mast Activate
-		~cntActLine8ButA=0;
-		~mdActLine8ButA.free;
-		~mdActLine8ButA=MIDIFunc.noteOn({
+		//Act ButA8
+		//Res1 Activate
+		~cntActLine8ButA8=0;
+		~mdActLine8ButA8.free;
+		~mdActLine8ButA8=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine8ButA = ~cntActLine8ButA + 1;
-				~cntActLine8ButA.switch(
+				~cntActLine8ButA8 = ~cntActLine8ButA8 + 1;
+				~cntActLine8ButA8.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine8ButA(1);
+						IFAPC40.actLine8ButA8(1);
 					},
 					2,{
-						IFAPC40.actLine8ButA(0);
+						IFAPC40.actLine8ButA8(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn8, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA8);
 
-		//Act ButB
-		//Mast Time Div2
-		~cntActLine8ButB=0;
-		~mdActLine8ButB.free;
-		~mdActLine8ButB=MIDIFunc.noteOn({
+		//Act ButB8
+		//Res1 Time Div2
+		~cntActLine8ButB8=0;
+		~mdActLine8ButB8.free;
+		~mdActLine8ButB8=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine8ButB = ~cntActLine8ButB + 1;
-				~cntActLine8ButB.switch(
+				~cntActLine8ButB8 = ~cntActLine8ButB8 + 1;
+				~cntActLine8ButB8.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine8ButB(1);
+						IFAPC40.actLine8ButB8(1);
 					},
 					2,{
-						IFAPC40.actLine8ButB(0);
+						IFAPC40.actLine8ButB8(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn8, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB8);
 
-		//Act ButC
-		//Static Mast Activate
-		~cntActLine8ButC=0;
-		~mdActLine8ButC.free;
-		~mdActLine8ButC=MIDIFunc.noteOn({
+		//Act ButC8
+		//Static Res1 Activate
+		~cntActLine8ButC8=0;
+		~mdActLine8ButC8.free;
+		~mdActLine8ButC8=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine8ButC = ~cntActLine8ButC + 1;
-				~cntActLine8ButC.switch(
+				~cntActLine8ButC8 = ~cntActLine8ButC8 + 1;
+				~cntActLine8ButC8.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine8ButC(1);
+						IFAPC40.actLine8ButC8(1);
 					},
 					2,{
-						IFAPC40.actLine8ButC(0);
+						IFAPC40.actLine8ButC8(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn8, noteNum:~actButC);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC8);
 
 
 	}//*apc40

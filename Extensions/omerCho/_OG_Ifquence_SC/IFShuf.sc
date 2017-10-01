@@ -72,11 +72,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transKickOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn1, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC1, 6); //But 1
 					},
 					2,{
 						this.transKickOff;
-						~apc40.noteOn(~apcLn1, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC1, 5); //But 1
 						~countShufKick=0;
 					}
 				)
@@ -100,11 +100,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transSnrOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn2, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC2, 6); //But 1
 					},
 					2,{
 						this.transSnrOff;
-						~apc40.noteOn(~apcLn2, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC2, 5); //But 1
 						~countShufSnr=0;
 					}
 				)
@@ -128,11 +128,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transHatOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn3, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC3, 6); //But 1
 					},
 					2,{
 						this.transHatOff;
-						~apc40.noteOn(~apcLn3, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC3, 5); //But 1
 						~countShufHat=0;
 					}
 				)
@@ -156,11 +156,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transBassOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn5, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC4, 6); //But 1
 					},
 					2,{
 						this.transBassOff;
-						~apc40.noteOn(~apcLn5, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC4, 5); //But 1
 						~countShufBass=0;
 					}
 				)
@@ -184,11 +184,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transKeysOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn6, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC5, 6); //But 1
 					},
 					2,{
 						this.transKeysOff;
-						~apc40.noteOn(~apcLn6, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC5, 5); //But 1
 						~countShufKeys=0;
 					}
 				)
@@ -212,11 +212,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.transSampOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn7, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC6, 6); //But 1
 					},
 					2,{
 						this.transSampOff;
-						~apc40.noteOn(~apcLn7, ~lnchBut5, 5); //But 1
+						~apc40.noteOn(~apcMnCh, ~actButC6, 5); //But 1
 						~countShufSamp=0;
 					}
 				)
@@ -252,11 +252,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.harmDrumOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn4, ~lnchBut5, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~lnchBut28, 6); //But 1
 					},
 					2,{
 						this.harmDrumOff;
-						~apc40.noteOn(~apcLn4, ~lnchBut5, 0); //But 1
+						~apc40.noteOn(~apcMnCh, ~lnchBut28, 0); //But 1
 						~local.sendMsg('harm0', 1);
 						~countShufHarmDrum=0;
 					}
@@ -309,11 +309,11 @@ IFShuf{
 					0,{},
 					1, {
 						this.harmMelOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcLn4, ~lnchBut4, 6); //But 1
+						~apc40.noteOn(~apcMnCh, ~lnchBut36, 1); //But 1
 					},
 					2,{
 						this.harmMelOff;
-						~apc40.noteOn(~apcLn4, ~lnchBut4, 0); //But 1
+						~apc40.noteOn(~apcMnCh, ~lnchBut36, 0); //But 1
 						~local.sendMsg('harmMel0', 1);
 						~countShufHarmMel=0;
 					}
@@ -396,13 +396,13 @@ if ( msg[1]==1, {
 ~transShufKick.source  = Pshuf([0,2,4,(7), (-2),1,12,(-1)], inf);
 ~transShufSnr.source  = Pshuf([(-1),3,2,(-7), (-2),4,6,(-1)], inf);
 ~transShufHat.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-~apc40.noteOn(~apcLn1, ~lnchBut5, 6); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut5, 6); //But 1
 },
 2,{
 ~transShufKick.source  = Pshuf([0], inf);
 ~transShufSnr.source  = Pshuf([0], inf);
 ~transShufHat.source  = Pshuf([0], inf);
-~apc40.noteOn(~apcLn1, ~lnchBut5, 5); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut5, 5); //But 1
 ~countShufKick=0;
 }
 )
@@ -438,7 +438,7 @@ if ( msg[1]==1, {
 ~transShufBass.source  = Pshuf([0,2,4,(7), 0,1,12,(-1)], inf);
 ~transShufKeys.source  = Pshuf([0,2,2,4, 0,4,6,1], inf);
 ~transShufSamp.source  = Pshuf([0,2,7,(-3), 0,(-2),3,6], inf);
-~apc40.noteOn(~apcLn4, ~lnchBut4, 6); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut4, 6); //But 1
 },
 2,{
 ~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
@@ -446,7 +446,7 @@ if ( msg[1]==1, {
 ~transShufBass.source  = Pshuf([0], inf);
 ~transShufKeys.source  = Pshuf([0], inf);
 ~transShufSamp.source  = Pshuf([0], inf);
-~apc40.noteOn(~apcLn4, ~lnchBut4, 5); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut4, 5); //But 1
 ~countShuf=0;
 }
 )
@@ -475,13 +475,13 @@ if ( msg[1]==1, {
 //~transShufKick.source  = Pshuf([0,2,4,(7), (-2),1,12,(-1)], inf);
 ~transShufSnr.source  = Pshuf([(-1),3,2,(-7), (-2),4,6,(-1)], inf);
 ~transShufHat.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-~apc40.noteOn(~apcLn4, ~lnchBut5, 6); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut5, 6); //But 1
 },
 2,{
 //~transShufKick.source  = Pshuf([0], inf);
 ~transShufSnr.source  = Pshuf([0], inf);
 ~transShufHat.source  = Pshuf([0], inf);
-~apc40.noteOn(~apcLn4, ~lnchBut5, 5); //But 1
+~apc40.noteOn(~apcMnCh, ~lnchBut5, 5); //But 1
 ~countShufDrum=0;
 }
 )

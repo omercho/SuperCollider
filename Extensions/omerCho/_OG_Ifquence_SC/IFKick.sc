@@ -137,67 +137,67 @@ IFKick {
 			~tOSCAdrr.sendMsg('volKick', vel/127);
 			~mdOut.control(2, 1, vel);
 
-		},srcID:~apc40InID, chan:0, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd1);
 
-		//Act ButA
+		//Act ButA1
 		//Kick Activate
-		~cntActLine1ButA=0;
-		~mdActLine1ButA.free;
-		~mdActLine1ButA=MIDIFunc.noteOn({
+		~cntActLine1ButA1=0;
+		~mdActLine1ButA1.free;
+		~mdActLine1ButA1=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine1ButA = ~cntActLine1ButA + 1;
-				~cntActLine1ButA.switch(
+				~cntActLine1ButA1 = ~cntActLine1ButA1 + 1;
+				~cntActLine1ButA1.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine1ButA(1);
+						IFAPC40.actLine1ButA1(1);
 					},
 					2,{
-						IFAPC40.actLine1ButA(0);
+						IFAPC40.actLine1ButA1(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA1);
 
-		//Act ButB
+		//Act ButB1
 		//Kick Time Div2
-		~cntActLine1ButB=0;
-		~mdActLine1ButB.free;
-		~mdActLine1ButB=MIDIFunc.noteOn({
+		~cntActLine1ButB1=0;
+		~mdActLine1ButB1.free;
+		~mdActLine1ButB1=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine1ButB = ~cntActLine1ButB + 1;
-				~cntActLine1ButB.switch(
+				~cntActLine1ButB1 = ~cntActLine1ButB1 + 1;
+				~cntActLine1ButB1.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine1ButB(1);
+						IFAPC40.actLine1ButB1(1);
 					},
 					2,{
-						IFAPC40.actLine1ButB(0);
+						IFAPC40.actLine1ButB1(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB1);
 
-		/*//Act ButC
+		//Act ButC1
 		//Static Kick Activate
-		~cntActLine1ButC=0;
-		~mdActLine1ButC.free;
-		~mdActLine1ButC=MIDIFunc.noteOn({
-		arg vel;
-		if ( vel==127, {
-		~cntActLine1ButC = ~cntActLine1ButC + 1;
-		~cntActLine1ButC.switch(
-		0,{},
-		1, {
-		IFAPC40.actLine1ButC(1);
-		},
-		2,{
-		IFAPC40.actLine1ButC(0);
-		}
-		)}
-		);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:~actButC);*/
+		~cntActLine1ButC1=0;
+		~mdActLine1ButC1.free;
+		~mdActLine1ButC1=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine1ButC1 = ~cntActLine1ButC1 + 1;
+				~cntActLine1ButC1.switch(
+					0,{},
+					1, {
+						IFAPC40.actLine1ButC1(1);
+					},
+					2,{
+						IFAPC40.actLine1ButC1(0);
+					}
+				)}
+			);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC1);
 
 
 	}//*apc40
@@ -209,10 +209,10 @@ IFKick {
 			arg msg;
 			if ( msg[1]==1, {
 				~actKick.source=1;
-				~apc40.noteOn(0, 48, 127); //Trk1_But 1
+				~apc40.noteOn(0, ~actButA1, 127); //Trk1_But 1
 				},{
 					~actKick.source=0;
-					~apc40.noteOff(0, 48, 127); //Trk1_But 1
+					~apc40.noteOff(0, ~actButA1, 127); //Trk1_But 1
 			});
 			},
 			'/activKick'
@@ -225,14 +225,14 @@ IFKick {
 			~countTime2Kick = ~countTime2Kick + 1;
 			~countTime2Kick.switch(
 				1,{
-					~apc40.noteOn(0, 49, 127);
+					~apc40.noteOn(0, ~actButB1, 1);
 					~tOSCAdrr.sendMsg('time2Kick', 1);
 					~tOSCAdrr.sendMsg('tmKickLabel', 2);
 					~tmMulKick.source = Pseq([2], inf);
 					~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
 				},
 				2,{
-					~apc40.noteOff(0, 49, 127);
+					~apc40.noteOn(0, ~actButB1, 0);
 					~tOSCAdrr.sendMsg('time2Kick', 0);
 					~tOSCAdrr.sendMsg('tmKickLabel', 1);
 					~tmMulKick.source = Pseq([1], inf);

@@ -1,5 +1,11 @@
 /*
 
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
 */
 IFRoot {
 	*load{this.globals;}

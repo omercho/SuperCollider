@@ -13,9 +13,7 @@ IFLoad.loadVolca;
 IFMIDIMix{
 	*load{
 
-		~mdMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST2 MDMx");
-		~mdMixOutID=1560110473;
-		~mdMixInID=(-1298760971);
+		this.addr;
 		this.globals;
 		this.loadResponders;
 		this.resetLeds;
@@ -23,6 +21,11 @@ IFMIDIMix{
 
 
 	}//loadAtStart
+	*addr{
+		~mdMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST2 MDMx");
+		~mdMixOutID=1560110473;
+		~mdMixInID=(1105562645);
+	}
 	*globals{
 		//channels
 		~mdMixGlobChan=0;
@@ -48,44 +51,44 @@ IFMIDIMix{
 
 	}//globals
 	*act1{|val1,val2,val3|
-		this.actLine1ButA(val1);
-		this.actLine1ButB(val2);
-		this.actLine1ButC(val3);
+		this.act1ButA(val1);
+		this.act1ButB(val2);
+		this.act1ButC(val3);
 	}
 	*act2{|val1,val2,val3|
-		this.actLine2ButA(val1);
-		this.actLine2ButB(val2);
-		this.actLine2ButC(val3);
+		this.act2ButA(val1);
+		this.act2ButB(val2);
+		this.act2ButC(val3);
 	}
 	*act3{|val1,val2,val3|
-		this.actLine3ButA(val1);
-		this.actLine3ButB(val2);
-		this.actLine3ButC(val3);
+		this.act3ButA(val1);
+		this.act3ButB(val2);
+		this.act3ButC(val3);
 	}
 	*act4{|val1,val2,val3|
-		this.actLine4ButA(val1);
-		this.actLine4ButB(val2);
-		this.actLine4ButC(val3);
+		this.act4ButA(val1);
+		this.act4ButB(val2);
+		this.act4ButC(val3);
 	}
 	*act5{|val1,val2,val3|
-		this.actLine5ButA(val1);
-		this.actLine5ButB(val2);
-		this.actLine5ButC(val3);
+		this.act5ButA(val1);
+		this.act5ButB(val2);
+		this.act5ButC(val3);
 	}
 	*act6{|val1,val2,val3|
-		this.actLine6ButA(val1);
-		this.actLine6ButB(val2);
-		this.actLine6ButC(val3);
+		this.act6ButA(val1);
+		this.act6ButB(val2);
+		this.act6ButC(val3);
 	}
 	*act7{|val1,val2,val3|
-		this.actLine7ButA(val1);
-		this.actLine7ButB(val2);
-		this.actLine7ButC(val3);
+		this.act7ButA(val1);
+		this.act7ButB(val2);
+		this.act7ButC(val3);
 	}
 	*act8{|val1,val2,val3|
-		this.actLine8ButA(val1);
-		this.actLine8ButB(val2);
-		this.actLine8ButC(val3);
+		this.act8ButA(val1);
+		this.act8ButB(val2);
+		this.act8ButC(val3);
 	}
 	//actLine1
 	*act1ButA{|val|
@@ -301,7 +304,7 @@ IFMIDIMix{
 			~tOSCAdrr.sendMsg('stutTime', vel/127);
 			~vBeats.control(9, ~stutterTime, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn1, ccNum:31);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:31);
 
 		//--------------------line2
 		//Act2 ButA
@@ -369,7 +372,7 @@ IFMIDIMix{
 			~tOSCAdrr.sendMsg('stutDepth', vel/127);
 			~vBeats.control(9, ~stutterDepth, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn2, ccNum:31);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:31);
 
 		//--------------------line3
 		//Act3 ButA
@@ -423,7 +426,7 @@ IFMIDIMix{
 			~tOSCAdrr.sendMsg('volVCrsh', vel/127);
 			~vBeats.control(9, ~crshLev, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn3, ccNum:33);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:33);
 		~mdMixNob3B.free;
 		~mdMixNob3B=MIDIFunc.cc( {
 			arg vel;
@@ -439,7 +442,7 @@ IFMIDIMix{
 			~tOSCAdrr.sendMsg('grainVHat', vel/127);
 			~vBeats.control(9, ~hatGrain, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn3, ccNum:31);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:31);
 
 		//Act4 ButA
 		~cntMixAct4ButA=0;
@@ -484,7 +487,7 @@ IFMIDIMix{
 			~tOSCAdrr.sendMsg('volVClap', vel/127);
 			~vBeats.control(9, ~clapLev, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn4, ccNum:30);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:30);
 		~mdMixNob4A.free;
 		~mdMixNob4A=MIDIFunc.cc( {
 			arg vel;
@@ -501,14 +504,14 @@ IFMIDIMix{
 			~vBeats.control(9, ~agogSpeed, vel);
 
 
-		},srcID:~mdMixInID, chan:~mdMixLn4, ccNum:32);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:32);
 		~mdMixNob4C.free;
 		~mdMixNob4C=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('speedClap', vel/127);
 			~vBeats.control(9, ~clapSpeed, vel);
 
-		},srcID:~mdMixInID, chan:~mdMixLn4, ccNum:31);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, ccNum:31);
 		/////
 		/////
 		/////

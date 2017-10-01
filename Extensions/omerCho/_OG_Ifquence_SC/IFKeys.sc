@@ -25,7 +25,7 @@ IFKeys {
 	}
 	*globals{
 
-		~chKeys=4;
+		~chKeys=0;
 		~keysLate= 0.0;
 		~timesKeys=1;
 		~octMulKeys=0;
@@ -127,7 +127,7 @@ IFKeys {
 		val=i;
 		Pbind(
 			\chan, ~chKeys,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KeysP.next],~actKeysP),
 			\degree, Pseq([~nt1KeysP.next], inf),
 			\amp, Pseq([~amp1KeysP.next], inf),
@@ -190,98 +190,69 @@ IFKeys {
 			~tOSCAdrr.sendMsg('volKeys', vel/127);
 			~mdOut.control(6, 1, vel);
 
-		},srcID:~apc40InID, chan:4, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:7);
 
-		//Act ButA
+		//Act ButA5
 		//Keys Activate
-		~cntActLine5ButA=0;
-		~mdActLine5ButA.free;
-		~mdActLine5ButA=MIDIFunc.noteOn({
+		~cntActLine5ButA5=0;
+		~mdActLine5ButA5.free;
+		~mdActLine5ButA5=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine5ButA = ~cntActLine5ButA + 1;
-				~cntActLine5ButA.switch(
+				~cntActLine5ButA5 = ~cntActLine5ButA5 + 1;
+				~cntActLine5ButA5.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine5ButA(1);
+						IFAPC40.actLine5ButA5(1);
 					},
 					2,{
-						IFAPC40.actLine5ButA(0);
+						IFAPC40.actLine5ButA5(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButA);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA5);
 
-		//Act ButB
+		//Act ButB5
 		//Keys Time Div2
-		~cntActLine5ButB=0;
-		~mdActLine5ButB.free;
-		~mdActLine5ButB=MIDIFunc.noteOn({
+		~cntActLine5ButB5=0;
+		~mdActLine5ButB5.free;
+		~mdActLine5ButB5=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine5ButB = ~cntActLine5ButB + 1;
-				~cntActLine5ButB.switch(
+				~cntActLine5ButB5 = ~cntActLine5ButB5 + 1;
+				~cntActLine5ButB5.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine5ButB(1);
+						IFAPC40.actLine5ButB5(1);
 					},
 					2,{
-						IFAPC40.actLine5ButB(0);
+						IFAPC40.actLine5ButB5(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButB);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB5);
 
-		//Act ButC
+		//Act ButC5
 		//Static Keys Activate
-		/*~cntActLine5ButC=0;
-		~mdActLine5ButC.free;
-		~mdActLine5ButC=MIDIFunc.noteOn({
+		~cntActLine5ButC5=0;
+		~mdActLine5ButC5.free;
+		~mdActLine5ButC5=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine5ButC = ~cntActLine5ButC + 1;
-				~cntActLine5ButC.switch(
+				~cntActLine5ButC5 = ~cntActLine5ButC5 + 1;
+				~cntActLine5ButC5.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine5ButC(1);
+						IFAPC40.actLine5ButC5(1);
 					},
 					2,{
-						IFAPC40.actLine5ButC(0);
+						IFAPC40.actLine5ButC5(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn5, noteNum:~actButC);*/
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC5);
 
 	}//*apc40
-
-	*beh{
-		~actKeysMD.free;
-		~actKeysMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~actKeys.source=1;
-				~tOSCAdrr.sendMsg('activKeys', 1);
-				},{
-					~actKeys.source=0;
-					~tOSCAdrr.sendMsg('activKeys', 0);
-			});
-		}, chan:6, ccNum:2);
-		~time2KeysMD.free;
-		~time2KeysMD=MIDIFunc.cc( {
-			arg vel;
-			if ( vel==127, {
-				~countTime2Keys = ~countTime2Keys + 1;
-				~tOSCAdrr.sendMsg('time2Keys', 1);
-				~tOSCAdrr.sendMsg('tmKeysLabel', 2);
-				~tmMulKeys.source = Pseq([2], inf);
-				},{
-					~tOSCAdrr.sendMsg('time2Keys', 0);
-					~tOSCAdrr.sendMsg('tmKeysLabel', 1);
-					~tmMulKeys.source = Pseq([1], inf);
-					~countTime2Keys=0;
-			});
-		}, chan:6, ccNum:9);
-	}
 	*osc{
 
 		~actKeysBut.free;
@@ -289,12 +260,10 @@ IFKeys {
 			arg msg;
 			if ( msg[1]==1, {
 				~actKeys.source=1;
-				~apc40.noteOn(4, 48, 127); //Trk5_But 1
-				//~behOut.control(6, 2, 127);
+				~apc40.noteOn(~apcMnCh, ~actButA5, 127); //Trk5_But 1
 				},{
 					~actKeys.source=0;
-					~apc40.noteOff(4, 48, 127); //Trk5_But 1
-					//~behOut.control(6, 2, 0);
+					~apc40.noteOff(~apcMnCh, ~actButA5, 127); //Trk5_But
 			});
 			},
 			'/activKeys'
@@ -309,15 +278,15 @@ IFKeys {
 				~countTime2Keys.switch(
 					0,{},
 					1, {
-						~apc40.noteOn(4, 49, 127); //Trk5_But 2
-						~tOSCAdrr.sendMsg('time2Keys', 1);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
+						~apc40.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
+						//~tOSCAdrr.sendMsg('time2Keys', 1);
+						//~tOSCAdrr.sendMsg('tmKeysLabel', 2);
 						~tmMulKeys.source = Pseq([2], inf);
 					},
 					2,{
-						~apc40.noteOff(4, 49, 127); //Trk5_But 2
-						~tOSCAdrr.sendMsg('time2Keys', 0);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
+						~apc40.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
+						//~tOSCAdrr.sendMsg('time2Keys', 0);
+						//~tOSCAdrr.sendMsg('tmKeysLabel', 1);
 						~tmMulKeys.source = Pseq([1], inf);
 						~countTime2Keys=0;
 					}

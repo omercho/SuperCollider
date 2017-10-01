@@ -8,7 +8,6 @@ IFLoad.loadVolca;
 
 IFAPC40.loadSource;
 IFAPC40.resetLeds;
-IFAPC40.globalMode(1);
 IFAPC40.nobDown(mode:1);
 IFAPC40.update;
 
@@ -30,14 +29,17 @@ c = NoteOnResponder({ |src,chan,note,vel|
     c.learn; // wait for the first note
 )
 NoteOnResponder.removeAll
+
+IFAPC40.globals;
+IFAPC40.resetLeds;
+IFAPC40.shiftButton;
+IFAPC40.psrButtonsPlay;
 */
 
 IFAPC40{
 	*load{
 
-		~apc40 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST3 APCMn");
-		~apc40OutID=(-2027289954);
-		~apc40InID=(-1298760971);
+		this.addr;
 		this.globals;
 		//this.globalMode(1);
 		//this.cueNob;
@@ -47,23 +49,24 @@ IFAPC40{
 
 		//IFAPC40_NobDown.load;
 		//IFAPC40_NobUp.load;
-		IFAPC40_Launch.load;
 
 	}//loadAtStart
 
-
+	*addr{
+		~apc40 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST3 APCMn");
+		~apc40OutID=(-2027289954);
+		~apc40InID=(-1298760971);
+	}
 	*globals{
 		//channels
-		~apcLn1=0;
-		~apcLn2=1;
-		~apcLn3=2;
-		~apcLn4=3;
-		~apcLn5=4;
-		~apcLn6=5;
-		~apcLn7=6;
-		~apcLn8=7;
+		~apcMnCh=0;
+		~apcLn1=0;~apcLn2=1;~apcLn3=2;~apcLn4=3;
+		~apcLn5=4;~apcLn6=5;~apcLn7=6;~apcLn8=7;
 		~apcLnMaster=0;
 		//Nums
+		~apcFd1=48;~apcFd2=49;~apcFd3=50;~apcFd4=51;
+		~apcFd5=52;~apcFd6=53;~apcFd7=54;~apcFd8=55;~apcFd9=56;
+
 		~actButA1=0;~actButB1=8;~actButC1=16;
 		~actButA2=1;~actButB2=9;~actButC2=17;
 		~actButA3=2;~actButB3=10;~actButC3=18;
@@ -160,13 +163,13 @@ IFAPC40{
 					1, {
 						~local.sendMsg('/1/toggleMain', 1);
 						~local.sendMsg('nt_0', 1);
-						IFAPC40_Launch.noteButsReset;
+						IFLaunchNotes.resetLeds;
 						~apc40.noteOn(~apcLn4, 55, 4); //But 1
 					},
 					2,{
 						~local.sendMsg('/1/toggleMain', 0);
 						~cntPlayBut=0;
-						IFAPC40_Launch.noteButsReset;
+						IFLaunchNotes.resetLeds;
 					}
 				)}
 			);
@@ -183,207 +186,199 @@ IFAPC40{
 	}
 	//actLine1
 	*actLine1{|val1,val2,val3|
-		this.actLine1ButA(val1);
-		this.actLine1ButB(val2);
-		this.actLine1ButC(val3);
+		this.actLine1ButA1(val1);
+		this.actLine1ButB1(val2);
+		this.actLine1ButC1(val3);
 	}
-	*actLine1ButA{|val|
+	//actLine2
+	*actLine2{|val1,val2,val3|
+		this.actLine2ButA2(val1);
+		this.actLine2ButB2(val2);
+		this.actLine2ButC2(val3);
+	}
+	//actLine3
+	*actLine3{|val1,val2,val3|
+		this.actLine3ButA3(val1);
+		this.actLine3ButB3(val2);
+		this.actLine3ButC3(val3);
+	}
+	//actLine4
+	*actLine4{|val1,val2,val3|
+		this.actLine4ButA4(val1);
+		this.actLine4ButB4(val2);
+		this.actLine4ButC4(val3);
+	}
+	//actLine5 -- Keys
+	*actLine5{|val1,val2,val3|
+		this.actLine5ButA5(val1);
+		this.actLine5ButB5(val2);
+		this.actLine5ButC5(val3);
+	}
+	//actLine6 --Samp
+	*actLine6{|val1,val2,val3|
+		this.actLine6ButA6(val1);
+		this.actLine6ButB6(val2);
+		this.actLine6ButC6(val3);
+	}
+	//actLine7 -- Mast
+	*actLine7{|val1,val2,val3|
+		this.actLine7ButA7(val1);
+		this.actLine7ButB7(val2);
+		this.actLine7ButC7(val3);
+	}
+	//actLine8 -- Res1
+	*actLine8{|val1,val2,val3|
+		this.actLine8ButA8(val1);
+		this.actLine8ButB8(val2);
+		this.actLine8ButC8(val3);
+	}
+	//////////////////B_A
+	*actLine1ButA1{|val|
 		~apc40.noteOn(~apcLn1, ~actButA1, val); //But A
 		~tOSCAdrr.sendMsg('activKick', val);
 		~actKick.source=val;
-		~cntActLine1ButA=val;
+		~cntActLine1ButA1=val;
 	}
-
-	//actLine2
-	*actLine2{|val1,val2,val3|
-		this.actLine2ButA(val1);
-		this.actLine2ButB(val2);
-		this.actLine2ButC(val3);
-	}
-	*actLine2ButA{|val|
+	*actLine2ButA2{|val|
 		~apc40.noteOn(~apcLn1, ~actButA2, val); //But A
 		~tOSCAdrr.sendMsg('activSnr', val);
 		~actSnr.source=val;
-		~cntActLine2ButA=val;
+		~cntActLine2ButA2=val;
 	}
-
-
-	//actLine3
-	*actLine3{|val1,val2,val3|
-		this.actLine3ButA(val1);
-		this.actLine3ButB(val2);
-		this.actLine3ButC(val3);
-	}
-	*actLine3ButA{|val|
+	*actLine3ButA3{|val|
 		~apc40.noteOn(~apcLn1, ~actButA3, val); //But A
 		~tOSCAdrr.sendMsg('activHat', val);
 		~actHat.source=val;
-		~cntActLine3ButA=val;
+		~cntActLine3ButA3=val;
 	}
-
-	//actLine4
-	*actLine4{|val1,val2,val3|
-		this.actLine4ButA(val1);
-		this.actLine4ButB(val2);
-		this.actLine4ButC(val3);
-	}
-	*actLine4ButA{|val|
+	*actLine4ButA4{|val|
 		~apc40.noteOn(~apcLn1, ~actButA4, val); //But A
 		~tOSCAdrr.sendMsg('activBass', val);
 		~actBass.source=val;
-		~cntActLine4ButA=val;
+		~cntActLine4ButA4=val;
 	}
-
-	//actLine5 -- Keys
-	*actLine5{|val1,val2,val3|
-		this.actLine5ButA(val1);
-		this.actLine5ButB(val2);
-		this.actLine5ButC(val3);
-	}
-	*actLine5ButA{|val|
+	*actLine5ButA5{|val|
 		~apc40.noteOn(~apcLn1, ~actButA5, val); //But A
 		~tOSCAdrr.sendMsg('activKeys', val);
 		~actKeys.source=val;
-		~cntActLine5ButA=val;
+		~cntActLine5ButA5=val;
 	}
-
-	//actLine6 --Samp
-	*actLine6{|val1,val2,val3|
-		this.actLine6ButA(val1);
-		this.actLine6ButB(val2);
-		this.actLine6ButC(val3);
-	}
-	*actLine6ButA{|val|
+	*actLine6ButA6{|val|
 		~apc40.noteOn(~apcLn1, ~actButA6, val); //But A
 		~tOSCAdrr.sendMsg('activSamp', val);
 		~actSamp.source=val;
-		~cntActLine6ButA=val;
+		~cntActLine6ButA6=val;
 	}
-
-	//actLine7 -- Mast
-	*actLine7{|val1,val2,val3|
-		this.actLine7ButA(val1);
-		this.actLine7ButB(val2);
-		this.actLine7ButC(val3);
-	}
-	*actLine7ButA{|val|
+	*actLine7ButA7{|val|
 		~apc40.noteOn(~apcLn1, ~actButA7, val); //But A
 		~tOSCAdrr.sendMsg('activMast', val);
 		~actMast.source=val;
-		~cntActLine7ButA=val;
+		~cntActLine7ButA7=val;
 	}
-
-	//actLine8 -- Res1
-	*actLine8{|val1,val2,val3|
-		this.actLine8ButA(val1);
-		this.actLine8ButB(val2);
-		this.actLine8ButC(val3);
-	}
-	*actLine8ButA{|val|
+	*actLine8ButA8{|val|
 		~apc40.noteOn(~apcLn1, ~actButA8, val); //But A
 		~tOSCAdrr.sendMsg('activRes', val);
 		~actRes.source=val;
-		~cntActLine8ButA=val;
+		~cntActLine8ButA8=val;
 	}
-
 	//////////////////B_B
-	*actLine1ButB{|val|
+	*actLine1ButB1{|val|
 		~apc40.noteOn(~apcLn1, ~actButB1, val); //But B
-		~local.sendMsg('time2Kick', 1);
+		~local.sendMsg('time2Kick', val);
 		//~tmMulKick.source = Pseq([val+1], inf);
-		~cntActLine1ButB=val;
+		~cntActLine1ButB1=val;
 	}
-	*actLine2ButB{|val|
+	*actLine2ButB2{|val|
 		~apc40.noteOn(~apcLn1, ~actButB2, val); //But B
 		~local.sendMsg('time2Snr', val);
 		//~tmMulSnr.source = Pseq([val+1], inf);
-		~cntActLine2ButB=val;
+		~cntActLine2ButB2=val;
 	}
-	*actLine3ButB{|val|
+	*actLine3ButB3{|val|
 		~apc40.noteOn(~apcLn1, ~actButB3, val); //But B
 		~local.sendMsg('time2Hat', val);
 		//~tmMulHat.source = Pseq([val+1], inf);
-		~cntActLine3ButB=val;
+		~cntActLine3ButB3=val;
 	}
-	*actLine4ButB{|val|
+	*actLine4ButB4{|val|
 		~apc40.noteOn(~apcLn1, ~actButB4, val); //But B
 		~local.sendMsg('time2Bass', val);
 		//~tmMulBass.source = Pseq([val+1], inf);
-		~cntActLine4ButB=val;
+		~cntActLine4ButB4=val;
 	}
-	*actLine5ButB{|val|
+	*actLine5ButB5{|val|
 		~apc40.noteOn(~apcLn1, ~actButB5, val); //But B
 		~local.sendMsg('time2Keys', val);
 		//~tmMulKeys.source = Pseq([val+1], inf);
-		~cntActLine5ButB=val;
+		~cntActLine5ButB5=val;
 	}
-	*actLine6ButB{|val|
+	*actLine6ButB6{|val|
 		~apc40.noteOn(~apcLn1, ~actButB6, val); //But B
 		~local.sendMsg('time2Samp', val);
 		//~tmMulSamp.source = Pseq([val+1], inf);
-		~cntActLine6ButB=val;
+		~cntActLine6ButB6=val;
 	}
-	*actLine7ButB{|val|
+	*actLine7ButB7{|val|
 		~apc40.noteOn(~apcLn1, ~actButB7, val); //But B
 		~tOSCAdrr.sendMsg('time2Mast', val);
 		~tmMulMast.source = Pseq([val+1], inf);
-		~cntActLine7ButB=val;
+		~cntActLine7ButB7=val;
 	}
-	*actLine8ButB{|val|
+	*actLine8ButB8{|val|
 		~apc40.noteOn(~apcLn1, ~actButB8, val); //But B
 		~tOSCAdrr.sendMsg('time2Res', val);
 		~tmMulRes.source = Pseq([val+1], inf);
-		~cntActLine8ButB=val;
+		~cntActLine8ButB8=val;
 	}
 
 	/////////B_C
-	*actLine1ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC1, val); //But C
-		~tOSCAdrr.sendMsg('activStKick', val);
-		~actStKick.source=val;
-		~cntActLine1ButC=val;
+	*actLine1ButC1{|val|
+		~apc40.noteOn(~apcLn1, ~actButC1, val+5); //But C
+		//~local.sendMsg('shufKick', val);
+		~tOSCAdrr.sendMsg('shufKick', val);
+		~cntActLine1ButC1=val;
 	}
-	*actLine2ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC2, val); //But C
-		~tOSCAdrr.sendMsg('activStSnr', val);
-		~actStSnr.source=val;
-		~cntActLine2ButC=val;
+	*actLine2ButC2{|val|
+		~apc40.noteOn(~apcLn1, ~actButC2, val+5); //But C
+		~tOSCAdrr.sendMsg('shufSnr', val);
+		//~local.sendMsg('shufSnr', val);
+		~cntActLine2ButC2=val;
 	}
-	*actLine3ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC3, val); //But C
-		~tOSCAdrr.sendMsg('activStHat', val);
-		~actStHat.source=val;
-		~cntActLine3ButC=val;
+	*actLine3ButC3{|val|
+		~apc40.noteOn(~apcLn1, ~actButC3, val+5); //But C
+		~tOSCAdrr.sendMsg('shufHat', val);
+		//~local.sendMsg('shufHat', val);
+		~cntActLine3ButC3=val;
 	}
-	*actLine4ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC4, val); //But C
-		~tOSCAdrr.sendMsg('activStBass', val);
-		~actStBass.source=val;
-		~cntActLine4ButC=val;
+	*actLine4ButC4{|val|
+		~apc40.noteOn(~apcLn1, ~actButC4, val+5); //But C
+		~tOSCAdrr.sendMsg('shufBass', val);
+		//~local.sendMsg('shufBass', val);
+		~cntActLine4ButC4=val;
 	}
-	*actLine5ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC5, val); //But C
-		~tOSCAdrr.sendMsg('activStKeys', val);
-		~actStKeys.source=val;
-		~cntActLine5ButC=val;
+	*actLine5ButC5{|val|
+		~apc40.noteOn(~apcLn1, ~actButC5, val+5); //But C
+		~tOSCAdrr.sendMsg('shufKeys', val);
+		//~local.sendMsg('shufKeys', val);
+		~cntActLine5ButC5=val;
 	}
-	*actLine6ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC6, val); //But C
-		~tOSCAdrr.sendMsg('activStSamp', val);
-		~actStSamp.source=val;
-		~cntActLine6ButC=val;
+	*actLine6ButC6{|val|
+		~apc40.noteOn(~apcLn1, ~actButC6, val+5); //But C
+		~tOSCAdrr.sendMsg('shufSamp', val);
+		//~local.sendMsg('shufSamp', val);
+		~cntActLine6ButC6=val;
 	}
-	*actLine7ButC{|val|
-		~apc40.noteOn(~apcLn1, ~actButC7, val); //But C
-		~tOSCAdrr.sendMsg('activStMast', val);
+	*actLine7ButC7{|val|
+		~apc40.noteOn(~apcLn1, ~actButC7, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufDrumHarm', val);
 		//~actStHat.source=val;
-		~cntActLine7ButC=val;
+		~cntActLine7ButC7=val;
 	}
-	*actLine8ButC{|val|
+	*actLine8ButC8{|val|
 		~apc40.noteOn(~apcLn1, ~actButC8, val); //But C
-		~tOSCAdrr.sendMsg('activStRes', val);
+		//~tOSCAdrr.sendMsg('shufMelHarm', val);
 		//~actStHat.source=val;
-		~cntActLine8ButC=val;
+		~cntActLine8ButC8=val;
 	}
 
 	*tracks{
@@ -459,7 +454,6 @@ IFAPC40{
 		~apc40.noteOn(~apcLn1, ~tsBut7, led7); //But 7
 		~apc40.noteOn(~apcLn1, ~tsBut8, led8); //But 8
 	}
-
 	*resetLeds{
 		//Toggles Active - Times2 - Static
 		~apc40.noteOn(0, 0, 0); //But 1
@@ -488,23 +482,23 @@ IFAPC40{
 		~apc40.noteOn(0, 23, 0); //But 3
 		//Track Selection Only One Function
 		~apc40.noteOn(0, 64, 0); //But 1
-		~apc40.noteOn(1, 65, 0); //But 2
-		~apc40.noteOn(2, 66, 0); //But 3
-		~apc40.noteOn(3, 67, 0); //But 4
-		~apc40.noteOn(4, 68, 0); //But 5
-		~apc40.noteOn(5, 69, 0); //But 6
-		~apc40.noteOn(6, 70, 0); //But 7
-		~apc40.noteOn(7, 71, 0); //But 8
+		~apc40.noteOn(0, 65, 0); //But 2
+		~apc40.noteOn(0, 66, 0); //But 3
+		~apc40.noteOn(0, 67, 0); //But 4
+		~apc40.noteOn(0, 68, 0); //But 5
+		~apc40.noteOn(0, 69, 0); //But 6
+		~apc40.noteOn(0, 70, 0); //But 7
+		~apc40.noteOn(0, 71, 0); //But 8
 		~apc40.noteOn(0, 72, 0); //But Master
 		//ClipStop 2 Functions
 		~apc40.noteOn(0, 52, 0); //But 1
-		~apc40.noteOn(1, 52, 0); //But 2
-		~apc40.noteOn(2, 52, 0); //But 3
-		~apc40.noteOn(3, 52, 0); //But 4
-		~apc40.noteOn(4, 52, 0); //But 5
-		~apc40.noteOn(5, 52, 0); //But 6
-		~apc40.noteOn(6, 52, 0); //But 7
-		~apc40.noteOn(7, 52, 0); //But 8
+		~apc40.noteOn(0, 52, 0); //But 2
+		~apc40.noteOn(0, 52, 0); //But 3
+		~apc40.noteOn(0, 52, 0); //But 4
+		~apc40.noteOn(0, 52, 0); //But 5
+		~apc40.noteOn(0, 52, 0); //But 6
+		~apc40.noteOn(0, 52, 0); //But 7
+		~apc40.noteOn(0, 52, 0); //But 8
 		~apc40.noteOn(0, 81, 0); //But StopAll
 		//Schene Launch Buttons
 		~apc40.noteOn(~apcLn1, 82, 0); //But Scene 1

@@ -38,14 +38,14 @@ IFPitchKeys {
 						"PITCHKeys SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 1);
 						IFPitchKeys.noteKeysOn;
-						~apc40.noteOn(~apcLn1, 88, 1); //But 6
+						~apc40.noteOn(~apcMnCh, 88, 1); //But 6
 					},
 					2,{
 						"PITCHKeys SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 0);
 						~countPKeys=0;
 						IFPitchKeys.noteKeysOff;
-						~apc40.noteOn(~apcLn1, 88, 1); //But 6
+						~apc40.noteOn(~apcMnCh, 88, 1); //But 6
 					}
 				)}
 			);
@@ -75,7 +75,7 @@ IFPitchKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcLn1, noteNum:88);
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:88);
 	}
 
 	*noteKeysOn {
