@@ -5,6 +5,10 @@ PostAllMIDI.off;
 IFLoad.load;
 IFLoad.loadVolca;
 
+IFMIDIMix.act1(1,1,1);
+IFMIDIMix.act1(0,0,0);
+
+
 //to find MIDIOut src
 ~mdMix.uid;
 
@@ -23,8 +27,8 @@ IFMIDIMix{
 	}//loadAtStart
 	*addr{
 		~mdMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST2 MDMx");
-		~mdMixOutID=1560110473;
-		~mdMixInID=(1105562645);
+		~mdMixOutID=(-244313804);
+		~mdMixInID=(1119599649);
 	}
 	*globals{
 		//channels
@@ -280,7 +284,7 @@ IFMIDIMix{
 		~mdMixFad1=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVKick', vel/127);
-			~vBeats.control(9, ~kickLev, vel);
+			~vBeats.control(9, ~kickLev, 127);
 
 		},srcID:~mdMixInID, chan:~mdMixLn1, ccNum:30);
 		~mdMixNob1A.free;

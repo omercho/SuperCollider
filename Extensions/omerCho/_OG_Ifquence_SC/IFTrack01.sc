@@ -1,3 +1,13 @@
+/*
+
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+*/
+
 IFTrack01 {
 	*loadAtStart{
 		~trackCase=1;

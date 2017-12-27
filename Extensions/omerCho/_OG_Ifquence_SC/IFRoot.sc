@@ -28,7 +28,7 @@ IFRoot {
 					IFSequence.step(~stepNumP.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;IFStat.ln04;
 					IFStat.ln05;IFStat.ln06;IFStat.ln07;IFStat.ln08;
-					IFVSamp.(~tmMulVSampP.next*~tmVSampP.next);
+					IFVSamp(1);
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);

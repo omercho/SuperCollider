@@ -1,5 +1,5 @@
 /*
-IFVSamp.(1);
+IFVSamp(1);
 IFVSamp.p1(1);
 ~octVSamp=4;
 */
@@ -23,7 +23,7 @@ IFVSamp {
 		this.midiMix;
 	}
 	*globals{
-		~chVSamp=3;
+		~chVSamp=10;
 		~vSampLate=0.0;
 		~timesVSamp=1;
 		~rootVSamp=0;
@@ -129,7 +129,7 @@ IFVSamp {
 					}
 				)}
 			);
-		},srcID:~mdMixInID, chan:0, noteNum:~recBut5);
+		},srcID:~mdMixInID, chan:~mdMixLn1, noteNum:~recBut5);
 
 		//Act ButB
 		//VSamp Time Div2

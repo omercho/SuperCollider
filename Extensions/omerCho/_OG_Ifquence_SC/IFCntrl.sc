@@ -1,3 +1,13 @@
+/*
+
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+*/
+
 IFCntrl {
 
 	*loadAll {

@@ -1,3 +1,15 @@
+/*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+//to find MIDIOut src
+~mdMix.uid;
+
+*/
+
 VSamp {
 
 	*initClass {
@@ -13,7 +25,8 @@ VSamp {
 
 		//~vSamp = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vSamp = MIDIOut.newByName("IAC Driver", "SC-Abl");
-		~vSamp = MIDIOut.newByName("UM-2G","2");
+		//~vSamp = MIDIOut.newByName("UM-2G","2");
+		~vSamp = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
 
 
 		~smp01=0;
@@ -127,7 +140,7 @@ VSamp {
 	).play;
 	~testSampCC2=Pbind(//vKickLevel
 	\type, \midi, \midicmd, \control,
-	\midiout,~vSamp, \chan, 1, \ctlNum, 43,
+	\midiout,~vSamp, \chan, 1, \ctlNum, 44,
 	\delta, Pseq([1/3],inf),
 	\control, Pshuf([0.8,0.2,1,0.3,0.5], inf)*127,
 

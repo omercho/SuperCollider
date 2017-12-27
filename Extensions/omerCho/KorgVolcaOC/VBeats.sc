@@ -1,3 +1,12 @@
+/*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+*/
+
 VBeats {
 	var <>ortTime = 1;
 	classvar <>counter3=0, counter18=0;
@@ -13,7 +22,8 @@ VBeats {
 		//~vBeats = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vBeats = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		//~vBeats = MIDIOut.newByName("EDIROL FA-66 (1674)","Plug 1");
-		~vBeats = MIDIOut.newByName("UM-2G","1");
+		//~vBeatsTest = MIDIOut.newByName("UM-2G", "1");
+		~vBeats = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN1");
 		//~vBeats = MIDIOut.newByName("BCF2000", "Port 1");
 
 		//~vBeatsLate=Tempo.bpm*(1/267.91897); //with Edirols MIDI Out
@@ -131,14 +141,13 @@ VBeats {
 
 *preSet01 {
 
-	~vBeats.control(10, ~kickLev, 20);
+	~vBeats.control(9, ~kickLev, 20);
 
 
 
 }
 
 *preSet02 {
-
 
 
 
@@ -213,5 +222,15 @@ VBeats {
 	~spdVAgog.source   =  Pseq([ 0.1, 0.9, 0.6, 0.2], inf);
 	~levVCrsh.source  =  Pseq([ 1,0.5, 0.3], inf);
 	~spdVCrsh.source   =  Pseq([ 0.1, 0.9, 0.6, 0.2], inf);
+
+
+        Pbind(
+			\chan, 9,
+			\type, \midi, \midiout,~vBeats, \scale, Pfunc({Scale.chromatic}, inf),
+			\octave,0,
+			\dur, Pseq([1,1],1),
+			\degree, Pseq([36], inf),
+			\amp, Pseq([1,0.2], inf)
+		).play;
 
 */

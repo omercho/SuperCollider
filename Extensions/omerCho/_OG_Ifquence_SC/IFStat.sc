@@ -128,6 +128,7 @@ IFStat {
 			\degree, Pseq([~ntVKickP.next], inf),
 			\amp, Pseq([~ampVKickP.next], inf)
 		).play;
+		"statLn1 Kick Pat OK".postln;
 	}//stat01
 	*ln02 {|i=1|
 		var val;

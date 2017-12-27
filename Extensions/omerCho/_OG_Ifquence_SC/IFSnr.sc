@@ -1,5 +1,15 @@
 /*
 IFSnr.times(4);
+
+
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+
+
 */
 
 IFSnr {
@@ -18,11 +28,10 @@ IFSnr {
 		this.proxy;
 		this.osc;
 		this.apc40;
-		//this.beh;
 	}
 	*globals{
 
-		~snrCh=1;
+		~snrCh=10;
 		~snrLate=0.00;
 		~snrTimes=1;
 		~rootSnr=0;
@@ -97,8 +106,8 @@ IFSnr {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~snrCh,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\chan, ~smp01,
+			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([~dur1SnrP.next], ~actSnrP),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),

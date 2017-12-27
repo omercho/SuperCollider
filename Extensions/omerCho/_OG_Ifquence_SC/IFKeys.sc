@@ -190,7 +190,7 @@ IFKeys {
 			~tOSCAdrr.sendMsg('volKeys', vel/127);
 			~mdOut.control(6, 1, vel);
 
-		},srcID:~apc40InID, chan:~apcMnCh, ccNum:7);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd5);
 
 		//Act ButA5
 		//Keys Activate

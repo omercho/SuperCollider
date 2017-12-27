@@ -1,3 +1,13 @@
+/*
+
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+*/
+
 IFPresets {
 	*loadAtStart{
 		"IFQUENCE loaded".postln;
