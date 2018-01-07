@@ -69,7 +69,6 @@ IFLoad.loadVolca;
 		~vBass = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 ESI1");
 		~vKeys = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST5 ESI2");
 
-		//~vBeatsClock = MIDIClockOut("BCF2000", "Port 1", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
 
 		//IFProjectGlobals.setTempo(124);

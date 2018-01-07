@@ -11,7 +11,7 @@ IFAPC40.resetLeds;
 IFAPC40.nobDown(mode:1);
 IFAPC40.update;
 
-
+4.ratiomidi
 
 */
 
@@ -335,37 +335,37 @@ IFAPC40{
 	*actLine1ButC1{|val|
 		~apc40.noteOn(~apcLn1, ~actButC1, val+5); //But C
 		//~local.sendMsg('shufKick', val);
-		~tOSCAdrr.sendMsg('shufKick', val);
+		//~tOSCAdrr.sendMsg('shufKick', val);
 		~cntActLine1ButC1=val;
 	}
 	*actLine2ButC2{|val|
 		~apc40.noteOn(~apcLn1, ~actButC2, val+5); //But C
-		~tOSCAdrr.sendMsg('shufSnr', val);
+		//~tOSCAdrr.sendMsg('shufSnr', val);
 		//~local.sendMsg('shufSnr', val);
 		~cntActLine2ButC2=val;
 	}
 	*actLine3ButC3{|val|
 		~apc40.noteOn(~apcLn1, ~actButC3, val+5); //But C
 		~tOSCAdrr.sendMsg('shufHat', val);
-		//~local.sendMsg('shufHat', val);
+		~actHatLfo1.source=val;
 		~cntActLine3ButC3=val;
 	}
 	*actLine4ButC4{|val|
 		~apc40.noteOn(~apcLn1, ~actButC4, val+5); //But C
 		~tOSCAdrr.sendMsg('shufBass', val);
-		//~local.sendMsg('shufBass', val);
+		~local.sendMsg('shufBass', val);
 		~cntActLine4ButC4=val;
 	}
 	*actLine5ButC5{|val|
 		~apc40.noteOn(~apcLn1, ~actButC5, val+5); //But C
 		~tOSCAdrr.sendMsg('shufKeys', val);
-		//~local.sendMsg('shufKeys', val);
+		~local.sendMsg('shufKeys', val);
 		~cntActLine5ButC5=val;
 	}
 	*actLine6ButC6{|val|
 		~apc40.noteOn(~apcLn1, ~actButC6, val+5); //But C
 		~tOSCAdrr.sendMsg('shufSamp', val);
-		//~local.sendMsg('shufSamp', val);
+		~local.sendMsg('shufSamp', val);
 		~cntActLine6ButC6=val;
 	}
 	*actLine7ButC7{|val|

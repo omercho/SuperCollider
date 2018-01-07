@@ -10,7 +10,7 @@ IFLoad.loadVolca;
 IFLoad{
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({/*this.loadVolca;*/ });
+			Server.default.doWhenBooted({this.loadVolca; });
 		}
 	}
 	*loadVolca{

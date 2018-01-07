@@ -126,7 +126,7 @@ editors: !QVariantMap
             position: 604
           - !QVariantMap
             documentIndex: 15
-            position: 5308
+            position: 5092
           - !QVariantMap
             documentIndex: 16
             position: 48
@@ -161,9 +161,6 @@ editors: !QVariantMap
             documentIndex: 2
             position: 2655
           - !QVariantMap
-            documentIndex: 3
-            position: 246
-          - !QVariantMap
             documentIndex: 7
             position: 1286
           - !QVariantMap
@@ -185,23 +182,29 @@ editors: !QVariantMap
             documentIndex: 19
             position: 152
           - !QVariantMap
-            documentIndex: 41
-            position: 3426
-          - !QVariantMap
             documentIndex: 48
             position: 0
           - !QVariantMap
             documentIndex: 22
             position: 33
           - !QVariantMap
-            documentIndex: 50
-            position: 69
-          - !QVariantMap
             documentIndex: 33
             position: 5733
           - !QVariantMap
+            documentIndex: 3
+            position: 775
+          - !QVariantMap
             documentIndex: 4
-            position: 201
+            position: 217
+          - !QVariantMap
+            documentIndex: 43
+            position: 1945
+          - !QVariantMap
+            documentIndex: 41
+            position: 3426
+          - !QVariantMap
+            documentIndex: 50
+            position: 69
         - !QVariantList
           - !QVariantMap
             documentIndex: 1
@@ -225,12 +228,12 @@ editors: !QVariantMap
             documentIndex: 4
             position: 1578
           - !QVariantMap
-            documentIndex: 19
-            position: 4903
-          - !QVariantMap
             documentIndex: 33
-            position: 59
-      state: AAAA/wAAAAAAAAACAAACcwAAAp4BAAAAAQEAAAAB
+            position: 188
+          - !QVariantMap
+            documentIndex: 19
+            position: 8171
+      state: AAAA/wAAAAAAAAACAAACSwAAAmwBAAAAAQEAAAAB
     - !QVariantMap
       elements: !QVariantList
         - !QVariantList
@@ -240,9 +243,6 @@ editors: !QVariantMap
           - !QVariantMap
             documentIndex: 34
             position: 4183
-          - !QVariantMap
-            documentIndex: 35
-            position: 832
           - !QVariantMap
             documentIndex: 32
             position: 222
@@ -322,9 +322,6 @@ editors: !QVariantMap
             documentIndex: 12
             position: 0
           - !QVariantMap
-            documentIndex: 14
-            position: 3301
-          - !QVariantMap
             documentIndex: 36
             position: 2174
           - !QVariantMap
@@ -335,7 +332,13 @@ editors: !QVariantMap
             position: 2337
           - !QVariantMap
             documentIndex: 13
-            position: 3582
+            position: 314
+          - !QVariantMap
+            documentIndex: 14
+            position: 2379
+          - !QVariantMap
+            documentIndex: 35
+            position: 706
         - !QVariantList
           - !QVariantMap
             documentIndex: 13
@@ -360,7 +363,13 @@ editors: !QVariantMap
             position: 1663
           - !QVariantMap
             documentIndex: 14
-            position: 3301
+            position: 3260
+          - !QVariantMap
+            documentIndex: 49
+            position: 151
+          - !QVariantMap
+            documentIndex: 15
+            position: 2567
       state: AAAA/wAAAAAAAAACAAACcwAAAp4BAAAAAQEAAAAB
   state: AAAA/wAAAAAAAAACAAABmQAAAbUBAAAAAQEAAAAC
 mainWindow:
@@ -369,4 +378,4 @@ mainWindow:
     help-dock: ""
     post-dock: ""
   geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPjAAAAAAAAAC0AAAaPAAAD4wAAAAAAAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADn/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADnwAAAGYA////AAAAAQAAAUIAAAOf/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAb0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAb4AAAHhAAAATAD///8AAATmAAADnwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADn/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADnwAAAGYA////AAAAAQAAAXAAAAOf/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAb0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAb4AAAHhAAAATAD///8AAAS4AAADnwAAAAEAAAACAAAAAQAAAAL8AAAAAA==

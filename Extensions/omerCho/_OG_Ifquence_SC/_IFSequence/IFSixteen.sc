@@ -1,3 +1,19 @@
+/*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
+
+IFAPC40.loadSource;
+IFAPC40.resetLeds;
+IFAPC40.nobDown(mode:1);
+IFAPC40.update;
+
+
+
+*/
 IFSixteen {
 	*defaults {this.hold}
 

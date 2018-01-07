@@ -72,6 +72,10 @@ IFSnr {
 		~actSnr = PatternProxy( Pseq([1], inf));
 		~actSnrP= Pseq([~actSnr], inf).asStream;
 
+
+		~delta2VSamp = PatternProxy( Pseq([1/1], inf));
+		~delta2VSampP = Pseq([~delta2VSamp], inf).asStream;
+
 		/*//StaticSnr
 		~actStSnr = PatternProxy( Pseq([0], inf));
 		~actStSnrP= Pseq([~actStSnr], inf).asStream;
@@ -106,31 +110,22 @@ IFSnr {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~smp01,
-			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
+			\chan, ~smp02,
+			\type, \midi, \midiout,~vSamp,
 			\dur, Pseq([~dur1SnrP.next], ~actSnrP),
-			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~amp1SnrP.next], inf),
-			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
-			\mtranspose, Pseq([~transSnrP.next
-			], inf)+~trSnr+~transShufSnrP.next+~extraShufSnrP.next,
-			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
-			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
-		).play;
+			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr
+		).play(quant:0);
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp02, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta2VSampP.next], 1),
+			\control, Pseq([30+~nt1SnrP.next], 1),
+
+		).play(quant:0);
 
 	}
 
-	/**stat01 {|i=1|
-	var val;
-	val=i;
-	~staticSnrPat=Pbind(
-	\chan, ~snrCh,
-	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-	\dur, Pseq([~durStSnrP.next],~actStSnrP.next),
-	\degree, Pseq([~ntStSnrP.next], inf),
-	\amp, Pseq([~ampStSnrP.next], inf)
-	).play;
-	}*/
 
 	*apc40{
 
@@ -138,10 +133,10 @@ IFSnr {
 		~volSnr_APC.free;
 		~volSnr_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volSnr', vel/127);
-			~mdOut.control(3, 1, vel);
+			~tOSCAdrr.sendMsg('volVSamp2', vel/127);
+			~vSamp.control(~smp02, ~smpLvl, vel);
 
-		},srcID:~apc40InID, chan:1, ccNum:~apcFd2);
+		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd2);
 
 		//Act ButA2
 		//Snr Activate
@@ -163,26 +158,27 @@ IFSnr {
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA2);
 
-		//Act ButC2
+		//Act ButB2
 		//Snr Time Div2
-		~cntActLine2ButC2=0;
-		~mdActLine2ButC2.free;
-		~mdActLine2ButC2=MIDIFunc.noteOn({
+		~cntActLine2ButB2=0;
+		~mdActLine2ButB2.free;
+		~mdActLine2ButB2=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine2ButC2 = ~cntActLine2ButC2 + 1;
-				~cntActLine2ButC2.switch(
+				~cntActLine2ButB2 = ~cntActLine2ButB2 + 1;
+				~cntActLine2ButB2.switch(
 					0,{},
 					1, {
-						IFAPC40.actLine2ButC2(1);
+						IFAPC40.actLine2ButB2(1);
 					},
 					2,{
-						IFAPC40.actLine2ButC2(0);
+						IFAPC40.actLine2ButB2(0);
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC2);
-		//Act ButC3
+		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB2);
+
+		//Act ButC2
 		//Static Snr Activate
 		~cntActLine2ButC2=0;
 		~mdActLine2ButC2.free;
@@ -212,12 +208,12 @@ IFSnr {
 			arg msg;
 			if ( msg[1]==1, {
 				~actSnr.source=1;
-				~apc40.noteOn(~apcMnCh, 48, ~actButA2); //Trk1_But 1
-				//~behOut.control(3, 2, 127);
+				~apc40.noteOn(~apcMnCh, ~actButA2, 127); //Trk1_But 1
+
 				},{
 					~actSnr.source=0;
-					~apc40.noteOff(~apcMnCh, 48, ~actButA2); //Trk1_But 1
-					//~behOut.control(3, 2, 0);
+					~apc40.noteOff(~apcMnCh, ~actButA2, 127); //Trk1_But 1
+
 			});
 			},
 			'/activSnr'
@@ -236,7 +232,7 @@ IFSnr {
 					~tOSCAdrr.sendMsg('time2Snr', 1);
 					~tOSCAdrr.sendMsg('tmSnrLabel', 2);
 					~tmMulSnr.source = Pseq([2], inf);
-					~extraShufSnr.source = Pshuf([10,11,12,13,14], inf);
+					//~extraShufSnr.source = Pshuf([10,11,12,13,14], inf);
 				},
 				2,{
 
@@ -244,7 +240,7 @@ IFSnr {
 					~tOSCAdrr.sendMsg('time2Snr', 0);
 					~tOSCAdrr.sendMsg('tmSnrLabel', 1);
 					~tmMulSnr.source = Pseq([1], inf);
-					~extraShufSnr.source = Pshuf([0], inf);
+					//~extraShufSnr.source = Pshuf([0], inf);
 					~countTime2Snr=0;
 			});
 			},

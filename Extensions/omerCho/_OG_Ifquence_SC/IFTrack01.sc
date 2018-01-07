@@ -48,9 +48,9 @@ IFTrack01 {
 		~mdOut.control(0, 88, 0); //Track 08
 
 		// SHUFFLES from IFShuf
-		IFShuf.loadKick(0,1,2,3,4,5,6,7,8);
-		IFShuf.loadSnr(0,1,2,3,4,5,6,7,8);
-		IFShuf.loadHat(0,1,2,3,4,5,6,7,8);
+		IFShuf.loadKick(0,0,0,0,0,0,0,0,0);
+		IFShuf.loadSnr(1,0,2,0,3,0,1,2,0);
+		IFShuf.loadHat(0,0,0,0,0,0,0,0,0);
 		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
 		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
 		IFShuf.loadSamp(0,-1,2,-3,2,-5,6,0,0);
@@ -61,7 +61,7 @@ IFTrack01 {
 	}
 
 	*setActs{
-		IFAPC40.actLine1(0,0,0);
+		IFAPC40.actLine1(1,0,0);
 		IFAPC40.actLine2(1,0,0);
 		IFAPC40.actLine3(1,0,0);
 		IFAPC40.actLine4(1,0,0);
@@ -196,31 +196,30 @@ IFTrack01 {
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 		//CH -1- [ Kick ]
 		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
-		IFSeqNtKick.stGrp  (4);
+		IFSeqOctKick.stGrp (3);
+		//IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
+		IFSeqNtKick.stGrp  (0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusKick.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
-		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqSusKick.stGrpSet (4,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
+		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,2,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 
 		//CH -1- [ Snare ]
-		IFSeqSnr.stGrpSet    (1,0,1,0, 1,1,1,0,  1,0,1,0, 1,1,1,0);
-		IFSeqOctSnr.stGrpSet (2,0,0,0, 2,0,0,0,  1,0,0,0, 1,0,0,0);
-		IFSeqNtSnr.stGrpSet  (4,2,0,3, 3,5,0,6,  1,8,0,9, 2,3,4,5);
-		IFSeqVelSnr.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
-		IFSeqSusSnr.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
+		IFSeqSnr.stGrpSet    (0,0,1,0, 0,1,1,0,  1,0,1,0, 1,1,1,0);
+		IFSeqNtSnr.stGrpSet  (30,60,40,60,20,60,60,60,60,50,60,70,60,60,80,60);
+		IFSeqVelSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqSusSnr.stGrp (3);
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 
 		//CH -2- [ HAT ]
-		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,0, 1,1,1,1);
+		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,0);
 		IFSeqOctHat.stGrpSet (1,0,0,0, 2,0,0,0,  2,4,0,0, 2,0,1,0);
-		IFSeqNtHat.stGrpSet  (7,0,0,0, 0,0,0,0,  3,0,0,0, 4,0,0,0);
-		IFSeqVelHat.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,0);
-		IFSeqSusHat.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
-		IFSeqTmHat.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
-		IFSeqDurHat.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
+		IFSeqNtHat.stGrpSet  (20,2,3,4, 5,6,7,8,  0.1,0.2,0.3,0.12, 10,0,0,0);
+		IFSeqVelHat.stGrpSet (3,1,3,1, 3,1,1,2,  3,2,3,2, 3,2,3,0);
+		IFSeqSusHat.stGrp  (1);
+		IFSeqTmHat.stGrp  (1);
+		IFSeqDurHat.stGrp  (2);
 
 		//CH -4- [Bass]
 		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);

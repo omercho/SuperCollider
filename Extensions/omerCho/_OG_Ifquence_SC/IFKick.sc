@@ -21,7 +21,7 @@ IFKick {
 
 	*globals{
 
-		~kickCh=0;
+		~kickCh=9;
 		~actKick=1;
 		~kickLate= 0.00;
 		~kickTimes=1;
@@ -37,7 +37,7 @@ IFKick {
 
 	*proxy {
 
-		~nt1Kick = PatternProxy( Pseq([0], inf));
+		~nt1Kick = PatternProxy( Pseq([~vKick], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
 		~dur1Kick = PatternProxy( Pseq([1], inf));
 		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
@@ -55,7 +55,7 @@ IFKick {
 		~extraShufKick = PatternProxy( Pshuf([0], inf));
 		~extraShufKickP = Pseq([~extraShufKick], inf).asStream;
 
-		~octKick = PatternProxy( Pseq([3], inf));
+		~octKick = PatternProxy( Pseq([0], inf));
 		~octKickP = Pseq([~octKick], inf).asStream;
 
 		~hrmKick = PatternProxy( Pseq([1.0], inf));
@@ -66,6 +66,9 @@ IFKick {
 
 		~actKick = PatternProxy( Pseq([1], inf));
 		~actKickP= Pseq([~actKick], inf).asStream;
+
+		~delta1VSamp = PatternProxy( Pseq([1/1], inf));
+		~delta1VSampP = Pseq([~delta1VSamp], inf).asStream;
 
 		//StaticKick
 		/*~actStKick = PatternProxy( Pseq([0], inf));
@@ -104,17 +107,26 @@ IFKick {
 
 
 		Pbind(
-			\chan, ~kickCh,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\chan, ~smp01,
+			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
 			\dur, Pseq([~dur1KickP.next],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
-			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
-			\mtranspose, Pseq([~transKickP.next
-			], inf)+~trKick+~transShufKickP.next+~extraShufKickP.next,
-			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
+			//\octave, Pseq([~octKickP.next], inf)+~octMulKick,
+			//\mtranspose, Pseq([~transKickP.next
+			//], inf)+~trKick+~transShufKickP.next+~extraShufKickP.next,
+			//\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
 		).play(quant:0);
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp01, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta1VSampP.next], 1),
+			\control, Pseq([30+~nt1KickP.next], 1),
+
+		).play(quant:0);
+
+
 
 	}//*p1
 
@@ -134,8 +146,8 @@ IFKick {
 		~volKick_APC.free;
 		~volKick_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volKick', vel/127);
-			~mdOut.control(2, 1, vel);
+			~tOSCAdrr.sendMsg('volVSamp1', vel/127);
+			~vSamp.control(~smp01, ~smpLvl, vel);
 
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd1);
 
@@ -209,10 +221,10 @@ IFKick {
 			arg msg;
 			if ( msg[1]==1, {
 				~actKick.source=1;
-				~apc40.noteOn(0, ~actButA1, 127); //Trk1_But 1
+				~apc40.noteOn(~apcMnCh, ~actButA1, 127); //Trk1_But 1
 				},{
 					~actKick.source=0;
-					~apc40.noteOff(0, ~actButA1, 127); //Trk1_But 1
+					~apc40.noteOff(~apcMnCh, ~actButA1, 127); //Trk1_But 1
 			});
 			},
 			'/activKick'
@@ -229,14 +241,14 @@ IFKick {
 					~tOSCAdrr.sendMsg('time2Kick', 1);
 					~tOSCAdrr.sendMsg('tmKickLabel', 2);
 					~tmMulKick.source = Pseq([2], inf);
-					~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
+					//~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
 				},
 				2,{
 					~apc40.noteOn(0, ~actButB1, 0);
 					~tOSCAdrr.sendMsg('time2Kick', 0);
 					~tOSCAdrr.sendMsg('tmKickLabel', 1);
 					~tmMulKick.source = Pseq([1], inf);
-					~extraShufKick.source = Pshuf([0], inf);
+					//~extraShufKick.source = Pshuf([0], inf);
 					~countTime2Kick=0;
 			})
 

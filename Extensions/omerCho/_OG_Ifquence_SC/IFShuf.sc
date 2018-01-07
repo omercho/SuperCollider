@@ -358,7 +358,7 @@ IFShuf{
 			arg msg;
 			if ( msg[1]==1, {
 				"Harmonic 0".postln;
-				//~harmKick=0;
+				~harmKick=0;
 				~harmSnr=0;~harmHat=0;
 				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
 

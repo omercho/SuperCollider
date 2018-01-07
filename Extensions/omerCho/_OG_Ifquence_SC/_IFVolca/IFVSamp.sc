@@ -27,39 +27,39 @@ IFVSamp {
 		~vSampLate=0.0;
 		~timesVSamp=1;
 		~rootVSamp=0;
-		~susMulVSamp=1;
+		~susMul5VSamp=1;
 		~trVSamp=0;
-		~lfo1MulVSamp=0;
-		~lfo2MulVSamp=0;
+		~lfo5MulVSamp=0;
+		~lfo6MulVSamp=0;
 	}
 
 	*proxy {
 
-		~tmMulVSamp = PatternProxy( Pseq([1], inf));
-		~tmMulVSampP= Pseq([~tmMulVSamp], inf).asStream;
+		~tmMul5VSamp = PatternProxy( Pseq([1], inf));
+		~tmMul5VSampP= Pseq([~tmMul5VSamp], inf).asStream;
 
-		~tmVSamp = PatternProxy( Pseq([1], inf));
-		~tmVSampP= Pseq([~tmVSamp], inf).asStream;
+		~tm5VSamp = PatternProxy( Pseq([1], inf));
+		~tm5VSampP= Pseq([~tm5VSamp], inf).asStream;
 
-		~nt1VSamp = PatternProxy( Pseq([0], inf));
-		~nt1VSampP = Pseq([~nt1VSamp], inf).asStream;
-		~dur1VSamp = PatternProxy( Pseq([1], inf));
-		~dur1VSampP = Pseq([~dur1VSamp], inf).asStream;
-		~amp1VSamp = PatternProxy( Pseq([0.9], inf));
-		~amp1VSampP = Pseq([~amp1VSamp], inf).asStream;
-		~sus1VSamp = PatternProxy( Pseq([1], inf));
-		~sus1VSampP = Pseq([~sus1VSamp], inf).asStream;
-		~speedVSamp = PatternProxy( Pseq([50,107,27], inf));
-		~speedVSampP = Pseq([~speedVSamp], inf).asStream;
+		~nt5VSamp = PatternProxy( Pseq([0], inf));
+		~nt5VSampP = Pseq([~nt5VSamp], inf).asStream;
+		~dur5VSamp = PatternProxy( Pseq([1], inf));
+		~dur5VSampP = Pseq([~dur5VSamp], inf).asStream;
+		~amp5VSamp = PatternProxy( Pseq([0.9], inf));
+		~amp5VSampP = Pseq([~amp5VSamp], inf).asStream;
+		~sus5VSamp = PatternProxy( Pseq([1], inf));
+		~sus5VSampP = Pseq([~sus5VSamp], inf).asStream;
+		~speed5VSamp = PatternProxy( Pseq([50,107,27], inf));
+		~speed5VSampP = Pseq([~speed5VSamp], inf).asStream;
 
 
-		~delta1VSamp = PatternProxy( Pseq([1/1], inf));
-		~delta1VSampP = Pseq([~delta1VSamp], inf).asStream;
-		~delta2VSamp = PatternProxy( Pseq([1/1], inf));
-		~delta2VSampP = Pseq([~delta2VSamp], inf).asStream;
+		~delta5VSamp = PatternProxy( Pseq([1/1], inf));
+		~delta5VSampP = Pseq([~delta5VSamp], inf).asStream;
+		~delta6VSamp = PatternProxy( Pseq([1/1], inf));
+		~delta6VSampP = Pseq([~delta6VSamp], inf).asStream;
 
-		~actVSamp = PatternProxy( Pseq([1], inf));
-		~actVSampP= Pseq([~actVSamp], inf).asStream;
+		~act5VSamp = PatternProxy( Pseq([1], inf));
+		~act5VSampP= Pseq([~act5VSamp], inf).asStream;
 
 	}
 
@@ -70,7 +70,7 @@ IFVSamp {
 		{ i == val }  {
 			{val.do{
 				this.p1(val);
-				((~dur1VSampP.next)*(~durMulP.next)/val).wait;
+				((~dur5VSampP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
 
@@ -80,19 +80,19 @@ IFVSamp {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~smp01,
+			\chan, ~smp05,
 			\type, \midi, \midiout,~vSamp,
-			\dur, Pseq([~dur1VSampP.next],~actVSampP),
-			\amp, Pseq([~amp1VSampP.next], 1),
-			\sustain, Pseq([~sus1VSampP.next],1)*~susMulVSamp
+			\dur, Pseq([~dur5VSampP.next],~act5VSampP),
+			\amp, Pseq([~amp5VSampP.next], 1),
+			\sustain, Pseq([~sus5VSampP.next],1)*~susMul5VSamp
 		).play;
 
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp01, \ctlNum, ~smpSpeed,
-			\delta, Pseq([~dur1VSampP.next], 1),
-			\control, Pseq([~speedVSampP.next], 1),
+			\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta5VSampP.next], 1),
+			\control, Pseq([~speed5VSampP.next], 1),
 
 		).play;
 
@@ -102,11 +102,11 @@ IFVSamp {
 
 	*midiMix{
 
-		~volVSamp_MDMix.free;
-		~volVSamp_MDMix=MIDIFunc.cc( {
+		~volVSamp5_MDMix.free;
+		~volVSamp5_MDMix=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp', vel/127);
-			~vSamp.control(~smp01, ~smpLvl, vel);
+			~tOSCAdrr.sendMsg('volVSamp5', vel/127);
+			~vSamp.control(~smp05, ~smpLvl, vel);
 
 		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:30);
 
@@ -129,7 +129,7 @@ IFVSamp {
 					}
 				)}
 			);
-		},srcID:~mdMixInID, chan:~mdMixLn1, noteNum:~recBut5);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~recBut5);
 
 		//Act ButB
 		//VSamp Time Div2
@@ -142,7 +142,7 @@ IFVSamp {
 				~cntMDMixact5ButB.switch(
 					0,{},
 					1, {
-						"IFVSamp_char:145".postln;
+
 						IFMIDIMix.act5ButB(1);
 					},
 					2,{
@@ -150,7 +150,7 @@ IFVSamp {
 					}
 				)}
 			);
-		},srcID:~mdMixInID, chan:0, noteNum:~mtBut5);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~mtBut5);
 
 		//Act ButC
 		//Static VSamp Activate
@@ -225,7 +225,7 @@ IFVSamp {
 			arg msg,vel;
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volVSamp', msg[1]);
-			~mdOut.control(5, 1, vel);
+			//~mdOut.control(5, 1, vel);
 			},
 			'/volVSamp'
 		);
