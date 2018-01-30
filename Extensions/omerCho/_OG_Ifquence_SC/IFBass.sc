@@ -86,6 +86,9 @@ IFBass {
 		~actBass = PatternProxy( Pseq([1], inf));
 		~actBassP= Pseq([~actBass], inf).asStream;
 
+		~volBass = PatternProxy( Pseq([0.0], inf));
+		~volBassP = Pseq([~volBass], inf).asStream;
+
 		/*//StaticBass
 		~actStBass = PatternProxy( Pseq([0], inf));
 		~actStBassP= Pseq([~actStBass], inf).asStream;
@@ -104,13 +107,8 @@ IFBass {
 		case
 		{ i == val }  {
 			{val.do{
-
-				//~bassLate=~abLate;
 				~bassLate.wait;
-
 				this.p1(val);
-
-				//~durMulP*((~dur1BassP.next)/val).wait;
 				((~dur1BassP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
@@ -125,29 +123,12 @@ IFBass {
 			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1BassP.next],~actBassP),
 			\degree, Pseq([~nt1BassP.next], 1),
-			\amp, Pseq([~amp1BassP.next], 1),
+			\amp, Pseq([~volBassP.next*~amp1BassP.next], 1),
 			\sustain, Pseq([~sus1BassP.next],1)*~susMulBass,
 			\mtranspose, Pseq([~transBassP.next], 1)+~trBass+~transShufBassP.next,
 			\octave, Pseq([~octBassP.next], 1)+~octMulBass,
 			\harmonic, Pseq([~hrmBassP.next], 1)+~harmBass
 		).play;
-
-
-		Pbind(//LFO 1
-			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 5, \ctlNum, 40,
-			\delta, Pseq([~delta1BassP.next], 1),
-			\control, Pseq([~lfo1BassP.next], 1)*~lfoMulBass1,
-
-		).play;
-		Pbind(//LFO 2
-			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut,\chan, 5,  \ctlNum, 41,
-			\delta, Pseq([~delta2BassP.next], 1),
-			\control, Pseq([~lfo2BassP.next], 1)*~lfoMulBass2,
-
-		).play;
-
 
 		//VBass
 		Pbind(//LFO CUT BASS INT
@@ -164,26 +145,14 @@ IFBass {
 		).play;
 
 	}//p1
-	/**stat01 {|i=1|
-	var val;
-	val=i;
-	~staticBassPat=Pbind(
-	\chan, ~chBass,
-	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-	\dur, Pseq([~durStBassP.next],~actStBassP.next),
-	\degree, Pseq([~ntStBassP.next], inf),
-	\amp, Pseq([~ampStBassP.next], inf)
-	).play;
-	}//stat01*/
-
 	*apc40{
 
 		~volBass_APC.free;
 		~volBass_APC=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volBass', vel/127);
-			~mdOut.control(5, 1, vel);
-
+			//~mdOut.control(5, 1, vel);
+			~volBass.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd4);
 
 		//Act ButA4
@@ -246,28 +215,7 @@ IFBass {
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC4);
 	}//*apc40
-
-
 	*osc{
-
-		~phrase01Bass.free;
-		~phrase01Bass= OSCFunc({
-			arg msg,vel;
-			vel=msg[1]*127;
-			if ( msg[1]==1, {
-
-				//~nt1Bass.source   =  Pslide([~nt+0,~nt+1,~nt+7,~nt+0,~nt+1,~nt+0],  inf, 4,1,0);
-				~amp1Bass.source  =  Pslide([0.9, 0.9, 0.8, 0.7, 0.9, 0.5],         inf, 4,1,0);
-				~sus1Bass.source  =  Pslide([0.8, 0.3, 0.8, 0.7, 0.8, 0.1 ]*1.9,    inf, 4,1,0);
-				~tmBass.source    =  Pseq([2,1,1,1], inf);
-				~dur1Bass.source  =  Pseq([1/2,1], inf);
-				~lfo1Bass.source  =  Pseq([120,20,70,98, 0,110,60,20], inf);
-				~lfo2Bass.source  =  Pseq([110,30,110,50], inf);
-
-			});
-			},
-			'/phrase01Bass'
-		);
 
 		~actBassBut.free;
 		~actBassBut = OSCFunc({
@@ -316,7 +264,7 @@ IFBass {
 			arg msg,vel;
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volBass', msg[1]);
-			~mdOut.control(5, 1, vel);
+			~vBass.control(5, 1, vel);
 			},
 			'/volBass'
 		);
@@ -328,7 +276,7 @@ IFBass {
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('attBass', msg[1]);
 				~vBass.control(0, ~egAtt, val+0.01);
-				~mdOut.control(5, 5, val);
+				//~mdOut.control(5, 5, val);
 				},{
 					~tOSCAdrr.sendMsg('attBass', msg[1]);
 					~mdOut.control(5, 5, val);

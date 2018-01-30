@@ -90,6 +90,9 @@ IFKeys {
 		~actKeys = PatternProxy( Pseq([1], inf));
 		~actKeysP= Pseq([~actKeys], inf).asStream;
 
+		~volKeys = PatternProxy( Pseq([0.0], inf));
+		~volKeysP = Pseq([~volKeys], inf).asStream;
+
 		/*//StaticKeys
 		~actStKeys = PatternProxy( Pseq([0], inf));
 		~actStKeysP= Pseq([~actStKeys], inf).asStream;
@@ -109,14 +112,9 @@ IFKeys {
 		case
 		{ i == val }  {
 			{val.do{
-
 				~keysLate.wait;
-
 				this.p1(val);
-
-				//~durMulP*((~dur1KeysP.next)/val).wait;
 				((~dur1KeysP.next)*(~durMulP.next)/val).wait;
-
 			}}.fork;
 		}
 
@@ -130,28 +128,12 @@ IFKeys {
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KeysP.next],~actKeysP),
 			\degree, Pseq([~nt1KeysP.next], inf),
-			\amp, Pseq([~amp1KeysP.next], inf),
+			\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
 			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
 			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
 			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
 			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
 		).play;
-
-		Pbind(//LFO CUT ABL INT
-			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 6, \ctlNum, 40,
-			\delta, Pseq([~delta1KeysP.next], ~actKeysP),
-			\control, Pseq([~lfoCtKeysP.next], inf)*~lfoMulKeys1,
-		).play;
-
-
-		Pbind(//LFO RATE ABL
-			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 6, \ctlNum, 41,
-			\delta, Pseq([~delta2KeysP.next], ~actKeysP),
-			\control, Pseq([~lfoRtKeysP.next], inf)*~lfoMulKeys2,
-		).play;
-
 
 		//VKeys
 		Pbind(//LFO CUT KEYS INT
@@ -169,27 +151,14 @@ IFKeys {
 		).play;
 
 	}//p1
-	/**stat01 {|i=1|
-		var val;
-		val=i;
-		~staticKeysPat=Pbind(
-			\chan, ~chKeys,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~durStKeysP.next],~actStKeysP.next),
-			\degree, Pseq([~ntStKeysP.next], inf),
-			\amp, Pseq([~ampStKeysP.next], inf)
-		).play;
-	}//stat01*/
-
-
 	*apc40{
 
 		~volKeys_APC.free;
 		~volKeys_APC=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volKeys', vel/127);
-			~mdOut.control(6, 1, vel);
-
+			//~mdOut.control(6, 1, vel);
+			~volKeys.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd5);
 
 		//Act ButA5
@@ -279,14 +248,14 @@ IFKeys {
 					0,{},
 					1, {
 						~apc40.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
-						//~tOSCAdrr.sendMsg('time2Keys', 1);
-						//~tOSCAdrr.sendMsg('tmKeysLabel', 2);
+						~tOSCAdrr.sendMsg('time2Keys', 1);
+						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
 						~tmMulKeys.source = Pseq([2], inf);
 					},
 					2,{
 						~apc40.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
-						//~tOSCAdrr.sendMsg('time2Keys', 0);
-						//~tOSCAdrr.sendMsg('tmKeysLabel', 1);
+						~tOSCAdrr.sendMsg('time2Keys', 0);
+						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
 						~tmMulKeys.source = Pseq([1], inf);
 						~countTime2Keys=0;
 					}
@@ -300,7 +269,7 @@ IFKeys {
 			arg msg,vel;
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volKeys', msg[1]);
-			~mdOut.control(6, 1, vel);
+			~vKeys.control(5, 1, vel);
 			},
 			'/volKeys'
 		);
@@ -312,7 +281,7 @@ IFKeys {
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('attKeys', msg[1]);
 				~vKeys.control(0, ~envAtt, val);
-				~mdOut.control(6, 5, val);
+				//~mdOut.control(6, 5, val);
 				},{
 					~tOSCAdrr.sendMsg('attKeys', msg[1]);
 					~mdOut.control(6, 5, val);

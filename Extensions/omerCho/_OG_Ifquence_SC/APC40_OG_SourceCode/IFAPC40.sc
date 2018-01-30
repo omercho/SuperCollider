@@ -334,14 +334,14 @@ IFAPC40{
 	/////////B_C
 	*actLine1ButC1{|val|
 		~apc40.noteOn(~apcLn1, ~actButC1, val+5); //But C
-		//~local.sendMsg('shufKick', val);
-		//~tOSCAdrr.sendMsg('shufKick', val);
+		~tOSCAdrr.sendMsg('shufKick', val);
+		~actKickLfo1.source=val;
 		~cntActLine1ButC1=val;
 	}
 	*actLine2ButC2{|val|
 		~apc40.noteOn(~apcLn1, ~actButC2, val+5); //But C
-		//~tOSCAdrr.sendMsg('shufSnr', val);
-		//~local.sendMsg('shufSnr', val);
+		~tOSCAdrr.sendMsg('shufSnr', val);
+		~actSnrLfo1.source=val;
 		~cntActLine2ButC2=val;
 	}
 	*actLine3ButC3{|val|

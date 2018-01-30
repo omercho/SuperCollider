@@ -1,4 +1,10 @@
 /*
+PostAllMIDI.on;
+PostAllMIDI.off;
+
+IFLoad.load;
+IFLoad.loadVolca;
+
 //ALL MIDI NOTES
 
 // SC Channel 0 = Abl Channel 1
@@ -10,6 +16,7 @@
 ~mdOut.uid;
 ~mdTouch.uid;
 ~apc40.uid;
+~iC_iPad=
 
 //to find MIDIIn src
 (

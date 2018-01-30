@@ -40,6 +40,8 @@ IFSnr {
 		~trSnr=0;
 		~octMulSnr=0;
 		~snrVolC=1;
+
+		~tuneSnr=26;
 	}
 
 	*proxy {
@@ -66,25 +68,20 @@ IFSnr {
 		~hrmSnr = PatternProxy( Pseq([1.0], inf));
 		~hrmSnrP = Pseq([~hrmSnr], inf).asStream;
 
-		~volSnr = PatternProxy( Pseq([1], inf));
-		~volSnrP= Pseq([~volSnr], inf).asStream;
-
 		~actSnr = PatternProxy( Pseq([1], inf));
 		~actSnrP= Pseq([~actSnr], inf).asStream;
 
+		~actSnrLfo1 = PatternProxy( Pseq([0], inf));
+		~actSnrLfo1P= Pseq([~actSnrLfo1], inf).asStream;
 
-		~delta2VSamp = PatternProxy( Pseq([1/1], inf));
-		~delta2VSampP = Pseq([~delta2VSamp], inf).asStream;
+		~volSnr = PatternProxy( Pseq([0.0], inf));
+		~volSnrP = Pseq([~volSnr], inf).asStream;
 
-		/*//StaticSnr
-		~actStSnr = PatternProxy( Pseq([0], inf));
-		~actStSnrP= Pseq([~actStSnr], inf).asStream;
-		~durStSnr = PatternProxy( Pseq([1], inf));
-		~durStSnrP = Pseq([~durStSnr], inf).asStream;
-		~ampStSnr = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStSnrP = Pseq([~ampStSnr], inf).asStream;
-		~ntStSnr = PatternProxy( Pseq([67], inf));
-		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;*/
+		~delta1VSamp06 = PatternProxy( Pseq([1/1], inf));
+		~delta1VSamp06P = Pseq([~delta1VSamp06], inf).asStream;
+
+		~delta2VSamp06 = PatternProxy( Pseq([1/1], inf));
+		~delta2VSamp06P = Pseq([~delta2VSamp06], inf).asStream;
 
 	}//*proxy
 
@@ -109,33 +106,39 @@ IFSnr {
 	*p1 {|i=1|
 		var val;
 		val=i;
+		Pbind(//LFO Amp
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp06, \ctlNum, ~smpLvl,
+			\delta, Pseq([~delta1VSamp06P.next], 1),
+			\control, Pseq([~volSnrP.next*~amp1SnrP], 1),
+		).play(quant:0);
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp06, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta2VSamp06P.next], ~actSnrLfo1P),
+			\control, PdegreeToKey(
+				Pseq([~tuneSnr+~nt1SnrP.next], 1),
+				Pfunc({~scl2}),
+				12),
+		).play(quant:0);
 		Pbind(
-			\chan, ~smp02,
+			\chan, ~smp06,
 			\type, \midi, \midiout,~vSamp,
 			\dur, Pseq([~dur1SnrP.next], ~actSnrP),
 			\amp, Pseq([~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr
-		).play(quant:0);
-		Pbind(//LFO 1
-			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp02, \ctlNum, ~smpSpeed,
-			\delta, Pseq([~delta2VSampP.next], 1),
-			\control, Pseq([30+~nt1SnrP.next], 1),
-
 		).play(quant:0);
 
 	}
 
 
 	*apc40{
-
-
 		~volSnr_APC.free;
 		~volSnr_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp2', vel/127);
-			~vSamp.control(~smp02, ~smpLvl, vel);
-
+			~tOSCAdrr.sendMsg('volVSamp06', vel/127);
+			//~vSamp.control(~smp06, ~smpLvl, vel);
+			~volSnr.source = vel;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd2);
 
 		//Act ButA2

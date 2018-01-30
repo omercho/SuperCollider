@@ -40,7 +40,7 @@ IFLoad{
 				0.1.wait;
 				VBeats.globals; VBeats.preSet01; VBeats.oscMIDI;
 				VSamp.load;
-				IFVKick.globals; IFVKick.preSet; IFVKick.default; IFVKick.osc;
+				IFVKick.load;
 				IFVSnr.globals; IFVSnr.preSet; IFVSnr.default; IFVSnr.osc;
 				IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;

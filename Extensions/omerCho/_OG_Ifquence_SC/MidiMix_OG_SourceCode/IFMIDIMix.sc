@@ -41,7 +41,7 @@ IFMIDIMix{
 		~mdMixLn6=5;
 		~mdMixLn7=6;
 		~mdMixLn8=7;
-		~mdMixLnMaster=9;
+		~mdMixLnMaster=8;
 		//Nums
 		~recBut1=3;~recBut2=6;~recBut3=9;~recBut4=12;
 		~recBut5=15;~recBut6=18;~recBut7=21;~recBut8=24;
@@ -52,6 +52,7 @@ IFMIDIMix{
 
 
 		~actButA=48;~actButB=49;~actButC=50;
+		~bankLeft=25; ~bankRight=26;
 
 	}//globals
 	*act1{|val1,val2,val3|
@@ -94,11 +95,29 @@ IFMIDIMix{
 		this.act8ButB(val2);
 		this.act8ButC(val3);
 	}
+	//actBank
+	*actBank{|val1,val2|
+		this.actBankButA(val1);
+		this.actBankButB(val2);
+	}
+	*actBankButA{|val|
+		~mdMix.noteOn(~mdMixGlobChan, ~bankRight, val); //But A
+		~tOSCAdrr.sendMsg('actVKick', val);
+		~actVKick.source=val;
+		~cntMixActBankButA=val;
+	}
+	*actBankButB{|val|
+		~mdMix.noteOn(~mdMixGlobChan, ~bankLeft, val); //But B
+		~tOSCAdrr.sendMsg('actVKick2', val);
+		~actVKick2.source=val;
+		~cntMixActBankButB=val;
+	}//actBank
+
 	//actLine1
 	*act1ButA{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~recBut1, val); //But A
-		~tOSCAdrr.sendMsg('activVKick', val);
-		~actVKick.source=val;
+		//~tOSCAdrr.sendMsg('activVKick', val);
+		//~actVKick.source=val;
 		~cntMixAct1ButA=val;
 	}
 
@@ -553,6 +572,54 @@ IFMIDIMix{
 		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~mtBut5);
 		/////
 		/////
+		/*
+
+		//--------------------line--MASTER
+		//Act1 ButA
+		~cntMixActBankButA=0;
+		~mdMixAct1ButA.free;
+		~mdMixAct1ButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntMixActBankButA = ~cntMixActBankButA + 1;
+				~cntMixActBankButA.switch(
+					0,{},
+					1, {
+						this.actBankButA(1);
+					},
+					2,{
+						this.actBankButA(0);
+					}
+				)}
+			);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~bankRight);
+		//Act1 ButB
+		~cntMixActBankButB=0;
+		~mdMixAct1ButB.free;
+		~mdMixAct1ButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntMixActBankButB = ~cntMixActBankButB + 1;
+				~cntMixActBankButB.switch(
+					0,{},
+					1, {
+						this.actBankButB(1);
+					},
+					2,{
+						this.actBankButB(0);
+					}
+				)}
+			);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~mtBut1);
+
+		~mdMixFadMaster.free;
+		~mdMixFadMaster=MIDIFunc.cc( {
+			arg vel;
+			~vBeats.control(9, ~kickLev, vel);
+
+		},srcID:~mdMixInID, chan:~mdMixLn1, ccNum:31);
+		*/
+
 
 	}
 
@@ -607,6 +674,10 @@ IFMIDIMix{
 		~mdMix.noteOn(~mdMixLn1, 22, 0); //But 1
 		~mdMix.noteOn(~mdMixLn1, 23, 0); //But 2
 		~mdMix.noteOn(~mdMixLn1, 24, 0); //But 3
+
+		~mdMix.noteOn(~mdMixLn1, 25, 0); //But Bank Left
+		~mdMix.noteOn(~mdMixLn1, 26, 0); //But Bank Right
+
 
 	}
 	/**ln6{//kick

@@ -34,6 +34,9 @@ IFHat {
 		~trHat=0;
 		~octMulHat=0;
 		~hatVolC=1;
+
+		~tuneHat=26;
+
 	}
 
 	*proxy {
@@ -55,8 +58,7 @@ IFHat {
 
 		~octHat = PatternProxy( Pseq([3], inf));
 		~octHatP = Pseq([~octHat], inf).asStream;
-		~volHat = PatternProxy( Pseq([0.0], inf));
-		~volHatP = Pseq([~volHat], inf).asStream;
+
 
 		~hrmHat = PatternProxy( Pseq([1.0], inf));
 		~hrmHatP = Pseq([~hrmHat], inf).asStream;
@@ -67,21 +69,13 @@ IFHat {
 		~actHatLfo1 = PatternProxy( Pseq([0], inf));
 		~actHatLfo1P= Pseq([~actHatLfo1], inf).asStream;
 
-		~delta1VSamp3 = PatternProxy( Pseq([1/1], inf));
-		~delta1VSamp3P = Pseq([~delta1VSamp3], inf).asStream;
+		~volHat = PatternProxy( Pseq([0.0], inf));
+		~volHatP = Pseq([~volHat], inf).asStream;
+		~delta1VSamp07 = PatternProxy( Pseq([1/1], inf));
+		~delta1VSamp07P = Pseq([~delta1VSamp07], inf).asStream;
 
-		~delta2VSamp3 = PatternProxy( Pseq([1/1], inf));
-		~delta2VSamp3P = Pseq([~delta2VSamp3], inf).asStream;
-
-		/*//StaticHat
-		~actStHat = PatternProxy( Pseq([0], inf));
-		~actStHatP= Pseq([~actStHat], inf).asStream;
-		~durStHat = PatternProxy( Pseq([1], inf));
-		~durStHatP = Pseq([~durStHat], inf).asStream;
-		~ampStHat = PatternProxy( Pseq([0,1], inf));
-		~ampStHatP = Pseq([~ampStHat], inf).asStream;
-		~ntStHat = PatternProxy( Pseq([67], inf));
-		~ntStHatP = Pseq([~ntStHat], inf).asStream;*/
+		~delta2VSamp07 = PatternProxy( Pseq([1/1], inf));
+		~delta2VSamp07P = Pseq([~delta2VSamp07], inf).asStream;
 
 	}//proxy
 
@@ -107,30 +101,28 @@ IFHat {
 		val=i;
 		Pbind(//LFO Amp
 			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp03, \ctlNum, ~smpLvl,
-			\delta, Pseq([~delta1VSamp3P.next], 1),
+			\midiout,~vSamp, \chan, ~smp07, \ctlNum, ~smpLvl,
+			\delta, Pseq([~delta1VSamp07P.next], 1),
 			\control, Pseq([~volHatP.next*~amp1HatP], 1),
 		).play(quant:0);
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp03, \ctlNum, ~smpSpeed,
-			\delta, Pseq([~delta2VSamp3P.next], ~actHatLfo1P),
+			\midiout,~vSamp, \chan, ~smp07, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta2VSamp07P.next], ~actHatLfo1P),
 			\control, PdegreeToKey(
-				Pseq([2*~nt1HatP.next], 1),
+				Pseq([~tuneHat+~nt1HatP.next], 1),
 				Pfunc({~scl2}),
 				12),
 		).play(quant:0);
 
 
 		Pbind(
-			\chan, ~smp03,
+			\chan, ~smp07,
 			\type, \midi, \midiout,~vSamp,
 			\dur, Pseq([~dur1HatP.next],~actHatP),
 			\amp, Pseq([~amp1HatP.next], 1),
 			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
 		).play(quant:0);
-
-
 
 	}
 
@@ -138,10 +130,9 @@ IFHat {
 		~volHat_APC.free;
 		~volHat_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp3', vel/127);
-			//~vSamp.control(~smp03, ~smpLvl, vel);
+			~tOSCAdrr.sendMsg('volVSamp07', vel/127);
+			//~vSamp.control(~smp07, ~smpLvl, vel);
 			~volHat.source = vel;
-
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd3);
 
 		//Act ButA3
@@ -260,7 +251,7 @@ IFHat {
 			arg msg,vel;
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volHat', msg[1]);
-			~mdOut.control(4, 1, vel);
+			//~mdOut.control(4, 1, vel);
 			},
 			'/volHat'
 		);

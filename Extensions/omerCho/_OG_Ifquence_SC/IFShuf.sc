@@ -150,20 +150,11 @@ IFShuf{
 			if ( msg[1]==1, {
 
 				//"Transpose Shuffle".postln;
-				~countShufBass = ~countShufBass + 1;
+				//~countShufBass = ~countShufBass + 1;
 
-				~countShufBass.switch(
-					0,{},
-					1, {
-						this.transBassOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcMnCh, ~actButC4, 6); //But 1
-					},
-					2,{
-						this.transBassOff;
-						~apc40.noteOn(~apcMnCh, ~actButC4, 5); //But 1
-						~countShufBass=0;
-					}
-				)
+				IFShuf.transBassOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+				},{
+					IFShuf.transBassOff;
 				}
 			);
 			},
@@ -178,20 +169,11 @@ IFShuf{
 			if ( msg[1]==1, {
 
 				//"Transpose Shuffle".postln;
-				~countShufKeys = ~countShufKeys + 1;
+				//~countShufKeys = ~countShufKeys + 1;
 
-				~countShufKeys.switch(
-					0,{},
-					1, {
-						this.transKeysOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcMnCh, ~actButC5, 6); //But 1
-					},
-					2,{
-						this.transKeysOff;
-						~apc40.noteOn(~apcMnCh, ~actButC5, 5); //But 1
-						~countShufKeys=0;
-					}
-				)
+				IFShuf.transKeysOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+				},{
+					IFShuf.transKeysOff;
 				}
 			);
 			},
@@ -206,20 +188,11 @@ IFShuf{
 			if ( msg[1]==1, {
 
 				//"Transpose Shuffle".postln;
-				~countShufSamp = ~countShufSamp + 1;
+				//~countShufSamp = ~countShufSamp + 1;
 
-				~countShufSamp.switch(
-					0,{},
-					1, {
-						this.transSampOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcMnCh, ~actButC6, 6); //But 1
-					},
-					2,{
-						this.transSampOff;
-						~apc40.noteOn(~apcMnCh, ~actButC6, 5); //But 1
-						~countShufSamp=0;
-					}
-				)
+				IFShuf.transSampOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+				},{
+					IFShuf.transSampOff;
 				}
 			);
 			},

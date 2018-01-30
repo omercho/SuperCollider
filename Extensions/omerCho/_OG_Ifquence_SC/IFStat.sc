@@ -40,7 +40,7 @@ IFStat {
 	}
 
 	*proxy {
-
+		/*
 		//Static_01_Kick
 		~actVKick = PatternProxy( Pseq([0], inf));
 		~actVKickP= Pseq([~actVKick], inf).asStream;
@@ -50,6 +50,7 @@ IFStat {
 		~ampVKickP = Pseq([~ampVKick], inf).asStream;
 		~ntVKick = PatternProxy( Pseq([[~vKick]], inf));
 		~ntVKickP = Pseq([~ntVKick], inf).asStream;
+		*/
 		//2StaticSnr
 		~actVSnr = PatternProxy( Pseq([0], inf));
 		~actVSnrP= Pseq([~actVSnr], inf).asStream;
@@ -256,14 +257,7 @@ IFStat {
 
 
 	*preSet{
-		//~ampVKick.source= Pseq([1,1,0,0], inf);
-		//~ampVKick.source  =  Pseq([~seqVKick01.next/**~seqVelVKick01.next*/], inf);
-		/*~ampVKick.source= Pseq([
-			~seqVKick01,~seqVKick02,~seqVKick03,~seqVKick04,
-			~seqVKick05,~seqVKick06,~seqVKick07,~seqVKick08,
-			~seqVKick09,~seqVKick10,~seqVKick11,~seqVKick12,
-			~seqVKick13,~seqVKick14,~seqVKick15,~seqVKick16
-		], inf);*/
+
 		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
 		//~ntVKick.source = Pseq([36], inf);
 		IFSeqVSnr.stGrpSet  (0,1,1,0, 1,0,1,0,  0,0,1,0, 0,1,1,0);

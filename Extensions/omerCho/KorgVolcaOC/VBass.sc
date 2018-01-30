@@ -10,8 +10,8 @@ VBass {
 
 	*globals{
 
-		~vBass = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 ESI1");
-
+		~vBass = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN1");
+		//~vBass = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 ESI1");
 
 		~slideTime    = 5;   //*1
 		~expr    = 11;  //*1,3

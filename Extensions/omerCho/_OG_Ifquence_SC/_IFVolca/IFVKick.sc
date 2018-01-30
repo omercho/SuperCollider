@@ -16,12 +16,14 @@ IFVKick {
 			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.osc;});*/
 		}
 	}
-
+	*load{
+	this.globals; this.preSet; this.default; this.osc;this.midi;
+	}
 	*globals{
 
 		~chVKick=9;
 		~vBeatsLate=0;
-		~vBeatsLate=Tempo.bpm*(1/267.92);
+		//~vBeatsLate=Tempo.bpm*(1/267.92);
 		~timesVKick=1;
 
 
@@ -33,12 +35,12 @@ IFVKick {
 
 	*default {
 
-		~nt1VKick = PatternProxy( Pseq([0], inf));
-		~nt1VKickP = Pseq([~nt1VKick], inf).asStream;
+		~ntVKick = PatternProxy( Pseq([0], inf));
+		~ntVKickP = Pseq([~ntVKick], inf).asStream;
 		~dur1VKick = PatternProxy( Pseq([1], inf));
 		~dur1VKickP = Pseq([~dur1VKick], inf).asStream;
-		~amp1VKick = PatternProxy( Pseq([0.9], inf));
-		~amp1VKickP = Pseq([~amp1VKick], inf).asStream;
+		~ampVKick = PatternProxy( Pseq([0.9], inf));
+		~ampVKickP = Pseq([~ampVKick], inf).asStream;
 
 
 		~tmMulVKick = PatternProxy( Pseq([1], inf));
@@ -50,6 +52,21 @@ IFVKick {
 		~levVKickP= Pseq([~levVKick], inf).asStream;
 		~levVKickMul =1;
 
+		~actVKick = PatternProxy( Pseq([1], inf));
+		~actVKickP= Pseq([~actVKick], inf).asStream;
+
+		~actVKickLfo1 = PatternProxy( Pseq([0], inf));
+		~actVKickLfo1P= Pseq([~actVKickLfo1], inf).asStream;
+
+		~volVKick = PatternProxy( Pseq([0.0], inf));
+		~volVKickP = Pseq([~volVKick], inf).asStream;
+
+		~delta1VKick = PatternProxy( Pseq([1/1], inf));
+		~delta1VKickP = Pseq([~delta1VKick], inf).asStream;
+
+		~delta2VKick = PatternProxy( Pseq([1/1], inf));
+		~delta2VKickP = Pseq([~delta2VKick], inf).asStream;
+
 
 
 	}
@@ -59,46 +76,89 @@ IFVKick {
 		val=i;
 		case
 		{ i == val }  {
-			{val.do{var led=1 , ledNum;
+			{val.do{
 
 				~vBeatsLate.wait;
-				this.p1(val);
-				led= led* ~amp1VKick.asStream.value;
-				if ( led>0.0, {
-					1.do{
-						~tOSCAdrr.sendMsg('vKickLed', led);
-						0.09.wait;
-						~tOSCAdrr.sendMsg('vKickLed', 0.0);
-					};
-					},{
 
-				});
-				~durMulP*((~dur1VKickP.next)/val).wait;
+				this.p1(val);
+
+
+				//~durMulP*((~dur1KickP.next)/val).wait;
+				((~dur1VKickP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
+
 	}
 
 	*p1 {|i=1|
 		var val;
 		val=i;
-		Pbind(
-			\type, \midi, \midiout,~vBeats,\chan, ~chVKick,
-			\scale, Pfunc({Scale.chromatic}, inf), \octave, 0,
-			\dur, Pseq([~dur1VKickP.next/val], val),
-			\note, Pseq([~nt1VKickP.next], inf),
-			\amp, Pseq([~amp1VKickP.next], inf)
-
-		).play;
-		Pbind(//vKickLevel
+		Pbind(//LFO Amp
 			\type, \midi, \midicmd, \control,
-			\midiout,~vBeats, \chan, 9, \ctlNum, ~kickLev,
-			\delta, Pseq([~dur1VKickP/val], val),
-			\control, Pseq([~levVKickP.next], val)*~levVKickMul*127,
-
-		).play;
+			\midiout,~vBeats, \chan, ~chVKick, \ctlNum, ~kickLev,
+			\delta, Pseq([~delta1VKickP.next], 1),
+			\control, Pseq([~volVKickP.next*~ampVKickP], 1),
+		).play(quant:0);
+		Pbind(
+			\chan, ~chVKick,
+			\type, \midi, \midiout,~vBeats,\scale, Pfunc({~scl1}, inf),
+			\octave,0,
+			\dur, Pseq([~dur1VKickP.next], ~actVKickP),
+			\degree, Pseq([~vKick], inf),
+			\amp, Pseq([~ampVKickP.next], inf)
+		).play(quant:0);
 
 	}
+	*midi{
+		~volVKick_md.free;
+		~volVKick_md=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volVKick', vel/127);
+			~volVKick.source = vel;
+		},srcID:~mdMixInID, chan:~mdMixLnMaster, ccNum:31);
 
+		//Act ButA1
+		//Kick Activate
+		~cntMixActBankButA=0;
+		~mdActBankButA.free;
+		~mdActBankButA=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntMixActBankButA = ~cntMixActBankButA + 1;
+				~cntMixActBankButA.switch(
+					0,{},
+					1, {
+						IFMIDIMix.actBankButA(1);
+					},
+					2,{
+						IFMIDIMix.actBankButA(0);
+					}
+				)}
+			);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~bankRight);
+
+		//Act ButB
+		//VKick Time Div2
+		~cntMixActBankButB=0;
+		~mdActBankButB.free;
+		~mdActBankButB=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntMixActBankButB = ~cntMixActBankButB + 1;
+				~cntMixActBankButB.switch(
+					0,{},
+					1, {
+						IFMIDIMix.actBankButB(1);
+					},
+					2,{
+						IFMIDIMix.actBankButB(0);
+					}
+				)}
+			);
+		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~bankLeft);
+
+
+	}//*midi
 
 	*osc{
 

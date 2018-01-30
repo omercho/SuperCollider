@@ -31,6 +31,7 @@ IFKick {
 		~harmKick=0;
 		~susMulKick=1;
 		~drumVolC=0; ~kickVolC=1;
+		~tuneKick=26;
 
 
 	}
@@ -61,24 +62,21 @@ IFKick {
 		~hrmKick = PatternProxy( Pseq([1.0], inf));
 		~hrmKickP = Pseq([~hrmKick], inf).asStream;
 
-		~volKick = PatternProxy( Pseq([1], inf));
-		~volKickP= Pseq([~volKick], inf).asStream;
-
 		~actKick = PatternProxy( Pseq([1], inf));
 		~actKickP= Pseq([~actKick], inf).asStream;
 
-		~delta1VSamp = PatternProxy( Pseq([1/1], inf));
-		~delta1VSampP = Pseq([~delta1VSamp], inf).asStream;
+		~actKickLfo1 = PatternProxy( Pseq([0], inf));
+		~actKickLfo1P= Pseq([~actKickLfo1], inf).asStream;
 
-		//StaticKick
-		/*~actStKick = PatternProxy( Pseq([0], inf));
-		~actStKickP= Pseq([~actStKick], inf).asStream;
-		~durStKick = PatternProxy( Pseq([1], inf));
-		~durStKickP = Pseq([~durStKick], inf).asStream;
-		~ampStKick = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStKickP = Pseq([~ampStKick], inf).asStream;
-		~ntStKick = PatternProxy( Pseq([67], inf));
-		~ntStKickP = Pseq([~ntStKick], inf).asStream;*/
+		~volKick = PatternProxy( Pseq([0.0], inf));
+		~volKickP = Pseq([~volKick], inf).asStream;
+
+		~delta1VSamp05 = PatternProxy( Pseq([1/1], inf));
+		~delta1VSamp05P = Pseq([~delta1VSamp05], inf).asStream;
+
+		~delta2VSamp05 = PatternProxy( Pseq([1/1], inf));
+		~delta2VSamp05P = Pseq([~delta2VSamp05], inf).asStream;
+
 
 	}//*proxy
 
@@ -104,28 +102,28 @@ IFKick {
 	*p1 {|i=1|
 		var val;
 		val=i;
-
-
-		Pbind(
-			\chan, ~smp01,
-			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~dur1KickP.next],~actKickP),
-			\degree,  Pseq([~nt1KickP.next], inf),
-			\amp, Pseq([~amp1KickP.next], inf),
-			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
-			//\octave, Pseq([~octKickP.next], inf)+~octMulKick,
-			//\mtranspose, Pseq([~transKickP.next
-			//], inf)+~trKick+~transShufKickP.next+~extraShufKickP.next,
-			//\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
+		Pbind(//LFO Amp
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpLvl,
+			\delta, Pseq([~delta1VSamp05P.next], 1),
+			\control, Pseq([~volKickP.next*~amp1KickP], 1),
 		).play(quant:0);
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp01, \ctlNum, ~smpSpeed,
-			\delta, Pseq([~delta1VSampP.next], 1),
-			\control, Pseq([30+~nt1KickP.next], 1),
-
+			\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpSpeed,
+			\delta, Pseq([~delta2VSamp2P.next], ~actKickLfo1P),
+			\control, PdegreeToKey(
+				Pseq([~tuneKick+~nt1KickP.next], 1),
+				Pfunc({~scl2}),
+				12),
 		).play(quant:0);
-
+		Pbind(
+			\chan, ~smp05,
+			\type, \midi, \midiout,~vSamp,
+			\dur, Pseq([~dur1KickP.next], ~actKickP),
+			\amp, Pseq([~amp1KickP.next], inf),
+			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick
+		).play(quant:0);
 
 
 	}//*p1
@@ -146,9 +144,9 @@ IFKick {
 		~volKick_APC.free;
 		~volKick_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp1', vel/127);
-			~vSamp.control(~smp01, ~smpLvl, vel);
-
+			~tOSCAdrr.sendMsg('volVSamp05', vel/127);
+			//~vSamp.control(~smp05, ~smpLvl, vel);
+			~volKick.source = vel;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd1);
 
 		//Act ButA1
