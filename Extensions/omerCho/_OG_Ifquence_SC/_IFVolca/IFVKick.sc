@@ -58,7 +58,7 @@ IFVKick {
 		~actVKickLfo1 = PatternProxy( Pseq([0], inf));
 		~actVKickLfo1P= Pseq([~actVKickLfo1], inf).asStream;
 
-		~volVKick = PatternProxy( Pseq([0.0], inf));
+		~volVKick = PatternProxy( Pseq([0.9], inf));
 		~volVKickP = Pseq([~volVKick], inf).asStream;
 
 		~delta1VKick = PatternProxy( Pseq([1/1], inf));
@@ -115,10 +115,11 @@ IFVKick {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVKick', vel/127);
 			~volVKick.source = vel;
-		},srcID:~mdMixInID, chan:~mdMixLnMaster, ccNum:31);
+		},srcID:~mdMixInID, chan:~mdMixLnMaster, ccNum:30);
 
 		//Act ButA1
 		//Kick Activate
+		IFMIDIMix.actBankButA(0);
 		~cntMixActBankButA=0;
 		~mdActBankButA.free;
 		~mdActBankButA=MIDIFunc.noteOn({

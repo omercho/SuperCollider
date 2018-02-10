@@ -59,7 +59,7 @@ IFLoad.loadVolca;
 
 	*setAddr{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.3", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");

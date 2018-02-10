@@ -14,7 +14,8 @@ IFKick {
 	*load {
 		this.globals;
 		this.proxy;
-		this.osc;
+		//this.osc;
+		this.synthDefOSC;
 		this.apc40;
 
 	}
@@ -34,9 +35,34 @@ IFKick {
 		~tuneKick=26;
 
 
+		~attKick =0.001;
+		~decKick =1.8;
+		~relKick =0.5;
+		~susLevKick = 0.01;
+
+
 	}
 
 	*proxy {
+
+		SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+			gate=1, wnoise=2.8,
+			amp=0.5,out=0, freq=110, freq2=59, freq3=29, pan = 0 |
+
+			var env, env1, env1m, ses;
+			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.29], [-4, -5]));
+			env1m = env1.midicps;
+
+			ses = LFPulse.ar(env1m, 0, 0.5, env, -0.5);
+			ses = (ses + WhiteNoise.ar(wnoise))*env;
+			ses = LPF.ar(ses, env1m, env)*0.8;
+			ses = ses + SinOsc.ar(env1m, 0.5, env);
+			ses = ses.clip2(8);
+			ses = ses * mul;
+			ses = Limiter.ar(ses,0.9);
+			Out.ar(out, Pan2.ar(ses, pan, amp*1.1));
+		}).add;
 
 		~nt1Kick = PatternProxy( Pseq([~vKick], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
@@ -117,12 +143,30 @@ IFKick {
 				Pfunc({~scl2}),
 				12),
 		).play(quant:0);
-		Pbind(
+		/*Pbind(
 			\chan, ~smp05,
 			\type, \midi, \midiout,~vSamp,
 			\dur, Pseq([~dur1KickP.next], ~actKickP),
 			\amp, Pseq([~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick
+		).play(quant:0);*/
+
+		Pbind(\instrument, \IFKick_SC,
+			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
+			\dur, Pseq([~dur1KickP.next], ~actKickP),
+			\degree,  Pseq([~nt1KickP.next], inf),
+			\amp, Pseq([~amp1KickP.next], inf),
+			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
+			\mtranspose, Pseq([~transKickP.next], inf)+~trKick,
+			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
+			\pan, Pbrown(-0.4, 0.4, 0.125, inf),
+			\att, ~attKick,
+			\dec, ~decKick,
+			\rel, ~relKick,
+			\susLev, ~susLevKick,
+			\wnoise,3,
+			\group, ~piges,
+			\out, Pseq([~busKick], inf )
 		).play(quant:0);
 
 
@@ -139,6 +183,8 @@ IFKick {
 	\amp, Pseq([~ampStKickP.next], inf)
 	).play(TempoClock.default, quant: 0);
 	}//stat01*/
+
+
 
 	*apc40{
 		~volKick_APC.free;
@@ -211,6 +257,149 @@ IFKick {
 
 
 	}//*apc40
+
+	*synthDefOSC{
+		~actKickBut.free;
+		~actKickBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actKick.source=1;
+				~apc40.noteOn(~apcMnCh, ~actButA1, 127); //Trk1_But 1
+				},{
+					~actKick.source=0;
+					~apc40.noteOff(~apcMnCh, ~actButA1, 127); //Trk1_But 1
+			});
+			},
+			'/activKick'
+		);
+		~time2KickBut.free;
+		~countTime2Kick=0;
+		~time2KickBut= OSCFunc({
+			arg msg;
+
+			~countTime2Kick = ~countTime2Kick + 1;
+			~countTime2Kick.switch(
+				1,{
+					~apc40.noteOn(0, ~actButB1, 1);
+					~tOSCAdrr.sendMsg('time2Kick', 1);
+					~tOSCAdrr.sendMsg('tmKickLabel', 2);
+					~tmMulKick.source = Pseq([2], inf);
+					//~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
+				},
+				2,{
+					~apc40.noteOn(0, ~actButB1, 0);
+					~tOSCAdrr.sendMsg('time2Kick', 0);
+					~tOSCAdrr.sendMsg('tmKickLabel', 1);
+					~tmMulKick.source = Pseq([1], inf);
+					//~extraShufKick.source = Pshuf([0], inf);
+					~countTime2Kick=0;
+			})
+
+			},
+			'/time2Kick'
+		);
+
+		~volKickFader.free;
+		~volKickFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volKick', msg[1]);
+			~mdOut.control(2, 1, vel);
+			},
+			'/volKick'
+		);
+
+		~attKickFader.free;
+		~attKickFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*2;
+			~attKick=val+0.01;
+			},
+			'/attKick'
+		);
+
+		~susLevKickFader.free;
+		~susLevKickFader= OSCFunc({
+			arg msg;
+			~susLevKick=msg[1]*2;
+			msg[1].postln
+			},
+			'/susKick'
+		);
+
+		~decSnrFader.free;
+		~decSnrFader= OSCFunc({
+			arg msg;
+			~decKick=msg[1]*2;
+			msg[1].postln
+			},
+			'/decKick'
+		);
+
+		~tmKickFader.free;
+		~tmKickFader= OSCFunc({
+			arg msg;
+			~tmKick.source = msg[1];
+
+			},
+			'/timesKick'
+		);
+		~tmMulKickBut.free;
+		~tmMulKickBut= OSCFunc({
+			arg msg;
+			~tmMulKick.source = msg[1];
+
+			},
+			'/tmMulKick'
+		);
+		//MUTES
+		/*~vKickMtCln.free;
+		~vKickMtCln= OSCFunc({
+		arg msg;
+		~vKickSynth.set(\mtCln, msg[1]);
+		},
+		'/mtClnKick'
+		);
+
+		~vKickMtDly.free;
+		~vKickMtDly= OSCFunc({
+		arg msg;
+		~vKickSynth.set(\mtDly, msg[1]);
+		},
+		'/mtDlyKick'
+		);
+		~vKickMtRev.free;
+		~vKickMtRev= OSCFunc({
+		arg msg;
+
+		~vKickSynth.set(\mtRev, msg[1]);
+
+		},
+		'/mtRevKick'
+		);
+		~vKickMtFlo.free;
+		~vKickMtFlo= OSCFunc({
+		arg msg;
+
+		~vKickSynth.set(\mtFlo, msg[1]);
+
+		},
+		'/mtFloKick'
+		);*/
+
+		~padKick.free;
+		~padKick = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFKick(~tmKickP.next);
+
+			});
+			},
+			'/padKick'
+		);
+
+	}
 
 	*osc{
 
@@ -298,29 +487,6 @@ IFKick {
 			//~nobD1_m1Val= vel;
 			},
 			'/decKick'
-		);
-
-		~chainKickFader.free;
-		~chainKickFader= OSCFunc({
-			arg msg;
-			~tOSCAdrr.sendMsg('chainKick', msg[1]);
-			~mdOut.control(2, 8, msg[1]*127);
-			},
-			'/chainKick'
-		);
-
-		~sendKickXY.free;
-		~sendKickXY= OSCFunc({
-			arg msg,vel1,vel2;
-
-			vel1=msg[1]*127;
-			vel2=msg[2]*127;
-			~mdOut.control(2, 4, vel1); // IFKick
-			~mdOut.control(2, 3, vel2); // IFKick
-			~tOSCAdrr.sendMsg('sendKick', msg[1], msg[2]);
-
-			},
-			'sendKick'
 		);
 
 		//TIME

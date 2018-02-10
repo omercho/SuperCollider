@@ -60,21 +60,21 @@ IDE:
       help-dock: ""
       post-dock: ""
     geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPjAAAAAAAAAC0AAAaPAAAD4wAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADn/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADnwAAAGYA////AAAAAQAAAiIAAAOf/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAb0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAb4AAAHhAAAATAD///8AAAQGAAADnwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADn/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADnwAAAGYA////AAAAAQAAAPcAAAOf/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAb0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAb4AAAHhAAAATAD///8AAAUxAAADnwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/IFSampSC_ERG.scd
+    - /Volumes/OC_EDIT02/TransferFromMacBook_2018/Downloads/SuperCollider-236e4e8c557974226aa9a30019b36b97939ff4b9/Extensions/omerCho/_IF_2014/IFSamp_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/FM82-morph2.2.scd
+    - /Volumes/OC_EDIT02/TransferFromMacBook_2018/Downloads/SuperCollider-236e4e8c557974226aa9a30019b36b97939ff4b9/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-MidiMix_OG_SourceCode/IFMIDIMix.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSC/IFSC_Project.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/midiThruTestERG.scd
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFVolca/IFVKick.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqHat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFHat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSixteen.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVTomL.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVTomH.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVSnr.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqVPcm.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

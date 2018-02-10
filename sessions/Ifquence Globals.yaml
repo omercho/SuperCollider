@@ -8,10 +8,7 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFMainTrack2.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCounter.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFPitch.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoutine.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSequence.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSixteen.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFAllMidiRef.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProcessing.scd
@@ -37,11 +34,14 @@ editors: !QVariantMap
         documentIndex: 9
         position: 0
       - !QVariantMap
-        documentIndex: 10
+        documentIndex: 11
         position: 0
       - !QVariantMap
         documentIndex: 12
         position: 0
+      - !QVariantMap
+        documentIndex: 13
+        position: 13
       - !QVariantMap
         documentIndex: 14
         position: 0
@@ -49,25 +49,16 @@ editors: !QVariantMap
         documentIndex: 15
         position: 0
       - !QVariantMap
-        documentIndex: 16
-        position: 13
-      - !QVariantMap
         documentIndex: 17
         position: 0
       - !QVariantMap
-        documentIndex: 18
+        documentIndex: 19
         position: 0
       - !QVariantMap
         documentIndex: 20
         position: 0
       - !QVariantMap
-        documentIndex: 22
-        position: 0
-      - !QVariantMap
-        documentIndex: 23
-        position: 0
-      - !QVariantMap
-        documentIndex: 19
+        documentIndex: 16
         position: 4
       - !QVariantMap
         documentIndex: 4
@@ -85,16 +76,13 @@ editors: !QVariantMap
         documentIndex: 7
         position: 0
       - !QVariantMap
-        documentIndex: 13
+        documentIndex: 10
         position: 110
       - !QVariantMap
         documentIndex: 1
         position: 2834
       - !QVariantMap
-        documentIndex: 21
-        position: 0
-      - !QVariantMap
-        documentIndex: 11
+        documentIndex: 18
         position: 0
       - !QVariantMap
         documentIndex: 0
@@ -107,7 +95,7 @@ editors: !QVariantMap
         documentIndex: 2
         position: 277
       - !QVariantMap
-        documentIndex: 19
+        documentIndex: 16
         position: 3493
       - !QVariantMap
         documentIndex: 1
@@ -122,32 +110,26 @@ editors: !QVariantMap
         documentIndex: 0
         position: 3814
       - !QVariantMap
-        documentIndex: 21
+        documentIndex: 18
         position: 93
       - !QVariantMap
-        documentIndex: 24
+        documentIndex: 21
         position: 2929
       - !QVariantMap
         documentIndex: 4
         position: 0
       - !QVariantMap
-        documentIndex: 17
+        documentIndex: 14
         position: 1690
       - !QVariantMap
-        documentIndex: 16
+        documentIndex: 13
         position: 1415
       - !QVariantMap
-        documentIndex: 13
+        documentIndex: 10
         position: 120
       - !QVariantMap
-        documentIndex: 14
-        position: 5495
-      - !QVariantMap
         documentIndex: 11
-        position: 0
-      - !QVariantMap
-        documentIndex: 12
-        position: 0
+        position: 5495
   state: AAAA/wAAAAAAAAACAAAAZAAAAnwBAAAAAQEAAAAC
 mainWindow:
   detached: !QVariantMap

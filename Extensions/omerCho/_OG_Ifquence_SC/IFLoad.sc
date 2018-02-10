@@ -69,6 +69,8 @@ IFLoad{
 				0.1.wait;
 				IFSeqSteps.load;
 				0.1.wait;
+				IFSC.load;
+				0.1.wait;
 				"Track: Not loaded".postln;
 				~tOSCAdrr.sendMsg('trackLabel', 'Track: Not loaded');
 
