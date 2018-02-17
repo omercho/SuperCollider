@@ -2,6 +2,8 @@
 /*
 
 IFKick(4);
+
+IFKick.synthDef(1);
 */
 
 IFKick {
@@ -36,33 +38,15 @@ IFKick {
 
 
 		~attKick =0.001;
-		~decKick =1.8;
-		~relKick =0.5;
+		~decKick =0.8;
+		~relKick =0.3;
 		~susLevKick = 0.01;
 
 
 	}
 
 	*proxy {
-
-		SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
-			gate=1, wnoise=2.8,
-			amp=0.5,out=0, freq=110, freq2=59, freq3=29, pan = 0 |
-
-			var env, env1, env1m, ses;
-			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
-			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.29], [-4, -5]));
-			env1m = env1.midicps;
-
-			ses = LFPulse.ar(env1m, 0, 0.5, env, -0.5);
-			ses = (ses + WhiteNoise.ar(wnoise))*env;
-			ses = LPF.ar(ses, env1m, env)*0.8;
-			ses = ses + SinOsc.ar(env1m, 0.5, env);
-			ses = ses.clip2(8);
-			ses = ses * mul;
-			ses = Limiter.ar(ses,0.9);
-			Out.ar(out, Pan2.ar(ses, pan, amp*1.1));
-		}).add;
+		IFKick.synthDef(1);
 
 		~nt1Kick = PatternProxy( Pseq([~vKick], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
@@ -128,6 +112,24 @@ IFKick {
 	*p1 {|i=1|
 		var val;
 		val=i;
+		Pbind(\instrument, \IFKick_SC,
+			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
+			\dur, Pseq([~dur1KickP.next], ~actKickP),
+			\degree,  Pseq([~nt1KickP.next], inf),
+			\amp, Pseq([~volKickP.next*~amp1KickP.next], inf),
+			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
+			\mtranspose, Pseq([~transKickP.next], inf)+~trKick,
+			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
+			\pan, Pbrown(-0.4, 0.4, 0.125, inf),
+			\att, ~attKick,
+			\dec, ~decKick,
+			\rel, ~relKick,
+			\susLev, ~susLevKick,
+			\wnoise,1.8,
+			\group, ~piges,
+			\out, Pseq([~busKick], inf )
+		).play(quant:0);
+
 		Pbind(//LFO Amp
 			\type, \midi, \midicmd, \control,
 			\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpLvl,
@@ -144,45 +146,19 @@ IFKick {
 				12),
 		).play(quant:0);
 		/*Pbind(
-			\chan, ~smp05,
-			\type, \midi, \midiout,~vSamp,
-			\dur, Pseq([~dur1KickP.next], ~actKickP),
-			\amp, Pseq([~amp1KickP.next], inf),
-			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick
+		\chan, ~smp05,
+		\type, \midi, \midiout,~vSamp,
+		\dur, Pseq([~dur1KickP.next], ~actKickP),
+		\amp, Pseq([~amp1KickP.next], inf),
+		\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick
 		).play(quant:0);*/
 
-		Pbind(\instrument, \IFKick_SC,
-			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
-			\dur, Pseq([~dur1KickP.next], ~actKickP),
-			\degree,  Pseq([~nt1KickP.next], inf),
-			\amp, Pseq([~amp1KickP.next], inf),
-			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
-			\mtranspose, Pseq([~transKickP.next], inf)+~trKick,
-			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
-			\pan, Pbrown(-0.4, 0.4, 0.125, inf),
-			\att, ~attKick,
-			\dec, ~decKick,
-			\rel, ~relKick,
-			\susLev, ~susLevKick,
-			\wnoise,3,
-			\group, ~piges,
-			\out, Pseq([~busKick], inf )
-		).play(quant:0);
+
 
 
 	}//*p1
 
-	/**stat01 {|i=1|
-	var val;
-	val=i;
-	~staticKickPat=Pbind(
-	\chan, ~kickCh,
-	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-	\dur, Pseq([~durStKickP.next],~actStKickP.next),
-	\degree, Pseq([~ntStKickP.next], inf),
-	\amp, Pseq([~ampStKickP.next], inf)
-	).play(TempoClock.default, quant: 0);
-	}//stat01*/
+
 
 
 
@@ -192,7 +168,7 @@ IFKick {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVSamp05', vel/127);
 			//~vSamp.control(~smp05, ~smpLvl, vel);
-			~volKick.source = vel;
+			~volKick.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd1);
 
 		//Act ButA1
@@ -605,6 +581,72 @@ IFKick {
 
 
 
+	}
+	*synthDef{|index|
+		index.switch(
+			1,{
+				SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+					gate=1, wnoise=1.8,
+					amp=0.5,out=0, freq=120, freq2=60, freq3=31, pan = 0 |
+
+					var env, env1, env1m, ses;
+					env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel-0.1), gate, doneAction:2);
+					env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.2], [-5, -5]));
+					env1m = env1.midicps;
+
+					ses = LFPulse.ar(env1m, 0, 0.1, env, -0.5);
+					ses = (ses + WhiteNoise.ar(wnoise))*env;
+					ses = LPF.ar(ses, env1m, env)*0.8;
+					ses = ses + SinOsc.ar(env1m, 0.5, env);
+					ses = ses.clip2(12);
+					ses = ses * mul;
+					ses = Limiter.ar(ses,0.9);
+					Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
+				}).add;
+			},
+			2,{
+SynthDef(\IFKick_SC, {| att =0.01, dec=0.1, susLev=1.0, rel=0.09, mul = 0.9,
+	gate=1, wnoise=2.8,
+	amp=0.5,out=0, freq=120, freq2=42, freq3=24, pan = 0 |
+
+	var env, env1, env1m, ses;
+	env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel, curve:[-2,-2,-8]), gate, doneAction:2);
+	env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.06, 0.05], [-4, -5]));
+	env1m = env1.midicps;
+
+	ses = LFPulse.ar(env1m, 0, 0.4, env, -0.5);
+	ses = (ses + WhiteNoise.ar(wnoise))*env;
+	ses = LPF.ar(ses, env1m, env)*0.8;
+	ses = ses + SinOsc.ar(env1m, 0.5, env);
+	ses = ses.clip2(11);
+	ses = ses * mul;
+	ses = Limiter.ar(ses,0.9);
+	Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
+}).add;
+			},
+			3,{
+SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+			gate=1, wnoise=1.8,
+			amp=0.5,out=0, freq=120, freq2=60, freq3=31, pan = 0 |
+
+			var env, env1, env1m, ses;
+			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel-0.1), gate, doneAction:2);
+			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.3], [-5, -5]));
+			env1m = env1.midicps;
+
+			ses = LFPulse.ar(env1m, 0, 0.1, env, -0.5);
+			ses = (ses + WhiteNoise.ar(wnoise))*env;
+			ses = LPF.ar(ses, env1m, env)*0.8;
+			ses = ses + SinOsc.ar(env1m, 0.5, env);
+			ses = ses.clip2(12);
+			ses = ses * mul;
+			ses = Limiter.ar(ses,0.9);
+			Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
+		}).add;
+			},
+			4,{},
+			5,{}
+		)
 	}
 }
 

@@ -86,7 +86,7 @@ IFBass {
 		~actBass = PatternProxy( Pseq([1], inf));
 		~actBassP= Pseq([~actBass], inf).asStream;
 
-		~volBass = PatternProxy( Pseq([0.0], inf));
+		~volBass = PatternProxy( Pseq([0.9], inf));
 		~volBassP = Pseq([~volBass], inf).asStream;
 
 		/*//StaticBass

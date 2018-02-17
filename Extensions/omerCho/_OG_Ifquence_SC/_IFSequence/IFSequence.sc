@@ -213,7 +213,8 @@ IFSequence {
 	}
 	*st{|index|
 		this.led(index);
-		IFLaunchSteps.led(index);
+		IFLpMnSteps.led(index);
+		//IFLaunchSteps.led(index);
 		IFSeqKick.stepPack(index);
 		IFSeqSnr.stepPack(index);
 		IFSeqHat.stepPack(index);

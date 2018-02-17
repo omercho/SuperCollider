@@ -38,14 +38,14 @@ IFPitchKeys {
 						"PITCHKeys SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 1);
 						IFPitchKeys.noteKeysOn;
-						~apc40.noteOn(~apcMnCh, 88, 1); //But 6
+						~lpMn.noteOn(~lpMnCh, 104, 1); //But 6
 					},
 					2,{
 						"PITCHKeys SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchKeys', 0);
 						~countPKeys=0;
 						IFPitchKeys.noteKeysOff;
-						~apc40.noteOn(~apcMnCh, 88, 1); //But 6
+						~lpMn.noteOn(~lpMnCh, 104, 0); //But 6
 					}
 				)}
 			);
@@ -55,8 +55,8 @@ IFPitchKeys {
 
 		//APC Pitch Keys Button
 		~countPKeysApc=0;
-		~apcPKeysButton.free;
-		~apcPKeysButton=MIDIFunc.noteOn({
+		~lpMnPKeysButton.free;
+		~lpMnPKeysButton=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
 				~countPKeysApc = ~countPKeysApc + 1;
@@ -75,7 +75,7 @@ IFPitchKeys {
 					}
 				)}
 			);
-		},srcID:~apc40InID, chan:~apcMnCh, noteNum:88);
+		},srcID:~lpMnInID, chan:~lpMnCh, noteNum:104);
 	}
 
 	*noteKeysOn {

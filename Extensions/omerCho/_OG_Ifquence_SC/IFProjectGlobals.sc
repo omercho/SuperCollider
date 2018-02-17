@@ -47,6 +47,7 @@ IFLoad.loadVolca;
 		//IFAPC40_Launch.load;
 		IFLaunchSteps.load;
 		IFLaunchNotes.load;
+		IFLpMnSteps.load;
 		~nt=(0);
 
 		/*
@@ -59,7 +60,7 @@ IFLoad.loadVolca;
 
 	*setAddr{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.5", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
@@ -77,7 +78,7 @@ IFLoad.loadVolca;
 
 	*setTempo {arg tempo;
 		Tempo.bpm=tempo;
-		~tmp1=110;
+		~tmp1=125;
 		~tOSCAdrr.sendMsg('tempoLabel', tempo);
 		//~mdOut.control(15, 3, tempo); //ableton global tempo
 		//Tempo.bpm = tempo;

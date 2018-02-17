@@ -100,7 +100,7 @@ IFSC {
 
 
 
-		SynthDef(\vBeatsInput, {|out1,out2, out3, out4, vol=0.9, pan=0.3,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vBeatsInput, {|out1,out2, out3, out4, vol=0.9, pan=0.3,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input, ctl;
 			input=SoundIn.ar(4,0.9,0);
 			input= Pan2.ar(input, 0)*2*vol;
@@ -109,18 +109,19 @@ IFSC {
 			Out.ar(out3, input*mtRev);
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
-		SynthDef(\vSamplerInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+
+		SynthDef(\vSamplerInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
 			//input=In.ar(in,2);
 			input=SoundIn.ar(6,0.9,0);
-			input=Pan2.ar(input, SinOsc.kr(pan).range(-0.5, 0.5);)*vol;
+			input=Pan2.ar(input, SinOsc.kr(pan).range(-0.5, 0.5);)*2*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
 			Out.ar(out3, input*mtRev);
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input, ctl;
 			input=SoundIn.ar(5,0.9,0);
 			//ctl = FOS.kr(LFSaw.kr(8, 0, 0.2), 1 - input.abs, input, fosMul);
@@ -131,7 +132,7 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0.5,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0.5,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
 			input=SoundIn.ar(7,0.9,0);
 			input= Pan2.ar(input, SinOsc.kr(pan).range(-0.7, 0.7);)*2*vol;
@@ -141,7 +142,7 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
 			input=In.ar(in,2);
 			input=Pan2.ar(input, 0)*vol;
@@ -151,7 +152,7 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=0|
+		SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
 			input=In.ar(in,2);
 			//input=SoundIn.ar(6,0.9,0);
@@ -186,7 +187,7 @@ IFSC {
 			room = 0.5, mix = 0.0, damp = 1.0 |
 			var input, ses, comp, compIn;
 			input = In.ar(in, 2);
-			compIn = In.ar(~busBeats,1);
+			compIn = In.ar(~busKick,1);
 			ses = FreeVerb.ar(input,mix,room,damp);
 			comp = Compander.ar(ses, compIn,
 				thresh: -72.dbamp,
@@ -403,8 +404,8 @@ IFSC {
 			arg msg; ~dly.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volDelay', msg[1]);
 		}, '/volDelay');
 		//-------------------------------------------
-		~volMainFad.free;
-		~volMainFad= OSCFunc({
+		~volRevFad.free;
+		~volRevFad= OSCFunc({
 			arg msg; ~rev.set(\lvl, msg[1]); ~tOSCAdrr.sendMsg('volReverb', msg[1]);
 		}, '/volReverb');
 

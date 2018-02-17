@@ -1,0 +1,543 @@
+<html><head><title>IFAPC40</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
+<script type='text/javascript'>var helpRoot='./..';</script>
+</head>
+<ul id='menubar'></ul>
+<body onload='fixTOC();prettyPrint()'>
+<div class='contents'>
+<div class='header'>
+<div id='label'>SuperCollider CLASSES (extension)</div>
+<div id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></div>
+<h1>IFAPC40</h1>
+<div id='summary'>(Undocumented class)</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc'>IFAPC40.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Object.html">Object</a></div>
+</div>
+<div id='toc'>
+<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented class methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*act'>act</a> </li>
+<li class='toc3'><a href='#*actLine1'>actLine1</a> </li>
+<li class='toc3'><a href='#*actLine1ButA1'>actLine1ButA1</a> </li>
+<li class='toc3'><a href='#*actLine1ButB1'>actLine1ButB1</a> </li>
+<li class='toc3'><a href='#*actLine1ButC1'>actLine1ButC1</a> </li>
+<li class='toc3'><a href='#*actLine2'>actLine2</a> </li>
+<li class='toc3'><a href='#*actLine2ButA2'>actLine2ButA2</a> </li>
+<li class='toc3'><a href='#*actLine2ButB2'>actLine2ButB2</a> </li>
+<li class='toc3'><a href='#*actLine2ButC2'>actLine2ButC2</a> </li>
+<li class='toc3'><a href='#*actLine3'>actLine3</a> </li>
+<li class='toc3'><a href='#*actLine3ButA3'>actLine3ButA3</a> </li>
+<li class='toc3'><a href='#*actLine3ButB3'>actLine3ButB3</a> </li>
+<li class='toc3'><a href='#*actLine3ButC3'>actLine3ButC3</a> </li>
+<li class='toc3'><a href='#*actLine4'>actLine4</a> </li>
+<li class='toc3'><a href='#*actLine4ButA4'>actLine4ButA4</a> </li>
+<li class='toc3'><a href='#*actLine4ButB4'>actLine4ButB4</a> </li>
+<li class='toc3'><a href='#*actLine4ButC4'>actLine4ButC4</a> </li>
+<li class='toc3'><a href='#*actLine5'>actLine5</a> </li>
+<li class='toc3'><a href='#*actLine5ButA5'>actLine5ButA5</a> </li>
+<li class='toc3'><a href='#*actLine5ButB5'>actLine5ButB5</a> </li>
+<li class='toc3'><a href='#*actLine5ButC5'>actLine5ButC5</a> </li>
+<li class='toc3'><a href='#*actLine6'>actLine6</a> </li>
+<li class='toc3'><a href='#*actLine6ButA6'>actLine6ButA6</a> </li>
+<li class='toc3'><a href='#*actLine6ButB6'>actLine6ButB6</a> </li>
+<li class='toc3'><a href='#*actLine6ButC6'>actLine6ButC6</a> </li>
+<li class='toc3'><a href='#*actLine7'>actLine7</a> </li>
+<li class='toc3'><a href='#*actLine7ButA7'>actLine7ButA7</a> </li>
+<li class='toc3'><a href='#*actLine7ButB7'>actLine7ButB7</a> </li>
+<li class='toc3'><a href='#*actLine7ButC7'>actLine7ButC7</a> </li>
+<li class='toc3'><a href='#*actLine8'>actLine8</a> </li>
+<li class='toc3'><a href='#*actLine8ButA8'>actLine8ButA8</a> </li>
+<li class='toc3'><a href='#*actLine8ButB8'>actLine8ButB8</a> </li>
+<li class='toc3'><a href='#*actLine8ButC8'>actLine8ButC8</a> </li>
+<li class='toc3'><a href='#*addr'>addr</a> </li>
+<li class='toc3'><a href='#*globals'>globals</a> </li>
+<li class='toc3'><a href='#*load'>load</a> </li>
+<li class='toc3'><a href='#*psrButtonsPlay'>psrButtonsPlay</a> </li>
+<li class='toc3'><a href='#*resetLeds'>resetLeds</a> </li>
+<li class='toc3'><a href='#*shiftButton'>shiftButton</a> </li>
+<li class='toc3'><a href='#*tracks'>tracks</a> </li>
+<li class='toc3'><a href='#*tsLed'>tsLed</a> </li>
+<li class='toc3'><a href='#*tsLeds'>tsLeds</a> </li>
+</ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#Help template'>Help template</a></li>
+<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>This class is missing documentation.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented class methods'>Undocumented class methods</a></h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*act' href='./../Overviews/Methods.html#act'>act</a> (<span class='argstr'>chan</span>, <span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine1' href='./../Overviews/Methods.html#actLine1'>actLine1</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine1ButA1' href='./../Overviews/Methods.html#actLine1ButA1'>actLine1ButA1</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine1ButB1' href='./../Overviews/Methods.html#actLine1ButB1'>actLine1ButB1</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine1ButC1' href='./../Overviews/Methods.html#actLine1ButC1'>actLine1ButC1</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine2' href='./../Overviews/Methods.html#actLine2'>actLine2</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine2ButA2' href='./../Overviews/Methods.html#actLine2ButA2'>actLine2ButA2</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine2ButB2' href='./../Overviews/Methods.html#actLine2ButB2'>actLine2ButB2</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine2ButC2' href='./../Overviews/Methods.html#actLine2ButC2'>actLine2ButC2</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine3' href='./../Overviews/Methods.html#actLine3'>actLine3</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine3ButA3' href='./../Overviews/Methods.html#actLine3ButA3'>actLine3ButA3</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine3ButB3' href='./../Overviews/Methods.html#actLine3ButB3'>actLine3ButB3</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine3ButC3' href='./../Overviews/Methods.html#actLine3ButC3'>actLine3ButC3</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine4' href='./../Overviews/Methods.html#actLine4'>actLine4</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine4ButA4' href='./../Overviews/Methods.html#actLine4ButA4'>actLine4ButA4</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine4ButB4' href='./../Overviews/Methods.html#actLine4ButB4'>actLine4ButB4</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine4ButC4' href='./../Overviews/Methods.html#actLine4ButC4'>actLine4ButC4</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine5' href='./../Overviews/Methods.html#actLine5'>actLine5</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine5ButA5' href='./../Overviews/Methods.html#actLine5ButA5'>actLine5ButA5</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine5ButB5' href='./../Overviews/Methods.html#actLine5ButB5'>actLine5ButB5</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine5ButC5' href='./../Overviews/Methods.html#actLine5ButC5'>actLine5ButC5</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine6' href='./../Overviews/Methods.html#actLine6'>actLine6</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine6ButA6' href='./../Overviews/Methods.html#actLine6ButA6'>actLine6ButA6</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine6ButB6' href='./../Overviews/Methods.html#actLine6ButB6'>actLine6ButB6</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine6ButC6' href='./../Overviews/Methods.html#actLine6ButC6'>actLine6ButC6</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine7' href='./../Overviews/Methods.html#actLine7'>actLine7</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine7ButA7' href='./../Overviews/Methods.html#actLine7ButA7'>actLine7ButA7</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine7ButB7' href='./../Overviews/Methods.html#actLine7ButB7'>actLine7ButB7</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine7ButC7' href='./../Overviews/Methods.html#actLine7ButC7'>actLine7ButC7</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine8' href='./../Overviews/Methods.html#actLine8'>actLine8</a> (<span class='argstr'>val1</span>, <span class='argstr'>val2</span>, <span class='argstr'>val3</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine8ButA8' href='./../Overviews/Methods.html#actLine8ButA8'>actLine8ButA8</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine8ButB8' href='./../Overviews/Methods.html#actLine8ButB8'>actLine8ButB8</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*actLine8ButC8' href='./../Overviews/Methods.html#actLine8ButC8'>actLine8ButC8</a> (<span class='argstr'>val</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*addr' href='./../Overviews/Methods.html#addr'>addr</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*globals' href='./../Overviews/Methods.html#globals'>globals</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*load' href='./../Overviews/Methods.html#load'>load</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*psrButtonsPlay' href='./../Overviews/Methods.html#psrButtonsPlay'>psrButtonsPlay</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*resetLeds' href='./../Overviews/Methods.html#resetLeds'>resetLeds</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*shiftButton' href='./../Overviews/Methods.html#shiftButton'>shiftButton</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*tracks' href='./../Overviews/Methods.html#tracks'>tracks</a> </h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*tsLed' href='./../Overviews/Methods.html#tsLed'>tsLed</a> (<span class='argstr'>chan</span>, <span class='argstr'>led</span>)</h3>
+<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*tsLeds' href='./../Overviews/Methods.html#tsLeds'>tsLeds</a> (<span class='argstr'>led1</span>, <span class='argstr'>led2</span>, <span class='argstr'>led3</span>, <span class='argstr'>led4</span>, <span class='argstr'>led5</span>, <span class='argstr'>led6</span>, <span class='argstr'>led7</span>, <span class='argstr'>led8</span>)</h3>
+<h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='Help template'>Help template</a></h2>
+
+<p>Copy and paste the text below and save to HelpSource/Classes/IFAPC40.schelp<pre class='code prettyprint lang-sc'>TITLE:: IFAPC40
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: actLine1ButB1
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine5ButB5
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine5ButA5
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine4ButC4
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine5ButC5
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine6ButC6
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine2
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tsLeds
+(describe method here)
+
+ARGUMENT:: led1
+(describe argument here)
+
+ARGUMENT:: led2
+(describe argument here)
+
+ARGUMENT:: led3
+(describe argument here)
+
+ARGUMENT:: led4
+(describe argument here)
+
+ARGUMENT:: led5
+(describe argument here)
+
+ARGUMENT:: led6
+(describe argument here)
+
+ARGUMENT:: led7
+(describe argument here)
+
+ARGUMENT:: led8
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine2ButB2
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine8ButC8
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine4ButB4
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine5
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: shiftButton
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: load
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine3
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: addr
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine4
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine2ButC2
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine6ButB6
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tsLed
+(describe method here)
+
+ARGUMENT:: chan
+(describe argument here)
+
+ARGUMENT:: led
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine7ButA7
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine6
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine1ButC1
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine7ButB7
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine8ButB8
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: resetLeds
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine1
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine7ButC7
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine8
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine3ButA3
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine4ButA4
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tracks
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine6ButA6
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine7
+(describe method here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine3ButB3
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine3ButC3
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: psrButtonsPlay
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: act
+(describe method here)
+
+ARGUMENT:: chan
+(describe argument here)
+
+ARGUMENT:: val1
+(describe argument here)
+
+ARGUMENT:: val2
+(describe argument here)
+
+ARGUMENT:: val3
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine1ButA1
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: globals
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine2ButA2
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: actLine8ButA8
+(describe method here)
+
+ARGUMENT:: val
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
+</pre>
+<div class='doclink'>link::Classes/IFAPC40::<br>sc version: 3.6.5</div></div></body></html>

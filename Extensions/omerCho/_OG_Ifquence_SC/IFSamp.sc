@@ -1,6 +1,12 @@
 
 /*
 IFSamp.loadSC;
+IFSamp.synthDef(1);
+IFSamp.synthDef(2);
+IFSamp.synthDef(3);
+IFSamp.synthDef(4);
+IFSamp.synthDef(5);
+
 
 IFSamp.times(2);
 IFSamp.pat_1;
@@ -65,48 +71,8 @@ IFSamp {
 		~sin1Samp=1.1;
 		~sin2Samp=0.9;
 		~rootFreqSamp=~c5; // 261=C4|523=C5
+		IFSamp.synthDef(1);
 
-		SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
-			sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
-			lfo1Rate=0.1, lfo2Rate=0.22,
-			att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
-			rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
-
-			var osc, osc2, osc3, ses;
-			var env, env1, env2, env3;
-			var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
-			var lfo1, lfo2, lfo3, decay,imp;
-
-			var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
-			startPos = startPos * BufFrames.kr(bufnum);
-			freqBuf = freq;
-			freqBuf = freqBuf.ratiomidi;
-			freqBuf = freqBuf.midicps/rootFreq;
-			freqOsc = freq;
-			//freqRate = freqRate.keyToDegree();
-			//freqRate = freqRate.midiratio;
-
-			lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 1.2);
-			lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
-			lfo3 = SinOsc.kr(lfo1Rate).range(0.8, 1.2);
-
-			env =  EnvGen.ar(Env.adsr(att, dec+0.1, susLev, rel), gate, -2, doneAction:2);
-			env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
-			env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
-			env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
-
-			osc = LFSaw.ar(LFSaw.kr(lfo1Rate*0.05, 0, freqOsc, freqOsc*2), 0)*0.4;
-			osc2 = SinOsc.ar(LFSaw.kr(lfo1Rate*0.08, 0, freqOsc, freqOsc*4), 0)*0.1;
-			buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*1.9;
-			filt= MoogFF.ar(
-				(1*buf)+(osc*0.1*osc2),
-				//12220,
-				cut1*(~c5*lfo1)*2,
-				1
-			);
-			mix = Mix.ar(osc)+Mix.ar(buf)+Mix.ar(filt+osc2);
-			Out.ar(out, Pan2.ar(Mix.ar(mix)*mul*0.5, pan, env)*amp);
-		}).add;
 
 		~n01.free;~n01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01.aif");
 		~n02.free;~n02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01R.aif");
@@ -169,6 +135,9 @@ IFSamp {
 		~actSamp = PatternProxy( Pseq([1], inf));
 		~actSampP= Pseq([~actSamp], inf).asStream;
 
+		~volSamp = PatternProxy( Pseq([0.9], inf));
+		~volSampP = Pseq([~volSamp], inf).asStream;
+
 		/*//StaticSamp
 		~actStSamp = PatternProxy( Pseq([0], inf));
 		~actStSampP= Pseq([~actStSamp], inf).asStream;
@@ -225,9 +194,9 @@ IFSamp {
 			\bufnum, Pseq([~bufnumSampP.next], inf),
 			\dur, Pseq([~dur1SampP.next],~actSampP),
 			\degree, Pseq([~nt1SampP.next], inf),
-			\amp, Pseq([~amp1SampP.next], inf),
+			\amp, Pseq([~volSampP.next*~amp1SampP.next], inf),
 			\sustain, Pseq([~sus1SampP.next],inf)*~susMulSamp,
-			\mtranspose, Pseq([~transSampP.next], inf)+~trSamp,
+			\mtranspose, Pseq([~transSampP.next], inf)+~trSamp+~transShufSampP.next,
 			\octave, Pseq([~octSampP.next], inf)+~octMulSamp,
 			\harmonic, Pseq([~hrmSampP.next], inf)+~harmSamp,
 			\legato, Pseq([~legSampP.next], inf),
@@ -265,17 +234,6 @@ IFSamp {
 		).play(quant:0);
 
 	}//p1
-	/**stat01 {|i=1|
-	var val;
-	val=i;
-	~staticSampPat=Pbind(
-	\chan, ~chSamp,
-	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-	\dur, Pseq([~durStSampP.next],~actStSampP.next),
-	\degree, Pseq([~ntStSampP.next], inf),
-	\amp, Pseq([~ampStSampP.next], inf)
-	).play;
-	}//stat01*/
 
 	*apc40{
 
@@ -283,7 +241,7 @@ IFSamp {
 		~volSamp_APC=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volSamp', vel/127);
-			~mdOut.control(7, 1, vel);
+			~volSamp.source = vel/127;
 
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd6);
 
@@ -640,6 +598,242 @@ IFSamp {
 			'/octSampDiv'
 		);
 
+	}
+	*synthDef{|index|
+		index.switch(
+			1,{
+				SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+					sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+					lfo1Rate=0.1, lfo2Rate=0.22,
+					att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+					rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
+
+					var osc, osc2, osc3, ses;
+					var env, env1, env2, env3;
+					var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+					var lfo1, lfo2, lfo3, decay,imp;
+
+					var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+					startPos = startPos * BufFrames.kr(bufnum);
+					freqBuf = freq;
+					freqBuf = freqBuf.ratiomidi;
+					freqBuf = freqBuf.midicps/rootFreq;
+					freqOsc = freq;
+					//freqRate = freqRate.keyToDegree();
+					//freqRate = freqRate.midiratio;
+
+					lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 1.2);
+					lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+					lfo3 = SinOsc.kr(lfo1Rate).range(0.8, 1.2);
+
+					env =  EnvGen.ar(Env.adsr(att+0.01, dec+0.2, susLev*lfo2, rel*0.3), gate, -2, doneAction:2);
+					env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+					env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+					env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+					osc2 = Blip.ar(freq)*0.4;
+					osc = Blip.ar(freq,osc2.tanh, env);
+
+					buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*env;
+					filt= MoogFF.ar(
+						[osc],
+						(lfo1*10000),
+						1,
+						mul:0.6
+					);
+					filt2= MoogFF.ar(
+						[osc],
+						2200*lfo1,
+						0.5,
+						mul:0.4
+					);
+					mix = Mix(filt2);
+					Out.ar(out, Pan2.ar(mix*mul, pan, env)*amp);
+				}).add;
+			},
+			2,{
+SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+	lfo1Rate=0.1, lfo2Rate=0.22,
+	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
+
+	var osc1, osc2, osc3, ses;
+	var env, env1, env2, env3;
+	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+	var lfo1, lfo2, lfo3, decay,imp;
+
+	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+	startPos = startPos * BufFrames.kr(bufnum);
+	freq = freq/4;
+	freqBuf = freq;
+	freqBuf = freqBuf.ratiomidi;
+	freqBuf = freqBuf.midicps/rootFreq;
+	freqOsc = freq;
+	//freqRate = freqRate.keyToDegree();
+	//freqRate = freqRate.midiratio;
+
+	lfo1 = SinOsc.kr(lfo1Rate).range(0.0, 1.0);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+	lfo3 = SinOsc.kr(lfo1Rate).range(0.5, 4.5);
+
+	env =  EnvGen.ar(Env.adsr(att, dec+0.1, susLev, rel), gate, -2, doneAction:2);
+	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+
+	osc1 = LFPulse.ar(LFSaw.kr(lfo1Rate*0.05, 0, freqOsc, freqOsc*2), 0)*0.4;
+	osc2 = SinOscFB.ar(freq, lfo1, amp * env1) * cut1*1.2 ;
+	osc3 = FSinOsc.ar(LFSaw.kr(lfo1Rate*0.08, 0, freqOsc, freqOsc*4), 0)*0.5;
+	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*1.9;
+	filt= MoogFF.ar(
+		(osc1),
+		//12220,
+		cut1*(~c5*lfo2),
+		1
+	);
+	mix = XFade2.ar(filt*osc2*lfo2, filt*osc3*lfo3, lfo3, 1);
+	Out.ar(out, Pan2.ar(mix*mul*1.0, pan, env)*amp);
+}).add;
+			},
+			3,{
+SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+	lfo1Rate=0.1, lfo2Rate=0.22,
+	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
+
+	var osc1, osc2, osc3, ses;
+	var env, env1, env2, env3;
+	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+	var lfo1, lfo2, lfo3, decay,imp;
+
+	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+	startPos = startPos * BufFrames.kr(bufnum);
+	freq = freq/4;
+	freqBuf = freq;
+	freqBuf = freqBuf.ratiomidi;
+	freqBuf = freqBuf.midicps/rootFreq;
+	freqOsc = freq;
+	//freqRate = freqRate.keyToDegree();
+	//freqRate = freqRate.midiratio;
+
+	lfo1 = SinOsc.kr(lfo1Rate).range(0.0, 1.0);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+	lfo3 = SinOsc.kr(lfo1Rate).range(0.5, 4.5);
+
+	env =  EnvGen.ar(Env.adsr(att, dec+0.1, susLev, rel), gate, -2, doneAction:2);
+	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+
+	osc1 = LFPulse.ar(LFPulse.kr(lfo2Rate*0.0005, 1, freq*2, freq*0.0), 0)*0.4;
+	osc2 = SinOscFB.ar(freq, lfo1, amp * env1) *1.0 ;
+	osc3 = FSinOsc.ar(LFPulse.kr(lfo1Rate*0.0008, 0.5, freq, freq*1.0), 0)*0.6;
+	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*1.9;
+	filt= MoogFF.ar(
+		(osc1),
+		6220*cut1*(lfo3),
+		1
+	);
+	mix= Mix(filt,osc1);
+	mix = XFade2.ar(mix*osc2, mix*osc3, 0, 1);
+	Out.ar(out, Pan2.ar(mix*mul*1.0, pan, env)*amp);
+}).add;
+			},
+			4,{
+SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+	lfo1Rate=0.1, lfo2Rate=0.22,
+	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
+
+	var osc1, osc2, osc3, ses;
+	var env, env1, env2, env3;
+	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+	var lfo1, lfo2, lfo3, decay,imp;
+
+	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+	startPos = startPos * BufFrames.kr(bufnum);
+	freq = freq/2;
+	freqBuf = freq;
+	freqBuf = freqBuf.ratiomidi;
+	freqBuf = freqBuf.midicps/rootFreq;
+	freqOsc = freq;
+	//freqRate = freqRate.keyToDegree();
+	//freqRate = freqRate.midiratio;
+
+	lfo1 = SinOsc.kr(lfo1Rate).range(0.0, 1.0);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+	lfo3 = SinOsc.kr(lfo1Rate).range(0.5, 4.5);
+
+	env =  EnvGen.ar(Env.adsr(att, dec+0.1, susLev, rel), gate, -2, doneAction:2);
+	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+
+	osc1 = Blip.ar(freq, 0,env1)*0.4;
+	osc2 = SinOscFB.ar(freq, 1) *1.0 ;
+	osc3 = FSinOsc.ar(freq, 0)*0.6;
+	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*1.9;
+	filt= MoogFF.ar(
+		(osc1),
+		6220,
+		1
+	);
+	mix= Mix(filt,osc2);
+	mix = XFade2.ar(mix*osc2, mix*osc3, 0, 1);
+	Out.ar(out, Pan2.ar(mix*mul*1.0, pan, env)*amp);
+}).add;
+			},
+			5,{
+SynthDef( \IFSamp_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+	lfo1Rate=0.1, lfo2Rate=0.22,
+	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05|
+
+	var osc1, osc2, osc3, ses;
+	var env, env1, env2, env3;
+	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+	var lfo1, lfo2, lfo3, decay,imp;
+
+	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+	startPos = startPos * BufFrames.kr(bufnum);
+	freq = freq/2;
+	freqBuf = freq;
+	freqBuf = freqBuf.ratiomidi;
+	freqBuf = freqBuf.midicps/rootFreq;
+	freqOsc = freq;
+	//freqRate = freqRate.keyToDegree();
+	//freqRate = freqRate.midiratio;
+
+	lfo1 = SinOsc.kr(lfo1Rate).range(0.0, 1.0);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+	lfo3 = SinOsc.kr(lfo1Rate).range(0.5, 4.5);
+
+	env =  EnvGen.ar(Env.adsr(att, dec+0.1, susLev, rel), gate, -2, doneAction:2);
+	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+
+	osc1 = Blip.ar(freq, 0,env1)*0.4;
+	osc2 = SinOscFB.ar(freq, 1,env2) *0.3;
+	osc3 = FSinOsc.ar(freq, 0,env3)*0.6;
+	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*1.9;
+	filt= MoogFF.ar(
+		(osc3),
+		6220,
+		1
+	);
+	mix= Mix(filt,osc2);
+	mix = XFade2.ar(mix*osc1, filt*4, 0, 1);
+	Out.ar(out, Pan2.ar(mix*mul*1.0, pan, env)*amp);
+}).add;
+			},
+			6,{},
+			7,{},
+			8,{}
+		)
 	}
 
 

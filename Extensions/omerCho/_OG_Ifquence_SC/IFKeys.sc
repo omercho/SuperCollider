@@ -90,7 +90,7 @@ IFKeys {
 		~actKeys = PatternProxy( Pseq([1], inf));
 		~actKeysP= Pseq([~actKeys], inf).asStream;
 
-		~volKeys = PatternProxy( Pseq([0.0], inf));
+		~volKeys = PatternProxy( Pseq([0.9], inf));
 		~volKeysP = Pseq([~volKeys], inf).asStream;
 
 		/*//StaticKeys
