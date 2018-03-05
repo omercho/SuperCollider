@@ -1,0 +1,10 @@
+*.DS_Store
+*.scx
+*.so
+*.o
+*.lisp
+*.me
+*.cmake
+Makefile
+CMakeCache.txt
+CMakeFiles

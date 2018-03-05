@@ -26,9 +26,7 @@ IFMIDIMix{
 
 	}//loadAtStart
 	*addr{
-		~mdMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST2 MDMx");
-		~mdMixOutID=(-244313804);
-		~mdMixInID=(1119599649);
+
 	}
 	*globals{
 		//channels
@@ -302,7 +300,8 @@ IFMIDIMix{
 		~mdMixFad1.free;
 		~mdMixFad1=MIDIFunc.cc( {
 			arg vel;
-			~vBeats.control(9, ~kickLev, vel);
+			~tOSCAdrr.sendMsg('susMulKick', vel/127);
+			~susMulKick=(vel/127)+0.05;
 
 		},srcID:~mdMixInID, chan:~mdMixLn1, ccNum:30);
 		~mdMixNob1A.free;
@@ -369,7 +368,8 @@ IFMIDIMix{
 		~mdMixFad2.free;
 		~mdMixFad2=MIDIFunc.cc( {
 			arg vel;
-			~vBeats.control(9, ~snrLev, vel);
+			~tOSCAdrr.sendMsg('susMulSnr', vel/127);
+			~susMulSnr=(vel/127)+0.05;
 
 		},srcID:~mdMixInID, chan:~mdMixLn2, ccNum:30);
 		//Nobs
@@ -436,9 +436,8 @@ IFMIDIMix{
 		~mdMixFad3.free;
 		~mdMixFad3=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVHat', vel/127);
-			~vBeats.control(9, ~hatCLev, vel);
-			~vBeats.control(9, ~hatOLev, vel);
+			~tOSCAdrr.sendMsg('susMulHat', vel/127);
+			~susMulHat=(vel/127)+0.05;
 
 		},srcID:~mdMixInID, chan:~mdMixLn3, ccNum:30);
 		~mdMixNob3A.free;
@@ -505,8 +504,8 @@ IFMIDIMix{
 		~mdMixFad4.free;
 		~mdMixFad4=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVClap', vel/127);
-			~vBeats.control(9, ~clapLev, vel);
+			~tOSCAdrr.sendMsg('susMulBass', vel/127);
+			~susMulBass=(vel/127)+0.05;
 
 		},srcID:~mdMixInID, chan:~mdMixLn4, ccNum:30);
 		~mdMixNob4A.free;
@@ -570,6 +569,38 @@ IFMIDIMix{
 				)}
 			);
 		},srcID:~mdMixInID, chan:~mdMixGlobChan, noteNum:~mtBut5);
+
+		~mdMixFad5.free;
+		~mdMixFad5=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('susMulKeys', vel/127);
+			~susMulKeys=(vel/127)+0.05;
+
+		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:30);
+		~mdMixNob5A.free;
+		~mdMixNob5A=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volVPcm', vel/127);
+			~vBeats.control(9, ~calvLev, vel);
+			~vBeats.control(9, ~agogLev, vel);
+
+		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:33);
+		~mdMixNob5B.free;
+		~mdMixNob5B=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('speedPcm', vel/127);
+			~vBeats.control(9, ~calvSpeed, vel);
+			~vBeats.control(9, ~agogSpeed, vel);
+
+
+		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:32);
+		~mdMixNob5C.free;
+		~mdMixNob5C=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('speedClap', vel/127);
+			~vBeats.control(9, ~clapSpeed, vel);
+
+		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:31);
 		/////
 		/////
 		/*

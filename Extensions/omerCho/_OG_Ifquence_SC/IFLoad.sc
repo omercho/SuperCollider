@@ -10,13 +10,13 @@ IFLoad.loadVolca;
 IFLoad{
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.loadVolca; });
+			//Server.default.doWhenBooted({this.loadVolca; });
 		}
 	}
 	*loadVolca{
 		fork{
 			Server.default.doWhenBooted({
-				~volcaBoolean=1;
+				~volcaBoolean=0;
 				IFProjectGlobals.load;
 				0.1.wait;
 				IFSequence.loadAll;

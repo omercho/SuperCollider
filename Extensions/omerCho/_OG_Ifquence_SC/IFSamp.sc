@@ -73,18 +73,8 @@ IFSamp {
 		~rootFreqSamp=~c5; // 261=C4|523=C5
 		IFSamp.synthDef(1);
 
-
-		~n01.free;~n01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01.aif");
-		~n02.free;~n02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01R.aif");
-		~n03.free;~n03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02.aif");
-		~n04.free;~n04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02R.aif");
-		~p01.free;~p01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/piano01.aif");
-		~p02.free;~p02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/sop01.aif");
-		~p03.free;~p03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01.aif");
-		~p04.free;~p04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01r.aif");
-		//~samplerEvent = Event.default.put(\freq, { ~midinote.midicps / ~sampleBaseFreq });
-
-		~bufnumSamp = PatternProxy( Pseq([~p02], inf));
+		~defaultBufSamp.free;~defaultBufSamp = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/sop01.aif");
+		~bufnumSamp = PatternProxy( Pseq([~defaultBufSamp], inf));
 		~bufnumSampP = Pseq([~bufnumSamp], inf).asStream;
 
 
@@ -138,17 +128,6 @@ IFSamp {
 		~volSamp = PatternProxy( Pseq([0.9], inf));
 		~volSampP = Pseq([~volSamp], inf).asStream;
 
-		/*//StaticSamp
-		~actStSamp = PatternProxy( Pseq([0], inf));
-		~actStSampP= Pseq([~actStSamp], inf).asStream;
-		~durStSamp = PatternProxy( Pseq([1], inf));
-		~durStSampP = Pseq([~durStSamp], inf).asStream;
-		~ampStSamp = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStSampP = Pseq([~ampStSamp], inf).asStream;
-		~ntStSamp = PatternProxy( Pseq([67], inf));
-		~ntStSampP = Pseq([~ntStSamp], inf).asStream;*/
-
-
 	}
 
 	*new{|i=1|
@@ -157,38 +136,17 @@ IFSamp {
 		case
 		{ i == val }  {
 			{val.do{
-
-				//~sampLate=~abLate;
 				~sampLate.wait;
-
-				this.p1(val);
-
-				//~durMulP*((~dur1SampP.next)/val).wait;
+				//this.p1(val);
+				this.p1_SC(val);
 				((~dur1SampP.next)*(~durMulP.next)/val).wait;
-
 			}}.fork;
 		}
-
 	}
 
-	*p1 {|i=1|
+	*p1_SC {|i=1|
 		var val;
 		val=i;
-
-		/*Pbind(
-		\chan, ~chSamp,
-		\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-		\dur, Pseq([~dur1SampP.next],~actSampP),
-		\degree, Pseq([~nt1SampP.next], 1),
-		\amp, Pseq([~amp1SampP.next], 1),
-		\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
-		\mtranspose, Pseq([~transSampP.next], 1)+~trSamp+~transShufSampP.next,
-		\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
-		\harmonic, Pseq([~hrmSampP.next], 1)+~harmSamp
-
-
-		).play;*/
-
 		Pbind(
 			\instrument, \IFSamp_SC, \scale, Pfunc({~scl2}, inf),
 			\bufnum, Pseq([~bufnumSampP.next], inf),
@@ -210,12 +168,32 @@ IFSamp {
 			\dec, ~decSamp,
 			\susLev, ~susLevSamp,
 			\rel, ~relSamp,
-			\lfo1Rate, ~lfo1SampP*~lfoMulSamp,
-			\lfo2Rate, ~lfo2SampP*~lfoMulSamp,
+			\lfo1Rate, Pseq([~lfo1SampP.next],inf)*~lfoMulSamp,
+			\lfo2Rate, Pseq([~lfo2SampP.next],inf)*~lfoMulSamp,
 			\group, ~piges,
 			\out, Pseq([~busSamp], inf )
 
 		).play(quant:0);
+
+
+	}//p1_SC
+	*p1 {|i=1|
+		var val;
+		val=i;
+
+		Pbind(
+		\chan, ~chSamp,
+		\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+		\dur, Pseq([~dur1SampP.next],~actSampP),
+		\degree, Pseq([~nt1SampP.next], 1),
+		\amp, Pseq([~amp1SampP.next], 1),
+		\sustain, Pseq([~sus1SampP.next],1)*~susMulSamp,
+		\mtranspose, Pseq([~transSampP.next], 1)+~trSamp+~transShufSampP.next,
+		\octave, Pseq([~octSampP.next], 1)+~octMulSamp,
+		\harmonic, Pseq([~hrmSampP.next], 1)+~harmSamp
+
+
+		).play;
 
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,

@@ -42,9 +42,23 @@ IFSnr {
 		~snrVolC=1;
 
 		~tuneSnr=26;
+
+		~susMulSnr=1;
+		~attSnr=0.001;
+		~decSnr=0.08;
+		~susLevSnr=0.0;
+		~relSnr = 0.09;
+		~wnoiseSnr=1.0;
+		~tomMul=0;
+
+		~freq2Snr=69;
+		~freq3Snr=49;
+
+		~lfoMulSnr=1;
 	}
 
 	*proxy {
+		IFKick.synthDef(1);
 
 		~nt1Snr = PatternProxy( Pseq([0], inf));
 		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
@@ -74,7 +88,7 @@ IFSnr {
 		~actSnrLfo1 = PatternProxy( Pseq([0], inf));
 		~actSnrLfo1P= Pseq([~actSnrLfo1], inf).asStream;
 
-		~volSnr = PatternProxy( Pseq([0.0], inf));
+		~volSnr = PatternProxy( Pseq([0.9], inf));
 		~volSnrP = Pseq([~volSnr], inf).asStream;
 
 		~delta1VSamp06 = PatternProxy( Pseq([1/1], inf));
@@ -83,24 +97,51 @@ IFSnr {
 		~delta2VSamp06 = PatternProxy( Pseq([1/1], inf));
 		~delta2VSamp06P = Pseq([~delta2VSamp06], inf).asStream;
 
+		~lfoMulSnr=1;
+		~lfo1Snr = PatternProxy( Pseq([1], inf));
+		~lfo1SnrP = Pseq([~lfo1Snr], inf).asStream;
+		~lfo2Snr = PatternProxy( Pseq([1], inf));
+		~lfo2SnrP = Pseq([~lfo2Snr], inf).asStream;
+
 	}//*proxy
-
-
 	*new{|i=1|
 		var val;
 		val=i;
 		case
 		{ i == val }  {
 			{val.do{
-
-				//~snrLate=~abLate;
 				~snrLate.wait;
-				this.p1(val);
-				//~durMulP*((~dur1SnrP.next)/val).wait;
+				this.p1_SC(val);
+				//this.p1(val);
 				((~dur1SnrP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
+	}
 
+	*p1_SC {|i=1|
+		var val;
+		val=i;
+		Pbind(\instrument, \IFSnr_SC, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur1SnrP.next/val],~actSnrP),
+			\degree, Pseq([~nt1SnrP.next],inf),
+			\amp, Pseq([~volSnrP.next*~amp1SnrP.next], inf),
+			\sustain, Pseq([~sus1SnrP.next],1)*~susMulSnr,
+			\mtranspose, Pseq([~transSnrP.next], 1)+~trSnr,
+			\octave, Pseq([~octSnrP.next], 1)+~octMulSnr,
+			\harmonic, Pseq([~hrmSnrP.next], 1)+~harmSnr,
+			\pan, Pbrown(-0.5, 0.5, 0.125, inf),
+			\att, ~attSnr,
+			\dec, ~decSnr,
+			\susLev, ~susLevSnr,
+			\rel, ~relSnr,
+			\wnoise,~wnoiseSnr,
+			\freq2, ~freq2Snr,
+			\freq3, ~freq3Snr,
+			\lfo1Rate, ~lfo1SnrP*~lfoMulSnr,
+			\lfo2Rate, ~lfo2SnrP*~lfoMulSnr,
+			\group, ~piges,
+			\out, Pseq([[~busSnr]], inf )
+		).play(quant:0);
 	}
 
 	*p1 {|i=1|
@@ -138,7 +179,7 @@ IFSnr {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVSamp06', vel/127);
 			//~vSamp.control(~smp06, ~smpLvl, vel);
-			~volSnr.source = vel;
+			~volSnr.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd2);
 
 		//Act ButA2
@@ -261,8 +302,43 @@ IFSnr {
 			},
 			'/volSnr'
 		);
+		~xy1Snr.free;
+		~xy1Snr= OSCFunc({
+			arg msg;
+
+
+
+			},
+			'/xy1Snr'
+		);
 
 		~attSnrFader.free;
+		~attSnrFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*2;
+			~attSnr=val+0.01;
+			},
+			'/attSnr'
+		);
+		~susLevSnrFader.free;
+		~susLevSnrFader= OSCFunc({
+			arg msg;
+			~susLevSnr=msg[1];
+			msg[1].postln
+			},
+			'/susSnr'
+		);
+
+		~decSnrFader.free;
+		~decSnrFader= OSCFunc({
+			arg msg;
+			~decSnr=msg[1];
+			msg[1].postln
+			},
+			'/decSnr'
+		);
+
+		/*~attSnrFader.free;
 		~attSnrFader= OSCFunc({
 			arg msg,vel;
 			vel=msg[1]*127;
@@ -317,7 +393,7 @@ IFSnr {
 
 			},
 			'sendSnr'
-		);
+		);*/
 
 		//TIME
 
@@ -450,31 +526,40 @@ IFSnr {
 
 	}
 
+*synthDef{|index|
+		index.switch(
+			1,{
+				SynthDef(\IFSnr_SC, {| att =0.01, sustain=0.1, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+			gate=1, wnoise=2.8,
+			lfo1Rate=1, lfo2Rate=1,
+			amp=0.9,out=0, freq=110, freq2=69, freq3=49, pan = 0 |
 
-	*ctl_1 {
+			var env, env1, env1m, ses,lfo1, lfo2;
+			lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+			lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, sustain], [-4, -5]));
+			env1m = env1.midicps;
 
+			ses = SinOsc.ar(env1m*2,lfo2-0.9);
+			ses = Mix.ar(ses*0.2,WhiteNoise.ar(wnoise));
+			ses = HPF.ar(ses, env1m, env);
+			ses = ses + SinOsc.ar(env1m, 0.5, env);
+			ses = ses.clip2(0.2+wnoise);
+			ses = ses * mul;
+			Out.ar(out, Pan2.ar(ses, pan, amp*1.1)*env);
+		}).add;
 
-	}
+			},
+			2,{
 
-	*ctl_2 {
+			},
+			3,{
 
-
-	}
-
-	*ctl_3 {
-
-
-	}
-	*ctl_9 {
-
-
-
-	}
-
-	*ctl_18 {
-
-
-
+			},
+			4,{},
+			5,{}
+		)
 	}
 
 }

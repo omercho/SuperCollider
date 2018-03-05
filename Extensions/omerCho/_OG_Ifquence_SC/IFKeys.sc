@@ -1,5 +1,9 @@
 
 /*
+
+PostAllMIDI.on;
+PostAllMIDI.off;
+
 IFKeys.times(2);
 IFKeys(3);
 
@@ -19,6 +23,7 @@ IFKeys {
 	*load{
 		this.globals;
 		this.proxy;
+		this.loadSC;
 		this.osc;
 		this.apc40;
 		//this.beh;
@@ -35,6 +40,8 @@ IFKeys {
 		~lfoMulKeys1=0;
 		~lfoMulKeys2=0;
 		~trKeys=0;
+		~lfoMulKeys1=0.2;
+		~lfoMulKeys2=0.2;
 
 	}
 	*octave{|val|
@@ -43,6 +50,25 @@ IFKeys {
 	*octMul{|val|
 		~octMulKeys = val;
 		~tOSCAdrr.sendMsg('octKeysLabel', val);
+	}
+	*loadSC{
+
+		~attKeys=0.05;
+		~decKeys=1.02;
+		~susLevKeys=1.1;
+		~relKeys = 0.5;
+		~lfoMulKeys=0.8;
+		~cutKeys=0.1;
+		~legatoKeys=0.08;
+		~sin1Keys=1.1;
+		~sin2Keys=0.9;
+		~rootFreqKeys=~c5; // 261=C4|523=C5
+		IFKeys.synthDef(1);
+		~defaultBufKeys.free;~defaultBufKeys = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01.aif");
+		~bufnumKeys = PatternProxy( Pseq([~defaultBufKeys], inf));
+		~bufnumKeysP = Pseq([~bufnumKeys], inf).asStream;
+
+
 	}
 	*proxy{
 		~nt1Keys = PatternProxy( Pseq([0], inf));
@@ -54,14 +80,8 @@ IFKeys {
 		~sus1Keys = PatternProxy( Pseq([0.2], inf));
 		~sus1KeysP = Pseq([~sus1Keys], inf).asStream;
 
-		~tmMulKeys = PatternProxy( Pseq([1], inf));
-		~tmMulKeysP= Pseq([~tmMulKeys], inf).asStream;
-		~tmKeys = PatternProxy( Pseq([1], inf));
-		~tmKeysP = Pseq([~tmKeys], inf).asStream;
-
 		~transKeys = PatternProxy( Pseq([1], inf));
 		~transKeysP = Pseq([~transKeys], inf).asStream;
-
 		~transShufKeys = PatternProxy( Pseq([1], inf));
 		~transShufKeysP = Pseq([~transShufKeys], inf).asStream;
 
@@ -71,7 +91,7 @@ IFKeys {
 		~legKeysP = Pseq([~legKeys], inf).asStream;
 		~hrmKeys = PatternProxy( Pseq([1.0], inf));
 		~hrmKeysP = Pseq([~hrmKeys], inf).asStream;
-		//~delta1Keys.source=0.5;
+
 		~delta1Keys = PatternProxy( Pseq([1/1], inf));
 		~delta1KeysP = Pseq([~delta1Keys], inf).asStream;
 		~lfoRtKeys = PatternProxy( Pseq([20], inf));
@@ -87,22 +107,16 @@ IFKeys {
 		~vcfCtKeys = PatternProxy( Pseq([40], inf));
 		~vcfCtKeysP = Pseq([~vcfCtKeys], inf).asStream;
 
+		~lfo1Keys = PatternProxy( Pseq([10], inf));
+		~lfo1KeysP = Pseq([~lfo1Keys], inf).asStream;
+		~lfo2Keys = PatternProxy( Pseq([10], inf));
+		~lfo2KeysP = Pseq([~lfo2Keys], inf).asStream;
+
 		~actKeys = PatternProxy( Pseq([1], inf));
 		~actKeysP= Pseq([~actKeys], inf).asStream;
 
 		~volKeys = PatternProxy( Pseq([0.9], inf));
 		~volKeysP = Pseq([~volKeys], inf).asStream;
-
-		/*//StaticKeys
-		~actStKeys = PatternProxy( Pseq([0], inf));
-		~actStKeysP= Pseq([~actStKeys], inf).asStream;
-		~durStKeys = PatternProxy( Pseq([1], inf));
-		~durStKeysP = Pseq([~durStKeys], inf).asStream;
-		~ampStKeys = PatternProxy( Pseq([0,0,0,0,1], inf));
-		~ampStKeysP = Pseq([~ampStKeys], inf).asStream;
-		~ntStKeys = PatternProxy( Pseq([67], inf));
-		~ntStKeysP = Pseq([~ntStKeys], inf).asStream;*/
-
 
 	}
 
@@ -113,12 +127,46 @@ IFKeys {
 		{ i == val }  {
 			{val.do{
 				~keysLate.wait;
-				this.p1(val);
+				this.p1_SC(val);
+				//this.p1(val);
 				((~dur1KeysP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
 
 	}
+
+	*p1_SC {|i=1|
+		var val;
+		val=i;
+
+Pbind(
+	\instrument, \IFKeys_SC, \scale, Pfunc({~scl2}, inf),
+	\bufnum, Pseq([~bufnumKeysP.next], inf),
+	\dur, Pseq([~dur1KeysP.next],~actKeysP),
+	\degree, Pseq([~nt1KeysP.next], inf),
+	\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
+	\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
+	\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
+	\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+	\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys,
+	\legato, Pseq([~legKeysP.next], inf),
+	\pan, Pbrown(-0.9, 0.8, 0.125, inf),
+	\rootFreq,  ~rootFreqKeys,
+
+	\cut1, Pbrown(0.05, 1.0, 0.125, inf)*~cutKeys,
+	\sin1, Pbrown(0.1, 1.0, 0.125, inf)*~sin1Keys,
+	\sin2, Pbrown(0.2, 2.0, 0.125, inf)*~sin2Keys,
+	\att, ~attKeys,
+	\dec, ~decKeys,
+	\susLev, ~susLevKeys,
+	\rel, ~relKeys,
+	\lfo1Rate, Pseq([~lfo1KeysP.next],inf)*~lfoMulKeys,
+	\lfo2Rate, Pseq([~lfo2KeysP.next],inf)*~lfoMulKeys,
+	\group, ~piges,
+	\out, Pseq([~busKeys], inf )
+).play(quant:0);
+
+	}//p1_SC
 
 	*p1 {|i=1|
 		var val;
@@ -157,7 +205,6 @@ IFKeys {
 		~volKeys_APC=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volKeys', vel/127);
-			//~mdOut.control(6, 1, vel);
 			~volKeys.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd5);
 
@@ -266,25 +313,28 @@ IFKeys {
 
 		~volKeysFader.free;
 		~volKeysFader= OSCFunc({
-			arg msg,vel;
+			arg msg,vel,val;
+			val=msg[1];
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volKeys', msg[1]);
-			~vKeys.control(5, 1, vel);
+			//~vKeys.control(5, 1, vel);
+			~volKeys.source = val;
 			},
 			'/volKeys'
 		);
 
 		~attKeysFader.free;
 		~attKeysFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*127;
+			arg msg,vel,val;
+			vel=msg[1]*127;
+			val=msg[1];
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('attKeys', msg[1]);
 				~vKeys.control(0, ~envAtt, val);
-				//~mdOut.control(6, 5, val);
+				~attKeys=val+0.01;
 				},{
 					~tOSCAdrr.sendMsg('attKeys', msg[1]);
-					~mdOut.control(6, 5, val);
+					~attKeys=val+0.01;
 			});
 			},
 			'/attKeys'
@@ -293,15 +343,16 @@ IFKeys {
 
 		~susKeysFader.free;
 		~susKeysFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*127;
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('susKeys', msg[1]);
-				~vKeys.control(0, ~envSus, val+0.01);
-				~mdOut.control(6, 6, val);
+				~vKeys.control(0, ~envSus, vel+0.01);
+				~susLevKeys=val;
 				},{
 					~tOSCAdrr.sendMsg('susKeys', msg[1]);
-					~mdOut.control(6, 6, val);
+					~susLevKeys=val;
 			});
 			},
 			'/susKeys'
@@ -316,15 +367,37 @@ IFKeys {
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('decKeys', val);
 				~vKeys.control(0, ~envDec, vel+0.01);
-				~mdOut.control(6, 127, vel);
-				~nobD6_m1Val= vel;
+				~decKeys=val;
+				~relKeys=val*0.7;
 				},{
 					~tOSCAdrr.sendMsg('decKeys', val);
-					~mdOut.control(6, 127, vel);
-					~nobD6_m1Val= vel;
+					~decKeys=val;
+				~relKeys=val*0.7;
 			});
 			},
 			'/decKeys'
+		);
+
+		~xy1Keys.free;
+		~xy1Keys= OSCFunc({
+			arg msg,val1,val2,vel;
+			val1=msg[1];
+			val2=msg[2];
+			vel=msg[1]*127;
+			if ( ~volcaBoolean==1, {
+				~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
+				~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+				~sin1Keys=val1;
+				~sin1Keys=val2;
+				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+				},{
+
+					~sin1Keys=val1;
+				~sin1Keys=val2;
+					~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+			});
+			},
+			'/xy1Keys'
 		);
 
 		~chainKeysFader.free;
@@ -332,7 +405,6 @@ IFKeys {
 			arg msg, val;
 			val=msg[1]*127;
 			~tOSCAdrr.sendMsg('chainKeys', msg[1]);
-			~mdOut.control(6, 8, msg[1]*127);
 			},
 			'/chainKeys'
 		);
@@ -352,24 +424,7 @@ IFKeys {
 			'/sendKeys'
 		);
 
-		~xy1Keys.free;
-		~xy1Keys= OSCFunc({
-			arg msg;
-			if ( ~volcaBoolean==1, {
-				~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
-				~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
-				~mdOut.control(6, 11, msg[2]*127);
-				~mdOut.control(6, 12, msg[1]*127);
-				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
-				},{
 
-					~mdOut.control(6, 11, msg[2]*127);
-					~mdOut.control(6, 12, msg[1]*127);
-					~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
-			});
-			},
-			'/xy1Keys'
-		);
 
 
 		/**/
@@ -490,6 +545,88 @@ IFKeys {
 			'/octKeysDiv'
 		);
 
+	}
+	*synthDef{|index|
+		index.switch(
+			1,{
+SynthDef( \IFKeys_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+	lfo1Rate=0.1, lfo2Rate=0.22,
+	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05,
+	cutoff = 1000, gain = 2.0, lagamount = 0.01, chorus = 0.7|
+
+	var osc1, osc2, osc3, ses;
+	var env, env1, env2, env3;
+	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+	var lfo1, lfo2, lfo3, decay,imp;
+
+	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+
+	var osc, filter, filterenv, snd, chorusfx;
+
+	startPos = startPos * BufFrames.kr(bufnum);
+	freqBuf = freq;
+	freqBuf = freqBuf.ratiomidi;
+	freqBuf = freqBuf.midicps/rootFreq;
+	freqOsc = freq;
+	//freqRate = freqRate.keyToDegree();
+	//freqRate = freqRate.midiratio;
+
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 1.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+	lfo3 = SinOsc.kr(lfo1Rate).range(0.8, 1.2);
+
+	env =  EnvGen.ar(Env.adsr(att+0.01, dec+0.2, susLev*lfo2, rel*0.3), gate, -2, doneAction:2);
+	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+	osc2 = Blip.ar(freq)*0.4;
+	osc1 = Saw.ar(freq,osc2.tanh, env);
+
+	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*env;
+	filt= MoogFF.ar(
+		[osc1],
+		(lfo1*10000),
+		1,
+		mul:0.6
+	);
+	filt2= MoogFF.ar(
+		[osc],
+		2200*lfo1,
+		0.5,
+		mul:0.4
+	);
+
+	//moog
+	osc = Mix(VarSaw.ar(
+		freq: freq.lag(lagamount) * [1.0, 1.001, 2.0],
+		iphase: Rand(0.0,1.0) ! 3,
+		width: Rand(0.5,0.75) ! 3,
+		mul: 0.5));
+	filterenv = EnvGen.ar(
+		envelope: Env.asr(0.2, 1, 0.2),
+		gate: gate);
+	filter =  MoogFF.ar(
+		in: osc,
+		freq: cutoff * (1.0 + (0.5 * filterenv)),
+		gain: gain);
+	snd = (0.7 * filter + (0.3 * filter.distort)) * env;
+
+	mix = Mix(snd,filt2);
+	Out.ar(out, Pan2.ar(mix*mul, pan)*amp);
+}).add;
+
+			},
+			2,{
+
+			},
+			3,{
+
+			},
+			4,{},
+			5,{}
+		)
 	}
 
 

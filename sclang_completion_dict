@@ -79,6 +79,7 @@ CuspL
 CuspN
 DC
 DUGen
+DX7
 Dbrown
 Dbufrd
 Dbufwr
@@ -178,10 +179,13 @@ HilbertFIR
 HusoAmplitude
 IEnvGen
 IFAllMidiRef
+IFBass_SC_Erg
 IFFM_Erg
 IFFT
 IFHat_SC_ERG
+IFKeys_SC_Erg
 IFKick_SC_Erg
+IFKick_SC_Erg2
 IFLoopMain
 IFMIDI2Analogs
 IFMIDI_Erg

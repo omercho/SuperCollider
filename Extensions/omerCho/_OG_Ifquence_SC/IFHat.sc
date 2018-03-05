@@ -40,6 +40,7 @@ IFHat {
 	}
 
 	*proxy {
+		this.synthDef(1);
 
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
@@ -77,6 +78,18 @@ IFHat {
 		~delta2VSamp07 = PatternProxy( Pseq([1/1], inf));
 		~delta2VSamp07P = Pseq([~delta2VSamp07], inf).asStream;
 
+		~attHat=0.01;
+		~decHat=0.8;
+		~susLevHat=0.0;
+		~relHat = 0.2;
+		~lfoMulHat = 1;
+		~harmHatTD =1;
+
+		~lfo1Hat = PatternProxy( Pseq([1], inf));
+		~lfo1HatP = Pseq([~lfo1Hat], inf).asStream;
+		~lfo2Hat = PatternProxy( Pseq([1], inf));
+		~lfo2HatP = Pseq([~lfo2Hat], inf).asStream;
+
 	}//proxy
 
 	*new{|i=1|
@@ -88,12 +101,38 @@ IFHat {
 
 				//~hatLate=~abLate;
 				~hatLate.wait;
-				this.p1(val);
-				//~durMulP*((~dur1HatP.next)/val).wait;
+				this.p1_SC(val);
+				//this.p1(val);
 				((~dur1HatP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
 
+	}
+	*p1_SC {|i=1|
+		var val;
+		val=i;
+
+		Pbind(\instrument, \IFHat_SC, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur1HatP.next/val],~actHatP),
+			\degree, Pseq([~nt1HatP.next], inf),
+			\amp, Pseq([~volHatP.next*~amp1HatP.next], inf),
+			\sustain, Pseq([~sus1HatP.next],inf)*~susMulHat,
+			\mtranspose, Pseq([~transHatP.next], inf)+~trHat,
+			\octave, Pseq([~octHatP.next], inf)+~octMulHat,
+			\harmonic, Pseq([~hrmHatP.next],inf)+~harmHat,
+			\freqpan, Pbrown(0.04, 1.4, 0.125, inf),
+			\att, ~attHat,
+			\dec, ~decHat,
+			\susLev, ~susLevHat,
+			\rel, ~relHat,
+			\lfo1Rate, ~lfo1HatP*~lfoMulHat,
+			\lfo2Rate, ~lfo2HatP*~lfoMulHat,
+			\group, ~piges,
+			\out, Pseq([[ ~busHat]], inf )
+		).play(quant:0);
+
+		//this.count2;
+		//this.timesCount;
 	}
 
 	*p1 {|i=1|
@@ -132,7 +171,7 @@ IFHat {
 			arg vel;
 			~tOSCAdrr.sendMsg('volVSamp07', vel/127);
 			//~vSamp.control(~smp07, ~smpLvl, vel);
-			~volHat.source = vel;
+			~volHat.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd3);
 
 		//Act ButA3
@@ -256,7 +295,45 @@ IFHat {
 			'/volHat'
 		);
 
+		~xy1Hat.free;
+		~xy1Hat= OSCFunc({
+			arg msg;
+
+
+
+			},
+			'/xy1Hat'
+		);
+
 		~attHatFader.free;
+		~attHatFader= OSCFunc({
+			arg msg,val;
+			val=msg[1]*2;
+			~attHat=val+0.01;
+			},
+			'/attHat'
+		);
+
+		~susLevHatFader.free;
+		~susLevHatFader= OSCFunc({
+			arg msg;
+			~susLevHat=msg[1];
+
+
+			},
+			'/susHat'
+		);
+
+		~decHatFader.free;
+		~decHatFader= OSCFunc({
+			arg msg;
+			~decHat=msg[1];
+			~relHat=msg[1]+0.1;
+			},
+			'/decHat'
+		);
+
+		/*~attHatFader.free;
 		~attHatFader= OSCFunc({
 			arg msg,vel;
 			vel=msg[1]*127;
@@ -311,7 +388,7 @@ IFHat {
 
 			},
 			'sendHat'
-		);
+		);*/
 
 		//TIME
 
@@ -444,32 +521,54 @@ IFHat {
 		}
 
 	}
+*synthDef{|index|
+		index.switch(
+			1,{
+SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
+	att =0.01, dec=0.03, susLev=0.08, rel=0.04,
+	lfo1Rate=1, lfo2Rate=1,
+	noose =1, freq = 90, pan = 0, freqpan=0.2 |
+	var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
+	var hatosc, hatenv, hatnoise, hatoutput;
+	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+
+	env1 = EnvGen.ar(Env.perc(att, dec));
+	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+
+	noise = SinOsc.ar(freq*lfo2);
+	in = Mix.ar(Blip.ar(4*freq*lfo2, 2*freq*lfo1).softclip(3.2),noise);
+	noise = HPF.ar(in*noise*lfo2, 0, 0.9, 0.5, Mix.ar(noise*in));
+	//noise = BHiShelf.ar(Mix.ar(noise,in), 1, lfo2, -6);
+	noise = BHiPass.ar(noise/in, freq*lfo1, 0.5, env2);
+	in= MoogFF.ar(noise, in, 0.2);
+
+	hatnoise = {LPF.ar(WhiteNoise.ar(1),8000*(noise/16)*env1)};
+
+	hatosc = {HPF.ar(hatnoise,2400*lfo2)};
+	hatenv = {Line.ar(1, 0, 0.1)};
+
+	hatoutput = (0.5 * hatosc *env2);
+
+	ses = hatoutput;
+	//ses = ses;
+	ses = ses.clip2(0.4);
+	ses = ses * amp;
+
+	Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-0.8, 0.8), amp*0.6)*env2);
+}).add;
+
+			},
+			2,{
 
 
-	*ctl_1 {
+			},
+			3,{
 
-
-	}
-
-	*ctl_2 {
-
-
-	}
-
-	*ctl_3 {
-
-
-	}
-	*ctl_9 {
-
-
-
-	}
-
-	*ctl_18 {
-
-
-
+			},
+			4,{},
+			5,{}
+		)
 	}
 
 }

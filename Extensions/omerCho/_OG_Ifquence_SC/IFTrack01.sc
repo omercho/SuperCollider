@@ -28,27 +28,8 @@ IFTrack01 {
 			'/shiftParts'
 		);
 
-		//SampInstruments
-		~mdOut.control(0, 71, 127); //Track 01
-		~mdOut.control(0, 72, 0); //Track 02
-		~mdOut.control(0, 73, 0); //Track 03
-		~mdOut.control(0, 74, 0); //Track 04
-		~mdOut.control(0, 75, 0); //Track 05
-		~mdOut.control(0, 76, 0); //Track 06
-		~mdOut.control(0, 77, 0); //Track 07
-		~mdOut.control(0, 78, 0); //Track 08
-		//ExtInstruments
-		~mdOut.control(0, 81, 127); //Track 01
-		~mdOut.control(0, 82, 0); //Track 02
-		~mdOut.control(0, 83, 0); //Track 03
-		~mdOut.control(0, 84, 0); //Track 04
-		~mdOut.control(0, 85, 0); //Track 05
-		~mdOut.control(0, 86, 0); //Track 06
-		~mdOut.control(0, 87, 0); //Track 07
-		~mdOut.control(0, 88, 0); //Track 08
-
 		// SHUFFLES from IFShuf
-		IFShuf.loadKick(0,0,0,0,0,0,0,-2,0);
+		IFShuf.loadKick(0,0,2,0,0,0,7,4,0);
 		IFShuf.loadSnr(1,0,2,0,3,0,1,2,0);
 		IFShuf.loadHat(0,1,0,2,0,3,0,4,0);
 		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
@@ -56,8 +37,6 @@ IFTrack01 {
 		IFShuf.loadSamp(0,-1,0,-3,2,-5,6,1,0);
 		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
 		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
-
-
 	}
 
 	*setActs{
@@ -80,7 +59,7 @@ IFTrack01 {
 		~scl2= Scale.chinese;
 		~tOSCAdrr.sendMsg('scaleLabel', 'Chinese');
 
-		~tmp1=125;
+		IFProjectGlobals.setTempo(125);
 		~tOSCAdrr.sendMsg('tempoLabel', ~tmp1);
 		~tOSCAdrr.sendMsg('tempoFader', ~tmp1);
 		~nt=(0);
@@ -111,22 +90,6 @@ IFTrack01 {
 		~local.sendMsg('fxFader',0.0);
 		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
 
-		//~vKeys.control(0, ~voice, ~uni); //voice
-		/*IFAPC40_NobDown.md1SetVals(
-			v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1
-		);*/
-		/*IFAPC40_NobDown.md2SetVals(
-			v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2
-		);*/
-		/*IFAPC40_NobUp.md1SetVals(
-			v1:0.0,v2:0.5,v3:0.0,v4:0.3,v5:0.3,v6:0.5,v7:0.1,v8:0.1
-		);*/
-		/*IFAPC40_NobUp.md2SetVals(
-			v1:0.2,v2:0.2,v3:0.2,v4:0.2,v5:0.2,v6:0.2,v7:0.2,v8:0.2
-		);*/
-
-
-
 		"Kick Set".postln;
 		~local.sendMsg('volKick', 0.99);
 		~local.sendMsg('sendKick', 0.0, 0.0);
@@ -136,10 +99,10 @@ IFTrack01 {
 		~local.sendMsg('chainKick', 0.0);
 
 		"Snr Set".postln;
-		~local.sendMsg('volSnr', 0.99);
+		~local.sendMsg('volSnr', 0.9);
 		~local.sendMsg('sendSnr', 0.0, 0.0);
 		~local.sendMsg('attSnr', 0.0);
-		~local.sendMsg('susSnr', 0.5);
+		~local.sendMsg('susSnr', 0.2);
 		~local.sendMsg('decSnr', 0.5);
 		~local.sendMsg('chainSnr', 0.05);
 
@@ -171,7 +134,7 @@ IFTrack01 {
 		~local.sendMsg('chainKeys', 0.05);
 		~local.sendMsg('lfoMulKeys1',0.0);
 		~local.sendMsg('lfoMulKeys2',0.01);
-		IFKeys.octMul(2);
+		IFKeys.octMul(1);
 
 		"Samp Set".postln;
 		~local.sendMsg('volSamp', 0.9);
@@ -183,7 +146,7 @@ IFTrack01 {
 		~local.sendMsg('lfoMulSamp1',0.2);
 		~local.sendMsg('lfoMulSamp2',0.4);
 		//~local.sendMsg('octSampZero',1);
-		IFSamp.octMul(2);
+		IFSamp.octMul(1);
 
 		"Ext Set".postln;
 		~local.sendMsg('volExt',0.8);
@@ -210,25 +173,25 @@ IFTrack01 {
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 
 		//CH -1- [ Snare ]
-		IFSeqSnr.stGrp  (1);
+		IFSeqSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
 		IFSeqNtSnr.stGrpSet  (0,1,2,3, 0,1,2,3,  0,1,2,3, 0,1,2,3);
 		IFSeqVelSnr.stGrpSet  (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
-		IFSeqSusSnr.stGrp (3);
+		IFSeqSusSnr.stGrpSet (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrp  (4);
 
 		//CH -2- [ HAT ]
-		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,0);
-		IFSeqNtHat.stGrpSet  (0,1,2,3, 4,5,6,7,  8,9,10,11, 12,13,14,15);
-		IFSeqVelHat.stGrpSet (3,1,3,1, 3,1,1,2,  3,2,3,2, 3,2,3,0);
-		IFSeqSusHat.stGrp  (1);
+		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqNtHat.stGrpSet  (1,0,0,0, 1,0,0,0,  3,0,0,0, 4,0,0,0);
+		IFSeqVelHat.stGrpSet (1,3,3,1, 1,3,3,1,  1,3,3,1, 3,2,3,0);
+		IFSeqSusHat.stGrpSet (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
 		IFSeqTmHat.stGrp  (1);
 		IFSeqDurHat.stGrp  (4);
 
 		//CH -4- [Bass]
 		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqOctBass.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtBass.stGrpSet  (0,1,2,3, 4,5,6,7,  8,9,10,11, 12,13,14,15);
+		IFSeqNtBass.stGrpSet  (0,1,0,0, 0,1,0,0,  0,0,1,0, 1,3,4,5);
 		IFSeqVelBass.stGrpSet (0,3,0,3, 0,3,0,3,  0,3,0,3, 0,3,0,3);
 		IFSeqSusBass.stGrpSet (1,0,1,0, 0,3,0,0,   1,4,1,0, 1,0,0,0);
 		IFSeqTmBass.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
@@ -669,9 +632,9 @@ IFTrack01 {
 
 	*part08{
 		"part07".postln; ~tOSCAdrr.sendMsg('partLabel', 'T1prt08');
-		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,1,1,0, 1,1,1,0);
 		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtKick.stGrpSet  (0,1,0,1, 0,1,0,0,  0,1,0,0, 0,1,0,0);
+		IFSeqNtKick.stGrpSet  (0,1,7,1, 0,3,7,0,  0,1,7,0, 0,4,7,0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKick.stGrpSet (3,0,0,0, 1,0,0,0,  1,0,0,0, 1,0,0,0);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,2,1);

@@ -59,22 +59,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywABAAAAAAAAAAAAFwAABo8AAAPjAAAAAAAAAC0AAAaPAAAD4wAAAAAAAA==
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAABmAAADn/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADnwAAAGYA////AAAAAQAAAPcAAAOf/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAb0AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAb4AAAHhAAAATAD///8AAAUxAAADnwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAp8AAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdYAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdcAAAH6AAAATAD///8AAANuAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/IFSampSC_ERG.scd
-    - /Volumes/OC_EDIT02/TransferFromMacBook_2018/Downloads/SuperCollider-236e4e8c557974226aa9a30019b36b97939ff4b9/Extensions/omerCho/_IF_2014/IFSamp_SC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/FM82-morph2.2.scd
-    - /Volumes/OC_EDIT02/TransferFromMacBook_2018/Downloads/SuperCollider-236e4e8c557974226aa9a30019b36b97939ff4b9/Extensions/omerCho/_IF_2014/IFKick_SC.sc
+    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Traktor_ClockFromTraktor.scd
+    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Ableton_ClockFromAbleton.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchSteps.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchNotes.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_NobUp.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_NobDown.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_Launch.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-MidiMix_OG_SourceCode/IFMIDIMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSC/IFSC_Project.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/midiThruTestERG.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/Kafes/KafesLayerA.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFVolca/IFVKick.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqHat.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

@@ -183,12 +183,14 @@ IFCntrl {
 
 		~cutDrumXY.free;
 		~cutDrumXY= OSCFunc({
-			arg msg,vel1, vel2;
+			arg msg,vel1, vel2,val1,val2;
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
+			val1=msg[1];
+			val2=msg[2];
 
 			~tOSCAdrr.sendMsg('/cutDrum',msg[1], msg[2]);
-			~mdOut.control(10, 30, vel1);
+			~cutSnr.source=val1;
 			~mdOut.control(10, 31, vel2);
 
 			},
@@ -351,9 +353,11 @@ IFCntrl {
 
 		~cutAllXY.free;
 		~cutAllXY= OSCFunc({
-			arg msg,vel1, vel2;
+			arg msg,vel1, vel2,val1,val2;
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
+			val1=msg[1];
+			val2=msg[2];
 			if ( ~volcaBoolean==1, {
 				~mdOut.control(5, 13, vel1); // IFVBass CutX
 				~mdOut.control(6, 13, vel1); // IFVKeys CutX
@@ -368,8 +372,8 @@ IFCntrl {
 				~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
 				},
 				{
-					~mdOut.control(5, 13, vel1); // IFVBass CutX
-					~mdOut.control(6, 13, vel1); // IFVKeys CutX
+					~cutBass = val1; // IFVBass CutX
+					~cutKeys = val2; // IFVKeys CutX
 					~mdOut.control(7, 13, vel1); // IFSamp CutX
 
 					~mdOut.control(5, 14, vel2); // IFVBass CutY
@@ -391,7 +395,6 @@ IFCntrl {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('/susMel', ~susMelLedVal=msg[1]);
 			~susMulBass=msg[1];~susMulKeys=msg[1];~susMulSamp=msg[1];
-			~nobD8_m1Val=vel+2;
 			},
 			'/susMel'
 		);
@@ -404,7 +407,6 @@ IFCntrl {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=val);
 			~susMulKick=val+0.15;~susMulSnr=val+0.2;~susMulHat=val+0.15;
-			~nobD4_m1Val=vel+2;
 			},
 			'/susDrum'
 		);

@@ -9,6 +9,7 @@ PostAllMIDI.off;
 IFLoad.load;
 IFLoad.loadVolca;
 
+IFProjectGlobals.setTempo(20);
 */
 
 	IFProjectGlobals {
@@ -60,7 +61,7 @@ IFLoad.loadVolca;
 
 	*setAddr{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.5", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");

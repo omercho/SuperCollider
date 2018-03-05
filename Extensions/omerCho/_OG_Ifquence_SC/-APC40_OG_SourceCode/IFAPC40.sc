@@ -53,9 +53,7 @@ IFAPC40{
 	}//loadAtStart
 
 	*addr{
-		~apc40 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST3 APCMn");
-		~apc40OutID=(-1949857410);
-		~apc40InID=(-1049904849);
+
 	}
 	*globals{
 		//channels

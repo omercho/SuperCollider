@@ -20,9 +20,7 @@ IFLaunchNotes{
 
 	}//loadAtStart
 	*addr{
-		~lpMn = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST1 LPMn");
-		~lpMnOutID=(481106323);
-		~lpMnInID=(-1245451137);
+
 	}
 	*globals{
 

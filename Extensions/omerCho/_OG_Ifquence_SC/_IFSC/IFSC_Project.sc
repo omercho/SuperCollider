@@ -19,6 +19,8 @@ IFSC {
 			0.25.wait;
 			IFSC.loadBuses;
 			0.25.wait;
+			IFSC.loadBuffers;
+			0.25.wait;
 			IFSC.loadEffects;
 			0.25.wait;
 			IFSC.playEffects;
@@ -29,7 +31,14 @@ IFSC {
 	}
 	//------Buffers------//
 	*loadBuffers {
-
+~n01.free;~n01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01.aif");
+		~n02.free;~n02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm01R.aif");
+		~n03.free;~n03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02.aif");
+		~n04.free;~n04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/athm02R.aif");
+		~p01.free;~p01 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/piano01.aif");
+		~p02.free;~p02 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/sop01.aif");
+		~p03.free;~p03 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01.aif");
+		~p04.free;~p04 = Buffer.read(Server.default, "/Applications/SuperCollider/sounds/_IFSC_Sounds/dop01r.aif");
 
 
 	}
@@ -64,12 +73,20 @@ IFSC {
 		~busBass = Bus.new(\audio, 28, 2);
 		~busKeys = Bus.new(\audio, 30, 2);
 		~busKick = Bus.new(\audio, 32, 2);
-		~busSamp = Bus.new(\audio, 34, 2);
-		~revBus = Bus.new(\audio, 36, 2);
-		~dlyBus = Bus.new(\audio, 38, 2);
-		~limBus = Bus.new(\audio, 40, 2);
-		~floBus = Bus.new(\audio, 42, 2);
-		~clnBus = Bus.new(\audio, 44, 2);
+		~busSnr = Bus.new(\audio, 34, 2);
+		~busHat = Bus.new(\audio, 36, 2);
+		~busSamp = Bus.new(\audio, 38, 2);
+		~busFM = Bus.new(\audio, 40, 2);
+		~busNul1 = Bus.new(\audio, 42, 2);
+		~busNul2 = Bus.new(\audio, 44, 2);
+
+		~revBus = Bus.new(\audio, 46, 2);
+		~dlyBus = Bus.new(\audio, 48, 2);
+		~limBus = Bus.new(\audio, 50, 2);
+		~floBus = Bus.new(\audio, 52, 2);
+		~clnBus = Bus.new(\audio, 54, 2);
+
+
 		"buses loaded".postln;
 
 	}
@@ -84,7 +101,11 @@ IFSC {
 		~busKeys.free;
 
 		~busKick.free;
+		~busSnr.free;
+		~busHat.free;
+
 		~busSamp.free;
+		~busFM.free;
 
 		~revBus.free;
 		~dlyBus.free;
@@ -121,26 +142,7 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
-		SynthDef(\vBassInput, {|out1,out2, out3, out4, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
-			var input, ctl;
-			input=SoundIn.ar(5,0.9,0);
-			//ctl = FOS.kr(LFSaw.kr(8, 0, 0.2), 1 - input.abs, input, fosMul);
-			input= Pan2.ar(input, pan)*2*vol;
-			Out.ar(out1, input*mtCln);
-			Out.ar(out2, input*mtDly);
-			Out.ar(out3, input*mtRev);
-			Out.ar(out4, input*mtFlo);
-		}).send(Server.default);
 
-		SynthDef(\vKeysInput, {|out1, out2, out3, out4, vol=0.9, pan=0.5,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
-			var input;
-			input=SoundIn.ar(7,0.9,0);
-			input= Pan2.ar(input, SinOsc.kr(pan).range(-0.7, 0.7);)*2*vol;
-			Out.ar(out1, input*mtCln);
-			Out.ar(out2, input*mtDly);
-			Out.ar(out3, input*mtRev);
-			Out.ar(out4, input*mtFlo);
-		}).send(Server.default);
 
 		SynthDef(\vKickInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
@@ -152,10 +154,63 @@ IFSC {
 			Out.ar(out4, input*mtFlo);
 		}).send(Server.default);
 
+		SynthDef(\vSnrInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vHatInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
+			var input;
+			input=In.ar(in,2);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vBassInput, {|out1,out2, out3, out4, in, vol=0.9, pan=0, fosMul=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
+			var input, ctl;
+			//input=SoundIn.ar(5,0.9,0);
+			input=In.ar(in,2);
+			//ctl = FOS.kr(LFSaw.kr(8, 0, 0.2), 1 - input.abs, input, fosMul);
+			input= Pan2.ar(input, pan)*2.2*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vKeysInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0.5,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
+			var input;
+			//input=SoundIn.ar(7,0.9,0);
+			input=In.ar(in,2);
+			input= Pan2.ar(input, SinOsc.kr(pan).range(-0.7, 0.7);)*2*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
 		SynthDef(\vSampInput, {|out1, out2, out3, out4, in, vol=0.9, pan=0,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
 			var input;
 			input=In.ar(in,2);
 			//input=SoundIn.ar(6,0.9,0);
+			input=Pan2.ar(input, 0)*vol;
+			Out.ar(out1, input*mtCln);
+			Out.ar(out2, input*mtDly);
+			Out.ar(out3, input*mtRev);
+			Out.ar(out4, input*mtFlo);
+		}).send(Server.default);
+
+		SynthDef(\vFMInput, {|out1, out2, out3, out4, in, vol=0.9,mtDly=0,mtRev=0,mtFlo=0,mtCln=1|
+			var input;
+			input=In.ar(in,2);
 			input=Pan2.ar(input, 0)*vol;
 			Out.ar(out1, input*mtCln);
 			Out.ar(out2, input*mtDly);
@@ -190,7 +245,7 @@ IFSC {
 			compIn = In.ar(~busKick,1);
 			ses = FreeVerb.ar(input,mix,room,damp);
 			comp = Compander.ar(ses, compIn,
-				thresh: -72.dbamp,
+				thresh: -70.dbamp,
 				slopeBelow: 1,
 				slopeAbove: 0.5,
 				clampTime: 0.001,
@@ -265,20 +320,29 @@ IFSC {
 		~vBeatsSynth = Synth.head(~piges, \vBeatsInput,[
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
-		~vBassSynth = Synth.head(~piges, \vBassInput,[
-			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
-		]);
 		~vSamplerSynth = Synth.head(~piges, \vSamplerInput,[\in,~busSampler,
-			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
-		]);
-		~vKeysSynth = Synth.head(~piges, \vKeysInput,[
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
 		~vKickSynth = Synth.tail(~effe, \vKickInput,[\in,~busKick,
 		\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
+		~vSnrSynth = Synth.tail(~effe, \vSnrInput,[\in,~busSnr,
+		\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vHatSynth = Synth.tail(~effe, \vHatInput,[\in,~busHat,
+		\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vBassSynth = Synth.tail(~effe, \vBassInput,[\in,~busBass,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vKeysSynth = Synth.tail(~effe, \vKeysInput,[\in,~busKeys,
+			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
 		~vSampSynth = Synth.tail(~effe, \vSampInput,[\in,~busSamp,
 			\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
+		]);
+		~vFMSynth = Synth.tail(~effe, \vFMInput,[\in,~busFM,
+		\out1, ~clnBus, \out2, ~dlyBus, \out3,~revBus, \out4, ~floBus
 		]);
 
 
@@ -297,7 +361,10 @@ IFSC {
 		~vSamplerSynth.free;
 		~vKeysSynth.free;
 		~vKickSynth.free;
+		~vSnrSynth.free;
+		~vHatSynth.free;
 		~vSampSynth.free;
+		~vFMSynth.free;
 		~cln.free;
 		~dly.free;
 		~rev.free;
@@ -527,40 +594,7 @@ IFSC {
 	}
 
 	*mutes {
-		//MUTES KICK
-		~vKickMtCln.free;
-		~vKickMtCln= OSCFunc({
-			arg msg;
-			~vKickSynth.set(\mtCln, msg[1]);
-			},
-			'/mtClnKick'
-		);
 
-		~vKickMtDly.free;
-		~vKickMtDly= OSCFunc({
-			arg msg;
-			~vKickSynth.set(\mtDly, msg[1]);
-			},
-			'/mtDlyKick'
-		);
-		~vKickMtRev.free;
-		~vKickMtRev= OSCFunc({
-			arg msg;
-
-			~vKickSynth.set(\mtRev, msg[1]);
-
-			},
-			'/mtRevKick'
-		);
-		~vKickMtFlo.free;
-		~vKickMtFlo= OSCFunc({
-			arg msg;
-
-			~vKickSynth.set(\mtFlo, msg[1]);
-
-			},
-			'/mtFloKick'
-		);
 
 		//MUTES BEATS
 		~vBeatsMtCln.free;
@@ -635,6 +669,110 @@ IFSC {
 
 			},
 			'/mtFloSampler'
+		);
+
+		//MUTES KICK
+		~vKickMtCln.free;
+		~vKickMtCln= OSCFunc({
+			arg msg;
+			~vKickSynth.set(\mtCln, msg[1]);
+			},
+			'/mtClnKick'
+		);
+
+		~vKickMtDly.free;
+		~vKickMtDly= OSCFunc({
+			arg msg;
+			~vKickSynth.set(\mtDly, msg[1]);
+			},
+			'/mtDlyKick'
+		);
+		~vKickMtRev.free;
+		~vKickMtRev= OSCFunc({
+			arg msg;
+
+			~vKickSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevKick'
+		);
+		~vKickMtFlo.free;
+		~vKickMtFlo= OSCFunc({
+			arg msg;
+
+			~vKickSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloKick'
+		);
+		//MUTES Snr
+		~vSnrMtCln.free;
+		~vSnrMtCln= OSCFunc({
+			arg msg;
+			~vSnrSynth.set(\mtCln, msg[1]);
+			},
+			'/mtClnSnr'
+		);
+
+		~vSnrMtDly.free;
+		~vSnrMtDly= OSCFunc({
+			arg msg;
+			~vSnrSynth.set(\mtDly, msg[1]);
+			},
+			'/mtDlySnr'
+		);
+		~vSnrMtRev.free;
+		~vSnrMtRev= OSCFunc({
+			arg msg;
+
+			~vSnrSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevSnr'
+		);
+		~vSnrMtFlo.free;
+		~vSnrMtFlo= OSCFunc({
+			arg msg;
+
+			~vSnrSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloSnr'
+		);
+
+		//MUTES Hat
+		~vHatMtCln.free;
+		~vHatMtCln= OSCFunc({
+			arg msg;
+			~vHatSynth.set(\mtCln, msg[1]);
+			},
+			'/mtClnHat'
+		);
+
+		~vHatMtDly.free;
+		~vHatMtDly= OSCFunc({
+			arg msg;
+			~vHatSynth.set(\mtDly, msg[1]);
+			},
+			'/mtDlyHat'
+		);
+		~vHatMtRev.free;
+		~vHatMtRev= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevHat'
+		);
+		~vHatMtFlo.free;
+		~vHatMtFlo= OSCFunc({
+			arg msg;
+
+			~vHatSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloHat'
 		);
 
 		//MUTES BASS
@@ -749,6 +887,40 @@ IFSC {
 
 			},
 			'/mtFloSamp'
+		);
+		//MUTES FM
+		~vFMMtCln.free;
+		~vFMMtCln= OSCFunc({
+			arg msg;
+			~vFMSynth.set(\mtCln, msg[1]);
+			},
+			'/mtClnFM'
+		);
+
+		~vFMMtDly.free;
+		~vFMMtDly= OSCFunc({
+			arg msg;
+			~vFMSynth.set(\mtDly, msg[1]);
+			},
+			'/mtDlyFM'
+		);
+		~vFMMtRev.free;
+		~vFMMtRev= OSCFunc({
+			arg msg;
+
+			~vFMSynth.set(\mtRev, msg[1]);
+
+			},
+			'/mtRevFM'
+		);
+		~vFMMtFlo.free;
+		~vFMMtFlo= OSCFunc({
+			arg msg;
+
+			~vFMSynth.set(\mtFlo, msg[1]);
+
+			},
+			'/mtFloFM'
 		);
 	}
 
