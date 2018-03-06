@@ -294,6 +294,13 @@ LinSelectX
 LinXFade2
 Line
 Linen
+Link
+LinkCount
+LinkLane
+LinkStatus
+LinkTempo
+LinkTrig
+Link_Erg
 ListDUGen
 ListPattern
 LocalBuf

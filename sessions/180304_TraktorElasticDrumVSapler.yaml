@@ -20,6 +20,8 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchSteps.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
   - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Ableton_ClockFromAbleton.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/LinkUGen-master/LinkUGen/Classes/Link.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/Link_Erg.scd
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
@@ -82,7 +84,10 @@ editors: !QVariantMap
         position: 926
       - !QVariantMap
         documentIndex: 8
-        position: 169
+        position: 767
+      - !QVariantMap
+        documentIndex: 21
+        position: 229
     - !QVariantList
       - !QVariantMap
         documentIndex: 0
@@ -141,11 +146,17 @@ editors: !QVariantMap
       - !QVariantMap
         documentIndex: 11
         position: 1166
-  state: AAAA/wAAAAAAAAACAAABzAAAAeoBAAAAAQEAAAAC
+      - !QVariantMap
+        documentIndex: 21
+        position: 613
+      - !QVariantMap
+        documentIndex: 22
+        position: 45
+  state: AAAA/wAAAAEAAAACAAABzAAAAeoBAAAAAQEAAAACAQ==
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywABAAAAAAG3AAAAogAACEYAAASgAAAAAAAAACsAAAMfAAAEFQAAAAACAA==
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAAD0fwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0QAAAGYA////AAAAAQAAAp8AAAPR/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdYAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdcAAAH6AAAATAD///8AAANuAAAD0QAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAQVAAAAAAAAACsAAAMfAAAEFQAAAAACAAAABpA=
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADzvwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADzgAAAGcA////AAAAAQAAAp8AAAPO/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdMAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdQAAAH6AAAATAD///8AAANuAAADzgAAAAEAAAACAAAAAQAAAAL8AAAAAA==
