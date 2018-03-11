@@ -24,13 +24,18 @@ c = NoteOnResponder({ |src,chan,note,vel|
 ~lpMn.uid;
 ~mdMix.uid;
 ~apc40.uid;
-~djMx.uid;
+~djMix.uid;
 ~djMn.uid;
 
 
 */
 
 IFiConnectMIDI4{
+	*initClass {
+		StartUp add: {
+			Server.default.doWhenBooted({this.load; });
+		}
+	}
 	*load{
 
 		~hstPort1=(1045905020);~hstPort2=(914608399);
@@ -72,13 +77,13 @@ IFiConnectMIDI4{
 		~apc40OutID=(46996343);
 		~apc40InID=(2053275125);
 
-		~djMx = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 DJMx");
-		~djMxOutID=(-468174044);
-		~djMxInID=(-1458340029);
+		~djMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 DJMx");
+		~djMixOutID=(-2126449294);
+		~djMixInID=(919558582);
 
 		~djMn = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST5 DJMn");
-		~djMnOutID=(739928311);
-		~djMnInID=(1170141816);
+		~djMnOutID=(432114873);
+		~djMnInID=(1292133807);
 
 
 	}//loadAtStart

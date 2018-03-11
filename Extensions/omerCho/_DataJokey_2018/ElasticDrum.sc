@@ -15,13 +15,14 @@ ElasticDrum{
 		~elstcClockOut = MIDIClockOut("iConnectMIDI4+", "USB3 usb1", TempoClock.default);
 		("Elastic Drum Loaded").postln;
 	}
+
 	*playPatterns{
-		~elstcClockOut.play;
+		//~elstcClockOut.play;
 		~iCElstc1=Pbind(
 			\chan, Pseq([0], inf),
 			\type, \midi, \midiout,~elstc,
 			\octave,0,
-			\dur, Pseq([1.0],inf),
+			\dur, Pseq([4.0],inf),
 			\note, Pseq([1], inf),
 			\amp, Pseq([1], inf)
 		).play(MIDISyncClock, quant: 0);
@@ -49,13 +50,16 @@ ElasticDrum{
 		).play(MIDISyncClock, quant: 0);
 	}
 	*stopPatterns{
-		~elstcClockOut.stop;
+		//~elstcClockOut.stop;
 		~iCElstc1.stop;
 		~iCElstc2.stop;
 		~iCElstc3.stop;
 		~iCElstc4.stop;
 		~iCElstc5.stop;
 		~iCElstc6.stop;
+	}
+	*midiLearn{
+		~elstc.control(0, 60, 64); //Mel Audio / High
 	}
 
 }

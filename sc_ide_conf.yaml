@@ -100,16 +100,16 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProjectGlobals.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSC/IFSC_Project.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoot.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTrack01.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFAllMidiRef.scd
-    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Traktor_ClockFromTraktor.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DataJokey.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-iConnectMIDI/IFiConnectMIDI4.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJDeck3.sc
+    - /Users/omercho/Dropbox/SC/__SC2013/+29APR/130405_toAbletonLive.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/Link_Erg.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/others/LinkUGen-master/LinkUGen/Classes/Link.sc
+    - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Ableton_ClockFromAbleton.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchSteps.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchNotes.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_NobUp.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

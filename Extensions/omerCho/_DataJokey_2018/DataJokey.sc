@@ -15,7 +15,7 @@ DataJokey{
 	*load{
 		MIDISyncClock.init(0, 0);	// 0 beats, 0 secs
 		~clock1 = TempoClock.default;
-		//this.clockResponder;
+		this.clockResponder;
 		IFiConnectMIDI4.load;
 		("Data Jokey Successfully Loaded").postln;
 	}
