@@ -4,8 +4,8 @@ PostAllMIDI.on;
 PostAllMIDI.off;
 
 DJDeck4.load;
-DJDeck4.playPat1;
-DJDeck4.stopPat1;
+DJDeck4Rout.play;
+DJDeck4.stop;
 */
 DJDeck4Rout {
 	*initClass {
@@ -19,17 +19,30 @@ DJDeck4Rout {
 
 	}
 	*globals{
-		~dj_Deck4Rout1Player=TaskProxy.new;
+		~dj_Deck4R1Player=TaskProxy.new;
+
+		~durMulRootDJ = PatternProxy( Pseq([2], inf));
+		~durMulRootDJP= Pseq([~durMulRootDJ], inf).asStream;
+
+		~durRootDJ = PatternProxy(
+			Pseq([
+				2
+			],inf);
+		);
+		~durRootDJP= Pseq([~durRootDJ], inf).asStream;
 	}
 	*play{~dj_Deck4R1Player.play(MIDISyncClock, quant: 0);}
 	*stop{~dj_Deck4R1Player.stop;}
 	*set00{
 		//routine
-		~dj_Deck4Player.source={
+		"Data Jokey Running".postln;
+		~dj_Deck4R1Player.source={
 			inf.do{
 				1.do {
-					~elstc.control(0, 10, 64); //Mel Audio / High
-					((~durP.next)*(~durMulP.next)).wait;
+					//~elstc.control(0, 10, 64); //Mel Audio / High
+					IFElstc(1);
+
+					((~durRootDJP.next)*(~durMulRootDJP.next)).wait;
 				};
 			};
 

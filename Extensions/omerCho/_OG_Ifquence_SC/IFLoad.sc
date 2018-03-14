@@ -10,7 +10,7 @@ IFLoad.loadVolca;
 IFLoad{
 	*initClass {
 		StartUp add: {
-			//Server.default.doWhenBooted({this.loadVolca; });
+			Server.default.doWhenBooted({this.loadVolca; });
 		}
 	}
 	*loadVolca{
@@ -73,6 +73,7 @@ IFLoad{
 				0.1.wait;
 				"Track: Not loaded".postln;
 				~tOSCAdrr.sendMsg('trackLabel', 'Track: Not loaded');
+				ServerMeter.new(Server.default, 6, 6);
 
 			});
 		};//--fork--

@@ -35,7 +35,7 @@ OmerChatziserif 2011
 	//Murekkeb Makamlar
 	\sipihrEski -> Scale.new(#[0, 9, 14, 22, 31, 40, 45], 53, name: "Sipihr (eski)"), //inici i = 2 ** ([~t, ~s, ~k, ~t, ~t, ~s, ~k] / 53);
 
-] do: { | assoc | ScaleInfo.scales.put(assoc.key, assoc.value) }
+] do: { | assoc | Scale.all.put(assoc.key, assoc.value) }
 
 
 /*

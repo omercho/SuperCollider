@@ -269,25 +269,25 @@ IFLaunchSteps{
 
 		//Sequencer
 		//Lounch
-		~apc40.noteOn(~apcMnCh, ~stpBut1, 3); //But 1
-		~apc40.noteOn(~apcMnCh, ~stpBut2, 5); //But 2
-		~apc40.noteOn(~apcMnCh, ~stpBut3, 5); //But 3
-		~apc40.noteOn(~apcMnCh, ~stpBut4, 5); //But 4
+		~apc40.noteOn(~apcMnCh, ~stpBut1, 0); //But 1
+		~apc40.noteOn(~apcMnCh, ~stpBut2, 0); //But 2
+		~apc40.noteOn(~apcMnCh, ~stpBut3, 0); //But 3
+		~apc40.noteOn(~apcMnCh, ~stpBut4, 0); //But 4
 
-		~apc40.noteOn(~apcMnCh, ~stpBut5, 3); //But 5
-		~apc40.noteOn(~apcMnCh, ~stpBut6, 5); //But 6
-		~apc40.noteOn(~apcMnCh, ~stpBut7, 5); //But 7
-		~apc40.noteOn(~apcMnCh, ~stpBut8, 5); //But 8
+		~apc40.noteOn(~apcMnCh, ~stpBut5, 0); //But 5
+		~apc40.noteOn(~apcMnCh, ~stpBut6, 0); //But 6
+		~apc40.noteOn(~apcMnCh, ~stpBut7, 0); //But 7
+		~apc40.noteOn(~apcMnCh, ~stpBut8, 0); //But 8
 		//Lounch 2
-		~apc40.noteOn(~apcMnCh, ~stpBut9, 3); //But 1
-		~apc40.noteOn(~apcMnCh, ~stpBut10, 5); //But 2
-		~apc40.noteOn(~apcMnCh, ~stpBut11, 5); //But 3
-		~apc40.noteOn(~apcMnCh, ~stpBut12, 5); //But 4
+		~apc40.noteOn(~apcMnCh, ~stpBut9, 0); //But 1
+		~apc40.noteOn(~apcMnCh, ~stpBut10, 0); //But 2
+		~apc40.noteOn(~apcMnCh, ~stpBut11, 0); //But 3
+		~apc40.noteOn(~apcMnCh, ~stpBut12, 0); //But 4
 
-		~apc40.noteOn(~apcMnCh, ~stpBut13, 3); //But 5
-		~apc40.noteOn(~apcMnCh, ~stpBut14, 5); //But 6
-		~apc40.noteOn(~apcMnCh, ~stpBut15, 5); //But 7
-		~apc40.noteOn(~apcMnCh, ~stpBut16, 5); //But 8
+		~apc40.noteOn(~apcMnCh, ~stpBut13, 0); //But 5
+		~apc40.noteOn(~apcMnCh, ~stpBut14, 0); //But 6
+		~apc40.noteOn(~apcMnCh, ~stpBut15, 0); //But 7
+		~apc40.noteOn(~apcMnCh, ~stpBut16, 0); //But 8
 
 
 

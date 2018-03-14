@@ -66,16 +66,16 @@ IFiConnectMIDI4{
 		//~vSamplerInID=~hstPort1;
 
 		~lpMn = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST1 LPMn");
-		~lpMnOutID=(1926916521);
-		~lpMnInID=(-1608097646);
+		~lpMnOutID=(907794485);
+		~lpMnInID=(1037849266);
 
 		~mdMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST2 MDMx");
-		~mdMixOutID=(1589215754);
-		~mdMixInID=(-10024497269);
+		~mdMixOutID=(-394082490);
+		~mdMixInID=(1132239779);
 
 		~apc40 = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST3 APCMn");
-		~apc40OutID=(46996343);
-		~apc40InID=(2053275125);
+		~apc40OutID=(-1288010067);
+		~apc40InID=(-1756375906);
 
 		~djMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 DJMx");
 		~djMixOutID=(-2126449294);

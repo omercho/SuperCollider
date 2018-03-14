@@ -14,7 +14,11 @@ IFRoot {
 		~ifRootPlayer=TaskProxy.new;
 
 	}
+	/*
 	*play{~ifRootPlayer.play(TempoClock.default, quant: 0);}
+	*/
+	*play{~ifRootPlayer.play(MIDISyncClock, quant: 0);}
+
 	*stop{~ifRootPlayer.stop;}
 
 	*set00{

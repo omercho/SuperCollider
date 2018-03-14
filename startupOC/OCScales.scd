@@ -5,7 +5,7 @@
 	\gec1 -> 	       Scale.new(#[0, 1, -2, 2, 2.21, 4, 3], 3, name: "Gec 1"),
 	\gec2 -> 	       Scale.new(#[0, -1, -3], 4, name: "Gec 1"),
 
-] do: { | assoc | ScaleInfo.scales.put(assoc.key, assoc.value) }
+] do: { | assoc | Scale.all.put(assoc.key, assoc.value) }
 
 
 /*

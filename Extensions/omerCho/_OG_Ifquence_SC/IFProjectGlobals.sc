@@ -46,8 +46,8 @@ IFProjectGlobals.setTempo(20);
 		IFMIDIMix.load;
 		IFAPC40.load;
 		//IFAPC40_Launch.load;
-		IFLaunchSteps.load;
-		IFLaunchNotes.load;
+		//IFLaunchSteps.load;
+		IFLpMnNotes.load;
 		IFLpMnSteps.load;
 		~nt=(0);
 
@@ -61,7 +61,7 @@ IFProjectGlobals.setTempo(20);
 
 	*setAddr{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.4", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");

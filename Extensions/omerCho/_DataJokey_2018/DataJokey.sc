@@ -20,11 +20,11 @@ DataJokey{
 		("Data Jokey Successfully Loaded").postln;
 	}
 	*clockResponder{
-		~tempoRespond.remove;
+		/*~tempoRespond.remove;
 		~tempoRespond = CCResponder({ | src, chan, num, val |
 			format("CC received. Channel: %, Num: %, Value: %", chan, num, val).postln;
 			~clock1.tempo_((1.23*val/60));
-		},src: 1980474828,chan: 0, num: 0, install: true);
+		},src: 1980474828,chan: 0, num: 0, install: true);*/
 	}
 	*deck1{
 		~keyAdjA1.stop;

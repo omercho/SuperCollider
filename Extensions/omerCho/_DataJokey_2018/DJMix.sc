@@ -11,13 +11,18 @@ DJMix.act1(0,0,0);
 */
 
 DJMix{
+	*initClass {
+		StartUp add: {
+			Server.default.doWhenBooted({this.load; });
+		}
+	}
 	*load{
 
 		this.addr;
 		this.globals;
 		this.loadResponders;
-		this.resetLeds;
-		//this.ln6;
+		//this.resetLeds;
+
 
 
 	}//loadAtStart

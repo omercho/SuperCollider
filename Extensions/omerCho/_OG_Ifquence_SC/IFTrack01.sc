@@ -156,7 +156,7 @@ IFTrack01 {
 	}//track 01 End
 
 	*part01{//////                                      - 1 -
-		IFTrack01.setActs;
+		//IFTrack01.setActs;
 		"part01".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 

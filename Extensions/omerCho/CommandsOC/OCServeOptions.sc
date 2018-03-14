@@ -14,10 +14,12 @@ PostAllMIDI.on;
  	*initClass {
  		StartUp add: {
  			//Server.default.options.device = "EDIROL FA-66 (1674)";
+			Server.default.options.device = "iCMIDIAudio";
+
  			Server.default.options.hardwareBufferSize = 512;
 			Server.default.options.sampleRate = 44100.000000;
 
- 			Server.default.doWhenBooted({ "server options OKKK" });
+ 			Server.default.doWhenBooted({ "server options OKKK".postln; });
  		}
  	}
 

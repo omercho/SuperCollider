@@ -1,159 +1,204 @@
 documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFLoad.sc
-  - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Ableton_ClockFromAbleton.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnNotes.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSamp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTracks.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchSteps.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchNotes.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_NobUp.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_NobDown.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40_Launch.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMini.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMix.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-MidiMix_OG_SourceCode/IFMIDIMix.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/ElasticDrum.sc
   - /Users/omercho/Dropbox/SC/__SC2013/+29APR/130405_toAbletonLive.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqDurPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqSteps.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFBass.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/IFElstc.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJDeck4Rout.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJDeck4Pat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-iConnectMIDI/IFiConnectMIDI4.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DataJokey.sc
-  - /Users/omercho/Dropbox/SC/__SC2015/+51JAN/150107_Ctrl2Traktor_ClockFromTraktor.scd
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFAllMidiRef.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/OCServeOptions.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTrack01.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoot.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJDeck3.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSC/IFSC_Project.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProjectGlobals.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 0
-        position: 15
-      - !QVariantMap
-        documentIndex: 13
-        position: 118
-      - !QVariantMap
-        documentIndex: 2
-        position: 0
-      - !QVariantMap
-        documentIndex: 3
-        position: 0
-      - !QVariantMap
-        documentIndex: 8
-        position: 0
-      - !QVariantMap
-        documentIndex: 7
-        position: 0
-      - !QVariantMap
-        documentIndex: 6
-        position: 0
-      - !QVariantMap
-        documentIndex: 4
-        position: 70
-      - !QVariantMap
-        documentIndex: 9
-        position: 117
-      - !QVariantMap
-        documentIndex: 1
-        position: 494
-      - !QVariantMap
-        documentIndex: 15
-        position: 657
-      - !QVariantMap
-        documentIndex: 14
-        position: 765
-      - !QVariantMap
-        documentIndex: 17
-        position: 4396
-      - !QVariantMap
-        documentIndex: 10
-        position: 281
-      - !QVariantMap
-        documentIndex: 12
-        position: 793
-      - !QVariantMap
-        documentIndex: 18
-        position: 5523
-      - !QVariantMap
-        documentIndex: 22
-        position: 1477
-      - !QVariantMap
-        documentIndex: 21
-        position: 3730
-      - !QVariantMap
-        documentIndex: 20
-        position: 143
-      - !QVariantMap
-        documentIndex: 5
-        position: 3541
-      - !QVariantMap
-        documentIndex: 19
-        position: 585
-    - !QVariantList
-      - !QVariantMap
-        documentIndex: 0
-        position: 440
-      - !QVariantMap
-        documentIndex: 22
-        position: 394
-      - !QVariantMap
-        documentIndex: 21
-        position: 156
-      - !QVariantMap
-        documentIndex: 8
-        position: 0
-      - !QVariantMap
-        documentIndex: 7
-        position: 0
-      - !QVariantMap
-        documentIndex: 6
-        position: 0
-      - !QVariantMap
-        documentIndex: 5
-        position: 0
-      - !QVariantMap
         documentIndex: 4
         position: 0
       - !QVariantMap
         documentIndex: 3
         position: 0
       - !QVariantMap
-        documentIndex: 2
+        documentIndex: 28
+        position: 748
+      - !QVariantMap
+        documentIndex: 27
+        position: 189
+      - !QVariantMap
+        documentIndex: 24
+        position: 216
+      - !QVariantMap
+        documentIndex: 23
+        position: 34912
+      - !QVariantMap
+        documentIndex: 22
+        position: 181
+      - !QVariantMap
+        documentIndex: 21
         position: 0
-      - !QVariantMap
-        documentIndex: 9
-        position: 13
-      - !QVariantMap
-        documentIndex: 1
-        position: 0
-      - !QVariantMap
-        documentIndex: 12
-        position: 1199
-      - !QVariantMap
-        documentIndex: 14
-        position: 320
       - !QVariantMap
         documentIndex: 20
-        position: 130
-      - !QVariantMap
-        documentIndex: 18
-        position: 529
-      - !QVariantMap
-        documentIndex: 11
-        position: 1281
+        position: 769
       - !QVariantMap
         documentIndex: 17
-        position: 252
+        position: 298
       - !QVariantMap
         documentIndex: 16
-        position: 478
+        position: 47
+      - !QVariantMap
+        documentIndex: 15
+        position: 854
       - !QVariantMap
         documentIndex: 10
-        position: 1188
-  state: AAAA/wAAAAEAAAACAAABzAAAAeoBAAAAAQEAAAACAQ==
+        position: 471
+      - !QVariantMap
+        documentIndex: 9
+        position: 281
+      - !QVariantMap
+        documentIndex: 11
+        position: 225
+      - !QVariantMap
+        documentIndex: 12
+        position: 0
+      - !QVariantMap
+        documentIndex: 0
+        position: 1166
+      - !QVariantMap
+        documentIndex: 14
+        position: 73
+      - !QVariantMap
+        documentIndex: 19
+        position: 118
+      - !QVariantMap
+        documentIndex: 18
+        position: 2034
+      - !QVariantMap
+        documentIndex: 6
+        position: 5043
+      - !QVariantMap
+        documentIndex: 7
+        position: 272
+      - !QVariantMap
+        documentIndex: 5
+        position: 4970
+      - !QVariantMap
+        documentIndex: 8
+        position: 244
+      - !QVariantMap
+        documentIndex: 13
+        position: 5234
+      - !QVariantMap
+        documentIndex: 1
+        position: 736
+      - !QVariantMap
+        documentIndex: 25
+        position: 10441
+      - !QVariantMap
+        documentIndex: 26
+        position: 14287
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 10
+        position: 1281
+      - !QVariantMap
+        documentIndex: 9
+        position: 1116
+      - !QVariantMap
+        documentIndex: 19
+        position: 0
+      - !QVariantMap
+        documentIndex: 14
+        position: 185
+      - !QVariantMap
+        documentIndex: 18
+        position: 1002
+      - !QVariantMap
+        documentIndex: 17
+        position: 186
+      - !QVariantMap
+        documentIndex: 2
+        position: 119
+      - !QVariantMap
+        documentIndex: 8
+        position: 15914
+      - !QVariantMap
+        documentIndex: 28
+        position: 825
+      - !QVariantMap
+        documentIndex: 27
+        position: 9483
+      - !QVariantMap
+        documentIndex: 25
+        position: 130
+      - !QVariantMap
+        documentIndex: 22
+        position: 0
+      - !QVariantMap
+        documentIndex: 21
+        position: 1243
+      - !QVariantMap
+        documentIndex: 24
+        position: 6108
+      - !QVariantMap
+        documentIndex: 23
+        position: 252
+      - !QVariantMap
+        documentIndex: 0
+        position: 1228
+      - !QVariantMap
+        documentIndex: 4
+        position: 3640
+      - !QVariantMap
+        documentIndex: 3
+        position: 15530
+      - !QVariantMap
+        documentIndex: 16
+        position: 193
+      - !QVariantMap
+        documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 20
+        position: 236
+      - !QVariantMap
+        documentIndex: 13
+        position: 0
+      - !QVariantMap
+        documentIndex: 15
+        position: 3945
+      - !QVariantMap
+        documentIndex: 6
+        position: 3280
+      - !QVariantMap
+        documentIndex: 5
+        position: 3098
+      - !QVariantMap
+        documentIndex: 1
+        position: 2734
+  state: AAAA/wAAAAEAAAACAAABcAAAAawBAAAAAQEAAAACAQ==
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""
     help-dock: ""
     post-dock: ""
-  geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAQVAAAAAAAAACsAAAMfAAAEFQAAAAACAAAABpA=
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADzvwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADzgAAAGcA////AAAAAQAAAp8AAAPO/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAdMAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdQAAAH6AAAATAD///8AAANuAAADzgAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAO0AAAAAAAAAC0AAAaPAAADtAAAAAAAAAAABpA=
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADbfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADbQAAAGcA////AAAAAQAAAp8AAANt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZsAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZwAAAHRAAAATAD///8AAANuAAADbQAAAAEAAAACAAAAAQAAAAL8AAAAAA==

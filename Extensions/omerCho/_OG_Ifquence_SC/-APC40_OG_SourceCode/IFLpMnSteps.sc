@@ -270,7 +270,7 @@ IFLpMnSteps{
 	*resetLeds{
 
 		//Sequencer
-		//Lounch
+		//Lounch1
 		~lpMn.noteOn(~lpMnCh, ~stpLpBut1, 3); //But 1
 		~lpMn.noteOn(~lpMnCh, ~stpLpBut2, 5); //But 2
 		~lpMn.noteOn(~lpMnCh, ~stpLpBut3, 5); //But 3

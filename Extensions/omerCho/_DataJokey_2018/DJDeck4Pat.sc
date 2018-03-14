@@ -29,7 +29,7 @@ DJDeck4Pat {
 			Pbind(
 				\type, \midi, \midiout,~elstc,
 				\chan, Pseq([0], inf),\octave,0,
-				\dur, Pseq([0.25],inf),
+				\dur, Pseq([0.5],inf),
 				\note, Pseq([
 					[3,1],
 					[3,5],
