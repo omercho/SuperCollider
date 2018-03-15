@@ -100,16 +100,16 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitch.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMini.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqSteps.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnNotes.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSamp.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTracks.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchSteps.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLaunchNotes.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMini.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMix.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-MidiMix_OG_SourceCode/IFMIDIMix.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/ElasticDrum.sc
+    - /Users/omercho/Dropbox/SC/__SC2013/+29APR/130405_toAbletonLive.scd
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

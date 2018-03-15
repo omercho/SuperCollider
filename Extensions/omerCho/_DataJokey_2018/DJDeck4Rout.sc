@@ -40,8 +40,8 @@ DJDeck4Rout {
 			inf.do{
 				1.do {
 					//~elstc.control(0, 10, 64); //Mel Audio / High
-					IFElstc(1);
-
+					~lateElstcP.next;
+					DJElstc(1);
 					((~durRootDJP.next)*(~durMulRootDJP.next)).wait;
 				};
 			};
@@ -56,37 +56,42 @@ DJDeck4Rout {
 			arg msg;
 			if ( msg[1]==1, {
 				fork{1.do{
-					DJDeck4.playRout1;
+					DJDeck4Rout.play;
 				}};
 			});
 			if ( msg[1]==0, {
 				fork{1.do{
-					DJDeck4.stopRout1;
+					DJDeck4Rout.stop;
 				}};
 			});
 		},
 		'/1/playD3R1'
 		);
-		~cntPlayD3R1But=0;
+		~cntPlayD4R1But=0;
 		~deck4R1PlayButtonMIDI.free;
 		~deck4R1PlayButtonMIDI=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntPlayD3R1But = ~cntPlayD3R1But + 1;
-				~cntPlayD3R1But.switch(
+				~cntPlayD4R1But = ~cntPlayD4R1But + 1;
+				~cntPlayD4R1But.switch(
 					0,{},
 					1, {
-						~local.sendMsg('/1/playD3R1', 1);
-						~djMn.noteOn(~apcLn4, 55, 4); //But 1
+						//~local.sendMsg('/1/playD3R1', 1);
+						DJDeck4Rout.play;
+						~djMn.noteOn(~djMnLn1, ~tsBut7, 4); //But A
 					},
 					2,{
-						~local.sendMsg('/1/playD3R1', 0);
-						~djMn.noteOn(~apcLn4, 55, 0); //But 1
-						~cntPlayD3R1But=0;
+						DJDeck4Rout.stop;
+						//~local.sendMsg('/1/playD3R1', 0);
+						~djMn.noteOn(~djMnLn1, ~tsBut7, 0); //But A
+						~cntPlayD4R1But=0;
 					}
 			)}
 			);
-		},srcID:1292133807, chan:0, noteNum:69);
+		},srcID:~djMnInID, chan:0, noteNum:~tsBut7);
+
+		//~djMn.noteOn(~djMnLn1, ~actButA7, val); //But A
+
 	}
 
 }

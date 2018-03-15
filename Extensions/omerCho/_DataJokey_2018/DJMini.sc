@@ -49,7 +49,7 @@ DJMini{
 		//this.globalMode(1);
 		//this.cueNob;
 		//this.resetLeds;
-		this.shiftButton;
+		//this.shiftButton;
 		this.psrButtonsPlay;
 
 		//DJMini_NobDown.load;
@@ -62,7 +62,7 @@ DJMini{
 	}
 	*globals{
 		//channels
-		~djMnMnCh=0;
+		~djMnCh=0;
 		~djMnLn1=0;~djMnLn2=1;~djMnLn3=2;~djMnLn4=3;
 		~djMnLn5=4;~djMnLn6=5;~djMnLn7=6;~djMnLn8=7;
 		~djMnLnMaster=0;

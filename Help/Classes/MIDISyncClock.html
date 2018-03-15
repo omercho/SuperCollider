@@ -1,136 +1,294 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<title></title>
-<meta name="Generator" content="Cocoa HTML Writer">
-<meta name="CocoaVersion" content="824.48">
-<style type="text/css">
-p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px Helvetica}
-p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica}
-p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Helvetica}
-p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #bebebe}
-p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #bebebe; min-height: 14.0px}
-p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Monaco; color: #bebebe; min-height: 14.0px}
-p.p9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bebebe}
-p.p10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #0000bf}
-p.p11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #bf0000}
-p.p12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000; min-height: 12.0px}
-p.p13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #000000}
-p.p14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; min-height: 14.0px}
-p.p15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 9.0px Monaco; color: #007300}
-span.s1 {color: #000000}
-span.s2 {color: #0000bf}
-span.s3 {color: #007300}
-span.Apple-tab-span {white-space:pre}
-</style>
+<!doctype html><html lang='en'><head><title>MIDISyncClock | SuperCollider 3.9.1 Help</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script>
+var helpRoot = './..';
+var scdoc_title = 'MIDISyncClock';
+var scdoc_sc_version = '3.9.1';
+</script>
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
 </head>
-<body>
-<p class="p1"><b>MIDISyncClock</b></p>
-<p class="p2"><br></p>
-<p class="p3">A hack to try to slave sc to external MIDI clock messages.</p>
-<p class="p2"><br></p>
-<p class="p3">A singleton. No instance methods; the entire interface is through the class.</p>
-<p class="p2"><br></p>
-<p class="p3">Limitations:<span class="Apple-tab-span">	</span>All events are quantized to the nearest tick.</p>
-<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Timing may not be reliable in high-pressure situations.</p>
-<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Written in sc, not in c++, so it may be CPU hungry.</p>
-<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>Beats counter is OK. MIDISyncClock.seconds returns elapsed seconds since clock start.</p>
-<p class="p2"><br></p>
-<p class="p3">The clock responds to three kinds of MIDI clock messages:</p>
-<p class="p3"><span class="Apple-tab-span">	</span>clock: Advances the clock by one tick (1/24 beat). The number of ticks per beat is configurable.</p>
-<p class="p3"><span class="Apple-tab-span">	</span>start: Reset all counters to 0. This ensures that the MIDISyncClock will be synced with the MIDI clock.</p>
-<p class="p3"><span class="Apple-tab-span">	</span>stop: Clear the queue. Since the clock is not running and times on the queue will be invalid once</p>
-<p class="p3"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>the clock restarts, the queue should be emptied.</p>
-<p class="p2"><br></p>
-<p class="p4"><b>Methods:</b></p>
-<p class="p2"><br></p>
-<p class="p3"><b>*init(argBeats, argSeconds)</b></p>
-<p class="p2"><br></p>
-<p class="p3">Initialize the clock. If MIDIClient is not initialized, this method will do it and connect the sources sequentially to MIDIIn.</p>
-<p class="p2"><br></p>
-<p class="p3">Note that MIDIIn.sysrt receives clock messages ONLY from the port assigned to MIDIIn inport 0. If your clock source is not at MIDIClient.sources[0], make sure to connect it manually.</p>
-<p class="p2"><br></p>
-<p class="p3"><b>*schedAbs(when, task)</b></p>
-<p class="p2"><br></p>
-<p class="p3">Schedule a task on a specific beat.</p>
-<p class="p2"><br></p>
-<p class="p3"><b>*sched(when, task, adjustment = 0)</b></p>
-<p class="p2"><br></p>
-<p class="p3">Schedule a task for "when" beats from now. The adjustment argument is used internally to maintain correct timing of event streams. Normally you should not use this argument.</p>
-<p class="p2"><br></p>
-<p class="p3"><b>*play(task, when)</b></p>
-<p class="p2"><br></p>
-<p class="p3">Play a task based on a quantization factor specified as "when." This uses <b>[TimeSpec]</b> objects in my library. Normal sc syntax (when = a simple number specifying beats to round up) will work as usual.</p>
-<p class="p2"><br></p>
-<p class="p3"><b>*clear</b></p>
-<p class="p2"><br></p>
-<p class="p3">Empty the queue.</p>
-<p class="p2"><br></p>
-<p class="p3"><b>*tempo</b></p>
-<p class="p3"><b>*beatDur</b></p>
-<p class="p2"><br></p>
-<p class="p3">Estimates of the tempo, and duration of one beat. There is some jitter in receiving MIDI messages; therefore these numbers can never be exact.</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p5"><b>Using Event Streams with MIDISyncClock:</b></p>
-<p class="p2"><br></p>
-<p class="p3">Note, these instructions are no longer valid due to changes in the class library. I'll figure out how to make it work later but don't have time at the moment.</p>
-<p class="p2"><br></p>
-<p class="p6">To play Pbinds and such, you'll need to make some hacks to EventStreamPlayer and Event. These changes have not been approved by jmc (and I expect he'll have issues with them), so don't count on them. But they do make the clock work!</p>
-<p class="p7"><br></p>
-<p class="p6">EventStreamPlayer - add the following before the "clock.play..." line:</p>
-<p class="p8"><br></p>
-<p class="p9"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>event = event.copy.put(\clock, clock);</p>
-<p class="p7"><br></p>
-<p class="p6">Event - in the schedBundle and schedBundleArray functions:</p>
-<p class="p7"><br></p>
-<p class="p6">near the bottom, change the following line:</p>
-<p class="p9"><span class="Apple-tab-span">	</span>thisThread.clock.sched(sustain) {<span class="Apple-converted-space"> </span></p>
-<p class="p6">to read:</p>
-<p class="p9"><span class="Apple-tab-span">	</span>(~clock ? thisThread.clock).sched(sustain) {<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p5"><b>Example:</b></p>
-<p class="p2"><br></p>
-<p class="p10">MIDIClient<span class="s1">.init;</span></p>
-<p class="p11"><span class="s2">MIDIIn</span><span class="s1">.connect(0, </span><span class="s2">MIDIClient</span><span class="s1">.sources[0]);<span class="Apple-converted-space">  </span></span>// or which device holds the clock</p>
-<p class="p12"><br></p>
-<p class="p11"><span class="s2">MIDISyncClock</span><span class="s1">.init(0, 0);<span class="Apple-tab-span">	</span></span>// 0 beats, 0 secs</p>
-<p class="p12"><br></p>
-<p class="p11">// start sending MIDI clock messages</p>
-<p class="p12"><br></p>
-<p class="p13">s.boot;</p>
-<p class="p12"><br></p>
-<p class="p13">t = <span class="s2">Task</span>({</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="s2">var</span><span class="Apple-tab-span">	</span>synth;</p>
-<p class="p13"><span class="Apple-tab-span">	</span>loop {</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>#[60, 62, 64, 65, 67, 65, 64, 62].do({ <span class="s2">|note|</span></p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>s.makeBundle(0.2, {</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>synth = <span class="s2">Synth</span>(<span class="s3">\default</span>, [freq: note.midicps])</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>});</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>s.makeBundle(0.4, {</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>synth.release;</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>});</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>0.25.wait;</p>
-<p class="p13"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>});</p>
-<p class="p13"><span class="Apple-tab-span">	</span>}</p>
-<p class="p13">}).play(<span class="s2">MIDISyncClock</span>, quant: 1);</p>
-<p class="p12"><br></p>
-<p class="p13"><span class="s2">SynthDescLib</span>.global.read;</p>
-<p class="p14"><br></p>
-<p class="p13">t = <span class="s2">Pbind</span>(<span class="s3">\midinote</span>, <span class="s2">Pseq</span>([60, 62, 64, 65, 67, 65, 64, 62], <span class="s2">inf</span>),</p>
-<p class="p15"><span class="s1"><span class="Apple-tab-span">	</span></span>\delta<span class="s1">, 0.25, </span>\dur<span class="s1">, 0.25, </span>\instrument<span class="s1">, </span>\default<span class="s1">)</span></p>
-<p class="p13"><span class="Apple-tab-span">	</span>.play(<span class="s2">MIDISyncClock</span>, quant:4);</p>
-<p class="p12"><br></p>
-<p class="p11">// play with the tempo of the midi clock. sc should adjust accordingly.</p>
-<p class="p12"><br></p>
-<p class="p13">t.stop;</p>
-<p class="p14"><br></p>
-<p class="p14"><br></p>
-<p class="p14"><br></p>
-</body>
-</html>
+<body onload='fixTOC();prettyPrint()'>
+<div id='toc'>
+<div id='toctitle'>MIDISyncClock: table of contents</div>
+<span class='toc_search'>Filter: <input id='toc_search'></span><ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20class%20methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented%20class%20methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*barsPerBeat'>barsPerBeat</a> </li>
+<li class='toc3'><a href='#*baseBar'>baseBar</a> </li>
+<li class='toc3'><a href='#*baseBarBeat'>baseBarBeat</a> </li>
+<li class='toc3'><a href='#*beatDur'>beatDur</a> </li>
+<li class='toc3'><a href='#*beats'>beats</a> </li>
+<li class='toc3'><a href='#*beats2secs'>beats2secs</a> </li>
+<li class='toc3'><a href='#*beatsPerBar'>beatsPerBar</a> </li>
+<li class='toc3'><a href='#*clear'>clear</a> </li>
+<li class='toc3'><a href='#*dumpQueue'>dumpQueue</a> </li>
+<li class='toc3'><a href='#*elapsedBeats'>elapsedBeats</a> </li>
+<li class='toc3'><a href='#*init'>init</a> </li>
+<li class='toc3'><a href='#*initClass'>initClass</a> </li>
+<li class='toc3'><a href='#*nextTimeOnGrid'>nextTimeOnGrid</a> </li>
+<li class='toc3'><a href='#*play'>play</a> </li>
+<li class='toc3'><a href='#*queue'>queue</a> </li>
+<li class='toc3'><a href='#*sched'>sched</a> </li>
+<li class='toc3'><a href='#*schedAbs'>schedAbs</a> </li>
+<li class='toc3'><a href='#*seconds'>seconds</a> </li>
+<li class='toc3'><a href='#*secs2beats'>secs2beats</a> </li>
+<li class='toc3'><a href='#*setMeterAtBeat'>setMeterAtBeat</a> </li>
+<li class='toc3'><a href='#*startTime'>startTime</a> </li>
+<li class='toc3'><a href='#*tempo'>tempo</a> </li>
+<li class='toc3'><a href='#*tick'>tick</a> </li>
+<li class='toc3'><a href='#*ticks'>ticks</a> </li>
+<li class='toc3'><a href='#*ticksPerBeat'>ticksPerBeat</a> </li>
+</ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20instance%20methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#Help%20template'>Help template</a></li>
+<ul class='toc'></ul></ul></div><div class='contents'>
+<div id='menubar'></div>
+<div class='header'>
+<div id='label'>
+<span id='folder'>Classes (extension)</span>
+ | <span id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></span>
+</div><h1>MIDISyncClock<span id='superclasses'> : <a href="../Classes/Object.html">Object</a></span>
+<div class='extension-indicator-ctr' title='This help file originates from a third-party quark or plugin for SuperCollider.'><img class='extension-indicator-icon' alt='Extension' src='./../images/plugin.png'><span class='extension-indicator-text'>Extension</span></div></h1>
+<div id='summary'>(Undocumented class)</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/MIDISyncClock.sc' title='/Users/omercho/Library/Application Support/SuperCollider/Extensions/others/ddwMIDI/MIDISyncClock.sc'>MIDISyncClock.sc</a></div></div>
+<h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>This class is missing documentation.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3><a class='anchor' name='Inherited%20class%20methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented%20class%20methods'>Undocumented class methods</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*barsPerBeat' href='./../Overviews/Methods.html#barsPerBeat'>barsPerBeat</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*baseBar' href='./../Overviews/Methods.html#baseBar'>baseBar</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*baseBarBeat' href='./../Overviews/Methods.html#baseBarBeat'>baseBarBeat</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beatDur' href='./../Overviews/Methods.html#beatDur'>beatDur</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beats' href='./../Overviews/Methods.html#beats'>beats</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beats' href='./../Overviews/Methods.html#beats'>beats</a> = </h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beats2secs' href='./../Overviews/Methods.html#beats2secs'>beats2secs</a>(<span class='argstr'>beats</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beatsPerBar' href='./../Overviews/Methods.html#beatsPerBar'>beatsPerBar</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*beatsPerBar' href='./../Overviews/Methods.html#beatsPerBar'>beatsPerBar</a> = <span class='argstr'>newBeatsPerBar: 4</span></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*clear' href='./../Overviews/Methods.html#clear'>clear</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*dumpQueue' href='./../Overviews/Methods.html#dumpQueue'>dumpQueue</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*elapsedBeats' href='./../Overviews/Methods.html#elapsedBeats'>elapsedBeats</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*init' href='./../Overviews/Methods.html#init'>init</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*initClass' href='./../Overviews/Methods.html#initClass'>initClass</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*nextTimeOnGrid' href='./../Overviews/Methods.html#nextTimeOnGrid'>nextTimeOnGrid</a>(<span class='argstr'>quant: 1</span>, <span class='argstr'>phase: 0</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*play' href='./../Overviews/Methods.html#play'>play</a>(<span class='argstr'>task</span>, <span class='argstr'>when</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*queue' href='./../Overviews/Methods.html#queue'>queue</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*sched' href='./../Overviews/Methods.html#sched'>sched</a>(<span class='argstr'>when</span>, <span class='argstr'>task</span>, <span class='argstr'>adjustment: 0</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*schedAbs' href='./../Overviews/Methods.html#schedAbs'>schedAbs</a>(<span class='argstr'>when</span>, <span class='argstr'>task</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*seconds' href='./../Overviews/Methods.html#seconds'>seconds</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*secs2beats' href='./../Overviews/Methods.html#secs2beats'>secs2beats</a>(<span class='argstr'>seconds</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*setMeterAtBeat' href='./../Overviews/Methods.html#setMeterAtBeat'>setMeterAtBeat</a>(<span class='argstr'>newBeatsPerBar</span>, <span class='argstr'>beats</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*startTime' href='./../Overviews/Methods.html#startTime'>startTime</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*tempo' href='./../Overviews/Methods.html#tempo'>tempo</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*tick' href='./../Overviews/Methods.html#tick'>tick</a>(<span class='argstr'>index</span>, <span class='argstr'>data</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*ticks' href='./../Overviews/Methods.html#ticks'>ticks</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*ticksPerBeat' href='./../Overviews/Methods.html#ticksPerBeat'>ticksPerBeat</a></h3>
+<h3 class='method-code'><span class='method-prefix'>MIDISyncClock.</span><a class='method-name' name='*ticksPerBeat' href='./../Overviews/Methods.html#ticksPerBeat'>ticksPerBeat</a> = value</h3>
+<h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3><a class='anchor' name='Inherited%20instance%20methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='Help%20template'>Help template</a></h2>
+
+<p>Copy and paste the text below and save to HelpSource/Classes/MIDISyncClock.schelp<pre class='code prettyprint lang-sc'>TITLE:: MIDISyncClock
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: dumpQueue
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: setMeterAtBeat
+(describe method here)
+
+ARGUMENT:: newBeatsPerBar
+(describe argument here)
+
+ARGUMENT:: beats
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: nextTimeOnGrid
+(describe method here)
+
+ARGUMENT:: quant
+(describe argument here)
+
+ARGUMENT:: phase
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: init
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: beatDur
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: beatsPerBar
+(describe method here)
+
+ARGUMENT:: newBeatsPerBar
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: startTime
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: clear
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: secs2beats
+(describe method here)
+
+ARGUMENT:: seconds
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: barsPerBeat
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: baseBar
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: baseBarBeat
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tick
+(describe method here)
+
+ARGUMENT:: index
+(describe argument here)
+
+ARGUMENT:: data
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: ticksPerBeat
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: beats2secs
+(describe method here)
+
+ARGUMENT:: beats
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: beats
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: ticks
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: initClass
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: schedAbs
+(describe method here)
+
+ARGUMENT:: when
+(describe argument here)
+
+ARGUMENT:: task
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: sched
+(describe method here)
+
+ARGUMENT:: when
+(describe argument here)
+
+ARGUMENT:: task
+(describe argument here)
+
+ARGUMENT:: adjustment
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: play
+(describe method here)
+
+ARGUMENT:: task
+(describe argument here)
+
+ARGUMENT:: when
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: elapsedBeats
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: seconds
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: queue
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tempo
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
+</pre>
+<div class='doclink'>link::Classes/MIDISyncClock::<br></div></div></body></html>
