@@ -1,11 +1,16 @@
 IDE:
   editor:
     blinkDuration: 600
+    disableBlinkingCursor: false
     font:
       antialias: 2
       family: Courier New
       size: 13
+    highlightBracketContents: true
+    highlightCurrentLine: false
+    inactiveEditorFadeAlpha: 64
     indentWidth: 4
+    insertMatchingTokens: false
     lineWrap: true
     spaceIndent: false
     stepForwardEvaluation: false
@@ -86,30 +91,34 @@ IDE:
         whitespace: !textFormat
           color: "#7f7f7f"
           italic: false
+    useComboBox: false
+    useComboBoxWhenSplitting: false
   interpreter:
     autoStart: true
+    configFile: /Users/omercho/Library/Application Support/SuperCollider/sclang_conf.yaml
     runtimeDir: ""
+    standalone: false
   mainWindow:
     detached: !QVariantMap
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAO0AAAAAAAAAC0AAAaPAAADtAAAAAAAAAAABpA=
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADbfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADbQAAAGcA////AAAAAQAAAp8AAANt/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZsAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZwAAAHRAAAATAD///8AAANuAAADbQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywACAAD/////AAAAFwAABo4AAAPy/////wAAAC0AAAaOAAAD8gAAAAAAAAAABpA=
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADq/wCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADqwAAAGcA////AAAAAQAAAp8AAAOr/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAbsAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAbwAAAHvAAAATAD///8AAANuAAADqwAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnNotes.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSamp.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFTracks.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFLpMnSteps.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-APC40_OG_SourceCode/IFAPC40.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMini.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/-MidiMix_OG_SourceCode/IFMIDIMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/ElasticDrum.sc
-    - /Users/omercho/Dropbox/SC/__SC2013/+29APR/130405_toAbletonLive.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFProjectGlobals.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFRoot.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFCntrl.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFTracks/IFTrack01.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSequence.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_ERG_scdFiles/DontForgetToDo.scd
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFShuf.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_PitchsAndNotes/IFPitchMopho.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSixteen.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSeqSteps.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

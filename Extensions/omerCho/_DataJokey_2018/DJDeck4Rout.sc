@@ -10,23 +10,24 @@ DJDeck4.stop;
 DJDeck4Rout {
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.load; });
+			//Server.default.doWhenBooted({this.load; });
 		}
 	}
 	*load{
 		this.globals;
 		this.set00;
+		this.responders;
 
 	}
 	*globals{
 		~dj_Deck4R1Player=TaskProxy.new;
 
-		~durMulRootDJ = PatternProxy( Pseq([2], inf));
+		~durMulRootDJ = PatternProxy( Pseq([1/2], inf));
 		~durMulRootDJP= Pseq([~durMulRootDJ], inf).asStream;
 
 		~durRootDJ = PatternProxy(
 			Pseq([
-				2
+				1/2
 			],inf);
 		);
 		~durRootDJP= Pseq([~durRootDJ], inf).asStream;
@@ -41,7 +42,7 @@ DJDeck4Rout {
 				1.do {
 					//~elstc.control(0, 10, 64); //Mel Audio / High
 					~lateElstcP.next;
-					DJElstc(1);
+					DJElstc(1);"DJElstc".postln;
 					((~durRootDJP.next)*(~durMulRootDJP.next)).wait;
 				};
 			};

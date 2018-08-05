@@ -9,7 +9,7 @@ DJElstc {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.load; });
+			//Server.default.doWhenBooted({ this.load; });
 		}
 	}
 	*load {
@@ -30,7 +30,7 @@ DJElstc {
 		~rootElstc1=0;
 		~harmElstc1=0;
 		~susMulElstc1=1;
-		~tuneElstc1=26;
+		~tuneElstc1=0;
 	}
 
 	*proxy {
@@ -39,11 +39,11 @@ DJElstc {
 		~instElstc1 = PatternProxy( Pseq([60], inf));
 		~instElstc1P = Pseq([~instElstc1], inf).asStream;
 		~nt1Elstc1 = PatternProxy( Pseq([1], inf));
-		~nt1Elstc1P = Pseq([~nt1Elstc1], inf).asStream;
+		~nt1Elstc1P = Pseq([~nt1Elstc1]*0.01, inf).asStream;
 		~dur1Elstc1 = PatternProxy( Pseq([1], inf));
 		~dur1Elstc1P = Pseq([~dur1Elstc1], inf).asStream;
 		~amp1Elstc1 = PatternProxy( Pseq([1], inf));
-		~amp1Elstc1P = Pseq([~amp1Elstc1], inf).asStream;
+		~amp1Elstc1P = Pseq([~amp1Elstc1]*(127/10), inf).asStream;
 		~sus1Elstc1 = PatternProxy( Pseq([0.05], inf));
 		~sus1Elstc1P = Pseq([~sus1Elstc1], inf).asStream;
 
@@ -51,7 +51,7 @@ DJElstc {
 		~actElstc1 = PatternProxy( Pseq([1], inf));
 		~actElstc1P= Pseq([~actElstc1], inf).asStream;
 
-		~lfo1ActElstc1P = PatternProxy( Pseq([0], inf));
+		~lfo1ActElstc1P = PatternProxy( Pseq([1], inf));
 		~lfo1ActElstc1P= Pseq([~lfo1ActElstc1P], inf).asStream;
 
 		~volElstc1 = PatternProxy( Pseq([1.0], inf));
@@ -87,7 +87,7 @@ DJElstc {
 		var val;
 		val=i;
 
-		Pbind(//LFO 1
+		/*Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
 			\midiout,~elstc, \chan, ~chanElstc, \ctlNum, 10,
 			\delta, Pseq([~lfo1DurElstc1P.next], ~lfo1ActElstc1P),
@@ -103,6 +103,24 @@ DJElstc {
 			\note, Pseq([~instElstc1P.next], inf),
 			\dur, Pseq([~dur1Elstc1P.next], ~actElstc1P),
 			\amp, Pseq([~amp1Elstc1P.next], inf),
+			\sustain, Pseq([~sus1Elstc1P.next],inf)*~susMulElstc1
+		).play(quant:0);*/
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~elstc, \chan, ~chanElstc, \ctlNum, 0,
+			\delta, Pseq([~lfo1DurElstc1P.next], ~lfo1ActElstc1P),
+			\control, Pseq([~amp1Elstc1P.next], inf)
+		).play(quant:0);
+		Pbind(
+			\chan, ~chanElstc,
+			\type, \midi, \midiout,~elstc,
+			\octave,0,
+			\note, Pseq([~instElstc1P.next], inf),
+			\dur, Pseq([~dur1Elstc1P.next], ~actElstc1P),
+			\amp,PdegreeToKey(
+				Pseq([~tuneElstc1+~nt1Elstc1P.next], 1),
+				Pfunc({~scl2}),
+				12),
 			\sustain, Pseq([~sus1Elstc1P.next],inf)*~susMulElstc1
 		).play(quant:0);
 
@@ -244,12 +262,12 @@ DJElstc {
 
 	}
 	*preset1{
-		~nt1Elstc1.source   =  Pseq([0, 4, 0, 14], inf);
-		~amp1Elstc1.source  =  Pseq([1,0,0.5], inf);
-		~sus1Elstc1.source  =  Pseq([1,2,3,4], inf);
-
-		~durMulRootDJ.source=Pseq([1/2], inf);
-		~lateElstc.source =0.4;
+		~nt1Elstc1.source   =  Pseq([7.4], inf);
+		~amp1Elstc1.source  =  Pseq([10,0,10,0], inf);
+		~sus1Elstc1.source  =  Pseq([0.1], inf);
+		~lfo1ActElstc1.source=1;
+		~durMulRootDJ.source=Pseq([1], inf);
+		~lateElstc.source =(0.4);
 
 		DJElstc(1);
 	}

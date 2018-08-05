@@ -9,7 +9,7 @@ IFElstc {
 
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({ this.load; });
+			//Server.default.doWhenBooted({ this.load; });
 		}
 	}
 	*load {

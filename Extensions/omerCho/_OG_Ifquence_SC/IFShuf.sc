@@ -57,6 +57,15 @@ IFShuf{
 	*transSampOff{
 		~transShufSamp.source  = Pshuf([0], inf);
 	}
+	*transMophoOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+		~transShufMopho.source  = Pshuf([
+			(stp1),(stp2),(stp3),(stp4),
+			(stp5),(stp6),(stp7),(stp8)
+		], inf);
+	}
+	*transMophoOff{
+		~transShufMopho.source  = Pshuf([0], inf);
+	}
 
 	*loadKick{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 		~shufKickBut.free;
@@ -199,6 +208,25 @@ IFShuf{
 			'/shufSamp'
 		);
 	}
+	*loadMopho{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+		~shufMophoBut.free;
+		~countShufMopho=0;
+		~shufMophoBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				//"Transpose Shuffle".postln;
+				//~countShufMopho = ~countShufMopho + 1;
+
+				IFShuf.transMophoOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+				},{
+					IFShuf.transMophoOff;
+				}
+			);
+			},
+			'/shufMopho'
+		);
+	}
 	*harmDrumOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 
 		"Harmonics Shuffle".postln;
@@ -262,11 +290,13 @@ IFShuf{
 		~hrmBass.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
 		~hrmKeys.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
 		~hrmSamp.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
+		~hrmMopho.source=Pshuf([stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8], inf);
 	}
 	*harmMelOff{
 		~hrmBass.source=Pshuf([1], inf);
 		~hrmKeys.source=Pshuf([1], inf);
 		~hrmSamp.source=Pshuf([1], inf);
+		~hrmMopho.source=Pshuf([1], inf);
 	}
 	*harmMel{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 		~shufHarmMelBut.free;
@@ -303,7 +333,8 @@ IFShuf{
 				"Harmonic 0".postln;
 				//~harmKick=0;
 				//~harmSnr=0;~harmHat=0;
-				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
+				~harmBass=0;~harmKeys=0;~harmSamp=0;
+				~harmMopho=0;~hrmMulExt=0;
 
 				~tOSCAdrr.sendMsg('harm0', 0);
 				~tOSCAdrr.sendMsg('shufMelHarm', 0);
@@ -333,7 +364,8 @@ IFShuf{
 				"Harmonic 0".postln;
 				~harmKick=0;
 				~harmSnr=0;~harmHat=0;
-				~harmBass=0;~harmKeys=0;~harmSamp=0; ~hrmMulExt=0;
+				~harmBass=0;~harmKeys=0;~harmSamp=0;
+				~harmMopho=0;~hrmMulExt=0;
 
 				//~hrmKick.source     =  Pshuf([1], inf);
 				//~hrmSnr.source     =  Pshuf([1], inf);

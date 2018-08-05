@@ -18,10 +18,12 @@ IFSequence {
 		this.cntrl;
 		IFSeqKick.loadAll;
 		IFSeqSnr.loadAll;
+		IFSeqSnr2.loadAll;
 		IFSeqHat.loadAll;
 		IFSeqBass.loadAll;
 		IFSeqKeys.loadAll;
 		IFSeqSamp.loadAll;
+		IFSeqMopho.loadAll;
 		IFSeqPat.loadAll;
 
 		IFSeqVKick.loadAll;
@@ -221,6 +223,7 @@ IFSequence {
 		IFSeqBass.stepPack(index);
 		IFSeqKeys.stepPack(index);
 		IFSeqSamp.stepPack(index);
+		IFSeqMopho.stepPack(index);
 		IFSeqPat.stepPack(index);
 
 		IFSeqVKick.stepPack(index);
@@ -241,6 +244,7 @@ IFSequence {
 		IFSeqBass.stepPack(1);
 		IFSeqKeys.stepPack(1);
 		IFSeqSamp.stepPack(1);
+		IFSeqMopho.stepPack(1);
 		IFSeqPat.stepPack(1);
 		IFSeqVKick.stepPack(1);
 		IFSeqVTomL.stepPack(1);
@@ -253,6 +257,7 @@ IFSequence {
 		IFSeqBass.stepPack(2);
 		IFSeqKeys.stepPack(2);
 		IFSeqSamp.stepPack(2);
+		IFSeqMopho.stepPack(2);
 		IFSeqPat.stepPack(2);
 		IFSeqVKick.stepPack(2);
 		IFSeqVTomL.stepPack(2);
@@ -265,6 +270,7 @@ IFSequence {
 		IFSeqBass.stepPack(3);
 		IFSeqKeys.stepPack(3);
 		IFSeqSamp.stepPack(3);
+		IFSeqMopho.stepPack(3);
 		IFSeqPat.stepPack(3);
 		IFSeqVKick.stepPack(3);
 		IFSeqVTomL.stepPack(3);
@@ -277,6 +283,7 @@ IFSequence {
 		IFSeqBass.stepPack(4);
 		IFSeqKeys.stepPack(4);
 		IFSeqSamp.stepPack(4);
+		IFSeqMopho.stepPack(4);
 		IFSeqPat.stepPack(4);
 		IFSeqVKick.stepPack(4);
 		IFSeqVTomL.stepPack(4);
@@ -289,6 +296,7 @@ IFSequence {
 		IFSeqBass.stepPack(5);
 		IFSeqKeys.stepPack(5);
 		IFSeqSamp.stepPack(5);
+		IFSeqMopho.stepPack(5);
 		IFSeqPat.stepPack(5);
 		IFSeqVKick.stepPack(5);
 		IFSeqVTomL.stepPack(5);
@@ -301,6 +309,7 @@ IFSequence {
 		IFSeqBass.stepPack(6);
 		IFSeqKeys.stepPack(6);
 		IFSeqSamp.stepPack(6);
+		IFSeqMopho.stepPack(6);
 		IFSeqPat.stepPack(6);
 		IFSeqVKick.stepPack(6);
 		IFSeqVTomL.stepPack(6);
@@ -313,6 +322,7 @@ IFSequence {
 		IFSeqBass.stepPack(7);
 		IFSeqKeys.stepPack(7);
 		IFSeqSamp.stepPack(7);
+		IFSeqMopho.stepPack(7);
 		IFSeqPat.stepPack(7);
 		IFSeqVKick.stepPack(7);
 		IFSeqVTomL.stepPack(7);
@@ -325,6 +335,7 @@ IFSequence {
 		IFSeqBass.stepPack(8);
 		IFSeqKeys.stepPack(8);
 		IFSeqSamp.stepPack(8);
+		IFSeqMopho.stepPack(8);
 		IFSeqPat.stepPack(8);
 		IFSeqVKick.stepPack(8);
 		IFSeqVTomL.stepPack(8);
@@ -337,6 +348,7 @@ IFSequence {
 		IFSeqBass.stepPack(9);
 		IFSeqKeys.stepPack(9);
 		IFSeqSamp.stepPack(9);
+		IFSeqMopho.stepPack(9);
 		IFSeqPat.stepPack(9);
 		IFSeqVKick.stepPack(9);
 		IFSeqVTomL.stepPack(9);
@@ -349,6 +361,7 @@ IFSequence {
 		IFSeqBass.stepPack(10);
 		IFSeqKeys.stepPack(10);
 		IFSeqSamp.stepPack(10);
+		IFSeqMopho.stepPack(10);
 		IFSeqPat.stepPack(10);
 		IFSeqVKick.stepPack(10);
 		IFSeqVTomL.stepPack(10);
@@ -361,6 +374,7 @@ IFSequence {
 		IFSeqBass.stepPack(11);
 		IFSeqKeys.stepPack(11);
 		IFSeqSamp.stepPack(11);
+		IFSeqMopho.stepPack(11);
 		IFSeqPat.stepPack(11);
 		IFSeqVKick.stepPack(11);
 		IFSeqVTomL.stepPack(11);
@@ -373,6 +387,7 @@ IFSequence {
 		IFSeqBass.stepPack(12);
 		IFSeqKeys.stepPack(12);
 		IFSeqSamp.stepPack(12);
+		IFSeqMopho.stepPack(12);
 		IFSeqPat.stepPack(12);
 		IFSeqVKick.stepPack(12);
 		IFSeqVTomL.stepPack(12);
@@ -385,6 +400,7 @@ IFSequence {
 		IFSeqBass.stepPack(13);
 		IFSeqKeys.stepPack(13);
 		IFSeqSamp.stepPack(13);
+		IFSeqMopho.stepPack(13);
 		IFSeqPat.stepPack(13);
 		IFSeqVKick.stepPack(13);
 		IFSeqVTomL.stepPack(13);
@@ -397,6 +413,7 @@ IFSequence {
 		IFSeqBass.stepPack(14);
 		IFSeqKeys.stepPack(14);
 		IFSeqSamp.stepPack(14);
+		IFSeqMopho.stepPack(14);
 		IFSeqPat.stepPack(14);
 		IFSeqVKick.stepPack(14);
 		IFSeqVTomL.stepPack(14);
@@ -409,6 +426,7 @@ IFSequence {
 		IFSeqBass.stepPack(15);
 		IFSeqKeys.stepPack(15);
 		IFSeqSamp.stepPack(15);
+		IFSeqMopho.stepPack(15);
 		IFSeqPat.stepPack(15);
 		IFSeqVKick.stepPack(15);
 		IFSeqVTomL.stepPack(15);
@@ -421,6 +439,7 @@ IFSequence {
 		IFSeqBass.stepPack(16);
 		IFSeqKeys.stepPack(16);
 		IFSeqSamp.stepPack(16);
+		IFSeqMopho.stepPack(16);
 		IFSeqPat.stepPack(16);
 		IFSeqVKick.stepPack(16);
 		IFSeqVTomL.stepPack(16);
@@ -521,6 +540,7 @@ IFSequence {
 		IFSeqBass.free;
 		IFSeqKeys.free;
 		IFSeqSamp.free;
+		IFSeqMopho.free;
 		IFSeqPat.free;
 	}
 

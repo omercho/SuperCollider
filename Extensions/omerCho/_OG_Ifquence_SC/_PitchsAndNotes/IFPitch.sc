@@ -29,6 +29,7 @@ IFPitch {
 		this.noteBass;
 		this.noteKeys;
 		this.noteSamp;
+		this.noteMopho;
 		this.trans;
 	}
 
@@ -55,6 +56,7 @@ IFPitch {
 						~tOSCAdrr.sendMsg('pitchBass', 1);
 						~tOSCAdrr.sendMsg('pitchKeys', 1);
 						~tOSCAdrr.sendMsg('pitchSamp', 1);
+						~tOSCAdrr.sendMsg('pitchMopho', 1);
 						~tOSCAdrr.sendMsg('pitchExt', 1);
 
 					},
@@ -64,6 +66,7 @@ IFPitch {
 						~tOSCAdrr.sendMsg('pitchBass', 0);
 						~tOSCAdrr.sendMsg('pitchKeys', 0);
 						~tOSCAdrr.sendMsg('pitchSamp', 0);
+						~tOSCAdrr.sendMsg('pitchMopho', 0);
 						~tOSCAdrr.sendMsg('pitchExt', 0);
 						~countPAll=0;
 					}
@@ -90,6 +93,7 @@ IFPitch {
 				"Root NOTE 0".postln;
 				~transKick.source=0;~transSnr.source=0;~transHat.source=0;
 				~transBass.source=0;~transKeys.source=0;~transSamp.source=0;
+				~transMopho.source=0;
 				~transExt.source=0;
 				~tOSCAdrr.sendMsg('noteLabel', '0');
 			});
@@ -104,6 +108,7 @@ IFPitch {
 				"Root NOTE 1".postln;
 				//~transKick.source=1;//~transSnr.source=1;~transHat.source=1;
 				~transBass.source=1;~transKeys.source=1;~transSamp.source=1;
+				~transMopho.source=1;
 				~transExt.source=1;
 				~tOSCAdrr.sendMsg('noteLabel', '1');
 			});
@@ -119,6 +124,7 @@ IFPitch {
 				"Root NOTE 2".postln;
 				//~transKick.source=2;//~transSnr.source=2;~transHat.source=2;
 				~transBass.source=2;~transKeys.source=2;~transSamp.source=2;
+				~transMopho.source=2;
 				~transExt.source=2;
 				~tOSCAdrr.sendMsg('noteLabel', '2');
 			});
@@ -133,6 +139,7 @@ IFPitch {
 				"Root NOTE 3".postln;
 				//~transKick.source=3;//~transSnr.source=3;~transHat.source=3;
 				~transBass.source=3;~transKeys.source=3;~transSamp.source=3;
+				~transMopho.source=3;
 				~transExt.source=3;
 				~tOSCAdrr.sendMsg('noteLabel', '3');
 			});
@@ -147,6 +154,7 @@ IFPitch {
 				"Root NOTE 4".postln;
 				//~transKick.source=4;//~transSnr.source=4;~transHat.source=4;
 				~transBass.source=4;~transKeys.source=4;~transSamp.source=4;
+				~transMopho.source=4;
 				~transExt.source=4;
 				~tOSCAdrr.sendMsg('noteLabel', '4');
 			});
@@ -161,6 +169,7 @@ IFPitch {
 				"Root NOTE 5".postln;
 				//~transKick.source=5;//~transSnr.source=5;~transHat.source=5;
 				~transBass.source=5;~transKeys.source=5;~transSamp.source=5;
+				~transMopho.source=5;
 				~transExt.source=5;
 				~tOSCAdrr.sendMsg('noteLabel', '5');
 			});
@@ -175,6 +184,7 @@ IFPitch {
 				"Root NOTE 6".postln;
 				//~transKick.source=6;//~transSnr.source=6;~transHat.source=6;
 				~transBass.source=6;~transKeys.source=6;~transSamp.source=6;
+				~transMopho.source=6;
 				~transExt.source=6;
 				~tOSCAdrr.sendMsg('noteLabel', '6');
 			});
@@ -189,6 +199,7 @@ IFPitch {
 				"Root NOTE 7".postln;
 				//~transKick.source=7;//~transSnr.source=7;~transHat.source=7;
 				~transBass.source=7;~transKeys.source=7;~transSamp.source=7;
+				~transMopho.source=7;
 				~transExt.source=7;
 				~tOSCAdrr.sendMsg('noteLabel', '7');
 			});
@@ -203,6 +214,7 @@ IFPitch {
 				"Root NOTE 8".postln;
 				//~transKick.source=8;//~transSnr.source=8;~transHat.source=8;
 				~transBass.source=8;~transKeys.source=8;~transSamp.source=8;
+				~transMopho.source=8;
 				~transExt.source=8;
 				~tOSCAdrr.sendMsg('noteLabel', '8');
 			});
@@ -217,6 +229,7 @@ IFPitch {
 				"Root NOTE 9".postln;
 				//~transKick.source=9;//~transSnr.source=9;~transHat.source=9;
 				~transBass.source=9;~transKeys.source=9;~transSamp.source=9;
+				~transMopho.source=9;
 				~transExt.source=9;
 				~tOSCAdrr.sendMsg('noteLabel', '9');
 			});
@@ -231,6 +244,7 @@ IFPitch {
 				"Root NOTE 10".postln;
 				//~transKick.source=10;//~transSnr.source=10;~transHat.source=10;
 				~transBass.source=10;~transKeys.source=10;~transSamp.source=10;
+				~transMopho.source=10;
 				~transExt.source=10;
 				~tOSCAdrr.sendMsg('noteLabel', '10');
 			});
@@ -245,6 +259,7 @@ IFPitch {
 				"Root NOTE 11".postln;
 				//~transKick.source=11;//~transSnr.source=11;~transHat.source=11;
 				~transBass.source=11;~transKeys.source=11;~transSamp.source=11;
+				~transMopho.source=11;
 				~transExt.source=11;
 				~tOSCAdrr.sendMsg('noteLabel', '11');
 			});
@@ -259,6 +274,7 @@ IFPitch {
 				"Root NOTE 12".postln;
 				//~transKick.source=12;//~transSnr.source=12;~transHat.source=12;
 				~transBass.source=12;~transKeys.source=12;~transSamp.source=12;
+				~transMopho.source=12;
 				~transExt.source=12;
 				~tOSCAdrr.sendMsg('noteLabel', '12');
 			});
@@ -273,6 +289,7 @@ IFPitch {
 				"Root NOTE 13".postln;
 				//~transKick.source=13;//~transSnr.source=13;~transHat.source=13;
 				~transBass.source=13;~transKeys.source=13;~transSamp.source=13;
+				~transMopho.source=13;
 				~transExt.source=13;
 				~tOSCAdrr.sendMsg('noteLabel', '13');
 			});
@@ -287,6 +304,7 @@ IFPitch {
 				"Root NOTE 14".postln;
 				//~transKick.source=14;//~transSnr.source=14;~transHat.source=14;
 				~transBass.source=14;~transKeys.source=14;~transSamp.source=14;
+				~transMopho.source=14;
 				~transExt.source=14;
 				~tOSCAdrr.sendMsg('noteLabel', '14');
 			});
@@ -302,6 +320,7 @@ IFPitch {
 				"Root NOTE -1".postln;
 				//~transKick.source=(-1);//~transSnr.source=(-1);~transHat.source=(-1);
 				~transBass.source=(-1);~transKeys.source=(-1);~transSamp.source=(-1);
+				~transMopho.source=(-1);
 				~transExt.source=(-1);
 				~tOSCAdrr.sendMsg('noteLabel', '-1');
 			});
@@ -317,6 +336,7 @@ IFPitch {
 				"Root NOTE -2".postln;
 				//~transKick.source=(-2);//~transSnr.source=(-2);~transHat.source=(-2);
 				~transBass.source=(-2);~transKeys.source=(-2);~transSamp.source=(-2);
+				~transMopho.source=(-2);
 				~transExt.source=(-2);
 				~tOSCAdrr.sendMsg('noteLabel', '-2');
 			});
@@ -331,6 +351,7 @@ IFPitch {
 				"Root NOTE -3".postln;
 				//~transKick.source=(-3);//~transSnr.source=(-3);~transHat.source=(-3);
 				~transBass.source=(-3);~transKeys.source=(-3);~transSamp.source=(-3);
+				~transMopho.source=(-3);
 				~transExt.source=(-3);
 				~tOSCAdrr.sendMsg('noteLabel', '-3');
 			});
@@ -345,6 +366,7 @@ IFPitch {
 				"Root NOTE -4".postln;
 				//~transKick.source=(-4);//~transSnr.source=(-4);~transHat.source=(-4);
 				~transBass.source=(-4);~transKeys.source=(-4);~transSamp.source=(-4);
+				~transMopho.source=(-4);
 				~transExt.source=(-4);
 				~tOSCAdrr.sendMsg('noteLabel', '-4');
 			});
@@ -359,6 +381,7 @@ IFPitch {
 				"Root NOTE -5".postln;
 				//~transKick.source=(-5);//~transSnr.source=(-5);~transHat.source=(-5);
 				~transBass.source=(-5);~transKeys.source=(-5);~transSamp.source=(-5);
+				~transMopho.source=(-5);
 				~transExt.source=(-5);
 				~tOSCAdrr.sendMsg('noteLabel', '-5');
 			});
@@ -373,6 +396,7 @@ IFPitch {
 				"Root NOTE -6".postln;
 				//~transKick.source=(-6);//~transSnr.source=(-6);~transHat.source=(-6);
 				~transBass.source=(-6);~transKeys.source=(-6);~transSamp.source=(-6);
+				~transMopho.source=(-6);
 				~transExt.source=(-6);
 				~tOSCAdrr.sendMsg('noteLabel', '-6');
 			});
@@ -387,6 +411,7 @@ IFPitch {
 				"Root NOTE -7".postln;
 				//~transKick.source=(-7);//~transSnr.source=(-7);~transHat.source=(-7);
 				~transBass.source=(-7);~transKeys.source=(-7);~transSamp.source=(-7);
+				~transMopho.source=(-7);
 				~transExt.source=(-7);
 				~tOSCAdrr.sendMsg('noteLabel', '-7');
 			});
@@ -401,6 +426,7 @@ IFPitch {
 				"Root NOTE -8".postln;
 				//~transKick.source=(-8);//~transSnr.source=(-8);~transHat.source=(-8);
 				~transBass.source=(-8);~transKeys.source=(-8);~transSamp.source=(-8);
+				~transMopho.source=(-8);
 				~transExt.source=(-8);
 				~tOSCAdrr.sendMsg('noteLabel', '-8');
 			});
@@ -415,6 +441,7 @@ IFPitch {
 				"Root NOTE -9".postln;
 				//~transKick.source=(-9);//~transSnr.source=(-9);~transHat.source=(-9);
 				~transBass.source=(-9);~transKeys.source=(-9);~transSamp.source=(-9);
+				~transMopho.source=(-9);
 				~transExt.source=(-9);
 				~tOSCAdrr.sendMsg('noteLabel', '-9');
 			});
@@ -429,6 +456,7 @@ IFPitch {
 				"Root NOTE -10".postln;
 				//~transKick.source=(-10);//~transSnr.source=(-10);~transHat.source=(-10);
 				~transBass.source=(-10);~transKeys.source=(-10);~transSamp.source=(-10);
+				~transMopho.source=(-10);
 				~transExt.source=(-10);
 				~tOSCAdrr.sendMsg('noteLabel', '-10');
 			});
@@ -443,6 +471,7 @@ IFPitch {
 				"Root NOTE -11".postln;
 				//~transKick.source=(-11);//~transSnr.source=(-11);~transHat.source=(-11);
 				~transBass.source=(-11);~transKeys.source=(-11);~transSamp.source=(-11);
+				~transMopho.source=(-11);
 				~transExt.source=(-11);
 				~tOSCAdrr.sendMsg('noteLabel', '-11');
 			});
@@ -457,6 +486,7 @@ IFPitch {
 				"Root NOTE -12".postln;
 				//~transKick.source=(-12);//~transSnr.source=(-12);~transHat.source=(-12);
 				~transBass.source=(-12);~transKeys.source=(-12);~transSamp.source=(-12);
+				~transMopho.source=(-12);
 				~transExt.source=(-12);
 				~tOSCAdrr.sendMsg('noteLabel', '-12');
 			});
@@ -471,6 +501,7 @@ IFPitch {
 				"Root NOTE -13".postln;
 				//~transKick.source=(-13);//~transSnr.source=(-13);~transHat.source=(-13);
 				~transBass.source=(-13);~transKeys.source=(-13);~transSamp.source=(-13);
+				~transMopho.source=(-13);
 				~transExt.source=(-13);
 				~tOSCAdrr.sendMsg('noteLabel', '-13');
 			});
@@ -485,6 +516,7 @@ IFPitch {
 				"Root NOTE -14".postln;
 				//~transKick.source=(-14);//~transSnr.source=(-14);~transHat.source=(-14);
 				~transBass.source=(-14);~transKeys.source=(-14);~transSamp.source=(-14);
+				~transMopho.source=(-14);
 				~transExt.source=(-14);
 				~tOSCAdrr.sendMsg('noteLabel', '-14');
 			});
@@ -1962,6 +1994,394 @@ IFPitch {
 
 	}
 
+	*noteMopho {
+
+		/////////////////////----- Note -------//////////////
+
+
+		~noteMopho_0.free;
+		~noteMopho_0 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 0".postln;
+
+				~transMopho.source=0;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '0');
+			});
+			},
+			'/ntMopho_0'
+		);
+
+		~noteMopho_1.free;
+		~noteMopho_1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 1".postln;
+				//~transKick.source=1;~transSnr.source=1;~transHat.source=1;
+				~transMopho.source=1;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '1');
+			});
+			},
+			'/ntMopho_1'
+		);
+
+
+		~noteMopho_2.free;
+		~noteMopho_2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 2".postln;
+				//~transKick.source=2;~transSnr.source=2;~transHat.source=2;
+				~transMopho.source=2;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '2');
+			});
+			},
+			'/ntMopho_2'
+		);
+
+		~noteMopho_3.free;
+		~noteMopho_3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 3".postln;
+				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
+				~transMopho.source=3;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '3');
+			});
+			},
+			'/ntMopho_3'
+		);
+
+		~noteMopho_4.free;
+		~noteMopho_4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 4".postln;
+				//~transKick.source=4;~transSnr.source=4;~transHat.source=4;
+				~transMopho.source=4;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '4');
+			});
+			},
+			'/ntMopho_4'
+		);
+
+		~noteMopho_5.free;
+		~noteMopho_5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 5".postln;
+				//~transKick.source=5;~transSnr.source=5;~transHat.source=5;
+				~transMopho.source=5;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '5');
+			});
+			},
+			'/ntMopho_5'
+		);
+
+		~noteMopho_6.free;
+		~noteMopho_6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 6".postln;
+				//~transKick.source=6;~transSnr.source=6;~transHat.source=6;
+				~transMopho.source=6;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '6');
+			});
+			},
+			'/ntMopho_6'
+		);
+
+		~noteMopho_7.free;
+		~noteMopho_7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 7".postln;
+				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
+				~transMopho.source=7;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '7');
+			});
+			},
+			'/ntMopho_7'
+		);
+
+		~noteMopho_8.free;
+		~noteMopho_8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 8".postln;
+				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
+				~transMopho.source=8;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '8');
+			});
+			},
+			'/ntMopho_8'
+		);
+
+		~noteMopho_9.free;
+		~noteMopho_9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 9".postln;
+				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
+				~transMopho.source=9;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '9');
+			});
+			},
+			'/ntMopho_9'
+		);
+
+		~noteMopho_10.free;
+		~noteMopho_10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 10".postln;
+				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
+				~transMopho.source=10;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '10');
+			});
+			},
+			'/ntMopho_10'
+		);
+
+		~noteMopho_11.free;
+		~noteMopho_11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 11".postln;
+				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
+				~transMopho.source=11;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '11');
+			});
+			},
+			'/ntMopho_11'
+		);
+
+		~noteMopho_12.free;
+		~noteMopho_12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 12".postln;
+				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
+				~transMopho.source=12;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '12');
+			});
+			},
+			'/ntMopho_12'
+		);
+
+		~noteMopho_13.free;
+		~noteMopho_13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 13".postln;
+				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
+				~transMopho.source=13;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '13');
+			});
+			},
+			'/ntMopho_13'
+		);
+
+		~noteMopho_14.free;
+		~noteMopho_14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE 14".postln;
+				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
+				~transMopho.source=14;
+				~tOSCAdrr.sendMsg('noteMophoLabel', '14');
+			});
+			},
+			'/ntMopho_14'
+		);
+
+		//////////////////////////// NEGATIVE
+		~noteMopho1.free;
+		~noteMopho1 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -1".postln;
+				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
+				~transMopho.source=(-1);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-1');
+			});
+			},
+			'/ntMopho-1'
+		);
+
+
+		~noteMopho2.free;
+		~noteMopho2 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -2".postln;
+				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
+				~transMopho.source=(-2);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-2');
+			});
+			},
+			'/ntMopho-2'
+		);
+
+		~noteMopho3.free;
+		~noteMopho3 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -3".postln;
+				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
+				~transMopho.source=(-3);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-3');
+			});
+			},
+			'/ntMopho-3'
+		);
+
+		~noteMopho4.free;
+		~noteMopho4 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -4".postln;
+				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
+				~transMopho.source=(-4);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-4');
+			});
+			},
+			'/ntMopho-4'
+		);
+
+		~noteMopho5.free;
+		~noteMopho5 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -5".postln;
+				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
+				~transMopho.source=(-5);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-5');
+			});
+			},
+			'/ntMopho-5'
+		);
+
+		~noteMopho6.free;
+		~noteMopho6 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -6".postln;
+				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
+				~transMopho.source=(-6);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-6');
+			});
+			},
+			'/ntMopho-6'
+		);
+
+		~noteMopho7.free;
+		~noteMopho7 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -7".postln;
+				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
+				~transMopho.source=(-7);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-7');
+			});
+			},
+			'/ntMopho-7'
+		);
+
+		~noteMopho8.free;
+		~noteMopho8 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -8".postln;
+				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
+				~transMopho.source=(-8);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-8');
+			});
+			},
+			'/ntMopho-8'
+		);
+
+		~noteMopho9.free;
+		~noteMopho9 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -9".postln;
+				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
+				~transMopho.source=(-9);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-9');
+			});
+			},
+			'/ntMopho-9'
+		);
+
+		~noteMopho10.free;
+		~noteMopho10 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -10".postln;
+				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
+				~transMopho.source=(-10);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-10');
+			});
+			},
+			'/ntMopho-10'
+		);
+
+		~noteMopho11.free;
+		~noteMopho11 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -11".postln;
+				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
+				~transMopho.source=(-11);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-11');
+			});
+			},
+			'/ntMopho-11'
+		);
+
+		~noteMopho12.free;
+		~noteMopho12 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -12".postln;
+				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
+				~transMopho.source=(-12);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-12');
+			});
+			},
+			'/ntMopho-12'
+		);
+
+		~noteMopho13.free;
+		~noteMopho13 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -13".postln;
+				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
+				~transMopho.source=(-13);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-13');
+			});
+			},
+			'/ntMopho-13'
+		);
+
+		~noteMopho14.free;
+		~noteMopho14 = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Root NOTE -14".postln;
+				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
+				~transMopho.source=(-14);
+				~tOSCAdrr.sendMsg('noteMophoLabel', '-14');
+			});
+			},
+			'/ntMopho-14'
+		);
+
+
+
+	}
 	*freeAll {
 
 

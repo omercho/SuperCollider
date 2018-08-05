@@ -11,10 +11,10 @@ IFLoad.loadVolca;
 IFTrack01 {
 	*loadAtStart{
 		~trackCase=1;
-		IFAPC40.tsLeds(1,0,0,0,0,0,0,0);
+		IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
 		IFRoot.set00;
 		this.setGlb01;
-		this.apcParts;
+		this.lpMnParts;
 		this.setActs;
 		~shiftPartsBut.free;
 		~shiftPartsBut = OSCFunc({
@@ -34,20 +34,22 @@ IFTrack01 {
 		IFShuf.loadHat(0,1,0,2,0,3,0,4,0);
 		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
 		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
-		IFShuf.loadSamp(0,-1,0,-3,2,-5,6,1,0);
+		IFShuf.loadSamp(0,2,0,3,2,1,6,0,4);
+		IFShuf.loadMopho(0,2,0,1,2,4,2,0,6);
 		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
 		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
 	}
 
 	*setActs{
-		IFAPC40.actLine1(0,0,0);
-		IFAPC40.actLine2(0,0,0);
-		IFAPC40.actLine3(1,0,0);
-		IFAPC40.actLine4(1,0,0);
-		IFAPC40.actLine5(0,0,0);
-		IFAPC40.actLine6(1,0,0);
+		IFAPC40.actLine1(0,0,0,0);
+		IFAPC40.actLine2(0,0,0,0);
+		IFAPC40.actLine3(0,0,0,0);
+		IFAPC40.actLine4(0,0,0,0);
+		IFAPC40.actLine5(0,0,0,0);
+		IFAPC40.actLine6(1,0,0,0);
+		IFAPC40.actLine7(1,0,0,0);
 
-		IFMIDIMix.act5(1,0,0);
+		IFMIDIMix.act5(0,0,0);
 
 	}//setActs
 	*setGlb01{
@@ -59,7 +61,7 @@ IFTrack01 {
 		~scl2= Scale.chinese;
 		~tOSCAdrr.sendMsg('scaleLabel', 'Chinese');
 
-		IFProjectGlobals.setTempo(125);
+		IFProjectGlobals.setTempo(128);
 		~tOSCAdrr.sendMsg('tempoLabel', ~tmp1);
 		~tOSCAdrr.sendMsg('tempoFader', ~tmp1);
 		~nt=(0);
@@ -164,9 +166,9 @@ IFTrack01 {
 
 		//CH -1- [ Kick ]
 		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtKick.stGrpSet  (0,0,4,0, 0,0,4,0,  0,0,4,0, 0,0,4,0);
-		//IFSeqNtKick.stGrp  (0);
+		IFSeqOctKick.stGrp (0);
+		//IFSeqNtKick.stGrpSet  (0,0,4,0, 0,0,4,0,  0,0,4,0, 0,0,4,0);
+		IFSeqNtKick.stGrp  (0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKick.stGrpSet (0,2,0,2, 0,2,0,2,  0,2,0,2, 0,2,0,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
@@ -179,6 +181,10 @@ IFTrack01 {
 		IFSeqSusSnr.stGrpSet (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrp  (4);
+		IFSeqSnr2.stGrpSet  (0,0,0,0, 0,0,1,0,  0,0,0,0, 0,0,1,0);
+		IFSeqNtSnr2.stGrpSet  (0,1,2,3, 0,1,2,3,  0,1,2,3, 0,1,2,3);
+		IFSeqVelSnr2.stGrpSet  (1,2,1,2, 1,2,1,2,  1,2,1,2, 1,2,1,2);
+		IFSeqSusSnr2.stGrpSet (1,2,1,2, 1,2,1,2,  1,2,1,2, 1,2,1,2);
 
 		//CH -2- [ HAT ]
 		IFSeqHat.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
@@ -191,17 +197,18 @@ IFTrack01 {
 		//CH -4- [Bass]
 		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqOctBass.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtBass.stGrpSet  (0,1,0,0, 0,1,0,0,  0,0,1,0, 1,3,4,5);
-		IFSeqVelBass.stGrpSet (0,3,0,3, 0,3,0,3,  0,3,0,3, 0,3,0,3);
-		IFSeqSusBass.stGrpSet (1,0,1,0, 0,3,0,0,   1,4,1,0, 1,0,0,0);
+		IFSeqNtBass.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 1,0,3,2);
+		IFSeqVelBass.stGrpSet (3,3,0,3, 3,3,0,3,  3,3,0,3, 3,3,0,3);
+		IFSeqSusBass.stGrpSet (3,0,1,0, 0,0,1,0,   2,0,1,0, 3,3,0,0);
 		IFSeqTmBass.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurBass.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
+		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
 		~lfo1Bass.source  =  Pseq([30,90,70,18, 0,10,60,20], inf);
 		~lfo2Bass.source  =  Pseq([0,20,30,50, 0,20,100,50], inf);
 		//CH -5- [Keys]
 		IFSeqKeys.stGrpSet    (1,0,1,1, 1,1,0,0,  1,0,1,1, 1,1,0,0);
-		IFSeqOctKeys.stGrpSet (3,3,2,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtKeys.stGrpSet  (0,1,2,3, 4,5,6,7,  8,9,10,11, 12,13,14,15);
+		IFSeqOctKeys.stGrpSet (4,3,3,3, 4,3,3,3,  4,3,3,3, 4,3,3,3);
+		IFSeqNtKeys.stGrpSet  (0,1,0,3, 0,5,0,7,  0,4,0,1, 1,0,4,2);
 		IFSeqVelKeys.stGrpSet (3,0,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKeys.stGrpSet (5,0,2,0, 4,0,0,0,  5,0,0,0, 4,2,0,0);
 		IFSeqTmKeys.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
@@ -210,14 +217,25 @@ IFTrack01 {
 		~lfoCtKeys.source =  Pseq([10,20,50,50], inf);
 		//CH -6- [SAMP]
 		IFSeqSamp.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
-		IFSeqOctSamp.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
-		IFSeqNtSamp.stGrpSet  (0,1,2,3, 4,5,6,7,  8,9,10,11, 12,13,14,15);
+		IFSeqOctSamp.stGrpSet (3,3,3,4, 3,3,3,4,  3,3,3,4, 3,3,3,4);
+		IFSeqNtSamp.stGrpSet  (0,1,0,3, 4,0,6,0,  0,9,0,11, 0,3,1,2);
 		IFSeqVelSamp.stGrpSet (0,3,0,3, 0,3,0,3,  0,3,0,3, 0,3,0,3);
 		IFSeqSusSamp.stGrpSet (5,2,3,0, 3,0,0,0,  5,0,0,0, 4,0,0,0);
 		IFSeqTmSamp.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,70,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([120,10,80,99,6,10,80,99], inf);
+		//CH -7- [Mopho]
+		IFSeqMopho.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqOctMopho.stGrpSet (3,4,3,4, 3,3,4,3,  3,3,3,3, 4,3,3,3);
+		IFSeqNtMopho.stGrpSet  (0,1,0,3, 0,5,0,7,  0,4,0,1, 0,9,1,2);
+		IFSeqVelMopho.stGrpSet (4,3,0,3, 3,3,0,3,  0,3,0,3, 4,3,0,3);
+		IFSeqSusMopho.stGrpSet (0,0,2,0, 1,0,0,0,  1,0,0,0, 1,0,0,3);
+		IFSeqTmMopho.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqDurMopho.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
+		IFShuf.loadMopho(0,2,0,1,2,-2,2,0,6);
+		~lfo1Mopho.source  =  Pseq([0,1,0,9, 0,10,7,1], inf);
+		~lfo2Mopho.source  =  Pseq([0,10,80,99,6,10,80,99], inf);
 		//Mas
 		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pxrand([1,24,70,50,120,0,38,100], inf);
@@ -235,7 +253,7 @@ IFTrack01 {
 		"part02".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt02');
 		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		IFSeqOctKick.stGrpSet (3,3,3,3, 3,3,3,3,  3,3,3,3, 3,3,3,3);
+		IFSeqOctKick.stGrp (0);
 		IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKick.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
@@ -938,5 +956,82 @@ IFTrack01 {
 	*apcActs{
 
 	}//apcActs
+	*lpMnParts {//Parts 1-8 //Presets 9-16
+
+
+		~lpMn_TS01.free;
+		~lpMn_TS01=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=1;
+				IFTrack01.part01;
+				IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH1);
+		~lpMn_TS02.free;
+		~lpMn_TS02=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=2;
+				IFTrack01.part02;
+				IFLpMn.tsLeds(0,1,0,0,0,0,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH2);
+		~lpMn_TS03.free;
+		~lpMn_TS03=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=3;
+				IFTrack01.part03;
+				IFLpMn.tsLeds(0,0,1,0,0,0,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH3);
+		~lpMn_TS04.free;
+		~lpMn_TS04=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=4;
+				IFTrack01.part04;
+				IFLpMn.tsLeds(0,0,0,1,0,0,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH4);
+		~lpMn_TS05.free;
+		~lpMn_TS05=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=5;
+				IFTrack01.part05;
+				IFLpMn.tsLeds(0,0,0,0,1,0,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH5);
+		~lpMn_TS06.free;
+		~lpMn_TS06=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=6;
+				IFTrack01.part06;
+				IFLpMn.tsLeds(0,0,0,0,0,1,0,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH6);
+		~lpMn_TS07.free;
+		~lpMn_TS07=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=7;
+				IFTrack01.part07;
+				IFLpMn.tsLeds(0,0,0,0,0,0,1,0);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH7);
+		~lpMn_TS08.free;
+		~lpMn_TS08=MIDIFunc.cc( {
+			arg vel;
+			if ( vel==127, {
+				~partCase=8;
+				IFTrack01.part08;
+				IFLpMn.tsLeds(0,0,0,0,0,0,0,1);
+			});
+		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH8);
+
+	}//lpMnParts
 
 }

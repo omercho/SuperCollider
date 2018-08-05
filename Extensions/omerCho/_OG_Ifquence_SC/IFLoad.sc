@@ -32,6 +32,7 @@ IFLoad{
 				IFPitchBass.loadAll;
 				IFPitchKeys.loadAll;
 				IFPitchSamp.loadAll;
+				IFPitchMopho.loadAll;
 				IFPitchExt.loadAll;
 				IFPitchVChord.loadAll;
 				IFShuf.load;
@@ -59,6 +60,7 @@ IFLoad{
 				IFKeys.load;
 				0.1.wait;
 				IFSamp.load;
+				IFMopho.load;
 				0.1.wait;
 				IFRes.load;
 				IFMast.load;
@@ -69,11 +71,17 @@ IFLoad{
 				0.1.wait;
 				IFSeqSteps.load;
 				0.1.wait;
-				IFSC.load;
-				0.1.wait;
+				//IFSC.load;
+				0.5.wait;
 				"Track: Not loaded".postln;
 				~tOSCAdrr.sendMsg('trackLabel', 'Track: Not loaded');
-				ServerMeter.new(Server.default, 6, 6);
+				/*
+				//ServerMeter.new(Server.default, 6, 6);
+				~rect=Rect(0, 0, ServerMeterView.getWidth(2, 2) * 3, ServerMeterView.height);
+				~lvlMtrWind = Window.new("IFSC Levels",~rect);
+				ServerMeterView.new(Server.default, ~lvlMtrWind, 10@20, 6, 8);
+				~lvlMtrWind.front;
+				*/
 
 			});
 		};//--fork--

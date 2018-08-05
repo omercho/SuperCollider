@@ -101,8 +101,8 @@ IFHat {
 
 				//~hatLate=~abLate;
 				~hatLate.wait;
-				this.p1_SC(val);
-				//this.p1(val);
+				//this.p1_SC(val);
+				this.p1(val);
 				((~dur1HatP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
@@ -142,7 +142,7 @@ IFHat {
 			\type, \midi, \midicmd, \control,
 			\midiout,~vSamp, \chan, ~smp07, \ctlNum, ~smpLvl,
 			\delta, Pseq([~delta1VSamp07P.next], 1),
-			\control, Pseq([~volHatP.next*~amp1HatP], 1),
+			\control, Pseq([~volHatP.next*~amp1HatP]*127, 1),
 		).play(quant:0);
 		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
@@ -153,14 +153,12 @@ IFHat {
 				Pfunc({~scl2}),
 				12),
 		).play(quant:0);
-
-
 		Pbind(
 			\chan, ~smp07,
 			\type, \midi, \midiout,~vSamp,
 			\dur, Pseq([~dur1HatP.next],~actHatP),
 			\amp, Pseq([~amp1HatP.next], 1),
-			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat,
+			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat
 		).play(quant:0);
 
 	}
@@ -267,15 +265,15 @@ IFHat {
 				1, {
 
 					~apc40.noteOn(~apcMnCh, ~actButB3, 1);
-					~tOSCAdrr.sendMsg('time2Hat', 1);
-					~tOSCAdrr.sendMsg('tmHatLabel', 2);
+					//~tOSCAdrr.sendMsg('time2Hat', 1);
+					//~tOSCAdrr.sendMsg('tmHatLabel', 2);
 					~tmMulHat.source = Pseq([2], inf);
 				},
 				2,{
 
 					~apc40.noteOn(~apcMnCh, ~actButB3, 0);
-					~tOSCAdrr.sendMsg('time2Hat', 0);
-					~tOSCAdrr.sendMsg('tmHatLabel', 1);
+					//~tOSCAdrr.sendMsg('time2Hat', 0);
+					//~tOSCAdrr.sendMsg('tmHatLabel', 1);
 					~tmMulHat.source = Pseq([1], inf);
 					~countTime2Hat=0;
 			});

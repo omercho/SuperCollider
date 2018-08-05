@@ -10,7 +10,7 @@ DJDeck4Pat.stop;
 DJDeck4Pat {
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.load; });
+			//Server.default.doWhenBooted({this.load; });
 		}
 	}
 	*load{
@@ -31,14 +31,14 @@ DJDeck4Pat {
 				\chan, Pseq([0], inf),\octave,0,
 				\dur, Pseq([0.5],inf),
 				\note, Pseq([
-					[3,1],
-					[3,5],
-					[3,6],
-					[3,4],
-					[3,1,2],
-					[3,6],
-					[3,5],
-					[3,4]
+					[62,60],
+					[62,65],
+					[63,62],
+					[62,64],
+					[62,61,62],
+					[63,62],
+					[62,65],
+					[62,64]
 				], inf),
 				\amp, Pseq([1], inf)
 			)

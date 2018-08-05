@@ -14,11 +14,11 @@ IFRoot {
 		~ifRootPlayer=TaskProxy.new;
 
 	}
-	/*
-	*play{~ifRootPlayer.play(TempoClock.default, quant: 0);}
-	*/
-	*play{~ifRootPlayer.play(MIDISyncClock, quant: 0);}
 
+	*play{~ifRootPlayer.play(TempoClock.default, quant: 0);}
+/*
+	*play{~ifRootPlayer.play(MIDISyncClock, quant: 0);}
+*/
 	*stop{~ifRootPlayer.stop;}
 
 	*set00{
@@ -38,6 +38,7 @@ IFRoot {
 					IFBass(~tmMulBassP.next*~tmBassP.next);
 					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
 					IFSamp(~tmMulSampP.next*~tmSampP.next);
+					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
 
 					IFMast(~tmMulMastP.next*~tmMastP.next);
 

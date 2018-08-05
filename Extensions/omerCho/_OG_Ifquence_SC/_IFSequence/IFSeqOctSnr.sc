@@ -480,7 +480,6 @@ IFSeqOctSnr {
 			},
 			'/ifSeq/2/16'
 		);
-
 	}//
 
 	*st01 {|i=0|

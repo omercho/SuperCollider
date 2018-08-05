@@ -127,8 +127,8 @@ IFKeys {
 		{ i == val }  {
 			{val.do{
 				~keysLate.wait;
-				this.p1_SC(val);
-				//this.p1(val);
+				//this.p1_SC(val);
+				this.p1(val);
 				((~dur1KeysP.next)*(~durMulP.next)/val).wait;
 			}}.fork;
 		}
@@ -139,32 +139,32 @@ IFKeys {
 		var val;
 		val=i;
 
-Pbind(
-	\instrument, \IFKeys_SC, \scale, Pfunc({~scl2}, inf),
-	\bufnum, Pseq([~bufnumKeysP.next], inf),
-	\dur, Pseq([~dur1KeysP.next],~actKeysP),
-	\degree, Pseq([~nt1KeysP.next], inf),
-	\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
-	\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
-	\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
-	\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-	\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys,
-	\legato, Pseq([~legKeysP.next], inf),
-	\pan, Pbrown(-0.9, 0.8, 0.125, inf),
-	\rootFreq,  ~rootFreqKeys,
+		Pbind(
+			\instrument, \IFKeys_SC, \scale, Pfunc({~scl2}, inf),
+			\bufnum, Pseq([~bufnumKeysP.next], inf),
+			\dur, Pseq([~dur1KeysP.next],~actKeysP),
+			\degree, Pseq([~nt1KeysP.next], inf),
+			\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
+			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
+			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
+			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys,
+			\legato, Pseq([~legKeysP.next], inf),
+			\pan, Pbrown(-0.9, 0.8, 0.125, inf),
+			\rootFreq,  ~rootFreqKeys,
 
-	\cut1, Pbrown(0.05, 1.0, 0.125, inf)*~cutKeys,
-	\sin1, Pbrown(0.1, 1.0, 0.125, inf)*~sin1Keys,
-	\sin2, Pbrown(0.2, 2.0, 0.125, inf)*~sin2Keys,
-	\att, ~attKeys,
-	\dec, ~decKeys,
-	\susLev, ~susLevKeys,
-	\rel, ~relKeys,
-	\lfo1Rate, Pseq([~lfo1KeysP.next],inf)*~lfoMulKeys,
-	\lfo2Rate, Pseq([~lfo2KeysP.next],inf)*~lfoMulKeys,
-	\group, ~piges,
-	\out, Pseq([~busKeys], inf )
-).play(quant:0);
+			\cut1, Pbrown(0.05, 1.0, 0.125, inf)*~cutKeys,
+			\sin1, Pbrown(0.1, 1.0, 0.125, inf)*~sin1Keys,
+			\sin2, Pbrown(0.2, 2.0, 0.125, inf)*~sin2Keys,
+			\att, ~attKeys,
+			\dec, ~decKeys,
+			\susLev, ~susLevKeys,
+			\rel, ~relKeys,
+			\lfo1Rate, Pseq([~lfo1KeysP.next],inf)*~lfoMulKeys,
+			\lfo2Rate, Pseq([~lfo2KeysP.next],inf)*~lfoMulKeys,
+			\group, ~piges,
+			\out, Pseq([~busKeys], inf )
+		).play(quant:0);
 
 	}//p1_SC
 
@@ -224,7 +224,7 @@ Pbind(
 					2,{
 						IFAPC40.actLine5ButA5(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA5);
 
@@ -244,7 +244,7 @@ Pbind(
 					2,{
 						IFAPC40.actLine5ButB5(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB5);
 
@@ -264,7 +264,7 @@ Pbind(
 					2,{
 						IFAPC40.actLine5ButC5(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC5);
 
@@ -277,12 +277,12 @@ Pbind(
 			if ( msg[1]==1, {
 				~actKeys.source=1;
 				~apc40.noteOn(~apcMnCh, ~actButA5, 127); //Trk5_But 1
-				},{
-					~actKeys.source=0;
-					~apc40.noteOff(~apcMnCh, ~actButA5, 127); //Trk5_But
+			},{
+				~actKeys.source=0;
+				~apc40.noteOff(~apcMnCh, ~actButA5, 127); //Trk5_But
 			});
-			},
-			'/activKeys'
+		},
+		'/activKeys'
 		);
 
 		~time2KeysBut.free;
@@ -290,25 +290,25 @@ Pbind(
 		~time2KeysBut= OSCFunc({
 			arg msg;
 
-				~countTime2Keys = ~countTime2Keys + 1;
-				~countTime2Keys.switch(
-					0,{},
-					1, {
-						~apc40.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
-						~tOSCAdrr.sendMsg('time2Keys', 1);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 2);
-						~tmMulKeys.source = Pseq([2], inf);
-					},
-					2,{
-						~apc40.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
-						~tOSCAdrr.sendMsg('time2Keys', 0);
-						~tOSCAdrr.sendMsg('tmKeysLabel', 1);
-						~tmMulKeys.source = Pseq([1], inf);
-						~countTime2Keys=0;
-					}
-				);
-			},
-			'/time2Keys'
+			~countTime2Keys = ~countTime2Keys + 1;
+			~countTime2Keys.switch(
+				0,{},
+				1, {
+					~apc40.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
+					//~tOSCAdrr.sendMsg('time2Keys', 1);
+					//~tOSCAdrr.sendMsg('tmKeysLabel', 2);
+					~tmMulKeys.source = Pseq([2], inf);
+				},
+				2,{
+					~apc40.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
+					//~tOSCAdrr.sendMsg('time2Keys', 0);
+					//~tOSCAdrr.sendMsg('tmKeysLabel', 1);
+					~tmMulKeys.source = Pseq([1], inf);
+					~countTime2Keys=0;
+				}
+			);
+		},
+		'/time2Keys'
 		);
 
 		~volKeysFader.free;
@@ -319,8 +319,8 @@ Pbind(
 			~tOSCAdrr.sendMsg('volKeys', msg[1]);
 			//~vKeys.control(5, 1, vel);
 			~volKeys.source = val;
-			},
-			'/volKeys'
+		},
+		'/volKeys'
 		);
 
 		~attKeysFader.free;
@@ -332,12 +332,12 @@ Pbind(
 				~tOSCAdrr.sendMsg('attKeys', msg[1]);
 				~vKeys.control(0, ~envAtt, val);
 				~attKeys=val+0.01;
-				},{
-					~tOSCAdrr.sendMsg('attKeys', msg[1]);
-					~attKeys=val+0.01;
+			},{
+				~tOSCAdrr.sendMsg('attKeys', msg[1]);
+				~attKeys=val+0.01;
 			});
-			},
-			'/attKeys'
+		},
+		'/attKeys'
 		);
 
 
@@ -350,12 +350,12 @@ Pbind(
 				~tOSCAdrr.sendMsg('susKeys', msg[1]);
 				~vKeys.control(0, ~envSus, vel+0.01);
 				~susLevKeys=val;
-				},{
-					~tOSCAdrr.sendMsg('susKeys', msg[1]);
-					~susLevKeys=val;
+			},{
+				~tOSCAdrr.sendMsg('susKeys', msg[1]);
+				~susLevKeys=val;
 			});
-			},
-			'/susKeys'
+		},
+		'/susKeys'
 		);
 
 
@@ -369,13 +369,13 @@ Pbind(
 				~vKeys.control(0, ~envDec, vel+0.01);
 				~decKeys=val;
 				~relKeys=val*0.7;
-				},{
-					~tOSCAdrr.sendMsg('decKeys', val);
-					~decKeys=val;
+			},{
+				~tOSCAdrr.sendMsg('decKeys', val);
+				~decKeys=val;
 				~relKeys=val*0.7;
 			});
-			},
-			'/decKeys'
+		},
+		'/decKeys'
 		);
 
 		~xy1Keys.free;
@@ -390,14 +390,14 @@ Pbind(
 				~sin1Keys=val1;
 				~sin1Keys=val2;
 				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
-				},{
+			},{
 
-					~sin1Keys=val1;
+				~sin1Keys=val1;
 				~sin1Keys=val2;
-					~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
+				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
 			});
-			},
-			'/xy1Keys'
+		},
+		'/xy1Keys'
 		);
 
 		~chainKeysFader.free;
@@ -405,8 +405,8 @@ Pbind(
 			arg msg, val;
 			val=msg[1]*127;
 			~tOSCAdrr.sendMsg('chainKeys', msg[1]);
-			},
-			'/chainKeys'
+		},
+		'/chainKeys'
 		);
 
 		~sendsKeys.free;
@@ -420,8 +420,8 @@ Pbind(
 			~mdOut.control(6, 3, vel2); // IFKeys
 			~mdOut.control(6, 10, vel2); // IFKeys sendC
 
-			},
-			'/sendKeys'
+		},
+		'/sendKeys'
 		);
 
 
@@ -434,8 +434,8 @@ Pbind(
 			arg msg;
 			~tOSCAdrr.sendMsg('lfoMulKeys1', msg[1]);
 			~lfoMulKeys1=msg[1]*1.2;
-			},
-			'/lfoMulKeys1'
+		},
+		'/lfoMulKeys1'
 		);
 
 		~lfoMulKeysFad2.free;
@@ -443,8 +443,8 @@ Pbind(
 			arg msg;
 			~tOSCAdrr.sendMsg('lfoMulKeys2', msg[1]);
 			~lfoMulKeys2=msg[1]*1.2;
-			},
-			'/lfoMulKeys2'
+		},
+		'/lfoMulKeys2'
 		);
 
 		//TIME
@@ -459,8 +459,8 @@ Pbind(
 
 			});
 
-			},
-			'/tmMulKeys1'
+		},
+		'/tmMulKeys1'
 		);
 		~tmMulKeysBut2.free;
 		~tmMulKeysBut2= OSCFunc({
@@ -472,8 +472,8 @@ Pbind(
 
 			});
 
-			},
-			'/tmMulKeys2'
+		},
+		'/tmMulKeys2'
 		);
 		~tmMulKeysBut3.free;
 		~tmMulKeysBut3= OSCFunc({
@@ -485,16 +485,16 @@ Pbind(
 
 			});
 
-			},
-			'/tmMulKeys3'
+		},
+		'/tmMulKeys3'
 		);
 		~tmKeysFader.free;
 		~tmKeysFader= OSCFunc({
 			arg msg;
 			~tmKeys.source = msg[1];
 
-			},
-			'/timesKeys'
+		},
+		'/timesKeys'
 		);
 
 
@@ -507,8 +507,8 @@ Pbind(
 				IFKeys(~tmKeysP.next);
 
 			});
-			},
-			'/padKeys'
+		},
+		'/padKeys'
 		);
 
 		//----Keys-------
@@ -519,8 +519,8 @@ Pbind(
 				~octMulKeys = ~octMulKeys+1;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
 			});
-			},
-			'/octKeysMul'
+		},
+		'/octKeysMul'
 		);
 
 		~octKeysZeroBut.free;
@@ -530,8 +530,8 @@ Pbind(
 				~octMulKeys = 0;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
 			});
-			},
-			'/octKeysZero'
+		},
+		'/octKeysZero'
 		);
 
 		~octKeysDivBut.free;
@@ -541,81 +541,81 @@ Pbind(
 				~octMulKeys = ~octMulKeys-1;
 				~tOSCAdrr.sendMsg('octKeysLabel', ~octMulKeys);
 			});
-			},
-			'/octKeysDiv'
+		},
+		'/octKeysDiv'
 		);
 
 	}
 	*synthDef{|index|
 		index.switch(
 			1,{
-SynthDef( \IFKeys_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
-	sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
-	lfo1Rate=0.1, lfo2Rate=0.22,
-	att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
-	rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05,
-	cutoff = 1000, gain = 2.0, lagamount = 0.01, chorus = 0.7|
+				SynthDef( \IFKeys_SC, { |out=0, bufnum, amp = 0.9, freq = 160, rootFreq = 160, mul=0.4,
+					sin1 = 0.2, sin2 = 0.4, brown = 0.1, saw = 4, pan=0, cut1=0.5, cut2=1, gate=1,
+					lfo1Rate=0.1, lfo2Rate=0.22,
+					att = 0.1, susLev = 0.1, dec=0.02, rel = 0.02,
+					rate = 0.2, rate2 = 1.2, startPos = 0, loop = 1, stretch = 0.05,
+					cutoff = 1000, gain = 2.0, lagamount = 0.01, chorus = 0.7|
 
-	var osc1, osc2, osc3, ses;
-	var env, env1, env2, env3;
-	var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
-	var lfo1, lfo2, lfo3, decay,imp;
+					var osc1, osc2, osc3, ses;
+					var env, env1, env2, env3;
+					var vco1,vco2,vco3, vco1F, vco2F, vco3F, mix1,mix2,mix3, filt1, filt2;
+					var lfo1, lfo2, lfo3, decay,imp;
 
-	var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
+					var mix, chain, buf, filt, freqRate, freqBuf, freqOsc;
 
-	var osc, filter, filterenv, snd, chorusfx;
+					var osc, filter, filterenv, snd, chorusfx;
 
-	startPos = startPos * BufFrames.kr(bufnum);
-	freqBuf = freq;
-	freqBuf = freqBuf.ratiomidi;
-	freqBuf = freqBuf.midicps/rootFreq;
-	freqOsc = freq;
-	//freqRate = freqRate.keyToDegree();
-	//freqRate = freqRate.midiratio;
+					startPos = startPos * BufFrames.kr(bufnum);
+					freqBuf = freq;
+					freqBuf = freqBuf.ratiomidi;
+					freqBuf = freqBuf.midicps/rootFreq;
+					freqOsc = freq;
+					//freqRate = freqRate.keyToDegree();
+					//freqRate = freqRate.midiratio;
 
-	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 1.2);
-	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
-	lfo3 = SinOsc.kr(lfo1Rate).range(0.8, 1.2);
+					lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 1.2);
+					lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 2.0);
+					lfo3 = SinOsc.kr(lfo1Rate).range(0.8, 1.2);
 
-	env =  EnvGen.ar(Env.adsr(att+0.01, dec+0.2, susLev*lfo2, rel*0.3), gate, -2, doneAction:2);
-	env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
-	env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
-	env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
-	osc2 = Blip.ar(freq)*0.4;
-	osc1 = Saw.ar(freq,osc2.tanh, env);
+					env =  EnvGen.ar(Env.adsr(att+0.01, dec+0.2, susLev*lfo2, rel*0.3), gate, -2, doneAction:2);
+					env1 =  EnvGen.ar(Env.new([0,0.6,susLev*0.8,0],[att,dec*0.4,0.1],[-6,-2,-5]), gate);
+					env2 =  EnvGen.ar(Env.new([0,1,susLev,0.3,0],[0.1,0.3,0.8,0.1],[-6,-9,-5,-2]), gate);
+					env3 =  EnvGen.ar(Env.new([0,susLev*0.6,0.2,0],[att*0.5,0.1*dec,rel+0.01],[-7,-4,-2]), gate);
+					osc2 = Blip.ar(freq)*0.4;
+					osc1 = Saw.ar(freq,osc2.tanh, env);
 
-	buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*env;
-	filt= MoogFF.ar(
-		[osc1],
-		(lfo1*10000),
-		1,
-		mul:0.6
-	);
-	filt2= MoogFF.ar(
-		[osc],
-		2200*lfo1,
-		0.5,
-		mul:0.4
-	);
+					buf = PlayBuf.ar(1, bufnum, rate:freqBuf, startPos: startPos, loop:0)*env;
+					filt= MoogFF.ar(
+						[osc1],
+						(lfo1*10000),
+						1,
+						mul:0.6
+					);
+					filt2= MoogFF.ar(
+						[osc],
+						2200*lfo1,
+						0.5,
+						mul:0.4
+					);
 
-	//moog
-	osc = Mix(VarSaw.ar(
-		freq: freq.lag(lagamount) * [1.0, 1.001, 2.0],
-		iphase: Rand(0.0,1.0) ! 3,
-		width: Rand(0.5,0.75) ! 3,
-		mul: 0.5));
-	filterenv = EnvGen.ar(
-		envelope: Env.asr(0.2, 1, 0.2),
-		gate: gate);
-	filter =  MoogFF.ar(
-		in: osc,
-		freq: cutoff * (1.0 + (0.5 * filterenv)),
-		gain: gain);
-	snd = (0.7 * filter + (0.3 * filter.distort)) * env;
+					//moog
+					osc = Mix(VarSaw.ar(
+						freq: freq.lag(lagamount) * [1.0, 1.001, 2.0],
+						iphase: Rand(0.0,1.0) ! 3,
+						width: Rand(0.5,0.75) ! 3,
+						mul: 0.5));
+					filterenv = EnvGen.ar(
+						envelope: Env.asr(0.2, 1, 0.2),
+						gate: gate);
+					filter =  MoogFF.ar(
+						in: osc,
+						freq: cutoff * (1.0 + (0.5 * filterenv)),
+						gain: gain);
+					snd = (0.7 * filter + (0.3 * filter.distort)) * env;
 
-	mix = Mix(snd,filt2);
-	Out.ar(out, Pan2.ar(mix*mul, pan)*amp);
-}).add;
+					mix = Mix(snd,filt2);
+					Out.ar(out, Pan2.ar(mix*mul, pan)*amp);
+				}).add;
 
 			},
 			2,{

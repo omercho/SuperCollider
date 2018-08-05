@@ -368,3 +368,8 @@ NoteOnResponder.removeAll
 ~temp=~temp+1;~mdOut.control(5, 127, ~temp); //Mel Audio / High
 
 ~apc40.control(0, 50, 90); //NobDown 1
+
+~vMopho.control(0, 50, 90); //NobDown 1
+
+~vMopho.noteOn(15, 26, 111); //But 1
+~vMopho.noteOff(15, 26, 1); //But 1

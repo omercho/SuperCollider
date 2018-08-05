@@ -13,7 +13,7 @@ DJMix.act1(0,0,0);
 DJMix{
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.load; });
+			//Server.default.doWhenBooted({this.load; });
 		}
 	}
 	*load{

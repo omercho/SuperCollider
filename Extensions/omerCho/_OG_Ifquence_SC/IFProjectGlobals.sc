@@ -47,6 +47,7 @@ IFProjectGlobals.setTempo(20);
 		IFAPC40.load;
 		//IFAPC40_Launch.load;
 		//IFLaunchSteps.load;
+		IFLpMn.load;
 		IFLpMnNotes.load;
 		IFLpMnSteps.load;
 		~nt=(0);
@@ -61,7 +62,8 @@ IFProjectGlobals.setTempo(20);
 
 	*setAddr{
 
-		~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
+		//~tOSCAdrr = NetAddr.new("192.168.1.2", 57130); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.3", 5001); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
@@ -79,7 +81,7 @@ IFProjectGlobals.setTempo(20);
 
 	*setTempo {arg tempo;
 		Tempo.bpm=tempo;
-		~tmp1=125;
+		~tmp1=128;
 		~tOSCAdrr.sendMsg('tempoLabel', tempo);
 		//~mdOut.control(15, 3, tempo); //ableton global tempo
 		//Tempo.bpm = tempo;

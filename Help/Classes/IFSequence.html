@@ -1,0 +1,361 @@
+<!doctype html><html lang='en'><head><title>IFSequence | SuperCollider 3.9.1 Help</title>
+<link rel='stylesheet' href='./../scdoc.css' type='text/css' />
+<link rel='stylesheet' href='./../frontend.css' type='text/css' />
+<link rel='stylesheet' href='./../custom.css' type='text/css' />
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script>
+var helpRoot = './..';
+var scdoc_title = 'IFSequence';
+var scdoc_sc_version = '3.9.1';
+</script>
+<script src='./../scdoc.js' type='text/javascript'></script>
+<script src='./../docmap.js' type='text/javascript'></script>
+<script src='./../prettify.js' type='text/javascript'></script>
+<script src='./../lang-sc.js' type='text/javascript'></script>
+</head>
+<body onload='fixTOC();prettyPrint()'>
+<div id='toc'>
+<div id='toctitle'>IFSequence: table of contents</div>
+<span class='toc_search'>Filter: <input id='toc_search'></span><ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20class%20methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented%20class%20methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc3'><a href='#*cntrl'>cntrl</a> </li>
+<li class='toc3'><a href='#*freeAll'>freeAll</a> </li>
+<li class='toc3'><a href='#*led'>led</a> </li>
+<li class='toc3'><a href='#*led01'>led01</a> </li>
+<li class='toc3'><a href='#*led02'>led02</a> </li>
+<li class='toc3'><a href='#*led03'>led03</a> </li>
+<li class='toc3'><a href='#*led04'>led04</a> </li>
+<li class='toc3'><a href='#*led05'>led05</a> </li>
+<li class='toc3'><a href='#*led06'>led06</a> </li>
+<li class='toc3'><a href='#*led07'>led07</a> </li>
+<li class='toc3'><a href='#*led08'>led08</a> </li>
+<li class='toc3'><a href='#*led09'>led09</a> </li>
+<li class='toc3'><a href='#*led10'>led10</a> </li>
+<li class='toc3'><a href='#*led11'>led11</a> </li>
+<li class='toc3'><a href='#*led12'>led12</a> </li>
+<li class='toc3'><a href='#*led13'>led13</a> </li>
+<li class='toc3'><a href='#*led14'>led14</a> </li>
+<li class='toc3'><a href='#*led15'>led15</a> </li>
+<li class='toc3'><a href='#*led16'>led16</a> </li>
+<li class='toc3'><a href='#*loadAll'>loadAll</a> </li>
+<li class='toc3'><a href='#*loadProxy'>loadProxy</a> </li>
+<li class='toc3'><a href='#*st'>st</a> </li>
+<li class='toc3'><a href='#*st01'>st01</a> </li>
+<li class='toc3'><a href='#*st02'>st02</a> </li>
+<li class='toc3'><a href='#*st03'>st03</a> </li>
+<li class='toc3'><a href='#*st04'>st04</a> </li>
+<li class='toc3'><a href='#*st05'>st05</a> </li>
+<li class='toc3'><a href='#*st06'>st06</a> </li>
+<li class='toc3'><a href='#*st07'>st07</a> </li>
+<li class='toc3'><a href='#*st08'>st08</a> </li>
+<li class='toc3'><a href='#*st09'>st09</a> </li>
+<li class='toc3'><a href='#*st10'>st10</a> </li>
+<li class='toc3'><a href='#*st11'>st11</a> </li>
+<li class='toc3'><a href='#*st12'>st12</a> </li>
+<li class='toc3'><a href='#*st13'>st13</a> </li>
+<li class='toc3'><a href='#*st14'>st14</a> </li>
+<li class='toc3'><a href='#*st15'>st15</a> </li>
+<li class='toc3'><a href='#*st16'>st16</a> </li>
+<li class='toc3'><a href='#*step'>step</a> </li>
+<li class='toc3'><a href='#*stp'>stp</a> </li>
+</ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20instance%20methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#Help%20template'>Help template</a></li>
+<ul class='toc'></ul></ul></div><div class='contents'>
+<div id='menubar'></div>
+<div class='header'>
+<div id='label'>
+<span id='folder'>Classes (extension)</span>
+ | <span id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></span>
+</div><h1>IFSequence<span id='superclasses'> : <a href="../Classes/Object.html">Object</a></span>
+<div class='extension-indicator-ctr' title='This help file originates from a third-party quark or plugin for SuperCollider.'><img class='extension-indicator-icon' alt='Extension' src='./../images/plugin.png'><span class='extension-indicator-text'>Extension</span></div></h1>
+<div id='summary'>(Undocumented class)</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSequence.sc' title='/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/_IFSequence/IFSequence.sc'>IFSequence.sc</a></div></div>
+<h2><a class='anchor' name='description'>Description</a></h2>
+
+<p>This class is missing documentation.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<h3><a class='anchor' name='Inherited%20class%20methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented%20class%20methods'>Undocumented class methods</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*cntrl' href='./../Overviews/Methods.html#cntrl'>cntrl</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*freeAll' href='./../Overviews/Methods.html#freeAll'>freeAll</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led' href='./../Overviews/Methods.html#led'>led</a>(<span class='argstr'>index</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led01' href='./../Overviews/Methods.html#led01'>led01</a>(<span class='argstr'>delay: 0.3</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led02' href='./../Overviews/Methods.html#led02'>led02</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led03' href='./../Overviews/Methods.html#led03'>led03</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led04' href='./../Overviews/Methods.html#led04'>led04</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led05' href='./../Overviews/Methods.html#led05'>led05</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led06' href='./../Overviews/Methods.html#led06'>led06</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led07' href='./../Overviews/Methods.html#led07'>led07</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led08' href='./../Overviews/Methods.html#led08'>led08</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led09' href='./../Overviews/Methods.html#led09'>led09</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led10' href='./../Overviews/Methods.html#led10'>led10</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led11' href='./../Overviews/Methods.html#led11'>led11</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led12' href='./../Overviews/Methods.html#led12'>led12</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led13' href='./../Overviews/Methods.html#led13'>led13</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led14' href='./../Overviews/Methods.html#led14'>led14</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led15' href='./../Overviews/Methods.html#led15'>led15</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*led16' href='./../Overviews/Methods.html#led16'>led16</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*loadAll' href='./../Overviews/Methods.html#loadAll'>loadAll</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*loadProxy' href='./../Overviews/Methods.html#loadProxy'>loadProxy</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st' href='./../Overviews/Methods.html#st'>st</a>(<span class='argstr'>index</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st01' href='./../Overviews/Methods.html#st01'>st01</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st02' href='./../Overviews/Methods.html#st02'>st02</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st03' href='./../Overviews/Methods.html#st03'>st03</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st04' href='./../Overviews/Methods.html#st04'>st04</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st05' href='./../Overviews/Methods.html#st05'>st05</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st06' href='./../Overviews/Methods.html#st06'>st06</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st07' href='./../Overviews/Methods.html#st07'>st07</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st08' href='./../Overviews/Methods.html#st08'>st08</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st09' href='./../Overviews/Methods.html#st09'>st09</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st10' href='./../Overviews/Methods.html#st10'>st10</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st11' href='./../Overviews/Methods.html#st11'>st11</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st12' href='./../Overviews/Methods.html#st12'>st12</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st13' href='./../Overviews/Methods.html#st13'>st13</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st14' href='./../Overviews/Methods.html#st14'>st14</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st15' href='./../Overviews/Methods.html#st15'>st15</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*st16' href='./../Overviews/Methods.html#st16'>st16</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*step' href='./../Overviews/Methods.html#step'>step</a>(<span class='argstr'>i</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*stp' href='./../Overviews/Methods.html#stp'>stp</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSequence.</span><a class='method-name' name='*stp' href='./../Overviews/Methods.html#stp'>stp</a> = value</h3>
+<h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
+<h3><a class='anchor' name='Inherited%20instance%20methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='Help%20template'>Help template</a></h2>
+
+<p>Copy and paste the text below and save to HelpSource/Classes/IFSequence.schelp<pre class='code prettyprint lang-sc'>TITLE:: IFSequence
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+(put long description here)
+
+
+CLASSMETHODS::
+
+METHOD:: stp
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st07
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led01
+(describe method here)
+
+ARGUMENT:: delay
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadProxy
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led15
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st02
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st08
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led13
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led10
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st11
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st
+(describe method here)
+
+ARGUMENT:: index
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: step
+(describe method here)
+
+ARGUMENT:: i
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st03
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led11
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st05
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led02
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st15
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadAll
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st13
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led03
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led04
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led05
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led12
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st14
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st16
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led06
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st04
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led07
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st09
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st12
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led
+(describe method here)
+
+ARGUMENT:: index
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st06
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st10
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led08
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led14
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: freeAll
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led09
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: led16
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: st01
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: cntrl
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+
+INSTANCEMETHODS::
+
+
+EXAMPLES::
+
+code::
+(some example code)
+::
+</pre>
+<div class='doclink'>link::Classes/IFSequence::<br></div></div></body></html>

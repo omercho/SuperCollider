@@ -4,6 +4,8 @@
 IFKick(4);
 
 IFKick.synthDef(1);
+~mdOut.noteOn(0, 0, 125);
+
 */
 
 IFKick {
@@ -24,7 +26,7 @@ IFKick {
 
 	*globals{
 
-		~kickCh=9;
+		~kickCh=0;
 		~actKick=1;
 		~kickLate= 0.00;
 		~kickTimes=1;
@@ -78,7 +80,7 @@ IFKick {
 		~actKickLfo1 = PatternProxy( Pseq([0], inf));
 		~actKickLfo1P= Pseq([~actKickLfo1], inf).asStream;
 
-		~volKick = PatternProxy( Pseq([0.0], inf));
+		~volKick = PatternProxy( Pseq([1.0], inf));
 		~volKickP = Pseq([~volKick], inf).asStream;
 
 		~delta1VSamp05 = PatternProxy( Pseq([1/1], inf));
@@ -108,8 +110,28 @@ IFKick {
 		}
 
 	}
-
 	*p1 {|i=1|
+		var val;
+		val=i;
+
+
+		Pbind(
+			\chan, ~kickCh,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~dur1KickP.next],~actKickP),
+			\degree,  Pseq([~nt1KickP.next], inf),
+			\amp, Pseq([~volKickP.next*~amp1KickP.next], inf),
+			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
+			\mtranspose, Pseq([~transKickP.next], inf)+~trKick+~transShufKickP.next,
+			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
+			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
+		).play(quant:0);
+
+		//this.count2;
+		//this.timesCount;
+	}
+
+	*p1_SC {|i=1|
 		var val;
 		val=i;
 		Pbind(\instrument, \IFKick_SC,
@@ -156,7 +178,7 @@ IFKick {
 
 
 
-	}//*p1
+	}//*p1_SC
 
 
 
@@ -166,8 +188,9 @@ IFKick {
 		~volKick_APC.free;
 		~volKick_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp05', vel/127);
-			//~vSamp.control(~smp05, ~smpLvl, vel);
+			~tOSCAdrr.sendMsg('volKick', vel/127);
+			"kickTestPost"+vel.postln;
+
 			~volKick.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd1);
 
@@ -187,7 +210,7 @@ IFKick {
 					2,{
 						IFAPC40.actLine1ButA1(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButA1);
 
@@ -207,7 +230,7 @@ IFKick {
 					2,{
 						IFAPC40.actLine1ButB1(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButB1);
 
@@ -227,12 +250,212 @@ IFKick {
 					2,{
 						IFAPC40.actLine1ButC1(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apc40InID, chan:~apcMnCh, noteNum:~actButC1);
 
 
 	}//*apc40
+
+	*osc{
+
+		~actKickBut.free;
+		~actKickBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~actKick.source=1;
+				~apc40.noteOn(~apcMnCh, ~actButA1, 127); //Trk1_But 1
+			},{
+				~actKick.source=0;
+				~apc40.noteOff(~apcMnCh, ~actButA1, 127); //Trk1_But 1
+			});
+		},
+		'/activKick'
+		);
+		~time2KickBut.free;
+		~countTime2Kick=0;
+		~time2KickBut= OSCFunc({
+			arg msg;
+
+			~countTime2Kick = ~countTime2Kick + 1;
+			~countTime2Kick.switch(
+				1,{
+					~apc40.noteOn(0, ~actButB1, 1);
+					//~tOSCAdrr.sendMsg('time2Kick', 1);
+					//~tOSCAdrr.sendMsg('tmKickLabel', 2);
+					~tmMulKick.source = Pseq([2], inf);
+					//~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
+				},
+				2,{
+					~apc40.noteOn(0, ~actButB1, 0);
+					//~tOSCAdrr.sendMsg('time2Kick', 0);
+					//~tOSCAdrr.sendMsg('tmKickLabel', 1);
+					~tmMulKick.source = Pseq([1], inf);
+					//~extraShufKick.source = Pshuf([0], inf);
+					~countTime2Kick=0;
+			})
+
+		},
+		'/time2Kick'
+		);
+
+		~volKickFader.free;
+		~volKickFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('volKick', msg[1]);
+			~mdOut.control(2, 1, vel);
+		},
+		'/volKick'
+		);
+
+		~attKickFader.free;
+		~attKickFader= OSCFunc({
+			arg msg,vel;
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('attKick', msg[1]);
+			~mdOut.control(2, 5, vel);
+			//~nobD1_m2Val= msg[1]*127;
+		},
+		'attKick'
+		);
+
+		~susLevKickFader.free;
+		~susLevKickFader= OSCFunc({
+			arg msg;
+			~tOSCAdrr.sendMsg('susKick', msg[1]);
+			~susLevKick=msg[1];
+			~mdOut.control(2, 6, msg[1]*127);
+
+
+		},
+		'/susKick'
+		);
+
+		~decKickFader.free;
+		~decKickFader= OSCFunc({
+			arg msg,val,vel;
+			val=msg[1];
+			vel=msg[1]*127;
+			~tOSCAdrr.sendMsg('decKick', val);
+			~decKick= val;
+			~mdOut.control(2, 127, vel);
+			//~nobD1_m1Val= vel;
+		},
+		'/decKick'
+		);
+
+		//TIME
+
+		~tmMulKickBut1.free;
+		~tmMulKickBut1= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([1], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 1);
+
+			});
+
+		},
+		'/tmMulKick1'
+		);
+		~tmMulKickBut2.free;
+		~tmMulKickBut2= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([2], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 2);
+
+			});
+
+		},
+		'/tmMulKick2'
+		);
+		~tmMulKickBut3.free;
+		~tmMulKickBut3= OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				~tmMulKick.source = Pseq([3], inf);
+				~tOSCAdrr.sendMsg('tmKickLabel', 3);
+
+			});
+
+		},
+		'/tmMulKick3'
+		);
+		~tmKickFader.free;
+		~tmKickFader= OSCFunc({
+			arg msg;
+			~tmKick.source = msg[1];
+
+		},
+		'/timesKick'
+		);
+
+		~padKick.free;
+		~padKick = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				IFKick(~tmMulKickP.next*~tmKickP.next);
+
+			});
+		},
+		'/padKick'
+		);
+
+		//----Kick-------
+		~octKickMulBut.free;
+		~octKickMulBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = ~octMulKick+1;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+		},
+		'/octKickMul'
+		);
+
+		~octKickZeroBut.free;
+		~octKickZeroBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = 0;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+		},
+		'/octKickZero'
+		);
+
+		~octKickDivBut.free;
+		~octKickDivBut= OSCFunc({
+			arg msg;
+
+
+			if ( msg[1]==1, {
+
+				~octMulKick = ~octMulKick-1;
+				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
+
+			});
+
+		},
+		'/octKickDiv'
+		);
+	}
 
 	*synthDefOSC{
 		~actKickBut.free;
@@ -375,213 +598,8 @@ IFKick {
 			'/padKick'
 		);
 
-	}
+	}//SynthDefCntrl
 
-	*osc{
-
-		~actKickBut.free;
-		~actKickBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				~actKick.source=1;
-				~apc40.noteOn(~apcMnCh, ~actButA1, 127); //Trk1_But 1
-				},{
-					~actKick.source=0;
-					~apc40.noteOff(~apcMnCh, ~actButA1, 127); //Trk1_But 1
-			});
-			},
-			'/activKick'
-		);
-		~time2KickBut.free;
-		~countTime2Kick=0;
-		~time2KickBut= OSCFunc({
-			arg msg;
-
-			~countTime2Kick = ~countTime2Kick + 1;
-			~countTime2Kick.switch(
-				1,{
-					~apc40.noteOn(0, ~actButB1, 1);
-					~tOSCAdrr.sendMsg('time2Kick', 1);
-					~tOSCAdrr.sendMsg('tmKickLabel', 2);
-					~tmMulKick.source = Pseq([2], inf);
-					//~extraShufKick.source = Pshuf([2,0,2,3,0], inf);
-				},
-				2,{
-					~apc40.noteOn(0, ~actButB1, 0);
-					~tOSCAdrr.sendMsg('time2Kick', 0);
-					~tOSCAdrr.sendMsg('tmKickLabel', 1);
-					~tmMulKick.source = Pseq([1], inf);
-					//~extraShufKick.source = Pshuf([0], inf);
-					~countTime2Kick=0;
-			})
-
-			},
-			'/time2Kick'
-		);
-
-		~volKickFader.free;
-		~volKickFader= OSCFunc({
-			arg msg,vel;
-			vel=msg[1]*127;
-			~tOSCAdrr.sendMsg('volKick', msg[1]);
-			~mdOut.control(2, 1, vel);
-			},
-			'/volKick'
-		);
-
-		~attKickFader.free;
-		~attKickFader= OSCFunc({
-			arg msg,vel;
-			vel=msg[1]*127;
-			~tOSCAdrr.sendMsg('attKick', msg[1]);
-			~mdOut.control(2, 5, vel);
-			//~nobD1_m2Val= msg[1]*127;
-			},
-			'attKick'
-		);
-
-		~susLevKickFader.free;
-		~susLevKickFader= OSCFunc({
-			arg msg;
-			~tOSCAdrr.sendMsg('susKick', msg[1]);
-			~susLevKick=msg[1];
-			~mdOut.control(2, 6, msg[1]*127);
-
-
-			},
-			'/susKick'
-		);
-
-		~decKickFader.free;
-		~decKickFader= OSCFunc({
-			arg msg,val,vel;
-			val=msg[1];
-			vel=msg[1]*127;
-			~tOSCAdrr.sendMsg('decKick', val);
-			~decKick= val;
-			~mdOut.control(2, 127, vel);
-			//~nobD1_m1Val= vel;
-			},
-			'/decKick'
-		);
-
-		//TIME
-
-		~tmMulKickBut1.free;
-		~tmMulKickBut1= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				~tmMulKick.source = Pseq([1], inf);
-				~tOSCAdrr.sendMsg('tmKickLabel', 1);
-
-			});
-
-			},
-			'/tmMulKick1'
-		);
-		~tmMulKickBut2.free;
-		~tmMulKickBut2= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				~tmMulKick.source = Pseq([2], inf);
-				~tOSCAdrr.sendMsg('tmKickLabel', 2);
-
-			});
-
-			},
-			'/tmMulKick2'
-		);
-		~tmMulKickBut3.free;
-		~tmMulKickBut3= OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				~tmMulKick.source = Pseq([3], inf);
-				~tOSCAdrr.sendMsg('tmKickLabel', 3);
-
-			});
-
-			},
-			'/tmMulKick3'
-		);
-		~tmKickFader.free;
-		~tmKickFader= OSCFunc({
-			arg msg;
-			~tmKick.source = msg[1];
-
-			},
-			'/timesKick'
-		);
-
-		~padKick.free;
-		~padKick = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				IFKick(~tmMulKickP.next*~tmKickP.next);
-
-			});
-			},
-			'/padKick'
-		);
-
-		//----Kick-------
-		~octKickMulBut.free;
-		~octKickMulBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = ~octMulKick+1;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickMul'
-		);
-
-		~octKickZeroBut.free;
-		~octKickZeroBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = 0;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickZero'
-		);
-
-		~octKickDivBut.free;
-		~octKickDivBut= OSCFunc({
-			arg msg;
-
-
-			if ( msg[1]==1, {
-
-				~octMulKick = ~octMulKick-1;
-				~tOSCAdrr.sendMsg('octKickLabel', ~octMulKick);
-
-			});
-
-			},
-			'/octKickDiv'
-		);
-
-
-
-
-
-
-	}
 	*synthDef{|index|
 		index.switch(
 			1,{
@@ -605,44 +623,44 @@ IFKick {
 				}).add;
 			},
 			2,{
-SynthDef(\IFKick_SC, {| att =0.01, dec=0.1, susLev=1.0, rel=0.09, mul = 0.9,
-	gate=1, wnoise=2.8,
-	amp=0.5,out=0, freq=120, freq2=42, freq3=24, pan = 0 |
+				SynthDef(\IFKick_SC, {| att =0.01, dec=0.1, susLev=1.0, rel=0.09, mul = 0.9,
+					gate=1, wnoise=2.8,
+					amp=0.5,out=0, freq=120, freq2=42, freq3=24, pan = 0 |
 
-	var env, env1, env1m, ses;
-	env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel, curve:[-2,-2,-8]), gate, doneAction:2);
-	env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.06, 0.05], [-4, -5]));
-	env1m = env1.midicps;
+					var env, env1, env1m, ses;
+					env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel, curve:[-2,-2,-8]), gate, doneAction:2);
+					env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.06, 0.05], [-4, -5]));
+					env1m = env1.midicps;
 
-	ses = LFPulse.ar(env1m, 0, 0.4, env, -0.5);
-	ses = (ses + WhiteNoise.ar(wnoise))*env;
-	ses = LPF.ar(ses, env1m, env)*0.8;
-	ses = ses + SinOsc.ar(env1m, 0.5, env);
-	ses = ses.clip2(11);
-	ses = ses * mul;
-	ses = Limiter.ar(ses,0.9);
-	Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
-}).add;
+					ses = LFPulse.ar(env1m, 0, 0.4, env, -0.5);
+					ses = (ses + WhiteNoise.ar(wnoise))*env;
+					ses = LPF.ar(ses, env1m, env)*0.8;
+					ses = ses + SinOsc.ar(env1m, 0.5, env);
+					ses = ses.clip2(11);
+					ses = ses * mul;
+					ses = Limiter.ar(ses,0.9);
+					Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
+				}).add;
 			},
 			3,{
-SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
-			gate=1, wnoise=1.8,
-			amp=0.5,out=0, freq=120, freq2=60, freq3=31, pan = 0 |
+				SynthDef(\IFKick_SC, {| att =0.01, dec=0.0, susLev=1.2, rel=0.09, mul = 0.9,
+					gate=1, wnoise=1.8,
+					amp=0.5,out=0, freq=120, freq2=60, freq3=31, pan = 0 |
 
-			var env, env1, env1m, ses;
-			env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel-0.1), gate, doneAction:2);
-			env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.3], [-5, -5]));
-			env1m = env1.midicps;
+					var env, env1, env1m, ses;
+					env =  EnvGen.ar(Env.adsr(att, dec, susLev, rel-0.1), gate, doneAction:2);
+					env1 = EnvGen.ar(Env.new([freq, freq2, freq3], [0.005, 0.3], [-5, -5]));
+					env1m = env1.midicps;
 
-			ses = LFPulse.ar(env1m, 0, 0.1, env, -0.5);
-			ses = (ses + WhiteNoise.ar(wnoise))*env;
-			ses = LPF.ar(ses, env1m, env)*0.8;
-			ses = ses + SinOsc.ar(env1m, 0.5, env);
-			ses = ses.clip2(12);
-			ses = ses * mul;
-			ses = Limiter.ar(ses,0.9);
-			Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
-		}).add;
+					ses = LFPulse.ar(env1m, 0, 0.1, env, -0.5);
+					ses = (ses + WhiteNoise.ar(wnoise))*env;
+					ses = LPF.ar(ses, env1m, env)*0.8;
+					ses = ses + SinOsc.ar(env1m, 0.5, env);
+					ses = ses.clip2(12);
+					ses = ses * mul;
+					ses = Limiter.ar(ses,0.9);
+					Out.ar(out, Pan2.ar(ses, pan, amp*1.0));
+				}).add;
 			},
 			4,{},
 			5,{}

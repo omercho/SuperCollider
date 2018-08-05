@@ -14,13 +14,19 @@ PostAllMIDI.on;
  	*initClass {
  		StartUp add: {
  			//Server.default.options.device = "EDIROL FA-66 (1674)";
-			Server.default.options.device = "iCMIDIAudio";
+			//Server.default.options.inDevice = "EDIROL FA-66 (1674)";
+			//Server.default.options.device = "iCMIDIAudio";
+			//Server.default.options.inDevice = "Built-in Input";
+			//Server.default.options.outDevice = "Built-in Output";
 
- 			Server.default.options.hardwareBufferSize = 512;
-			Server.default.options.sampleRate = 44100.000000;
+			//Server.default.options.device = "iCMIDIAudio";
+ 			//Server.default.options.hardwareBufferSize = 128;
+			//Server.default.options.sampleRate = 44100.000000;
 
- 			Server.default.doWhenBooted({ "server options OKKK".postln; });
- 		}
+
+			//~serverLevels = ServerMeter.new(Server.default, 4, 2);
+			//Server.default.doWhenBooted({ "OCSettings - Class:OCServerOptions".postln; });
+		}
  	}
 
  }

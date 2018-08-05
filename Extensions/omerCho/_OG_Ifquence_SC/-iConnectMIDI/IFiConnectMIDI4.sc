@@ -19,6 +19,7 @@ c = NoteOnResponder({ |src,chan,note,vel|
 //to find MIDIOut src
 
 ~vSampler.uid;
+~vMopho.uid;
 ~elstc.uid;
 ~iC_Mac.uid;
 ~lpMn.uid;
@@ -64,6 +65,10 @@ IFiConnectMIDI4{
 		~vSampler = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
 		~vSamplerOutID=(-251177440);
 		//~vSamplerInID=~hstPort1;
+
+		~vMopho = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN3");
+		~vMophoOutID=(-251177440);
+		//~vMophoInID=~hstPort1;
 
 		~lpMn = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST1 LPMn");
 		~lpMnOutID=(907794485);

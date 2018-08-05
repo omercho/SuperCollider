@@ -39,7 +39,7 @@ DJMini.psrButtonsPlay;
 DJMini{
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.load; });
+			//Server.default.doWhenBooted({this.load; });
 		}
 	}
 	*load{
@@ -50,7 +50,7 @@ DJMini{
 		//this.cueNob;
 		//this.resetLeds;
 		//this.shiftButton;
-		this.psrButtonsPlay;
+		//this.psrButtonsPlay;
 
 		//DJMini_NobDown.load;
 		//DJMini_NobUp.load;

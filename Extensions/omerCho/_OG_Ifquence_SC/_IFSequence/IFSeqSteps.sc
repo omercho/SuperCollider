@@ -114,6 +114,7 @@ IFSeqSteps {
 			arg msg;
 			if ( msg[1]==1, {
 				this.first8;
+				"STEP 2".postln;
 			});
 			},
 			'/seqStep02'

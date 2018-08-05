@@ -13,8 +13,8 @@ IFLoad.loadVolca;
 IFLpMnNotes{
 
 	*load{
-		this.addr;
-		this.globals;
+		//this.addr;
+		//this.globals;
 		this.resetLeds;
 		this.makeNoteResponders;
 
@@ -23,53 +23,6 @@ IFLpMnNotes{
 
 	}
 	*globals{
-
-
-		~lpMnCh=0;
-
-		//1
-		~lpMnBut1=0;~lpMnBut2=1;~lpMnBut3=2;~lpMnBut4=3;
-		~lpMnBut5=4;~lpMnBut6=5;~lpMnBut7=6;~lpMnBut8=7;
-		//2
-		~lpMnBut9=8;~lpMnBut10=9;~lpMnBut11=10;~lpMnBut12=11;
-		~lpMnBut13=12;~lpMnBut14=13;~lpMnBut15=14;~lpMnBut16=15;
-		//3
-		~lpMnBut17=32;~lpMnBut18=33;~lpMnBut19=34;~lpMnBut20=35;
-		~lpMnBut21=36;~lpMnBut22=37;~lpMnBut23=38;~lpMnBut24=39;
-		//4
-		~lpMnBut25=48;~lpMnBut26=49;~lpMnBut27=50;~lpMnBut28=51;
-		~lpMnBut29=52;~lpMnBut30=53;~lpMnBut31=54;~lpMnBut32=55;
-		//5
-		~lpMnBut33=64;~lpMnBut34=65;~lpMnBut35=66;~lpMnBut36=67;
-		~lpMnBut37=68;~lpMnBut38=69;~lpMnBut39=70;~lpMnBut40=71;
-		//6
-		~lpMnBut41=80;~lpMnBut42=81;~lpMnBut43=82;~lpMnBut44=83;
-		~lpMnBut45=84;~lpMnBut46=85;~lpMnBut47=86;~lpMnBut48=87;
-		//7
-		~lpMnBut49=96;~lpMnBut50=97;~lpMnBut51=98;~lpMnBut52=99;
-		~lpMnBut53=100;~lpMnBut54=101;~lpMnBut55=102;~lpMnBut56=103;
-		//8
-		~lpMnBut57=112;~lpMnBut58=113;~lpMnBut59=114;~lpMnBut60=115;
-		~lpMnBut61=116;~lpMnBut62=117;~lpMnBut63=118;~lpMnBut64=119;
-
-		~red1=1;
-		~red2=2;
-		~red3=3;
-
-		~orng1=21;//23
-		~orng2=63;
-		~orng3=18;//115
-		~orng4=19;//83-63
-
-		~green1=20;
-		~green2=32;//96
-		~green3=48;//84
-
-		~yellow1=33;//114
-		~yellow2=118;//118
-		~yellow3=113;//113
-
-
 
 	}//globals
 

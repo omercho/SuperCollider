@@ -8,7 +8,7 @@ PostAllMIDI.off;
 ElasticDrum{
 	*initClass {
 		StartUp add: {
-			Server.default.doWhenBooted({this.load; });
+			//Server.default.doWhenBooted({this.load; });
 		}
 	}
 	*load{
@@ -103,7 +103,7 @@ ElasticDrum{
 		~inst5=64;
 		~inst6=65;
 
-		~elstc.control(0, 48, 64); //Mel Audio / High
+		~elstc.control(0, 10, 64); //Mel Audio / High
 		~valmul=6;
 		~valmul=~valmul+1;
 		~elstc.control(0, ~valmul, 64); //Mel Audio / High
