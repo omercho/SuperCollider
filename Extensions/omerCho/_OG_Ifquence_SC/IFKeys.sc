@@ -387,13 +387,9 @@ IFKeys {
 			if ( ~volcaBoolean==1, {
 				~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
 				~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
-				~sin1Keys=val1;
-				~sin1Keys=val2;
 				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
 			},{
 
-				~sin1Keys=val1;
-				~sin1Keys=val2;
 				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
 			});
 		},

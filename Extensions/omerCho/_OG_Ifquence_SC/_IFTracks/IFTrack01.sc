@@ -125,6 +125,7 @@ IFTrack01 {
 		~local.sendMsg('chainBass', 0.0);
 		~local.sendMsg('lfoMulBass1',0.00);
 		~local.sendMsg('lfoMulBass2',0.00);
+		VBass.preSet01;
 		IFBass.octMul(0);
 
 		"Keys Set".postln;
@@ -136,6 +137,7 @@ IFTrack01 {
 		~local.sendMsg('chainKeys', 0.05);
 		~local.sendMsg('lfoMulKeys1',0.0);
 		~local.sendMsg('lfoMulKeys2',0.01);
+		VKeys.preSet01;
 		IFKeys.octMul(1);
 
 		"Samp Set".postln;
@@ -163,21 +165,38 @@ IFTrack01 {
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 
 		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		~octVKick=0;
+		~ntVKick.source = Pseq([0], inf);
+		IFSeqVSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
+		~ntVSnr.source = Pseq([127], inf);
+		IFSeqVHat.stGrpSet  (0,1,0,1, 0,1,0,1,  0,1,0,1, 0,1,0,1);
+		~ntVHat.source = Pseq([125], inf);
+		IFSeqVTomL.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
+		//~ntVTomL.source = Pseq([43,43,43,50], inf);
+		IFSeqVTomH.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
+		//~ntVTomH.source = Pseq([43,43,43,50], inf);
+		IFSeqVClap.stGrpSet  (0,0,1,0, 0,0,1,1,  0,0,0,0, 1,0,0,0);
+		//~ntVClap.source = Pseq([39], inf);
+		//~durVClap.source  =  Pseq([1/2], inf);
+		IFSeqVCrsh.stGrpSet  (0,0,0,0, 0,0,0,1,  0,0,0,0, 0,1,0,1);
+		//~ntVCrsh.source = Pseq([67,75,75,75], inf);
+		IFSeqVPcm.stGrpSet  (1,0,1,0, 1,0,1,1,  0,0,1,1, 0,1,0,1);
+		~ntVPcm.source = Pseq([~vCalv,~vCalv,~vCalv,~vCalv,~vAgog], inf);
 
 		//CH -1- [ Kick ]
-		IFSeqKick.stGrpSet    (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		IFSeqOctKick.stGrp (0);
-		//IFSeqNtKick.stGrpSet  (0,0,4,0, 0,0,4,0,  0,0,4,0, 0,0,4,0);
+		IFSeqKick.stGrpSet    (0,0,0,1, 0,0,0,1, 0,0,1,1, 0,0,0,1);
+		IFSeqOctKick.stGrpSet (2,1,2,1, 2,1,2,1, 2,1,2,1, 2,1,2,1);
+		IFSeqNtKick.stGrpSet  (0,0,4,0, 0,0,4,0,  0,0,4,0, 0,0,4,0);
 		IFSeqNtKick.stGrp  (0);
 		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKick.stGrpSet (0,2,0,2, 0,2,0,2,  0,2,0,2, 0,2,0,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
-		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
+		IFSeqDurKick.stGrpSet (2,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 
 		//CH -1- [ Snare ]
-		IFSeqSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
+		IFSeqSnr.stGrpSet  (0,1,1,0, 0,0,1,0,  0,0,1,0, 0,1,1,0);
 		IFSeqNtSnr.stGrpSet  (0,1,2,3, 0,1,2,3,  0,1,2,3, 0,1,2,3);
-		IFSeqVelSnr.stGrpSet  (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
+		IFSeqVelSnr.stGrpSet  (1,3,3,3, 3,2,3,3,  1,2,3,3, 1,2,3,3);
 		IFSeqSusSnr.stGrpSet (1,2,1,3, 1,2,1,3,  1,2,1,3, 1,2,1,3);
 		IFSeqTmSnr.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurSnr.stGrp  (4);
@@ -306,6 +325,17 @@ IFTrack01 {
 		IFSeqDurSamp.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		~lfo1Samp.source  =  Pseq([90,1,70,9, 80,10,7,1], inf);
 		~lfo2Samp.source  =  Pseq([6,10,80,99,6,10,80,99], inf);
+		//CH -7- [Mopho]
+		IFSeqMopho.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqOctMopho.stGrpSet (3,4,3,4, 3,3,4,3,  3,3,3,3, 4,3,3,3);
+		IFSeqNtMopho.stGrpSet  (0,1,0,3, 0,5,0,7,  0,4,0,1, 0,9,1,2);
+		IFSeqVelMopho.stGrpSet (4,3,0,3, 3,3,0,3,  0,3,0,3, 4,3,0,3);
+		IFSeqSusMopho.stGrpSet (0,0,2,0, 1,0,0,0,  1,0,0,0, 1,0,0,3);
+		IFSeqTmMopho.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqDurMopho.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
+		IFShuf.loadMopho(0,2,0,1,2,-2,3,4,6);
+		~lfo1Mopho.source  =  Pseq([0,10,0,90, 0,10,70,1], inf);
+		~lfo2Mopho.source  =  Pseq([0,10,80,99,6,10,80,99], inf);
 		//Mast
 		~ccMast.source=Pxrand([1,2,3,4], inf);
 		~ccValMast.source=Pseq([1,24,0,50,120], inf);

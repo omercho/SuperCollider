@@ -83,6 +83,7 @@ IFProjectGlobals.setTempo(20);
 		Tempo.bpm=tempo;
 		~tmp1=128;
 		~tOSCAdrr.sendMsg('tempoLabel', tempo);
+		~vMopho.control(15, 14, tempo-30); //BPM
 		//~mdOut.control(15, 3, tempo); //ableton global tempo
 		//Tempo.bpm = tempo;
 		//Ableton.tap4;

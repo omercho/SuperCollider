@@ -370,6 +370,8 @@ IFMIDIMix{
 			arg vel;
 			~tOSCAdrr.sendMsg('susMulSnr', vel/127);
 			~susMulSnr=(vel/127)+0.05;
+			~tOSCAdrr.sendMsg('volSnr2', vel/127);
+			~volSnr2.source = vel/127;
 
 		},srcID:~mdMixInID, chan:~mdMixLn2, ccNum:30);
 		//Nobs

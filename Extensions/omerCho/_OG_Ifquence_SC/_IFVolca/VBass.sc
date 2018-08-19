@@ -64,8 +64,8 @@ VBass {
 		~vBass.control(0, ~vcoPitch3, 127); //VCO3
 
 		~vBass.control(0, ~egAtt, 0);
-		~vBass.control(0, ~egDec, 120);
-		~vBass.control(0, ~cutOff, 120); //LFO CutOff Intencity
+		~vBass.control(0, ~egDec, 100);
+		~vBass.control(0, ~cutOff, 20); //LFO CutOff Intencity
 
 		~vBass.control(0, ~gateTime, 0);
 

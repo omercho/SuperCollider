@@ -9,6 +9,19 @@ IFLoad.loadVolca;
 */
 
 IFCntrl {
+	*initClass {
+		StartUp add: {
+			/*Server.default.doWhenBooted({
+			1.0.wait;
+			this.globals;
+			this.mulFaders;
+			this.main;
+			this.parts;
+
+
+			});*/
+		}
+	}
 
 	*loadAll {
 		this.main;
@@ -823,19 +836,7 @@ IFCntrl {
 
 
 
-	*initClass {
-		StartUp add: {
-			/*Server.default.doWhenBooted({
-			1.0.wait;
-			this.globals;
-			this.mulFaders;
-			this.main;
-			this.parts;
 
-
-			});*/
-		}
-	}
 
 	*freeAll {
 

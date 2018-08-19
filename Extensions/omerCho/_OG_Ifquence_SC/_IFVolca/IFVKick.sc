@@ -5,6 +5,8 @@ IFVKick.pat_1;
 
 ~octVKick=4;
 
+
+IFVKick(~tmMulVKickP.next*~tmVKickP.next);
 */
 
 
@@ -105,7 +107,8 @@ IFVKick {
 			\octave,0,
 			\dur, Pseq([~dur1VKickP.next], ~actVKickP),
 			\degree, Pseq([~vKick], inf),
-			\amp, Pseq([~ampVKickP.next], inf)
+			\amp, Pseq([~volKickP.next*~ampVKickP.next], inf),
+			\sustain, Pseq([1],inf)*~susMulKick
 		).play(quant:0);
 
 	}

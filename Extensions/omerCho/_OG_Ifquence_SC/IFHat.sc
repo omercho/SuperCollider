@@ -2,6 +2,8 @@
 /*
 
 IFHat.p1(1);
+
+~actHat.source=1;
 */
 
 IFHat {
@@ -25,15 +27,16 @@ IFHat {
 
 	*globals{
 
-		~hatCh=10;
-		~hatLate=0.00;
+		~chHat=2;
+		~actHat=1;
+		~lateHat=0.00;
 		~hatTimes=1;
 		~harmHat=0;
 		~rootHat=0;
 		~susMulHat=1;
 		~trHat=0;
 		~octMulHat=0;
-		~hatVolC=1;
+		~volCHat=1;
 
 		~tuneHat=26;
 
@@ -44,7 +47,6 @@ IFHat {
 
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
-
 		~dur1Hat = PatternProxy( Pseq([1], inf));
 		~dur1HatP = Pseq([~dur1Hat], inf).asStream;
 		~amp1Hat = PatternProxy( Pseq([1], inf));
@@ -56,10 +58,11 @@ IFHat {
 		~transHatP = Pseq([~transHat], inf).asStream;
 		~transShufHat = PatternProxy( Pseq([0], inf));
 		~transShufHatP = Pseq([~transShufHat], inf).asStream;
+		~extraShufHat = PatternProxy( Pshuf([0], inf));
+		~extraShufHatP = Pseq([~extraShufHat], inf).asStream;
 
 		~octHat = PatternProxy( Pseq([3], inf));
 		~octHatP = Pseq([~octHat], inf).asStream;
-
 
 		~hrmHat = PatternProxy( Pseq([1.0], inf));
 		~hrmHatP = Pseq([~hrmHat], inf).asStream;
@@ -70,7 +73,7 @@ IFHat {
 		~actHatLfo1 = PatternProxy( Pseq([0], inf));
 		~actHatLfo1P= Pseq([~actHatLfo1], inf).asStream;
 
-		~volHat = PatternProxy( Pseq([0.0], inf));
+		~volHat = PatternProxy( Pseq([1.0], inf));
 		~volHatP = Pseq([~volHat], inf).asStream;
 		~delta1VSamp07 = PatternProxy( Pseq([1/1], inf));
 		~delta1VSamp07P = Pseq([~delta1VSamp07], inf).asStream;
@@ -99,8 +102,8 @@ IFHat {
 		{ i == val }  {
 			{val.do{
 
-				//~hatLate=~abLate;
-				~hatLate.wait;
+				//~lateHat=~abLate;
+				~lateHat.wait;
 				//this.p1_SC(val);
 				this.p1(val);
 				((~dur1HatP.next)*(~durMulP.next)/val).wait;
@@ -108,67 +111,49 @@ IFHat {
 		}
 
 	}
-	*p1_SC {|i=1|
-		var val;
-		val=i;
-
-		Pbind(\instrument, \IFHat_SC, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1HatP.next/val],~actHatP),
-			\degree, Pseq([~nt1HatP.next], inf),
-			\amp, Pseq([~volHatP.next*~amp1HatP.next], inf),
-			\sustain, Pseq([~sus1HatP.next],inf)*~susMulHat,
-			\mtranspose, Pseq([~transHatP.next], inf)+~trHat,
-			\octave, Pseq([~octHatP.next], inf)+~octMulHat,
-			\harmonic, Pseq([~hrmHatP.next],inf)+~harmHat,
-			\freqpan, Pbrown(0.04, 1.4, 0.125, inf),
-			\att, ~attHat,
-			\dec, ~decHat,
-			\susLev, ~susLevHat,
-			\rel, ~relHat,
-			\lfo1Rate, ~lfo1HatP*~lfoMulHat,
-			\lfo2Rate, ~lfo2HatP*~lfoMulHat,
-			\group, ~piges,
-			\out, Pseq([[ ~busHat]], inf )
-		).play(quant:0);
-
-		//this.count2;
-		//this.timesCount;
-	}
 
 	*p1 {|i=1|
 		var val;
 		val=i;
-		Pbind(//LFO Amp
-			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp07, \ctlNum, ~smpLvl,
-			\delta, Pseq([~delta1VSamp07P.next], 1),
-			\control, Pseq([~volHatP.next*~amp1HatP]*127, 1),
-		).play(quant:0);
-		Pbind(//LFO 1
-			\type, \midi, \midicmd, \control,
-			\midiout,~vSamp, \chan, ~smp07, \ctlNum, ~smpSpeed,
-			\delta, Pseq([~delta2VSamp07P.next], ~actHatLfo1P),
-			\control, PdegreeToKey(
-				Pseq([~tuneHat+~nt1HatP.next], 1),
-				Pfunc({~scl2}),
-				12),
-		).play(quant:0);
-		Pbind(
-			\chan, ~smp07,
-			\type, \midi, \midiout,~vSamp,
-			\dur, Pseq([~dur1HatP.next],~actHatP),
-			\amp, Pseq([~amp1HatP.next], 1),
-			\sustain, Pseq([~sus1HatP.next],1)*~susMulHat
-		).play(quant:0);
 
+		Pbind(
+			\chan, ~chHat,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~dur1HatP.next],~actHatP),
+			\degree, Pseq([~nt1HatP.next], inf),
+			\amp, Pseq([~volHatP.next*~amp1HatP.next], inf),
+			\sustain, Pseq([~sus1HatP.next],inf)*~susMulHat,
+			\mtranspose, Pseq([~transHatP.next], inf)+~trHat+~transShufHatP.next,
+			\octave, Pseq([~octHatP.next], inf)+~octMulHat,
+			\harmonic, Pseq([~hrmHatP.next], inf)+~harmHat
+		).play(quant: 0);
+
+		/*~staticHatPat=Pbind(
+			\chan, ~chHat,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~durStHatP.next],~actStHatP),
+			\degree, Pseq([~ntStHatP.next], inf),
+			\amp, Pseq([~ampStHatP.next], inf)
+		).play(TempoClock.default, quant: 0);*/
 	}
+	/**stat01 {|i=1|
+		var val;
+		val=i;
+		~staticHatPat=Pbind(
+			\chan, ~chHat,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~durStHatP.next],~actStHatP),
+			\degree, Pseq([~ntStHatP.next], inf),
+			\amp, Pseq([~ampStHatP.next], inf)
+		).play(TempoClock.default, quant: 0);
+	}*/
 
 	*apc40{
 		~volHat_APC.free;
 		~volHat_APC=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volVSamp07', vel/127);
-			//~vSamp.control(~smp07, ~smpLvl, vel);
+			~tOSCAdrr.sendMsg('volHat', vel/127);
+			"HAT_VOL_TestPost"+vel.postln;
 			~volHat.source = vel/127;
 		},srcID:~apc40InID, chan:~apcMnCh, ccNum:~apcFd3);
 
@@ -303,7 +288,7 @@ IFHat {
 			'/xy1Hat'
 		);
 
-		~attHatFader.free;
+		/*~attHatFader.free;
 		~attHatFader= OSCFunc({
 			arg msg,val;
 			val=msg[1]*2;
@@ -329,9 +314,9 @@ IFHat {
 			~relHat=msg[1]+0.1;
 			},
 			'/decHat'
-		);
+		);*/
 
-		/*~attHatFader.free;
+		~attHatFader.free;
 		~attHatFader= OSCFunc({
 			arg msg,vel;
 			vel=msg[1]*127;
@@ -386,7 +371,7 @@ IFHat {
 
 			},
 			'sendHat'
-		);*/
+		);
 
 		//TIME
 

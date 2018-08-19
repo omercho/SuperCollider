@@ -27,7 +27,7 @@ IFStat {
 
 		~chVKick=9;
 		~chVBeats=9;
-		~octVKick=0;
+		~octVKick=1;
 		~octVSnr=0;
 		~octVHat=0;
 		~octVClap=0;
@@ -40,7 +40,7 @@ IFStat {
 	}
 
 	*proxy {
-		/*
+
 		//Static_01_Kick
 		~actVKick = PatternProxy( Pseq([0], inf));
 		~actVKickP= Pseq([~actVKick], inf).asStream;
@@ -50,7 +50,7 @@ IFStat {
 		~ampVKickP = Pseq([~ampVKick], inf).asStream;
 		~ntVKick = PatternProxy( Pseq([[~vKick]], inf));
 		~ntVKickP = Pseq([~ntVKick], inf).asStream;
-		*/
+
 		//2StaticSnr
 		~actVSnr = PatternProxy( Pseq([0], inf));
 		~actVSnrP= Pseq([~actVSnr], inf).asStream;
@@ -122,20 +122,20 @@ IFStat {
 		var val;
 		val=i;
 		~stVKickPat=Pbind(
-			\chan, ~chVKick,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 0,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVKick,
 			\dur, Pseq([~durVKickP.next],~actVKickP.next),
 			\degree, Pseq([~ntVKickP.next], inf),
 			\amp, Pseq([~ampVKickP.next], inf)
-		).play;
+		).play(quant:0);
 	}//stat01
 	*ln02 {|i=1|
 		var val;
 		val=i;
 		~stVSnrPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 1,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVSnr,
 			\dur, Pseq([~durVSnrP.next],~actVSnrP.next),
 			\degree, Pseq([~ntVSnrP.next], inf),
@@ -146,8 +146,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVHatPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 2,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVHat,
 			\dur, Pseq([~durVHatP.next],~actVHatP),
 			\degree, Pseq([~ntVHatP.next], inf),
@@ -158,8 +158,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVClapPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 1,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVClap,
 			\dur, Pseq([~durVClapP.next],~actVClapP.next),
 			\degree, Pseq([~ntVClapP.next], inf),
@@ -171,8 +171,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVTomLPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 2,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVTomL,
 			\dur, Pseq([~durVTomLP.next],~actVTomLP.next),
 			\degree, Pseq([~ntVTomLP.next], inf),
@@ -183,8 +183,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVTomHPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 0,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVTomH,
 			\dur, Pseq([~durVTomHP.next],~actVTomHP.next),
 			\degree, Pseq([~ntVTomHP.next], inf),
@@ -195,8 +195,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVCrshPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 0,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVCrsh,
 			\dur, Pseq([~durVCrshP.next],~actVCrshP.next),
 			\degree, Pseq([~ntVCrshP.next], inf),
@@ -207,8 +207,8 @@ IFStat {
 		var val;
 		val=i;
 		~stVPcmPat=Pbind(
-			\chan, ~chVBeats,
-			\type, \midi, \midiout,~vBeats, \scale, Pfunc({~scl1}, inf),
+			\chan, 0,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVPcm,
 			\dur, Pseq([~durVPcmP.next],~actVPcmP.next),
 			\degree, Pseq([~ntVPcmP.next], inf),

@@ -30,7 +30,7 @@ IFRoot {
 
 
 					IFSequence.step(~stepNumP.next);
-					IFVKick(~tmMulVKickP.next*~tmVKickP.next);
+					IFStat.ln01;IFStat.ln02;IFStat.ln03;
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);

@@ -131,20 +131,11 @@ IFShuf{
 			if ( msg[1]==1, {
 
 				//"Transpose Shuffle".postln;
-				~countShufHat = ~countShufHat + 1;
+				//~countShufBass = ~countShufBass + 1;
 
-				~countShufHat.switch(
-					0,{},
-					1, {
-						this.transHatOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apc40.noteOn(~apcMnCh, ~actButC3, 6); //But 1
-					},
-					2,{
-						this.transHatOff;
-						~apc40.noteOn(~apcMnCh, ~actButC3, 5); //But 1
-						~countShufHat=0;
-					}
-				)
+				IFShuf.transHatOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+				},{
+					IFShuf.transHatOff;
 				}
 			);
 			},

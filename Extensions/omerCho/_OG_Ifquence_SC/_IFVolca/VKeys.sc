@@ -56,23 +56,23 @@ VKeys {
 
 		~vKeys.control(0, ~expr, 120); //expression
 
-		~vKeys.control(0, ~voice, ~uni); //voice
+		~vKeys.control(0, ~voice, ~poly); //voice
 		~vKeys.control(0, ~octVK, ~oct3); //octave
 
-		~vKeys.control(0, ~vcoDetune, 6); //detune
+		~vKeys.control(0, ~vcoDetune, 0); //detune
 		~vKeys.control(0, ~vcoPorta, 0); // portamento
 		~vKeys.control(0, ~vcoEg, 0); // VCOsculator Envelope Intencity
 
-		~vKeys.control(0, ~vcfCut, 32); //VCFilter CutOff
-		~vKeys.control(0, ~vcfEg, 94); //VCFilter Envelope Intencity
+		~vKeys.control(0, ~vcfCut, 30); //VCFilter CutOff
+		~vKeys.control(0, ~vcfEg, 91); //VCFilter Envelope Intencity
 
 		~vKeys.control(0, ~lfoRate, 0); //LFO Rate
 		~vKeys.control(0, ~lfoPitch, 0); //LFO Pitch Intencity
 		~vKeys.control(0, ~lfoCut, 0); //LFO CutOff Intencity
 
-		~vKeys.control(0, ~envAtt, 2); //Envelope Generator Attack
-		~vKeys.control(0, ~envDec, 60); //Envelope Generator Decay/Release
-		~vKeys.control(0, ~envSus, 30); //Envelope Generator Sustain
+		~vKeys.control(0, ~envAtt, 9); //Envelope Generator Attack
+		~vKeys.control(0, ~envDec, 20); //Envelope Generator Decay/Release
+		~vKeys.control(0, ~envSus, 00); //Envelope Generator Sustain
 
 		~vKeys.control(0, ~dlyTime, 0); //Delay Time
 		~vKeys.control(0, ~dlyFeed, 0); //Delay FeedBack

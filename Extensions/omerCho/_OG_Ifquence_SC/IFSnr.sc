@@ -32,10 +32,11 @@ IFSnr {
 		this.proxy;
 		this.osc;
 		this.apc40;
+		this.mdMix;
 	}
 	*globals{
 
-		~snrCh=10;
+		~chSnr=1;
 		~snrLate=0.00;
 		~snrTimes=1;
 		~rootSnr=0;
@@ -59,6 +60,9 @@ IFSnr {
 		~freq3Snr=49;
 
 		~lfoMulSnr=1;
+
+		~quantSnr1=0;
+		~quantSnr2=4;
 
 		~p1Snr=~smp04;
 		~p2Snr=~smp05;
@@ -123,6 +127,16 @@ IFSnr {
 		~lfo2Snr = PatternProxy( Pseq([1], inf));
 		~lfo2SnrP = Pseq([~lfo2Snr], inf).asStream;
 
+		/*//StaticSnr
+		~actStSnr = PatternProxy( Pseq([0], inf));
+		~actStSnrP= Pseq([~actStSnr], inf).asStream;
+		~durStSnr = PatternProxy( Pseq([1], inf));
+		~durStSnrP = Pseq([~durStSnr], inf).asStream;
+		~ampStSnr = PatternProxy( Pseq([0,0,0,0,1], inf));
+		~ampStSnrP = Pseq([~ampStSnr], inf).asStream;
+		~ntStSnr = PatternProxy( Pseq([67], inf));
+		~ntStSnrP = Pseq([~ntStSnr], inf).asStream;*/
+
 	}//*proxy
 	*new{|i=1|
 		var val;
@@ -140,7 +154,29 @@ IFSnr {
 	*p1 {|i=1|
 		var val;
 		val=i;
-		Pbind(//LFO Amp
+		Pbind(
+			\chan, ~chSnr,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~dur1SnrP.next], ~actSnrP),
+			\degree, Pseq([~nt1SnrP.next], inf),
+			\amp, Pseq([~volSnrP.next*~amp1SnrP.next], inf),
+			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
+			\mtranspose, Pseq([~transSnrP.next
+			], inf)+~trSnr+~transShufSnrP.next+~extraShufSnrP.next,
+			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
+			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
+		).play(quant:~quantSnr1);
+		//snr2
+		Pbind(
+			\chan, ~chSnr,
+			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
+			\dur, Pseq([~dur2SnrP.next], ~act2SnrP),
+			\degree, Pseq([~nt2SnrP.next], inf),
+			\amp, Pseq([~volSnr2P.next*~amp2SnrP.next], inf),
+			\sustain, Pseq([~sus2SnrP.next],inf)*~susMulSnr
+		).play(quant:~quantSnr2);
+
+		/*Pbind(//LFO Amp
 			\type, \midi, \midicmd, \control,
 			\midiout,~vSamp, \chan, ~p1Snr, \ctlNum, ~smpLvl,
 			\delta, Pseq([~delta1VSamp06P.next], 1),
@@ -175,7 +211,7 @@ IFSnr {
 			\dur, Pseq([~dur2SnrP.next], ~act2SnrP),
 			\amp, Pseq([~amp2SnrP.next], inf),
 			\sustain, Pseq([~sus2SnrP.next],inf)*~susMulSnr
-		).play(quant:0);
+		).play(quant:0);*/
 
 	}
 
@@ -245,6 +281,14 @@ IFSnr {
 
 
 	}//*apc40
+	*mdMix{
+		~volSnr2_mx.free;
+		~volSnr2_mx=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volSnr2', vel/127);
+			~volSnr2.source = vel/127;
+		},srcID:~mdMixInID, chan:~mdMixLn2, ccNum:30);
+	}
 
 	*osc{
 
