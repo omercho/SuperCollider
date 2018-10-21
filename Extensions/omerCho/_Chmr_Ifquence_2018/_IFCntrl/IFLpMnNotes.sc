@@ -176,8 +176,6 @@ IFLpMnNotes{
 	IFLpMnNotes.resetLeds;
 	*/
 	*resetLeds{
-
-
 		//Notes
 		//Lounch 7
 		~lpMn.noteOn(~lpMnCh, ~lpMnBut49, ~orng1); //But 1

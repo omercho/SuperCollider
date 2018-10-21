@@ -464,7 +464,7 @@ IFSeqKick {
 		{ i == 13 } { this.step13; }
 		{ i == 14 } { this.step14; }
 		{ i == 15 } { this.step15; }
-		{ i == 16 } { this.step16; };
+		{ i == 16 } { this.step16; }
 	}
 
 	*step01{

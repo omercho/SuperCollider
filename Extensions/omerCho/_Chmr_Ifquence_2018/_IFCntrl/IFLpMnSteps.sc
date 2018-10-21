@@ -14,6 +14,7 @@ IFLpMnSteps{
 	*load{
 		this.globals;
 		this.resetLeds;
+		this.resetLeds2;
 		this.makeStepResponders;
 
 	}//loadAtStart
@@ -21,15 +22,11 @@ IFLpMnSteps{
 	*globals{
 
 
-
-
 	}//globals
-
 
 	////////////////////////
 	//Step Sequencer Sixteen
 	*makeStepResponders{
-
 		IFLpMnSteps.button01(~lpMnBut1,\lncLpStepOn01, \lncLpStepOff01);
 		IFLpMnSteps.button01(~lpMnBut2,\lncLpStepOn02, \lncLpStepOff02);
 		IFLpMnSteps.button01(~lpMnBut3,\lncLpStepOn03, \lncLpStepOff03);
@@ -80,14 +77,11 @@ IFLpMnSteps{
 		IFLpMnSteps.button03(~lpMnBut46,\lncLpStepOn46, \lncLpStepOff46);
 		IFLpMnSteps.button03(~lpMnBut47,\lncLpStepOn47, \lncLpStepOff47);
 		IFLpMnSteps.button03(~lpMnBut48,\lncLpStepOn48, \lncLpStepOff48);
-
 	}
 
 	*button01{|ntNum,nameOn, nameOff|
-
 		MIDIdef.noteOn(nameOn, {
 			arg chan,noteNum;
-
 			ntNum.switch(
 				~lpMnBut1,{~local.sendMsg('seqStep01', 1);},
 				~lpMnBut2,{~local.sendMsg('seqStep02', 1);},
@@ -106,12 +100,10 @@ IFLpMnSteps{
 				~lpMnBut15,{~local.sendMsg('seqStep15', 1);},
 				~lpMnBut16,{~local.sendMsg('seqStep16', 1);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 
 		MIDIdef.noteOff(nameOff, {
 			arg chan,noteNum;
-
 			ntNum.switch(
 				~lpMnBut1,{~local.sendMsg('seqStep0l', 0);},
 				~lpMnBut2,{~local.sendMsg('seqStep02', 0);},
@@ -130,14 +122,11 @@ IFLpMnSteps{
 				~lpMnBut15,{~local.sendMsg('seqStep15', 0);},
 				~lpMnBut16,{~local.sendMsg('seqStep16', 0);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 	}
 	*button02{|ntNum,nameOn, nameOff|
-
 		MIDIdef.noteOn(nameOn, {
 			arg chan,noteNum;
-
 			ntNum.switch(
 				~lpMnBut17,{~local.sendMsg('seqStep17', 1);},
 				~lpMnBut18,{~local.sendMsg('seqStep18', 1);},
@@ -156,12 +145,10 @@ IFLpMnSteps{
 				~lpMnBut31,{~local.sendMsg('seqStep31', 1);},
 				~lpMnBut32,{~local.sendMsg('seqStep32', 1);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 
 		MIDIdef.noteOff(nameOff, {
 			arg chan,noteNum;
-
 			ntNum.switch(
 				~lpMnBut17,{~local.sendMsg('seqStep17', 1);},
 				~lpMnBut18,{~local.sendMsg('seqStep18', 1);},
@@ -180,14 +167,11 @@ IFLpMnSteps{
 				~lpMnBut31,{~local.sendMsg('seqStep31', 1);},
 				~lpMnBut32,{~local.sendMsg('seqStep32', 1);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 	}
 	*button03{|ntNum,nameOn, nameOff|
-
 		MIDIdef.noteOn(nameOn, {
 			arg chan,noteNum;
-
 			ntNum.switch(
 				~lpMnBut33,{~local.sendMsg('seqStep33', 1);},
 				~lpMnBut34,{~local.sendMsg('seqStep34', 1);},
@@ -206,7 +190,6 @@ IFLpMnSteps{
 				~lpMnBut47,{~local.sendMsg('seqStep47', 1);},
 				~lpMnBut48,{~local.sendMsg('seqStep48', 1);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 
 		MIDIdef.noteOff(nameOff, {
@@ -230,7 +213,6 @@ IFLpMnSteps{
 				~lpMnBut47,{~local.sendMsg('seqStep47', 1);},
 				~lpMnBut48,{~local.sendMsg('seqStep48', 1);}
 			);
-
 		},srcID:~lpMnInID, chan:0,noteNum:ntNum);
 	}
 
@@ -272,30 +254,74 @@ IFLpMnSteps{
 			~lpMnBut14,{this.ledForkGreen(~lpMnBut14);},
 			~lpMnBut15,{this.ledForkGreen(~lpMnBut15);},
 			~lpMnBut16,{this.ledForkGreen(~lpMnBut16);},
-			//
-
-		)
-
+		);
+	}
+	*led2{|index|
+		index.switch(
+			1,{this.ledOnOff2(~lpMnBut17);},
+			2,{this.ledOnOff2(~lpMnBut18);},
+			3,{this.ledOnOff2(~lpMnBut19);},
+			4,{this.ledOnOff2(~lpMnBut20);},
+			5,{this.ledOnOff2(~lpMnBut21);},
+			6,{this.ledOnOff2(~lpMnBut22);},
+			7,{this.ledOnOff2(~lpMnBut23);},
+			8,{this.ledOnOff2(~lpMnBut24);},
+			9,{this.ledOnOff2(~lpMnBut25);},
+			10,{this.ledOnOff2(~lpMnBut26);},
+			11,{this.ledOnOff2(~lpMnBut27);},
+			12,{this.ledOnOff2(~lpMnBut28);},
+			13,{this.ledOnOff2(~lpMnBut29);},
+			14,{this.ledOnOff2(~lpMnBut30);},
+			15,{this.ledOnOff2(~lpMnBut31);},
+			16,{this.ledOnOff2(~lpMnBut32);}
+		);
+	}
+	*ledOnOff2 {|ntNum|
+		ntNum.switch(
+			~lpMnBut17,{this.ledForkRed  (~lpMnBut17);},
+			~lpMnBut18,{this.ledForkYellow(~lpMnBut18);},
+			~lpMnBut19,{this.ledForkYellow(~lpMnBut19);},
+			~lpMnBut20,{this.ledForkYellow(~lpMnBut20);},
+			~lpMnBut21,{this.ledForkRed  (~lpMnBut21);},
+			~lpMnBut22,{this.ledForkYellow(~lpMnBut22);},
+			~lpMnBut23,{this.ledForkYellow(~lpMnBut23);},
+			~lpMnBut24,{this.ledForkYellow(~lpMnBut24);},
+			~lpMnBut25,{this.ledForkRed  (~lpMnBut25);},
+			~lpMnBut26,{this.ledForkYellow(~lpMnBut26);},
+			~lpMnBut27,{this.ledForkYellow(~lpMnBut27);},
+			~lpMnBut28,{this.ledForkYellow(~lpMnBut28);},
+			~lpMnBut29,{this.ledForkRed  (~lpMnBut29);},
+			~lpMnBut30,{this.ledForkYellow(~lpMnBut30);},
+			~lpMnBut31,{this.ledForkYellow(~lpMnBut31);},
+			~lpMnBut32,{this.ledForkYellow(~lpMnBut32);}
+		);
 	}
 	*ledForkRed{|ntNum|
 		fork{
 			~lpMn.noteOn(0, ntNum, 0);
 			0.3.wait;
-			~lpMn.noteOn(0, ntNum, 3);
+			~lpMn.noteOn(0, ntNum, ~red1);
 		};
 	}
 	*ledForkYellow{|ntNum|
 		fork{
 			~lpMn.noteOn(0, ntNum, 0);
 			0.3.wait;
-			~lpMn.noteOn(0, ntNum, 5);
+			~lpMn.noteOn(0, ntNum, ~yellow1);
 		};
 	}
 	*ledForkGreen{|ntNum|
 		fork{
 			~lpMn.noteOn(0, ntNum, 0);
 			0.3.wait;
-			~lpMn.noteOn(0, ntNum, 1);
+			~lpMn.noteOn(0, ntNum, ~green1);
+		};
+	}
+	*ledForkOrng{|ntNum|
+		fork{
+			~lpMn.noteOn(0, ntNum, 0);
+			0.3.wait;
+			~lpMn.noteOn(0, ntNum, ~orng1);
 		};
 	}
 
@@ -303,80 +329,81 @@ IFLpMnSteps{
 
 		//Sequencer
 		//Lounch1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut1, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut2, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut3, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut4, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut1, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut2, ~green1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut3, ~green1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut4, ~green1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut5, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut6, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut7, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut8, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut5, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut6, ~green1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut7, ~green1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut8, ~green1); //But 8
 		//Lounch 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut9, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut10, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut11, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut12, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut9, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut10, ~green1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut11, ~green1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut12, ~green1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut13, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut14, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut15, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut16, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut13, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut14, ~green1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut15, ~green1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut16, ~green1); //But 8
 	}
 	*resetLeds2{
 
 		//Sequencer
 		//Lounch 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut17, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut18, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut19, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut20, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut17, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut18, ~yellow1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut19, ~yellow1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut20, ~yellow1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut21, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut22, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut23, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut24, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut21, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut22, ~yellow1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut23, ~yellow1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut24, ~yellow1); //But 8
 		//Lounch 4
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut25, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut26, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut27, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut28, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut25, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut26, ~yellow1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut27, ~yellow1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut28, ~yellow1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut29, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut30, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut31, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut32, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut29, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut30, ~yellow1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut31, ~yellow1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut32, ~yellow1); //But 8
 	}
 	*resetLeds3{
 
 		//Sequencer
 		//Lounch 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut33, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut34, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut35, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut36, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut33, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut34, ~orng1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut35, ~orng1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut36, ~orng1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut37, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut38, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut39, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut40, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut37, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut38, ~orng1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut39, ~orng1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut40, ~orng1); //But 8
 		//Lounch 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut41, 3); //But 1
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut42, 5); //But 2
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut43, 5); //But 3
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut44, 5); //But 4
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut41, ~red1); //But 1
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut42, ~orng1); //But 2
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut43, ~orng1); //But 3
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut44, ~orng1); //But 4
 
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut45, 3); //But 5
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut46, 5); //But 6
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut47, 5); //But 7
-		~lpMn.noteOn(~lpMnCh, ~lpMnBut48, 5); //But 8
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut45, ~red1); //But 5
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut46, ~orng1); //But 6
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut47, ~orng1); //But 7
+		~lpMn.noteOn(~lpMnCh, ~lpMnBut48, ~orng1); //But 8
 	}
 }
 
 /*
 
-IFLpMnSteps.led(9);
+IFLpMnSteps.led2(9);
 IFLpMnSteps.ledOnOff(9);
-IFLpMnSteps.ledForkRed(~lpMnBut9);
+IFLpMnSteps.ledForkGreen(~lpMnBut9);
+~lpMn.noteOn(0, ~lpMnBut9, 28);
 
 */

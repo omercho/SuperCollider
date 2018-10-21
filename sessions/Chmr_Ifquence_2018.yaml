@@ -11,6 +11,9 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFMIDIMix.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSequence.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnSteps.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnNotes.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnShufs.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSixteen.sc
 editors: !QVariantMap
   elements: !QVariantList
@@ -19,42 +22,76 @@ editors: !QVariantMap
         documentIndex: 0
         position: 0
       - !QVariantMap
-        documentIndex: 1
+        documentIndex: 15
+        position: 1034
+      - !QVariantMap
+        documentIndex: 14
         position: 0
       - !QVariantMap
-        documentIndex: 3
+        documentIndex: 13
         position: 0
       - !QVariantMap
-        documentIndex: 4
-        position: 0
+        documentIndex: 12
+        position: 9362
       - !QVariantMap
-        documentIndex: 5
-        position: 0
-      - !QVariantMap
-        documentIndex: 6
-        position: 0
-      - !QVariantMap
-        documentIndex: 7
+        documentIndex: 9
         position: 0
       - !QVariantMap
         documentIndex: 8
         position: 0
       - !QVariantMap
-        documentIndex: 9
+        documentIndex: 7
         position: 0
       - !QVariantMap
-        documentIndex: 12
+        documentIndex: 6
         position: 0
+      - !QVariantMap
+        documentIndex: 4
+        position: 0
+      - !QVariantMap
+        documentIndex: 1
+        position: 4667
+      - !QVariantMap
+        documentIndex: 3
+        position: 8319
+      - !QVariantMap
+        documentIndex: 11
+        position: 285
+      - !QVariantMap
+        documentIndex: 2
+        position: 535
+      - !QVariantMap
+        documentIndex: 5
+        position: 1203
+      - !QVariantMap
+        documentIndex: 10
+        position: 595
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 14
+        position: 99
+      - !QVariantMap
+        documentIndex: 5
+        position: 5534
       - !QVariantMap
         documentIndex: 10
         position: 0
       - !QVariantMap
+        documentIndex: 0
+        position: 1235
+      - !QVariantMap
+        documentIndex: 12
+        position: 12019
+      - !QVariantMap
+        documentIndex: 13
+        position: 2426
+      - !QVariantMap
         documentIndex: 11
-        position: 189
+        position: 4132
       - !QVariantMap
         documentIndex: 2
-        position: 0
-  state: AAAA/wAAAAEAAAABAAAAZAH/////AQAAAAEA
+        position: 580
+  state: AAAA/wAAAAEAAAACAAABnAAAAcEB/////wEAAAACAA==
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""

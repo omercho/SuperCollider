@@ -19,6 +19,7 @@ IFSeqSteps {
 			9,10,11,12,13,14,15,16
 
 		], inf);
+		~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
 	}
 
 	*first8 {
@@ -122,7 +123,6 @@ IFSeqSteps {
 			arg msg;
 			if ( msg[1]==1, {
 				this.first8;
-				"STEP 2".postln;
 			});
 			},
 			'/seqStep02'
@@ -246,7 +246,6 @@ IFSeqSteps {
 			},
 			'/seqStep15'
 		);
-
 		~seqStepBut16.free;
 		~seqStepBut16 = OSCFunc({
 			arg msg;
