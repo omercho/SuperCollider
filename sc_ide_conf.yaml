@@ -109,16 +109,16 @@ IDE:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFProjectGlobals.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFRoot.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFShuf.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFCntrl.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFTracks/IFTrack01.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFAllMidiRef.scd
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFAPCMn.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMn.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFMIDIMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFMopho/IFMophoResp.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFMopho/Mopho.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFSamp.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFPitchsAndNotes/IFPitchMopho.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFPitchsAndNotes/IFPitch.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqKick/IFSeqVelKick.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFSnr.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFKick.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqPat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnShufs.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

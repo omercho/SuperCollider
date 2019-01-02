@@ -519,7 +519,8 @@ IFAPCMn{
 		~apcMnFad6=MIDIFunc.cc( {
 			arg vel;
 			~tOSCAdrr.sendMsg('volSamp', vel/127);
-			~volSamp.source = (vel/127)*0.1;
+			~volSamp.source = (vel/127);
+			~mdOut.control(7, 1, vel); //Samp / Vol
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd6);
 
 		~apcMnFad7.free;

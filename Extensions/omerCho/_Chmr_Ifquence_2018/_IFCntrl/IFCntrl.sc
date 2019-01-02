@@ -44,13 +44,8 @@ IFCntrl {
 					~tOSCAdrr.sendMsg('/1/toggleMain', 1);
 					0.000.wait;
 					//~vBeatsClock.play;//TempoClock to VBeats
-
-
 				}};
-
-
 			});
-
 			if ( msg[1]==0, {
 				"IF Main STOP".postln;
 				//~mdClock.stop;//TempoClock to IAC MIDI
@@ -68,7 +63,6 @@ IFCntrl {
 		~tempoFader= OSCFunc({
 			arg msg,val;
 			val=msg[1];
-			//~vBeatsLate=val/(1/100);
 			IFProjectGlobals.setTempo(msg[1]);
 			~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
 			~tOSCAdrr.sendMsg('tempoFader', msg[1]);
@@ -106,10 +100,7 @@ IFCntrl {
 		~tempoClockLedCount = 0;
 		~tempoClockBut = OSCFunc({
 			arg msg;
-
 			if ( msg[1]==1, {
-
-
 				~tempoClockLedCount = ~tempoClockLedCount+1;
 				~tempoClockLedCount.switch(
 					1, {
@@ -122,11 +113,9 @@ IFCntrl {
 							0.7.wait;
 
 						}}.fork;
-
 					},
 					2, {
 						~mdClock.stop;
-
 						~clockLedF.stop;
 						~tempoClockLedCount = 0;
 						~tOSCAdrr.sendMsg('clockLed', 0);
@@ -167,10 +156,25 @@ IFCntrl {
 			//~transSnr.source=msg[1]+Pseq([0], inf);
 			//~transHat.source=msg[1]+Pseq([0], inf);
 			~tOSCAdrr.sendMsg('snrXPose',msg[1]);
+			~mdOut.control(2, 8, msg[1]*127); //Kick / Xpose
 			~mdOut.control(3, 15, msg[1]*127); //Snr X-Transpose
 			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
 		},
 		'/snrXPose'
+		);
+		~fsDryFad.free;
+		~fsDryFad= OSCFunc({
+			arg msg;
+
+			//~transKick.source= msg[1]+Pseq([0], inf);
+			//~transSnr.source=msg[1]+Pseq([0], inf);
+			//~transHat.source=msg[1]+Pseq([0], inf);
+			~tOSCAdrr.sendMsg('snrXPose',msg[1]);
+			~mdOut.control(2, 8, msg[1]*127); //Kick / Xpose
+			~mdOut.control(3, 15, msg[1]*127); //Snr X-Transpose
+			~tOSCAdrr.sendMsg('noteLabelDrum', msg[1]);
+		},
+		'/freqShiftDry'
 		);
 		~melFad.free;
 		~melFad= OSCFunc({
@@ -391,7 +395,7 @@ IFCntrl {
 
 				//~mdOut.control(5, 14, vel2); // IFVBass CutY
 				//~mdOut.control(6, 14, vel2); // IFVKeys CutY
-				~mdOut.control(7, 14, vel2); // IFSamps CutY
+				//~mdOut.control(7, 14, vel2); // IFSamps CutY
 				~vBass.control(0, ~cutOff, vel2);
 				//~vMopho.control(~chMopho, 105, vel2); //Filter Audio Mod
 				~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
@@ -463,9 +467,6 @@ IFCntrl {
 		},
 		'/susDrum'
 		);
-
-
-
 		~chainDrumFader.free;
 		~chainDrumFader= OSCFunc({
 			arg msg,val;
@@ -474,11 +475,9 @@ IFCntrl {
 			~mdOut.control(2, 8, val);//~tOSCAdrr.sendMsg('chainKick', val);
 			~mdOut.control(3, 8, val);//~tOSCAdrr.sendMsg('chainSnr', val);
 			~mdOut.control(4, 8, val);//~tOSCAdrr.sendMsg('chainHat', val);
-
 		},
 		'/chainDrum'
 		);
-
 		~chainAllFader.free;
 		~chainAllFader= OSCFunc({
 			arg msg,val;

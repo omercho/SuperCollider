@@ -357,6 +357,19 @@ IFMopho {
 		},
 		'/sendMopho'
 		);
+
+		~lfo1AmntMophoFad.free;
+		~lfo1AmntMophoFad= OSCFunc({
+			arg msg,val,vel;
+			val=msg[1];
+			vel=val*127;
+
+			~tOSCAdrr.sendMsg('lfo1AmntMopho', val);
+			Mopho.control(1, 0, 39, 0, vel);//0->127  LFO1 Amount
+		},
+		'/lfo1AmntMopho'
+		);
+
 		~lfoMulMophoFad1.free;
 		~lfoMulMophoFad1= OSCFunc({
 			arg msg;

@@ -61,8 +61,8 @@ IFSnr {
 
 		~lfoMulSnr=1;
 
-		~quantSnr1=0.01;
-		~quantSnr2=0.2;
+		~quantSnr1=0.0;
+		~quantSnr2=0.0;
 
 		~p1Snr=~smp04;
 		~p2Snr=~smp05;

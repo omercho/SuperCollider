@@ -15,9 +15,10 @@ IFAPCMn.update;
 
 */
 IFSixteen {
-	*defaults {this.hold}
+	*defaults {/*this.hold*/}
 
 	*hold {
+		"TEMPORARY TEST: IFSixteen.defaults in (*defaults {this.hold})".postln;
 		~seqStepBut01.free;
 		~seqStepBut01 = OSCFunc({
 			arg msg;

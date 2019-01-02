@@ -43,7 +43,7 @@ IFKick {
 		~relKick =0.3;
 		~susLevKick = 0.01;
 
-		~quantKick2=0.1;
+		~quantKick2=0.0;
 	}
 
 	*proxy {

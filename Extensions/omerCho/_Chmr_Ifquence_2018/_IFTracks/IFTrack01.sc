@@ -14,8 +14,8 @@ IFTrack01 {
 		IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
 		IFRoot.set00;
 		this.setGlb01;
-		//this.lpMnParts;
 		this.setActs;
+		//this.lpMnParts;
 		~shiftPartsBut.free;
 		~shiftPartsBut = OSCFunc({
 			arg msg;
@@ -82,22 +82,23 @@ IFTrack01 {
 		~local.sendMsg('harm0',1);
 		~local.sendMsg('cutAll',0.4, 0.25);
 		~local.sendMsg('cutMel2',0.1, 0.25);
-		~local.sendMsg('melSends',0.0, 0.0);
-		~local.sendMsg('susMel',0.2);
-		~local.sendMsg('melFader',0.1);
+		~local.sendMsg('melSends',0.1, 0.0);
+		~local.sendMsg('susMel',0.5);
+		~local.sendMsg('melFader',0.2);
 
-		~local.sendMsg('cutDrum',0.0, 0.0);
+		~local.sendMsg('cutDrum',0.2, 0.3);
 		~local.sendMsg('drumSends',0.0, 0.0);
 		~local.sendMsg('susDrum',0.3);
-		~local.sendMsg('snrXPose',0.5);//SnrXpose
-		~local.sendMsg('fxFader',0.0);
-		~local.sendMsg('fxComp',0.3);
+		~local.sendMsg('snrXPose',0.3);//SnrXpose
+		~local.sendMsg('fxFader',0.3);
+		~local.sendMsg('fxComp',0.6);
 		~local.sendMsg('fxDecay',0.2);
-		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
+		~local.sendMsg('AllMasterFXxy1',0.6,0.1);
 
 		"Kick Set".postln;
 		~local.sendMsg('volKick', 0.99);
 		~local.sendMsg('sendKick', 0.0, 0.0);
+		~local.sendMsg('xy1Kick', 0.0, 0.0);
 		~local.sendMsg('attKick', 0.0);
 		~local.sendMsg('susKick', 0.5);
 		~local.sendMsg('decKick', 0.7);
@@ -106,6 +107,7 @@ IFTrack01 {
 		"Snr Set".postln;
 		~local.sendMsg('volSnr', 0.9);
 		~local.sendMsg('sendSnr', 0.0, 0.0);
+		~local.sendMsg('xy1Snr', 0.0, 0.0);
 		~local.sendMsg('attSnr', 0.1);
 		~local.sendMsg('susSnr', 0.2);
 		~local.sendMsg('decSnr', 0.2);
@@ -114,6 +116,7 @@ IFTrack01 {
 		"Hat Set".postln;
 		~local.sendMsg('volHat', 0.95);
 		~local.sendMsg('sendHat', 0.0, 0.3);
+		~local.sendMsg('xy1Hat', 0.0, 0.0);
 		~local.sendMsg('attHat', 0.0);
 		~local.sendMsg('susHat', 0.6);
 		~local.sendMsg('decHat', 0.2);
@@ -122,6 +125,7 @@ IFTrack01 {
 		"Bass Set".postln;
 		~local.sendMsg('volBass', 0.95);
 		~local.sendMsg('sendBass', 0.0, 0.0);
+		~local.sendMsg('xy1Bass', 0.0, 0.0);
 		~local.sendMsg('attBass', 0.05);
 		~local.sendMsg('susBass', 0.5);
 		~local.sendMsg('decBass', 0.2);
@@ -134,6 +138,7 @@ IFTrack01 {
 		"Keys Set".postln;
 		~local.sendMsg('volKeys', 0.95);
 		~local.sendMsg('sendKeys', 0.0, 0.0);
+		~local.sendMsg('xy1Keys', 0.0, 0.0);
 		~local.sendMsg('attKeys', 0.05);
 		~local.sendMsg('susKeys', 0.3);
 		~local.sendMsg('decKeys', 0.05);
@@ -146,25 +151,28 @@ IFTrack01 {
 		"Samp Set".postln;
 		~local.sendMsg('volSamp', 0.9);
 		~local.sendMsg('sendSamp', 0.42, 0.0);
+		~local.sendMsg('xy1Samp', 0.0, 0.0);
 		~local.sendMsg('attSamp', 0.05);
 		~local.sendMsg('susSamp', 0.05);
 		~local.sendMsg('decSamp', 0.6);
 		~local.sendMsg('chainSamp', 0.5);
 		~local.sendMsg('lfoMulSamp1',0.6);
 		~local.sendMsg('lfoMulSamp2',0.4);
-		//~local.sendMsg('octSampZero',1);
 		IFSamp.octMul(1);
 
 		"Mopho Set".postln;
 		~local.sendMsg('volMopho', 0.9);
+		~local.sendMsg('vcaLvl', 0.9);
 		~local.sendMsg('sendMopho', 0.42, 0.0);
+		~local.sendMsg('xy1Mopho', 0.0, 0.0);
+		~local.sendMsg('xy2Mopho', 0.0, 0.0);
 		~local.sendMsg('attMopho', 0.05);
 		~local.sendMsg('susMopho', 0.05);
 		~local.sendMsg('decMopho', 0.6);
 		~local.sendMsg('chainMopho', 0.5);
+		~local.sendMsg('lfo1AmntMopho',0.0);
 		~local.sendMsg('lfoMulMopho1',0.2);
 		~local.sendMsg('lfoMulMopho2',0.3);
-		//~local.sendMsg('octMophoZero',1);
 		IFMopho.octMul(1);
 
 		"Ext Set".postln;
@@ -179,12 +187,12 @@ IFTrack01 {
 		"part01".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 
-		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		~octVKick=0;~ntVKick.source = Pseq([0], inf);
+		IFSeqVKick.stGrpSet  (1,0,0,1, 1,0,1,0,  1,0,0,1, 1,0,1,0);
+		~octVKick=0;~ntVKick.source = Pseq([6], inf);
 		IFSeqVSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
-		~ntVSnr.source = Pseq([20], inf);
+		~octVSnr=0;~ntVSnr.source = Pseq([20], inf);
 		IFSeqVHat.stGrpSet  (0,1,0,1, 0,1,0,1,  0,1,0,1, 0,1,0,1);
-		~ntVHat.source = Pseq([125], inf);
+		~octVHat=0;~ntVHat.source = Pseq([124], inf);
 		IFSeqVTomL.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
 		//~ntVTomL.source = Pseq([43,43,43,50], inf);
 		IFSeqVTomH.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
@@ -203,10 +211,10 @@ IFTrack01 {
 		~local.sendMsg('susKick', 0.0);
 		~local.sendMsg('decKick', 0.9);
 		~local.sendMsg('chainKick', 0.0);
-		IFSeqKick.stGrpSet    (1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1);
-		IFSeqOctKick.stGrp (2);
-		IFSeqNtKick.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
-		IFSeqVelKick.stGrpSet (0,4,1,3, 0,5,1,3,  0,4,1,3, 0,5,1,3);
+		IFSeqKick.stGrpSet    (0,1,1,0, 0,1,0,1, 0,1,1,0, 0,1,0,1);
+		IFSeqOctKick.stGrp (1);
+		IFSeqNtKick.stGrpSet  (0,1,0,0, 0,1,0,0,  0,1,0,0, 0,1,2,0);
+		IFSeqVelKick.stGrpSet (0,1,1,3, 0,2,1,3,  0,3,1,3, 0,3,1,3);
 		IFSeqSusKick.stGrpSet (1,2,1,2, 0,2,0,2,  0,2,0,2, 0,2,0,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
@@ -287,6 +295,7 @@ IFTrack01 {
 		IFShuf.loadMopho(0,2,0,-3,8,1,0,6,2);
 		~local.sendMsg('lfoMulMopho1',0.2);
 		~local.sendMsg('lfoMulMopho2',0.3);
+		~local.sendMsg('lfo1AmntMopho',0.0);
 		//CH- -8- [Ext]
 		~local.sendMsg('volExt',0.8);
 		~local.sendMsg('susExt',0.2);
@@ -543,10 +552,10 @@ IFTrack01 {
 		~ntVPcm.source = Pseq([~vCalv,~vCalv,~vCalv,~vCalv,~vAgog], inf);
 
 		//CH -1- [ Kick ]
-		IFSeqKick.stGrpSet    (0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,1,1);
+		IFSeqKick.stGrpSet    (0,0,1,1, 0,0,1,1, 0,0,1,1, 0,0,1,1);
 		IFSeqOctKick.stGrpSet (2,1,2,1, 2,1,2,1, 2,1,2,1, 2,1,2,1);
 		IFSeqNtKick.stGrpSet  (0,0,4,9, 0,0,4,0,  0,0,4,9, 0,0,4,9);
-		IFSeqVelKick.stGrpSet (3,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
+		IFSeqVelKick.stGrpSet (1,2,3,0, 3,0,3,0,  3,0,3,0, 3,0,3,0);
 		IFSeqSusKick.stGrpSet (0,2,0,2, 0,2,0,2,  0,2,0,2, 0,2,0,2);
 		IFSeqTmKick.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurKick.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
@@ -1081,6 +1090,7 @@ IFTrack01 {
 	}//////                                      - 8 -
 
 	*sixteen {//Parts 1-8 //Presets 9-16
+		"TEMPORARY TEST: IFTrack01.sixteen".postln;
 		~seqStepBut01.free;
 		~seqStepBut01 = OSCFunc({
 			arg msg;
@@ -1090,7 +1100,6 @@ IFTrack01 {
 			},
 			'/seqStep01'
 		);
-
 		~seqStepBut02.free;
 		~seqStepBut02 = OSCFunc({
 			arg msg;

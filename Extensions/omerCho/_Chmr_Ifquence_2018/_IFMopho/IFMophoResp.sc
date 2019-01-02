@@ -54,10 +54,10 @@ IFMophoResp{
 			val2=msg[2];
 			vel1=msg[1]*127;
 			vel2=msg[2]*127;
-			~vMopho.control(~chMopho, 30, vel2);//Sub Osc_1
-			~vMopho.control(~chMopho, 31, vel1);//Sub Osc_2
-			~tOSCAdrr.sendMsg('xy1Mopho', msg[1], msg[2]);
-		},'/xy1Mopho');
+			~vMopho.control(~chMopho, 87, vel1); //Env3 Vel Amnt
+			~vMopho.control(~chMopho, 107, vel2); //Filter Env Vel Amnt
+			~tOSCAdrr.sendMsg('xy2Mopho', msg[1], msg[2]);
+		},'/xy2Mopho');
 
 	}
 	*midi{

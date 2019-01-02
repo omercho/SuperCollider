@@ -1,10 +1,10 @@
 IFTrack02 {
 	*loadAtStart{
 		~trackCase=2;
+		IFLpMn.tsLeds(0,1,0,0,0,0,0,0);
 		IFRoot.set00;
-		//this.setGlb01;
-		IFTrack02.setGlb01;
-		IFTrack02.apcParts;
+		this.setGlb01;
+		this.setActs;
 		~shiftPartsBut.free;
 		~shiftPartsBut = OSCFunc({
 			arg msg;
@@ -16,6 +16,16 @@ IFTrack02 {
 			},
 			'/shiftParts'
 		);
+		// SHUFFLES from IFShuf
+		IFShuf.loadKick(0,0,2,0,0,0,7,4,0);
+		IFShuf.loadSnr(1,0,2,0,3,0,1,2,0);
+		IFShuf.loadHat(0,1,0,2,0,3,0,4,0);
+		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
+		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
+		IFShuf.loadSamp(0,2,0,3,2,1,6,0,4);
+		IFShuf.loadMopho(0,2,0,1,2,4,2,0,6);
+		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
+		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
 
 		//SampInstruments
 		~mdOut.control(0, 71, 0); //Track 01
@@ -35,50 +45,19 @@ IFTrack02 {
 		~mdOut.control(0, 86, 0); //Track 06
 		~mdOut.control(0, 87, 0); //Track 07
 		~mdOut.control(0, 88, 0); //Track 08
-
-
-		~shufTransBut.free;
-		~countShuf=0;
-		~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
-		~tOSCAdrr.sendMsg('shufTrans', 0);
-		~shufTransBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-
-				//"Transpose Shuffle".postln;
-				~countShuf = ~countShuf + 1;
-
-				~countShuf.switch(
-					0,{~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
-						~tOSCAdrr.sendMsg('shufTrans', 0);
-					},
-					1, {
-
-						"Modal Transpose Shuffle".postln;
-						~tOSCAdrr.sendMsg('shufTransLabel', 'ON');
-						~tOSCAdrr.sendMsg('shufTrans', 1);
-						~transShufBass.source  = Pshuf([(-2),2,4,(7), (-2),1,12,(-1)], inf);
-						~transShufKeys.source  = Pshuf([(-4),3,2,(-7), (-2),4,6,(-1)], inf);
-						~transShufSamp.source  = Pshuf([(-1),2,7,(-6), (-2),3,6,(-4)], inf);
-					},
-					2,{
-						~tOSCAdrr.sendMsg('shufTransLabel', 'OFF');
-						~tOSCAdrr.sendMsg('shufTrans', 0);
-						~transShufBass.source  = Pshuf([0], inf);
-						~transShufKeys.source  = Pshuf([0], inf);
-						~transShufSamp.source  = Pshuf([0], inf);
-						~countShuf=0;
-					}
-				)
-				},{
-
-
-				}
-			);
-			},
-			'/shufTrans'
-		);
 	}
+	*setActs{
+		IFAPCMn.actLine1(1,0,0,0);
+		IFAPCMn.actLine2(0,0,0,0);
+		IFAPCMn.actLine3(0,0,0,0);
+		IFAPCMn.actLine4(0,0,0,0);
+		IFAPCMn.actLine5(1,0,0,0);
+		IFAPCMn.actLine6(1,0,0,0);
+		IFAPCMn.actLine7(1,0,0,0);
+
+		IFMIDIMix.act5(0,0,0);
+
+	}//setActs
 
 	*setGlb01{
 		"Preset: Trk02".postln;
@@ -89,25 +68,19 @@ IFTrack02 {
 		~scl2= Scale.hicaz;
 		~tOSCAdrr.sendMsg('scaleLabel', 'Hicaz');
 
-		~tmp1=126;
+		IFProjectGlobals.setTempo(126);
 		~tOSCAdrr.sendMsg('tempoLabel', ~tmp1);
 		~tOSCAdrr.sendMsg('tempoFader', ~tmp1);
 		~nt=(0);
 
 		"Duration Pattern: Straight".postln;
+		IFSeqDurPat.stGrp(3);
+		~local.sendMsg('durResponder',1);
 		~tOSCAdrr.sendMsg('durLabel', 'Straight');
-		~dur.source = Pseq([2,8,2,2,4,4,2,4,2,4,4], inf)*~durMulP.next;
-		~tOSCAdrr.sendMsg('dur1', '1');
-		~tOSCAdrr.sendMsg('dur2', '0');
-		~tOSCAdrr.sendMsg('dur3', '0');
-		~tOSCAdrr.sendMsg('dur4', '0');
-		~tOSCAdrr.sendMsg('durAks1', '0');
-		~tOSCAdrr.sendMsg('durShuf1', '0');
-		~tOSCAdrr.sendMsg('durRand1', '0');
 
 		"Duration Mul: 1/2".postln;
 		~tOSCAdrr.sendMsg('durMulLabel', '1/2');
-		~durMul.source = Pseq([2], inf);
+		~durMul.source = Pseq([1/2], inf);
 		~tOSCAdrr.sendMsg('durMul1_4', '0');
 		~tOSCAdrr.sendMsg('durMul1_2', '1');
 		~tOSCAdrr.sendMsg('durMul1', '0');
@@ -124,6 +97,8 @@ IFTrack02 {
 		~local.sendMsg('susDrum',0.2);
 		~local.sendMsg('snrXPose',0.5);//SnrXpose
 		~local.sendMsg('fxFader',0.0);
+		~local.sendMsg('fxComp',0.6);
+		~local.sendMsg('fxDecay',0.2);
 		~local.sendMsg('AllMasterFXxy1',0.2,0.2);
 
 

@@ -1,96 +1,176 @@
 documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFLoad.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFProjectGlobals.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFRoot.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFShuf.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFCntrl.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFTracks/IFTrack01.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFAllMidiRef.scd
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFAPCMn.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFMopho/IFMophoResp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFMopho/Mopho.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFSamp.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFPitchsAndNotes/IFPitchMopho.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFPitchsAndNotes/IFPitch.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqKick/IFSeqVelKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFSnr.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFInstruments/IFKick.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnShufs.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnNotes.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnSteps.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMn.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFAPCMn.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFMIDIMix.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSequence.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnSteps.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnNotes.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFLpMnShufs.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSixteen.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSequence.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFAllMidiRef.scd
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFTracks/IFTrack02.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFMopho/IFMopho.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFTracks/IFTrack01.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFCntrl/IFCntrl.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFShuf.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFGlobals/IFProjectGlobals.sc
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
         documentIndex: 0
+        position: 3126
+      - !QVariantMap
+        documentIndex: 24
+        position: 8319
+      - !QVariantMap
+        documentIndex: 25
+        position: 1361
+      - !QVariantMap
+        documentIndex: 19
         position: 0
-      - !QVariantMap
-        documentIndex: 15
-        position: 1034
-      - !QVariantMap
-        documentIndex: 14
-        position: 0
-      - !QVariantMap
-        documentIndex: 13
-        position: 0
-      - !QVariantMap
-        documentIndex: 12
-        position: 9362
       - !QVariantMap
         documentIndex: 9
-        position: 0
+        position: 11621
       - !QVariantMap
-        documentIndex: 8
-        position: 0
-      - !QVariantMap
-        documentIndex: 7
+        documentIndex: 10
         position: 0
       - !QVariantMap
         documentIndex: 6
         position: 0
       - !QVariantMap
-        documentIndex: 4
-        position: 0
-      - !QVariantMap
-        documentIndex: 1
-        position: 4667
-      - !QVariantMap
-        documentIndex: 3
-        position: 8319
-      - !QVariantMap
         documentIndex: 11
-        position: 285
-      - !QVariantMap
-        documentIndex: 2
-        position: 535
+        position: 8782
       - !QVariantMap
         documentIndex: 5
-        position: 1203
-      - !QVariantMap
-        documentIndex: 10
-        position: 595
-    - !QVariantList
+        position: 901
       - !QVariantMap
         documentIndex: 14
-        position: 99
+        position: 12800
       - !QVariantMap
-        documentIndex: 5
-        position: 5534
+        documentIndex: 20
+        position: 279
+      - !QVariantMap
+        documentIndex: 21
+        position: 8178
+      - !QVariantMap
+        documentIndex: 1
+        position: 0
+      - !QVariantMap
+        documentIndex: 2
+        position: 6998
+      - !QVariantMap
+        documentIndex: 23
+        position: 3598
+      - !QVariantMap
+        documentIndex: 26
+        position: 1328
+      - !QVariantMap
+        documentIndex: 22
+        position: 4767
+      - !QVariantMap
+        documentIndex: 17
+        position: 167
+      - !QVariantMap
+        documentIndex: 16
+        position: 3676
+      - !QVariantMap
+        documentIndex: 18
+        position: 4174
+      - !QVariantMap
+        documentIndex: 15
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 4881
+      - !QVariantMap
+        documentIndex: 13
+        position: 240
+    - !QVariantList
       - !QVariantMap
         documentIndex: 10
-        position: 0
+        position: 99
       - !QVariantMap
         documentIndex: 0
         position: 1235
       - !QVariantMap
-        documentIndex: 12
-        position: 12019
+        documentIndex: 25
+        position: 445
+      - !QVariantMap
+        documentIndex: 17
+        position: 481
+      - !QVariantMap
+        documentIndex: 18
+        position: 8946
+      - !QVariantMap
+        documentIndex: 16
+        position: 3043
+      - !QVariantMap
+        documentIndex: 8
+        position: 550
+      - !QVariantMap
+        documentIndex: 7
+        position: 1047
+      - !QVariantMap
+        documentIndex: 26
+        position: 0
+      - !QVariantMap
+        documentIndex: 19
+        position: 6219
+      - !QVariantMap
+        documentIndex: 20
+        position: 3333
+      - !QVariantMap
+        documentIndex: 3
+        position: 7946
+      - !QVariantMap
+        documentIndex: 23
+        position: 0
+      - !QVariantMap
+        documentIndex: 24
+        position: 0
+      - !QVariantMap
+        documentIndex: 14
+        position: 0
       - !QVariantMap
         documentIndex: 13
-        position: 2426
+        position: 6526
+      - !QVariantMap
+        documentIndex: 12
+        position: 10591
       - !QVariantMap
         documentIndex: 11
-        position: 4132
+        position: 1735
+      - !QVariantMap
+        documentIndex: 5
+        position: 18348
+      - !QVariantMap
+        documentIndex: 4
+        position: 1541
+      - !QVariantMap
+        documentIndex: 21
+        position: 8715
       - !QVariantMap
         documentIndex: 2
-        position: 580
+        position: 3655
+      - !QVariantMap
+        documentIndex: 1
+        position: 1111
+      - !QVariantMap
+        documentIndex: 22
+        position: 5824
   state: AAAA/wAAAAEAAAACAAABnAAAAcEB/////wEAAAACAA==
 mainWindow:
   detached: !QVariantMap

@@ -1,5 +1,5 @@
 /*
- IFPitch.loadAll;
+IFPitch.loadAll;
 */
 
 IFPitch {
@@ -7,22 +7,18 @@ IFPitch {
 	*initClass {
 		StartUp add: {
 			/*Server.default.doWhenBooted({
-				1.0.wait;
-
-				this.noteMel;
-				this.noteBass;
-				this.noteKeys;
-				this.noteSamp;
-				this.oct;
-				this.trans;
-
-
+			1.0.wait;
+			this.noteMel;
+			this.noteBass;
+			this.noteKeys;
+			this.noteSamp;
+			this.oct;
+			this.trans;
 			});*/
 		}
 	}
 
 	*loadAll {
-
 		this.buttons;
 		//this.shufTrans;
 		//this.note;
@@ -43,22 +39,15 @@ IFPitch {
 				//"Transpose Shuffle".postln;
 				~countPAll = ~countPAll + 1;
 				~countPAll.switch(
-					0,{
-						"PITCH SWITCH 0".postln;
-					},
-					1, {
-
-						"PITCH SWITCH ON".postln;
+					0,{"PITCH SWITCH 0".postln;},
+					1, {"PITCH SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchBass', 1);
 						~tOSCAdrr.sendMsg('pitchKeys', 1);
 						~tOSCAdrr.sendMsg('pitchSamp', 1);
 						~tOSCAdrr.sendMsg('pitchMopho', 1);
 						~tOSCAdrr.sendMsg('pitchExt', 1);
-
 					},
-					2,{
-
-						"PITCH SWITCH OFF".postln;
+					2,{"PITCH SWITCH OFF".postln;
 						~tOSCAdrr.sendMsg('pitchBass', 0);
 						~tOSCAdrr.sendMsg('pitchKeys', 0);
 						~tOSCAdrr.sendMsg('pitchSamp', 0);
@@ -67,35 +56,24 @@ IFPitch {
 						~countPAll=0;
 					}
 				)
-				},{
-					// else
-				}
-			);
-			},
-			'/pitchAll'
-		);
-
-
+			},{ /*else*/});
+		},'/pitchAll');
 	}
-
-
 	*note {
-
 		~note_0.free;
 		~note_0 = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
 				"Root NOTE 0".postln;
-				~transKick.source=0;~transSnr.source=0;~transHat.source=0;
+				//~transKick.source=0;~transSnr.source=0;~transHat.source=0;
 				~transBass.source=0;~transKeys.source=0;~transSamp.source=0;
 				~transMopho.source=0;
 				~transExt.source=0;
 				~tOSCAdrr.sendMsg('noteLabel', '0');
 			});
-			},
-			'/nt_0'
+		},
+		'/nt_0'
 		);
-
 		~note_1.free;
 		~note_1 = OSCFunc({
 			arg msg;
@@ -107,11 +85,9 @@ IFPitch {
 				~transExt.source=1;
 				~tOSCAdrr.sendMsg('noteLabel', '1');
 			});
-			},
-			'/nt_1'
+		},
+		'/nt_1'
 		);
-
-
 		~note_2.free;
 		~note_2 = OSCFunc({
 			arg msg;
@@ -123,10 +99,9 @@ IFPitch {
 				~transExt.source=2;
 				~tOSCAdrr.sendMsg('noteLabel', '2');
 			});
-			},
-			'/nt_2'
+		},
+		'/nt_2'
 		);
-
 		~note_3.free;
 		~note_3 = OSCFunc({
 			arg msg;
@@ -138,10 +113,9 @@ IFPitch {
 				~transExt.source=3;
 				~tOSCAdrr.sendMsg('noteLabel', '3');
 			});
-			},
-			'/nt_3'
+		},
+		'/nt_3'
 		);
-
 		~note_4.free;
 		~note_4 = OSCFunc({
 			arg msg;
@@ -153,10 +127,9 @@ IFPitch {
 				~transExt.source=4;
 				~tOSCAdrr.sendMsg('noteLabel', '4');
 			});
-			},
-			'/nt_4'
+		},
+		'/nt_4'
 		);
-
 		~note_5.free;
 		~note_5 = OSCFunc({
 			arg msg;
@@ -168,10 +141,9 @@ IFPitch {
 				~transExt.source=5;
 				~tOSCAdrr.sendMsg('noteLabel', '5');
 			});
-			},
-			'/nt_5'
+		},
+		'/nt_5'
 		);
-
 		~note_6.free;
 		~note_6 = OSCFunc({
 			arg msg;
@@ -183,10 +155,9 @@ IFPitch {
 				~transExt.source=6;
 				~tOSCAdrr.sendMsg('noteLabel', '6');
 			});
-			},
-			'/nt_6'
+		},
+		'/nt_6'
 		);
-
 		~note_7.free;
 		~note_7 = OSCFunc({
 			arg msg;
@@ -198,10 +169,9 @@ IFPitch {
 				~transExt.source=7;
 				~tOSCAdrr.sendMsg('noteLabel', '7');
 			});
-			},
-			'/nt_7'
+		},
+		'/nt_7'
 		);
-
 		~note_8.free;
 		~note_8 = OSCFunc({
 			arg msg;
@@ -213,10 +183,9 @@ IFPitch {
 				~transExt.source=8;
 				~tOSCAdrr.sendMsg('noteLabel', '8');
 			});
-			},
-			'/nt_8'
+		},
+		'/nt_8'
 		);
-
 		~note_9.free;
 		~note_9 = OSCFunc({
 			arg msg;
@@ -228,10 +197,9 @@ IFPitch {
 				~transExt.source=9;
 				~tOSCAdrr.sendMsg('noteLabel', '9');
 			});
-			},
-			'/nt_9'
+		},
+		'/nt_9'
 		);
-
 		~note_10.free;
 		~note_10 = OSCFunc({
 			arg msg;
@@ -243,10 +211,9 @@ IFPitch {
 				~transExt.source=10;
 				~tOSCAdrr.sendMsg('noteLabel', '10');
 			});
-			},
-			'/nt_10'
+		},
+		'/nt_10'
 		);
-
 		~note_11.free;
 		~note_11 = OSCFunc({
 			arg msg;
@@ -258,10 +225,9 @@ IFPitch {
 				~transExt.source=11;
 				~tOSCAdrr.sendMsg('noteLabel', '11');
 			});
-			},
-			'/nt_11'
+		},
+		'/nt_11'
 		);
-
 		~note_12.free;
 		~note_12 = OSCFunc({
 			arg msg;
@@ -273,10 +239,9 @@ IFPitch {
 				~transExt.source=12;
 				~tOSCAdrr.sendMsg('noteLabel', '12');
 			});
-			},
-			'/nt_12'
+		},
+		'/nt_12'
 		);
-
 		~note_13.free;
 		~note_13 = OSCFunc({
 			arg msg;
@@ -288,10 +253,9 @@ IFPitch {
 				~transExt.source=13;
 				~tOSCAdrr.sendMsg('noteLabel', '13');
 			});
-			},
-			'/nt_13'
+		},
+		'/nt_13'
 		);
-
 		~note_14.free;
 		~note_14 = OSCFunc({
 			arg msg;
@@ -303,10 +267,9 @@ IFPitch {
 				~transExt.source=14;
 				~tOSCAdrr.sendMsg('noteLabel', '14');
 			});
-			},
-			'/nt_14'
+		},
+		'/nt_14'
 		);
-
 		//////////////////////////// NEGATIVE
 		~note1.free;
 		~note1 = OSCFunc({
@@ -319,11 +282,9 @@ IFPitch {
 				~transExt.source=(-1);
 				~tOSCAdrr.sendMsg('noteLabel', '-1');
 			});
-			},
-			'/nt-1'
+		},
+		'/nt-1'
 		);
-
-
 		~note2.free;
 		~note2 = OSCFunc({
 			arg msg;
@@ -335,10 +296,9 @@ IFPitch {
 				~transExt.source=(-2);
 				~tOSCAdrr.sendMsg('noteLabel', '-2');
 			});
-			},
-			'/nt-2'
+		},
+		'/nt-2'
 		);
-
 		~note3.free;
 		~note3 = OSCFunc({
 			arg msg;
@@ -350,10 +310,9 @@ IFPitch {
 				~transExt.source=(-3);
 				~tOSCAdrr.sendMsg('noteLabel', '-3');
 			});
-			},
-			'/nt-3'
+		},
+		'/nt-3'
 		);
-
 		~note4.free;
 		~note4 = OSCFunc({
 			arg msg;
@@ -365,10 +324,9 @@ IFPitch {
 				~transExt.source=(-4);
 				~tOSCAdrr.sendMsg('noteLabel', '-4');
 			});
-			},
-			'/nt-4'
+		},
+		'/nt-4'
 		);
-
 		~note5.free;
 		~note5 = OSCFunc({
 			arg msg;
@@ -380,10 +338,9 @@ IFPitch {
 				~transExt.source=(-5);
 				~tOSCAdrr.sendMsg('noteLabel', '-5');
 			});
-			},
-			'/nt-5'
+		},
+		'/nt-5'
 		);
-
 		~note6.free;
 		~note6 = OSCFunc({
 			arg msg;
@@ -395,10 +352,9 @@ IFPitch {
 				~transExt.source=(-6);
 				~tOSCAdrr.sendMsg('noteLabel', '-6');
 			});
-			},
-			'/nt-6'
+		},
+		'/nt-6'
 		);
-
 		~note7.free;
 		~note7 = OSCFunc({
 			arg msg;
@@ -410,10 +366,9 @@ IFPitch {
 				~transExt.source=(-7);
 				~tOSCAdrr.sendMsg('noteLabel', '-7');
 			});
-			},
-			'/nt-7'
+		},
+		'/nt-7'
 		);
-
 		~note8.free;
 		~note8 = OSCFunc({
 			arg msg;
@@ -425,10 +380,9 @@ IFPitch {
 				~transExt.source=(-8);
 				~tOSCAdrr.sendMsg('noteLabel', '-8');
 			});
-			},
-			'/nt-8'
+		},
+		'/nt-8'
 		);
-
 		~note9.free;
 		~note9 = OSCFunc({
 			arg msg;
@@ -440,10 +394,9 @@ IFPitch {
 				~transExt.source=(-9);
 				~tOSCAdrr.sendMsg('noteLabel', '-9');
 			});
-			},
-			'/nt-9'
+		},
+		'/nt-9'
 		);
-
 		~note10.free;
 		~note10 = OSCFunc({
 			arg msg;
@@ -455,10 +408,9 @@ IFPitch {
 				~transExt.source=(-10);
 				~tOSCAdrr.sendMsg('noteLabel', '-10');
 			});
-			},
-			'/nt-10'
+		},
+		'/nt-10'
 		);
-
 		~note11.free;
 		~note11 = OSCFunc({
 			arg msg;
@@ -470,10 +422,9 @@ IFPitch {
 				~transExt.source=(-11);
 				~tOSCAdrr.sendMsg('noteLabel', '-11');
 			});
-			},
-			'/nt-11'
+		},
+		'/nt-11'
 		);
-
 		~note12.free;
 		~note12 = OSCFunc({
 			arg msg;
@@ -485,10 +436,9 @@ IFPitch {
 				~transExt.source=(-12);
 				~tOSCAdrr.sendMsg('noteLabel', '-12');
 			});
-			},
-			'/nt-12'
+		},
+		'/nt-12'
 		);
-
 		~note13.free;
 		~note13 = OSCFunc({
 			arg msg;
@@ -500,10 +450,9 @@ IFPitch {
 				~transExt.source=(-13);
 				~tOSCAdrr.sendMsg('noteLabel', '-13');
 			});
-			},
-			'/nt-13'
+		},
+		'/nt-13'
 		);
-
 		~note14.free;
 		~note14 = OSCFunc({
 			arg msg;
@@ -515,320 +464,201 @@ IFPitch {
 				~transExt.source=(-14);
 				~tOSCAdrr.sendMsg('noteLabel', '-14');
 			});
-			},
-			'/nt-14'
+		},
+		'/nt-14'
 		);
-
-
-
 	}
-
-
-
 	*trans {
 
 		//----Kick-------
 		~transKickMulBut.free;
 		~transKickMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKick = ~trKick+1;
 				~tOSCAdrr.sendMsg('transKickLabel', ~trKick);
-
 			});
-
-			},
-			'/transKickMul'
+		},
+		'/transKickMul'
 		);
-
 		~transKickZeroBut.free;
 		~transKickZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKick = 0;
 				~tOSCAdrr.sendMsg('transKickLabel', ~trKick);
-
 			});
-
-			},
-			'/transKickZero'
+		},
+		'/transKickZero'
 		);
-
 		~transKickDivBut.free;
 		~transKickDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKick = ~trKick-1;
 				~tOSCAdrr.sendMsg('transKickLabel', ~trKick);
-
 			});
-
-			},
-			'/transKickDiv'
+		},
+		'/transKickDiv'
 		);
-
 		//----Snr-------
 		~transSnrMulBut.free;
 		~transSnrMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSnr = ~trSnr+1;
 				~tOSCAdrr.sendMsg('transSnrLabel', ~trSnr);
-
 			});
-
-			},
-			'/transSnrMul'
+		},
+		'/transSnrMul'
 		);
-
 		~transSnrZeroBut.free;
 		~transSnrZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSnr = 0;
 				~tOSCAdrr.sendMsg('transSnrLabel', ~trSnr);
-
 			});
-
-			},
-			'/transSnrZero'
+		},
+		'/transSnrZero'
 		);
-
 		~transSnrDivBut.free;
 		~transSnrDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSnr = ~trSnr-1;
 				~tOSCAdrr.sendMsg('transSnrLabel', ~trSnr);
-
 			});
-
-			},
-			'/transSnrDiv'
+		},
+		'/transSnrDiv'
 		);
-
 		//----Hat-------
 		~transHatMulBut.free;
 		~transHatMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trHat = ~trHat+1;
 				~tOSCAdrr.sendMsg('transHatLabel', ~trHat);
-
 			});
-
-			},
-			'/transHatMul'
+		},
+		'/transHatMul'
 		);
-
 		~transHatZeroBut.free;
 		~transHatZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trHat = 0;
 				~tOSCAdrr.sendMsg('transHatLabel', ~trHat);
-
 			});
-
-			},
-			'/transHatZero'
+		},
+		'/transHatZero'
 		);
-
 		~transHatDivBut.free;
 		~transHatDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trHat = ~trHat-1;
 				~tOSCAdrr.sendMsg('transHatLabel', ~trHat);
-
 			});
-
-			},
-			'/transHatDiv'
+		},
+		'/transHatDiv'
 		);
-
 		//----Keys-------
 		~transKeysMulBut.free;
 		~transKeysMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKeys = ~trKeys+1;
 				~tOSCAdrr.sendMsg('transKeysLabel', ~trKeys);
-
 			});
-
-			},
-			'/transKeysMul'
+		},
+		'/transKeysMul'
 		);
-
 		~transKeysZeroBut.free;
 		~transKeysZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKeys = 0;
 				~tOSCAdrr.sendMsg('transKeysLabel', ~trKeys);
-
 			});
-
-			},
-			'/transKeysZero'
+		},
+		'/transKeysZero'
 		);
-
 		~transKeysDivBut.free;
 		~transKeysDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trKeys = ~trKeys-1;
 				~tOSCAdrr.sendMsg('transKeysLabel', ~trKeys);
-
 			});
-
-			},
-			'/transKeysDiv'
+		},
+		'/transKeysDiv'
 		);
-
 		//----Bass-------
 		~transBassMulBut.free;
 		~transBassMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trBass = ~trBass+1;
 				~tOSCAdrr.sendMsg('transBassLabel', ~trBass);
-
 			});
-
-			},
-			'/transBassMul'
+		},
+		'/transBassMul'
 		);
-
 		~transBassZeroBut.free;
 		~transBassZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trBass = 0;
 				~tOSCAdrr.sendMsg('transBassLabel', ~trBass);
-
 			});
-
-			},
-			'/transBassZero'
+		},
+		'/transBassZero'
 		);
-
 		~transBassDivBut.free;
 		~transBassDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trBass = ~trBass-1;
 				~tOSCAdrr.sendMsg('transBassLabel', ~trBass);
-
 			});
-
-			},
-			'/transBassDiv'
+		},
+		'/transBassDiv'
 		);
-
 		//----Samp-------
 		~transSampMulBut.free;
 		~transSampMulBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSamp = ~trSamp+1;
 				~tOSCAdrr.sendMsg('transSampLabel', ~trSamp);
-
 			});
-
-			},
-			'/transSampMul'
+		},
+		'/transSampMul'
 		);
-
 		~transSampZeroBut.free;
 		~transSampZeroBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSamp = 0;
 				~tOSCAdrr.sendMsg('transSampLabel', ~trSamp);
-
 			});
-
-			},
-			'/transSampZero'
+		},
+		'/transSampZero'
 		);
-
 		~transSampDivBut.free;
 		~transSampDivBut= OSCFunc({
 			arg msg;
-
-
 			if ( msg[1]==1, {
-
 				~trSamp = ~trSamp-1;
 				~tOSCAdrr.sendMsg('transSampLabel', ~trSamp);
-
 			});
-
-			},
-			'/transSampDiv'
+		},
+		'/transSampDiv'
 		);
-
-
 	}
-
 	*noteBass {
-
 		/////////////////////----- Note -------//////////////
-
-
 		~noteBass_0.free;
 		~noteBass_0 = OSCFunc({
 			arg msg;
@@ -837,10 +667,9 @@ IFPitch {
 				~transBass.source=0;
 				~tOSCAdrr.sendMsg('noteBassLabel', '0');
 			});
-			},
-			'/ntBass_0'
+		},
+		'/ntBass_0'
 		);
-
 		~noteBass_1.free;
 		~noteBass_1 = OSCFunc({
 			arg msg;
@@ -850,11 +679,9 @@ IFPitch {
 				~transBass.source=1;
 				~tOSCAdrr.sendMsg('noteBassLabel', '1');
 			});
-			},
-			'/ntBass_1'
+		},
+		'/ntBass_1'
 		);
-
-
 		~noteBass_2.free;
 		~noteBass_2 = OSCFunc({
 			arg msg;
@@ -864,10 +691,9 @@ IFPitch {
 				~transBass.source=2;
 				~tOSCAdrr.sendMsg('noteBassLabel', '2');
 			});
-			},
-			'/ntBass_2'
+		},
+		'/ntBass_2'
 		);
-
 		~noteBass_3.free;
 		~noteBass_3 = OSCFunc({
 			arg msg;
@@ -877,10 +703,9 @@ IFPitch {
 				~transBass.source=3;
 				~tOSCAdrr.sendMsg('noteBassLabel', '3');
 			});
-			},
-			'/ntBass_3'
+		},
+		'/ntBass_3'
 		);
-
 		~noteBass_4.free;
 		~noteBass_4 = OSCFunc({
 			arg msg;
@@ -890,10 +715,9 @@ IFPitch {
 				~transBass.source=4;
 				~tOSCAdrr.sendMsg('noteBassLabel', '4');
 			});
-			},
-			'/ntBass_4'
+		},
+		'/ntBass_4'
 		);
-
 		~noteBass_5.free;
 		~noteBass_5 = OSCFunc({
 			arg msg;
@@ -903,10 +727,9 @@ IFPitch {
 				~transBass.source=5;
 				~tOSCAdrr.sendMsg('noteBassLabel', '5');
 			});
-			},
-			'/ntBass_5'
+		},
+		'/ntBass_5'
 		);
-
 		~noteBass_6.free;
 		~noteBass_6 = OSCFunc({
 			arg msg;
@@ -916,10 +739,9 @@ IFPitch {
 				~transBass.source=6;
 				~tOSCAdrr.sendMsg('noteBassLabel', '6');
 			});
-			},
-			'/ntBass_6'
+		},
+		'/ntBass_6'
 		);
-
 		~noteBass_7.free;
 		~noteBass_7 = OSCFunc({
 			arg msg;
@@ -929,10 +751,9 @@ IFPitch {
 				~transBass.source=7;
 				~tOSCAdrr.sendMsg('noteBassLabel', '7');
 			});
-			},
-			'/ntBass_7'
+		},
+		'/ntBass_7'
 		);
-
 		~noteBass_8.free;
 		~noteBass_8 = OSCFunc({
 			arg msg;
@@ -942,10 +763,9 @@ IFPitch {
 				~transBass.source=8;
 				~tOSCAdrr.sendMsg('noteBassLabel', '8');
 			});
-			},
-			'/ntBass_8'
+		},
+		'/ntBass_8'
 		);
-
 		~noteBass_9.free;
 		~noteBass_9 = OSCFunc({
 			arg msg;
@@ -955,10 +775,9 @@ IFPitch {
 				~transBass.source=9;
 				~tOSCAdrr.sendMsg('noteBassLabel', '9');
 			});
-			},
-			'/ntBass_9'
+		},
+		'/ntBass_9'
 		);
-
 		~noteBass_10.free;
 		~noteBass_10 = OSCFunc({
 			arg msg;
@@ -968,10 +787,9 @@ IFPitch {
 				~transBass.source=10;
 				~tOSCAdrr.sendMsg('noteBassLabel', '10');
 			});
-			},
-			'/ntBass_10'
+		},
+		'/ntBass_10'
 		);
-
 		~noteBass_11.free;
 		~noteBass_11 = OSCFunc({
 			arg msg;
@@ -981,10 +799,9 @@ IFPitch {
 				~transBass.source=11;
 				~tOSCAdrr.sendMsg('noteBassLabel', '11');
 			});
-			},
-			'/ntBass_11'
+		},
+		'/ntBass_11'
 		);
-
 		~noteBass_12.free;
 		~noteBass_12 = OSCFunc({
 			arg msg;
@@ -994,8 +811,8 @@ IFPitch {
 				~transBass.source=12;
 				~tOSCAdrr.sendMsg('noteBassLabel', '12');
 			});
-			},
-			'/ntBass_12'
+		},
+		'/ntBass_12'
 		);
 
 		~noteBass_13.free;
@@ -1007,8 +824,8 @@ IFPitch {
 				~transBass.source=13;
 				~tOSCAdrr.sendMsg('noteBassLabel', '13');
 			});
-			},
-			'/ntBass_13'
+		},
+		'/ntBass_13'
 		);
 
 		~noteBass_14.free;
@@ -1020,8 +837,8 @@ IFPitch {
 				~transBass.source=14;
 				~tOSCAdrr.sendMsg('noteBassLabel', '14');
 			});
-			},
-			'/ntBass_14'
+		},
+		'/ntBass_14'
 		);
 
 		//////////////////////////// NEGATIVE
@@ -1034,8 +851,8 @@ IFPitch {
 				~transBass.source=(-1);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-1');
 			});
-			},
-			'/ntBass-1'
+		},
+		'/ntBass-1'
 		);
 
 
@@ -1048,8 +865,8 @@ IFPitch {
 				~transBass.source=(-2);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-2');
 			});
-			},
-			'/ntBass-2'
+		},
+		'/ntBass-2'
 		);
 
 		~noteBass3.free;
@@ -1061,8 +878,8 @@ IFPitch {
 				~transBass.source=(-3);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-3');
 			});
-			},
-			'/ntBass-3'
+		},
+		'/ntBass-3'
 		);
 
 		~noteBass4.free;
@@ -1074,8 +891,8 @@ IFPitch {
 				~transBass.source=(-4);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-4');
 			});
-			},
-			'/ntBass-4'
+		},
+		'/ntBass-4'
 		);
 
 		~noteBass5.free;
@@ -1087,8 +904,8 @@ IFPitch {
 				~transBass.source=(-5);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-5');
 			});
-			},
-			'/ntBass-5'
+		},
+		'/ntBass-5'
 		);
 
 		~noteBass6.free;
@@ -1100,8 +917,8 @@ IFPitch {
 				~transBass.source=(-6);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-6');
 			});
-			},
-			'/ntBass-6'
+		},
+		'/ntBass-6'
 		);
 
 		~noteBass7.free;
@@ -1113,8 +930,8 @@ IFPitch {
 				~transBass.source=(-7);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-7');
 			});
-			},
-			'/ntBass-7'
+		},
+		'/ntBass-7'
 		);
 
 		~noteBass8.free;
@@ -1126,8 +943,8 @@ IFPitch {
 				~transBass.source=(-8);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-8');
 			});
-			},
-			'/ntBass-8'
+		},
+		'/ntBass-8'
 		);
 
 		~noteBass9.free;
@@ -1139,8 +956,8 @@ IFPitch {
 				~transBass.source=(-9);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-9');
 			});
-			},
-			'/ntBass-9'
+		},
+		'/ntBass-9'
 		);
 
 		~noteBass10.free;
@@ -1152,8 +969,8 @@ IFPitch {
 				~transBass.source=(-10);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-10');
 			});
-			},
-			'/ntBass-10'
+		},
+		'/ntBass-10'
 		);
 
 		~noteBass11.free;
@@ -1165,8 +982,8 @@ IFPitch {
 				~transBass.source=(-11);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-11');
 			});
-			},
-			'/ntBass-11'
+		},
+		'/ntBass-11'
 		);
 
 		~noteBass12.free;
@@ -1178,8 +995,8 @@ IFPitch {
 				~transBass.source=(-12);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-12');
 			});
-			},
-			'/ntBass-12'
+		},
+		'/ntBass-12'
 		);
 
 		~noteBass13.free;
@@ -1191,8 +1008,8 @@ IFPitch {
 				~transBass.source=(-13);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-13');
 			});
-			},
-			'/ntBass-13'
+		},
+		'/ntBass-13'
 		);
 
 		~noteBass14.free;
@@ -1204,8 +1021,8 @@ IFPitch {
 				~transBass.source=(-14);
 				~tOSCAdrr.sendMsg('noteBassLabel', '-14');
 			});
-			},
-			'/ntBass-14'
+		},
+		'/ntBass-14'
 		);
 
 
@@ -1226,8 +1043,8 @@ IFPitch {
 				~transKeys.source=0;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '0');
 			});
-			},
-			'/ntKeys_0'
+		},
+		'/ntKeys_0'
 		);
 
 		~noteKeys_1.free;
@@ -1239,8 +1056,8 @@ IFPitch {
 				~transKeys.source=1;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '1');
 			});
-			},
-			'/ntKeys_1'
+		},
+		'/ntKeys_1'
 		);
 
 
@@ -1250,11 +1067,11 @@ IFPitch {
 			if ( msg[1]==1, {
 				"Root NOTE 2".postln;
 
-			~transKeys.source=2;
+				~transKeys.source=2;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '2');
 			});
-			},
-			'/ntKeys_2'
+		},
+		'/ntKeys_2'
 		);
 
 		~noteKeys_3.free;
@@ -1266,8 +1083,8 @@ IFPitch {
 				~transKeys.source=3;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '3');
 			});
-			},
-			'/ntKeys_3'
+		},
+		'/ntKeys_3'
 		);
 
 		~noteKeys_4.free;
@@ -1279,8 +1096,8 @@ IFPitch {
 				~transKeys.source=4;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '4');
 			});
-			},
-			'/ntKeys_4'
+		},
+		'/ntKeys_4'
 		);
 
 		~noteKeys_5.free;
@@ -1292,8 +1109,8 @@ IFPitch {
 				~transKeys.source=5;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '5');
 			});
-			},
-			'/ntKeys_5'
+		},
+		'/ntKeys_5'
 		);
 
 		~noteKeys_6.free;
@@ -1305,8 +1122,8 @@ IFPitch {
 				~transKeys.source=6;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '6');
 			});
-			},
-			'/ntKeys_6'
+		},
+		'/ntKeys_6'
 		);
 
 		~noteKeys_7.free;
@@ -1318,8 +1135,8 @@ IFPitch {
 				~transKeys.source=7;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '7');
 			});
-			},
-			'/ntKeys_7'
+		},
+		'/ntKeys_7'
 		);
 
 		~noteKeys_8.free;
@@ -1331,8 +1148,8 @@ IFPitch {
 				~transKeys.source=8;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '8');
 			});
-			},
-			'/ntKeys_8'
+		},
+		'/ntKeys_8'
 		);
 
 		~noteKeys_9.free;
@@ -1344,8 +1161,8 @@ IFPitch {
 				~transKeys.source=9;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '9');
 			});
-			},
-			'/ntKeys_9'
+		},
+		'/ntKeys_9'
 		);
 
 		~noteKeys_10.free;
@@ -1357,8 +1174,8 @@ IFPitch {
 				~transKeys.source=10;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '10');
 			});
-			},
-			'/ntKeys_10'
+		},
+		'/ntKeys_10'
 		);
 
 		~noteKeys_11.free;
@@ -1370,8 +1187,8 @@ IFPitch {
 				~transKeys.source=11;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '11');
 			});
-			},
-			'/ntKeys_11'
+		},
+		'/ntKeys_11'
 		);
 
 		~noteKeys_12.free;
@@ -1383,8 +1200,8 @@ IFPitch {
 				~transKeys.source=12;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '12');
 			});
-			},
-			'/ntKeys_12'
+		},
+		'/ntKeys_12'
 		);
 
 		~noteKeys_13.free;
@@ -1396,8 +1213,8 @@ IFPitch {
 				~transKeys.source=13;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '13');
 			});
-			},
-			'/ntKeys_13'
+		},
+		'/ntKeys_13'
 		);
 
 		~noteKeys_14.free;
@@ -1409,8 +1226,8 @@ IFPitch {
 				~transKeys.source=14;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '14');
 			});
-			},
-			'/ntKeys_14'
+		},
+		'/ntKeys_14'
 		);
 
 		//////////////////////////// NEGATIVE
@@ -1423,8 +1240,8 @@ IFPitch {
 				~transKeys.source=(-1);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-1');
 			});
-			},
-			'/ntKeys-1'
+		},
+		'/ntKeys-1'
 		);
 
 
@@ -1437,8 +1254,8 @@ IFPitch {
 				~transKeys.source=(-2);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-2');
 			});
-			},
-			'/ntKeys-2'
+		},
+		'/ntKeys-2'
 		);
 
 		~noteKeys3.free;
@@ -1450,8 +1267,8 @@ IFPitch {
 				~transKeys.source=(-3);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-3');
 			});
-			},
-			'/ntKeys-3'
+		},
+		'/ntKeys-3'
 		);
 
 		~noteKeys4.free;
@@ -1463,8 +1280,8 @@ IFPitch {
 				~transKeys.source=(-4);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-4');
 			});
-			},
-			'/ntKeys-4'
+		},
+		'/ntKeys-4'
 		);
 
 		~noteKeys5.free;
@@ -1475,8 +1292,8 @@ IFPitch {
 				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
 				~transKeys.source=(-5);
 			});
-			},
-			'/ntKeys-5'
+		},
+		'/ntKeys-5'
 		);
 
 		~noteKeys6.free;
@@ -1488,8 +1305,8 @@ IFPitch {
 				~transKeys.source=(-6);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-6');
 			});
-			},
-			'/ntKeys-6'
+		},
+		'/ntKeys-6'
 		);
 
 		~noteKeys7.free;
@@ -1501,8 +1318,8 @@ IFPitch {
 				~transKeys.source=(-7);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-7');
 			});
-			},
-			'/ntKeys-7'
+		},
+		'/ntKeys-7'
 		);
 
 		~noteKeys8.free;
@@ -1514,8 +1331,8 @@ IFPitch {
 				~transKeys.source=(-8);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-8');
 			});
-			},
-			'/ntKeys-8'
+		},
+		'/ntKeys-8'
 		);
 
 		~noteKeys9.free;
@@ -1527,8 +1344,8 @@ IFPitch {
 				~transKeys.source=(-9);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-9');
 			});
-			},
-			'/ntKeys-9'
+		},
+		'/ntKeys-9'
 		);
 
 		~noteKeys10.free;
@@ -1540,8 +1357,8 @@ IFPitch {
 				~transKeys.source=(-10);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-10');
 			});
-			},
-			'/ntKeys-10'
+		},
+		'/ntKeys-10'
 		);
 
 		~noteKeys11.free;
@@ -1553,8 +1370,8 @@ IFPitch {
 				~transKeys.source=(-11);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-11');
 			});
-			},
-			'/ntKeys-11'
+		},
+		'/ntKeys-11'
 		);
 
 		~noteKeys12.free;
@@ -1566,8 +1383,8 @@ IFPitch {
 				~transKeys.source=(-12);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-12');
 			});
-			},
-			'/ntKeys-12'
+		},
+		'/ntKeys-12'
 		);
 
 		~noteKeys13.free;
@@ -1579,8 +1396,8 @@ IFPitch {
 				~transKeys.source=(-13);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-13');
 			});
-			},
-			'/ntKeys-13'
+		},
+		'/ntKeys-13'
 		);
 
 		~noteKeys14.free;
@@ -1592,8 +1409,8 @@ IFPitch {
 				~transKeys.source=(-14);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-14');
 			});
-			},
-			'/ntKeys-14'
+		},
+		'/ntKeys-14'
 		);
 
 
@@ -1614,8 +1431,8 @@ IFPitch {
 				~transSamp.source=0;
 				~tOSCAdrr.sendMsg('noteSampLabel', '0');
 			});
-			},
-			'/ntSamp_0'
+		},
+		'/ntSamp_0'
 		);
 
 		~noteSamp_1.free;
@@ -1627,8 +1444,8 @@ IFPitch {
 				~transSamp.source=1;
 				~tOSCAdrr.sendMsg('noteSampLabel', '1');
 			});
-			},
-			'/ntSamp_1'
+		},
+		'/ntSamp_1'
 		);
 
 
@@ -1641,8 +1458,8 @@ IFPitch {
 				~transSamp.source=2;
 				~tOSCAdrr.sendMsg('noteSampLabel', '2');
 			});
-			},
-			'/ntSamp_2'
+		},
+		'/ntSamp_2'
 		);
 
 		~noteSamp_3.free;
@@ -1654,8 +1471,8 @@ IFPitch {
 				~transSamp.source=3;
 				~tOSCAdrr.sendMsg('noteSampLabel', '3');
 			});
-			},
-			'/ntSamp_3'
+		},
+		'/ntSamp_3'
 		);
 
 		~noteSamp_4.free;
@@ -1667,8 +1484,8 @@ IFPitch {
 				~transSamp.source=4;
 				~tOSCAdrr.sendMsg('noteSampLabel', '4');
 			});
-			},
-			'/ntSamp_4'
+		},
+		'/ntSamp_4'
 		);
 
 		~noteSamp_5.free;
@@ -1680,8 +1497,8 @@ IFPitch {
 				~transSamp.source=5;
 				~tOSCAdrr.sendMsg('noteSampLabel', '5');
 			});
-			},
-			'/ntSamp_5'
+		},
+		'/ntSamp_5'
 		);
 
 		~noteSamp_6.free;
@@ -1693,8 +1510,8 @@ IFPitch {
 				~transSamp.source=6;
 				~tOSCAdrr.sendMsg('noteSampLabel', '6');
 			});
-			},
-			'/ntSamp_6'
+		},
+		'/ntSamp_6'
 		);
 
 		~noteSamp_7.free;
@@ -1706,8 +1523,8 @@ IFPitch {
 				~transSamp.source=7;
 				~tOSCAdrr.sendMsg('noteSampLabel', '7');
 			});
-			},
-			'/ntSamp_7'
+		},
+		'/ntSamp_7'
 		);
 
 		~noteSamp_8.free;
@@ -1719,8 +1536,8 @@ IFPitch {
 				~transSamp.source=8;
 				~tOSCAdrr.sendMsg('noteSampLabel', '8');
 			});
-			},
-			'/ntSamp_8'
+		},
+		'/ntSamp_8'
 		);
 
 		~noteSamp_9.free;
@@ -1732,8 +1549,8 @@ IFPitch {
 				~transSamp.source=9;
 				~tOSCAdrr.sendMsg('noteSampLabel', '9');
 			});
-			},
-			'/ntSamp_9'
+		},
+		'/ntSamp_9'
 		);
 
 		~noteSamp_10.free;
@@ -1745,8 +1562,8 @@ IFPitch {
 				~transSamp.source=10;
 				~tOSCAdrr.sendMsg('noteSampLabel', '10');
 			});
-			},
-			'/ntSamp_10'
+		},
+		'/ntSamp_10'
 		);
 
 		~noteSamp_11.free;
@@ -1758,8 +1575,8 @@ IFPitch {
 				~transSamp.source=11;
 				~tOSCAdrr.sendMsg('noteSampLabel', '11');
 			});
-			},
-			'/ntSamp_11'
+		},
+		'/ntSamp_11'
 		);
 
 		~noteSamp_12.free;
@@ -1771,8 +1588,8 @@ IFPitch {
 				~transSamp.source=12;
 				~tOSCAdrr.sendMsg('noteSampLabel', '12');
 			});
-			},
-			'/ntSamp_12'
+		},
+		'/ntSamp_12'
 		);
 
 		~noteSamp_13.free;
@@ -1784,8 +1601,8 @@ IFPitch {
 				~transSamp.source=13;
 				~tOSCAdrr.sendMsg('noteSampLabel', '13');
 			});
-			},
-			'/ntSamp_13'
+		},
+		'/ntSamp_13'
 		);
 
 		~noteSamp_14.free;
@@ -1797,8 +1614,8 @@ IFPitch {
 				~transSamp.source=14;
 				~tOSCAdrr.sendMsg('noteSampLabel', '14');
 			});
-			},
-			'/ntSamp_14'
+		},
+		'/ntSamp_14'
 		);
 
 		//////////////////////////// NEGATIVE
@@ -1811,8 +1628,8 @@ IFPitch {
 				~transSamp.source=(-1);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-1');
 			});
-			},
-			'/ntSamp-1'
+		},
+		'/ntSamp-1'
 		);
 
 
@@ -1825,8 +1642,8 @@ IFPitch {
 				~transSamp.source=(-2);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-2');
 			});
-			},
-			'/ntSamp-2'
+		},
+		'/ntSamp-2'
 		);
 
 		~noteSamp3.free;
@@ -1838,8 +1655,8 @@ IFPitch {
 				~transSamp.source=(-3);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-3');
 			});
-			},
-			'/ntSamp-3'
+		},
+		'/ntSamp-3'
 		);
 
 		~noteSamp4.free;
@@ -1851,8 +1668,8 @@ IFPitch {
 				~transSamp.source=(-4);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-4');
 			});
-			},
-			'/ntSamp-4'
+		},
+		'/ntSamp-4'
 		);
 
 		~noteSamp5.free;
@@ -1864,8 +1681,8 @@ IFPitch {
 				~transSamp.source=(-5);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-5');
 			});
-			},
-			'/ntSamp-5'
+		},
+		'/ntSamp-5'
 		);
 
 		~noteSamp6.free;
@@ -1877,8 +1694,8 @@ IFPitch {
 				~transSamp.source=(-6);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-6');
 			});
-			},
-			'/ntSamp-6'
+		},
+		'/ntSamp-6'
 		);
 
 		~noteSamp7.free;
@@ -1890,8 +1707,8 @@ IFPitch {
 				~transSamp.source=(-7);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-7');
 			});
-			},
-			'/ntSamp-7'
+		},
+		'/ntSamp-7'
 		);
 
 		~noteSamp8.free;
@@ -1903,8 +1720,8 @@ IFPitch {
 				~transSamp.source=(-8);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-8');
 			});
-			},
-			'/ntSamp-8'
+		},
+		'/ntSamp-8'
 		);
 
 		~noteSamp9.free;
@@ -1916,8 +1733,8 @@ IFPitch {
 				~transSamp.source=(-9);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-9');
 			});
-			},
-			'/ntSamp-9'
+		},
+		'/ntSamp-9'
 		);
 
 		~noteSamp10.free;
@@ -1929,8 +1746,8 @@ IFPitch {
 				~transSamp.source=(-10);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-10');
 			});
-			},
-			'/ntSamp-10'
+		},
+		'/ntSamp-10'
 		);
 
 		~noteSamp11.free;
@@ -1942,8 +1759,8 @@ IFPitch {
 				~transSamp.source=(-11);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-11');
 			});
-			},
-			'/ntSamp-11'
+		},
+		'/ntSamp-11'
 		);
 
 		~noteSamp12.free;
@@ -1955,8 +1772,8 @@ IFPitch {
 				~transSamp.source=(-12);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-12');
 			});
-			},
-			'/ntSamp-12'
+		},
+		'/ntSamp-12'
 		);
 
 		~noteSamp13.free;
@@ -1968,8 +1785,8 @@ IFPitch {
 				~transSamp.source=(-13);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-13');
 			});
-			},
-			'/ntSamp-13'
+		},
+		'/ntSamp-13'
 		);
 
 		~noteSamp14.free;
@@ -1981,8 +1798,8 @@ IFPitch {
 				~transSamp.source=(-14);
 				~tOSCAdrr.sendMsg('noteSampLabel', '-14');
 			});
-			},
-			'/ntSamp-14'
+		},
+		'/ntSamp-14'
 		);
 
 
@@ -2003,8 +1820,8 @@ IFPitch {
 				~transMopho.source=0;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '0');
 			});
-			},
-			'/ntMopho_0'
+		},
+		'/ntMopho_0'
 		);
 
 		~noteMopho_1.free;
@@ -2016,8 +1833,8 @@ IFPitch {
 				~transMopho.source=1;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '1');
 			});
-			},
-			'/ntMopho_1'
+		},
+		'/ntMopho_1'
 		);
 
 
@@ -2030,8 +1847,8 @@ IFPitch {
 				~transMopho.source=2;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '2');
 			});
-			},
-			'/ntMopho_2'
+		},
+		'/ntMopho_2'
 		);
 
 		~noteMopho_3.free;
@@ -2043,8 +1860,8 @@ IFPitch {
 				~transMopho.source=3;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '3');
 			});
-			},
-			'/ntMopho_3'
+		},
+		'/ntMopho_3'
 		);
 
 		~noteMopho_4.free;
@@ -2056,8 +1873,8 @@ IFPitch {
 				~transMopho.source=4;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '4');
 			});
-			},
-			'/ntMopho_4'
+		},
+		'/ntMopho_4'
 		);
 
 		~noteMopho_5.free;
@@ -2069,8 +1886,8 @@ IFPitch {
 				~transMopho.source=5;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '5');
 			});
-			},
-			'/ntMopho_5'
+		},
+		'/ntMopho_5'
 		);
 
 		~noteMopho_6.free;
@@ -2082,8 +1899,8 @@ IFPitch {
 				~transMopho.source=6;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '6');
 			});
-			},
-			'/ntMopho_6'
+		},
+		'/ntMopho_6'
 		);
 
 		~noteMopho_7.free;
@@ -2095,8 +1912,8 @@ IFPitch {
 				~transMopho.source=7;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '7');
 			});
-			},
-			'/ntMopho_7'
+		},
+		'/ntMopho_7'
 		);
 
 		~noteMopho_8.free;
@@ -2108,8 +1925,8 @@ IFPitch {
 				~transMopho.source=8;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '8');
 			});
-			},
-			'/ntMopho_8'
+		},
+		'/ntMopho_8'
 		);
 
 		~noteMopho_9.free;
@@ -2121,8 +1938,8 @@ IFPitch {
 				~transMopho.source=9;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '9');
 			});
-			},
-			'/ntMopho_9'
+		},
+		'/ntMopho_9'
 		);
 
 		~noteMopho_10.free;
@@ -2134,8 +1951,8 @@ IFPitch {
 				~transMopho.source=10;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '10');
 			});
-			},
-			'/ntMopho_10'
+		},
+		'/ntMopho_10'
 		);
 
 		~noteMopho_11.free;
@@ -2147,8 +1964,8 @@ IFPitch {
 				~transMopho.source=11;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '11');
 			});
-			},
-			'/ntMopho_11'
+		},
+		'/ntMopho_11'
 		);
 
 		~noteMopho_12.free;
@@ -2160,8 +1977,8 @@ IFPitch {
 				~transMopho.source=12;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '12');
 			});
-			},
-			'/ntMopho_12'
+		},
+		'/ntMopho_12'
 		);
 
 		~noteMopho_13.free;
@@ -2173,8 +1990,8 @@ IFPitch {
 				~transMopho.source=13;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '13');
 			});
-			},
-			'/ntMopho_13'
+		},
+		'/ntMopho_13'
 		);
 
 		~noteMopho_14.free;
@@ -2186,8 +2003,8 @@ IFPitch {
 				~transMopho.source=14;
 				~tOSCAdrr.sendMsg('noteMophoLabel', '14');
 			});
-			},
-			'/ntMopho_14'
+		},
+		'/ntMopho_14'
 		);
 
 		//////////////////////////// NEGATIVE
@@ -2200,8 +2017,8 @@ IFPitch {
 				~transMopho.source=(-1);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-1');
 			});
-			},
-			'/ntMopho-1'
+		},
+		'/ntMopho-1'
 		);
 
 
@@ -2214,8 +2031,8 @@ IFPitch {
 				~transMopho.source=(-2);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-2');
 			});
-			},
-			'/ntMopho-2'
+		},
+		'/ntMopho-2'
 		);
 
 		~noteMopho3.free;
@@ -2227,8 +2044,8 @@ IFPitch {
 				~transMopho.source=(-3);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-3');
 			});
-			},
-			'/ntMopho-3'
+		},
+		'/ntMopho-3'
 		);
 
 		~noteMopho4.free;
@@ -2240,8 +2057,8 @@ IFPitch {
 				~transMopho.source=(-4);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-4');
 			});
-			},
-			'/ntMopho-4'
+		},
+		'/ntMopho-4'
 		);
 
 		~noteMopho5.free;
@@ -2253,8 +2070,8 @@ IFPitch {
 				~transMopho.source=(-5);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-5');
 			});
-			},
-			'/ntMopho-5'
+		},
+		'/ntMopho-5'
 		);
 
 		~noteMopho6.free;
@@ -2266,8 +2083,8 @@ IFPitch {
 				~transMopho.source=(-6);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-6');
 			});
-			},
-			'/ntMopho-6'
+		},
+		'/ntMopho-6'
 		);
 
 		~noteMopho7.free;
@@ -2279,8 +2096,8 @@ IFPitch {
 				~transMopho.source=(-7);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-7');
 			});
-			},
-			'/ntMopho-7'
+		},
+		'/ntMopho-7'
 		);
 
 		~noteMopho8.free;
@@ -2292,8 +2109,8 @@ IFPitch {
 				~transMopho.source=(-8);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-8');
 			});
-			},
-			'/ntMopho-8'
+		},
+		'/ntMopho-8'
 		);
 
 		~noteMopho9.free;
@@ -2305,8 +2122,8 @@ IFPitch {
 				~transMopho.source=(-9);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-9');
 			});
-			},
-			'/ntMopho-9'
+		},
+		'/ntMopho-9'
 		);
 
 		~noteMopho10.free;
@@ -2318,8 +2135,8 @@ IFPitch {
 				~transMopho.source=(-10);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-10');
 			});
-			},
-			'/ntMopho-10'
+		},
+		'/ntMopho-10'
 		);
 
 		~noteMopho11.free;
@@ -2331,8 +2148,8 @@ IFPitch {
 				~transMopho.source=(-11);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-11');
 			});
-			},
-			'/ntMopho-11'
+		},
+		'/ntMopho-11'
 		);
 
 		~noteMopho12.free;
@@ -2344,8 +2161,8 @@ IFPitch {
 				~transMopho.source=(-12);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-12');
 			});
-			},
-			'/ntMopho-12'
+		},
+		'/ntMopho-12'
 		);
 
 		~noteMopho13.free;
@@ -2357,8 +2174,8 @@ IFPitch {
 				~transMopho.source=(-13);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-13');
 			});
-			},
-			'/ntMopho-13'
+		},
+		'/ntMopho-13'
 		);
 
 		~noteMopho14.free;
@@ -2370,8 +2187,8 @@ IFPitch {
 				~transMopho.source=(-14);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-14');
 			});
-			},
-			'/ntMopho-14'
+		},
+		'/ntMopho-14'
 		);
 
 
