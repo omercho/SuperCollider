@@ -48,7 +48,6 @@ IFSnr {
 
 		~tuneSnr=26;
 
-		~susMulSnr=1;
 		~attSnr=0.001;
 		~decSnr=0.08;
 		~susLevSnr=0.0;

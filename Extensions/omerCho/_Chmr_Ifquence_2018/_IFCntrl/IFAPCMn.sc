@@ -83,7 +83,8 @@ IFAPCMn{
 		~tsBut5=68;~tsBut6=69;~tsBut7=70;~tsBut8=71;
 		~actTS1=64;~actTS2=65;~actTS3=66;~actTS4=67;
 		~actTS5=68;~actTS6=69;~actTS7=70;~actTS8=71;
-		~apcPlayBut=82;
+
+		~apcPlayBut=98;
 
 		~apcStopBut=92;
 		~apcRecBut=93;
@@ -93,8 +94,6 @@ IFAPCMn{
 		~apcBankLeftBut=97;
 		~apcPlusBut=100;
 		~apcMinusBut=101;
-
-
 
 	}//globals
 	*shiftButton{
@@ -118,8 +117,6 @@ IFAPCMn{
 
 	}
 
-
-
 	//PLAY STOP REC Buttons
 	*psrButtonsPlay{
 		//Kick Activate
@@ -134,11 +131,13 @@ IFAPCMn{
 					1, {
 						~local.sendMsg('/1/toggleMain', 1);
 						~local.sendMsg('nt_0', 1);
+						~apcMn.noteOn(~apcLn1, ~apcPlayBut, 127); //But A
 						//IFLpMnNotes.resetLeds;
 						//~apcMn.noteOn(~apcLn4, 55, 4); //But 1
 					},
 					2,{
 						~local.sendMsg('/1/toggleMain', 0);
+						~apcMn.noteOn(~apcLn1, ~apcPlayBut, 0); //But A
 						~cntPlayBut=0;
 						//IFLpMnNotes.resetLeds;
 					}
@@ -148,13 +147,11 @@ IFAPCMn{
 	}
 
 	//Activate Buttons Methods
-
 	*act{|chan,val1,val2,val3,val4|
 		~apcMn.noteOn(chan, ~actButA, val1); //But A
 		~apcMn.noteOn(chan, ~actButB, val2); //But B
 		~apcMn.noteOn(chan, ~actButC, val3); //But C
 		~apcMn.noteOn(chan, ~actButD, val4); //But D
-
 	}
 	//actLine1
 	*actLine1{|val1,val2,val3,val4|
@@ -261,7 +258,7 @@ IFAPCMn{
 		~actRes.source=val;
 		~cntActLine8ButA8=val;
 	}
-	//////////////////B_B
+	//////////////////But_B
 	*actLine1ButB1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButB1, val); //But B
 		~tOSCAdrr.sendMsg('activKick2', val);
@@ -276,9 +273,8 @@ IFAPCMn{
 	}
 	*actLine3ButB3{|val|
 		~apcMn.noteOn(~apcLn1, ~actButB3, val); //But B
-		//~local.sendMsg('time2Hat', val);
-		~tOSCAdrr.sendMsg('time2Hat', val);
-		~tmMulHat.source = Pseq([val+1], inf);
+		~tOSCAdrr.sendMsg('activHat2', val);
+		~act2Hat.source=val;
 		~cntActLine3ButB3=val;
 	}
 	*actLine4ButB4{|val|
@@ -315,7 +311,7 @@ IFAPCMn{
 		~cntActLine8ButB8=val;
 	}
 
-	/////////B_C
+	/////////_All_But_C
 	*actLine1ButC1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButC1, val); //But C
 		~tOSCAdrr.sendMsg('shufKick', val);
@@ -445,8 +441,8 @@ IFAPCMn{
 	}
 	*actTS4{|val|
 		~apcMn.noteOn(~apcLn1, ~actTS4, val); //But A
-		~tOSCAdrr.sendMsg('activBass', val);
-		~actBass.source=val;
+		~tOSCAdrr.sendMsg('activVClap', val);
+		~actVClap.source=val;
 		~cntActTS4=val;
 	}
 	*actTS5{|val|

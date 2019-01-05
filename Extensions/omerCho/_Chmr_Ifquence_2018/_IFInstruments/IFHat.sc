@@ -28,7 +28,6 @@ IFHat {
 	*globals{
 
 		~chHat=2;
-		~actHat=1;
 		~lateHat=0.00;
 		~hatTimes=1;
 		~harmHat=0;
@@ -40,19 +39,45 @@ IFHat {
 
 		~tuneHat=26;
 
+		~freq2Hat=69;
+		~freq3Hat=49;
+
+		~lfoMulHat=1;
+
+		~quantHat1=0.0;
+		~quantHat2=0.0;
+
 	}
 
 	*proxy {
-		this.synthDef(1);
-
+		~actHat = PatternProxy( Pseq([1], inf));
+		~actHatP= Pseq([~actHat], inf).asStream;
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
-		~dur1Hat = PatternProxy( Pseq([1], inf));
-		~dur1HatP = Pseq([~dur1Hat], inf).asStream;
 		~amp1Hat = PatternProxy( Pseq([1], inf));
 		~amp1HatP = Pseq([~amp1Hat], inf).asStream;
+		~dur1Hat = PatternProxy( Pseq([1], inf));
+		~dur1HatP = Pseq([~dur1Hat], inf).asStream;
 		~sus1Hat = PatternProxy( Pseq([1], inf));
 		~sus1HatP = Pseq([~sus1Hat], inf).asStream;
+		~volHat = PatternProxy( Pseq([1.0], inf));
+		~volHatP = Pseq([~volHat], inf).asStream;
+
+		~act2Hat = PatternProxy( Pseq([1], inf));
+		~act2HatP= Pseq([~act2Hat], inf).asStream;
+		~nt2Hat = PatternProxy( Pseq([0], inf));
+		~nt2HatP = Pseq([~nt2Hat], inf).asStream;
+		~amp2Hat = PatternProxy( Pseq([1], inf));
+		~amp2HatP = Pseq([~amp2Hat], inf).asStream;
+		~dur2Hat = PatternProxy( Pseq([1], inf));
+		~dur2HatP = Pseq([~dur2Hat], inf).asStream;
+		~sus2Hat = PatternProxy( Pseq([1], inf));
+		~sus2HatP = Pseq([~sus2Hat], inf).asStream;
+		~volHat2 = PatternProxy( Pseq([0.9], inf));
+		~volHat2P = Pseq([~volHat2], inf).asStream;
+
+		~delta1Hat2 = PatternProxy( Pseq([1], inf));
+		~delta1Hat2P = Pseq([~delta1Hat2], inf).asStream;
 
 		~transHat = PatternProxy( Pseq([0], inf));
 		~transHatP = Pseq([~transHat], inf).asStream;
@@ -67,14 +92,11 @@ IFHat {
 		~hrmHat = PatternProxy( Pseq([1.0], inf));
 		~hrmHatP = Pseq([~hrmHat], inf).asStream;
 
-		~actHat = PatternProxy( Pseq([1], inf));
-		~actHatP= Pseq([~actHat], inf).asStream;
-
 		~actHatLfo1 = PatternProxy( Pseq([0], inf));
 		~actHatLfo1P= Pseq([~actHatLfo1], inf).asStream;
 
-		~volHat = PatternProxy( Pseq([1.0], inf));
-		~volHatP = Pseq([~volHat], inf).asStream;
+
+
 		~delta1VSamp07 = PatternProxy( Pseq([1/1], inf));
 		~delta1VSamp07P = Pseq([~delta1VSamp07], inf).asStream;
 
@@ -101,8 +123,6 @@ IFHat {
 		case
 		{ i == val }  {
 			{val.do{
-
-				//~lateHat=~abLate;
 				~lateHat.wait;
 				//this.p1_SC(val);
 				this.p1(val);
@@ -112,6 +132,19 @@ IFHat {
 
 	}
 
+	*hat2{|i=1|
+		var val;
+		val=i;
+		case
+		{ i == val }  {
+			{val.do{
+
+				this.p2(val);
+				((~dur2HatP.next)*(~durMulP.next)/val).wait;
+			}}.fork;
+		}
+
+	}
 	*p1 {|i=1|
 		var val;
 		val=i;
@@ -126,35 +159,30 @@ IFHat {
 			\mtranspose, Pseq([~transHatP.next], inf)+~trHat+~transShufHatP.next,
 			\octave, Pseq([~octHatP.next], inf)+~octMulHat,
 			\harmonic, Pseq([~hrmHatP.next], inf)+~harmHat
-		).play(quant: 0);
+		).play(quant: ~quantHat1);
 
-		/*~staticHatPat=Pbind(
-			\chan, ~chHat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durStHatP.next],~actStHatP),
-			\degree, Pseq([~ntStHatP.next], inf),
-			\amp, Pseq([~ampStHatP.next], inf)
-		).play(TempoClock.default, quant: 0);*/
+
 	}
-	/**stat01 {|i=1|
+	*p2{|i=1|
 		var val;
 		val=i;
-		~staticHatPat=Pbind(
+
+		Pbind(
 			\chan, ~chHat,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
-			\dur, Pseq([~durStHatP.next],~actStHatP),
-			\degree, Pseq([~ntStHatP.next], inf),
-			\amp, Pseq([~ampStHatP.next], inf)
-		).play(TempoClock.default, quant: 0);
-	}*/
-
+			\dur, Pseq([~dur2HatP.next], ~act2HatP),
+			\degree, Pseq([~nt2HatP.next], inf),
+			\amp, Pseq([~volHat2P.next*~amp2HatP.next], inf),
+			\sustain, Pseq([~sus2HatP.next],inf)*~susMulHat
+		).play(quant:~quantHat2);
+	}
 	*apc40{
 		/*~volHat_APC.free;
 		~volHat_APC=MIDIFunc.cc( {
-			arg vel;
-			~tOSCAdrr.sendMsg('volHat', vel/127);
-			"HAT_VOL_TestPost"+vel.postln;
-			~volHat.source = vel/127;
+		arg vel;
+		~tOSCAdrr.sendMsg('volHat', vel/127);
+		"HAT_VOL_TestPost"+vel.postln;
+		~volHat.source = vel/127;
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd3);*/
 
 		//Act ButA3
@@ -173,7 +201,7 @@ IFHat {
 					2,{
 						IFAPCMn.actLine3ButA3(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA3);
 
@@ -187,13 +215,9 @@ IFHat {
 				~cntActLine3ButB3 = ~cntActLine3ButB3 + 1;
 				~cntActLine3ButB3.switch(
 					0,{},
-					1, {
-						IFAPCMn.actLine3ButB3(1);
-					},
-					2,{
-						IFAPCMn.actLine3ButB3(0);
-					}
-				)}
+					1,{IFAPCMn.actLine3ButB3(1);},
+					2,{IFAPCMn.actLine3ButB3(0);}
+			)}
 			);
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB3);
 
@@ -213,7 +237,7 @@ IFHat {
 					2,{
 						IFAPCMn.actLine3ButC3(0);
 					}
-				)}
+			)}
 			);
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC3);
 
@@ -230,13 +254,13 @@ IFHat {
 				~actHat.source=1;
 				~apcMn.noteOn(~apcMnCh, ~actButA3, 127); //Trk1_But 1
 
-				},{
-					~actHat.source=0;
-					~apcMn.noteOff(~apcMnCh, ~actButA3, 127); //Trk1_But 1
+			},{
+				~actHat.source=0;
+				~apcMn.noteOff(~apcMnCh, ~actButA3, 127); //Trk1_But 1
 
 			});
-			},
-			'/activHat'
+		},
+		'/activHat'
 		);
 
 		~time2HatBut.free;
@@ -249,21 +273,21 @@ IFHat {
 				0,{},
 				1, {
 
-					~apcMn.noteOn(~apcMnCh, ~actButB3, 1);
+					//~apcMn.noteOn(~apcMnCh, ~actButB3, 1);
 					//~tOSCAdrr.sendMsg('time2Hat', 1);
 					//~tOSCAdrr.sendMsg('tmHatLabel', 2);
-					~tmMulHat.source = Pseq([2], inf);
+					//~tmMulHat.source = Pseq([2], inf);
 				},
 				2,{
 
-					~apcMn.noteOn(~apcMnCh, ~actButB3, 0);
+					//~apcMn.noteOn(~apcMnCh, ~actButB3, 0);
 					//~tOSCAdrr.sendMsg('time2Hat', 0);
 					//~tOSCAdrr.sendMsg('tmHatLabel', 1);
-					~tmMulHat.source = Pseq([1], inf);
+					//~tmMulHat.source = Pseq([1], inf);
 					~countTime2Hat=0;
 			});
-			},
-			'/time2Hat'
+		},
+		'/time2Hat'
 		);
 
 
@@ -274,8 +298,8 @@ IFHat {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('volHat', msg[1]);
 			//~mdOut.control(4, 1, vel);
-			},
-			'/volHat'
+		},
+		'/volHat'
 		);
 
 		~xy1Hat.free;
@@ -284,37 +308,9 @@ IFHat {
 
 
 
-			},
-			'/xy1Hat'
+		},
+		'/xy1Hat'
 		);
-
-		/*~attHatFader.free;
-		~attHatFader= OSCFunc({
-			arg msg,val;
-			val=msg[1]*2;
-			~attHat=val+0.01;
-			},
-			'/attHat'
-		);
-
-		~susLevHatFader.free;
-		~susLevHatFader= OSCFunc({
-			arg msg;
-			~susLevHat=msg[1];
-
-
-			},
-			'/susHat'
-		);
-
-		~decHatFader.free;
-		~decHatFader= OSCFunc({
-			arg msg;
-			~decHat=msg[1];
-			~relHat=msg[1]+0.1;
-			},
-			'/decHat'
-		);*/
 
 		~attHatFader.free;
 		~attHatFader= OSCFunc({
@@ -322,8 +318,8 @@ IFHat {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('attHat', msg[1]);
 			~mdOut.control(4, 5, vel);
-			},
-			'attHat'
+		},
+		'attHat'
 		);
 
 		~susLevHatFader.free;
@@ -333,8 +329,8 @@ IFHat {
 			~susLevHat=msg[1];
 			~mdOut.control(4, 6, msg[1]*127);
 
-			},
-			'/susHat'
+		},
+		'/susHat'
 		);
 
 		~decHatFader.free;
@@ -346,8 +342,8 @@ IFHat {
 			~decHat= val;
 			~mdOut.control(4, 127, vel);
 			//~nobD3_m1Val= vel;
-			},
-			'/decHat'
+		},
+		'/decHat'
 		);
 
 		~chainHatFader.free;
@@ -355,8 +351,8 @@ IFHat {
 			arg msg;
 			~tOSCAdrr.sendMsg('chainHat', msg[1]);
 			~mdOut.control(4, 8, msg[1]*127);
-			},
-			'/chainHat'
+		},
+		'/chainHat'
 		);
 
 		~sendHatXY.free;
@@ -369,8 +365,8 @@ IFHat {
 			~mdOut.control(4, 3, vel2); // IFHat
 			~tOSCAdrr.sendMsg('sendHat', msg[1], msg[2]);
 
-			},
-			'sendHat'
+		},
+		'sendHat'
 		);
 
 		//TIME
@@ -385,8 +381,8 @@ IFHat {
 
 			});
 
-			},
-			'/tmMulHat1'
+		},
+		'/tmMulHat1'
 		);
 		~tmMulHatBut2.free;
 		~tmMulHatBut2= OSCFunc({
@@ -398,8 +394,8 @@ IFHat {
 
 			});
 
-			},
-			'/tmMulHat2'
+		},
+		'/tmMulHat2'
 		);
 		~tmMulHatBut3.free;
 		~tmMulHatBut3= OSCFunc({
@@ -411,8 +407,8 @@ IFHat {
 
 			});
 
-			},
-			'/tmMulHat3'
+		},
+		'/tmMulHat3'
 		);
 
 		~octHatMulBut.free;
@@ -427,8 +423,8 @@ IFHat {
 
 			});
 
-			},
-			'/octHatMul'
+		},
+		'/octHatMul'
 		);
 
 		~octHatZeroBut.free;
@@ -443,8 +439,8 @@ IFHat {
 
 			});
 
-			},
-			'/octHatZero'
+		},
+		'/octHatZero'
 		);
 
 		~octHatDivBut.free;
@@ -459,8 +455,8 @@ IFHat {
 
 			});
 
-			},
-			'/octHatDiv'
+		},
+		'/octHatDiv'
 		);
 
 	}
@@ -504,42 +500,42 @@ IFHat {
 		}
 
 	}
-*synthDef{|index|
+	*synthDef{|index|
 		index.switch(
 			1,{
-SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
-	att =0.01, dec=0.03, susLev=0.08, rel=0.04,
-	lfo1Rate=1, lfo2Rate=1,
-	noose =1, freq = 90, pan = 0, freqpan=0.2 |
-	var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
-	var hatosc, hatenv, hatnoise, hatoutput;
-	lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
-	lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
+				SynthDef(\IFHat_SC, { |out=0, amp=0.3, gate=1,
+					att =0.01, dec=0.03, susLev=0.08, rel=0.04,
+					lfo1Rate=1, lfo2Rate=1,
+					noose =1, freq = 90, pan = 0, freqpan=0.2 |
+					var env1, env2, ses, oscs1, noise, in, n2,lfo1, lfo2;
+					var hatosc, hatenv, hatnoise, hatoutput;
+					lfo1 = SinOsc.kr(lfo1Rate).range(1.0, 3.2);
+					lfo2 = SinOsc.kr(lfo2Rate).range(1.0, 1.9);
 
-	env1 = EnvGen.ar(Env.perc(att, dec));
-	env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
+					env1 = EnvGen.ar(Env.perc(att, dec));
+					env2 = EnvGen.ar(Env.adsr(att, dec, susLev, rel), gate, doneAction:2);
 
-	noise = SinOsc.ar(freq*lfo2);
-	in = Mix.ar(Blip.ar(4*freq*lfo2, 2*freq*lfo1).softclip(3.2),noise);
-	noise = HPF.ar(in*noise*lfo2, 0, 0.9, 0.5, Mix.ar(noise*in));
-	//noise = BHiShelf.ar(Mix.ar(noise,in), 1, lfo2, -6);
-	noise = BHiPass.ar(noise/in, freq*lfo1, 0.5, env2);
-	in= MoogFF.ar(noise, in, 0.2);
+					noise = SinOsc.ar(freq*lfo2);
+					in = Mix.ar(Blip.ar(4*freq*lfo2, 2*freq*lfo1).softclip(3.2),noise);
+					noise = HPF.ar(in*noise*lfo2, 0, 0.9, 0.5, Mix.ar(noise*in));
+					//noise = BHiShelf.ar(Mix.ar(noise,in), 1, lfo2, -6);
+					noise = BHiPass.ar(noise/in, freq*lfo1, 0.5, env2);
+					in= MoogFF.ar(noise, in, 0.2);
 
-	hatnoise = {LPF.ar(WhiteNoise.ar(1),8000*(noise/16)*env1)};
+					hatnoise = {LPF.ar(WhiteNoise.ar(1),8000*(noise/16)*env1)};
 
-	hatosc = {HPF.ar(hatnoise,2400*lfo2)};
-	hatenv = {Line.ar(1, 0, 0.1)};
+					hatosc = {HPF.ar(hatnoise,2400*lfo2)};
+					hatenv = {Line.ar(1, 0, 0.1)};
 
-	hatoutput = (0.5 * hatosc *env2);
+					hatoutput = (0.5 * hatosc *env2);
 
-	ses = hatoutput;
-	//ses = ses;
-	ses = ses.clip2(0.4);
-	ses = ses * amp;
+					ses = hatoutput;
+					//ses = ses;
+					ses = ses.clip2(0.4);
+					ses = ses * amp;
 
-	Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-0.8, 0.8), amp*0.6)*env2);
-}).add;
+					Out.ar(out, Pan2.ar(ses, SinOsc.kr(freqpan).range(-0.8, 0.8), amp*0.6)*env2);
+				}).add;
 
 			},
 			2,{

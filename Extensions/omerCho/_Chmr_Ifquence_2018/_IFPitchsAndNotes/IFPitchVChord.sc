@@ -83,8 +83,7 @@ IFPitchVChord {
 						"PITCHVChord SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchVChord', 1);
 						IFPitchVChord.noteVChordOn;
-
-
+						~apcMn.noteOn(~apcMnCh, 87, 1); //But 5
 					},
 					2,{
 
@@ -92,6 +91,7 @@ IFPitchVChord {
 						~tOSCAdrr.sendMsg('pitchVChord', 0);
 						~countPVChord=0;
 						IFPitchVChord.noteVChordOff;
+						~apcMn.noteOn(~apcMnCh, 87, 0); //But 5
 					}
 				)
 				},{
@@ -113,6 +113,26 @@ IFPitchVChord {
 			},
 			'/killAll'
 		);
+		//APC Pitch Samp Button
+		~countPSampApc=0;
+		~apcPSampButton.free;
+		~apcPSampButton=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~countPSampApc = ~countPSampApc + 1;
+				~countPSampApc.switch(
+					0,{},
+					1, {
+						~local.sendMsg('pitchVChord', 1);
+					},
+					2,{
+						~local.sendMsg('pitchVChord', 0);
+						~vKeys.allNotesOff(0);
+						~countPSampApc=0;
+					}
+				)}
+			);
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:87);
 
 	}
 

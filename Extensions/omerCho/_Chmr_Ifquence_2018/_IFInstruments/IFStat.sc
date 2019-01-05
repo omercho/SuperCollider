@@ -188,9 +188,9 @@ IFStat {
 			\chan, ~chStatDrum,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVClap,
-			\dur, Pseq([~durVClapP.next],~actVClapP.next),
+			\dur, Pseq([~durVClapP.next],~actVClapP),
 			\degree, Pseq([~ntVClapP.next], inf),
-			\amp, Pseq([~ampVClapP.next], inf)
+			\amp, Pseq([~ampVClapP.next*~ampVClapP.next], inf)
 		).play;
 
 	}

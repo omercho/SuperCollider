@@ -31,40 +31,40 @@ IFShuf{
 		~transShufHat.source  = Pshuf([0], inf);
 	}
 	*transBassOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
-		~transShufBass.source  = Pshuf([
+		~transShufBass.source  = Pseq([
 			(stp1),(stp2),(stp3),(stp4),
 			(stp5),(stp6),(stp7),(stp8)
 		], inf);
 	}
 	*transBassOff{
-		~transShufBass.source  = Pshuf([0], inf);
+		~transShufBass.source  = Pseq([0], inf);
 	}
 	*transKeysOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
-		~transShufKeys.source  = Pshuf([
+		~transShufKeys.source  = Pseq([
 			(stp1),(stp2),(stp3),(stp4),
 			(stp5),(stp6),(stp7),(stp8)
 		], inf);
 	}
 	*transKeysOff{
-		~transShufKeys.source  = Pshuf([0], inf);
+		~transShufKeys.source  = Pseq([0], inf);
 	}
 	*transSampOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
-		~transShufSamp.source  = Pshuf([
+		~transShufSamp.source  = Pseq([
 			(stp1),(stp2),(stp3),(stp4),
 			(stp5),(stp6),(stp7),(stp8)
 		], inf);
 	}
 	*transSampOff{
-		~transShufSamp.source  = Pshuf([0], inf);
+		~transShufSamp.source  = Pseq([0], inf);
 	}
 	*transMophoOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
-		~transShufMopho.source  = Pshuf([
+		~transShufMopho.source  = Pseq([
 			(stp1),(stp2),(stp3),(stp4),
 			(stp5),(stp6),(stp7),(stp8)
 		], inf);
 	}
 	*transMophoOff{
-		~transShufMopho.source  = Pshuf([0], inf);
+		~transShufMopho.source  = Pseq([0], inf);
 	}
 
 	*loadKick{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
@@ -81,12 +81,12 @@ IFShuf{
 					0,{},
 					1, {
 						this.transKickOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apcMn.noteOn(~apcMnCh, ~actButC1, 6); //But 1
+						//~apcMn.noteOn(~apcMnCh, ~actButC1, 6); //But 1
 					},
 					2,{
 						this.transKickOff;
-						~apcMn.noteOn(~apcMnCh, ~actButC1, 5); //But 1
-						~countShufKick=0;
+						//~apcMn.noteOn(~apcMnCh, ~actButC1, 5); //But 1
+						//~countShufKick=0;
 					}
 				)
 			}
@@ -95,7 +95,7 @@ IFShuf{
 		'/shufKick'
 		);
 	}
-	*loadSnr{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+	/**loadSnr{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
 		~shufSnrBut.free;
 		~countShufSnr=0;
 		~shufSnrBut = OSCFunc({
@@ -109,14 +109,33 @@ IFShuf{
 					0,{},
 					1, {
 						this.transSnrOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
-						~apcMn.noteOn(~apcMnCh, ~actButC2, 6); //But 1
+						//~apcMn.noteOn(~apcMnCh, ~actButC2, 6); //But 1
 					},
 					2,{
 						this.transSnrOff;
-						~apcMn.noteOn(~apcMnCh, ~actButC2, 5); //But 1
-						~countShufSnr=0;
+						//~apcMn.noteOn(~apcMnCh, ~actButC2, 5); //But 1
+						//~countShufSnr=0;
 					}
 				)
+			}
+			);
+		},
+		'/shufSnr'
+		);
+	}*/
+	*loadSnr{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8|
+		~shufSnrBut.free;
+		~countShufSnr=0;
+		~shufSnrBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+
+				//"Transpose Shuffle".postln;
+				//~countShufBass = ~countShufBass + 1;
+
+				IFShuf.transSnrOn(stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8);
+			},{
+				IFShuf.transSnrOff;
 			}
 			);
 		},

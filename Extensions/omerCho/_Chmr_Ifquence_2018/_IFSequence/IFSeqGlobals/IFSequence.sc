@@ -20,6 +20,7 @@ IFSequence {
 		IFSeqSnr.loadAll;
 		IFSeqSnr2.loadAll;
 		IFSeqHat.loadAll;
+		IFSeqHat2.loadAll;
 		IFSeqBass.loadAll;
 		IFSeqKeys.loadAll;
 		IFSeqSamp.loadAll;
@@ -243,6 +244,7 @@ IFSequence {
 		IFSeqSnr.stepPack(index);
 		IFSeqSnr2.stepPack(index);
 		IFSeqHat.stepPack(index);
+		IFSeqHat2.stepPack(index);
 	}
 	*st3{|index|
 		this.led3(index);

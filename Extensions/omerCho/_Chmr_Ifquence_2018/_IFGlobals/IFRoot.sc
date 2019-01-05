@@ -36,9 +36,11 @@ IFRoot {
 					IFSequence.step2(~stepNum2P.next);
 					IFSequence.step3(~stepNum3P.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
+					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
+					IFHat.hat2(~tmMul2HatP.next*~tm2HatP.next);
 
 					IFBass(~tmMulBassP.next*~tmBassP.next);
 					IFKeys(~tmMulKeysP.next*~tmKeysP.next);

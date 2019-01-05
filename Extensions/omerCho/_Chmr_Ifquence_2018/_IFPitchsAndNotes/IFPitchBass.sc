@@ -42,7 +42,7 @@ IFPitchBass {
 						"PITCHBass SWITCH ON".postln;
 						~tOSCAdrr.sendMsg('pitchBass', 1);
 						IFPitchBass.noteBassOn;
-						~lpMn.noteOn(~lpMnCh, 120, 1); //But 5
+						~apcMn.noteOn(~apcMnCh, 85, 1); //But 5
 
 
 					},
@@ -52,7 +52,7 @@ IFPitchBass {
 						~tOSCAdrr.sendMsg('pitchBass', 0);
 						~countPBass=0;
 						IFPitchBass.noteBassOff;
-						~lpMn.noteOn(~lpMnCh, 120, 0); //But 5
+						~apcMn.noteOn(~apcMnCh, 85, 0); //But 5
 					}
 				)
 				},{
@@ -73,20 +73,14 @@ IFPitchBass {
 				~countPBassApc = ~countPBassApc + 1;
 				~countPBassApc.switch(
 					0,{},
-					1, {
-
-						~local.sendMsg('pitchBass', 1);
-
-
-					},
+					1, {~local.sendMsg('pitchBass', 1);},
 					2,{
 						~local.sendMsg('pitchBass', 1);
 						~countPBassApc=0;
-
 					}
 				)}
 			);
-		},srcID:~lpMnInID, chan:~lpMnCh, noteNum:120);
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:85);
 	}
 
 	*noteBassOn {

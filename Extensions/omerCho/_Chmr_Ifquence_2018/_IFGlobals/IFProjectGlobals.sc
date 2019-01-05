@@ -41,14 +41,16 @@ IFProjectGlobals.setTempo(20);
 
 		this.setAddr;
 		this.shiftButtons;
-		this.setTempo(124);
+		this.setTempo(126);
 		IFSixteen.defaults;
 		IFMIDIMix.load;
 		IFAPCMn.load;
+		IFApcMnNotes.load;
 		//IFAPCMn_Launch.load;
 		//IFLaunchSteps.load;
 		IFLpMn.load;
-		IFLpMnNotes.load;
+		//IFLpMnNotes.load;
+
 		//IFLpMnShufs.load;
 		IFLpMnSteps.load;
 		~nt=(0);
