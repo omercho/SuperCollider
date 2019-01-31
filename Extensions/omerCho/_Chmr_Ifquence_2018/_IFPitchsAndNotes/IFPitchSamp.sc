@@ -22,7 +22,7 @@ IFPitchSamp {
 
 	}
 
-	*buttons {
+	*buttons{
 		~pitchSampBut.free;
 		~countPSamp=0;
 		~pitchSampBut = OSCFunc({
@@ -60,9 +60,7 @@ IFPitchSamp {
 				~countPSampApc = ~countPSampApc + 1;
 				~countPSampApc.switch(
 					0,{},
-					1, {
-						~local.sendMsg('pitchSamp', 1);
-					},
+					1, {~local.sendMsg('pitchSamp', 1);},
 					2,{
 						~local.sendMsg('pitchSamp', 1);
 						~countPSampApc=0;

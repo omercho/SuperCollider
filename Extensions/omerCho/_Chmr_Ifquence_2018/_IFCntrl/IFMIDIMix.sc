@@ -574,8 +574,9 @@ IFMIDIMix{
 		~mdMixNob5C.free;
 		~mdMixNob5C=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volClnKeys', vel/127);
-			~mdOut.control(1, 16, vel); //Cln Keys Vol
+			//~tOSCAdrr.sendMsg('volClnKeys', vel/127);
+			//~mdOut.control(1, 16, 2); //Cln Keys Vol
+			~mdOut.control(1, 19, vel); //Cln Keys Vol
 
 		},srcID:~mdMixInID, chan:~mdMixLn5, ccNum:31);
 		//////

@@ -7,6 +7,7 @@ IFSeqSteps {
 		this.preset01('seqA');
 		this.preset01('seqB');
 		this.preset01('seqC');
+		this.preset01('seqD');
 		this.makeResponders;
 		//this.backward;
 
@@ -19,9 +20,9 @@ IFSeqSteps {
 		~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
 		~stepNum2.source  =  Pseq([
 			1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,
-			1,15,3,14,5,13,7,12,1,10,3,12,13,14,15,16
 		], inf);
-		~stepNum3.source  =  Pseq([
+		~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
+		~stepNum4.source  =  Pseq([
 			1,2,3,4,1,6,3,8,
 			1,2,3,4,5,10,7,12,
 			1,2,3,4,1,6,3,8,
@@ -46,13 +47,37 @@ IFSeqSteps {
 			9,10,11,12,13,14,15,16
 
 		], inf);
+		~stepNum4.source  =  Pseq([
+			1,2,3,4,1,6,3,8,
+			1,2,3,4,5,10,7,12,
+			1,2,3,4,1,6,3,8,
+			1,2,3,4,5,14,7,15,
+			9,10,11,12,13,14,15,16
+
+		], inf);
 	}
 	*long03{
 		~tOSCAdrr.sendMsg('stepsLabel', 'Long 01');
 
 		~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
 		~stepNum2.source  =   Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);
-		~stepNum3.source  =  Pseq([
+		~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);
+		~stepNum4.source  =  Pseq([
+			1,2,3,4,1,6,3,8,
+			1,11,3,12,5,10,7,12,
+			1,9,3,4,1,6,3,8,
+			1,2,3,15,5,14,7,15,
+			9,10,11,12,13,14,15,16
+
+		], inf);
+	}
+	*long04{
+		~tOSCAdrr.sendMsg('stepsLabel', 'Long 01');
+
+		~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8], inf);
+		~stepNum2.source  =   Pseq([1,2,3,4,5,6,7,8], inf);
+		~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);
+		~stepNum4.source  =  Pseq([
 			1,2,3,4,1,6,3,8,
 			1,11,3,12,5,10,7,12,
 			1,9,3,4,1,6,3,8,
@@ -125,7 +150,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 
@@ -134,7 +160,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 
@@ -143,7 +170,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*preset04 {|seq|
@@ -151,7 +179,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*preset05 {|seq|
@@ -159,7 +188,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*preset06 {|seq|
@@ -167,7 +197,8 @@ IFSeqSteps {
 		~seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*preset07 {|seq|
@@ -175,7 +206,8 @@ IFSeqSteps {
 		seq.switch(
 			'seqA', {~stepNum.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			'seqB', {~stepNum2.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+			'seqC', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*preset08 {|seq|
@@ -190,7 +222,8 @@ IFSeqSteps {
 					1,2,3,4,5,6,7,8,
 					9,10,11,12,13,14,15,16
 				], inf);
-			}
+			},
+			'seqD', {~stepNum3.source  =  Pseq([1,2,3,4,5,6,7,8], inf);}
 		);
 	}
 	*second8back {
@@ -257,6 +290,23 @@ IFSeqSteps {
 		IFSeqSteps.oscResp(respName:'seq3StepBut14', oscName:'seqStep46', playDir:'sqC6');
 		IFSeqSteps.oscResp(respName:'seq3StepBut15', oscName:'seqStep47', playDir:'sqC7');
 		IFSeqSteps.oscResp(respName:'seq3StepBut16', oscName:'seqStep48', playDir:'sqC8');
+		//Seq4
+		IFSeqSteps.oscResp(respName:'seq4StepBut01', oscName:'seqStep49', playDir:'sqD1');
+		IFSeqSteps.oscResp(respName:'seq4StepBut02', oscName:'seqStep50', playDir:'sqD2');
+		IFSeqSteps.oscResp(respName:'seq4StepBut03', oscName:'seqStep51', playDir:'sqD3');
+		IFSeqSteps.oscResp(respName:'seq4StepBut04', oscName:'seqStep52', playDir:'sqD4');
+		IFSeqSteps.oscResp(respName:'seq4StepBut05', oscName:'seqStep53', playDir:'sqD5');
+		IFSeqSteps.oscResp(respName:'seq4StepBut06', oscName:'seqStep54', playDir:'sqD6');
+		IFSeqSteps.oscResp(respName:'seq4StepBut07', oscName:'seqStep55', playDir:'sqD7');
+		IFSeqSteps.oscResp(respName:'seq4StepBut08', oscName:'seqStep56', playDir:'sqD8');
+		IFSeqSteps.oscResp(respName:'seq4StepBut09', oscName:'seqStep57', playDir:'sqD1');
+		IFSeqSteps.oscResp(respName:'seq4StepBut10', oscName:'seqStep58', playDir:'sqD2');
+		IFSeqSteps.oscResp(respName:'seq4StepBut11', oscName:'seqStep59', playDir:'sqD3');
+		IFSeqSteps.oscResp(respName:'seq4StepBut12', oscName:'seqStep60', playDir:'sqD4');
+		IFSeqSteps.oscResp(respName:'seq4StepBut13', oscName:'seqStep61', playDir:'sqD5');
+		IFSeqSteps.oscResp(respName:'seq4StepBut14', oscName:'seqStep62', playDir:'sqD6');
+		IFSeqSteps.oscResp(respName:'seq4StepBut15', oscName:'seqStep63', playDir:'sqD7');
+		IFSeqSteps.oscResp(respName:'seq4StepBut16', oscName:'seqStep64', playDir:'sqD8');
 	}
 	*oscResp{|respName,oscName,playDir|
 		OSCdef(respName, {
@@ -287,7 +337,16 @@ IFSeqSteps {
 				'sqC5',{if ( msg[1]==1, {this.preset05('seqC');});},
 				'sqC6',{if ( msg[1]==1, {this.preset06('seqC');});},
 				'sqC7',{if ( msg[1]==1, {this.preset07('seqC');});},
-				'sqC8',{if ( msg[1]==1, {this.preset08('seqC');});}
+				'sqC8',{if ( msg[1]==1, {this.preset08('seqC');});},
+
+				'sqD1',{if ( msg[1]==1, {this.preset01('seqD');});},
+				'sqD2',{if ( msg[1]==1, {this.preset02('seqD');});},
+				'sqD3',{if ( msg[1]==1, {this.preset03('seqD');});},
+				'sqD4',{if ( msg[1]==1, {this.preset04('seqD');});},
+				'sqD5',{if ( msg[1]==1, {this.preset05('seqD');});},
+				'sqD6',{if ( msg[1]==1, {this.preset06('seqD');});},
+				'sqD7',{if ( msg[1]==1, {this.preset07('seqD');});},
+				'sqD8',{if ( msg[1]==1, {this.preset08('seqD');});}
 
 			);
 		},path:oscName);

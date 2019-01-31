@@ -114,13 +114,13 @@ IFPitchVChord {
 			'/killAll'
 		);
 		//APC Pitch Samp Button
-		~countPSampApc=0;
-		~apcPSampButton.free;
-		~apcPSampButton=MIDIFunc.noteOn({
+		~countPVChordApc=0;
+		~apcPVChordButton.free;
+		~apcPVChordButton=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~countPSampApc = ~countPSampApc + 1;
-				~countPSampApc.switch(
+				~countPVChordApc = ~countPVChordApc + 1;
+				~countPVChordApc.switch(
 					0,{},
 					1, {
 						~local.sendMsg('pitchVChord', 1);
@@ -128,7 +128,7 @@ IFPitchVChord {
 					2,{
 						~local.sendMsg('pitchVChord', 0);
 						~vKeys.allNotesOff(0);
-						~countPSampApc=0;
+						~countPVChordApc=0;
 					}
 				)}
 			);

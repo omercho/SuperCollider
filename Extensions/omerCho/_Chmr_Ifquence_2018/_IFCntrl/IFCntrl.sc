@@ -17,22 +17,14 @@ IFCntrl {
 			this.mulFaders;
 			this.main;
 			this.parts;
-
-
 			});*/
 		}
 	}
-
 	*loadAll {
 		this.main;
 		//this.mutes;
 	}
-
-
-
-
 	*main {
-
 		~togMain.free;
 		~togMain = OSCFunc({
 			arg msg;
@@ -58,7 +50,6 @@ IFCntrl {
 		},
 		'/1/toggleMain'
 		);
-
 		~tempoFader.free;
 		~tempoFader= OSCFunc({
 			arg msg,val;
@@ -66,7 +57,6 @@ IFCntrl {
 			IFProjectGlobals.setTempo(msg[1]);
 			~tOSCAdrr.sendMsg('tempoLabel', msg[1]);
 			~tOSCAdrr.sendMsg('tempoFader', msg[1]);
-
 		},
 		'/tempoFader'
 		);
@@ -120,9 +110,7 @@ IFCntrl {
 						~tempoClockLedCount = 0;
 						~tOSCAdrr.sendMsg('clockLed', 0);
 					}
-
 				);
-
 			},{
 
 			}
@@ -345,8 +333,8 @@ IFCntrl {
 
 			~tOSCAdrr.sendMsg('AllMasterFXxy1',msg[1], msg[2]);
 
-			~mdOut.control(1, 9, msg[1]*127);
-			~mdOut.control(1, 10, msg[2]*127);
+			~mdOut.control(1, 9, msg[1]*127);//AllMasterFX / Y1
+			~mdOut.control(1, 10, msg[2]*127);//AllMasterFX / X1
 		},
 		'AllMasterFXxy1'
 		);
@@ -387,17 +375,9 @@ IFCntrl {
 			val1=msg[1];
 			val2=msg[2];
 			if ( ~volcaBoolean==1, {
-				//~mdOut.control(5, 13, vel1); // IFVBass CutX
-				//~mdOut.control(6, 13, vel1); // IFVKeys CutX
 				~mdOut.control(7, 13, vel1); // IFSamp CutX
-				~vKeys.control(0, ~vcfCut, vel1/1.8);
-				//~vMopho.control(~chMopho, 104, vel1); //Filter Key Amnt
-
-				//~mdOut.control(5, 14, vel2); // IFVBass CutY
-				//~mdOut.control(6, 14, vel2); // IFVKeys CutY
-				//~mdOut.control(7, 14, vel2); // IFSamps CutY
+				~vKeys.control(0, ~vcfCut, 5+vel1/1.8);
 				~vBass.control(0, ~cutOff, vel2);
-				//~vMopho.control(~chMopho, 105, vel2); //Filter Audio Mod
 				~tOSCAdrr.sendMsg('/cutAll',msg[1], msg[2]);
 			},
 			{
@@ -424,16 +404,10 @@ IFCntrl {
 			if ( ~volcaBoolean==1, {
 				//~mdOut.control(5, 13, vel1); // IFVBass CutX
 				//~mdOut.control(6, 13, vel1); // IFVKeys CutX
-				//~vKeys.control(0, ~vcfCut, vel1/1.8);
-				//~vBass.control(0, ~gateTime, vel1);
-				~mdOut.control(7, 13, vel1); // IFSamp CutX
-				~vMopho.control(~chMopho, 104, vel1); //Filter Key Amnt
-
 				//~mdOut.control(5, 14, vel2); // IFVBass CutY
 				//~mdOut.control(6, 14, vel2); // IFVKeys CutY
-				//~vBass.control(0, ~cutOff, vel2);
+				~vMopho.control(~chMopho, 104, vel1); //Filter Key Amnt
 				~vMopho.control(~chMopho, 86, vel2); //Env3 Amnt
-				~mdOut.control(7, 14, vel2); // IFSamps CutY
 				~tOSCAdrr.sendMsg('/cutMel2',msg[1], msg[2]);
 			},
 			{
@@ -443,7 +417,27 @@ IFCntrl {
 		},
 		'/cutMel2'
 		);
-
+		~cutMel3XY.free;
+		~cutMel3XY= OSCFunc({
+			arg msg,vel1, vel2,val1,val2;
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			val1=msg[1];
+			val2=msg[2];
+			if ( ~volcaBoolean==1, {
+				~vMopho.control(~chMopho, 104, vel1); //Filter Key Amnt
+				~vMopho.control(~chMopho, 86, vel2); //Env3 Amnt
+				~mdOut.control(7, 14, vel2); // IFSamps CutY
+				~mdOut.control(7, 13, vel1); // IFSamp CutX
+				~tOSCAdrr.sendMsg('/cutMel3',msg[1], msg[2]);
+			},
+			{
+				~tOSCAdrr.sendMsg('/cutMel3',msg[1], msg[2]);
+			}
+			);
+		},
+		'/cutMel3'
+		);
 		~susMelLedVal;
 		~susMelMulFader.free;
 		~susMelMulFader= OSCFunc({

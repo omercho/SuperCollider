@@ -117,12 +117,12 @@ IFMopho {
 			\chan, ~chMopho,
 			\type, \midi, \midiout,~vMopho, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1MophoP.next],~actMophoP),
-			\degree, Pseq([~nt1MophoP.next], 1),
-			\amp, Pseq([~volMophoP.next*~amp1MophoP.next], 1),
-			\sustain, Pseq([~sus1MophoP.next],1)*~susMulMopho,
-			\mtranspose, Pseq([~transMophoP.next], 1)+~trMopho+~transShufMophoP.next,
-			\octave, Pseq([~octMophoP.next], 1)+~octMulMopho,
-			\harmonic, Pseq([~hrmMophoP.next], 1)+~harmMopho
+			\degree, Pseq([~nt1MophoP.next], inf),
+			\amp, Pseq([~volMophoP.next*~amp1MophoP.next], inf),
+			\sustain, Pseq([~sus1MophoP.next],inf)*~susMulMopho,
+			\mtranspose, Pseq([~transMophoP.next], inf)+~trMopho+~transShufMophoP.next,
+			\octave, Pseq([~octMophoP.next], inf)+~octMulMopho,
+			\harmonic, Pseq([~hrmMophoP.next], inf)+~harmMopho
 		).play;
 
 		//VMopho
@@ -274,7 +274,7 @@ IFMopho {
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('attMopho', val);
 				//~vMopho.control(~chMopho, ~egAtt, vel+0.01);
-				~vMopho.control(~chMopho, 118, vel+0.01); //Amp Att
+				//~vMopho.control(~chMopho, 118, vel+0.01); //Amp Att
 				~attMopho=val+0.01;
 			},{
 				~tOSCAdrr.sendMsg('attMopho', val);
@@ -292,7 +292,7 @@ IFMopho {
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('susMopho', msg[1]);
-				~vMopho.control(~chMopho, 75, vel); //Amp Sus
+				//~vMopho.control(~chMopho, 75, vel); //Amp Sus
 				~susLevMopho=val;
 			},{
 				~tOSCAdrr.sendMsg('susMopho', msg[1]);
@@ -311,8 +311,8 @@ IFMopho {
 				~tOSCAdrr.sendMsg('decMopho', val);
 				~decMopho=val;
 				~relMopho=val*0.7;
-				~vMopho.control(~chMopho, 119, vel); //Amp Dec
-				~vMopho.control(~chMopho, 76, vel/2);
+				//~vMopho.control(~chMopho, 119, vel); //Amp Dec
+				//~vMopho.control(~chMopho, 76, vel/2);
 			},{
 				~tOSCAdrr.sendMsg('decMopho', val);
 				~decMopho=val;
@@ -365,7 +365,7 @@ IFMopho {
 			vel=val*127;
 
 			~tOSCAdrr.sendMsg('lfo1AmntMopho', val);
-			Mopho.control(1, 0, 39, 0, vel);//0->127  LFO1 Amount
+			//Mopho.control(1, 0, 39, 0, vel);//0->127  LFO1 Amount
 		},
 		'/lfo1AmntMopho'
 		);

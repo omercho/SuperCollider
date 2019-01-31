@@ -35,6 +35,7 @@ IFRoot {
 					IFSequence.step(~stepNumP.next);
 					IFSequence.step2(~stepNum2P.next);
 					IFSequence.step3(~stepNum3P.next);
+					IFSequence.step4(~stepNum4P.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
 					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					IFKick(~tmMulKickP.next*~tmKickP.next);

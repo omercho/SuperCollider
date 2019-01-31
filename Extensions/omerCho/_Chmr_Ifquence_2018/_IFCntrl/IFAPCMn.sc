@@ -522,9 +522,7 @@ IFAPCMn{
 		~apcMnFad7.free;
 		~apcMnFad7=MIDIFunc.cc( {
 			arg vel;
-			~tOSCAdrr.sendMsg('volMopho', vel/127);
-			~volMopho.source = (vel/127);
-			Mopho.voiVol(vel);
+			Mopho.set(\voiVol_lcl, vel/127);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd7);
 
 		~apcMnFad8.free;

@@ -62,16 +62,10 @@ IFPitchKeys {
 				~countPKeysApc = ~countPKeysApc + 1;
 				~countPKeysApc.switch(
 					0,{},
-					1, {
-
-						~local.sendMsg('pitchKeys', 1);
-
-
-					},
+					1, {~local.sendMsg('pitchKeys', 1);},
 					2,{
 						~local.sendMsg('pitchKeys', 1);
 						~countPKeysApc=0;
-
 					}
 				)}
 			);

@@ -44,6 +44,8 @@ IFSequence {
 		~stepNum2P= Pseq([~stepNum2], inf).asStream;
 		~stepNum3 = PatternProxy( Pseq([0], inf));
 		~stepNum3P= Pseq([~stepNum3], inf).asStream;
+		~stepNum4 = PatternProxy( Pseq([0], inf));
+		~stepNum4P= Pseq([~stepNum4], inf).asStream;
 	}
 
 	*step{|i|
@@ -54,6 +56,9 @@ IFSequence {
 	}
 	*step3{|i|
 		this.st3(i);
+	}
+	*step4{|i|
+		this.st4(i);
 	}
 	/**step{|i|
 		case
@@ -255,7 +260,13 @@ IFSequence {
 		IFSeqMopho.stepPack(index);
 		IFSeqPat.stepPack(index);
 	}
-
+	*st4{|index|
+		this.led4(index);
+		IFLpMnSteps.led4(index);
+		IFSeqSamp.stepPack(index);
+		IFSeqMopho.stepPack(index);
+		IFSeqPat.stepPack(index);
+	}
 	*led{|index|
 		index.switch(
 			1,{this.led01;},
@@ -316,6 +327,27 @@ IFSequence {
 			14,{this.led46;},
 			15,{this.led47;},
 			16,{this.led48;}
+		);
+
+	}
+	*led4{|index|
+		index.switch(
+			1,{this.led49;},
+			2,{this.led50;},
+			3,{this.led51;},
+			4,{this.led52;},
+			5,{this.led53;},
+			6,{this.led54;},
+			7,{this.led55;},
+			8,{this.led56;},
+			9,{this.led57;},
+			10,{this.led58;},
+			11,{this.led59;},
+			12,{this.led60;},
+			13,{this.led61;},
+			14,{this.led62;},
+			15,{this.led63;},
+			16,{this.led64;}
 		);
 
 	}
@@ -513,7 +545,71 @@ IFSequence {
 		"Seq 3 step 16----".postln;
 		fork{~tOSCAdrr.sendMsg('seq3Led16', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq3Led16', 0);};
 	}
-
+	//-----------4
+	*led49 {|delay=0.3|
+		"Seq 4 step 01-".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led01', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led01', 0);};
+	}
+	*led50 {
+		"Seq 4 step 02--".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led02', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led02', 0);};
+	}
+	*led51 {
+		"Seq 4 step 03---".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led03', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led03', 0);};
+	}
+	*led52 {
+		"Seq 4 step 04----".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led04', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led04', 0);};
+	}
+	*led53 {
+		"Seq 4 step 05-".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led05', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led05', 0);};
+	}
+	*led54 {
+		"Seq 4 step 06--".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led06', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led06', 0);};
+	}
+	*led55 {
+		"Seq 4 step 07---".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led07', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led07', 0);};
+	}
+	*led56 {
+		"Seq 4 step 08----".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led08', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led08', 0);};
+	}
+	*led57 {
+		"Seq 4 step 09-".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led09', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led09', 0);};
+	}
+	*led58 {
+		"Seq 4 step 10--".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led10', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led10', 0);};
+	}
+	*led59 {
+		"Seq 4 step 11---".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led11', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led11', 0);};
+	}
+	*led60 {
+		"Seq 4 step 12----".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led12', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led12', 0);};
+	}
+	*led61 {
+		"Seq 4 step 13-".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led13', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led13', 0);};
+	}
+	*led62 {
+		"Seq 4 step 14--".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led14', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led14', 0);};
+	}
+	*led63 {
+		"Seq 4 step 15---".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led15', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led15', 0);};
+	}
+	*led64 {
+		"Seq 4 step 16----".postln;
+		fork{~tOSCAdrr.sendMsg('seq4Led16', 1); 0.3.wait; ~tOSCAdrr.sendMsg('seq4Led16', 0);};
+	}
 	/*
 	*st01{
 		this.led01;

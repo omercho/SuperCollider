@@ -71,9 +71,10 @@ NoteOnResponder.removeAll
 ~mdOut.control(1, 12, ~midiVel); //AllMaster / Grain
 ~mdOut.control(1, 13, ~midiVel); //AllMaster / Send C
 ~mdOut.control(1, 15, ~midiVel); //Cln Drm Vol
-~mdOut.control(1, 16, ~midiVel); //Cln Keys Vol
+//~mdOut.control(1, 16, ~midiVel); //Cln Keys Vol
 ~mdOut.control(1, 17, ~midiVel); //Cln Samp Vol
 ~mdOut.control(1, 18, ~midiVel); //Cln Mopho Vol
+~mdOut.control(1, 19, ~midiVel); //Cln Keys Vol
 ~mdOut.control(1, 127, ~midiVel); //AllMasterFX / Track Vol
 
 

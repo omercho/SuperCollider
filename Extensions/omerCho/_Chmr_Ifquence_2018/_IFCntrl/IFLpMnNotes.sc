@@ -127,40 +127,7 @@ IFLpMnNotes{
 		~lpMn.noteOn(~lpMnCh, ~lpMnBut64, ~orng1); //But 8
 	}
 
-	*makeOSCResponders{
-		//ntPlus
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn00', oscName:'nt_0', playDir:'ntP0');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn01', oscName:'nt_1', playDir:'ntP1');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn02', oscName:'nt_2', playDir:'ntP2');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn03', oscName:'nt_3', playDir:'ntP3');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn04', oscName:'nt_4', playDir:'ntP4');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn05', oscName:'nt_5', playDir:'ntP5');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn06', oscName:'nt_6', playDir:'ntP6');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn07', oscName:'nt_7', playDir:'ntP7');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn08', oscName:'nt_8', playDir:'ntP8');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn09', oscName:'nt_9', playDir:'ntP9');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn10', oscName:'nt_10', playDir:'ntP10');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn11', oscName:'nt_11', playDir:'ntP11');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn12', oscName:'nt_12', playDir:'ntP12');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn13', oscName:'nt_13', playDir:'ntP13');
-		IFLpMnNotes.oscResp(respName:'notePlusLpMn14', oscName:'nt_14', playDir:'ntP14');
-		//ntMinus
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn01', oscName:'nt-1', playDir:'ntM1');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn02', oscName:'nt-2', playDir:'ntM2');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn03', oscName:'nt-3', playDir:'ntM3');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn04', oscName:'nt-4', playDir:'ntM4');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn05', oscName:'nt-5', playDir:'ntM5');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn06', oscName:'nt-6', playDir:'ntM6');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn07', oscName:'nt-7', playDir:'ntM7');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn08', oscName:'nt-8', playDir:'ntM8');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn09', oscName:'nt-9', playDir:'ntM9');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn10', oscName:'nt-10', playDir:'ntM10');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn11', oscName:'nt-11', playDir:'ntM11');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn12', oscName:'nt-12', playDir:'ntM12');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn13', oscName:'nt-13', playDir:'ntM13');
-		IFLpMnNotes.oscResp(respName:'noteMinusLpMn14', oscName:'nt-14', playDir:'ntM14');
 
-	}
 	*oscResp{|respName,oscName,playDir|
 		OSCdef(respName, {
 			arg msg;
@@ -199,6 +166,40 @@ IFLpMnNotes{
 
 			);
 		},path:oscName);
+	}
+	*makeOSCResponders{
+		//ntPlus
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn00', oscName:'nt_0', playDir:'ntP0');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn01', oscName:'nt_1', playDir:'ntP1');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn02', oscName:'nt_2', playDir:'ntP2');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn03', oscName:'nt_3', playDir:'ntP3');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn04', oscName:'nt_4', playDir:'ntP4');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn05', oscName:'nt_5', playDir:'ntP5');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn06', oscName:'nt_6', playDir:'ntP6');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn07', oscName:'nt_7', playDir:'ntP7');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn08', oscName:'nt_8', playDir:'ntP8');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn09', oscName:'nt_9', playDir:'ntP9');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn10', oscName:'nt_10', playDir:'ntP10');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn11', oscName:'nt_11', playDir:'ntP11');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn12', oscName:'nt_12', playDir:'ntP12');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn13', oscName:'nt_13', playDir:'ntP13');
+		IFLpMnNotes.oscResp(respName:'notePlusLpMn14', oscName:'nt_14', playDir:'ntP14');
+		//ntMinus
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn01', oscName:'nt-1', playDir:'ntM1');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn02', oscName:'nt-2', playDir:'ntM2');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn03', oscName:'nt-3', playDir:'ntM3');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn04', oscName:'nt-4', playDir:'ntM4');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn05', oscName:'nt-5', playDir:'ntM5');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn06', oscName:'nt-6', playDir:'ntM6');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn07', oscName:'nt-7', playDir:'ntM7');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn08', oscName:'nt-8', playDir:'ntM8');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn09', oscName:'nt-9', playDir:'ntM9');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn10', oscName:'nt-10', playDir:'ntM10');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn11', oscName:'nt-11', playDir:'ntM11');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn12', oscName:'nt-12', playDir:'ntM12');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn13', oscName:'nt-13', playDir:'ntM13');
+		IFLpMnNotes.oscResp(respName:'noteMinusLpMn14', oscName:'nt-14', playDir:'ntM14');
+
 	}
 }
 

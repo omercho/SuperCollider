@@ -16,7 +16,9 @@ IFLoad{
 	*loadVolca{
 		fork{
 			Server.default.doWhenBooted({
+				"Booting Ifquence: CHMR 2019".postln;
 				~volcaBoolean=1;
+				Mopho.load;
 				IFProjectGlobals.load;
 				0.1.wait;
 				IFSequence.loadAll;
@@ -29,11 +31,22 @@ IFLoad{
 				0.1.wait;
 				IFTracks.loadButtons;
 				0.1.wait;
+				"Loading Pitches: Bass".postln;
 				IFPitchBass.loadAll;
+				0.1.wait;
+				"Loading Pitches: Keys".postln;
 				IFPitchKeys.loadAll;
+				0.1.wait;
+				"Loading Pitches: Samp".postln;
 				IFPitchSamp.loadAll;
+				0.1.wait;
+				"Loading Pitches: Mopho".postln;
 				IFPitchMopho.loadAll;
+				0.1.wait;
+				"Loading Pitches: Ext".postln;
 				IFPitchExt.loadAll;
+				0.1.wait;
+				"Loading Pitches: VChord".postln;
 				IFPitchVChord.loadAll;
 				IFShuf.load;
 				0.1.wait;
@@ -48,7 +61,9 @@ IFLoad{
 				//0.1.wait;
 				//IFVSamp.load;
 				0.1.wait;
+				"Loading Instruments".postln;
 				IFStat.load;
+				0.1.wait;
 				IFKick.load;
 				0.1.wait;
 				IFSnr.load;
@@ -104,10 +119,19 @@ IFLoad{
 				0.1.wait;
 				IFTracks.loadButtons;
 				0.1.wait;
+				"Loading Pitches".postln;
 				IFPitchBass.loadAll;
+				0.1.wait;
+				"Loading Pitches".postln;
 				IFPitchKeys.loadAll;
+				0.1.wait;
+				"Loading Pitches".postln;
 				IFPitchSamp.loadAll;
+				0.1.wait;
+				"Loading Pitches".postln;
 				IFPitchExt.loadAll;
+				0.1.wait;
+				"Loading Pitches".postln;
 				IFPitchVChord.loadAll;
 				IFShuf.load;
 				0.1.wait;
@@ -119,7 +143,9 @@ IFLoad{
 				//IFVTom.globals; IFVTom.preSet; IFVTom.default; IFVTom.osc;
 				//IFVHat.globals; IFVHat.preSet; IFVHat.default; IFVHat.osc;
 				0.1.wait;
+				"Loading Instruments".postln;
 				IFStat.load;
+				0.1.wait;
 				IFKick.load;
 				0.1.wait;
 				IFSnr.load;

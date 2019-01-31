@@ -16,16 +16,6 @@ IFTrack02 {
 			},
 			'/shiftParts'
 		);
-		// SHUFFLES from IFShuf
-		IFShuf.loadKick(0,0,2,0,0,0,7,4,0);
-		IFShuf.loadSnr(1,0,2,0,3,0,1,2,0);
-		IFShuf.loadHat(0,1,0,2,0,3,0,4,0);
-		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
-		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
-		IFShuf.loadSamp(0,2,0,3,2,1,6,0,4);
-		IFShuf.loadMopho(0,2,0,1,2,4,2,0,6);
-		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
-		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
 
 		//SampInstruments
 		~mdOut.control(0, 71, 0); //Track 01
@@ -45,6 +35,16 @@ IFTrack02 {
 		~mdOut.control(0, 86, 0); //Track 06
 		~mdOut.control(0, 87, 0); //Track 07
 		~mdOut.control(0, 88, 0); //Track 08
+		// SHUFFLES from IFShuf
+		IFShuf.loadKick(0,0,2,0,0,0,7,4,0);
+		IFShuf.loadSnr(1,0,2,0,3,0,1,2,0);
+		IFShuf.loadHat(0,1,0,2,0,3,0,4,0);
+		IFShuf.loadBass(0,1,0,4,0,2,0,0,2);
+		IFShuf.loadKeys(0,4,2,0,4,6,6,0,2);
+		IFShuf.loadSamp(0,2,0,3,2,1,6,0,4);
+		IFShuf.loadMopho(0,2,0,1,2,4,2,0,6);
+		IFShuf.harmDrum(0,-1,2,-3,2,-5,6,8,7);
+		IFShuf.harmMel(0,-1,2,-3,0,-2,6,1,3);
 	}
 	*setActs{
 		IFAPCMn.actLine1(1,0,0,0);

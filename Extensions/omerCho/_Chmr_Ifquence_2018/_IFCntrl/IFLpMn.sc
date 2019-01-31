@@ -290,6 +290,15 @@ IFLpMn{
 		~lpMn.control(0, 109, 0); //But 6
 		~lpMn.control(0, 110, 0); //But 7
 		~lpMn.control(0, 111, 0); //But 8
+		//Shifts
+		~lpMn.noteOff(0, 8, 0); //But 1
+		~lpMn.noteOff(0, 24, 0); //But 2
+		~lpMn.noteOff(0, 40, 0); //But 3
+		~lpMn.noteOff(0, 56, 0); //But 4
+		~lpMn.noteOff(0, 72, 0); //But 5
+		~lpMn.noteOff(0, 88, 0); //But 6
+		~lpMn.noteOff(0, 104, 0); //But 7
+		~lpMn.noteOff(0, 120, 0); //But 8
 
 	}
 
