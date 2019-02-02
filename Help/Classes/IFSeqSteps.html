@@ -1,42 +1,47 @@
-<html><head><title>IFSeqSteps</title>
+<!doctype html><html lang='en'><head><title>IFSeqSteps | SuperCollider 3.9.1 Help</title>
 <link rel='stylesheet' href='./../scdoc.css' type='text/css' />
 <link rel='stylesheet' href='./../frontend.css' type='text/css' />
 <link rel='stylesheet' href='./../custom.css' type='text/css' />
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+<script>
+var helpRoot = './..';
+var scdoc_title = 'IFSeqSteps';
+var scdoc_sc_version = '3.9.1';
+</script>
 <script src='./../scdoc.js' type='text/javascript'></script>
 <script src='./../docmap.js' type='text/javascript'></script>
 <script src='./../prettify.js' type='text/javascript'></script>
 <script src='./../lang-sc.js' type='text/javascript'></script>
-<script src='./../MathJax/MathJax.js?config=TeX-AMS_HTML,scmathjax' type='text/javascript'></script>
-<script type='text/javascript'>var helpRoot='./..';</script>
 </head>
-<ul id='menubar'></ul>
 <body onload='fixTOC();prettyPrint()'>
-<div class='contents'>
-<div class='header'>
-<div id='label'>SuperCollider CLASSES (extension)</div>
-<div id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></div>
-<h1>IFSeqSteps</h1>
-<div id='summary'>(Undocumented class)</div>
-</div>
-<div class='subheader'>
-<div id='filename'>Source: /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/<a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_OG_Ifquence_SC/IFSeqSteps.sc'>IFSeqSteps.sc</a></div><div id='superclasses'>Inherits from: <a href="../Classes/Object.html">Object</a></div>
-</div>
 <div id='toc'>
-<ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
+<div id='toctitle'>IFSeqSteps: table of contents</div>
+<span class='toc_search'>Filter: <input id='toc_search'></span><ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
 <ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
-<ul class='toc'><li class='toc2'><a href='#Inherited class methods'>Inherited class methods</a></li>
-<li class='toc2'><a href='#Undocumented class methods'>Undocumented class methods</a></li>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20class%20methods'>Inherited class methods</a></li>
+<li class='toc2'><a href='#Undocumented%20class%20methods'>Undocumented class methods</a></li>
 <ul class='toc'><li class='toc3'><a href='#*backward'>backward</a> </li>
 <li class='toc3'><a href='#*first8'>first8</a> </li>
 <li class='toc3'><a href='#*first8back'>first8back</a> </li>
 <li class='toc3'><a href='#*forward'>forward</a> </li>
+<li class='toc3'><a href='#*forward2'>forward2</a> </li>
 <li class='toc3'><a href='#*load'>load</a> </li>
 <li class='toc3'><a href='#*loadDefault'>loadDefault</a> </li>
+<li class='toc3'><a href='#*long01'>long01</a> </li>
+<li class='toc3'><a href='#*long02'>long02</a> </li>
+<li class='toc3'><a href='#*long03'>long03</a> </li>
+<li class='toc3'><a href='#*long04'>long04</a> </li>
+<li class='toc3'><a href='#*makeResponders'>makeResponders</a> </li>
 <li class='toc3'><a href='#*mirror'>mirror</a> </li>
+<li class='toc3'><a href='#*oscResp'>oscResp</a> </li>
 <li class='toc3'><a href='#*preset01'>preset01</a> </li>
 <li class='toc3'><a href='#*preset02'>preset02</a> </li>
 <li class='toc3'><a href='#*preset03'>preset03</a> </li>
+<li class='toc3'><a href='#*preset04'>preset04</a> </li>
+<li class='toc3'><a href='#*preset05'>preset05</a> </li>
+<li class='toc3'><a href='#*preset06'>preset06</a> </li>
+<li class='toc3'><a href='#*preset07'>preset07</a> </li>
+<li class='toc3'><a href='#*preset08'>preset08</a> </li>
 <li class='toc3'><a href='#*random'>random</a> </li>
 <li class='toc3'><a href='#*second8'>second8</a> </li>
 <li class='toc3'><a href='#*second8back'>second8back</a> </li>
@@ -44,32 +49,56 @@
 <li class='toc3'><a href='#*slide1'>slide1</a> </li>
 <li class='toc3'><a href='#*slide2'>slide2</a> </li>
 </ul></ul><li class='toc1'><a href='#instancemethods'>Instance methods</a></li>
-<ul class='toc'><li class='toc2'><a href='#Inherited instance methods'>Inherited instance methods</a></li>
-</ul><li class='toc1'><a href='#Help template'>Help template</a></li>
-<ul class='toc'></ul></ul></div><h2><a class='anchor' name='description'>Description</a></h2>
+<ul class='toc'><li class='toc2'><a href='#Inherited%20instance%20methods'>Inherited instance methods</a></li>
+</ul><li class='toc1'><a href='#Help%20template'>Help template</a></li>
+<ul class='toc'></ul></ul></div><div class='contents'>
+<div id='menubar'></div>
+<div class='header'>
+<div id='label'>
+<span id='folder'>Classes (extension)</span>
+ | <span id='categories'><a href='./../Browse.html#Undocumented classes'>Undocumented classes</a></span>
+</div><h1>IFSeqSteps<span id='superclasses'> : <a href="../Classes/Object.html">Object</a></span>
+<div class='extension-indicator-ctr' title='This help file originates from a third-party quark or plugin for SuperCollider.'><img class='extension-indicator-icon' alt='Extension' src='./../images/plugin.png'><span class='extension-indicator-text'>Extension</span></div></h1>
+<div id='summary'>(Undocumented class)</div>
+</div>
+<div class='subheader'>
+<div id='filename'>Source: <a href='file:///Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqSteps.sc' title='/Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence_2018/_IFSequence/IFSeqGlobals/IFSeqSteps.sc'>IFSeqSteps.sc</a></div></div>
+<h2><a class='anchor' name='description'>Description</a></h2>
 
 <p>This class is missing documentation.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
-<h3><a class='anchor' name='Inherited class methods'>Inherited class methods</a></h3>
-<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented class methods'>Undocumented class methods</a></h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*backward' href='./../Overviews/Methods.html#backward'>backward</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*first8' href='./../Overviews/Methods.html#first8'>first8</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*first8back' href='./../Overviews/Methods.html#first8back'>first8back</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*forward' href='./../Overviews/Methods.html#forward'>forward</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*load' href='./../Overviews/Methods.html#load'>load</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*loadDefault' href='./../Overviews/Methods.html#loadDefault'>loadDefault</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*mirror' href='./../Overviews/Methods.html#mirror'>mirror</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*preset01' href='./../Overviews/Methods.html#preset01'>preset01</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*preset02' href='./../Overviews/Methods.html#preset02'>preset02</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*preset03' href='./../Overviews/Methods.html#preset03'>preset03</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*random' href='./../Overviews/Methods.html#random'>random</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*second8' href='./../Overviews/Methods.html#second8'>second8</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*second8back' href='./../Overviews/Methods.html#second8back'>second8back</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*shuf' href='./../Overviews/Methods.html#shuf'>shuf</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*slide1' href='./../Overviews/Methods.html#slide1'>slide1</a> </h3>
-<h3 class='cmethodname'><span class='methprefix'>*</span><a name='*slide2' href='./../Overviews/Methods.html#slide2'>slide2</a> </h3>
+<h3><a class='anchor' name='Inherited%20class%20methods'>Inherited class methods</a></h3>
+<div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented%20class%20methods'>Undocumented class methods</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*backward' href='./../Overviews/Methods.html#backward'>backward</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*first8' href='./../Overviews/Methods.html#first8'>first8</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*first8back' href='./../Overviews/Methods.html#first8back'>first8back</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*forward' href='./../Overviews/Methods.html#forward'>forward</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*forward2' href='./../Overviews/Methods.html#forward2'>forward2</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*load' href='./../Overviews/Methods.html#load'>load</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*loadDefault' href='./../Overviews/Methods.html#loadDefault'>loadDefault</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*long01' href='./../Overviews/Methods.html#long01'>long01</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*long02' href='./../Overviews/Methods.html#long02'>long02</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*long03' href='./../Overviews/Methods.html#long03'>long03</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*long04' href='./../Overviews/Methods.html#long04'>long04</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*makeResponders' href='./../Overviews/Methods.html#makeResponders'>makeResponders</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*mirror' href='./../Overviews/Methods.html#mirror'>mirror</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*oscResp' href='./../Overviews/Methods.html#oscResp'>oscResp</a>(<span class='argstr'>respName</span>, <span class='argstr'>oscName</span>, <span class='argstr'>playDir</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset01' href='./../Overviews/Methods.html#preset01'>preset01</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset02' href='./../Overviews/Methods.html#preset02'>preset02</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset03' href='./../Overviews/Methods.html#preset03'>preset03</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset04' href='./../Overviews/Methods.html#preset04'>preset04</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset05' href='./../Overviews/Methods.html#preset05'>preset05</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset06' href='./../Overviews/Methods.html#preset06'>preset06</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset07' href='./../Overviews/Methods.html#preset07'>preset07</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*preset08' href='./../Overviews/Methods.html#preset08'>preset08</a>(<span class='argstr'>seq</span>)</h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*random' href='./../Overviews/Methods.html#random'>random</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*second8' href='./../Overviews/Methods.html#second8'>second8</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*second8back' href='./../Overviews/Methods.html#second8back'>second8back</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*shuf' href='./../Overviews/Methods.html#shuf'>shuf</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*slide1' href='./../Overviews/Methods.html#slide1'>slide1</a></h3>
+<h3 class='method-code'><span class='method-prefix'>IFSeqSteps.</span><a class='method-name' name='*slide2' href='./../Overviews/Methods.html#slide2'>slide2</a></h3>
 <h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
-<h3><a class='anchor' name='Inherited instance methods'>Inherited instance methods</a></h3>
-<div id='inheritedinstmets'></div><h2><a class='anchor' name='Help template'>Help template</a></h2>
+<h3><a class='anchor' name='Inherited%20instance%20methods'>Inherited instance methods</a></h3>
+<div id='inheritedinstmets'></div><h2><a class='anchor' name='Help%20template'>Help template</a></h2>
 
 <p>Copy and paste the text below and save to HelpSource/Classes/IFSeqSteps.schelp<pre class='code prettyprint lang-sc'>TITLE:: IFSeqSteps
 summary:: (put short description here)
@@ -82,7 +111,7 @@ DESCRIPTION::
 
 CLASSMETHODS::
 
-METHOD:: first8
+METHOD:: makeResponders
 (describe method here)
 
 returns:: (describe returnvalue here)
@@ -97,13 +126,29 @@ METHOD:: slide2
 
 returns:: (describe returnvalue here)
 
-METHOD:: second8
+METHOD:: preset07
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: first8back
 (describe method here)
 
 returns:: (describe returnvalue here)
 
-METHOD:: preset01
+METHOD:: long02
 (describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: preset04
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
 
 returns:: (describe returnvalue here)
 
@@ -112,12 +157,43 @@ METHOD:: forward
 
 returns:: (describe returnvalue here)
 
-METHOD:: random
+METHOD:: long01
 (describe method here)
 
 returns:: (describe returnvalue here)
 
+METHOD:: long04
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: preset06
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
 METHOD:: backward
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: loadDefault
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: preset01
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: first8
 (describe method here)
 
 returns:: (describe returnvalue here)
@@ -132,8 +208,64 @@ METHOD:: shuf
 
 returns:: (describe returnvalue here)
 
+METHOD:: preset05
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: forward2
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: second8
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: preset08
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: random
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: preset02
+(describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: oscResp
+(describe method here)
+
+ARGUMENT:: respName
+(describe argument here)
+
+ARGUMENT:: oscName
+(describe argument here)
+
+ARGUMENT:: playDir
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
 METHOD:: preset03
 (describe method here)
+
+ARGUMENT:: seq
+(describe argument here)
 
 returns:: (describe returnvalue here)
 
@@ -142,17 +274,7 @@ METHOD:: load
 
 returns:: (describe returnvalue here)
 
-METHOD:: first8back
-(describe method here)
-
-returns:: (describe returnvalue here)
-
-METHOD:: preset02
-(describe method here)
-
-returns:: (describe returnvalue here)
-
-METHOD:: loadDefault
+METHOD:: long03
 (describe method here)
 
 returns:: (describe returnvalue here)
@@ -172,4 +294,4 @@ code::
 (some example code)
 ::
 </pre>
-<div class='doclink'>link::Classes/IFSeqSteps::<br>sc version: 3.6.5</div></div></body></html>
+<div class='doclink'>link::Classes/IFSeqSteps::<br></div></div></body></html>

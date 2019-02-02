@@ -19,7 +19,6 @@ IFPitchKeys {
 		this.buttons;
 		this.noteKeysOn;
 		this.noteKeysOff;
-
 	}
 
 	*buttons {
@@ -28,10 +27,7 @@ IFPitchKeys {
 		~pitchKeysBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-
-				//"Transpose Shuffle".postln;
 				~countPKeys = ~countPKeys + 1;
-
 				~countPKeys.switch(
 					0,{},
 					1, {
@@ -73,10 +69,7 @@ IFPitchKeys {
 	}
 
 	*noteKeysOn {
-
 		/////////////////////----- Note -------//////////////
-
-
 		~noteKeys_0.free;
 		~noteKeys_0 = OSCFunc({
 			arg msg;
@@ -88,7 +81,6 @@ IFPitchKeys {
 			},
 			'/nt_0'
 		);
-
 		~noteKeys_1.free;
 		~noteKeys_1 = OSCFunc({
 			arg msg;
@@ -416,7 +408,6 @@ IFPitchKeys {
 			},
 			'/nt-11'
 		);
-
 		~noteKeys12.free;
 		~noteKeys12 = OSCFunc({
 			arg msg;
@@ -429,7 +420,6 @@ IFPitchKeys {
 			},
 			'/nt-12'
 		);
-
 		~noteKeys13.free;
 		~noteKeys13 = OSCFunc({
 			arg msg;
@@ -442,7 +432,6 @@ IFPitchKeys {
 			},
 			'/nt-13'
 		);
-
 		~noteKeys14.free;
 		~noteKeys14 = OSCFunc({
 			arg msg;
@@ -455,9 +444,6 @@ IFPitchKeys {
 			},
 			'/nt-14'
 		);
-
-
-
 	}
 
 	*noteKeysOff {

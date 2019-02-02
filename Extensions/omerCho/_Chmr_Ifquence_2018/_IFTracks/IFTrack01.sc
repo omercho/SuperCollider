@@ -144,9 +144,6 @@ IFTrack01 {
 		~local.sendMsg('volBass', 0.95);
 		~local.sendMsg('sendBass', 0.0, 0.0);
 		~local.sendMsg('xy1Bass', 0.0, 0.0);
-		~local.sendMsg('attBass', 0.05);
-		~local.sendMsg('susBass', 0.5);
-		~local.sendMsg('decBass', 0.2);
 		~local.sendMsg('chainBass', 0.0);
 		~local.sendMsg('lfoMulBass1',0.00);
 		~local.sendMsg('lfoMulBass2',0.00);
@@ -157,9 +154,6 @@ IFTrack01 {
 		~local.sendMsg('volKeys', 0.95);
 		~local.sendMsg('sendKeys', 0.0, 0.0);
 		~local.sendMsg('xy1Keys', 0.0, 0.0);
-		~local.sendMsg('attKeys', 0.05);
-		~local.sendMsg('susKeys', 0.3);
-		~local.sendMsg('decKeys', 0.05);
 		~local.sendMsg('chainKeys', 0.05);
 		~local.sendMsg('lfoMulKeys1',0.0);
 		~local.sendMsg('lfoMulKeys2',0.01);
@@ -180,15 +174,10 @@ IFTrack01 {
 
 		"Mopho Set".postln;
 		~local.sendMsg('volMopho', 0.99);
-		~local.sendMsg('vcaLvl', 0.0);
 		~local.sendMsg('sendMopho', 0.42, 0.0);
 		~local.sendMsg('xy1Mopho', 0.0, 0.0);
 		~local.sendMsg('xy2Mopho', 0.0, 0.0);
-		~local.sendMsg('attMopho', 0.05);
-		~local.sendMsg('susMopho', 0.05);
-		~local.sendMsg('decMopho', 0.6);
 		~local.sendMsg('chainMopho', 0.5);
-		~local.sendMsg('lfo1AmntMopho',0.0);
 		~local.sendMsg('lfoMulMopho1',0.2);
 		~local.sendMsg('lfoMulMopho2',0.3);
 		IFMopho.octMul(1);
@@ -205,15 +194,15 @@ IFTrack01 {
 		"part01".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 
-		~local.sendMsg('susMel',0.6);
-		IFSeqSteps.long01;
-
-
+		~local.sendMsg('susMel',0.05);
+		IFSeqSteps.first8;
+		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
+		~octVKick=0;~ntVKick.source = Pseq([7], inf);
 		IFSeqVSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
 		~octVSnr=0;~ntVSnr.source = Pseq([20], inf);
 		IFSeqVHat.stGrpSet  (0,1,0,1, 0,1,0,1,  0,1,0,1, 0,1,0,1);
 		~octVHat=0;~ntVHat.source = Pseq([124], inf);
-		IFSeqVClap.stGrpSet  (0,0,1,0, 0,1,0,0,  0,0,0,0, 1,0,0,0);
+		IFSeqVClap.stGrpSet  (0,0,1,0, 0,1,0,0,  0,0,1,0, 0,1,0,0);
 		~octVClap=0;~ntVClap.source = Pseq([39], inf);
 		//~durVClap.source  =  Pseq([1/2], inf);
 
@@ -227,8 +216,7 @@ IFTrack01 {
 		~ntVPcm.source = Pseq([~vCalv,~vCalv,~vCalv,~vCalv,~vAgog], inf);
 
 		//CH -1- [ Kick ]
-		IFSeqVKick.stGrpSet  (1,0,1,0, 1,0,1,0,  1,0,1,0, 1,0,1,0);
-		~octVKick=0;~ntVKick.source = Pseq([7], inf);
+
 		~local.sendMsg('sendKick', 0.0, 0.0);
 		~local.sendMsg('attKick', 0.0);
 		~local.sendMsg('susKick', 0.9);
@@ -275,11 +263,11 @@ IFTrack01 {
 		IFSeqDur2Hat.stGrp  (4);
 
 		//CH -4- [Bass]
-		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,0,1,  1,0,1,1, 1,0,1,1);
-		IFSeqOctBass.stGrpSet (2,3,3,3, 2,3,3,3,  2,3,3,3, 2,4,3,3);
-		IFSeqNtBass.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 2,0,3,2);
-		IFSeqVelBass.stGrpSet (3,2,1,2, 3,2,1,3,  3,1,3,2, 3,2,3,0);
-		IFSeqSusBass.stGrpSet (3,0,1,0, 0,0,1,3,  2,0,1,0, 3,3,0,0);
+		IFSeqBass.stGrpSet    (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
+		IFSeqOctBass.stGrpSet (3,4,3,3, 3,4,3,3,  3,4,3,3, 3,4,3,3);
+		IFSeqNtBass.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
+		IFSeqVelBass.stGrpSet (3,2,3,2, 3,2,3,2,  3,2,3,2, 3,2,3,2);
+		IFSeqSusBass.stGrpSet (3,1,2,1, 3,1,2,1,  3,1,2,1, 3,2,2,3);
 		IFSeqTmBass.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
 		IFSeqDurBass.stGrpSet (4,4,4,4, 4,4,4,4,  4,4,4,4, 4,4,4,4);
 		IFShuf.loadBass(0,2,0,-3,8,1,0,6,2);
@@ -288,9 +276,9 @@ IFTrack01 {
 		~local.sendMsg('lfoMulBass1',0.30);
 		~local.sendMsg('lfoMulBass2',0.10);
 		//CH -5- [Keys]
-		IFSeqKeys.stGrpSet    (0,0,1,1, 0,1,0,1,  1,0,1,1, 1,1,1,1);
-		IFSeqOctKeys.stGrpSet (3,3,3,3, 3,4,3,3,  4,3,3,3, 4,4,3,3);
-		IFSeqNtKeys.stGrpSet  (0,0,0,0, 0,4,0,0,  0,0,0,0, 2,0,3,2);
+		IFSeqKeys.stGrpSet    (1,0,1,1, 1,0,1,1,  1,0,1,1, 1,0,1,1);
+		IFSeqOctKeys.stGrpSet (3,3,3,3, 3,4,3,3,  3,3,3,3, 3,4,3,3);
+		IFSeqNtKeys.stGrpSet  (0,0,0,0, 0,0,0,0,  0,0,0,0, 0,0,0,0);
 		IFSeqVelKeys.stGrpSet (1,2,3,2, 1,2,1,3,  3,1,3,2, 3,2,3,0);
 		IFSeqSusKeys.stGrpSet (2,3,2,3, 2,3,4,5,  2,3,2,3, 2,2,3,3);
 		IFSeqTmKeys.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,1,1);
@@ -324,13 +312,11 @@ IFTrack01 {
 		IFShuf.loadMopho(0,2,0,-3,8,1,0,6,2);
 		~local.sendMsg('lfoMulMopho1',0.2);
 		~local.sendMsg('lfoMulMopho2',0.3);
-		~local.sendMsg('lfo1AmntMopho',0.0);
 		//CH- -8- [Ext]
 		~local.sendMsg('volExt',0.8);
 		~local.sendMsg('susExt',0.2);
 		~local.sendMsg('rlsExt',0.2);
 		~local.sendMsg('extSends',0.2,0.3);
-
 
 	}//////                                             - 1 -
 
@@ -340,7 +326,6 @@ IFTrack01 {
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 
 		IFSeqSteps.long01;
-
 
 		IFSeqVSnr.stGrpSet  (0,0,1,0, 0,0,1,0,  0,0,1,0, 0,0,1,0);
 		~octVSnr=0;~ntVSnr.source = Pseq([20], inf);

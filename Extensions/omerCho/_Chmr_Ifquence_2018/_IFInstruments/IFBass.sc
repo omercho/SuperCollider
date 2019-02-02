@@ -12,8 +12,6 @@ IFBass.p1_SC(1);
 IFBass {
 	var <>keyTime = 1;
 	classvar <>counter3 = 0;
-
-
 	*initClass {
 		StartUp add: {
 			/*Server.default.doWhenBooted({
@@ -171,9 +169,7 @@ IFBass {
 			\octave, Pseq([~octBassP.next], 1)+~octMulBass,
 			\harmonic, Pseq([~hrmBassP.next], 1)+~harmBass
 		).play;
-
-		//VBass
-		Pbind(//LFO CUT BASS INT
+		/*Pbind(//LFO CUT BASS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoInt,
 			\delta, Pseq([~delta1BassP.next], 1),
@@ -184,7 +180,7 @@ IFBass {
 			\midiout,~vBass, \chan, 0, \ctlNum, ~lfoRate,
 			\delta, Pseq([~delta2BassP.next], 1),
 			\control, Pseq([~lfo2BassP.value], 1)*~lfoMulBass2,
-		).play;
+		).play;*/
 
 	}//p1
 	*apc40{
@@ -277,20 +273,14 @@ IFBass {
 		~countTime2Bass=0;
 		~time2BassBut= OSCFunc({
 			arg msg;
-
 			~countTime2Bass = ~countTime2Bass + 1;
 			~countTime2Bass.switch(
 				0,{},
 				1, {
 					~apcMn.noteOn(~apcMnCh, ~actButB4, 1); //Trk4_But 2
-					//~tOSCAdrr.sendMsg('time2Bass', 1);
-					//~tOSCAdrr.sendMsg('tmBassLabel', 2);
 					~tmMulBass.source = Pseq([2], inf);
 				},
 				2,{
-
-					//~tOSCAdrr.sendMsg('time2Bass', 0);
-					//~tOSCAdrr.sendMsg('tmBassLabel', 1);
 					~tmMulBass.source = Pseq([1], inf);
 					~apcMn.noteOn(~apcMnCh, ~actButB4, 0); //Trk4_But 2
 					~countTime2Bass=0;
@@ -299,8 +289,6 @@ IFBass {
 		},
 		'/time2Bass'
 		);
-
-
 		~volBassFader.free;
 		~volBassFader= OSCFunc({
 			arg msg,vel,val;
@@ -319,8 +307,7 @@ IFBass {
 			vel=msg[1]*127;
 			val=msg[1];
 			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('attBass', val);
-				~vBass.control(0, ~egAtt, vel+0.01);
+				VBass.cc(\envAttVB,vel+0.01);
 				~attBass=val+0.01;
 			},{
 				~tOSCAdrr.sendMsg('attBass', val);
@@ -337,8 +324,7 @@ IFBass {
 			val=msg[1];
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('susBass', msg[1]);
-				~vBass.control(0, ~slideTime, vel);
+				VBass.cc(\slideTmVB,vel);
 				~susLevBass=val;
 			},{
 				~tOSCAdrr.sendMsg('susBass', msg[1]);
@@ -354,10 +340,9 @@ IFBass {
 			val=msg[1];
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('decBass', val);
 				~decBass=val;
 				~relBass=val*0.7;
-				~vBass.control(0, ~egDec, vel);
+				VBass.cc(\envDecVB,vel);
 			},{
 				~tOSCAdrr.sendMsg('decBass', val);
 				~decBass=val;
@@ -369,16 +354,15 @@ IFBass {
 
 		~xy1Bass.free;
 		~xy1Bass= OSCFunc({
-			arg msg,val1,val2,vel;
+			arg msg,val1,val2,vel,vel1,vel2;
 			val1=msg[1];
 			val2=msg[2];
 			vel=msg[1]*127;
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
 			if ( ~volcaBoolean==1, {
-				~vBass.control(0, ~vcoPitch2, msg[2]*127);
-				~vBass.control(0, ~vcoPitch3, msg[1]*127);
-				~sin1Bass=val1;
-				~sin1Bass=val2;
-				~tOSCAdrr.sendMsg('xy1Bass', msg[1], msg[2]);
+				VBass.cc(\vco2VB,vel2);
+				VBass.cc(\vco3VB,vel1);
 			},{
 				~sin1Bass=val1;
 				~sin2Bass=val2;

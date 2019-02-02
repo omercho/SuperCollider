@@ -522,7 +522,7 @@ IFAPCMn{
 		~apcMnFad7.free;
 		~apcMnFad7=MIDIFunc.cc( {
 			arg vel;
-			Mopho.set(\voiVol_lcl, vel/127);
+			Mopho.cc(\voiVol, vel);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd7);
 
 		~apcMnFad8.free;

@@ -144,19 +144,19 @@ IFKeys {
 		).play;
 
 		//VKeys
-		Pbind(//LFO CUT KEYS INT
-			\midicmd, \control, \type, \midi,
-			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoCut,
-			\delta, Pseq([~delta1KeysP.value], ~actKeysP),
-			\control, Pseq([~lfoCtKeysP.value], inf)*~lfoMulKeys1,
+		/*Pbind(//LFO CUT KEYS INT
+		\midicmd, \control, \type, \midi,
+		\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoCut,
+		\delta, Pseq([~delta1KeysP.value], ~actKeysP),
+		\control, Pseq([~lfoCtKeysP.value], inf)*~lfoMulKeys1,
 		).play;
 
 		Pbind(//LFO RATE KEYS
-			\midicmd, \control, \type, \midi,
-			\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoRate,
-			\delta, Pseq([~delta2KeysP.value], ~actKeysP),
-			\control, Pseq([~lfoRtKeysP.value], inf)*~lfoMulKeys2,
-		).play;
+		\midicmd, \control, \type, \midi,
+		\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoRate,
+		\delta, Pseq([~delta2KeysP.value], ~actKeysP),
+		\control, Pseq([~lfoRtKeysP.value], inf)*~lfoMulKeys2,
+		).play;*/
 
 	}//p1
 	*apc40{
@@ -280,63 +280,59 @@ IFKeys {
 			//~vKeys.control(5, 1, vel);
 			~volKeys.source = val;
 		},
-		'/volKeys'
-		);
+		'/volKeys');
 
-		~attKeysFader.free;
+		/*~attKeysFader.free;
 		~attKeysFader= OSCFunc({
-			arg msg,vel,val;
-			vel=msg[1]*127;
-			val=msg[1];
-			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('attKeys', msg[1]);
-				~vKeys.control(0, ~envAtt, val);
-				~attKeys=val+0.01;
-			},{
-				~tOSCAdrr.sendMsg('attKeys', msg[1]);
-				~attKeys=val+0.01;
-			});
+		arg msg,vel,val;
+		vel=msg[1]*127;
+		val=msg[1];
+		if ( ~volcaBoolean==1, {
+		//~tOSCAdrr.sendMsg('attKeys', msg[1]);
+		VKeys.cc(\envAttVK,vel);
+		//~vKeys.control(0, ~envAtt, val);
+		//~attKeys=val+0.01;
+		},{
+		~tOSCAdrr.sendMsg('attKeys', msg[1]);
+		~attKeys=val+0.01;
+		});
 		},
 		'/attKeys'
 		);
-
-
 		~susKeysFader.free;
 		~susKeysFader= OSCFunc({
-			arg msg,val,vel;
-			val=msg[1];
-			vel=msg[1]*127;
-			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('susKeys', msg[1]);
-				~vKeys.control(0, ~envSus, vel+0.01);
-				~susLevKeys=val;
-			},{
-				~tOSCAdrr.sendMsg('susKeys', msg[1]);
-				~susLevKeys=val;
-			});
+		arg msg,val,vel;
+		val=msg[1];
+		vel=msg[1]*127;
+		if ( ~volcaBoolean==1, {
+		~tOSCAdrr.sendMsg('susKeys', msg[1]);
+		~vKeys.control(0, ~envSus, vel+0.01);
+		~susLevKeys=val;
+		},{
+		~tOSCAdrr.sendMsg('susKeys', msg[1]);
+		~susLevKeys=val;
+		});
 		},
 		'/susKeys'
 		);
-
-
 		~decKeysFader.free;
 		~decKeysFader= OSCFunc({
-			arg msg,val,vel;
-			val=msg[1];
-			vel=msg[1]*127;
-			if ( ~volcaBoolean==1, {
-				~tOSCAdrr.sendMsg('decKeys', val);
-				~vKeys.control(0, ~envDec, vel+0.01);
-				~decKeys=val;
-				~relKeys=val*0.7;
-			},{
-				~tOSCAdrr.sendMsg('decKeys', val);
-				~decKeys=val;
-				~relKeys=val*0.7;
-			});
+		arg msg,val,vel;
+		val=msg[1];
+		vel=msg[1]*127;
+		if ( ~volcaBoolean==1, {
+		~tOSCAdrr.sendMsg('decKeys', val);
+		~vKeys.control(0, ~envDec, vel+0.01);
+		~decKeys=val;
+		~relKeys=val*0.7;
+		},{
+		~tOSCAdrr.sendMsg('decKeys', val);
+		~decKeys=val;
+		~relKeys=val*0.7;
+		});
 		},
 		'/decKeys'
-		);
+		);*/
 
 		~xy1Keys.free;
 		~xy1Keys= OSCFunc({
@@ -345,8 +341,10 @@ IFKeys {
 			val2=msg[2];
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
-				~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
-				~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+				//~vKeys.control(0, ~dlyTime, msg[2]*127); //Delay Time
+				//~vKeys.control(0, ~dlyFeed, msg[1]*127); //Delay FeedBack
+				VKeys.cc(\dlyTimeVK,msg[2]*127);
+				VKeys.cc(\dlyFeedVK,msg[1]*127);
 				~tOSCAdrr.sendMsg('xy1Keys', msg[1], msg[2]);
 			},{
 
@@ -378,9 +376,6 @@ IFKeys {
 		},
 		'/sendKeys'
 		);
-
-
-
 
 		/**/
 
@@ -508,3 +503,19 @@ IFKeys {
 	*/
 
 }
+
+/*
+Pbind(
+			\chan, ~chKeys,
+			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([4],1),
+			\degree, Pseq([
+], inf),
+			\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
+			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
+			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
+			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
+		).play;
+
+*/

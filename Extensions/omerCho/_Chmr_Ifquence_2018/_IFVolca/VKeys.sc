@@ -37,12 +37,10 @@ VKeys {
 			\dlyTimeVK, {this.md(~dlyTime,vel);this.lbl(\TOdlyTimeVK,val);},
 			\dlyFeedVK, {this.md(~dlyFeed,vel);this.lbl(\TOdlyFeedVK,val);},
 			\voiceVK,{
-
 				//if ( (vel)==6, {~voiceVKCnt=0;vel=0;},{~voiceVKCnt=~voiceVKCnt});
-				~voiceVKCnt-1;("Up Before"+~voiceVKCnt).postln;
+				~voiceVKCnt-1;
 				this.md(~voice,~voiceVKLst[vel]); this.lbl(\TOvoiceVKlbl,~voiceVKLblLst[vel]);
 				//~voiceVKCnt=vel+1;
-				("Up After"+~voiceVKCnt).postln;
 			},
 		);
 	}
@@ -69,11 +67,9 @@ VKeys {
 				'dlyFeedVK_T',{ this.cc(\dlyFeedVK,vel);},
 				'voiceVK_T',{
 					if ( msg[1]==1, {
-						("Bottom Before"+~voiceVKCnt).postln;
 						if ( (~voiceVKCnt)==6, {~voiceVKCnt=0;},{~voiceVKCnt=~voiceVKCnt});
 						~voiceVKCnt.switch(~voiceVKCnt,{this.cc(\voiceVK,~voiceVKCnt);});
 						~voiceVKCnt = ~voiceVKCnt + 1;
-						("Bottom After"+~voiceVKCnt).postln;
 					});
 				},
 			)
@@ -98,7 +94,7 @@ VKeys {
 	}
 
 	*globals{
-		~vKeys = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
+		//~vKeys = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
 
 		this.makeOSCResponders;
 		~vcoDtn=42;~vcoPort=5;~vcoEg=43;
@@ -147,25 +143,6 @@ VKeys {
 
 		VKeys.cc(\dlyTimeVK,44);
 		VKeys.cc(\dlyFeedVK,64);
-
-		~vKeys.control(0, ~vcoDtn, 0); //detune
-		~vKeys.control(0, ~vcoPort, 0); // portamento
-		~vKeys.control(0, ~vcoEg, 0); // VCOsculator Envelope Intencity
-
-		~vKeys.control(0, ~vcfCut, 30); //VCFilter CutOff
-		~vKeys.control(0, ~vcfEg, 91); //VCFilter Envelope Intencity
-
-		~vKeys.control(0, ~lfoRate, 0); //LFO Rate
-		~vKeys.control(0, ~lfoPitch, 0); //LFO Pitch Intencity
-		~vKeys.control(0, ~lfoCut, 0); //LFO CutOff Intencity
-
-		~vKeys.control(0, ~envAtt, 9); //Envelope Generator Attack
-		~vKeys.control(0, ~envDec, 20); //Envelope Generator Decay/Release
-		~vKeys.control(0, ~envSus, 00); //Envelope Generator Sustain
-
-		~vKeys.control(0, ~dlyTime, 0); //Delay Time
-		~vKeys.control(0, ~dlyFeed, 0); //Delay FeedBack
-
 	}
 
 	*preSet02 {
