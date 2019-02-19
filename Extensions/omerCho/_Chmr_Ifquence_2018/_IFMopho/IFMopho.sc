@@ -266,6 +266,7 @@ IFMopho {
 		'/volMopho'
 		);
 
+
 		~attMophoFader.free;
 		~attMophoFader= OSCFunc({
 			arg msg,vel,val;

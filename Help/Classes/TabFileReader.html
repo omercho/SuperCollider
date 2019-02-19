@@ -1,11 +1,11 @@
-<!doctype html><html lang='en'><head><title>CSVFileReader | SuperCollider 3.9.1 Help</title>
+<!doctype html><html lang='en'><head><title>TabFileReader | SuperCollider 3.9.1 Help</title>
 <link rel='stylesheet' href='./../scdoc.css' type='text/css' />
 <link rel='stylesheet' href='./../frontend.css' type='text/css' />
 <link rel='stylesheet' href='./../custom.css' type='text/css' />
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <script>
 var helpRoot = './..';
-var scdoc_title = 'CSVFileReader';
+var scdoc_title = 'TabFileReader';
 var scdoc_sc_version = '3.9.1';
 </script>
 <script src='./../scdoc.js' type='text/javascript'></script>
@@ -15,7 +15,7 @@ var scdoc_sc_version = '3.9.1';
 </head>
 <body onload='fixTOC();prettyPrint()'>
 <div id='toc'>
-<div id='toctitle'>CSVFileReader: table of contents</div>
+<div id='toctitle'>TabFileReader: table of contents</div>
 <span class='toc_search'>Filter: <input id='toc_search'></span><ul class='toc'><li class='toc1'><a href='#description'>Description</a></li>
 <ul class='toc'></ul><li class='toc1'><a href='#classmethods'>Class methods</a></li>
 <ul class='toc'><li class='toc2'><a href='#Inherited%20class%20methods'>Inherited class methods</a></li>
@@ -30,30 +30,30 @@ var scdoc_sc_version = '3.9.1';
 <div id='label'>
 <span id='folder'>Classes</span>
  | <span id='categories'><a href='./../Browse.html#Files'>Files</a></span>
-</div><h1>CSVFileReader<span id='superclasses'> : <a href="../Classes/FileReader.html">FileReader</a> : <a href="../Classes/Stream.html">Stream</a> : <a href="../Classes/AbstractFunction.html">AbstractFunction</a> : <a href="../Classes/Object.html">Object</a></span>
+</div><h1>TabFileReader<span id='superclasses'> : <a href="../Classes/FileReader.html">FileReader</a> : <a href="../Classes/Stream.html">Stream</a> : <a href="../Classes/AbstractFunction.html">AbstractFunction</a> : <a href="../Classes/Object.html">Object</a></span>
 </h1>
-<div id='summary'>file reader for comma separated data</div>
+<div id='summary'>file reader for tab separated data</div>
 </div>
 <div class='subheader'>
 <div id='filename'>Source: <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/TabFileReader.sc' title='/Applications/SuperCollider/SuperCollider.app/Contents/Resources/SCClassLibrary/Common/Streams/TabFileReader.sc'>TabFileReader.sc</a></div><div id='related'>See also: <a href="./../Classes/File.html">File</a></div>
 </div>
 <h2><a class='anchor' name='description'>Description</a></h2>
 
-<p>CSVFileReader reads comma-separated text files into 2D arrays line by line.
-<p>For tab delimited files use <a href="./../Classes/TabFileReader.html">TabFileReader</a>. For semi-colon-delimited files use <a href="./../Classes/SemiColonFileReader.html">SemiColonFileReader</a>. For space-delimited files, or custom delimiters, use <a href="./../Classes/FileReader.html">FileReader</a>.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
+<p>TabFileReader reads tab/return delimited files into 2D arrays.
+<p>For semi-colon-delimited files use <a href="./../Classes/SemiColonFileReader.html">SemiColonFileReader</a>. For comma-separated files use <a href="./../Classes/CSVFileReader.html">CSVFileReader</a>. For space-delimited files, or custom delimiters, use <a href="./../Classes/FileReader.html">FileReader</a>.<h2><a class='anchor' name='classmethods'>Class Methods</a></h2>
 <h3><a class='anchor' name='Inherited%20class%20methods'>Inherited class methods</a></h3>
 <div id='inheritedclassmets'></div><h3><a class='anchor' name='Undocumented%20class%20methods'>Undocumented class methods</a></h3>
-<h3 class='method-code'><span class='method-prefix'>CSVFileReader.</span><a class='method-name' name='*delim' href='./../Overviews/Methods.html#delim'>delim</a></h3>
+<h3 class='method-code'><span class='method-prefix'>TabFileReader.</span><a class='method-name' name='*delim' href='./../Overviews/Methods.html#delim'>delim</a></h3>
 <h2><a class='anchor' name='instancemethods'>Instance Methods</a></h2>
 <h3><a class='anchor' name='Inherited%20instance%20methods'>Inherited instance methods</a></h3>
 <div id='inheritedinstmets'></div><h2><a class='anchor' name='examples'>Examples</a></h2>
 <pre class='code prettyprint lang-sc'>(
 // write a test file:
-f = File("CSVReadTest.sc", "w");
+f = File("TabDelTest.sc", "w");
 f.write(
-"Some,comma,delimited,items, in line 1
+"Some    tab-    delimited    items    in    line    1
 
-and then, some more, with several commas,,,, in line 3
+and    then    some    more    in    line    3
 "
 );
 f.close;
@@ -61,43 +61,41 @@ f.close;
 
 
     // open file, read and put strings into array, close file.
-x = CSVFileReader.read("CSVReadTest.sc").postcs;
+x = TabFileReader.read("TabDelTest.sc").postcs;
 
     // can skip empty lines:
-x = CSVFileReader.read("CSVReadTest.sc", true).postcs;
-
-    // can skip blank entries caused by multiple commas:
-x = CSVFileReader.read("CSVReadTest.sc", true, true).postcs;
+x = TabFileReader.read("TabDelTest.sc", true).postcs;
 
     // do file open/close by hand if you prefer:
-f = File("CSVReadTest.sc", "r"); f.isOpen;
-t = CSVFileReader(f);
-t.read(true, true).postcs;
+f = File("TabDelTest.sc", "r"); f.isOpen;
+t = TabFileReader(f);
+t.read;
 f.close;
 
 (
 // write a test file with numbers:
-f = File("CSVReadTestNum.sc", "w");
+f = File("TabDelTestNum.sc", "w");
 
-(1..10).do { |n| f.write(n.asString ++ ","); };
+(1..10).do { |n| f.write(n.asString ++ Char.tab); };
 f.close;
 )
 
-x = CSVFileReader.read("CSVReadTestNum.sc", true, true).postcs;
+x = TabFileReader.read("TabDelTestNum.sc").postcs;
 x.collect(_.collect(_.interpret));    // convert to numbers.
 
-    // or do it immediately:
-x = CSVFileReader.readInterpret("CSVReadTestNum.sc").postcs;
+    // or you can do it immediately:
+x = TabFileReader.readInterpret("TabDelTestNum.sc").postcs;
 
 (
-// write a test file with several lines of numbers:
-f = File("CSVReadTestNum.sc", "w");
+// write a test file with numbers:
+f = File("TabDelTestNum.sc", "w");
 
 (1..100).do { |n|
-    f.write(n.asString ++ if (n % 10 != 0, ",", Char.nl)); };
+    f.write(n.asString ++ if (n % 10 != 0, Char.tab, Char.nl)); };
 f.close;
 )
 
 
-x = CSVFileReader.readInterpret("CSVReadTestNum.sc", true, true).postln;</pre>
-<div class='doclink'>helpfile source: <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/CSVFileReader.schelp'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/CSVFileReader.schelp</a><br>link::Classes/CSVFileReader::<br></div></div></body></html>
+x = TabFileReader.readInterpret("TabDelTestNum.sc").postln;</pre>
+
+<p><div class='doclink'>helpfile source: <a href='file:///Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/TabFileReader.schelp'>/Applications/SuperCollider/SuperCollider.app/Contents/Resources/HelpSource/Classes/TabFileReader.schelp</a><br>link::Classes/TabFileReader::<br></div></div></body></html>

@@ -16,23 +16,23 @@ IFSeqPat {
 
 	*loadProxy {
 
-		~seqPat01 = PatternProxy( Pseq([0], 1));
-		~seqPat02 = PatternProxy( Pseq([0], 1));
-		~seqPat03 = PatternProxy( Pseq([0], 1));
-		~seqPat04 = PatternProxy( Pseq([0], 1));
-		~seqPat05 = PatternProxy( Pseq([0], 1));
-		~seqPat06 = PatternProxy( Pseq([0], 1));
-		~seqPat07 = PatternProxy( Pseq([0], 1));
-		~seqPat08 = PatternProxy( Pseq([0], 1));
+		~seqPat01 = PatternProxy( Pseq([1], 1));
+		~seqPat02 = PatternProxy( Pseq([1], 1));
+		~seqPat03 = PatternProxy( Pseq([1], 1));
+		~seqPat04 = PatternProxy( Pseq([1], 1));
+		~seqPat05 = PatternProxy( Pseq([1], 1));
+		~seqPat06 = PatternProxy( Pseq([1], 1));
+		~seqPat07 = PatternProxy( Pseq([1], 1));
+		~seqPat08 = PatternProxy( Pseq([1], 1));
 
-		~seqPat09 = PatternProxy( Pseq([0], 1));
-		~seqPat10 = PatternProxy( Pseq([0], 1));
-		~seqPat11 = PatternProxy( Pseq([0], 1));
-		~seqPat12 = PatternProxy( Pseq([0], 1));
-		~seqPat13 = PatternProxy( Pseq([0], 1));
-		~seqPat14 = PatternProxy( Pseq([0], 1));
-		~seqPat15 = PatternProxy( Pseq([0], 1));
-		~seqPat16 = PatternProxy( Pseq([0], 1));
+		~seqPat09 = PatternProxy( Pseq([1], 1));
+		~seqPat10 = PatternProxy( Pseq([1], 1));
+		~seqPat11 = PatternProxy( Pseq([1], 1));
+		~seqPat12 = PatternProxy( Pseq([1], 1));
+		~seqPat13 = PatternProxy( Pseq([1], 1));
+		~seqPat14 = PatternProxy( Pseq([1], 1));
+		~seqPat15 = PatternProxy( Pseq([1], 1));
+		~seqPat16 = PatternProxy( Pseq([1], 1));
 	}
 
 
@@ -171,7 +171,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/1'
+			'/ifSeq/9/1'
 		);
 		~ifSeqPatBut02.free;
 		~ifSeqPatBut02= OSCFunc({
@@ -183,7 +183,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/2'
+			'/ifSeq/9/2'
 		);
 		~ifSeqPatBut03.free;
 		~ifSeqPatBut03= OSCFunc({
@@ -195,7 +195,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/3'
+			'/ifSeq/9/3'
 		);
 		~ifSeqPatBut04.free;
 		~ifSeqPatBut04= OSCFunc({
@@ -207,7 +207,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/4'
+			'/ifSeq/9/4'
 		);
 		~ifSeqPatBut05.free;
 		~ifSeqPatBut05= OSCFunc({
@@ -219,7 +219,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/5'
+			'/ifSeq/9/5'
 		);
 		~ifSeqPatBut06.free;
 		~ifSeqPatBut06= OSCFunc({
@@ -231,7 +231,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/6'
+			'/ifSeq/9/6'
 		);
 		~ifSeqPatBut07.free;
 		~ifSeqPatBut07= OSCFunc({
@@ -243,7 +243,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/7'
+			'/ifSeq/9/7'
 		);
 		~ifSeqPatBut08.free;
 		~ifSeqPatBut08= OSCFunc({
@@ -255,7 +255,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/8'
+			'/ifSeq/9/8'
 		);
 
 		~ifSeqPatBut09.free;
@@ -268,7 +268,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/9'
+			'/ifSeq/9/9'
 		);
 		~ifSeqPatBut10.free;
 		~ifSeqPatBut10= OSCFunc({
@@ -280,7 +280,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/10'
+			'/ifSeq/9/10'
 		);
 		~ifSeqPatBut11.free;
 		~ifSeqPatBut11= OSCFunc({
@@ -292,7 +292,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/11'
+			'/ifSeq/9/11'
 		);
 		~ifSeqPatBut12.free;
 		~ifSeqPatBut12= OSCFunc({
@@ -304,7 +304,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/12'
+			'/ifSeq/9/12'
 		);
 		~ifSeqPatBut13.free;
 		~ifSeqPatBut13= OSCFunc({
@@ -316,7 +316,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/13'
+			'/ifSeq/9/13'
 		);
 		~ifSeqPatBut14.free;
 		~ifSeqPatBut14= OSCFunc({
@@ -328,7 +328,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/14'
+			'/ifSeq/9/14'
 		);
 		~ifSeqPatBut15.free;
 		~ifSeqPatBut15= OSCFunc({
@@ -340,7 +340,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/15'
+			'/ifSeq/9/15'
 		);
 		~ifSeqPatBut16.free;
 		~ifSeqPatBut16= OSCFunc({
@@ -352,7 +352,7 @@ IFSeqPat {
 				)}
 			);
 			},
-			'/ifSeq/8/16'
+			'/ifSeq/9/16'
 		);
 
 

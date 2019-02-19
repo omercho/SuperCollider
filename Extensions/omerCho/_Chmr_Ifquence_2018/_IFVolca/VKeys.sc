@@ -122,6 +122,48 @@ VKeys {
 		~voiceVKLst = [0, 13, 38, 63, 88, 113];
 		~voiceVKCnt=0;
 	}
+	*rand {|vl1,vl2|
+		VKeys.cc(\voiceVK,(0..6).choose);/*0-6*/
+		VKeys.cc(\expresVK,(120..127).choose);
+		VKeys.cc(\vcoDtnVK,(0..127).choose);
+		VKeys.cc(\vcoPortVK,(0..127).choose);
+		VKeys.cc(\vcoEgVK,(0..127).choose);
+
+		VKeys.cc(\vcfCutVK,(0..127).choose);
+		VKeys.cc(\vcfEgVK,(0..127).choose);
+
+		VKeys.cc(\lfoRateVK,(0..127).choose);
+		VKeys.cc(\lfoPitchVK,(0..127).choose);
+		VKeys.cc(\lfoCutVK,(0..127).choose);
+
+		VKeys.cc(\envAttVK,(0..80).choose);
+		VKeys.cc(\envDecVK,(20..127).choose);
+		VKeys.cc(\envSusVK,104);
+
+		VKeys.cc(\dlyTimeVK,(0..127).choose);
+		VKeys.cc(\dlyFeedVK,(0..127).choose);
+	}
+	*set {|vl1,vl2|
+		VKeys.cc(\voiceVK,1);/*0-6*/
+		VKeys.cc(\expresVK,124);
+		VKeys.cc(\vcoDtnVK,4);
+		VKeys.cc(\vcoPortVK,5);
+		VKeys.cc(\vcoEgVK,24);
+
+		VKeys.cc(\vcfCutVK,44);
+		VKeys.cc(\vcfEgVK,84);
+
+		VKeys.cc(\lfoRateVK,14);
+		VKeys.cc(\lfoPitchVK,0);
+		VKeys.cc(\lfoCutVK,94);
+
+		VKeys.cc(\envAttVK,2);
+		VKeys.cc(\envDecVK,94);
+		VKeys.cc(\envSusVK,104);
+
+		VKeys.cc(\dlyTimeVK,54);
+		VKeys.cc(\dlyFeedVK,84);
+	}
 
 	*preSet01 {
 		VKeys.cc(\voiceVK,1);/*0-6*/
@@ -130,19 +172,19 @@ VKeys {
 		VKeys.cc(\vcoPortVK,5);
 		VKeys.cc(\vcoEgVK,24);
 
-		VKeys.cc(\vcfCutVK,24);
+		VKeys.cc(\vcfCutVK,44);
 		VKeys.cc(\vcfEgVK,84);
 
-		VKeys.cc(\lfoRateVK,84);
-		VKeys.cc(\lfoPitchVK,8);
-		VKeys.cc(\lfoCutVK,84);
+		VKeys.cc(\lfoRateVK,14);
+		VKeys.cc(\lfoPitchVK,0);
+		VKeys.cc(\lfoCutVK,94);
 
 		VKeys.cc(\envAttVK,2);
-		VKeys.cc(\envDecVK,74);
+		VKeys.cc(\envDecVK,94);
 		VKeys.cc(\envSusVK,104);
 
-		VKeys.cc(\dlyTimeVK,44);
-		VKeys.cc(\dlyFeedVK,64);
+		VKeys.cc(\dlyTimeVK,54);
+		VKeys.cc(\dlyFeedVK,84);
 	}
 
 	*preSet02 {

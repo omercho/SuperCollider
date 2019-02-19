@@ -204,8 +204,6 @@ IFApcMnNotes{
 				'ntM12',{if ( msg[1]==1, {this.noteButsReset;});},
 				'ntM13',{if ( msg[1]==1, {this.noteButsReset;});},
 				'ntM14',{if ( msg[1]==1, {this.noteButsReset;});}
-
-
 			);
 		},path:oscName);
 	}

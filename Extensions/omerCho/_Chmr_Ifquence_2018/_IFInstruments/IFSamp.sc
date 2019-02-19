@@ -161,7 +161,6 @@ IFSamp {
 			\midiout,~mdOut, \chan, 7, \ctlNum, 40,
 			\delta, Pseq([~delta1SampP.next], 1),
 			\control, Pseq([~lfo1SampP.next], 1)*~lfoMulSamp1,
-
 		).play(quant:0);
 
 		Pbind(//LFO 2
@@ -169,7 +168,6 @@ IFSamp {
 			\midiout,~mdOut,\chan, 7,  \ctlNum, 41,
 			\delta, Pseq([~delta2SampP.next], 1),
 			\control, Pseq([~lfo2SampP.next], 1)*~lfoMulSamp2,
-
 		).play(quant:0);
 
 	}//p1
@@ -535,3 +533,22 @@ IFSamp {
 
 
 }
+
+/*
+Pbind(
+	\chan, ~chSamp,
+	\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+	\dur, Pseq([1],1),
+	\degree, Pxrand([
+		[0,2,4],
+		[0,6,4],
+		[0,3,9]
+	], inf),
+	\amp, Pseq([1], inf),
+	\sustain, Pseq([12],inf),
+	//\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
+	//\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+	//\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
+).play;
+
+*/

@@ -12,15 +12,29 @@ IFRoot {
 	*globals{
 
 		~ifRootPlayer=TaskProxy.new;
+		~ifPlayer_Mel2=TaskProxy.new;
+		~ifPlayer_Mel3=TaskProxy.new;
+		~ifPlayer_Mel4=TaskProxy.new;
 		this.responders;
 
 	}
 
-	*play{~ifRootPlayer.play(TempoClock.default, quant: 0);}
+	*play{
+		~ifRootPlayer.play(TempoClock.default, quant: 0);
+		~ifPlayer_Mel2.play(TempoClock.default, quant: 0);
+		~ifPlayer_Mel3.play(TempoClock.default, quant: 0);
+		~ifPlayer_Mel4.play(TempoClock.default, quant: 0);
+
+	}
 	/*
 	*play{~ifRootPlayer.play(MIDISyncClock, quant: 0);}
 	*/
-	*stop{~ifRootPlayer.stop;}
+	*stop{
+		~ifRootPlayer.stop;
+		~ifPlayer_Mel2.stop;
+		~ifPlayer_Mel3.stop;
+		~ifPlayer_Mel4.stop;
+	}
 
 
 	*set00{
@@ -30,26 +44,10 @@ IFRoot {
 			//~cntApcUpdate=0;
 			inf.do{
 				1.do {
-
-
 					IFSequence.step(~stepNumP.next);
-					IFSequence.step2(~stepNum2P.next);
-					IFSequence.step3(~stepNum3P.next);
-					IFSequence.step4(~stepNum4P.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
 					IFStat.ln04;IFStat.ln05;IFStat.ln06;
-					IFKick(~tmMulKickP.next*~tmKickP.next);
-					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
-					IFHat(~tmMulHatP.next*~tmHatP.next);
-					IFHat.hat2(~tmMul2HatP.next*~tm2HatP.next);
 
-					IFBass(~tmMulBassP.next*~tmBassP.next);
-					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
-					IFSamp(~tmMulSampP.next*~tmSampP.next);
-					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
-
-					//IFMast(~tmMulMastP.next*~tmMastP.next);
-					//IFRes(~tmMulResP.next*~tmResP.next);
 					/*~cntApcUpdate = ~cntApcUpdate + 1;
 					~cntApcUpdate.switch(
 					0,{},
@@ -63,7 +61,65 @@ IFRoot {
 			};
 
 		};
-
+		~ifPlayer_Mel2.source={
+			//~cntPlayerMel2=0;
+			inf.do{
+				1.do {
+					IFSequence.step2(~stepNum2P.next);
+					IFKick(~tmMulKickP.next*~tmKickP.next);
+					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
+					IFHat(~tmMulHatP.next*~tmHatP.next);
+					IFHat.hat2(~tmMul2HatP.next*~tm2HatP.next);
+					/*~cntPlayerMel2 = ~cntPlayerMel2 + 1;
+					~cntPlayerMel2.switch(
+					0,{},
+					16,{
+					IFAPCMn.update;
+					~cntPlayerMel2=0;
+					}
+					);*/
+					((~dur2P.next)*(~durMul2P.next)).wait;
+				};
+			};
+		};
+		~ifPlayer_Mel3.source={
+			//~cntPlayerMel3=0;
+			inf.do{
+				1.do {
+					IFSequence.step3(~stepNum3P.next);
+					IFBass(~tmMulBassP.next*~tmBassP.next);
+					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+					/*~cntPlayerMel3 = ~cntPlayerMel3 + 1;
+					~cntPlayerMel3.switch(
+					0,{},
+					16,{
+					IFAPCMn.update;
+					~cntPlayerMel3=0;
+					}
+					);*/
+					((~dur3P.next)*(~durMul3P.next)).wait;
+				};
+			};
+		};
+		~ifPlayer_Mel4.source={
+			//~cntPlayerMel4=0;
+			inf.do{
+				1.do {
+					IFSequence.step4(~stepNum4P.next);
+					IFSamp(~tmMulSampP.next*~tmSampP.next);
+					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
+					/*~cntPlayerMel4 = ~cntPlayerMel4 + 1;
+					~cntPlayerMel4.switch(
+					0,{},
+					16,{
+					IFAPCMn.update;
+					~cntPlayerMel4=0;
+					}
+					);*/
+					((~dur4P.next)*(~durMul4P.next)).wait;
+				};
+			};
+		};
 	}
 
 	*set01{

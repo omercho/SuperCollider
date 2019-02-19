@@ -299,15 +299,6 @@ Mopho{
 						12,{Mopho.cc(\tempoDiv,12);}
 					);
 				},
-				/*'tempoDivT',{
-					~tempoDivTag=val;
-					~tempoDivTag.postln;
-					~currentBpmDiv.postln;
-					case
-					{~currentBpmDiv>11}{~currentBpmDiv=0}
-					{~currentBpmDiv<0}{~currentBpmDiv=12};
-					~tempoDivTag.switch(~tempoDivTag,{Mopho.cc(\tempoDiv,~tempoDivTag);});
-				},*/
 				'tempoDivMinT',{
 					if ( val==1, {
 						~currentBpmDiv=~currentBpmDiv-1;
@@ -392,18 +383,6 @@ Mopho{
 						~lpfPoleCnt.switch(1,{Mopho.cc(\lpfPole,0);},2,{Mopho.cc(\lpfPole,1);~lpfPoleCnt=0;});
 					});
 				},
-				/*'lpfPoleT',{
-					if ( msg[1]==1, {
-						"lpfPole TRIG".postln;
-						("before mul:"+~lpfPoleCnt).postln;
-						~lpfPoleCnt = ~lpfPoleCnt + 1;
-						("after mul:"+~lpfPoleCnt).postln;
-						~lpfPoleCnt.switch(
-							~lpfPoleCnt,{Mopho.cc(\lpfPole,~lpfPoleCnt);("in the switch:"+~lpfPoleCnt).postln;}
-						);
-						if (~lpfPoleCnt==2, {~lpfPoleCnt=0;("in th reset:"+~lpfPoleCnt).postln;});
-					});
-				},*/
 				'lpfEnvDelT',{ Mopho.cc(\lpfEnvDel,vel);},
 				'lpfEnvAttT',{ Mopho.cc(\lpfEnvAtt,vel);},
 				'lpfEnvDecT',{ Mopho.cc(\lpfEnvDec,vel);},

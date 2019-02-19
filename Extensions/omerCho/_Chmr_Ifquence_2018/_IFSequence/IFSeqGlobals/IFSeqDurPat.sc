@@ -7,18 +7,20 @@ IFSeqDurPat {
 	}
 
 	*loadProxy {
-
-		~durMul = PatternProxy( Pseq([2], inf));
-		~durMulP= Pseq([~durMul], inf).asStream;
-
-		~dur = PatternProxy(
-			Pseq([
-				2
-			],inf);
-		);
-		~durP= Pseq([~dur], inf).asStream;
-
-
+		~durResp.free;
+		~durResp = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				"Duration Pattern 1".postln;
+				~tOSCAdrr.sendMsg('durLabel', 'Strght 02');
+				~dur.source = Pseq([
+					~seqDurPat01,~seqDurPat02,~seqDurPat03,~seqDurPat04,
+					~seqDurPat05,~seqDurPat06,~seqDurPat07,~seqDurPat08,
+					~seqDurPat09,~seqDurPat10,~seqDurPat11,~seqDurPat12,
+					~seqDurPat13,~seqDurPat14,~seqDurPat15,~seqDurPat16
+				],inf)*~durMulP.next;
+			});
+		},'/durResponder');
 
 		~seqDurPat01 = PatternProxy( Pseq([1], 1));
 		~seqDurPat02 = PatternProxy( Pseq([1], 1));

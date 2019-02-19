@@ -59,6 +59,24 @@ IFMophoResp{
 			~tOSCAdrr.sendMsg('xy2Mopho', msg[1], msg[2]);
 		},'/xy2Mopho');
 
+		~cutMel2XY.free;
+		~cutMel2XY= OSCFunc({
+			arg msg,vel1, vel2,val1,val2;
+			vel1=msg[1]*127;
+			vel2=msg[2]*127;
+			val1=msg[1];
+			val2=msg[2];
+			if ( ~volcaBoolean==1, {
+				Mopho.cc(\lpfKeyAmnt, vel1);
+				Mopho.cc(\env3Amnt, vel2);
+				~tOSCAdrr.sendMsg('/cutMel2',msg[1], msg[2]);
+			},
+			{
+				~tOSCAdrr.sendMsg('/cutMel2',msg[1], msg[2]);
+			}
+			);
+		},'/cutMel2');
+
 	}
 	*midi{
 

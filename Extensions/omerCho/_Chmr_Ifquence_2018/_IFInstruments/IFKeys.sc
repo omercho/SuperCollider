@@ -144,19 +144,19 @@ IFKeys {
 		).play;
 
 		//VKeys
-		/*Pbind(//LFO CUT KEYS INT
-		\midicmd, \control, \type, \midi,
-		\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoCut,
-		\delta, Pseq([~delta1KeysP.value], ~actKeysP),
-		\control, Pseq([~lfoCtKeysP.value], inf)*~lfoMulKeys1,
+		Pbind(//LFO CUT KEYS INT
+			\midicmd, \control, \type, \midi,
+			\midiout,~vKeys, \chan, 0, \ctlNum, ~vcoDtn,
+			\delta, Pseq([~delta1KeysP.value], ~actKeysP),
+			\control, ~lfoMulKeys1*Pexprand(0.1*~lfoCtKeysP.value,1*~lfoCtKeysP.value, inf).round,
 		).play;
 
 		Pbind(//LFO RATE KEYS
 		\midicmd, \control, \type, \midi,
-		\midiout,~vKeys, \chan, 0, \ctlNum, ~lfoRate,
+		\midiout,~vKeys, \chan, 0, \ctlNum, ~vcoPort,
 		\delta, Pseq([~delta2KeysP.value], ~actKeysP),
-		\control, Pseq([~lfoRtKeysP.value], inf)*~lfoMulKeys2,
-		).play;*/
+		\control, ~lfoMulKeys2*Pexprand(0.1*~lfoRtKeysP.value,0.5*~lfoRtKeysP.value, inf).round,
+		).play;
 
 	}//p1
 	*apc40{
@@ -506,16 +506,16 @@ IFKeys {
 
 /*
 Pbind(
-			\chan, ~chKeys,
-			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([4],1),
-			\degree, Pseq([
+\chan, ~chKeys,
+\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+\dur, Pseq([4],1),
+\degree, Pseq([
 ], inf),
-			\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
-			\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
-			\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
-			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
-		).play;
+\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
+\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
+\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
+\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
+\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
+).play;
 
 */
