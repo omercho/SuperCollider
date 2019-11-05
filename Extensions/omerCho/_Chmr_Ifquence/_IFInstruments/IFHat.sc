@@ -129,7 +129,7 @@ IFHat {
 		val=i;
 		Pbind(
 			\chan, ~chHat,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1HatP.next],~actHatP),
 			\degree, Pseq([~nt1HatP.next], inf),
 			\amp, Pseq([~volHatP.next*~amp1HatP.next], inf),

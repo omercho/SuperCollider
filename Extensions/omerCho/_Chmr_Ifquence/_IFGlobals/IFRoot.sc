@@ -162,7 +162,7 @@ IFRoot {
 				1.do {
 					IFSequence.step1(~stepNum1P.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
-					/*IFStat.ln04;IFStat.ln05;IFStat.ln06;*/
+					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					//IFStat.ln07;IFStat.ln08;
 					((~dur1P.next)*(~durMul1P.next)).wait;
 				};

@@ -20,7 +20,7 @@ JmxMBs{
 	}
 	*md{|key,val|
 		var chan;
-		chan=0;
+		chan=2;
 		~vJmxMBs.control(chan, key, val);
 	}
 	*cc{|key,vel|

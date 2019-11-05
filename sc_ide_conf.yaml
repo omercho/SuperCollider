@@ -103,22 +103,22 @@ IDE:
       documents-dock: ""
       help-dock: ""
       post-dock: ""
-    geometry: AdnQywACAAD////9AAAAFwAABowAAAOs/////QAAAC0AAAaMAAADrAAAAAAAAAAABpA=
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAADZfwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAADZQAAAGcA////AAAAAQAAAnYAAANl/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAZsAAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAZwAAAHJAAAATAD///8AAAOXAAADZQAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    geometry: AdnQywACAAD////9AAAAFwAABowAAAQZ/////QAAAC0AAAaMAAAEGQAAAAAAAAAABpA=
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAmgAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAc8AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdAAAAICAAAATAD///8AAAOlAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/-iConnectMIDI/IFiConnectMIDI4.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFMopho/MophoSet.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFMopho/Mopho.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFJomox/JmxMBs.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFLpMnShufs.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFLpMnNotes.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFLpMnSteps.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFMIDIMix.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFApcMnNotes.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFCntrl/IFLpMn.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqV/IFSeqVSnr.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJElstc.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFElstc.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/ElasticDrum.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFStat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFKick.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFSnr.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFHat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFVolca/VKeys.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFVolca/VBass.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

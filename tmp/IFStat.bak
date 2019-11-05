@@ -193,7 +193,7 @@ IFStat {
 		var val;
 		val=i;
 		~stVSnrPat=Pbind(
-			\chan, ~chStatDrum,
+			\chan, ~chStatHats,
 			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVSnr,
 			\dur, Pseq([~durVSnrP.next],~actVSnrP.next),

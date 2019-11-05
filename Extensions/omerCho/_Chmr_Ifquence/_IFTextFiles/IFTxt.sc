@@ -192,7 +192,7 @@ IFTxt{
 			Pseq([2],2),
 			Pseq([6],8),
 		],inf).asStream;
-		seqFxVol=  Pwhite(0.8,   1.0,   inf).asStream;
+		seqFxVol=  Pwhite(0.0,   1.0,   inf).asStream;
 		seqFx   =  Pwhite(0.0,   1.0,   inf).asStream;
 		fork{
 			this.ifPath(trck,prt,inst);
@@ -241,11 +241,11 @@ IFTxt{
 	}
 	*trckDflt{
 		fork{
-			IFTxt.make(\01,\00,\ifGlbStrt,'rndGlbStrtTag');
+			IFTxt.make(\01,\01,\ifGlbStrt,'rndGlbStrtTag');
 			0.1.wait;
-			IFTxt.make(\01,\00,\ifGlobal,'rndGlobalTag');
+			IFTxt.make(\01,\01,\ifGlobal,'rndGlobalTag');
 			0.1.wait;
-			IFTxt.make(\01,\00,\ifFx,'rndFxTag');
+			IFTxt.make(\01,\01,\ifFx,'rndFxTag');
 			0.1.wait;
 		};
 	}

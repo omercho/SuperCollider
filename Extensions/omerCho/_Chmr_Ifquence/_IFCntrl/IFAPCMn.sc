@@ -224,198 +224,61 @@ IFAPCMn{
 		this.actLine8ButD8(val4);
 	}
 	//////////////////Button
+	//--1
 	*actLine1ButTS1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS1, val); //ButTS
-
+		~tOSCAdrr.sendMsg('activKick', val);
+		~actKick.source=val;
 		~cntActLine1ButTS1=val;
 	}
-	*actLine2ButTS2{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS2, val); //ButTS
-
-		~cntActLine2ButTS2=val;
-	}
-	*actLine3ButTS3{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS3, val); //ButTS
-
-		~cntActLine3ButTS3=val;
-	}
-	*actLine4ButTS4{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS4, val); //ButTS
-		~tOSCAdrr.sendMsg('activBass', val);
-		~actBass.source=val;
-		~cntActLine4ButTS4=val;
-	}
-	*actLine5ButTS5{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS5, val); //ButTS
-		~tOSCAdrr.sendMsg('activMopho', val);
-		~actMopho.source=val;
-		~cntActLine5ButTS5=val;
-	}
-	*actLine6ButTS6{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS6, val); //ButTS
-		~tOSCAdrr.sendMsg('activKeys', val);
-		~actKeys.source=val;
-		~cntActLine6ButTS6=val;
-	}
-	*actLine7ButTS7{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS7, val); //ButTS
-		~tOSCAdrr.sendMsg('activSamp', val);
-		~actSamp.source=val;
-		~cntActLine7ButTS7=val;
-	}
-	*actLine8ButTS8{|val|
-		~apcMn.noteOn(~apcLn1, ~actButTS8, val); //ButTS
-		/*~tOSCAdrr.sendMsg('activRes', val);
-		~actRes.source=val;*/
-		~cntActLine8ButTS8=val;
-	}
-	//////////////////ButA
 	*actLine1ButA1{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA1, val); //But B
-
+		~apcMn.noteOn(~apcLn1, ~actButA1, val);  //But A
+		~tOSCAdrr.sendMsg('time2Kick', val);
+		~tmMulKick.source = Pseq([val+1], inf);
 		~cntActLine1ButA1=val;
 	}
-	*actLine2ButA2{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA2, val); //But B
-
-		~cntActLine2ButA2=val;
-	}
-	*actLine3ButA3{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA3, val); //But B
-
-		~cntActLine3ButA3=val;
-	}
-	*actLine4ButA4{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA4, val); //But B
-		~tOSCAdrr.sendMsg('lfoBass', val);
-		~local.sendMsg('lfoBass', val);
-		~cntActLine4ButA4=val;
-	}
-	*actLine5ButA5{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA5, val); //But B
-		~tOSCAdrr.sendMsg('time2Keys', val);
-		~tmMulKeys.source = Pseq([val+1], inf);
-		~cntActLine5ButA5=val;
-	}
-	*actLine6ButA6{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA6, val); //But B
-		~tOSCAdrr.sendMsg('time2Mopho', val);
-		~tmMulMopho.source = Pseq([val+1], inf);
-		~cntActLine6ButA6=val;
-	}
-	*actLine7ButA7{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA7, val); //But B
-		~tOSCAdrr.sendMsg('time2Samp', val);
-		~tmMulSamp.source = Pseq([val+1], inf);
-		~cntActLine7ButA7=val;
-	}
-	*actLine8ButA8{|val|
-		~apcMn.noteOn(~apcLn1, ~actButA8, val); //But B
-		//~tOSCAdrr.sendMsg('time2Res', val);
-		//~tmMulRes.source = Pseq([val+1], inf);
-		~cntActLine8ButA8=val;
-	}
-	/////////ButB
 	*actLine1ButB1{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB1, val+5); //But C
-
+		~apcMn.noteOn(~apcLn1, ~actButB1, val+5); //But B
+		~tOSCAdrr.sendMsg('shufKick', val);
+		~local.sendMsg('shufKick', val);
 		~cntActLine1ButB1=val;
 	}
-	*actLine2ButB2{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB2, val+5); //But C
-
-		~cntActLine2ButB2=val;
-	}
-	*actLine3ButB3{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB3, val+5); //But C
-
-		~cntActLine3ButB3=val;
-	}
-	*actLine4ButB4{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB4, val+5); //But C
-		~tOSCAdrr.sendMsg('shufBass', val);
-		~local.sendMsg('shufBass', val);
-		~cntActLine4ButB4=val;
-	}
-	*actLine5ButB5{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB5, val+5); //But C
-		~tOSCAdrr.sendMsg('shufMopho', val);
-		~local.sendMsg('shufMopho', val);
-		~cntActLine5ButB5=val;
-	}
-	*actLine6ButB6{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB6, val+5); //But C
-		~tOSCAdrr.sendMsg('shufKeys', val);
-		~local.sendMsg('shufKeys', val);
-		~cntActLine6ButB6=val;
-	}
-	*actLine7ButB7{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB7, val+5); //But C
-		~tOSCAdrr.sendMsg('shufSamp', val);
-		~local.sendMsg('shufSamp', val);
-		~cntActLine7ButB7=val;
-	}
-	*actLine8ButB8{|val|
-		~apcMn.noteOn(~apcLn1, ~actButB8, val); //But C
-		//~tOSCAdrr.sendMsg('shufMelHarm', val);
-		//~actStHat.source=val;
-		~cntActLine8ButB8=val;
-	}
-	/////////ButC
 	*actLine1ButC1{|val|
-		~apcMn.noteOn(~apcLn1, ~actButC1, val+5); //But D
+		~apcMn.noteOn(~apcLn1, ~actButC1, val+5); //But C
 		//~tOSCAdrr.sendMsg('shufKick', val);
 		//~actKickLfo1.source=val;
 		~cntActLine1ButC1=val;
 	}
-	*actLine2ButC2{|val|
-		~apcMn.noteOn(~apcLn1, ~actButC2, val+5); //But D
-		//~tOSCAdrr.sendMsg('shufSnr', val);
-		//~actSnrLfo1.source=val;
-		~cntActLine2ButC2=val;
-	}
-	*actLine3ButC3{|val|
-		~apcMn.noteOn(~apcLn1, ~actButC3, val+5); //But D
-		//~tOSCAdrr.sendMsg('shufHat', val);
-		//~actHatLfo1.source=val;
-		~cntActLine3ButC3=val;
-	}
-	*actLine4ButC4{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButC4, val+5); //But D
-		//~tOSCAdrr.sendMsg('shufBass', val);
-		//~local.sendMsg('shufBass', val);
-		~cntActLine4ButC4=val;
-	}
-	*actLine5ButC5{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButC5, val+5); //But D
-		//~tOSCAdrr.sendMsg('shufKeys', val);
-		//~local.sendMsg('shufKeys', val);
-		~cntActLine5ButC5=val;
-	}
-	*actLine6ButC6{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButC6, val+5); //But D
-		//~tOSCAdrr.sendMsg('shufSamp', val);
-		//~local.sendMsg('shufSamp', val);
-		~cntActLine6ButC6=val;
-	}
-	*actLine7ButC7{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButC7, val+3); //But D
-		//~tOSCAdrr.sendMsg('shufMopho', val);
-		//~local.sendMsg('pitchMopho', 1);
-		~cntActLine7ButC7=val;
-	}
-	*actLine8ButC8{|val|
-		~apcMn.noteOn(~apcLn1, ~actButC8, val); //But D
-		//~tOSCAdrr.sendMsg('shufMelHarm', val);
-		//~actStHat.source=val;
-		~cntActLine8ButD8=val;
-	}
-	/////////But_D
 	*actLine1ButD1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButD1, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufKick', val);
 		//~actKickLfo1.source=val;
 		~cntActLine1ButD1=val;
+	}
+	//--2
+	*actLine2ButTS2{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS2, val);  //ButTS
+		~tOSCAdrr.sendMsg('activSnr', val);
+		~actSnr.source=val;
+		~cntActLine2ButTS2=val;
+	}
+	*actLine2ButA2{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA2, val);   //But A
+		~tOSCAdrr.sendMsg('time2Snr', val);
+		~tmMulSnr.source = Pseq([val+1], inf);
+		~cntActLine2ButA2=val;
+	}
+	*actLine2ButB2{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB2, val+5); //But B
+		~tOSCAdrr.sendMsg('shufSnr', val);
+		~local.sendMsg('shufSnr', val);
+		~cntActLine2ButB2=val;
+	}
+	*actLine2ButC2{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC2, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufSnr', val);
+		//~actSnrLfo1.source=val;
+		~cntActLine2ButC2=val;
 	}
 	*actLine2ButD2{|val|
 		~apcMn.noteOn(~apcLn1, ~actButD2, val+5); //But D
@@ -423,38 +286,183 @@ IFAPCMn{
 		//~actSnrLfo1.source=val;
 		~cntActLine2ButD2=val;
 	}
+	//--3
+	*actLine3ButTS3{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS3, val); //ButTS
+		~tOSCAdrr.sendMsg('activHat', val);
+		~actHat.source=val;
+		~cntActLine3ButTS3=val;
+	}
+	*actLine3ButA3{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA3, val);  //But A
+		~tOSCAdrr.sendMsg('time2Hat', val);
+		~tmMulHat.source = Pseq([val+1], inf);
+		~cntActLine3ButA3=val;
+	}
+	*actLine3ButB3{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB3, val+5); //But B
+		~tOSCAdrr.sendMsg('shufHat', val);
+		~local.sendMsg('shufHat', val);
+		//~actHatLfo1.source=val;
+		~cntActLine3ButB3=val;
+	}
+	*actLine3ButC3{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC3, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufHat', val);
+		//~actHatLfo1.source=val;
+		~cntActLine3ButC3=val;
+	}
 	*actLine3ButD3{|val|
 		~apcMn.noteOn(~apcLn1, ~actButD3, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufHat', val);
 		//~actHatLfo1.source=val;
 		~cntActLine3ButD3=val;
 	}
+	//--4
+	*actLine4ButTS4{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS4, val); //ButTS
+		~tOSCAdrr.sendMsg('activKeys', val);
+		~actKeys.source=val;
+		~cntActLine4ButTS4=val;
+	}
+	*actLine4ButA4{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA4, val);  //But A
+		~tOSCAdrr.sendMsg('time2Keys', val);
+		~tmMulKeys.source = Pseq([val+1], inf);
+		~cntActLine4ButA4=val;
+	}
+	*actLine4ButB4{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB4, val+5); //But B
+		~tOSCAdrr.sendMsg('shufKeys', val);
+		~local.sendMsg('shufKeys', val);
+		~cntActLine4ButB4=val;
+	}
+	*actLine4ButC4{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC4, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufBass', val);
+		//~local.sendMsg('shufBass', val);
+		~cntActLine4ButC4=val;
+	}
 	*actLine4ButD4{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButD4, val+5); //But D
+		~apcMn.noteOn(~apcLn1, ~actButD4, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufBass', val);
 		//~local.sendMsg('shufBass', val);
 		~cntActLine4ButD4=val;
 	}
+	//--5
+	*actLine5ButTS5{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS5, val); //ButTS
+
+		~cntActLine5ButTS5=val;
+	}
+	*actLine5ButA5{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA5, val);   //But A
+
+		~cntActLine5ButA5=val;
+	}
+	*actLine5ButB5{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB5, val+5);  //But B
+
+		~cntActLine5ButB5=val;
+	}
+	*actLine5ButC5{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC5, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufKeys', val);
+		//~local.sendMsg('shufKeys', val);
+		~cntActLine5ButC5=val;
+	}
 	*actLine5ButD5{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButD5, val+5); //But D
+		~apcMn.noteOn(~apcLn1, ~actButD5, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufKeys', val);
 		//~local.sendMsg('shufKeys', val);
 		~cntActLine5ButD5=val;
 	}
+	//--6
+	*actLine6ButTS6{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS6, val); //ButTS
+
+		~cntActLine6ButTS6=val;
+	}
+	*actLine6ButA6{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA6, val);  //But A
+
+		~cntActLine6ButA6=val;
+	}
+	*actLine6ButB6{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB6, val+5); //But B
+
+		~cntActLine6ButB6=val;
+	}
+	*actLine6ButC6{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC6, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufSamp', val);
+		//~local.sendMsg('shufSamp', val);
+		~cntActLine6ButC6=val;
+	}
 	*actLine6ButD6{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButD6, val+5); //But D
+		~apcMn.noteOn(~apcLn1, ~actButD6, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufSamp', val);
 		//~local.sendMsg('shufSamp', val);
 		~cntActLine6ButD6=val;
 	}
+	//--7
+	*actLine7ButTS7{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS7, val); //ButTS
+		~tOSCAdrr.sendMsg('activMopho', val);
+		~actMopho.source=val;
+		~cntActLine7ButTS7=val;
+	}
+	*actLine7ButA7{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA7, val);  //But A
+		~tOSCAdrr.sendMsg('time2Mopho', val);
+		~tmMulMopho.source = Pseq([val+1], inf);
+		~cntActLine7ButA7=val;
+	}
+	*actLine7ButB7{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB7, val+5); //But B
+		~tOSCAdrr.sendMsg('shufMopho', val);
+		~local.sendMsg('shufMopho', val);
+		~cntActLine7ButB7=val;
+	}
+	*actLine7ButC7{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC7, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufMopho', val);
+		//~local.sendMsg('pitchMopho', 1);
+		~cntActLine7ButC7=val;
+	}
 	*actLine7ButD7{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButD7, val+3); //But D
+		~apcMn.noteOn(~apcLn1, ~actButD7, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufMopho', val);
 		//~local.sendMsg('pitchMopho', 1);
 		~cntActLine7ButD7=val;
 	}
+	//--8
+	*actLine8ButTS8{|val|
+		~apcMn.noteOn(~apcLn1, ~actButTS8, val); //ButTS
+		~tOSCAdrr.sendMsg('activBass', val);
+		~actBass.source=val;
+		~cntActLine8ButTS8=val;
+	}
+	*actLine8ButA8{|val|
+		~apcMn.noteOn(~apcLn1, ~actButA8, val+5); //But A
+		~tOSCAdrr.sendMsg('lfoBass', val);
+		~local.sendMsg('lfoBass', val);
+		~cntActLine8ButA8=val;
+	}
+	*actLine8ButB8{|val|
+		~apcMn.noteOn(~apcLn1, ~actButB8, val+5); //But B
+		~tOSCAdrr.sendMsg('shufBass', val);
+		~local.sendMsg('shufBass', val);
+		~cntActLine8ButB8=val;
+	}
+	*actLine8ButC8{|val|
+		~apcMn.noteOn(~apcLn1, ~actButC8, val+5); //But C
+		//~tOSCAdrr.sendMsg('shufMelHarm', val);
+		//~actStHat.source=val;
+		~cntActLine8ButD8=val;
+	}
 	*actLine8ButD8{|val|
-		//~apcMn.noteOn(~apcLn1, ~actButD8, val); //But D
+		~apcMn.noteOn(~apcLn1, ~actButD8, val+5); //But D
 		//~tOSCAdrr.sendMsg('shufMelHarm', val);
 		//~actStHat.source=val;
 		~cntActLine8ButD8=val;
@@ -464,10 +472,82 @@ IFAPCMn{
 		//--------------------line1
 		~apcMnFad1.free;
 		~apcMnFad1=MIDIFunc.cc( {
-			arg vel;
-			/*~tOSCAdrr.sendMsg('volKick', vel/127);
-			~volKick.source = vel/127;*/
+			arg vel,val;
+			~tOSCAdrr.sendMsg('volKick', vel/127);
+			~volKick.source = vel/127;
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd1);
+
+		////--------------------line2
+		~apcMnFad2.free;
+		~apcMnFad2=MIDIFunc.cc( {
+			arg vel,val;
+			~tOSCAdrr.sendMsg('volSnr', vel/127);
+			~volSnr.source = vel/127;
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd2);
+
+		////--------------------line3
+		~apcMnFad3.free;
+		~apcMnFad3=MIDIFunc.cc( {
+			arg vel;
+			~tOSCAdrr.sendMsg('volHat', vel/127);
+			~volHat.source = vel/127;
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd3);
+
+		//--------------------line4
+		~apcMnFad4.free;
+		~apcMnFad4=MIDIFunc.cc( {
+			arg vel,val;
+			val=vel/127;
+			IFKeys.set1(\vol,val);
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd4);
+
+		//--------------------line5
+		~apcMnFad5.free;
+		~apcMnFad5=MIDIFunc.cc( {
+			arg vel,val;
+			val=vel/127;
+
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd5);
+
+		//--------------------line6
+		~apcMnFad6.free;
+		~apcMnFad6=MIDIFunc.cc( {
+			arg vel,val;
+			val=vel/127;
+
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd6);
+
+		//--------------------line7
+		~apcMnFad7.free;
+		~apcMnFad7=MIDIFunc.cc( {
+			arg vel,val;
+			val=vel/127;
+			IFMopho.set1(\vol,val);
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd7);
+
+		//--------------------line8
+		~apcMnFad8.free;
+		~apcMnFad8=MIDIFunc.cc( {
+			arg vel,val;
+			val=vel/127;
+			IFBass.set1(\vol,val);
+		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd8);
+
+	}
+	*loadTSResponders{
+
+		//ActTS1
+		~cntActLine1ButTS1=0;
+		~mdMixActTS1.free;
+		~mdMixActTS1=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine1ButTS1 = ~cntActLine1ButTS1 + 1;
+				~cntActLine1ButTS1.switch(
+					1,{this.actLine1ButTS1(1);},
+					2,{this.actLine1ButTS1(0);}
+				)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS1);
 		//Act ButA1
 		~cntActLine1ButA1=0;
 		~mdActLine1ButA1.free;
@@ -504,12 +584,33 @@ IFAPCMn{
 					2,{IFAPCMn.actLine1ButC1(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC1);
-		////--------------------line2
-		~apcMnFad2.free;
-		~apcMnFad2=MIDIFunc.cc( {
+		//Act ButD1
+		~cntActLine1ButD1=0;
+		~mdActLine1ButD1.free;
+		~mdActLine1ButD1=MIDIFunc.noteOn({
 			arg vel;
+			if ( vel==127, {
+				~cntActLine1ButD1 = ~cntActLine1ButD1 + 1;
+				~cntActLine1ButD1.switch(
+					1, {IFAPCMn.actLine1ButD1(1);},
+					2,{IFAPCMn.actLine1ButD1(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD1);
 
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd2);
+		//----------
+		//ActTS2
+		~cntActLine2ButTS2=0;
+		~mdMixActTS2.free;
+		~mdMixActTS2=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine2ButTS2 = ~cntActLine2ButTS2 + 1;
+				~cntActLine2ButTS2.switch(
+					1,{this.actLine2ButTS2(1);},
+					2,{this.actLine2ButTS2(0);}
+				)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS2);
+		//Act ButA2
 		~cntActLine2ButA2=0;
 		~mdActLine2ButA2.free;
 		~mdActLine2ButA2=MIDIFunc.noteOn({
@@ -521,9 +622,7 @@ IFAPCMn{
 					2,{IFAPCMn.actLine2ButA2(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA2);
-
 		//Act ButB2
-		//Snr Time Div2
 		~cntActLine2ButB2=0;
 		~mdActLine2ButB2.free;
 		~mdActLine2ButB2=MIDIFunc.noteOn({
@@ -535,9 +634,7 @@ IFAPCMn{
 					2,{IFAPCMn.actLine2ButB2(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB2);
-
 		//Act ButC2
-		//Static Snr Activate
 		~cntActLine2ButC2=0;
 		~mdActLine2ButC2.free;
 		~mdActLine2ButC2=MIDIFunc.noteOn({
@@ -549,12 +646,32 @@ IFAPCMn{
 					2,{IFAPCMn.actLine2ButC2(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC2);
-		////--------------------line3
-		~apcMnFad3.free;
-		~apcMnFad3=MIDIFunc.cc( {
+		//Act ButD2
+		~cntActLine2ButD2=0;
+		~mdActLine2ButD2.free;
+		~mdActLine2ButD2=MIDIFunc.noteOn({
 			arg vel;
+			if ( vel==127, {
+				~cntActLine2ButD2 = ~cntActLine2ButD2 + 1;
+				~cntActLine2ButD2.switch(
+					1,{IFAPCMn.actLine2ButD2(1);},
+					2,{IFAPCMn.actLine2ButD2(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD2);
 
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd3);
+		//----------
+		//ActTS3
+		~cntActLine3ButTS3=0;
+		~mdMixActTS3.free;
+		~mdMixActTS3=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine3ButTS3 = ~cntActLine3ButTS3 + 1;
+				~cntActLine3ButTS3.switch(
+					1,{this.actLine3ButTS3(1);},
+					2,{this.actLine3ButTS3(0);}
+				)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS3);
 		//Act ButA3
 		~cntActLine3ButA3=0;
 		~mdActLine3ButA3.free;
@@ -581,7 +698,6 @@ IFAPCMn{
 			);
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB3);
 		//Act ButC3
-		//Static Hat Activate
 		~cntActLine3ButC3=0;
 		~mdActLine3ButC3.free;
 		~mdActLine3ButC3=MIDIFunc.noteOn({
@@ -593,13 +709,33 @@ IFAPCMn{
 					2,{IFAPCMn.actLine3ButC3(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC3);
-		//--------------------line4
-		~apcMnFad4.free;
-		~apcMnFad4=MIDIFunc.cc( {
-			arg vel,val;
-			val=vel/127;
-			IFBass.set1(\vol,val);
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd4);
+		//Act ButD3
+		~cntActLine3ButD3=0;
+		~mdActLine3ButD3.free;
+		~mdActLine3ButD3=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine3ButD3 = ~cntActLine3ButD3 + 1;
+				~cntActLine3ButD3.switch(
+					1,{IFAPCMn.actLine3ButD3(1);},
+					2,{IFAPCMn.actLine3ButD3(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD3);
+
+		//----------
+		//ActTS4
+		~cntActLine4ButTS4=0;
+		~mdMixActTS4.free;
+		~mdMixActTS4=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine4ButTS4 = ~cntActLine4ButTS4 + 1;
+				~cntActLine4ButTS4.switch(
+					1,{this.actLine4ButTS4(1);},
+					2,{this.actLine4ButTS4(0);}
+				)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS4);
+		//Act ButA4
 		~cntActLine4ButA4=0;
 		~mdActLine4ButA4.free;
 		~mdActLine4ButA4=MIDIFunc.noteOn({
@@ -611,6 +747,7 @@ IFAPCMn{
 					2,{IFAPCMn.actLine4ButA4(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA4);
+		//Act ButB4
 		~cntActLine4ButB4=0;
 		~mdActLine4ButB4.free;
 		~mdActLine4ButB4=MIDIFunc.noteOn({
@@ -622,6 +759,7 @@ IFAPCMn{
 					2,{IFAPCMn.actLine4ButB4(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB4);
+		//Act ButC4
 		~cntActLine4ButC4=0;
 		~mdActLine4ButC4.free;
 		~mdActLine4ButC4=MIDIFunc.noteOn({
@@ -633,13 +771,32 @@ IFAPCMn{
 					2,{IFAPCMn.actLine4ButC4(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC4);
-		//--------------------line5
-		~apcMnFad5.free;
-		~apcMnFad5=MIDIFunc.cc( {
-			arg vel,val;
-			val=vel/127;
-			IFMopho.set1(\vol,val);
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd5);
+		//Act ButD4
+		~cntActLine4ButD4=0;
+		~mdActLine4ButD4.free;
+		~mdActLine4ButD4=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine4ButD4 = ~cntActLine4ButD4 + 1;
+				~cntActLine4ButD4.switch(
+					1,{IFAPCMn.actLine4ButD4(1);},
+					2,{IFAPCMn.actLine4ButD4(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD4);
+
+		//----------
+		//ActTS5
+		~cntActLine5ButTS5=0;
+		~mdMixActTS5.free;
+		~mdMixActTS5=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine5ButTS5 = ~cntActLine5ButTS5 + 1;
+				~cntActLine5ButTS5.switch(
+					1,{this.actLine5ButTS5(1);},
+					2,{this.actLine5ButTS5(0);}
+				)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS5);
 		//Act ButA5
 		~cntActLine5ButA5=0;
 		~mdActLine5ButA5.free;
@@ -676,171 +833,20 @@ IFAPCMn{
 					2,{IFAPCMn.actLine5ButC5(0);}
 			)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC5);
-		//--------------------line6
-		//MOPHO
-		~apcMnFad6.free;
-		~apcMnFad6=MIDIFunc.cc( {
-			arg vel,val;
-			val=vel/127;
-			IFKeys.set1(\vol,val);
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd6);
-		~cntActLine6ButA6=0;
-		~mdActLine6ButA6.free;
-		~mdActLine6ButA6=MIDIFunc.noteOn({
+		//Act ButD5
+		~cntActLine5ButD5=0;
+		~mdActLine5ButD5.free;
+		~mdActLine5ButD5=MIDIFunc.noteOn({
 			arg vel;
 			if ( vel==127, {
-				~cntActLine6ButA6 = ~cntActLine6ButA6 + 1;
-				~cntActLine6ButA6.switch(
-					1,{IFAPCMn.actLine6ButA6(1);},
-					2,{IFAPCMn.actLine6ButA6(0);}
+				~cntActLine5ButD5 = ~cntActLine5ButD5 + 1;
+				~cntActLine5ButD5.switch(
+					1,{IFAPCMn.actLine5ButD5(1);},
+					2,{IFAPCMn.actLine5ButD5(0);}
 			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA6);
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD5);
 
-		//Act ButB6
-		//Mopho Time Div2
-		~cntActLine6ButB6=0;
-		~mdActLine6ButB6.free;
-		~mdActLine6ButB6=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine6ButB6 = ~cntActLine6ButB6 + 1;
-				~cntActLine6ButB6.switch(
-					1,{IFAPCMn.actLine6ButB6(1);},
-					2,{IFAPCMn.actLine6ButB6(0);}
-			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB6);
-
-		//Act ButC6
-		//Mopho Activate
-		~cntActLine6ButC6=0;
-		~mdActLine6ButC6.free;
-		~mdActLine6ButC6=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine6ButC6 = ~cntActLine6ButC6 + 1;
-				~cntActLine6ButC6.switch(
-					1,{IFAPCMn.actLine6ButC6(1);},
-					2,{IFAPCMn.actLine6ButC6(0);}
-			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC6);
-		//--------------------line7
-		~apcMnFad7.free;
-		~apcMnFad7=MIDIFunc.cc( {
-			arg vel;
-			/*Mopho.cc(\voiVol, vel);*/
-			~tOSCAdrr.sendMsg('volSamp', vel/127);
-			~volSamp.source = (vel/127);
-			~mdOut.control(7, 1, vel); //Samp / Vol
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd7);
-
-		~cntActLine7ButA7=0;
-		~mdActLine7ButA7.free;
-		~mdActLine7ButA7=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine7ButA7 = ~cntActLine7ButA7 + 1;
-				~cntActLine7ButA7.switch(
-					1,{IFAPCMn.actLine7ButA7(1);},
-					2,{IFAPCMn.actLine7ButA7(0);}
-			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA7);
-
-		//Act ButB4
-		//Samp Time Div2
-		~cntActLine7ButB7=0;
-		~mdActLine7ButB7.free;
-		~mdActLine7ButB7=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine7ButB7 = ~cntActLine7ButB7 + 1;
-				~cntActLine7ButB7.switch(
-					1, {IFAPCMn.actLine7ButB7(1);},
-					2,{IFAPCMn.actLine7ButB7(0);}
-			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB7);
-
-		//Act ButC
-		//Samp Activate
-		~cntActLine7ButC7=0;
-		~mdActLine7ButC7.free;
-		~mdActLine7ButC7=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine7ButC7 = ~cntActLine7ButC7 + 1;
-				~cntActLine7ButC7.switch(
-					1, {IFAPCMn.actLine7ButC7(1);},
-					2,{IFAPCMn.actLine7ButC7(0);}
-			)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC7);
-		//--------------------line8
-		~apcMnFad8.free;
-		~apcMnFad8=MIDIFunc.cc( {
-			arg vel;
-
-		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd8);
-	}
-	*loadTSResponders{
-
-		//ActTS1
-		~cntActLine1ButTS1=0;
-		~mdMixActTS1.free;
-		~mdMixActTS1=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine1ButTS1 = ~cntActLine1ButTS1 + 1;
-				~cntActLine1ButTS1.switch(
-					1,{this.actLine1ButTS1(1);},
-					2,{this.actLine1ButTS1(0);}
-				)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS1);
-		//ActTS2
-		~cntActLine2ButTS2=0;
-		~mdMixActTS2.free;
-		~mdMixActTS2=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine2ButTS2 = ~cntActLine2ButTS2 + 1;
-				~cntActLine2ButTS2.switch(
-					1,{this.actLine2ButTS2(1);},
-					2,{this.actLine2ButTS2(0);}
-				)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS2);
-		//ActTS3
-		~cntActLine3ButTS3=0;
-		~mdMixActTS3.free;
-		~mdMixActTS3=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine3ButTS3 = ~cntActLine3ButTS3 + 1;
-				~cntActLine3ButTS3.switch(
-					1,{this.actLine3ButTS3(1);},
-					2,{this.actLine3ButTS3(0);}
-				)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS3);
-		//ActTS4
-		~cntActLine4ButTS4=0;
-		~mdMixActTS4.free;
-		~mdMixActTS4=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine4ButTS4 = ~cntActLine4ButTS4 + 1;
-				~cntActLine4ButTS4.switch(
-					1,{this.actLine4ButTS4(1);},
-					2,{this.actLine4ButTS4(0);}
-				)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS4);
-		//ActTS5
-		~cntActLine5ButTS5=0;
-		~mdMixActTS5.free;
-		~mdMixActTS5=MIDIFunc.noteOn({
-			arg vel;
-			if ( vel==127, {
-				~cntActLine5ButTS5 = ~cntActLine5ButTS5 + 1;
-				~cntActLine5ButTS5.switch(
-					1,{this.actLine5ButTS5(1);},
-					2,{this.actLine5ButTS5(0);}
-				)});
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS5);
+		//----------
 		//ActTS6
 		~cntActLine6ButTS6=0;
 		~mdMixActTS6.free;
@@ -853,6 +859,56 @@ IFAPCMn{
 					2,{this.actLine6ButTS6(0);}
 				)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS6);
+		//Act ButA6
+		~cntActLine6ButA6=0;
+		~mdActLine6ButA6.free;
+		~mdActLine6ButA6=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButA6 = ~cntActLine6ButA6 + 1;
+				~cntActLine6ButA6.switch(
+					1,{IFAPCMn.actLine6ButA6(1);},
+					2,{IFAPCMn.actLine6ButA6(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA6);
+		//Act ButB6
+		~cntActLine6ButB6=0;
+		~mdActLine6ButB6.free;
+		~mdActLine6ButB6=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButB6 = ~cntActLine6ButB6 + 1;
+				~cntActLine6ButB6.switch(
+					1,{IFAPCMn.actLine6ButB6(1);},
+					2,{IFAPCMn.actLine6ButB6(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB6);
+		//Act ButC6
+		~cntActLine6ButC6=0;
+		~mdActLine6ButC6.free;
+		~mdActLine6ButC6=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButC6 = ~cntActLine6ButC6 + 1;
+				~cntActLine6ButC6.switch(
+					1,{IFAPCMn.actLine6ButC6(1);},
+					2,{IFAPCMn.actLine6ButC6(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC6);
+		//Act ButD6
+		~cntActLine6ButD6=0;
+		~mdActLine6ButD6.free;
+		~mdActLine6ButD6=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine6ButD6 = ~cntActLine6ButD6 + 1;
+				~cntActLine6ButD6.switch(
+					1,{IFAPCMn.actLine6ButD6(1);},
+					2,{IFAPCMn.actLine6ButD6(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD6);
+
+		//----------
 		//ActTS7
 		~cntActLine7ButTS7=0;
 		~mdMixActTS7.free;
@@ -865,6 +921,56 @@ IFAPCMn{
 					2,{this.actLine7ButTS7(0);}
 				)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS7);
+		//Act ButA7
+		~cntActLine7ButA7=0;
+		~mdActLine7ButA7.free;
+		~mdActLine7ButA7=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButA7 = ~cntActLine7ButA7 + 1;
+				~cntActLine7ButA7.switch(
+					1,{IFAPCMn.actLine7ButA7(1);},
+					2,{IFAPCMn.actLine7ButA7(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA7);
+		//Act ButB7
+		~cntActLine7ButB7=0;
+		~mdActLine7ButB7.free;
+		~mdActLine7ButB7=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButB7 = ~cntActLine7ButB7 + 1;
+				~cntActLine7ButB7.switch(
+					1, {IFAPCMn.actLine7ButB7(1);},
+					2,{IFAPCMn.actLine7ButB7(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB7);
+		//Act ButC7
+		~cntActLine7ButC7=0;
+		~mdActLine7ButC7.free;
+		~mdActLine7ButC7=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButC7 = ~cntActLine7ButC7 + 1;
+				~cntActLine7ButC7.switch(
+					1, {IFAPCMn.actLine7ButC7(1);},
+					2,{IFAPCMn.actLine7ButC7(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC7);
+		//Act ButD7
+		~cntActLine7ButD7=0;
+		~mdActLine7ButD7.free;
+		~mdActLine7ButD7=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine7ButD7 = ~cntActLine7ButD7 + 1;
+				~cntActLine7ButD7.switch(
+					1, {IFAPCMn.actLine7ButD7(1);},
+					2,{IFAPCMn.actLine7ButD7(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD7);
+
+		//----------
 		//ActTS8
 		~cntActLine8ButTS8=0;
 		~mdMixActTS8.free;
@@ -877,6 +983,54 @@ IFAPCMn{
 					2,{this.actLine8ButTS8(0);}
 				)});
 		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButTS8);
+		//Act ButA8
+		~cntActLine8ButA8=0;
+		~mdActLine8ButA8.free;
+		~mdActLine8ButA8=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine8ButA8 = ~cntActLine8ButA8 + 1;
+				~cntActLine8ButA8.switch(
+					1,{IFAPCMn.actLine8ButA8(1);},
+					2,{IFAPCMn.actLine8ButA8(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButA8);
+		//Act ButB8
+		~cntActLine8ButB8=0;
+		~mdActLine8ButB8.free;
+		~mdActLine8ButB8=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine8ButB8 = ~cntActLine8ButB8 + 1;
+				~cntActLine8ButB8.switch(
+					1,{IFAPCMn.actLine8ButB8(1);},
+					2,{IFAPCMn.actLine8ButB8(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButB8);
+		//Act ButC8
+		~cntActLine8ButC8=0;
+		~mdActLine8ButC8.free;
+		~mdActLine8ButC8=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine8ButC8 = ~cntActLine8ButC8 + 1;
+				~cntActLine8ButC8.switch(
+					1,{IFAPCMn.actLine8ButC8(1);},
+					2,{IFAPCMn.actLine8ButC8(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButC8);
+		//Act ButD8
+		~cntActLine8ButD8=0;
+		~mdActLine8ButD8.free;
+		~mdActLine8ButD8=MIDIFunc.noteOn({
+			arg vel;
+			if ( vel==127, {
+				~cntActLine8ButD8 = ~cntActLine8ButD8 + 1;
+				~cntActLine8ButD8.switch(
+					1,{IFAPCMn.actLine8ButD8(1);},
+					2,{IFAPCMn.actLine8ButD8(0);}
+			)});
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD8);
 	}
 	*resetLeds{
 		//Toggles Active - Times2 - Static

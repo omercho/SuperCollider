@@ -22,6 +22,7 @@ IFKeys {
 	*globals{
 		~chVKeys=3;
 		~chKeys=4;
+
 		~lateKeys= 0.0;
 		~timesKeys=1;
 		~octMulKeys=0;

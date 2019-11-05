@@ -129,7 +129,7 @@ IFSnr {
 		val=i;
 		Pbind(
 			\chan, ~chSnr,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1SnrP.next], ~actSnrP.next),
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~volSnrP.next*~amp1SnrP.next], inf),

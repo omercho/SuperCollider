@@ -120,14 +120,15 @@ IFMIDIMix{
 	}
 	*act1ButB{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~mtBut1, val); //But B
-		~tOSCAdrr.sendMsg('activKick', val);
-		~actKick.source=val;
+		~tOSCAdrr.sendMsg('activVTomL', val);
+		~actVTomL.source=val;
+		//JmxMBs.cc(\tuneJmx,val*127);
 		~cntMixAct1ButB=val;
 	}
 	*act1ButC{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~slBut1, val); //But C
-		~tOSCAdrr.sendMsg('shufKick', val);
-		~local.sendMsg('shufKick', val);
+		//~tOSCAdrr.sendMsg('shufKick', val);
+		//~local.sendMsg('shufKick', val);
 		~cntMixAct1ButC=val;
 	}
 	//actLine2
@@ -139,14 +140,16 @@ IFMIDIMix{
 	}
 	*act2ButB{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~mtBut2, val); //But B
-		~tOSCAdrr.sendMsg('activSnr', val);
-		~actSnr.source=val;
+		~tOSCAdrr.sendMsg('activVClap', val);
+		~actVClap.source=val;
+		/*~tOSCAdrr.sendMsg('activVTomH', val);
+		~actVTomH.source=val;*/
 		~cntMixAct2ButB=val;
 	}
 	*act2ButC{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~slBut2, val); //But C
-		~tOSCAdrr.sendMsg('shufSnr', val);
-		~local.sendMsg('shufSnr', val);
+		//~tOSCAdrr.sendMsg('shufSnr', val);
+		//~local.sendMsg('shufSnr', val);
 		~cntMixAct2ButC=val;
 	}
 	//actLine3
@@ -158,14 +161,16 @@ IFMIDIMix{
 	}
 	*act3ButB{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~mtBut3, val); //But B
-		~tOSCAdrr.sendMsg('activHat', val);
-		~actHat.source=val;
+		/*~tOSCAdrr.sendMsg('activVCrash', val);
+		~actVCrsh.source=val;*/
+		~tOSCAdrr.sendMsg('activVTomH', val);
+		~actVTomH.source=val;
 		~cntMixAct3ButB=val;
 	}
 	*act3ButC{|val|
 		~mdMix.noteOn(~mdMixGlobChan, ~slBut3, val); //But C
-		~tOSCAdrr.sendMsg('shufHat', val);
-		~local.sendMsg('shufHat', val);
+		//~tOSCAdrr.sendMsg('shufHat', val);
+		//~local.sendMsg('shufHat', val);
 		~cntMixAct3ButC=val;
 	}
 	//actLine4

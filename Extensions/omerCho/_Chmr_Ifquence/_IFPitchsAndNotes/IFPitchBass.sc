@@ -69,7 +69,7 @@ IFPitchBass {
 					}
 			)}
 			);
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD4);
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD8);
 	}
 
 	*noteBassOn {

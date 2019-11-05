@@ -119,7 +119,7 @@ IFKick {
 		val=i;
 		Pbind(
 			\chan, ~chKick,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KickP.next],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~volKickP.next*~amp1KickP.next], inf),
@@ -330,7 +330,7 @@ IFTxtKick{
 		dur=  Pwhite(2,   3,   inf).asStream;
 		shuf= Pshuf([0,2,0,0,3,1],inf).asStream;
 		vol=  Pwhite(0.89, 0.99,inf).asStream;
-		octM= Pwhite(0,   1,   inf).asStream;
+		octM= Pwhite(2,   3,   inf).asStream;
 		susM= Pwhite(0.1, 0.9, inf).asStream;
 		dec=  Pwhite(0.2, 1.0, inf).asStream;
 		dly=  Pwhite(0.1, 0.9, inf).asStream;

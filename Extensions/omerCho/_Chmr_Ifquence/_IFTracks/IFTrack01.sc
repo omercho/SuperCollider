@@ -32,18 +32,18 @@ IFTrack01 {
 	}
 
 	*setActs{
-		IFAPCMn.actLine1(1,0,0,0,0);
-		IFAPCMn.actLine2(1,0,0,0,0);
-		IFAPCMn.actLine3(1,0,0,0,0);
-		IFAPCMn.actLine4(1,0,0,0,0);
+		IFAPCMn.actLine1(0,0,0,0,0);
+		IFAPCMn.actLine2(0,0,0,0,0);
+		IFAPCMn.actLine3(0,0,0,0,0);
+		IFAPCMn.actLine4(0,0,0,0,0);
 		IFAPCMn.actLine5(1,0,0,0,0);
-		IFAPCMn.actLine6(1,0,0,0,0);
+		IFAPCMn.actLine6(0,0,0,0,0);
 		IFAPCMn.actLine7(0,0,0,0,0);
 		IFAPCMn.actLine8(0,0,0,0,0);
 
-		IFMIDIMix.act1(1,0,0);
-		IFMIDIMix.act2(1,0,0);
-		IFMIDIMix.act3(1,0,0);
+		IFMIDIMix.act1(1,1,0);
+		IFMIDIMix.act2(1,1,0);
+		IFMIDIMix.act3(1,1,0);
 		IFMIDIMix.act4(0,0,0);
 		IFMIDIMix.act5(0,0,0);
 		IFMIDIMix.act6(0,0,0);
@@ -79,6 +79,14 @@ IFTrack01 {
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 		IFTxt.readGlbl(trck:\01,prtDir:\01,prt:1);
 		IFTxt.readFx(trck:\01,prtDir:\01,prt:1);
+		IFTxtStat.read(\01,\01);
+		IFTxtKick.read(\01,\01);
+		IFTxtSnr.read(\01,\01);
+		IFTxtHat.read(\01,\01);
+		IFTxtBass.read(\01,\01);
+		IFTxtMopho.read(\01,\01);
+		IFTxtKeys.read(\01,\01);
+		IFTxtSamp.read(\01,\01);
 	}//////                                             - 1 -
 	*part02{//////                                      - 2 -
 		IFTxt.readGlbl(trck:\01,prtDir:\01,prt:2);
