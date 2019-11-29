@@ -52,16 +52,22 @@ IFPitch {
 		], inf);
 	}
 	*trns{|trns=0|
+		~transKick.source=(trns);
+		~transSnr.source=(trns);
+		~transHat.source=(trns);
 		~transBass.source=(trns);
 		~transMopho.source=(trns);
-		~transKeys.source=(trns);
-		//~transSamp.source=(trns);
+		~trans1Keys.source=(trns);
+		~transSamp.source=(trns);
 	}
 	*trnsCnt{|trns=0|
+		~transCntKick.source=(trns);
+		~transCntSnr.source=(trns);
+		~transCntHat.source=(trns);
 		~transCntBass.source=(trns);
 		~transCntMopho.source=(trns);
-		~transCntKeys.source=(trns);
-		//~transCntSamp.source=(trns);
+		~trans1CntKeys.source=(trns);
+		~transCntSamp.source=(trns);
 		trns.switch(
 			(-3),{~local.sendMsg('ntRt-3', 1);},
 			(-2),{~local.sendMsg('ntRt-2', 1);},
@@ -103,17 +109,20 @@ IFPitch {
 		~scl1=~ifSclList[scl1];
 		~scl2=~ifSclList[scl2];
 
+		~rootKick.source =(root);
+		~rootSnr.source =(root);
+		~rootHat.source =(root);
 		~rootBass.source =(root);
-		~rootKeys.source =(root);
+		~root1Keys.source =(root);
 		~rootMopho.source =(root);
 		~rootSamp.source =(root);
 		~rootExt.source =(root);
 
-		~rootLngBass.source=(root);
+		/*~rootLngBass.source=(root);
 		~rootLngKeys.source=(root);
 		~rootLngSamp.source =(root);
-		~rootLngMopho.source =(root);
-		~rootLngKeys.source =(root);
+		~rootLngMopho.source =(root);*/
+
 	}
 
 	*buttons{
@@ -2123,9 +2132,7 @@ IFPitch {
 				~transMopho.source=(-11);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-11');
 			});
-		},
-		'/ntMopho-11'
-		);
+		},'/ntMopho-11');
 
 		~noteMopho12.free;
 		~noteMopho12 = OSCFunc({
@@ -2136,9 +2143,7 @@ IFPitch {
 				~transMopho.source=(-12);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-12');
 			});
-		},
-		'/ntMopho-12'
-		);
+		},'/ntMopho-12');
 
 		~noteMopho13.free;
 		~noteMopho13 = OSCFunc({
@@ -2149,9 +2154,8 @@ IFPitch {
 				~transMopho.source=(-13);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-13');
 			});
-		},
-		'/ntMopho-13'
-		);
+		},'/ntMopho-13');
+
 		~noteMopho14.free;
 		~noteMopho14 = OSCFunc({
 			arg msg;
@@ -2161,14 +2165,10 @@ IFPitch {
 				~transMopho.source=(-14);
 				~tOSCAdrr.sendMsg('noteMophoLabel', '-14');
 			});
-		},
-		'/ntMopho-14'
-		);
+		},'/ntMopho-14');
 
 	}
 	*freeAll {
-
-
 
 	}
 

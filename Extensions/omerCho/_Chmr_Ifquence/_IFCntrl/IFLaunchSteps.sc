@@ -289,7 +289,7 @@ IFLaunchSteps{
 		~apcMn.noteOn(~apcMnCh, ~stpBut15, 5); //But 7
 		~apcMn.noteOn(~apcMnCh, ~stpBut16, 5); //But 8
 		//Lounch 3
-		~apcMn.noteOn(~apcMnCh, ~stpBut17, 0); //But 1
+		/*~apcMn.noteOn(~apcMnCh, ~stpBut17, 0); //But 1
 		~apcMn.noteOn(~apcMnCh, ~stpBut18, 0); //But 2
 		~apcMn.noteOn(~apcMnCh, ~stpBut19, 0); //But 3
 		~apcMn.noteOn(~apcMnCh, ~stpBut20, 0); //But 4
@@ -307,7 +307,7 @@ IFLaunchSteps{
 		~apcMn.noteOn(~apcMnCh, ~stpBut29, 0); //But 5
 		~apcMn.noteOn(~apcMnCh, ~stpBut30, 0); //But 6
 		~apcMn.noteOn(~apcMnCh, ~stpBut31, 0); //But 7
-		~apcMn.noteOn(~apcMnCh, ~stpBut32, 0); //But 8
+		~apcMn.noteOn(~apcMnCh, ~stpBut32, 0); //But 8*/
 	}
 }
 

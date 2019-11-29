@@ -21,6 +21,7 @@ IFLoad{
 			~volcaBoolean=0;
 			Mopho.load;
 			JmxMBs.load;
+			Ambk.load;
 			0.1.wait;
 			IFRoot.load;0.1.wait;
 			IFProjectGlobals.load;0.1.wait;
@@ -30,6 +31,12 @@ IFLoad{
 			IFCounter.zero;IFCounter.loadProxy;0.1.wait;
 			IFCntrl.loadAll;0.1.wait;
 			IFTracks.loadButtons;0.1.wait;
+			"Loading Pitches: Kick".postln;
+			IFPitchKick.loadAll;0.1.wait;
+			"Loading Pitches: Snr".postln;
+			IFPitchSnr.loadAll;0.1.wait;
+			"Loading Pitches: Hat".postln;
+			IFPitchHat.loadAll;0.1.wait;
 			"Loading Pitches: Bass".postln;
 			IFPitchBass.loadAll;0.1.wait;
 			"Loading Pitches: Mopho".postln;

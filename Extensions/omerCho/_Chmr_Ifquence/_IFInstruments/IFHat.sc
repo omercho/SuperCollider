@@ -40,6 +40,9 @@ IFHat {
 	*proxy {
 		~actHat = PatternProxy( Pseq([1], inf));
 		~actHatP= Pseq([~actHat], inf).asStream;
+
+		~rootHat = PatternProxy( Pseq([0], inf));
+		~rootHatP = Pseq([~rootHat], inf).asStream;
 		~nt1Hat = PatternProxy( Pseq([0], inf));
 		~nt1HatP = Pseq([~nt1Hat], inf).asStream;
 		~amp1Hat = PatternProxy( Pseq([1], inf));
@@ -73,6 +76,8 @@ IFHat {
 		~transHatP = Pseq([~transHat], inf).asStream;
 		~transShufHat = PatternProxy( Pseq([0], inf));
 		~transShufHatP = Pseq([~transShufHat], inf).asStream;
+		~transCntHat = PatternProxy( Pseq([0], inf));
+		~transCntHatP = Pseq([~transCntHat], inf).asStream;
 		~extraShufHat = PatternProxy( Pshuf([0], inf));
 		~extraShufHatP = Pseq([~extraShufHat], inf).asStream;
 
@@ -134,7 +139,8 @@ IFHat {
 			\degree, Pseq([~nt1HatP.next], inf),
 			\amp, Pseq([~volHatP.next*~amp1HatP.next], inf),
 			\sustain, Pseq([~sus1HatP.next],inf)*~susMulHat,
-			\mtranspose, Pseq([~transHatP.next], inf)+~trHat+~transShufHatP.next,
+			\mtranspose, Pseq([~transHatP.next], inf)+~extraShufHatP.next+~transShufHatP.next+~transCntHatP.next+~trHat,
+			\ctranspose, Pseq([~rootHatP.next],inf),
 			\octave, Pseq([~octHatP.next], inf)+~octMulHat,
 			\harmonic, Pseq([~hrmHatP.next], inf)+~harmHat
 		).play(~clkHat,quant: ~quantHat1);

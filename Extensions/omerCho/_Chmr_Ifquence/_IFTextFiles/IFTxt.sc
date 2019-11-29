@@ -158,11 +158,12 @@ IFTxt{
 			Pseq([1,1,2,2, 1,1,1,1],inf).asStream,
 			Pseq([2,2,2,2, 1,1,1,1],inf).asStream,
 			Pseq([2,2,2,2, 1,1,1,1, 2,2,1,1, 2,2,1,1],inf).asStream,
+			Pseq([1,1,1,2, 1,1,1,2, 1,1,1,2, 1,1,1,1],inf).asStream,
 			Pseq([2,2,1,1, 2,2,1,1, 2,2,2,2, 1,1,1,1],inf).asStream,
 		].choose;
 		rootStp= Pwhite(0,   16,   inf).asStream;
 		step=    Pwhite(0,   16,   inf).asStream;
-		seqMul=  Pwhite(0,   1,   inf).asStream;
+		seqMul=  Pwhite(0,   2,   inf).asStream;
 		fork{
 			this.ifPath(trck,prt,inst);
 			file=File.new(ifTrckPath.standardizePath,"w");
@@ -192,8 +193,8 @@ IFTxt{
 			Pseq([2],2),
 			Pseq([6],8),
 		],inf).asStream;
-		seqFxVol=  Pwhite(0.0,   1.0,   inf).asStream;
-		seqFx   =  Pwhite(0.0,   1.0,   inf).asStream;
+		seqFxVol=  Pwhite(0.0,   0.7,   inf).asStream;
+		seqFx   =  Pwhite(0.0,   0.7,   inf).asStream;
 		fork{
 			this.ifPath(trck,prt,inst);
 			file=File.new(ifTrckPath.standardizePath,"w");
@@ -241,11 +242,11 @@ IFTxt{
 	}
 	*trckDflt{
 		fork{
-			IFTxt.make(\01,\01,\ifGlbStrt,'rndGlbStrtTag');
+			IFTxt.make(\01,\00,\ifGlbStrt,'rndGlbStrtTag');
 			0.1.wait;
-			IFTxt.make(\01,\01,\ifGlobal,'rndGlobalTag');
+			IFTxt.make(\01,\00,\ifGlobal,'rndGlobalTag');
 			0.1.wait;
-			IFTxt.make(\01,\01,\ifFx,'rndFxTag');
+			IFTxt.make(\01,\00,\ifFx,'rndFxTag');
 			0.1.wait;
 		};
 	}
@@ -257,62 +258,31 @@ IFTxt{
 
 	}
 	*readGlbStrt{|trck,prtDir|
+		/*
+		IFTxt.readIfTrack(\01,\01,\ifGlbStrt);
+		*/
+
 		IFTxt.readIfTrack(trck,prtDir,\ifGlbStrt);
 		~tGlbStrt=IFTxt.line(1);
 		IFTxt.storeGlblAtStart;
 	}
-	*readGlbl{|trck,prtDir,prt|
+	*readGlbl{|trck,prtDir|
 		IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-		case
-		{ prt == 1 }  {
+
 			//IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
 			~tGlbNt=IFTxt.line(1);
 			~tGlbDur=IFTxt.line(2);
 			~tGlbRt=IFTxt.line(3);
-		}
-		{ prt == 2 }  {
-			//IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-			~tGlbNt=IFTxt.line(4);
-			~tGlbDur=IFTxt.line(5);
-			~tGlbRt=IFTxt.line(6);
-		}
-		{ prt == 3 }  {
-			//IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-			~tGlbNt=IFTxt.line(7);
-			~tGlbDur=IFTxt.line(8);
-			~tGlbRt=IFTxt.line(9);
-		}
-		{ prt == 4 }  {
-			//IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-			~tGlbNt=IFTxt.line(10);
-			~tGlbDur=IFTxt.line(11);
-			~tGlbRt=IFTxt.line(12);
-		};
+
 		IFTxt.storeGlblPatValues;
 	}
-	*readFx{|trck,prtDir,prt|
+	*readFx{|trck,prtDir|
 		IFTxt.readIfTrack(trck,prtDir,\ifFx);
-		case
-		{ prt == 1 }  {
+
 			~tFxVol=IFTxt.line(1);
 			~tFxFad=IFTxt.line(2);
 			~tFxXY=IFTxt.line(3);
-		}
-		{ prt == 2 }  {
-			~tFxVol=IFTxt.line(4);
-			~tFxFad=IFTxt.line(5);
-			~tFxXY=IFTxt.line(6);
-		}
-		{ prt == 3 }  {
-			~tFxVol=IFTxt.line(7);
-			~tFxFad=IFTxt.line(8);
-			~tFxXY=IFTxt.line(9);
-		}
-		{ prt == 4 }  {
-			~tFxVol=IFTxt.line(10);
-			~tFxFad=IFTxt.line(11);
-			~tFxXY=IFTxt.line(12);
-		};
+
 		IFTxt.storeGlblFxValues;
 	}
 	*readInst{|trck,prtDir|

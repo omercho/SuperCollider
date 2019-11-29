@@ -1,14 +1,6 @@
 /*
 /*
-Ambk.masterTranspose(12);
-Ambk.masterTune(1);
-Ambk.midiClock(0);
-Ambk.parameterSend(1);
-Ambk.parameterReceive(0);
-Ambk.controllerSendReceive(1);
-Ambk.sysexSendReceive(1);
-Ambk.audioOut(0);
-Ambk.midiOut(1);
+Ambk.cc
 */
 */
 Ambk{
@@ -17,33 +9,58 @@ Ambk{
 		~currentBpm=1;
 		~currentBpmDiv=1;
 		this.resetCnts;
-		this.loadLabelLists;
+		this.globals;
 		this.makeOSCResponders;
 	}
-	*nrp{|param1,nrpn,param2,vel|
-		var chan;
-		chan=~chAmbk;
-		~vAmbk.control(chan, 99, param1);// first, set parameter number
-		~vAmbk.control(chan, 98, nrpn);//   most significant byte for parameter number
-		~vAmbk.control(chan, 6, param2);//  least significant byte for parameter number
-		~vAmbk.control(chan,38, vel);//     then set value
+	*globals{
+		~chAbk1=0;
+		~chAbk2=1;
+		~chAbk3=2;
+		~chAbk4=3;
+		~chAbk5=4;
+		~chAbk6=5;
+
+		~ptVolABK=7;
+		~ptF1CutABK=74;
+		~ptF1ResABK=71;
+		~ptF2CutABK=29;
+		~ptF2ResABK=30;
 	}
-	*lbl{|key,val| var chan; ~tOSCAdrr.sendMsg(key, val);}
-	*loadLabelLists{
-		~onOffLst = [0,1];
-		~oscShapeLst = [\OFF, \SAW, \TRI, \SAW_TRI];
+
+	*lbl{|key,val|~tOSCAdrr.sendMsg(key, val);}
+
+	*md{|pt,cc,vel|
+		pt.switch(
+			\pt1, {~vAmbk.control(0, cc, vel);}, //pt1
+			\pt2, {~vAmbk.control(1, cc, vel);}, //pt2
+			\pt3, {~vAmbk.control(2, cc, vel);}, //pt3
+			\pt4, {~vAmbk.control(3, cc, vel);}, //pt4
+			\pt5, {~vAmbk.control(4, cc, vel);}, //pt5
+			\pt6, {~vAmbk.control(5, cc, vel);}, //pt6
+
+		);
 	}
-	*cc{|key,vel|
-		var ch,val,direct,valFreq, valTune;
-		ch=~chAmbk;
+
+	*cc{|pt,key,vel|
+		var val;
 		val=vel/127;
 
-		valFreq= vel/120;
-		valTune= vel/100;
 		key.switch(
 
-			//OSCULATORS
-			\osc1Freq, {this.nrp( 0, 0, 0, vel);this.lbl(\MPHosc1Freq,valFreq);}, //Osc_1 Freq
+			//VOL
+			\pt1Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt1Vol,val);}, //ptVol
+			\pt2Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt2Vol,val);}, //ptVol
+			\pt3Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt3Vol,val);}, //ptVol
+			\pt4Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt4Vol,val);}, //ptVol
+			\pt5Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt5Vol,val);}, //ptVol
+			\pt6Vol, {this.md(pt,~ptVolABK, vel);Ambk.lbl(\ABKpt6Vol,val);}, //ptVol
+			//F1Cut
+			\pt1F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt1F1Cut,val);}, //ptF1Cut
+			\pt2F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt2F1Cut,val);}, //ptF1Cut
+			\pt3F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt3F1Cut,val);}, //ptF1Cut
+			\pt4F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt4F1Cut,val);}, //ptF1Cut
+			\pt5F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt5F1Cut,val);}, //ptF1Cut
+			\pt6F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt6F1Cut,val);}, //ptF1Cut
 
 
 		);
@@ -58,16 +75,44 @@ Ambk{
 			velTune= val*100;
 			playDir.switch(
 
-				'osc1FreqT',{ Ambk.cc(\osc1Freq,velFreq);},
+				'pt1VolT',{ this.cc(\pt1,\pt1Vol,vel);},
+				'pt2VolT',{ this.cc(\pt2,\pt2Vol,vel);},
+				'pt3VolT',{ this.cc(\pt3,\pt3Vol,vel);},
+				'pt4VolT',{ this.cc(\pt4,\pt4Vol,vel);},
+				'pt5VolT',{ this.cc(\pt5,\pt5Vol,vel);},
+				'pt6VolT',{ this.cc(\pt6,\pt6Vol,vel);},
+
+				'pt1F1CutT',{ this.cc(\pt1,\pt1F1Cut,vel);},
+				'pt2F1CutT',{ this.cc(\pt2,\pt2F1Cut,vel);},
+				'pt3F1CutT',{ this.cc(\pt3,\pt3F1Cut,vel);},
+				'pt4F1CutT',{ this.cc(\pt4,\pt4F1Cut,vel);},
+				'pt5F1CutT',{ this.cc(\pt5,\pt5F1Cut,vel);},
+				'pt6F1CutT',{ this.cc(\pt6,\pt6F1Cut,vel);},
+
+
+
 			);
-		});
+		},path:oscName);
 	}
 	*makeOSCResponders{
-		//osc1
-		this.oscResp(respName:'osc1FreqResp', oscName:'MPHosc1Freq', playDir:'osc1FreqT');
+		//ptVol
+		this.oscResp(respName:'pt1VolResp', oscName:'ABKpt1Vol', playDir:'pt1VolT');
+		this.oscResp(respName:'pt2VolResp', oscName:'ABKpt2Vol', playDir:'pt2VolT');
+		this.oscResp(respName:'pt3VolResp', oscName:'ABKpt3Vol', playDir:'pt3VolT');
+		this.oscResp(respName:'pt4VolResp', oscName:'ABKpt4Vol', playDir:'pt4VolT');
+		this.oscResp(respName:'pt5VolResp', oscName:'ABKpt5Vol', playDir:'pt5VolT');
+		this.oscResp(respName:'pt6VolResp', oscName:'ABKpt6Vol', playDir:'pt6VolT');
+		//ptF1Cut
+		this.oscResp(respName:'pt1F1CutResp', oscName:'ABKpt1F1Cut', playDir:'pt1F1CutT');
+		this.oscResp(respName:'pt2F1CutResp', oscName:'ABKpt2F1Cut', playDir:'pt2F1CutT');
+		this.oscResp(respName:'pt3F1CutResp', oscName:'ABKpt3F1Cut', playDir:'pt3F1CutT');
+		this.oscResp(respName:'pt4F1CutResp', oscName:'ABKpt4F1Cut', playDir:'pt4F1CutT');
+		this.oscResp(respName:'pt5F1CutResp', oscName:'ABKpt5F1Cut', playDir:'pt5F1CutT');
+		this.oscResp(respName:'pt6F1CutResp', oscName:'ABKpt6F1Cut', playDir:'pt6F1CutT');
 
 
 	}
+
 	*resetCnts{
 		//~tempoDivTag=0;
 		~osc1KybrdCntt=0;
@@ -75,13 +120,25 @@ Ambk{
 }
 //GLOBAL PARAMETER NRPN
 
+
 /*
-		~abk1Ch=0;
-		~abk1Ch=1;
-		~abk1Ch=2;
-		~abk1Ch=3;
-		~abk1Ch=4;
-		~abk1Ch=5;
+
+Ambk.oscResp(respName:'pt1VolResp', oscName:'ABKpt1Vol', playDir:'pt1VolT');
+
+~tOSCAdrr.sendMsg(\ABKpt1Vol, 0.5);
+Ambk.lbl(\ABKpt1Vol,5);
+Ambk.md(\pt1,~ptVolABK,10);
+Ambk.cc(\pt1,\pt1Vol,0);
+~vAmbk.control(0, 7, 12);
+
+127*0.79
+
+		~chAbk1=0;
+		~chAbk2=1;
+		~chAbk3=2;
+		~chAbk4=3;
+		~chAbk5=4;
+		~chAbk6=5;
 
 ~vAmbk.noteOn( 26, 111);   //But 1
 ~vAmbk.noteOff( 26, 1);    //But 1
@@ -93,7 +150,7 @@ Ambk{
 ~vAmbk.control(abk1Ch, 4, 0);     //Foot Controller (MSB)
 ~vAmbk.control(abk1Ch, 5, 0);     //Portamento Time (MSB)
 ~vAmbk.control(abk1Ch, 6, 89);    //Data Entry (MSB)
-		~vAmbk.control(abk1Ch, 7, 100);   //Channel Volume
+~vAmbk.control(abk1Ch, 7, 100);   //Channel Volume
 ~vAmbk.control(abk1Ch, 8, 60);    //Balance
 ~vAmbk.control(abk1Ch, 9, 18);    //LFO to filter (growl)
 ~vAmbk.control(abk1Ch, 10, 0);    //

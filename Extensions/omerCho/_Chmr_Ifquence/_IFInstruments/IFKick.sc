@@ -46,8 +46,9 @@ IFKick {
 	}
 
 	*proxy {
-		~actKick = PatternProxy( Pseq([1], inf));
-		~actKickP= Pseq([~actKick], inf).asStream;
+
+		~rootKick = PatternProxy( Pseq([0], inf));
+		~rootKickP = Pseq([~rootKick], inf).asStream;
 		~nt1Kick = PatternProxy( Pseq([~vKick], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
 		~dur1Kick = PatternProxy( Pseq([1], inf));
@@ -79,6 +80,9 @@ IFKick {
 		~transKickP = Pseq([~transKick], inf).asStream;
 		~transShufKick = PatternProxy( Pseq([0], inf));
 		~transShufKickP = Pseq([~transShufKick], inf).asStream;
+		~transCntKick = PatternProxy( Pseq([0], inf));
+		~transCntKickP = Pseq([~transCntKick], inf).asStream;
+
 		~extraShufKick = PatternProxy( Pshuf([0], inf));
 		~extraShufKickP = Pseq([~extraShufKick], inf).asStream;
 
@@ -90,6 +94,10 @@ IFKick {
 
 		~actKickLfo1 = PatternProxy( Pseq([0], inf));
 		~actKickLfo1P= Pseq([~actKickLfo1], inf).asStream;
+
+
+		~actKick = PatternProxy( Pseq([1], inf));
+		~actKickP= Pseq([~actKick], inf).asStream;
 
 		~volKick = PatternProxy( Pseq([1.0], inf));
 		~volKickP = Pseq([~volKick], inf).asStream;
@@ -124,25 +132,13 @@ IFKick {
 			\degree,  Pseq([~nt1KickP.next], inf),
 			\amp, Pseq([~volKickP.next*~amp1KickP.next], inf),
 			\sustain, Pseq([~sus1KickP.next],inf)*~susMulKick,
-			\mtranspose, Pseq([~transKickP.next], inf)+~trKick+~transShufKickP.next,
+			\mtranspose, Pseq([~transKickP.next], inf)+~extraShufKickP.next+~transShufKickP.next+~transCntKickP.next+~trKick,
+			\ctranspose, Pseq([~rootKickP.next],inf),
 			\octave, Pseq([~octKickP], inf)+~octMulKick,
 			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
 		).play(~clkTom,quant:0);
 		//this.count2;
 		//this.timesCount;
-	}
-	*p2{
-		//Kick2
-		Pbind(
-			\chan, ~chKick,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~durKick2P.next], ~actKick2P),
-			\degree, Pseq([~ntKick2P.next], inf),
-			\octave, Pseq([~octKickP.next], inf)+~octMulKick,
-			\amp, Pseq([~volKick2P.next*~ampKick2P.next], inf),
-			\sustain, Pseq([~susKick2P.next],inf)*~susMulKick,
-			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
-		).play(~clkTom,quant:~quantKick2);
 	}
 
 
@@ -455,8 +451,6 @@ IFTxtKick{
 			~tKcGlob[8],~tKcGlob[9],~tKcGlob[10],~tKcGlob[11],
 			~tKcGlob[12],~tKcGlob[13],~tKcGlob[14],~tKcGlob[15],
 		);
-
-
 	}//////
 }
 /*

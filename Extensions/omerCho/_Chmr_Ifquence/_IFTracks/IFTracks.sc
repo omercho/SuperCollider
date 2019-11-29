@@ -483,8 +483,7 @@ IFTracks{
 		'/set4'
 		);
 
-	}
-	//TRACK 1 END
+	}//TRACK 1 END
 
 	*track2 {
 

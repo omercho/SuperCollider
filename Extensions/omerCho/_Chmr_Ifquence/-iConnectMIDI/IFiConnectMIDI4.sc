@@ -94,6 +94,10 @@ IFiConnectMIDI4{
 		~apcMnOutID=(-1288010067);
 		~apcMnInID=(-1756375906);
 
+		~melMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 DJMx");
+		~melMixOutID=(-2126449294);
+		~melMixInID=(919558582);
+
 		~djMix = MIDIOut.newByName("iConnectMIDI4+", "USB3 HST4 DJMx");
 		~djMixOutID=(-2126449294);
 		~djMixInID=(919558582);

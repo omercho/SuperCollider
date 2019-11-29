@@ -87,20 +87,20 @@ JmxMBs{
 	}
 
 	*set01{
-		JmxMBs.cc(\tuneJmx,64);
-		JmxMBs.cc(\pitchJmx,64);
-		JmxMBs.cc(\volJmx,125);
+		JmxMBs.cc(\tuneJmx,124);
+		JmxMBs.cc(\pitchJmx,14);
+		JmxMBs.cc(\volJmx,105);
 		JmxMBs.cc(\attJmx,20);
-		JmxMBs.cc(\decJmx,32);
-		JmxMBs.cc(\gateTmJmx,64);
+		JmxMBs.cc(\decJmx,12);
+		JmxMBs.cc(\gateTmJmx,124);
 		JmxMBs.cc(\harmJmx,10);
 		JmxMBs.cc(\pulseJmx,50);
 		JmxMBs.cc(\eqJmx,0);
 		JmxMBs.cc(\noiseJmx,90);
 		JmxMBs.cc(\mtlNoiseJmx,0);
 		JmxMBs.cc(\compJmx,62);
-		JmxMBs.cc(\lfoIntJmx,64);
-		JmxMBs.cc(\lfoRtJmx,64);
+		JmxMBs.cc(\lfoIntJmx,34);
+		JmxMBs.cc(\lfoRtJmx,60);
 	}
 
 	*globals{

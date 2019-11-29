@@ -104,21 +104,21 @@ IDE:
       help-dock: ""
       post-dock: ""
     geometry: AdnQywACAAD////9AAAAFwAABowAAAQZ/////QAAAC0AAAaMAAAEGQAAAAAAAAAABpA=
-    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAmgAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAc8AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdAAAAICAAAATAD///8AAAOlAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+    state: AAAA/wAAAAD9AAAAAgAAAAAAAACBAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAiwAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAc8AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAdAAAAICAAAATAD///8AAAPhAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
   postWindow:
     lineWrap: false
     scrollback: 1000
   recentDocuments: !QVariantList
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqV/IFSeqVSnr.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_DataJokey_2018/DJElstc.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFElstc.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/ElasticDrum.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxt.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTracks/IFTracks.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTracks/IFTrack01.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFStat.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFVolca/IFVSamp.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFKick.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFSnr.sc
     - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFHat.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFVolca/VKeys.sc
-    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFVolca/VBass.sc
+    - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFInstruments/IFKeys.sc
   shortcuts:
     editor-indent-auto: Ctrl+;
     help-browser: Ctrl+Shift+H

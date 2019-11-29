@@ -477,7 +477,7 @@ IFSeqKeys {
 
 	*step01{
 		~amp1Keys.source  =  Pseq([~seqKeys01.next*~seqVelKeys01.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys01.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys01.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys01.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys01.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys01.next], inf);
@@ -488,7 +488,7 @@ IFSeqKeys {
 	}
 	*step02{
 		~amp1Keys.source  =  Pseq([~seqKeys02.next*~seqVelKeys02.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys02.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys02.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys02.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys02.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys02.next], inf);
@@ -499,7 +499,7 @@ IFSeqKeys {
 	}
 	*step03{
 		~amp1Keys.source  =  Pseq([~seqKeys03.next*~seqVelKeys03.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys03.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys03.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys03.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys03.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys03.next], inf);
@@ -510,7 +510,7 @@ IFSeqKeys {
 	}
 	*step04{
 		~amp1Keys.source  =  Pseq([~seqKeys04.next*~seqVelKeys04.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys04.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys04.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys04.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys04.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys04.next], inf);
@@ -521,7 +521,7 @@ IFSeqKeys {
 	}
 	*step05{
 		~amp1Keys.source  =  Pseq([~seqKeys05.next*~seqVelKeys05.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys05.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys05.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys05.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys05.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys05.next], inf);
@@ -532,7 +532,7 @@ IFSeqKeys {
 	}
 	*step06{
 		~amp1Keys.source  =  Pseq([~seqKeys06.next*~seqVelKeys06.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys06.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys06.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys06.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys06.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys06.next], inf);
@@ -543,7 +543,7 @@ IFSeqKeys {
 	}
 	*step07{
 		~amp1Keys.source  =  Pseq([~seqKeys07.next*~seqVelKeys07.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys07.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys07.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys07.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys07.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys07.next], inf);
@@ -554,7 +554,7 @@ IFSeqKeys {
 	}
 	*step08{
 		~amp1Keys.source  =  Pseq([~seqKeys08.next*~seqVelKeys08.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys08.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys08.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys08.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys08.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys08.next], inf);
@@ -565,7 +565,7 @@ IFSeqKeys {
 	}
 	*step09{
 		~amp1Keys.source  =  Pseq([~seqKeys09.next*~seqVelKeys09.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys09.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys09.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys09.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys09.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys09.next], inf);
@@ -576,7 +576,7 @@ IFSeqKeys {
 	}
 	*step10{
 		~amp1Keys.source  =  Pseq([~seqKeys10.next*~seqVelKeys10.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys10.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys10.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys10.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys10.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys10.next], inf);
@@ -587,7 +587,7 @@ IFSeqKeys {
 	}
 	*step11{
 		~amp1Keys.source  =  Pseq([~seqKeys11.next*~seqVelKeys11.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys11.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys11.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys11.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys11.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys11.next], inf);
@@ -598,7 +598,7 @@ IFSeqKeys {
 	}
 	*step12{
 		~amp1Keys.source  =  Pseq([~seqKeys12.next*~seqVelKeys12.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys12.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys12.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys12.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys12.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys12.next], inf);
@@ -609,7 +609,7 @@ IFSeqKeys {
 	}
 	*step13{
 		~amp1Keys.source  =  Pseq([~seqKeys13.next*~seqVelKeys13.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys13.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys13.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys13.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys13.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys13.next], inf);
@@ -620,7 +620,7 @@ IFSeqKeys {
 	}
 	*step14{
 		~amp1Keys.source  =  Pseq([~seqKeys14.next*~seqVelKeys14.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys14.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys14.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys14.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys14.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys14.next], inf);
@@ -631,7 +631,7 @@ IFSeqKeys {
 	}
 	*step15{
 		~amp1Keys.source  =  Pseq([~seqKeys15.next*~seqVelKeys15.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys15.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys15.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys15.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys15.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys15.next], inf);
@@ -642,7 +642,7 @@ IFSeqKeys {
 	}
 	*step16{
 		~amp1Keys.source  =  Pseq([~seqKeys16.next*~seqVelKeys16.next], inf);
-		~octKeys.source = Pseq([~seqOctKeys16.next], inf);
+		~oct1Keys.source = Pseq([~seqOctKeys16.next], inf);
 		~nt1Keys.source   =  Pseq([~seqNtKeys16.next], inf);
 		~nt2Keys.source   =  Pseq([~seqNt2Keys16.next], inf);
 		~nt3Keys.source   =  Pseq([~seqNt3Keys16.next], inf);

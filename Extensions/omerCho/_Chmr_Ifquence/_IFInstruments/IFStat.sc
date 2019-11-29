@@ -287,14 +287,15 @@ IFStat {
 		IFSeqVSnr.stGrpSet  (0,1,1,0, 1,0,1,0,  0,0,1,0, 0,1,1,0);
 		//~ntVSnr.source = Pseq([38], inf);
 		IFSeqVHat.stGrpSet  (1,1,1,1, 1,1,1,1,  1,1,1,1, 1,1,0,1);
-		~ntVHat.source = Pseq([42,42,42,42,42,42,42,46], inf);
+		//~ntVHat.source = Pseq([42,42,42,42,42,42,42,46], inf);
+		IFSeqVClap.stGrpSet  (0,0,1,0, 0,0,1,1,  0,0,0,0, 1,0,0,0);
+		//~ntVClap.source = Pseq([39], inf);
+		//~durVClap.source  =  Pseq([1/2], inf);
 		IFSeqVTomL.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
 		//~ntVTomL.source = Pseq([43,43,43,50], inf);
 		IFSeqVTomH.stGrpSet  (1,0,0,1, 1,0,0,0,  1,0,0,0, 0,0,0,0);
 		//~ntVTomH.source = Pseq([43,43,43,50], inf);
-		IFSeqVClap.stGrpSet  (0,0,1,0, 0,0,1,1,  0,0,0,0, 1,0,0,0);
-		//~ntVClap.source = Pseq([39], inf);
-		//~durVClap.source  =  Pseq([1/2], inf);
+
 		/*IFSeqVCrsh.stGrpSet  (0,0,0,0, 0,0,0,1,  0,0,0,0, 0,1,0,1);
 		//~ntVCrsh.source = Pseq([67,75,75,75], inf);
 		IFSeqVPcm.stGrpSet  (1,0,1,0, 1,0,1,1,  0,0,1,1, 0,1,0,1);
@@ -310,12 +311,20 @@ IFTxtStat{
 		var ntVl1,ntVl2,ntVl3,ntVl4,ntVl5,ntVl6;
 		var amp1,nt1,amp2,nt2,amp3,nt3,amp4,nt4,amp5,nt5,amp6,nt6;
 
-		amp1=[Pseq([1,0],inf).asStream,Pseq([1,0,1,0,1,0,1,1],inf).asStream].choose;
+		amp1=[
+			Pseq([1,0],inf).asStream,
+			Pseq([1,0,1,0,1,0,1,1],inf).asStream,
+			Pseq([1,0,1,1,0,0,1,0],inf).asStream,
+			Pseq([1,0,0,1,1,0,1,0],inf).asStream
+		].choose;
 		nt1=Pseq([0],inf).asStream;
 		amp2=[
 			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
 		ntVl2=(20..67).choose;
 		nt2=Pseq([ntVl2],inf).asStream;
@@ -328,7 +337,11 @@ IFTxtStat{
 		ntVl3=(0..127).choose;
 		nt3=Pseq([ntVl3],inf).asStream;
 
-		amp4=Pshuf([0,0,0,1],inf).asStream;
+		amp4=[
+			Pseq([0,1],inf).asStream,Pshuf([0,1,1,0],inf).asStream,
+			Pseq([1],inf).asStream,Pshuf([0,1],inf).asStream,
+			Pshuf([1,0,0],inf).asStream,Pshuf([1,0,0,0],inf).asStream
+		].choose;
 		ntVl4=(0..30).choose;
 		nt4=Pseq([ntVl4],inf).asStream;
 

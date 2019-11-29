@@ -25,44 +25,86 @@ IFKeys {
 		~lateKeys= 0.0;
 		~timesKeys=1;
 		~octMulKeys=0;
-		~rootKeys=0;
+		~root1Keys=0;
 		~harmKeys=0;
-		~susMulKeys=1;
+		~susMul1Keys=1;
+		~susMul2Keys=1;
+		~susMul3Keys=1;
 		~trKeys=0;
 		~lfoMulKeys1=0.2;
 		~lfoMulKeys2=0.2;
 	}
 	*proxy{
-		~rootKeys = PatternProxy( Pseq([0], inf));
-		~rootKeysP = Pseq([~rootKeys], inf).asStream;
+		~act1Keys = PatternProxy( Pseq([1], inf));
+		~act1KeysP= Pseq([~act1Keys], inf).asStream;
+		~act2Keys = PatternProxy( Pseq([1], inf));
+		~act2KeysP= Pseq([~act2Keys], inf).asStream;
+		~act3Keys = PatternProxy( Pseq([1], inf));
+		~act3KeysP= Pseq([~act3Keys], inf).asStream;
+
+		~vol1Keys = PatternProxy( Pseq([0.9], inf));
+		~vol1KeysP = Pseq([~vol1Keys], inf).asStream;
+		~vol2Keys = PatternProxy( Pseq([0.9], inf));
+		~vol2KeysP = Pseq([~vol2Keys], inf).asStream;
+		~vol3Keys = PatternProxy( Pseq([0.9], inf));
+		~vol3KeysP = Pseq([~vol3Keys], inf).asStream;
+
+		~root1Keys = PatternProxy( Pseq([0], inf));
+		~root1KeysP = ~root1Keys.asStream;
+		~root2KeysP = ~root1Keys.asStream;
+		~root3KeysP = ~root1Keys.asStream;
+
 		~nt1Keys = PatternProxy( Pseq([0], inf));
-		~nt1KeysP = Pseq([~nt1Keys], inf).asStream;
-		~nt2Keys = PatternProxy( Pseq([0], inf));
-		~nt2KeysP = Pseq([~nt2Keys], inf).asStream;
-		~nt3Keys = PatternProxy( Pseq([0], inf));
-		~nt3KeysP = Pseq([~nt3Keys], inf).asStream;
+		~nt2Keys = PatternProxy( Pseq([4], inf));
+		~nt3Keys = PatternProxy( Pseq([5], inf));
+		~nt1KeysP = ~nt1Keys.asStream;
+		~nt2KeysP = ~nt1Keys.asStream+~nt2Keys.asStream;
+		~nt3KeysP = ~nt1Keys.asStream+~nt2Keys.asStream+~nt3Keys.asStream;
+
 		~dur1Keys = PatternProxy( Pseq([1], inf));
-		~dur1KeysP = Pseq([~dur1Keys], inf).asStream;
-		~durMulKeys = PatternProxy( Pseq([1], inf));
-		~durMulKeysP = Pseq([~durMulKeys], inf).asStream;
+		~dur1KeysP = ~dur1Keys.asStream;
+		~dur2KeysP = ~dur1Keys.asStream;
+		~dur3KeysP = ~dur1Keys.asStream;
+
+		~durMul1Keys = PatternProxy( Pseq([1], inf));
+		~durMul1KeysP = ~durMul1Keys.asStream;
+		~durMul2KeysP = ~durMul1Keys.asStream;
+		~durMul3KeysP = ~durMul1Keys.asStream;
+
 		~amp1Keys = PatternProxy( Pseq([0.9], inf));
-		~amp1KeysP = Pseq([~amp1Keys], inf).asStream;
+		~amp1KeysP = ~amp1Keys.asStream;
+		~amp2KeysP = ~amp1Keys.asStream;
+		~amp3KeysP = ~amp1Keys.asStream;
+
 		~sus1Keys = PatternProxy( Pseq([0.2], inf));
-		~sus1KeysP = Pseq([~sus1Keys], inf).asStream;
+		~sus1KeysP = ~sus1Keys.asStream;
+		~sus2KeysP = ~sus1Keys.asStream;
+		~sus3KeysP = ~sus1Keys.asStream;
 
-		~transKeys = PatternProxy( Pseq([1], inf));
-		~transKeysP = Pseq([~transKeys], inf).asStream;
-		~transShufKeys = PatternProxy( Pseq([1], inf));
-		~transShufKeysP = Pseq([~transShufKeys], inf).asStream;
-		~transCntKeys = PatternProxy( Pseq([0], inf));
-		~transCntKeysP = Pseq([~transCntKeys], inf).asStream;
+		~trans1Keys = PatternProxy( Pseq([1], inf));
+		~trans1KeysP= ~trans1Keys.asStream;
+		~trans2KeysP= ~trans1Keys.asStream;
+		~trans3KeysP= ~trans1Keys.asStream;
 
-		~octKeys = PatternProxy( Pseq([3], inf));
-		~octKeysP = Pseq([~octKeys], inf).asStream;
-		~legKeys = PatternProxy( Pseq([0.0], inf));
-		~legKeysP = Pseq([~legKeys], inf).asStream;
-		~hrmKeys = PatternProxy( Pseq([1.0], inf));
-		~hrmKeysP = Pseq([~hrmKeys], inf).asStream;
+		~trans1ShufKeys = PatternProxy( Pseq([1], inf));
+		~trans1ShufKeysP = ~trans1ShufKeys.asStream;
+		~trans2ShufKeysP = ~trans1ShufKeys.asStream;
+		~trans3ShufKeysP = ~trans1ShufKeys.asStream;
+
+		~trans1CntKeys = PatternProxy( Pseq([0], inf));
+		~trans1CntKeysP = ~trans1CntKeys.asStream;
+		~trans2CntKeysP = ~trans1CntKeys.asStream;
+		~trans3CntKeysP = ~trans1CntKeys.asStream;
+
+		~oct1Keys = PatternProxy( Pseq([2], inf));
+		~oct1KeysP = Pseq([~oct1Keys], inf).asStream;
+		~oct2KeysP = Pseq([~oct1Keys], inf).asStream;
+		~oct3KeysP = Pseq([~oct1Keys], inf).asStream;
+
+		~hrm1Keys = PatternProxy( Pseq([1.0], inf));
+		~hrm1KeysP = Pseq([~hrm1Keys], inf).asStream;
+		~hrm2KeysP = Pseq([~hrm1Keys], inf).asStream;
+		~hrm3KeysP = Pseq([~hrm1Keys], inf).asStream;
 
 		~delta1Keys = PatternProxy( Pseq([1/1], inf));
 		~delta1KeysP = Pseq([~delta1Keys], inf).asStream;
@@ -84,11 +126,8 @@ IFKeys {
 		~lfo2Keys = PatternProxy( Pseq([10], inf));
 		~lfo2KeysP = Pseq([~lfo2Keys], inf).asStream;
 
-		~actKeys = PatternProxy( Pseq([1], inf));
-		~actKeysP= Pseq([~actKeys], inf).asStream;
 
-		~volKeys = PatternProxy( Pseq([0.9], inf));
-		~volKeysP = Pseq([~volKeys], inf).asStream;
+
 
 		//lng
 		~rootLngKeys = PatternProxy( Pseq([0], inf));
@@ -119,7 +158,7 @@ IFKeys {
 		{ i == val }  {
 			{val.do{
 				this.p1(val);
-				((~dur1KeysP.next)*(~durMulKeysP.next)/val).wait;
+				((~dur1KeysP.next)*(~durMul1KeysP.next)/val).wait;
 			}}.fork;
 		}
 	}
@@ -127,16 +166,42 @@ IFKeys {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chVKeys,
+			\chan, ~chAbk4,
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1KeysP.next],~actKeysP.next),
-			\degree, Pseq([[~nt1KeysP.next,~nt2KeysP.next,~nt3KeysP.next]], inf),
-			\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
-			\sustain, Pseq([1.5*~sus1KeysP.next],inf)*~susMulKeys,
-			\mtranspose, Pseq([~transKeysP.next], inf)+~transCntKeysP.next+~trKeys+~transShufKeysP.next,
-			\ctranspose, Pseq([~rootKeysP.next],inf),
-			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
+			\dur, Pseq([~dur1KeysP.next],~act1KeysP.next),
+			\degree, Pseq([[~nt1KeysP.next]], inf),
+			\amp, Pseq([~vol1KeysP.next*~amp1KeysP.next], inf),
+			\sustain, Pseq([1.2*~sus1KeysP.next],inf)*~susMul1Keys,
+			\mtranspose, Pseq([~trans1KeysP.next], inf)+~trKeys+~trans1CntKeysP.next+~trans1ShufKeysP.next,
+			\ctranspose, Pseq([~root1KeysP.next],inf),
+			\octave, Pseq([~oct1KeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrm1KeysP.next], inf)+~harmKeys
+		).play(~clkKeys, quant: 0);
+
+		Pbind(
+			\chan, ~chAbk5,
+			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur2KeysP.next],~act2KeysP.next),
+			\degree, Pseq([~nt2KeysP.next], inf),
+			\amp, Pseq([~vol2KeysP.next*~amp2KeysP.next], inf),
+			\sustain, Pseq([1.2*~sus2KeysP.next],inf)*~susMul2Keys,
+			\mtranspose, Pseq([~trans2KeysP.next], inf)+~trKeys+~trans2CntKeysP.next+~trans2ShufKeysP.next,
+			\ctranspose, Pseq([~root2KeysP.next],inf),
+			\octave, Pseq([~oct2KeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrm2KeysP.next], inf)+~harmKeys
+		).play(~clkKeys, quant: 0);
+
+		Pbind(
+			\chan, ~chAbk6,
+			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur3KeysP.next],~act3KeysP.next),
+			\degree, Pseq([~nt3KeysP.next], inf),
+			\amp, Pseq([~vol3KeysP.next*~amp3KeysP.next], inf),
+			\sustain, Pseq([1.2*~sus3KeysP.next],inf)*~susMul3Keys,
+			\mtranspose, Pseq([~trans3KeysP.next], inf)+~trKeys+~trans3CntKeysP.next+~trans3ShufKeysP.next,
+			\ctranspose, Pseq([~root3KeysP.next],inf),
+			\octave, Pseq([~oct3KeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrm3KeysP.next], inf)+~harmKeys
 		).play(~clkKeys, quant: 0);
 
 		~cntKeysLfo=~cntKeysLfo+1;
@@ -147,46 +212,71 @@ IFKeys {
 		);
 	}//p1
 	*pLfo{
-		Pbind(//LFO CUT KEYS INT
+		/*Pbind(//LFO CUT KEYS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vKeys, \chan, ~chVKeys, \ctlNum, Pseq([~vcoDtn],inf),
-			\delta, Pseq([~delta1KeysP.next], ~actKeysP.next),
+			\delta, Pseq([~delta1KeysP.next], ~act1KeysP.next),
 			\control, ~lfoMulKeys1*Pexprand(0.5*~lfo1KeysP.next,1*~lfo1KeysP.next, inf).round,
 		).play(~clkKeys, quant: 0);
 
 		Pbind(//LFO RATE KEYS
 			\midicmd, \control, \type, \midi,
 			\midiout,~vKeys, \chan, ~chVKeys, \ctlNum, Pseq([~vcoPort],inf),
-			\delta, Pseq([~delta2KeysP.next], ~actKeysP.next),
+			\delta, Pseq([~delta2KeysP.next], ~act1KeysP.next),
 			\control, ~lfoMulKeys2*Pexprand(0.8*~lfo2KeysP.next,0.5*~lfo2KeysP.next, inf).round,
-		).play(~clkKeys, quant: 0);
+		).play(~clkKeys, quant: 0);*/
 	}//pLfo
 	*lng{|deg=0,amp=1,sus=4|
-		Pbind(
+		/*Pbind(
 			\chan, ~chVKeys,
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1LngKeysP.next],1),
 			\degree, Pseq([~nt1LngKeysP.next], inf)+deg,
-			\amp, Pseq([~volKeysP.next*~amp1LngKeysP.next], inf)*amp,
+			\amp, Pseq([~vol1KeysP.next*~amp1LngKeysP.next], inf)*amp,
 			\sustain, Pseq([~sus1LngKeysP.next],inf)*sus,
-			\mtranspose, Pseq([~transLngKeysP.next], inf)+~transCntKeysP.next+~transShufLngKeysP.next,
+			\mtranspose, Pseq([~transLngKeysP.next], inf)+~trans1CntKeysP.next+~transShufLngKeysP.next,
 			\ctranspose, Pseq([~rootLngKeysP.next],inf),
-			\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-			\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
-		).play(~clkKeys, quant: 0);
+			\octave, Pseq([~oct1KeysP.next], inf)+~octMulKeys,
+			\harmonic, Pseq([~hrm1KeysP.next], inf)+~harmKeys
+		).play(~clkKeys, quant: 0);*/
 	}
 	*osc{
-		~actKeysBut.free;
-		~actKeysBut = OSCFunc({
+		~act1KeysBut.free;
+		~act1KeysBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-				~actKeys.source=1;
-				~apcMn.noteOn(~apcMnCh, ~actButA6, 127); //Trk5_But 1
+				~act1Keys.source=1;
+				//~apcMn.noteOn(~apcMnCh, ~actButA6, 127); //Trk5_But 1
+				~melMix.noteOn(~melMixGlobChan, ~recBut4, 127); //But C
 			},{
-				~actKeys.source=0;
-				~apcMn.noteOff(~apcMnCh, ~actButA6, 127); //Trk5_But
+				~act1Keys.source=0;
+				//~apcMn.noteOff(~apcMnCh, ~actButA6, 127); //Trk5_But
+				~melMix.noteOn(~melMixGlobChan, ~recBut4, 127); //But C
 			});
-		},'/activKeys');
+		},'/activ1Keys');
+		~act2KeysBut.free;
+		~act2KeysBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~act2Keys.source=1;
+				~melMix.noteOn(~melMixGlobChan, ~recBut5, 127); //But C
+			},{
+				~act2Keys.source=0;
+				~melMix.noteOn(~melMixGlobChan, ~recBut5, 127); //But C
+			});
+		},'/activ2Keys');
+		~act3KeysBut.free;
+		~act3KeysBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				~act3Keys.source=1;
+				~melMix.noteOn(~melMixGlobChan, ~recBut6, 127); //But C
+			},{
+				~act3Keys.source=0;
+				~melMix.noteOn(~melMixGlobChan, ~recBut6, 127); //But C
+			});
+		},'/activ3Keys');
+
 		~time2KeysBut.free;
 		~countTime2Keys=0;
 		~time2KeysBut= OSCFunc({
@@ -196,16 +286,16 @@ IFKeys {
 			~countTime2Keys.switch(
 				0,{},
 				1, {
-					~apcMn.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
+					//~apcMn.noteOn(~apcMnCh, ~actButB5, 1); //Trk5_But 2
 					//~tOSCAdrr.sendMsg('time2Keys', 1);
 					//~tOSCAdrr.sendMsg('tmKeysLabel', 2);
-					~tmMulKeys.source = Pseq([2], inf);
+					//~tmMulKeys.source = Pseq([2], inf);
 				},
 				2,{
-					~apcMn.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
+					//~apcMn.noteOn(~apcMnCh, ~actButB5, 0); //Trk5_But 2
 					//~tOSCAdrr.sendMsg('time2Keys', 0);
 					//~tOSCAdrr.sendMsg('tmKeysLabel', 1);
-					~tmMulKeys.source = Pseq([1], inf);
+					//~tmMulKeys.source = Pseq([1], inf);
 					~countTime2Keys=0;
 				}
 			);
@@ -220,10 +310,10 @@ IFKeys {
 		vel=val*127;
 		key.switch(
 			/*\timeM,{
-				if ( val==1, {
-					~apcMn.noteOn(~apcMnCh, ~actButA4, 1);
-					~tmMulKeys.source = Pseq([2], inf);
-				});
+			if ( val==1, {
+			~apcMn.noteOn(~apcMnCh, ~actButA4, 1);
+			~tmMulKeys.source = Pseq([2], inf);
+			});
 			},*/
 			\octMDcr,{
 				if ( val==1, {
@@ -254,26 +344,26 @@ IFKeys {
 			\vol, {
 				~crntKeys_vol=val1;
 				this.lbl1(\IFvolKeys,val1);
-				~volKeys.source = val1;
-				VKeys.cc(\expresVK,vel1);
-				~mdOut.control(6, 1, vel1);
+				~vol1Keys.source = val1;
+				//VKeys.cc(\expresVK,vel1);
+				//~mdOut.control(6, 1, vel1);
 			},
 			\att, {
 				~crntKeys_att=val1;
 				this.lbl1(\IFattKeys,val1);
-				VKeys.cc(\envAttVK,vel1);
+				//VKeys.cc(\envAttVK,vel1);
 				~mdOut.control(6, 5, vel1);
 			},
 			\dec, {
 				~crntKeys_dec=val1;
 				this.lbl1(\IFdecKeys,val1);
-				VKeys.cc(\envDecVK,vel1);
+				//VKeys.cc(\envDecVK,vel1);
 				~mdOut.control(6, 127, vel1);
 			},
 			\sus, {
 				~crntKeys_sus=val1;
 				this.lbl1(\IFsusKeys,val1);
-				VKeys.cc(\envSusVK,vel1);
+				//VKeys.cc(\envSusVK,vel1);
 				~mdOut.control(6, 6, vel1);
 			},
 			\rls, {
@@ -284,7 +374,7 @@ IFKeys {
 			\pan, {
 				~crntKeys_pan=val1;
 				this.lbl1(\IFpanKeys,val1);
-				VKeys.cc(\vcfEgVK,vel1);
+				//VKeys.cc(\vcfEgVK,vel1);
 				~mdOut.control(6, 16, vel1);
 			},
 			\octM, {
@@ -295,7 +385,7 @@ IFKeys {
 			\susM, {
 				~crntKeys_susM=val1;
 				this.lbl1(\IFsusMKeys,val1);
-				~susMulKeys=val1;
+				~susMul1Keys=val1;
 			},
 			\lfoM1, {
 				~crntKeys_lfoM1=val1;
@@ -327,15 +417,15 @@ IFKeys {
 			},
 			\xy1, {
 				this.lbl2(\IFxy1Keys,val1,val2);
-				VKeys.cc(\lfoRateVK,val2);
-				VKeys.cc(\lfoPitchVK,val1);
+				//VKeys.cc(\lfoRateVK,val2);
+				//VKeys.cc(\lfoPitchVK,val1);
 				~crntKeys_xy1X=val2;
 				~crntKeys_xy1Y=val1;
 			},
 			\xy2, {
 				this.lbl2(\IFxy2Keys,val1,val2);
-				VKeys.cc(\dlyTimeVK,vel2);
-				VKeys.cc(\dlyFeedVK,vel1);
+				//VKeys.cc(\dlyTimeVK,vel2);
+				//VKeys.cc(\dlyFeedVK,vel1);
 				~crntKeys_xy2X=val2;
 				~crntKeys_xy2Y=val1;
 			},
@@ -485,6 +575,10 @@ IFTxtKeys{
 		IFTxtKeys.make(\01,\00,\ifKeys,'rndKeysTag');
 	}
 	*read{|trck,prtDir|
+		/*
+		IFTxt.readIfTrack(\01,\01,\ifKeys);
+		*/
+
 
 		IFTxt.readIfTrack(trck,prtDir,\ifKeys);
 		~tKyAmp=IFTxt.line(1);
@@ -582,17 +676,5 @@ IFTxtKeys{
 	}//////
 }
 /*
-Pbind(
-\chan, ~chKeys,
-\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
-\dur, Pseq([4],1),
-\degree, Pseq([
-], inf),
-\amp, Pseq([~volKeysP.next*~amp1KeysP.next], inf),
-\sustain, Pseq([~sus1KeysP.next],inf)*~susMulKeys,
-\mtranspose, Pseq([~transKeysP.next], inf)+~trKeys+~transShufKeysP.next,
-\octave, Pseq([~octKeysP.next], inf)+~octMulKeys,
-\harmonic, Pseq([~hrmKeysP.next], inf)+~harmKeys
-).play;
-
+IFGlobal.setKeys(0,2,1,3,4,2,1,3,4,1,2,1,2,0,1,2);
 */

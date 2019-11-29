@@ -48,6 +48,8 @@ IFSnr {
 		~actSnr = PatternProxy( Pseq([1], inf));
 		~actSnrP= Pseq([~actSnr], inf).asStream;
 
+		~rootSnr = PatternProxy( Pseq([0], inf));
+		~rootSnrP = Pseq([~rootSnr], inf).asStream;
 		~nt1Snr = PatternProxy( Pseq([0], inf));
 		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
 		~nt2Snr = PatternProxy( Pseq([0], inf));
@@ -84,6 +86,9 @@ IFSnr {
 		~transSnrP = Pseq([~transSnr], inf).asStream;
 		~transShufSnr = PatternProxy( Pseq([0], inf));
 		~transShufSnrP = Pseq([~transShufSnr], inf).asStream;
+		~transCntSnr = PatternProxy( Pseq([0], inf));
+		~transCntSnrP = Pseq([~transCntSnr], inf).asStream;
+
 		~extraShufSnr = PatternProxy( Pshuf([0], inf));
 		~extraShufSnrP = Pseq([~extraShufSnr], inf).asStream;
 
@@ -134,8 +139,8 @@ IFSnr {
 			\degree, Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~volSnrP.next*~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
-			\mtranspose, Pseq([~transSnrP.next
-			], inf)+~trSnr+~transShufSnrP.next+~extraShufSnrP.next,
+			\mtranspose, Pseq([~transSnrP.next], inf)+~extraShufSnrP.next+~transShufSnrP.next+~transCntSnrP.next+~trSnr,
+			\ctranspose, Pseq([~rootSnrP.next],inf),
 			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
 			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
 		).play(~clkSnr,quant:~quantSnr1);

@@ -114,7 +114,6 @@ IFBass {
 			{val.do{
 				~bassLate.wait;
 				this.p1(val);
-				//this.p1(val);
 				((~dur1BassP.next)*(~durMulBassP.next)/val).wait;
 			}}.fork;
 		}
