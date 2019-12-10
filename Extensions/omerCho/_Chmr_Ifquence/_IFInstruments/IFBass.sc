@@ -64,12 +64,11 @@ IFBass {
 		~transShufBassP = Pseq([~transShufBass], inf).asStream;
 		~transCntBass = PatternProxy( Pseq([0], inf));
 		~transCntBassP = Pseq([~transCntBass], inf).asStream;
-
+		~extraShufBass = PatternProxy( Pshuf([0], inf));
+		~extraShufBassP = Pseq([~extraShufBass], inf).asStream;
 
 		~octBass = PatternProxy( Pseq([4], inf));
 		~octBassP = Pseq([~octBass], inf).asStream;
-		~legBass = PatternProxy( Pseq([0.0], inf));
-		~legBassP = Pseq([~legBass], inf).asStream;
 		~hrmBass = PatternProxy( Pseq([1.0], inf));
 		~hrmBassP = Pseq([~hrmBass], inf).asStream;
 
@@ -128,7 +127,7 @@ IFBass {
 			\degree, Pseq([~nt1BassP.next], inf),
 			\amp, Pseq([~volBassP.next*~amp1BassP.next], inf),
 			\sustain, Pseq([~sus1BassP.next],inf)*~susMulBass,
-			\mtranspose, Pseq([~transBassP.next], inf)+~transShufBassP.next+~transCntBassP.next+~trBass,
+			\mtranspose, Pseq([~transBassP.next], inf)+~extraShufBassP.next+~transShufBassP.next+~transCntBassP.next+~trBass,
 			\ctranspose, Pseq([~rootBassP.next],inf),
 			\octave, Pseq([~octBassP.next], inf)+~octMulBass,
 			\harmonic, Pseq([~hrmBassP.next], inf)+~harmBass
@@ -136,13 +135,13 @@ IFBass {
 
 		Pbind(//LFO CUT BASS INT
 			\midicmd, \control, \type, \midi,
-			\midiout,~vBass, \chan, ~chVBass, \ctlNum, ~envDecVB,
+			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~envDecVB,
 			\delta, Pseq([~delta1BassP.next], 1),
 			\control, Pseq([~lfo1BassP.value], 1)*~lfoMulBass1,
 		).play(~clkBass, quant: 0);
 		Pbind(//LFO CUT BASS RATE
 			\midicmd, \control, \type, \midi,
-			\midiout,~vBass, \chan, ~chVBass, \ctlNum, ~slideTm,
+			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~slideTm,
 			\delta, Pseq([~delta2BassP.next], 1),
 			\control, Pseq([~lfo2BassP.value], 1)*~lfoMulBass2,
 		).play(~clkBass, quant: 0);
@@ -151,8 +150,8 @@ IFBass {
 
 	*lng{|deg=0,amp=1,sus=4|
 		Pbind(
-			\chan, ~chVBass,
-			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2},inf),
+			\chan, ~chAbk1,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
 			\dur, Pseq([~dur1LngBassP.next],1)+sus,
 			\ctranspose, Pseq([~rootLngBassP.next],inf),
 			\degree, Pseq([~nt1LngBassP.next],inf)+deg,
@@ -170,10 +169,10 @@ IFBass {
 			arg msg;
 			if ( msg[1]==1, {
 				~actBass.source=1;
-				~apcMn.noteOn(~apcMnCh, ~actButA4, 127); //Trk4_But 1
+				~apcMn.noteOn(~melMixGlb, ~actButA8, 127); //Trk4_But 1
 			},{
 				~actBass.source=0;
-				~apcMn.noteOff(~apcMnCh, ~actButA4, 127); //Trk4_But 1
+				~apcMn.noteOff(~melMixGlb, ~actButA8, 0); //Trk4_But 1
 			});
 		},'/activBass');
 
@@ -184,12 +183,12 @@ IFBass {
 			~countTime2Bass = ~countTime2Bass + 1;
 			~countTime2Bass.switch(
 				1, {
-					~apcMn.noteOn(~apcMnCh, ~actButB4, 1); //Trk4_But 2
-					~tmMulBass.source = Pseq([2], inf);
+					//~apcMn.noteOn(~melMixGlb, ~actButB8, 1); //Trk4_But 2
+					//~tmMulBass.source = Pseq([2], inf);
 				},
 				2,{
-					~tmMulBass.source = Pseq([1], inf);
-					~apcMn.noteOn(~apcMnCh, ~actButB4, 0); //Trk4_But 2
+					//~tmMulBass.source = Pseq([1], inf);
+					//~apcMn.noteOn(~melMixGlb, ~actButB8, 0); //Trk4_But 2
 					~countTime2Bass=0;
 				}
 			);
@@ -261,31 +260,26 @@ IFBass {
 				~crntBass_vol=val1;
 				this.lbl1(\volBass,val1);
 				~volBass.source = val1;
-				VBass.cc(\expresVB,vel1);
 				~mdOut.control(5, 1, vel1);
 			},
 			\att, {
 				~crntBass_att=val1;
 				this.lbl1(\IFattBass,val1);
-				VBass.cc(\envAttVB,vel1);
 				~mdOut.control(5, 5, vel1);
 			},
 			\dec, {
 				~crntBass_dec=val1;
 				this.lbl1(\IFdecBass,val1);
-				VBass.cc(\envDecVB,vel1);
 				~mdOut.control(5, 127, vel1);
 			},
 			\sus, {
 				~crntBass_sus=val1;
 				this.lbl1(\IFsusBass,val1);
-				VBass.cc(\slideTmVB,vel1);
 				~mdOut.control(5, 6, vel1);
 			},
 			\rls, {
 				~crntBass_rls=val1;
 				this.lbl1(\IFrlsBass,val1);
-				VBass.cc(\gateTmVB,vel1);
 				~mdOut.control(5, 8, vel1);
 			},
 			\pan, {
@@ -411,21 +405,33 @@ IFTxtBass{
 			Prand([0,1],inf).asStream
 		].choose;
 		oct=  Pwhite(3,   3,   inf).asStream;
-		nt=   Pwhite(-2,   7,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
 		vel=  Pwhite(2,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pwhite(1,   2,   inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
 		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
-		vol=  Pwhite(0.95, 0.99,inf).asStream;
+		vol=  Pwhite(0.85, 0.99,inf).asStream;
 		att=  Pwhite(0.0, 0.2, inf).asStream;
 		dec=  Pwhite(0.1, 0.3, inf).asStream;
 		susV= Pwhite(0.1, 0.9, inf).asStream;
 		rls=  Pwhite(0.1, 0.9, inf).asStream;
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
-		sndA= Pwhite(0.1, 0.3, inf).asStream;
-		sndB= Pwhite(0.1, 0.4, inf).asStream;
+		sndA= Pwhite(0.1, 0.6, inf).asStream;
+		sndB= Pwhite(0.1, 0.6, inf).asStream;
 		octM= Pwhite(1,   1, inf).asStream;
 		susM= Pwhite(0.1, 0.2, inf).asStream;
 		xy1X= Pwhite(0.0, 0.5, inf).asStream;

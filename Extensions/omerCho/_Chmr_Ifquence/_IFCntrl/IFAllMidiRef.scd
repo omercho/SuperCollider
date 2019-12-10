@@ -90,12 +90,12 @@ NoteOnResponder.removeAll
 ~mdOut.control(2, 8, ~midiVel); //Kick / XPose
 ~mdOut.control(2, 9, ~midiVel); //Kick / TimeMul (MIDIIN)
 ~mdOut.control(2, 10, ~midiVel); //Kick / SendC
-~mdOut.control(2, 11, ~midiVel); //Kick / Act Delay-Filter LFO
-~mdOut.control(2, 12, ~midiVel); //Kick / Act Delay-Filter LFO
-~mdOut.control(2, 13, ~midiVel); //Kick / Act Delay-Filter LFO
-~mdOut.control(2, 14, ~midiVel); //Kick / Act Delay-Filter LFO
-~mdOut.control(2, 15, ~midiVel); //Kick / FreqShift DryWet
-~mdOut.control(2, 16, ~midiVel); //Kick / FreqShift Freq
+~mdOut.control(2, 11, ~midiVel); //Kick / Act Delay-Filter LFO xy1X
+~mdOut.control(2, 12, ~midiVel); //Kick / Act Delay-Filter LFO xy1Y
+~mdOut.control(2, 13, ~midiVel); //Kick / Act Delay-Filter LFO cutX
+~mdOut.control(2, 14, ~midiVel); //Kick / Act Delay-Filter LFO ctY
+~mdOut.control(2, 15, ~midiVel); //Kick / FreqShift DryWet LFO1
+~mdOut.control(2, 16, ~midiVel); //Kick / FreqShift Freq   LFO2
 
 ~mdOut.control(3, 0, ~midiVel); //Snr / Mute
 ~mdOut.control(3, 1, ~midiVel); //Snr / Vol

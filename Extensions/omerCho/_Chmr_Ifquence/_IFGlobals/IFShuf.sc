@@ -40,13 +40,23 @@ IFShuf{
 		~transShufBass.source  = Pseq([0], inf);
 	}
 	*transKeysOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16|
-		~transShufKeys.source  = Pseq([
+		~trans1ShufKeys.source  = Pseq([
+			(stp1),(stp2),(stp3),(stp4),(stp5),(stp6),(stp7),(stp8),
+			(stp9),(stp10),(stp11),(stp12),(stp13),(stp14),(stp15),(stp16)
+		], inf);
+		~trans2ShufKeys.source  = Pseq([
+			(stp1),(stp2),(stp3),(stp4),(stp5),(stp6),(stp7),(stp8),
+			(stp9),(stp10),(stp11),(stp12),(stp13),(stp14),(stp15),(stp16)
+		], inf);
+		~trans3ShufKeys.source  = Pseq([
 			(stp1),(stp2),(stp3),(stp4),(stp5),(stp6),(stp7),(stp8),
 			(stp9),(stp10),(stp11),(stp12),(stp13),(stp14),(stp15),(stp16)
 		], inf);
 	}
 	*transKeysOff{
-		~transShufKeys.source  = Pseq([0], inf);
+		~trans1ShufKeys.source  = Pseq([0], inf);
+		~trans2ShufKeys.source  = Pseq([0], inf);
+		~trans3ShufKeys.source  = Pseq([0], inf);
 	}
 	*transSampOn{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16|
 		~transShufSamp.source  = Pseq([

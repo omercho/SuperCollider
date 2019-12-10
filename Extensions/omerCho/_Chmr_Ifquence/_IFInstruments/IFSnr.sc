@@ -31,56 +31,36 @@ IFSnr {
 	}
 	*globals{
 		~chSnr=1;
+		~actSnr=1;
 		~snrLate=0.00;
 		~snrTimes=1;
+		~octMulSnr=0;
+		~trSnr=0;
 		~rootSnr=0;
 		~harmSnr=0;
 		~susMulSnr=1;
-		~trSnr=0;
-		~octMulSnr=0;
-
-		~lfoMulSnr=1;
+		~lfoMulSnr1=0.2;
+		~lfoMulSnr2=0.2;
 
 		~quantSnr1=0.0;
-		~quantSnr2=0.0;
 	}
 	*proxy {
-		~actSnr = PatternProxy( Pseq([1], inf));
-		~actSnrP= Pseq([~actSnr], inf).asStream;
+
 
 		~rootSnr = PatternProxy( Pseq([0], inf));
 		~rootSnrP = Pseq([~rootSnr], inf).asStream;
 		~nt1Snr = PatternProxy( Pseq([0], inf));
 		~nt1SnrP = Pseq([~nt1Snr], inf).asStream;
-		~nt2Snr = PatternProxy( Pseq([0], inf));
-		~nt2SnrP = Pseq([~nt2Snr], inf).asStream;
-		~nt3Snr = PatternProxy( Pseq([0], inf));
-		~nt3SnrP = Pseq([~nt3Snr], inf).asStream;
-
-		~amp1Snr = PatternProxy( Pseq([1], inf));
-		~amp1SnrP = Pseq([~amp1Snr], inf).asStream;
 
 		~dur1Snr = PatternProxy( Pseq([1], inf));
 		~dur1SnrP = Pseq([~dur1Snr], inf).asStream;
 		~durMulSnr = PatternProxy( Pseq([1], inf));
 		~durMulSnrP = Pseq([~durMulSnr], inf).asStream;
 
+		~amp1Snr = PatternProxy( Pseq([1], inf));
+		~amp1SnrP = Pseq([~amp1Snr], inf).asStream;
 		~sus1Snr = PatternProxy( Pseq([1], inf));
 		~sus1SnrP = Pseq([~sus1Snr], inf).asStream;
-
-		~act2Snr = PatternProxy( Pseq([1], inf));
-		~act2SnrP= Pseq([~act2Snr], inf).asStream;
-
-		~amp2Snr = PatternProxy( Pseq([1], inf));
-		~amp2SnrP = Pseq([~amp2Snr], inf).asStream;
-		~dur2Snr = PatternProxy( Pseq([1], inf));
-		~dur2SnrP = Pseq([~dur2Snr], inf).asStream;
-		~sus2Snr = PatternProxy( Pseq([1], inf));
-		~sus2SnrP = Pseq([~sus2Snr], inf).asStream;
-		~volSnr2 = PatternProxy( Pseq([0.9], inf));
-		~volSnr2P = Pseq([~volSnr2], inf).asStream;
-		~delta1Snr2 = PatternProxy( Pseq([1], inf));
-		~delta1Snr2P = Pseq([~delta1Snr2], inf).asStream;
 
 		~transSnr = PatternProxy( Pseq([0], inf));
 		~transSnrP = Pseq([~transSnr], inf).asStream;
@@ -88,33 +68,44 @@ IFSnr {
 		~transShufSnrP = Pseq([~transShufSnr], inf).asStream;
 		~transCntSnr = PatternProxy( Pseq([0], inf));
 		~transCntSnrP = Pseq([~transCntSnr], inf).asStream;
-
 		~extraShufSnr = PatternProxy( Pshuf([0], inf));
 		~extraShufSnrP = Pseq([~extraShufSnr], inf).asStream;
-
 		~octSnr = PatternProxy( Pseq([3], inf));
 		~octSnrP = Pseq([~octSnr], inf).asStream;
-
 		~hrmSnr = PatternProxy( Pseq([1.0], inf));
 		~hrmSnrP = Pseq([~hrmSnr], inf).asStream;
 
-		~actSnrLfo1 = PatternProxy( Pseq([0], inf));
-		~actSnrLfo1P= Pseq([~actSnrLfo1], inf).asStream;
-
+		~actSnr = PatternProxy( Pseq([1], inf));
+		~actSnrP= Pseq([~actSnr], inf).asStream;
 		~volSnr = PatternProxy( Pseq([0.9], inf));
 		~volSnrP = Pseq([~volSnr], inf).asStream;
 
 		~delta1VSamp06 = PatternProxy( Pseq([1/1], inf));
 		~delta1VSamp06P = Pseq([~delta1VSamp06], inf).asStream;
-
 		~delta2VSamp06 = PatternProxy( Pseq([1/1], inf));
 		~delta2VSamp06P = Pseq([~delta2VSamp06], inf).asStream;
 
-		~lfoMulSnr=1;
 		~lfo1Snr = PatternProxy( Pseq([1], inf));
 		~lfo1SnrP = Pseq([~lfo1Snr], inf).asStream;
 		~lfo2Snr = PatternProxy( Pseq([1], inf));
 		~lfo2SnrP = Pseq([~lfo2Snr], inf).asStream;
+
+		//lng
+		~rootLngSnr = PatternProxy( Pseq([0], inf));
+		~rootLngSnrP = Pseq([~rootLngSnr], inf).asStream;
+		~nt1LngSnr = PatternProxy( Pseq([0], inf));
+		~nt1LngSnrP = Pseq([~nt1LngSnr], inf).asStream;
+		~dur1LngSnr = PatternProxy( Pseq([0.25], inf));
+		~dur1LngSnrP = Pseq([~dur1LngSnr], inf).asStream;
+		~amp1LngSnr = PatternProxy( Pseq([0.9], inf));
+		~amp1LngSnrP = Pseq([~amp1LngSnr], inf).asStream;
+		~sus1LngSnr = PatternProxy( Pseq([1], inf));
+		~sus1LngSnrP = Pseq([~sus1LngSnr], inf).asStream;
+
+		~transLngSnr = PatternProxy( Pseq([0], inf));
+		~transLngSnrP = Pseq([~transLngSnr], inf).asStream;
+		~transShufLngSnr = PatternProxy( Pseq([0], inf));
+		~transShufLngSnrP = Pseq([~transShufLngSnr], inf).asStream;
 
 	}//*proxy
 	*new{|i=1|
@@ -133,32 +124,46 @@ IFSnr {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chSnr,
+			\chan, ~chAbk2,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1SnrP.next], ~actSnrP.next),
-			\degree, Pseq([~nt1SnrP.next], inf),
+			\dur, Pseq([~dur1SnrP.next],~actSnrP),
+			\degree,  Pseq([~nt1SnrP.next], inf),
 			\amp, Pseq([~volSnrP.next*~amp1SnrP.next], inf),
 			\sustain, Pseq([~sus1SnrP.next],inf)*~susMulSnr,
 			\mtranspose, Pseq([~transSnrP.next], inf)+~extraShufSnrP.next+~transShufSnrP.next+~transCntSnrP.next+~trSnr,
 			\ctranspose, Pseq([~rootSnrP.next],inf),
-			\octave, Pseq([~octSnrP.next], inf)+~octMulSnr,
-			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
+			\octave, Pseq([~octSnrP], inf)+~octMulSnr,
+			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr,
 		).play(~clkSnr,quant:~quantSnr1);
-		//snr2
+
+		Pbind(//LFO CUT Snr INT
+			\midicmd, \control, \type, \midi,
+			\midiout,~vAmbk, \chan, ~chAbk2, \ctlNum, ~envDecVB,
+			\delta, Pseq([~delta1SnrP.next], 1),
+			\control, Pseq([~lfo1SnrP.value], 1)*~lfoMulSnr1,
+		).play(~clkSnr, quant: 0);
+		Pbind(//LFO CUT Snr RATE
+			\midicmd, \control, \type, \midi,
+			\midiout,~vAmbk, \chan, ~chAbk2, \ctlNum, ~slideTm,
+			\delta, Pseq([~delta2SnrP.next], 1),
+			\control, Pseq([~lfo2SnrP.value], 1)*~lfoMulSnr2,
+		).play(~clkSnr, quant: 0);
 
 	}
-	*p2{
+	*lng{|deg=0,amp=1,sus=4|
 		Pbind(
-			\chan, ~chSnr,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur2SnrP.next], ~act2SnrP),
-			\degree, Pseq([~nt2SnrP.next], inf),
-			\amp, Pseq([~volSnr2P.next*~amp2SnrP.next], inf),
-			\sustain, Pseq([~sus2SnrP.next],inf)*~susMulSnr,
-			\harmonic, Pseq([~hrmSnrP.next], inf)+~harmSnr
-		).play(~clkSnr,quant:~quantSnr2);
-
-	}
+			\chan, ~chAbk1,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
+			\dur, Pseq([~dur1LngSnrP.next],1)+sus,
+			\ctranspose, Pseq([~rootLngSnrP.next],inf),
+			\degree, Pseq([~nt1LngSnrP.next],inf)+deg,
+			\amp, Pseq([~volSnrP.next*~amp1LngSnrP.next],inf)+amp,
+			\sustain, Pseq([~sus1LngSnrP.next],inf)+sus,
+			\mtranspose, Pseq([~transLngSnrP.next],inf)+~transShufLngSnrP.next+~transCntSnrP.next,
+			\octave, Pseq([~octSnrP.next],inf)+~octMulSnr,
+			\harmonic, Pseq([~hrmSnrP.next],inf)+~harmSnr
+		).play(~clkSnr, quant: 0);
+	}//lng
 
 	//      NEW OSC
 	*set{|key,val|
@@ -203,6 +208,32 @@ IFSnr {
 				~volSnr.source = val1;
 				~mdOut.control(3, 1, vel1);
 			},
+			\att, {
+				~crntSnr_att=val1;
+				this.lbl1(\IFattSnr,val1);
+
+				~mdOut.control(2, 5, vel1);
+			},
+			\dec, {
+				~crntSnr_dec=val1;
+				this.lbl1(\IFdecSnr,val1);
+				~mdOut.control(3, 127, vel1);
+			},
+			\sus, {
+				~crntSnr_sus=val1;
+				this.lbl1(\IFsusSnr,val1);
+				~mdOut.control(2, 6, vel1);
+			},
+			\rls, {
+				~crntSnr_rls=val1;
+				this.lbl1(\IFrlsSnr,val1);
+				~mdOut.control(2, 8, vel1);
+			},
+			\pan, {
+				~crntSnr_pan=val1;
+				this.lbl1(\IFpanSnr,val1);
+				//~mdOut.control(5, 8, vel1);
+			},
 			\octM, {
 				~crntSnr_octM=val1;
 				this.lbl1(\IFoctMSnrLbl,val1);
@@ -213,20 +244,15 @@ IFSnr {
 				this.lbl1(\IFsusMSnr,val1);
 				~susMulSnr=val1;
 			},
-			\dec, {
-				~crntSnr_dec=val1;
-				this.lbl1(\IFdecSnr,val1);
-				~mdOut.control(3, 127, vel1);
+			\lfoM1, {
+				~crntSnr_lfoM1=val1;
+				this.lbl1(\IFlfoM1Snr,val1);
+				~lfoMulSnr1=val1;
 			},
-			\dly, {
-				~crntSnr_sus=val1;
-				this.lbl1(\IFdlySnr,val1);
-				//~mdOut.control(5, 6, vel1);
-			},
-			\pan, {
-				~crntSnr_pan=val1;
-				this.lbl1(\IFpanSnr,val1);
-				//~mdOut.control(5, 8, vel1);
+			\lfoM2, {
+				~crntSnr_lfoM2=val1;
+				this.lbl1(\IFlfoM2Snr,val1);
+				~lfoMulSnr2=val1;
 			},
 
 		);
@@ -247,6 +273,20 @@ IFSnr {
 				~crntSnr_sndY=val1;
 				~crntSnr_sndX=val2;
 			},
+			\xy1, {
+				this.lbl2(\IFxy1Snr,val1,val2);
+
+				~mdOut.control(5, 13, vel2); //FX Comp
+				~mdOut.control(5, 14, vel1); //FX Comp
+				~crntSnr_xy1X=val2;
+				~crntSnr_xy1Y=val1;
+			},
+			\xy2, {
+				this.lbl2(\IFxy2Snr,val1,val2);
+
+				~crntSnr_xy2X=val2;
+				~crntSnr_xy2Y=val1;
+			},
 		);
 	}
 	*oscResp{|respName,oscName,playTag|
@@ -261,12 +301,18 @@ IFSnr {
 				'octMZeroSnr_T', { this.set(\octMZero,val);},
 				//-GlobalSettings
 				'volSnr_T' , { this.set1(\vol,val1);},
-				'octMSnr_T', { this.set1(\octM,val1);},
-				'susMSnr_T', { this.set1(\susM,val1);},
+				'attSnr_T' , { this.set1(\att,val1);},
 				'decSnr_T' , { this.set1(\dec,val1);},
-				'susSnr_T' , { this.set1(\dly,val1);},
+				'susSnr_T' , { this.set1(\sus,val1);},
+				'rlsSnr_T' , { this.set1(\rls,val1);},
 				'panSnr_T' , { this.set1(\pan,val1);},
 				'sendSnr_T', { this.set2(\send,val1,val2);},
+				'susMSnr_T', { this.set1(\susM,val1);},
+				'octMSnr_T', { this.set1(\octM,val1);},
+				'xy1Snr_T' , { this.set2(\xy1,val1,val2);},
+				'xy2Snr_T' , { this.set2(\xy2,val1,val2);},
+				'lfoM1Snr_T',{ this.set1(\lfoM1,val1);},
+				'lfoM2Snr_T',{ this.set1(\lfoM2,val1);},
 
 			);
 		},path:oscName);
@@ -277,12 +323,18 @@ IFSnr {
 		this.oscResp(respName:\octMZeroSnrResp, oscName:\IFoctMZeroSnr, playTag:'octMZeroSnr_T');
 		//-GlobalSettings
 		this.oscResp(respName:\volSnrResp, oscName:\IFvolSnr, playTag:'volSnr_T');
-		this.oscResp(respName:\octMSnrResp, oscName:\IFoctMSnr, playTag:'octMSnr_T');
-		this.oscResp(respName:\susMSnrResp, oscName:\IFsusMSnr, playTag:'susMSnr_T');
+		this.oscResp(respName:\attSnrResp, oscName:\IFattSnr, playTag:'attSnr_T');
 		this.oscResp(respName:\decSnrResp, oscName:\IFdecSnr, playTag:'decSnr_T');
-		this.oscResp(respName:\dlySnrResp, oscName:\IFdlySnr, playTag:'dlySnr_T');
+		this.oscResp(respName:\susSnrResp, oscName:\IFsusSnr, playTag:'susSnr_T');
+		this.oscResp(respName:\rlsSnrResp, oscName:\IFrlsSnr, playTag:'rlsSnr_T');
 		this.oscResp(respName:\panSnrResp, oscName:\IFpanSnr, playTag:'panSnr_T');
 		this.oscResp(respName:\sendSnrResp, oscName:\IFsendSnr, playTag:'sendSnr_T');
+		this.oscResp(respName:\susMSnrResp, oscName:\IFsusMSnr, playTag:'susMSnr_T');
+		this.oscResp(respName:\octMSnrResp, oscName:\IFoctMSnr, playTag:'octMSnr_T');
+		this.oscResp(respName:\xy1SnrResp,  oscName:\IFxy1Snr, playTag:'xy1Snr_T');
+		this.oscResp(respName:\xy2SnrResp,  oscName:\IFxy2Snr, playTag:'xy2Snr_T');
+		this.oscResp(respName:\lfoM1SnrResp, oscName:\IFlfoM1Snr, playTag:'lfoM1Snr_T');
+		this.oscResp(respName:\lfoM2SnrResp, oscName:\IFlfoM2Snr, playTag:'lfoM2Snr_T');
 	}
 
 
@@ -291,32 +343,55 @@ IFTxtSnr{
 	classvar <>file;
 	*crtRndLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq;
-		var amp,oct,octV1,nt,ntV1,ntV2,vel,susT,tm,dur,shuf;
-		var vol,octM,susM,dec,dly,pan,sndA,sndB;
-		amp=  Pwhite(0,   1,   inf).asStream;
-		octV1=(1..4).choose;
-		oct=  Pshuf([1,octV1,1,octV1],inf).asStream;
-		ntV1=(10..44).choose;
-		ntV2=(44..88).choose;
-		nt=   Pshuf([ntV1,ntV1,ntV1,ntV2],inf).asStream;
-		vel=  Pwhite(1,   3,   inf).asStream;
+		var amp,oct,nt,vel,susT,tm,dur,shuf,lfoP;
+		var vol,att,dec,susV,rls,pan,sndA,sndB;
+		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
+		amp=[
+			Pseq([1],inf).asStream,Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
+			Prand([0,1],inf).asStream
+		].choose;
+		oct=  Pwhite(3,   3,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
+		vel=  Pwhite(2,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pshuf([1,2,1,1],inf).asStream;
-		dur=  Pwhite(2,   3,   inf).asStream;
-		shuf= Pshuf([0,2,0,0,3,1],inf).asStream;
-		vol=  Pwhite(0.8, 0.99,inf).asStream;
-		octM= Pwhite(0,   1,   inf).asStream;
-		susM= Pwhite(0.1, 0.9, inf).asStream;
-		dec=  Pwhite(0.2, 1.0, inf).asStream;
-		dly=  Pwhite(0.1, 0.9, inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
+		dur=  Pwhite(3,   4,   inf).asStream;
+		shuf= Pwhite(0,  4,   inf).asStream;
+		lfoP= Pwhite(0,   127, inf).asStream;
+		vol=  Pwhite(0.85, 0.99,inf).asStream;
+		att=  Pwhite(0.0, 0.2, inf).asStream;
+		dec=  Pwhite(0.1, 0.3, inf).asStream;
+		susV= Pwhite(0.1, 0.9, inf).asStream;
+		rls=  Pwhite(0.1, 0.9, inf).asStream;
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
-		sndA= Pwhite(0.0, 0.3, inf).asStream;
-		sndB= Pwhite(0.0, 0.2, inf).asStream;
+		sndA= Pwhite(0.1, 0.6, inf).asStream;
+		sndB= Pwhite(0.1, 0.6, inf).asStream;
+		octM= Pwhite(1,   1, inf).asStream;
+		susM= Pwhite(0.1, 0.2, inf).asStream;
+		xy1X= Pwhite(0.0, 0.5, inf).asStream;
+		xy1Y= Pwhite(0.0, 0.4, inf).asStream;
+		xy2X= Pwhite(0.0, 1.0, inf).asStream;
+		xy2Y= Pwhite(0.0, 1.0, inf).asStream;
+		lfoM1=Pwhite(0.0, 1.0, inf).asStream;
+		lfoM2=Pwhite(0.0, 1.0, inf).asStream;
 		fork{
 			IFTxt.ifPath(trck,prt,inst);
 			file=File.new(IFTxt.ifTrckPath.standardizePath,"w");
 			0.02.wait;
-			(1..136).do{|n|
+			(1..160).do{|n|
 				case
 				{cnt>0&&cnt<=16}   {seq=amp.next}//amp
 				{cnt>16&&cnt<=32}  {seq=oct.next}//oct
@@ -326,15 +401,26 @@ IFTxtSnr{
 				{cnt>80&&cnt<=96}  {seq=tm.next}//tm
 				{cnt>96&&cnt<=112} {seq=dur.next}//dur
 				{cnt>112&&cnt<=128}{seq=shuf.next}//Shuf
-				{cnt==129}     {seq=vol.next}//Vol
-				{cnt==130}     {seq=octM.next}//OctMul
-				{cnt==131}     {seq=susM.next}//SusMul
-				{cnt==132}     {seq=dec.next}//dec
-				{cnt==133}     {seq=dly.next}//rls
-				{cnt==134}     {seq=pan.next}//pan
-				{cnt==135}     {seq=sndA.next}//sndX
-				{cnt==136}     {seq=sndB.next};//sndY
-				file.write(seq.asString ++ if (n % 16 != 0, ",", Char.nl));
+				{cnt>128&&cnt<=144}{seq=lfoP.next}//lfo
+				{cnt==145}     {seq=vol.next}//Vol
+				{cnt==146}     {seq=att.next}//Att
+				{cnt==147}     {seq=dec.next}//dec
+				{cnt==148}     {seq=susV.next}//sus
+				{cnt==149}     {seq=rls.next}//rls
+				{cnt==150}     {seq=pan.next}//pan
+				{cnt==151}     {seq=sndA.next}//sndX
+				{cnt==152}     {seq=sndB.next}//sndY
+				{cnt==153}   {seq=octM.next}//OctMul
+				{cnt==154}   {seq=susM.next}//SusMul
+				{cnt==155}   {seq=xy1X.next}//xy1X
+				{cnt==156}   {seq=xy1Y.next}//xy1Y
+				{cnt==157}   {seq=xy2X.next}//xy2X
+				{cnt==158}   {seq=xy1Y.next}//xy2Y
+				{cnt==159}   {seq=lfoM1.next}//lfoMul1
+				{cnt==160}   {seq=lfoM2.next};//lfoMul2
+				file.write(
+					seq.asString ++ if (n % 16 != 0, ",", Char.nl)
+				);
 				cnt=cnt+1;
 			};
 			0.02.wait;
@@ -367,7 +453,8 @@ IFTxtSnr{
 		~tSnTm=IFTxt.line(6);
 		~tSnDur=IFTxt.line(7);
 		~tSnShuf=IFTxt.line(8);
-		~tSnGlob=IFTxt.line(9);
+		~tSnLfo=IFTxt.line(9);
+		~tSnEnv=IFTxt.line(10);
 
 		this.storeVals;
 	}
@@ -422,11 +509,17 @@ IFTxtSnr{
 			~tSnShuf[8],~tSnShuf[9],~tSnShuf[10],~tSnShuf[11],
 			~tSnShuf[12],~tSnShuf[13],~tSnShuf[14],~tSnShuf[15],
 		);
+		IFLfo.setSnr    (
+			~tSnLfo[0],~tSnLfo[1],~tSnLfo[2],~tSnLfo[3],
+			~tSnLfo[4],~tSnLfo[5],~tSnLfo[6],~tSnLfo[7],
+			~tSnLfo[8],~tSnLfo[9],~tSnLfo[10],~tSnLfo[11],
+			~tSnLfo[12],~tSnLfo[13],~tSnLfo[14],~tSnLfo[15],
+		);
 		IFGlobal.setSnr  (
-			~tSnGlob[0],~tSnGlob[1],~tSnGlob[2],~tSnGlob[3],
-			~tSnGlob[4],~tSnGlob[5],~tSnGlob[6],~tSnGlob[7],
-			~tSnGlob[8],~tSnGlob[9],~tSnGlob[10],~tSnGlob[11],
-			~tSnGlob[12],~tSnGlob[13],~tSnGlob[14],~tSnGlob[15],
+			~tSnEnv[0],~tSnEnv[1],~tSnEnv[2],~tSnEnv[3],
+			~tSnEnv[4],~tSnEnv[5],~tSnEnv[6],~tSnEnv[7],
+			~tSnEnv[8],~tSnEnv[9],~tSnEnv[10],~tSnEnv[11],
+			~tSnEnv[12],~tSnEnv[13],~tSnEnv[14],~tSnEnv[15],
 		);
 
 

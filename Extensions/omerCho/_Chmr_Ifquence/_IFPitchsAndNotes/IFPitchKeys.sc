@@ -75,7 +75,7 @@ IFPitchKeys {
 			arg msg;
 			if ( msg[1]==1, {
 				"Keys NOTE 0".postln;
-				~transKeys.source=0;
+				~trans1Keys.source=0;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '0');
 			});
 			},
@@ -87,7 +87,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 1".postln;
 				//~transKick.source=1;~transSnr.source=1;~transHat.source=1;
-				~transKeys.source=1;
+				~trans1Keys.source=1;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '1');
 			});
 			},
@@ -101,7 +101,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 2".postln;
 				//~transKick.source=2;~transSnr.source=2;~transHat.source=2;
-				~transKeys.source=2;
+				~trans1Keys.source=2;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '2');
 			});
 			},
@@ -114,7 +114,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 3".postln;
 				//~transKick.source=3;~transSnr.source=3;~transHat.source=3;
-				~transKeys.source=3;
+				~trans1Keys.source=3;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '3');
 			});
 			},
@@ -127,7 +127,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 4".postln;
 				//~transKick.source=4;~transSnr.source=4;~transHat.source=4;
-				~transKeys.source=4;
+				~trans1Keys.source=4;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '4');
 			});
 			},
@@ -140,7 +140,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 5".postln;
 				//~transKick.source=5;~transSnr.source=5;~transHat.source=5;
-				~transKeys.source=5;
+				~trans1Keys.source=5;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '5');
 			});
 			},
@@ -153,7 +153,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 6".postln;
 				//~transKick.source=6;~transSnr.source=6;~transHat.source=6;
-				~transKeys.source=6;
+				~trans1Keys.source=6;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '6');
 			});
 			},
@@ -166,7 +166,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 7".postln;
 				//~transKick.source=7;~transSnr.source=7;~transHat.source=7;
-				~transKeys.source=7;
+				~trans1Keys.source=7;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '7');
 			});
 			},
@@ -179,7 +179,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 8".postln;
 				//~transKick.source=8;~transSnr.source=8;~transHat.source=8;
-				~transKeys.source=8;
+				~trans1Keys.source=8;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '8');
 			});
 			},
@@ -192,7 +192,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 9".postln;
 				//~transKick.source=9;~transSnr.source=9;~transHat.source=9;
-				~transKeys.source=9;
+				~trans1Keys.source=9;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '9');
 			});
 			},
@@ -205,7 +205,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 10".postln;
 				//~transKick.source=10;~transSnr.source=10;~transHat.source=10;
-				~transKeys.source=10;
+				~trans1Keys.source=10;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '10');
 			});
 			},
@@ -218,7 +218,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 11".postln;
 				//~transKick.source=11;~transSnr.source=11;~transHat.source=11;
-				~transKeys.source=11;
+				~trans1Keys.source=11;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '11');
 			});
 			},
@@ -231,7 +231,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 12".postln;
 				//~transKick.source=12;~transSnr.source=12;~transHat.source=12;
-				~transKeys.source=12;
+				~trans1Keys.source=12;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '12');
 			});
 			},
@@ -244,7 +244,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 13".postln;
 				//~transKick.source=13;~transSnr.source=13;~transHat.source=13;
-				~transKeys.source=13;
+				~trans1Keys.source=13;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '13');
 			});
 			},
@@ -257,7 +257,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE 14".postln;
 				//~transKick.source=14;~transSnr.source=14;~transHat.source=14;
-				~transKeys.source=14;
+				~trans1Keys.source=14;
 				~tOSCAdrr.sendMsg('noteKeysLabel', '14');
 			});
 			},
@@ -271,7 +271,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -1".postln;
 				//~transKick.source=(-1);~transSnr.source=(-1);~transHat.source=(-1);
-				~transKeys.source=(-1);
+				~trans1Keys.source=(-1);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-1');
 			});
 			},
@@ -285,7 +285,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -2".postln;
 				//~transKick.source=(-2);~transSnr.source=(-2);~transHat.source=(-2);
-				~transKeys.source=(-2);
+				~trans1Keys.source=(-2);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-2');
 			});
 			},
@@ -298,7 +298,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -3".postln;
 				//~transKick.source=(-3);~transSnr.source=(-3);~transHat.source=(-3);
-				~transKeys.source=(-3);
+				~trans1Keys.source=(-3);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-3');
 			});
 			},
@@ -311,7 +311,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -4".postln;
 				//~transKick.source=(-4);~transSnr.source=(-4);~transHat.source=(-4);
-				~transKeys.source=(-4);
+				~trans1Keys.source=(-4);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-4');
 			});
 			},
@@ -324,7 +324,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -5".postln;
 				//~transKick.source=(-5);~transSnr.source=(-5);~transHat.source=(-5);
-				~transKeys.source=(-5);
+				~trans1Keys.source=(-5);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-5');
 			});
 			},
@@ -337,7 +337,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -6".postln;
 				//~transKick.source=(-6);~transSnr.source=(-6);~transHat.source=(-6);
-				~transKeys.source=(-6);
+				~trans1Keys.source=(-6);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-6');
 			});
 			},
@@ -350,7 +350,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -7".postln;
 				//~transKick.source=(-7);~transSnr.source=(-7);~transHat.source=(-7);
-				~transKeys.source=(-7);
+				~trans1Keys.source=(-7);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-7');
 			});
 			},
@@ -363,7 +363,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -8".postln;
 				//~transKick.source=(-8);~transSnr.source=(-8);~transHat.source=(-8);
-				~transKeys.source=(-8);
+				~trans1Keys.source=(-8);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-8');
 			});
 			},
@@ -376,7 +376,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -9".postln;
 				//~transKick.source=(-9);~transSnr.source=(-9);~transHat.source=(-9);
-				~transKeys.source=(-9);
+				~trans1Keys.source=(-9);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-9');
 			});
 			},
@@ -389,7 +389,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -10".postln;
 				//~transKick.source=(-10);~transSnr.source=(-10);~transHat.source=(-10);
-				~transKeys.source=(-10);
+				~trans1Keys.source=(-10);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-10');
 			});
 			},
@@ -402,7 +402,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -11".postln;
 				//~transKick.source=(-11);~transSnr.source=(-11);~transHat.source=(-11);
-				~transKeys.source=(-11);
+				~trans1Keys.source=(-11);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-11');
 			});
 			},
@@ -414,7 +414,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -12".postln;
 				//~transKick.source=(-12);~transSnr.source=(-12);~transHat.source=(-12);
-				~transKeys.source=(-12);
+				~trans1Keys.source=(-12);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-12');
 			});
 			},
@@ -426,7 +426,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -13".postln;
 				//~transKick.source=(-13);~transSnr.source=(-13);~transHat.source=(-13);
-				~transKeys.source=(-13);
+				~trans1Keys.source=(-13);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-13');
 			});
 			},
@@ -438,7 +438,7 @@ IFPitchKeys {
 			if ( msg[1]==1, {
 				"Root NOTE -14".postln;
 				//~transKick.source=(-14);~transSnr.source=(-14);~transHat.source=(-14);
-				~transKeys.source=(-14);
+				~trans1Keys.source=(-14);
 				~tOSCAdrr.sendMsg('noteKeysLabel', '-14');
 			});
 			},

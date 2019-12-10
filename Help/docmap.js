@@ -1799,7 +1799,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*mdLine","?*act7","?*act1","?*act4","?*actBankButA","?*act7ButC","?*act8ButC","?*act8ButB","?*act6","?*act3","?*act2ButA","?*load","?*oscResp","?*resetCnts","?*resetLeds","?*act6ButB","?*actBank","?*makeMIDIResponders","?*act2","?*act2ButB","?*act4ButB","?*act5ButC","?*act8ButA","?*act2ButC","?*act3ButC","?*act3ButA","?*act4ButA","?*act5","?*globals","?*act7ButA","?*makeOSCResponders","?*line","?*act5ButB","?*mdAct","?*addr","?*act8","?*act3ButB","?*act5ButA","?*loadResponders","?*act6ButC","?*tsLeds","?*act7ButB","?*act4ButC","?*tsLed","?*actBankButB","?*act6ButA" ],
+'methods': [ "?*oscResp","?*act1","?*tsLeds","?*act3","?*act6","?*act8","?*makeMIDIResponders","?*resetLeds","?*actBankButB","?*act2","?*load","?*actBank","?*globals","?*act5","?*act7","?*addr","?*loadResponders","?*act4","?*actBankButA","?*tsLed","?*mdAct","?*makeOSCResponders","?*line","?*mdLine","?*resetCnts" ],
 'superclasses': [ "Object" ],
 },
 "Classes/WebView": {
@@ -4274,7 +4274,7 @@ docmap = {
 'categories': "Collections>Ordered",
 'keywords': [  ],
 'related': [ "Reference/Literals","Classes/List" ],
-'methods': [ "_-wrapExtend","_-windex","_-put","_-asCompileString","_-stutter","_-at","_-asRawOSC","_-clipExtend","_-pyramidg","_-source","_-mirror2","_-++","_-asString","_-pyramid","_-multiChannelExpand","_-foldAt","_-containsSeqColl","_-wrapPut","_-scramble","_-mirror1","_-slide","_-add","_-normalize","_-normalizeSum","_-wrapAt","_-replace","_-addFirst","_-allTuples","_-atIdentityHashInPairs","_-atIdentityHash","_-addAll","_-clipPut","_-clipAt","_-reverseDo","_-permute","_-powerset","_-insert","_-flop","_-dpoll","_-mirror","_-envirPairs","_-rotate","_-foldPut","_-collect","_-reverse","_-isValidUGenInput","_-foldExtend","_-removeAt","_-reshape","_-do","_-lace","_-shift","_-plot","_-size","_-swap","_-sputter","_-fork","_-deepCollect","_*iota","_*rand","_*linrand","_*series","_*newFrom","_*new","_*fill2D","_*fib","_*fill","_*interpolation","_*fillND","_*rand2","_*exprand","_*newClear","_*geom","_*with","?-prUnarchive","?-proxyControlClass","?-numChannels","?-asAudioRateInput","?-envAt","?-poll","?-asSpec","?-unlace","?-deinterlace","?-interlace","?-prUnlace","?-asControlInput","?-scope","?-asUGenInput","?-madd","?-buildForProxy" ],
+'methods': [ "_-wrapExtend","_-asCompileString","_-wrapPut","_-stutter","_-foldPut","_-collect","_-clipExtend","_-pyramidg","_-source","_-mirror2","_-asRawOSC","_-do","_-asString","_-++","_-pyramid","_-multiChannelExpand","_-containsSeqColl","_-foldAt","_-scramble","_-mirror1","_-slide","_-size","_-normalizeSum","_-atIdentityHashInPairs","_-allTuples","_-atIdentityHash","_-clipAt","_-swap","_-permute","_-flop","_-powerset","_-normalize","_-dpoll","_-mirror","_-envirPairs","_-rotate","_-put","_-reverse","_-isValidUGenInput","_-addAll","_-reshape","_-plot","_-deepCollect","_-reverseDo","_-foldExtend","_-removeAt","_-add","_-clipPut","_-windex","_-lace","_-at","_-addFirst","_-shift","_-wrapAt","_-fork","_-sputter","_-replace","_-insert","_*interpolation","_*linrand","_*rand","_*fill","_*exprand","_*new","_*rand2","_*iota","_*geom","_*fill2D","_*fillND","_*newClear","_*newFrom","_*series","_*with","_*fib","?-prUnarchive","?-proxyControlClass","?-numChannels","?-asAudioRateInput","?-envAt","?-poll","?-asSpec","?-unlace","?-deinterlace","?-interlace","?-prUnlace","?-asControlInput","?-scope","?-asUGenInput","?-madd","?-buildForProxy" ],
 'superclasses': [ "ArrayedCollection","SequenceableCollection","Collection","Object" ],
 },
 "Classes/IFTxtStat": {
@@ -7701,7 +7701,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*act1ButA","?*act8ButB","?*act7","?*tsLeds","?*act4","?*act2ButA","?*act6","?*load","?*act6ButA","?*addr","?*act8ButC","?*act6ButC","?*tsLed","?*act2","?*act7ButB","?*act3","?*act2ButB","?*act2ButC","?*act3ButC","?*loadResponders","?*actBankButB","?*resetLeds","?*act4ButA","?*act8","?*act3ButB","?*actBank","?*actBankButA","?*act1ButB","?*act3ButA","?*act5","?*act4ButB","?*act1","?*act7ButA","?*act5ButA","?*act8ButA","?*act7ButC","?*act6ButB","?*act1ButC","?*act4ButC","?*globals","?*act5ButB","?*act5ButC" ],
+'methods': [ "?*oscResp","?*act1","?*tsLeds","?*act3","?*act6","?*act8","?*makeMIDIResponders","?*resetLeds","?*actBankButB","?*act2","?*load","?*actBank","?*globals","?*act5","?*act7","?*addr","?*loadResponders","?*act4","?*actBankButA","?*tsLed","?*mdAct","?*makeOSCResponders","?*line","?*mdLine","?*resetCnts" ],
 'superclasses': [ "Object" ],
 },
 "Tutorials/JITLib/recursive_phrasing": {
@@ -8473,7 +8473,7 @@ docmap = {
 'categories': "Collections>Ordered",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "_-cosh","_-sortBy","_-floor","_-convertRhythm","_-selectIndices","_-isSeries","_-@@","_-odd","_-maxSizeAtDepth","_-ring4","_-checkBadValues","_-blend","_-round","_--","_-reciprocal","_-absdif","_-reduce","_-ring1","_-curvelin","_-sum3rand","_-indicesOfEqual","_-asFloat","_-hammingDistance","_-remove","_-softclip","_-flop","_-trunc","_-cpsoct","_-exp","_-<=","_-putLast","_-order","_-midicps","_-<!","_-**","_-tan","_-div","_-unipolar","_-*","_-hypot","_-flopDeep","_-imag","_-theta","_-rho","_-linrand","_-rand2","_-sqrdif","_-clumps","_-clip2","_-lag","_-scaleneg","_-resamp0","_-frac","_-lagud","_-ampdb","_-atan2","_-atan","_-sign","_-indexOf","_-asInt","_-abs","_-varlag","_-clump","_-coin","_-prune","_-indexOfEqual","_-magnitude","_-squared","_-asin","_-pairsDo","_-%","_-isNegative","_-dbamp","_-differentiate","_-max","_-amclip","_-integrate","_-flatten2","_-distort","_-indexInBetween","_-biexp","_-tanh","_-<","_-sumsqr","_-bitNot","_-&","_-exprange","_-flat","_-isPositive","_-even","_-rejectIndicesAs","_-log10","_-log","_-lincurve","_-cpsmidi","_-min","_-copyRange","_-separate","_-slew","_-sqrt","_-midiratio","_-bilinrand","_-/","_-minIndex","_-|@|","_-keep","_-wrap","_-indexIn","_->=","_-flatten","_-explin","_-octcps","_-choose","_-linexp","_-curdle","_-clip","_-@|@","_-last","_-flopWith","_-sort","_-performBinaryOp","_-lag2","_-copyToEnd","_-excess","_-convertDigits","_-lcm","_-expexp","_-fold","_-sin","_-ring2","_-magnitudeApx","_-rejectIndices","_-obtain","_-asInteger","_-performUnaryOp","_->>","_-acos","_-maxIndex","_-lag3","_-take","_-bilin","_-swap","_-neg","_-|","_-cubed","_-join","_-bitXor","_-multichannelExpandRef","_-isStrictlyPositive","_-wchoose","_-doAdjacentPairs","_-drop","_-range","_-find","_-flatBelow","_-sinh","_-lag2ud","_-lag3ud","_-real","_-angle","_-+","_-blendAt","_-+>>","_-bipolar","_-copyFromStart","_-exprand","_-resamp1","_-ratiomidi","_-rrand","_-gcd","_->","_-linlin","_-selectIndicesAs","_-flopTogether","_-ceil","_-phase","_-maxDepth","_-cos","_-ring3","_-findAll","_-difsqr","_-rand","_-log2","_-putFirst","_-indexOfGreaterThan","_-first","_-instill","_*fill","_*geom","_*exprand","_*series","_*linrand","_*rand2","_*rand","_*fib","_*interpolation","?-sqrsum","?-scurve","?-performKeyToDegree","?-median","?-roundUp","?-rectWindow","?-sortedMedian","?-==","?-keysValuesDo","?-prFlat","?-asChannelIndex","?-asQuant","?-hash","?-welWindow","?-wrapAt","?-containsSeqColl","?-asBufnum","?-flatIf","?-enpath","?-hanWindow","?-bitHammingDistance","?-ascii","?-degrad","?-asOSCArgEmbeddedArray","?-hypotApx","?-prevPrime","?-asOSCArgArray","?-mergeSortTemp","?-performBinaryOpOnSimpleNumber","?-convertOneRhythm","?-asSequenceableCollection","?-asInterfaceDef","?-degreeToKey","?-bitAnd","?-nextPrime","?-performBinaryOpOnComplex","?-sumRhythmDivisions","?-leftShift","?-nextTimeOnGrid","?-sanitize","?-nthPrime","?-moddif","?-loadDocument","?-hoareMedian","?-isSequenceableCollection","?-canFreeSynth","?-wrapAtDepth","?-nearestInScale","?-raddeg","?-ramp","?-mode","?-asOSCArgBundle","?-sortMap","?-rate","?-asRect","?-++","?-thresh","?-indexOfPrime","?-loadPath","?-middle","?-hoarePartition","?-+++","?-top","?-wrapPut","?-quickSort","?-mergeSort","?-wrap2","?-keyToDegree","?-performNearestInList","?-performNearestInScale","?-rightShift","?-fold2","?-firstArg","?-asPoint","?-curverange","?-asLayoutElement","?-prUnixCmd","?-nearestInList","?-insertionSort","?-mod","?-multiChannelPerform","?-ilisp","?-unsignedRightShift","?-schedBundleArrayOnClock","?-mergeTemp","?-asMIDIInPortUID","?-minNyquist","?-removing","?-unlace","?-quickSortRange","?-bitOr","?-performDegreeToKey","?-lastIndex","?-isAssociationArray","?-performBinaryOpOnSeqColl","?-insertionSortRange","?-unixCmd","?-prepareForProxySynthDef","?-hoareFind","?-asInstr","?-asFraction","?-middleIndex","?-triWindow","?-pow","?-delimit","?-transposeKey","?*streamContents","?*streamContentsLimit" ],
+'methods': [ "_-cosh","_-sortBy","_-floor","_-convertRhythm","_-selectIndices","_-isSeries","_-@@","_-odd","_-maxSizeAtDepth","_-ring4","_-checkBadValues","_-blend","_-round","_--","_-reciprocal","_-absdif","_-reduce","_-ring1","_-curvelin","_-sum3rand","_-indicesOfEqual","_-asFloat","_-hammingDistance","_-remove","_-softclip","_-flop","_-trunc","_-cpsoct","_-exp","_-<=","_-putLast","_-order","_-midicps","_-<!","_-**","_-tan","_-div","_-unipolar","_-*","_-hypot","_-flopDeep","_-imag","_-theta","_-rho","_-linrand","_-rand2","_-sqrdif","_-clumps","_-clip2","_-lag","_-scaleneg","_-resamp0","_-frac","_-lagud","_-ampdb","_-atan2","_-atan","_-sign","_-indexOf","_-asInt","_-abs","_-varlag","_-clump","_-coin","_-prune","_-indexOfEqual","_-magnitude","_-squared","_-asin","_-pairsDo","_-%","_-isNegative","_-dbamp","_-differentiate","_-max","_-amclip","_-integrate","_-flatten2","_-distort","_-indexInBetween","_-biexp","_-tanh","_-<","_-sumsqr","_-bitNot","_-&","_-exprange","_-flat","_-maxIndex","_-even","_-isPositive","_-rejectIndicesAs","_-log10","_-log","_-lincurve","_-cpsmidi","_-min","_-copyRange","_-separate","_-slew","_-sqrt","_-midiratio","_-bilinrand","_-/","_-|@|","_-keep","_-wrap","_-indexIn","_->=","_-flatten","_-explin","_-octcps","_-choose","_-linexp","_-curdle","_-clip","_-@|@","_-last","_-flopWith","_-sort","_-performBinaryOp","_-lag2","_-copyToEnd","_-excess","_-convertDigits","_-lcm","_-expexp","_-fold","_-sin","_-ring2","_-magnitudeApx","_-rejectIndices","_-obtain","_-asInteger","_-minIndex","_-performUnaryOp","_->>","_-acos","_-lag3","_-take","_-bilin","_-swap","_-neg","_-|","_-cubed","_-join","_-bitXor","_-multichannelExpandRef","_-isStrictlyPositive","_-wchoose","_-doAdjacentPairs","_-drop","_-range","_-find","_-flatBelow","_-sinh","_-lag2ud","_-lag3ud","_-real","_-angle","_-+","_-blendAt","_-+>>","_-bipolar","_-copyFromStart","_-exprand","_-resamp1","_-ratiomidi","_-rrand","_-gcd","_->","_-linlin","_-selectIndicesAs","_-flopTogether","_-ceil","_-phase","_-maxDepth","_-cos","_-ring3","_-findAll","_-difsqr","_-rand","_-log2","_-putFirst","_-indexOfGreaterThan","_-first","_-instill","_*geom","_*exprand","_*series","_*linrand","_*rand2","_*rand","_*fib","_*fill","_*interpolation","?-sqrsum","?-scurve","?-performKeyToDegree","?-median","?-roundUp","?-rectWindow","?-sortedMedian","?-==","?-keysValuesDo","?-prFlat","?-asChannelIndex","?-asQuant","?-hash","?-welWindow","?-wrapAt","?-containsSeqColl","?-asBufnum","?-flatIf","?-enpath","?-hanWindow","?-bitHammingDistance","?-ascii","?-degrad","?-asOSCArgEmbeddedArray","?-hypotApx","?-prevPrime","?-asOSCArgArray","?-mergeSortTemp","?-performBinaryOpOnSimpleNumber","?-convertOneRhythm","?-asSequenceableCollection","?-asInterfaceDef","?-degreeToKey","?-bitAnd","?-nextPrime","?-performBinaryOpOnComplex","?-sumRhythmDivisions","?-leftShift","?-nextTimeOnGrid","?-sanitize","?-nthPrime","?-moddif","?-loadDocument","?-hoareMedian","?-isSequenceableCollection","?-canFreeSynth","?-wrapAtDepth","?-nearestInScale","?-raddeg","?-ramp","?-mode","?-asOSCArgBundle","?-sortMap","?-rate","?-asRect","?-++","?-thresh","?-indexOfPrime","?-loadPath","?-middle","?-hoarePartition","?-+++","?-top","?-wrapPut","?-quickSort","?-mergeSort","?-wrap2","?-keyToDegree","?-performNearestInList","?-performNearestInScale","?-rightShift","?-fold2","?-firstArg","?-asPoint","?-curverange","?-asLayoutElement","?-prUnixCmd","?-nearestInList","?-insertionSort","?-mod","?-multiChannelPerform","?-ilisp","?-unsignedRightShift","?-schedBundleArrayOnClock","?-mergeTemp","?-asMIDIInPortUID","?-minNyquist","?-removing","?-unlace","?-quickSortRange","?-bitOr","?-performDegreeToKey","?-lastIndex","?-isAssociationArray","?-performBinaryOpOnSeqColl","?-insertionSortRange","?-unixCmd","?-prepareForProxySynthDef","?-hoareFind","?-asInstr","?-asFraction","?-middleIndex","?-triWindow","?-pow","?-delimit","?-transposeKey","?*streamContents","?*streamContentsLimit" ],
 'superclasses': [ "Collection","Object" ],
 'subclasses': [ "RingBuffer","LinkedList","Order","List","ArrayedCollection" ],
 },
@@ -10038,7 +10038,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*set1","?*makeOSCResponders","?*load","?*new","?*proxy","?*set","?*lbl1","?*osc","?*p1","?*globals","?*set2","?*oscResp","?*lbl2" ],
+'methods': [ "?*proxy","?*lbl1","?*makeOSCResponders","?*set","?*lng","?*set1","?*p1","?*new","?*load","?*osc","?*lbl2","?*oscResp","?*globals","?*set2" ],
 'superclasses': [ "Object" ],
 },
 "Classes/PlayerEffectSocket": {
@@ -12042,7 +12042,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?-hTime","?*osc","?*hat2","?*p1","?*counter3","?*set2","?*proxy","?*set","?*p2","?*load","?*makeOSCResponders","?*oscResp","?*set1","?*lbl1","?*lbl2","?*globals","?*new" ],
+'methods': [ "?-hTime","?*lbl1","?*proxy","?*set2","?*p1","?*counter3","?*new","?*set","?*lng","?*globals","?*oscResp","?*set1","?*load","?*makeOSCResponders","?*lbl2" ],
 'superclasses': [ "Object" ],
 },
 "Guides/More-On-Getting-Help": {
@@ -13351,7 +13351,7 @@ docmap = {
 'categories': "Server>Nodes, Server>Abstractions",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "_*tail","_*replace","_*head","_*before","_*new","_*after","_*basicNew" ],
+'methods': [ "_*tail","_*new","_*after","_*replace","_*basicNew","_*before","_*head" ],
 'superclasses': [ "AbstractGroup","Node","Object" ],
 },
 "Classes/SampleDur": {
@@ -13961,7 +13961,7 @@ docmap = {
 'categories': "Libraries>JITLib>NodeProxy, Live Coding",
 'keywords': [  ],
 'related': [ "Classes/ProxySpace" ],
-'methods': [ "_-pause","_-mold","_-parentGroup","_-put","_-controlNames","_-rate","_-map","_-controlKeysValues","_-mapn","_-group","_-source","_-orderNodes","_-awake","_-<<>","_-clear","_-getKeysValues","_-edit","_-copyState","_-<--","_-reshaping","_-isNeutral","_-sources","_-<>>","_-quant","_-paused","_-set","_-xset","_-play","_-controlKeys","_-release","_-removeLast","_-unmap","_-clock","_-numChannels","_-copy","_-sendAll","_-removeAt","_-rebuild","_-prime","_-setRates","_-end","_-unset","_-add","_-bus","_-send","_-monitor","_-wakeUp","_-server","_-loaded","_-free","_-resume","_-quantize","_-lag","_-fadeTime","_-setn","_-ar,","_-playN","_-stop","_-sendEach","_*control","_*for","_*defaultNumAudio","_*audio","_*defaultNumControl","_*new","?-key","?-mapEnvir","?-softSet","?-readFromBus","?-setNodeMap","?-reallocBusIfNeeded","?-xmap","?-sendEachToBundle","?-freeBus","?-asTarget","?-getDefaultVal","?-isPlaying","?-playString","?-setBus","?-cleanNodeMap","?-nodeMap","?-sendAllToBundle","?-trace","?-playEditString","?-getBundle","?-putAll","?-nodeID","?-objects","?-defaultGroupID","?-wakeUpToBundle","?-deepWakeUp","?-putSeries","?-nudgeSet","?-putNewObject","?-filter","?-setGroup","?-wakeUpParentsToBundle","?-get","?-stopAllToBundle","?-removeAllToBundle","?-findInOpenDocuments","?-xunset","?-prepareOtherObjects","?-addChild","?-rebuildToBundle","?-xsetn","?-removeToBundle","?-moveBeforeMsg","?-rebuildDeepToBundle","?-xFadePerform","?-getFamily","?-xmapn","?-resetNodeMap","?-shouldAddObject","?-removeAll","?-asCode","?-playNDialog","?-prepareToBundle","?-document","?-nudgeVol","?-servStr","?-read","?-softVol","?-supplementNodeMap","?-typeStr","?-serverQuit","?-spawn","?-asNodeID","?-unsetToBundle","?-gui","?-asGroup","?-removeChild","?-getStructure","?-addNodeMapControlNames","?-nameDef","?-at","?-sendObjectToBundle","?-playNString","?-removeFirst","?-children","?-loadToBundle","?-internalKeys" ],
+'methods': [ "_-pause","_-mold","_-parentGroup","_-put","_-controlNames","_-rate","_-map","_-controlKeysValues","_-ar,","_-mapn","_-group","_-source","_-orderNodes","_-awake","_-<<>","_-clear","_-getKeysValues","_-stop","_-copyState","_-<--","_-reshaping","_-isNeutral","_-sources","_-<>>","_-quant","_-paused","_-set","_-xset","_-edit","_-controlKeys","_-release","_-removeLast","_-unmap","_-clock","_-numChannels","_-copy","_-sendAll","_-removeAt","_-rebuild","_-playN","_-prime","_-setRates","_-end","_-unset","_-play","_-add","_-bus","_-send","_-monitor","_-wakeUp","_-server","_-loaded","_-free","_-resume","_-quantize","_-lag","_-fadeTime","_-setn","_-sendEach","_*for","_*audio","_*defaultNumAudio","_*defaultNumControl","_*control","_*new","?-key","?-mapEnvir","?-softSet","?-readFromBus","?-setNodeMap","?-reallocBusIfNeeded","?-xmap","?-sendEachToBundle","?-freeBus","?-asTarget","?-getDefaultVal","?-isPlaying","?-playString","?-setBus","?-cleanNodeMap","?-nodeMap","?-sendAllToBundle","?-trace","?-playEditString","?-getBundle","?-putAll","?-nodeID","?-objects","?-defaultGroupID","?-wakeUpToBundle","?-deepWakeUp","?-putSeries","?-nudgeSet","?-putNewObject","?-filter","?-setGroup","?-wakeUpParentsToBundle","?-get","?-stopAllToBundle","?-removeAllToBundle","?-findInOpenDocuments","?-xunset","?-prepareOtherObjects","?-addChild","?-rebuildToBundle","?-xsetn","?-removeToBundle","?-moveBeforeMsg","?-rebuildDeepToBundle","?-xFadePerform","?-getFamily","?-xmapn","?-resetNodeMap","?-shouldAddObject","?-removeAll","?-asCode","?-playNDialog","?-prepareToBundle","?-document","?-nudgeVol","?-servStr","?-read","?-softVol","?-supplementNodeMap","?-typeStr","?-serverQuit","?-spawn","?-asNodeID","?-unsetToBundle","?-gui","?-asGroup","?-removeChild","?-getStructure","?-addNodeMapControlNames","?-nameDef","?-at","?-sendObjectToBundle","?-playNString","?-removeFirst","?-children","?-loadToBundle","?-internalKeys" ],
 'superclasses': [ "BusPlug","AbstractFunction","Object" ],
 'subclasses': [ "Ndef" ],
 },
@@ -17004,7 +17004,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*md","?*lbl","?*oscResp","?*globals","?*makeOSCResponders","?*resetCnts","?*cc","?*load" ],
+'methods': [ "?*globals","?*cc","?*prog","?*resetCnts","?*multi","?*lbl","?*oscResp","?*makeOSCResponders","?*load","?*md" ],
 'superclasses': [ "Object" ],
 },
 "Tutorials/A-Practical-Guide/PG_Ref01_Pattern_Internals": {
@@ -17998,7 +17998,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?-sTime","?*p1","?*counter2","?*counter3","?*set2","?*proxy","?*set","?*p2","?*load","?*makeOSCResponders","?*oscResp","?*set1","?*lbl1","?*lbl2","?*globals","?*new" ],
+'methods': [ "?-sTime","?*p1","?*counter2","?*counter3","?*set2","?*proxy","?*set","?*lng","?*load","?*makeOSCResponders","?*oscResp","?*set1","?*lbl1","?*lbl2","?*globals","?*new" ],
 'superclasses': [ "Object" ],
 },
 "Classes/KafPMO": {
@@ -18772,7 +18772,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*setMophoOn","?*setKeys","?*setBassOn","?*setMopho","?*setKeysOn","?*setKeysOff","?*setSampOff","?*defaults","?*setSamp","?*load","?*setBass","?*setMophoOff","?*setBassOff","?*setSampOn" ],
+'methods': [ "?*defaults","?*setSnr","?*setSampOn","?*setSnrOff","?*setMophoOn","?*setSnrOn","?*setHatOn","?*setKeysOn","?*setKeys","?*load","?*setKickOn","?*setHatOff","?*setBassOff","?*setKick","?*setBass","?*setMopho","?*setKickOff","?*setSamp","?*setKeysOff","?*setBassOn","?*setMophoOff","?*setHat","?*setSampOff" ],
 'superclasses': [ "Object" ],
 },
 "Guides/UsingMIDI": {
@@ -19377,7 +19377,7 @@ docmap = {
 'categories': "Collections>Unordered, Streams-Patterns-Events>Events",
 'keywords': [  ],
 'related': [ "Classes/Pattern","Classes/Environment","Classes/IdentityDictionary" ],
-'methods': [ "_-pause","_-next","_-playAndDelta","_-isRest","_-set","_-embedInStream","_-group","_-stop","_-resume","_-play","_-asControlInput","_-synth","_-asUGenInput","_-release","_-delta","_*silent","_*makeDefaultSynthDef","_*default","_*partialEvents","_*parentEvents","_*addParentType","_*addEventType","_*new","?-asOSC","?-proxyControlClass","?-asEventStreamPlayer","?-isPlaying","?-synchWithQuant","?-free","?-isRunning","?-sendOSC","?-asEvent","?-nodeID","?-split","?-buildForProxy","?-asGroup","?*checkIDs","?*eventTypes","?*parentTypes","?*makeParentEvents","_.defaultParentEvent" ],
+'methods': [ "_-pause","_-next","_-playAndDelta","_-isRest","_-set","_-resume","_-group","_-stop","_-play","_-asControlInput","_-synth","_-asUGenInput","_-release","_-delta","_-embedInStream","_*silent","_*makeDefaultSynthDef","_*default","_*partialEvents","_*parentEvents","_*addParentType","_*addEventType","_*new","?-asOSC","?-proxyControlClass","?-asEventStreamPlayer","?-isPlaying","?-synchWithQuant","?-free","?-isRunning","?-sendOSC","?-asEvent","?-nodeID","?-split","?-buildForProxy","?-asGroup","?*checkIDs","?*eventTypes","?*parentTypes","?*makeParentEvents","_.defaultParentEvent" ],
 'superclasses': [ "Environment","IdentityDictionary","Dictionary","Set","Collection","Object" ],
 'subclasses': [ "Preceive" ],
 },
@@ -20736,7 +20736,7 @@ docmap = {
 'categories': "Undocumented classes",
 'keywords': [  ],
 'related': [  ],
-'methods': [ "?*randscale","?*initClass","?*note","?*noteKeys","?*new","?*noteSamp","?*trnsCnt","?*freeAll","?*noteBass","?*trns","?*buttons","?*loadProxy","?*loadScaleList","?*noteMopho","?*loadAll","?*pat","?*setScl","?*trans" ],
+'methods': [ "?*loadAll","?*setScl","?*trans","?*trns","?*loadProxy","?*trnsCnt","?*randscale","?*new","?*loadScaleList","?*note","?*pat","?*freeAll","?*initClass" ],
 'superclasses': [ "Object" ],
 },
 "Classes/IFSeqVelHat": {

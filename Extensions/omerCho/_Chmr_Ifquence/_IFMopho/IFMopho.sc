@@ -67,6 +67,9 @@ IFMopho {
 		~transCntMopho = PatternProxy( Pseq([0], inf));
 		~transCntMophoP = Pseq([~transCntMopho], inf).asStream;
 
+		~extraShufMopho = PatternProxy( Pshuf([0], inf));
+		~extraShufMophoP = Pseq([~extraShufMopho], inf).asStream;
+
 		~octMopho = PatternProxy( Pseq([4], inf));
 		~octMophoP = Pseq([~octMopho], inf).asStream;
 		~legMopho = PatternProxy( Pseq([0.0], inf));
@@ -132,7 +135,7 @@ IFMopho {
 			\degree, Pseq([~nt1MophoP.next], inf),
 			\amp, Pseq([~volMophoP.next*~amp1MophoP.next], inf),
 			\sustain, Pseq([~sus1MophoP.next],inf)*~susMulMopho,
-			\mtranspose, Pseq([~transMophoP.next], inf)+~transCntMophoP.next+~trMopho+~transShufMophoP.next,
+			\mtranspose, Pseq([~transMophoP.next], inf)+~extraShufMophoP.next+~transCntMophoP.next+~trMopho+~transShufMophoP.next,
 			\ctranspose, Pseq([~rootMophoP.next],inf),
 			\octave, Pseq([~octMophoP.next], inf)+~octMulMopho,
 			\harmonic, Pseq([~hrmMophoP.next], inf)+~harmMopho

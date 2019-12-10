@@ -324,7 +324,7 @@ IFTxtStat{
 			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
 			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
-			Pseq([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
 		ntVl2=(20..67).choose;
 		nt2=Pseq([ntVl2],inf).asStream;
@@ -363,8 +363,8 @@ IFTxtStat{
 			0.02.wait;
 			(1..192).do{|n|
 				case
-				{cnt>0&&cnt<=16}{seq=amp1.next}//ampVkick
-				{cnt>16&&cnt<=32}{seq=nt1.next}//ntVkick
+				{cnt>0&&cnt<=16}{seq=amp1.next}//ampVKick
+				{cnt>16&&cnt<=32}{seq=nt1.next}//ntVKick
 
 				{cnt>32&&cnt<=48}{seq=amp2.next}//ampVSnr
 				{cnt>48&&cnt<=64}{seq=nt2.next}//ntVSnr

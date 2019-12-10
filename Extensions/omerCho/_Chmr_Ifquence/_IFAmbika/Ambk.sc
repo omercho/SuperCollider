@@ -10,9 +10,17 @@ Ambk{
 		~currentBpmDiv=1;
 		this.resetCnts;
 		this.globals;
+		this.loadLists;
 		this.makeOSCResponders;
 	}
 	*globals{
+		~pt1=0;
+		~pt2=1;
+		~pt3=2;
+		~pt4=3;
+		~pt5=4;
+		~pt6=5;
+
 		~chAbk1=0;
 		~chAbk2=1;
 		~chAbk3=2;
@@ -25,8 +33,45 @@ Ambk{
 		~ptF1ResABK=71;
 		~ptF2CutABK=29;
 		~ptF2ResABK=30;
-	}
+		~ptMixABK=22;
 
+		Ambk.multi(ch:~pt1,bnk:\a,prg:0);
+	}
+	*loadLists{
+
+		~bankLst = [\a,\b,\c,\d,\e,\f,\g];
+
+	}
+	*multi{|ch=0,bnk,prg|
+		bnk.switch(
+			\a, {~vAmbk.control(ch, 0, /*26-51*/26);~vAmbk.program(ch, prg);},
+			\b, {~vAmbk.control(ch, 0, 27);~vAmbk.program(ch, prg);},
+			\c, {~vAmbk.control(ch, 0, 28);~vAmbk.program(ch, prg);},
+			\d, {~vAmbk.control(ch, 0, 29);~vAmbk.program(ch, prg);},
+			\e, {~vAmbk.control(ch, 0, 30);~vAmbk.program(ch, prg);},
+			\f, {~vAmbk.control(ch, 0, 31);~vAmbk.program(ch, prg);},
+			\g, {~vAmbk.control(ch, 0, 32);~vAmbk.program(ch, prg);},
+		);
+	}
+	*prog{|ch,bnk,prg|
+		bnk.switch(
+			\a, {~vAmbk.control(ch, 0, /*0-25*/0);~vAmbk.program(ch, prg);},
+			\b, {~vAmbk.control(ch, 0, 1);~vAmbk.program(ch, prg);},
+			\c, {~vAmbk.control(ch, 0, 2);~vAmbk.program(ch, prg);},
+			\d, {~vAmbk.control(ch, 0, 3);~vAmbk.program(ch, prg);},
+			\e, {~vAmbk.control(ch, 0, 4);~vAmbk.program(ch, prg);},
+			\f, {~vAmbk.control(ch, 0, 5);~vAmbk.program(ch, prg);},
+			\g, {~vAmbk.control(ch, 0, 6);~vAmbk.program(ch, prg);},
+		);
+	}
+	*prtBnks{|bnk1,prg1,bnk2,prg2,bnk3,prg3,bnk4,prg4,bnk5,prg5,bnk6,prg6|
+		Ambk.prog(ch:~pt1,bnk:~bankLst[0],prg:prg1);
+		Ambk.prog(ch:~pt2,bnk:~bankLst[bnk2],prg:prg2);
+		Ambk.prog(ch:~pt3,bnk:~bankLst[bnk3],prg:prg3);
+		Ambk.prog(ch:~pt4,bnk:~bankLst[bnk4],prg:prg4);
+		Ambk.prog(ch:~pt5,bnk:~bankLst[bnk5],prg:prg5);
+		Ambk.prog(ch:~pt6,bnk:~bankLst[bnk6],prg:prg6);
+	}
 	*lbl{|key,val|~tOSCAdrr.sendMsg(key, val);}
 
 	*md{|pt,cc,vel|
@@ -61,6 +106,13 @@ Ambk{
 			\pt4F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt4F1Cut,val);}, //ptF1Cut
 			\pt5F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt5F1Cut,val);}, //ptF1Cut
 			\pt6F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt6F1Cut,val);}, //ptF1Cut
+			//Mix
+			\pt1Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt1Mix,val);}, //ptMix
+			\pt2Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt2Mix,val);}, //ptMix
+			\pt3Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt3Mix,val);}, //ptMix
+			\pt4Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt4Mix,val);}, //ptMix
+			\pt5Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt5Mix,val);}, //ptMix
+			\pt6Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt6Mix,val);}, //ptMix
 
 
 		);
@@ -89,7 +141,12 @@ Ambk{
 				'pt5F1CutT',{ this.cc(\pt5,\pt5F1Cut,vel);},
 				'pt6F1CutT',{ this.cc(\pt6,\pt6F1Cut,vel);},
 
-
+				'pt1MixT',{ this.cc(\pt1,\pt1Mix,vel);},
+				'pt2MixT',{ this.cc(\pt2,\pt2Mix,vel);},
+				'pt3MixT',{ this.cc(\pt3,\pt3Mix,vel);},
+				'pt4MixT',{ this.cc(\pt4,\pt4Mix,vel);},
+				'pt5MixT',{ this.cc(\pt5,\pt5Mix,vel);},
+				'pt6MixT',{ this.cc(\pt6,\pt6Mix,vel);},
 
 			);
 		},path:oscName);
@@ -109,6 +166,13 @@ Ambk{
 		this.oscResp(respName:'pt4F1CutResp', oscName:'ABKpt4F1Cut', playDir:'pt4F1CutT');
 		this.oscResp(respName:'pt5F1CutResp', oscName:'ABKpt5F1Cut', playDir:'pt5F1CutT');
 		this.oscResp(respName:'pt6F1CutResp', oscName:'ABKpt6F1Cut', playDir:'pt6F1CutT');
+		//ptMix
+		this.oscResp(respName:'pt1MixResp', oscName:'ABKpt1Mix', playDir:'pt1MixT');
+		this.oscResp(respName:'pt2MixResp', oscName:'ABKpt2Mix', playDir:'pt2MixT');
+		this.oscResp(respName:'pt3MixResp', oscName:'ABKpt3Mix', playDir:'pt3MixT');
+		this.oscResp(respName:'pt4MixResp', oscName:'ABKpt4Mix', playDir:'pt4MixT');
+		this.oscResp(respName:'pt5MixResp', oscName:'ABKpt5Mix', playDir:'pt5MixT');
+		this.oscResp(respName:'pt6MixResp', oscName:'ABKpt6Mix', playDir:'pt6MixT');
 
 
 	}
@@ -142,6 +206,22 @@ Ambk.cc(\pt1,\pt1Vol,0);
 
 ~vAmbk.noteOn( 26, 111);   //But 1
 ~vAmbk.noteOff( 26, 1);    //But 1
+
+~ch=0;~vAmbk.control(~ch, 0, /*26-51*/26); ~vAmbk.program(~ch, 0);//Multi Select
+~ch=0;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 6);//Part Select
+~ch=1;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 22);//Part Select
+~ch=2;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 48);//Part Select
+~ch=3;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 61);//Part Select
+~ch=4;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 62);//Part Select
+~ch=5;~vAmbk.control(~ch, 0, /*0-25*/0); ~vAmbk.program(~ch, 63);//Part Select
+
+Ambk.multi(ch:~pt1,bnk:\a,prg:0);
+Ambk.prog(ch:~pt1,bnk:\a,prg:34);
+Ambk.prog(ch:~pt2,bnk:\a,prg:62);
+Ambk.prog(ch:~pt3,bnk:\a,prg:97);
+Ambk.prog(ch:~pt4,bnk:\a,prg:102);
+Ambk.prog(ch:~pt5,bnk:\a,prg:33);
+Ambk.prog(ch:~pt6,bnk:\a,prg:33);
 
 ~vAmbk.control(abk1Ch, 0, 3);     //Bank Select (MSB)
 ~vAmbk.control(abk1Ch, 1, 89);    //Modulation Wheel (MSB)

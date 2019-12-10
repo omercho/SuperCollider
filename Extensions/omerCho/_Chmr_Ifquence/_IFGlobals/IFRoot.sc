@@ -96,7 +96,7 @@ IFRoot {
 	*play{
 		IFCounter.getClockNow;
 		IFCounter.getClockStart;
-		IFSeqSteps(~crntStepDir);
+		//IFSeqSteps(~crntStepDir,~crntStepDir);
 		~ifPlayerCnt.play(~clkSqCnt, quant: 0);
 		~ifPlayerMaster.play(~clkMaster, quant: 0);
 		~ifPlayerSeq01.play(~clkSq01, quant: 0);

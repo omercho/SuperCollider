@@ -33,14 +33,11 @@ IFKick {
 		~rootKick=0;
 		~harmKick=0;
 		~susMulKick=1;
+		~lfoMulKick1=0.2;
+		~lfoMulKick2=0.2;
+
 		~drumVolC=0; ~kickVolC=1;
 		~tuneKick=26;
-
-
-		~attKick =0.001;
-		~decKick =0.8;
-		~relKick =0.3;
-		~susLevKick = 0.01;
 
 		~quantKick2=0.0;
 	}
@@ -51,30 +48,17 @@ IFKick {
 		~rootKickP = Pseq([~rootKick], inf).asStream;
 		~nt1Kick = PatternProxy( Pseq([~vKick], inf));
 		~nt1KickP = Pseq([~nt1Kick], inf).asStream;
+
 		~dur1Kick = PatternProxy( Pseq([1], inf));
 		~dur1KickP = Pseq([~dur1Kick], inf).asStream;
 		~durMulKick = PatternProxy( Pseq([1], inf));
 		~durMulKickP = Pseq([~durMulKick], inf).asStream;
+
 		~amp1Kick = PatternProxy( Pseq([1], inf));
 		~amp1KickP = Pseq([~amp1Kick], inf).asStream;
 		~sus1Kick = PatternProxy( Pseq([0.05], inf));
 		~sus1KickP = Pseq([~sus1Kick], inf).asStream;
 
-
-		~actKick2 = PatternProxy( Pseq([1], inf));
-		~actKick2P= Pseq([~actKick2], inf).asStream;
-		~ntKick2 = PatternProxy( Pseq([0], inf));
-		~ntKick2P = Pseq([~ntKick2], inf).asStream;
-		~ampKick2 = PatternProxy( Pseq([1], inf));
-		~ampKick2P = Pseq([~ampKick2], inf).asStream;
-		~durKick2 = PatternProxy( Pseq([1/2], inf));
-		~durKick2P = Pseq([~durKick2], inf).asStream;
-		~susKick2 = PatternProxy( Pseq([1], inf));
-		~susKick2P = Pseq([~susKick2], inf).asStream;
-		~volKick2 = PatternProxy( Pseq([0.9], inf));
-		~volKick2P = Pseq([~volKick2], inf).asStream;
-		~delta1Kick2 = PatternProxy( Pseq([1], inf));
-		~delta1Kick2P = Pseq([~delta1Kick2], inf).asStream;
 
 		~transKick = PatternProxy( Pseq([0], inf));
 		~transKickP = Pseq([~transKick], inf).asStream;
@@ -82,31 +66,51 @@ IFKick {
 		~transShufKickP = Pseq([~transShufKick], inf).asStream;
 		~transCntKick = PatternProxy( Pseq([0], inf));
 		~transCntKickP = Pseq([~transCntKick], inf).asStream;
-
 		~extraShufKick = PatternProxy( Pshuf([0], inf));
 		~extraShufKickP = Pseq([~extraShufKick], inf).asStream;
 
 		~octKick = PatternProxy( Pseq([0], inf));
 		~octKickP = Pseq([~octKick], inf).asStream;
-
 		~hrmKick = PatternProxy( Pseq([1.0], inf));
 		~hrmKickP = Pseq([~hrmKick], inf).asStream;
 
-		~actKickLfo1 = PatternProxy( Pseq([0], inf));
-		~actKickLfo1P= Pseq([~actKickLfo1], inf).asStream;
-
-
 		~actKick = PatternProxy( Pseq([1], inf));
 		~actKickP= Pseq([~actKick], inf).asStream;
-
 		~volKick = PatternProxy( Pseq([1.0], inf));
 		~volKickP = Pseq([~volKick], inf).asStream;
 
 		~delta1VSamp05 = PatternProxy( Pseq([1/1], inf));
 		~delta1VSamp05P = Pseq([~delta1VSamp05], inf).asStream;
-
 		~delta2VSamp05 = PatternProxy( Pseq([1/1], inf));
 		~delta2VSamp05P = Pseq([~delta2VSamp05], inf).asStream;
+
+		~lfo1Kick = PatternProxy( Pseq([10], inf));
+		~lfo1KickP = Pseq([~lfo1Kick], inf).asStream;
+		~lfo2Kick = PatternProxy( Pseq([10], inf));
+		~lfo2KickP = Pseq([~lfo2Kick], inf).asStream;
+
+		~actKickLfo1 = PatternProxy( Pseq([0], inf));
+		~actKickLfo1P= Pseq([~actKickLfo1], inf).asStream;
+
+
+		//lng
+		~rootLngKick = PatternProxy( Pseq([0], inf));
+		~rootLngKickP = Pseq([~rootLngKick], inf).asStream;
+		~nt1LngKick = PatternProxy( Pseq([0], inf));
+		~nt1LngKickP = Pseq([~nt1LngKick], inf).asStream;
+		~dur1LngKick = PatternProxy( Pseq([0.25], inf));
+		~dur1LngKickP = Pseq([~dur1LngKick], inf).asStream;
+		~amp1LngKick = PatternProxy( Pseq([0.9], inf));
+		~amp1LngKickP = Pseq([~amp1LngKick], inf).asStream;
+		~sus1LngKick = PatternProxy( Pseq([1], inf));
+		~sus1LngKickP = Pseq([~sus1LngKick], inf).asStream;
+
+		~transLngKick = PatternProxy( Pseq([0], inf));
+		~transLngKickP = Pseq([~transLngKick], inf).asStream;
+		~transShufLngKick = PatternProxy( Pseq([0], inf));
+		~transShufLngKickP = Pseq([~transShufLngKick], inf).asStream;
+
+
 	}//*proxy
 
 	*new{|i=1|
@@ -126,7 +130,7 @@ IFKick {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chKick,
+			\chan, ~chAbk1,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KickP.next],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
@@ -136,11 +140,38 @@ IFKick {
 			\ctranspose, Pseq([~rootKickP.next],inf),
 			\octave, Pseq([~octKickP], inf)+~octMulKick,
 			\harmonic, Pseq([~hrmKickP.next], inf)+~harmKick,
-		).play(~clkTom,quant:0);
+		).play(~clkKick,quant:0);
 		//this.count2;
 		//this.timesCount;
+		Pbind(//LFO CUT Kick INT
+			\midicmd, \control, \type, \midi,
+			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~envDecVB,
+			\delta, Pseq([~delta1KickP.next], 1),
+			\control, Pseq([~lfo1KickP.value], 1)*~lfoMulKick1,
+		).play(~clkKick, quant: 0);
+		Pbind(//LFO CUT Kick RATE
+			\midicmd, \control, \type, \midi,
+			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~slideTm,
+			\delta, Pseq([~delta2KickP.next], 1),
+			\control, Pseq([~lfo2KickP.value], 1)*~lfoMulKick2,
+		).play(~clkKick, quant: 0);
 	}
 
+
+	*lng{|deg=0,amp=1,sus=4|
+		Pbind(
+			\chan, ~chAbk1,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
+			\dur, Pseq([~dur1LngKickP.next],1)+sus,
+			\ctranspose, Pseq([~rootLngKickP.next],inf),
+			\degree, Pseq([~nt1LngKickP.next],inf)+deg,
+			\amp, Pseq([~volKickP.next*~amp1LngKickP.next],inf)+amp,
+			\sustain, Pseq([~sus1LngKickP.next],inf)+sus,
+			\mtranspose, Pseq([~transLngKickP.next],inf)+~transShufLngKickP.next+~transCntKickP.next,
+			\octave, Pseq([~octKickP.next],inf)+~octMulKick,
+			\harmonic, Pseq([~hrmKickP.next],inf)+~harmKick
+		).play(~clkKick, quant: 0);
+	}//lng
 
 	*osc{
 
@@ -228,6 +259,32 @@ IFKick {
 				~volKick.source = val1;
 				~mdOut.control(2, 1, vel1);
 			},
+			\att, {
+				~crntKick_att=val1;
+				this.lbl1(\IFattKick,val1);
+
+				~mdOut.control(2, 5, vel1);
+			},
+			\dec, {
+				~crntKick_dec=val1;
+				this.lbl1(\IFdecKick,val1);
+				~mdOut.control(2, 127, vel1);
+			},
+			\sus, {
+				~crntKick_sus=val1;
+				this.lbl1(\IFsusKick,val1);
+				~mdOut.control(2, 6, vel1);
+			},
+			\rls, {
+				~crntKick_rls=val1;
+				this.lbl1(\IFrlsKick,val1);
+				~mdOut.control(2, 8, vel1);
+			},
+			\pan, {
+				~crntKick_pan=val1;
+				this.lbl1(\IFpanKick,val1);
+				~mdOut.control(2, 8, vel1);
+			},
 			\octM, {
 				~crntKick_octM=val1;
 				this.lbl1(\IFoctMKickLbl,val1);
@@ -238,21 +295,17 @@ IFKick {
 				this.lbl1(\IFsusMKick,val1);
 				~susMulKick=val1;
 			},
-			\dec, {
-				~crntKick_dec=val1;
-				this.lbl1(\IFdecKick,val1);
-				~mdOut.control(2, 127, vel1);
+			\lfoM1, {
+				~crntKick_lfoM1=val1;
+				this.lbl1(\IFlfoM1Kick,val1);
+				~lfoMulKick1=val1;
 			},
-			\dly, {
-				~crntKick_sus=val1;
-				this.lbl1(\IFdlyKick,val1);
-				//~mdOut.control(5, 6, vel1);
+			\lfoM2, {
+				~crntKick_lfoM2=val1;
+				this.lbl1(\IFlfoM2Kick,val1);
+				~lfoMulKick2=val1;
 			},
-			\pan, {
-				~crntKick_pan=val1;
-				this.lbl1(\IFpanKick,val1);
-				//~mdOut.control(5, 8, vel1);
-			},
+
 
 		);
 	}
@@ -272,6 +325,20 @@ IFKick {
 				~crntKick_sndY=val1;
 				~crntKick_sndX=val2;
 			},
+			\xy1, {
+				this.lbl2(\IFxy1Kick,val1,val2);
+
+				~mdOut.control(5, 13, vel2); //FX Comp
+				~mdOut.control(5, 14, vel1); //FX Comp
+				~crntKick_xy1X=val2;
+				~crntKick_xy1Y=val1;
+			},
+			\xy2, {
+				this.lbl2(\IFxy2Kick,val1,val2);
+
+				~crntKick_xy2X=val2;
+				~crntKick_xy2Y=val1;
+			},
 		);
 	}
 	*oscResp{|respName,oscName,playTag|
@@ -286,12 +353,18 @@ IFKick {
 				'octMZeroKick_T', { this.set(\octMZero,val);},
 				//-GlobalSettings
 				'volKick_T' , { this.set1(\vol,val1);},
-				'octMKick_T', { this.set1(\octM,val1);},
-				'susMKick_T', { this.set1(\susM,val1);},
+				'attKick_T' , { this.set1(\att,val1);},
 				'decKick_T' , { this.set1(\dec,val1);},
-				'susKick_T' , { this.set1(\dly,val1);},
+				'susKick_T' , { this.set1(\sus,val1);},
+				'rlsKick_T' , { this.set1(\rls,val1);},
 				'panKick_T' , { this.set1(\pan,val1);},
 				'sendKick_T', { this.set2(\send,val1,val2);},
+				'susMKick_T', { this.set1(\susM,val1);},
+				'octMKick_T', { this.set1(\octM,val1);},
+				'xy1Kick_T' , { this.set2(\xy1,val1,val2);},
+				'xy2Kick_T' , { this.set2(\xy2,val1,val2);},
+				'lfoM1Kick_T',{ this.set1(\lfoM1,val1);},
+				'lfoM2Kick_T',{ this.set1(\lfoM2,val1);},
 
 			);
 		},path:oscName);
@@ -302,12 +375,18 @@ IFKick {
 		this.oscResp(respName:\octMZeroKickResp, oscName:\IFoctMZeroKick, playTag:'octMZeroKick_T');
 		//-GlobalSettings
 		this.oscResp(respName:\volKickResp, oscName:\IFvolKick, playTag:'volKick_T');
-		this.oscResp(respName:\octMKickResp, oscName:\IFoctMKick, playTag:'octMKick_T');
-		this.oscResp(respName:\susMKickResp, oscName:\IFsusMKick, playTag:'susMKick_T');
+		this.oscResp(respName:\attKickResp, oscName:\IFattKick, playTag:'attKick_T');
 		this.oscResp(respName:\decKickResp, oscName:\IFdecKick, playTag:'decKick_T');
-		this.oscResp(respName:\dlyKickResp, oscName:\IFdlyKick, playTag:'dlyKick_T');
+		this.oscResp(respName:\susKickResp, oscName:\IFsusKick, playTag:'susKick_T');
+		this.oscResp(respName:\rlsKickResp, oscName:\IFrlsKick, playTag:'rlsKick_T');
 		this.oscResp(respName:\panKickResp, oscName:\IFpanKick, playTag:'panKick_T');
 		this.oscResp(respName:\sendKickResp, oscName:\IFsendKick, playTag:'sendKick_T');
+		this.oscResp(respName:\susMKickResp, oscName:\IFsusMKick, playTag:'susMKick_T');
+		this.oscResp(respName:\octMKickResp, oscName:\IFoctMKick, playTag:'octMKick_T');
+		this.oscResp(respName:\xy1KickResp,  oscName:\IFxy1Kick, playTag:'xy1Kick_T');
+		this.oscResp(respName:\xy2KickResp,  oscName:\IFxy2Kick, playTag:'xy2Kick_T');
+		this.oscResp(respName:\lfoM1KickResp, oscName:\IFlfoM1Kick, playTag:'lfoM1Kick_T');
+		this.oscResp(respName:\lfoM2KickResp, oscName:\IFlfoM2Kick, playTag:'lfoM2Kick_T');
 	}
 
 }
@@ -315,29 +394,55 @@ IFTxtKick{
 	classvar <>file;
 	*crtRndLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq;
-		var amp,oct,nt,vel,susT,tm,dur,shuf;
-		var vol,octM,susM,dec,dly,pan,sndA,sndB;
-		amp=  Pwhite(0,   1,   inf).asStream;
-		oct=  Pwhite(0,   3,   inf).asStream;
-		nt=   Pshuf([0,0,0,1],inf).asStream;
-		vel=  Pwhite(1,   3,   inf).asStream;
+		var amp,oct,nt,vel,susT,tm,dur,shuf,lfoP;
+		var vol,att,dec,susV,rls,pan,sndA,sndB;
+		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
+		amp=[
+			Pseq([1],inf).asStream,Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
+			Prand([0,1],inf).asStream
+		].choose;
+		oct=  Pwhite(3,   3,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
+		vel=  Pwhite(2,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pshuf([1,2,1,1],inf).asStream;
-		dur=  Pwhite(2,   3,   inf).asStream;
-		shuf= Pshuf([0,2,0,0,3,1],inf).asStream;
-		vol=  Pwhite(0.89, 0.99,inf).asStream;
-		octM= Pwhite(2,   3,   inf).asStream;
-		susM= Pwhite(0.1, 0.9, inf).asStream;
-		dec=  Pwhite(0.2, 1.0, inf).asStream;
-		dly=  Pwhite(0.1, 0.9, inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
+		dur=  Pwhite(3,   4,   inf).asStream;
+		shuf= Pwhite(0,  4,   inf).asStream;
+		lfoP= Pwhite(0,   127, inf).asStream;
+		vol=  Pwhite(0.85, 0.99,inf).asStream;
+		att=  Pwhite(0.0, 0.2, inf).asStream;
+		dec=  Pwhite(0.1, 0.3, inf).asStream;
+		susV= Pwhite(0.1, 0.9, inf).asStream;
+		rls=  Pwhite(0.1, 0.9, inf).asStream;
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
-		sndA= Pwhite(0.0, 0.3, inf).asStream;
-		sndB= Pwhite(0.0, 0.2, inf).asStream;
+		sndA= Pwhite(0.1, 0.6, inf).asStream;
+		sndB= Pwhite(0.1, 0.6, inf).asStream;
+		octM= Pwhite(1,   1, inf).asStream;
+		susM= Pwhite(0.1, 0.2, inf).asStream;
+		xy1X= Pwhite(0.0, 0.5, inf).asStream;
+		xy1Y= Pwhite(0.0, 0.4, inf).asStream;
+		xy2X= Pwhite(0.0, 1.0, inf).asStream;
+		xy2Y= Pwhite(0.0, 1.0, inf).asStream;
+		lfoM1=Pwhite(0.0, 1.0, inf).asStream;
+		lfoM2=Pwhite(0.0, 1.0, inf).asStream;
 		fork{
 			IFTxt.ifPath(trck,prt,inst);
 			file=File.new(IFTxt.ifTrckPath.standardizePath,"w");
 			0.02.wait;
-			(1..136).do{|n|
+			(1..160).do{|n|
 				case
 				{cnt>0&&cnt<=16}   {seq=amp.next}//amp
 				{cnt>16&&cnt<=32}  {seq=oct.next}//oct
@@ -347,14 +452,23 @@ IFTxtKick{
 				{cnt>80&&cnt<=96}  {seq=tm.next}//tm
 				{cnt>96&&cnt<=112} {seq=dur.next}//dur
 				{cnt>112&&cnt<=128}{seq=shuf.next}//Shuf
-				{cnt==129}     {seq=vol.next}//Vol
-				{cnt==130}     {seq=octM.next}//OctMul
-				{cnt==131}     {seq=susM.next}//SusMul
-				{cnt==132}     {seq=dec.next}//dec
-				{cnt==133}     {seq=dly.next}//rls
-				{cnt==134}     {seq=pan.next}//pan
-				{cnt==135}     {seq=sndA.next}//sndX
-				{cnt==136}     {seq=sndB.next};//sndY
+				{cnt>128&&cnt<=144}{seq=lfoP.next}//lfo
+				{cnt==145}     {seq=vol.next}//Vol
+				{cnt==146}     {seq=att.next}//Att
+				{cnt==147}     {seq=dec.next}//dec
+				{cnt==148}     {seq=susV.next}//sus
+				{cnt==149}     {seq=rls.next}//rls
+				{cnt==150}     {seq=pan.next}//pan
+				{cnt==151}     {seq=sndA.next}//sndX
+				{cnt==152}     {seq=sndB.next}//sndY
+				{cnt==153}   {seq=octM.next}//OctMul
+				{cnt==154}   {seq=susM.next}//SusMul
+				{cnt==155}   {seq=xy1X.next}//xy1X
+				{cnt==156}   {seq=xy1Y.next}//xy1Y
+				{cnt==157}   {seq=xy2X.next}//xy2X
+				{cnt==158}   {seq=xy1Y.next}//xy2Y
+				{cnt==159}   {seq=lfoM1.next}//lfoMul1
+				{cnt==160}   {seq=lfoM2.next};//lfoMul2
 				file.write(
 					seq.asString ++ if (n % 16 != 0, ",", Char.nl)
 				);
@@ -390,7 +504,8 @@ IFTxtKick{
 		~tKcTm=IFTxt.line(6);
 		~tKcDur=IFTxt.line(7);
 		~tKcShuf=IFTxt.line(8);
-		~tKcGlob=IFTxt.line(9);
+		~tKcLfo=IFTxt.line(9);
+		~tKcEnv=IFTxt.line(10);
 
 		this.storeVals;
 	}
@@ -445,11 +560,17 @@ IFTxtKick{
 			~tKcShuf[8],~tKcShuf[9],~tKcShuf[10],~tKcShuf[11],
 			~tKcShuf[12],~tKcShuf[13],~tKcShuf[14],~tKcShuf[15],
 		);
+		IFLfo.setKick    (
+			~tKcLfo[0],~tKcLfo[1],~tKcLfo[2],~tKcLfo[3],
+			~tKcLfo[4],~tKcLfo[5],~tKcLfo[6],~tKcLfo[7],
+			~tKcLfo[8],~tKcLfo[9],~tKcLfo[10],~tKcLfo[11],
+			~tKcLfo[12],~tKcLfo[13],~tKcLfo[14],~tKcLfo[15],
+		);
 		IFGlobal.setKick  (
-			~tKcGlob[0],~tKcGlob[1],~tKcGlob[2],~tKcGlob[3],
-			~tKcGlob[4],~tKcGlob[5],~tKcGlob[6],~tKcGlob[7],
-			~tKcGlob[8],~tKcGlob[9],~tKcGlob[10],~tKcGlob[11],
-			~tKcGlob[12],~tKcGlob[13],~tKcGlob[14],~tKcGlob[15],
+			~tKcEnv[0],~tKcEnv[1],~tKcEnv[2],~tKcEnv[3],
+			~tKcEnv[4],~tKcEnv[5],~tKcEnv[6],~tKcEnv[7],
+			~tKcEnv[8],~tKcEnv[9],~tKcEnv[10],~tKcEnv[11],
+			~tKcEnv[12],~tKcEnv[13],~tKcEnv[14],~tKcEnv[15],
 		);
 	}//////
 }

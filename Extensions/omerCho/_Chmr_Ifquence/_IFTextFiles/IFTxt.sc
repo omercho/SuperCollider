@@ -113,22 +113,27 @@ IFTxt{
 	}
 	*writeRndGlbStrtLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq,lineBreak,tmLine;
-		var tmp,scl1,scl2,rootNote;
-		tmLine=Pseq([Pseq([4],4)],inf).asStream;
+		var tmp,scl1,scl2,rootNote,bank;
+		tmLine=Pseq([
+			Pseq([4],4),
+			//Pseq([2],12),
+		],inf).asStream;
 		tmp=  Pwhite(60, 140, inf).asStream;
 		scl1= Pwhite(0, 0, inf).asStream;
-		scl2= Pwhite(0, 29, inf).asStream;
-		rootNote= Pwhite(0,   7,   inf).asStream;
+		scl2= Pwhite(0, 46, inf).asStream;
+		rootNote= Pwhite(-4,   7,   inf).asStream;
+		bank=Pseq([Pxrand([0,1,2],1),Pwhite(0, 127, 1)],inf).asStream;
 		fork{
 			this.ifPath(trck,prt,inst);
 			file=File.new(ifTrckPath.standardizePath,"w");
 			0.02.wait;
-			(1..4).do{|n|
+			(1..16).do{|n|
 				case
 				{cnt==1}            { seq=tmp.next;}//tempo
 				{cnt==2}            { seq=scl1.next;}//scl1
 				{cnt==3}            { seq=scl2.next;}//scl2
-				{cnt==4}            { seq=rootNote.next;};//rootNote
+				{cnt==4}            { seq=rootNote.next;}//rootNote
+				{cnt>=5&&cnt<=16}   { seq=bank.next;};//Ambk Program Banks
 				file.write(
 					seq.asString ++ if (n % tmLine.next != 0, ",", Char.nl)
 				);
@@ -146,7 +151,6 @@ IFTxt{
 		tmLine=Pseq([
 			Pseq([16],32),
 			Pseq([8],7),
-
 		],inf).asStream;
 		pitchPat=  [
 			Pseq([0,Pshuf([0,1,2,3,4,5,6,7],3)],inf).asStream,
@@ -261,9 +265,11 @@ IFTxt{
 		/*
 		IFTxt.readIfTrack(\01,\01,\ifGlbStrt);
 		*/
-
 		IFTxt.readIfTrack(trck,prtDir,\ifGlbStrt);
 		~tGlbStrt=IFTxt.line(1);
+		~tGlbAmb1_2=IFTxt.line(2);
+		~tGlbAmb3_4=IFTxt.line(3);
+		~tGlbAmb5_6=IFTxt.line(4);
 		IFTxt.storeGlblAtStart;
 	}
 	*readGlbl{|trck,prtDir|
@@ -286,14 +292,17 @@ IFTxt{
 		IFTxt.storeGlblFxValues;
 	}
 	*readInst{|trck,prtDir|
-
-
 		this.storeInstPatValues;
 	}
 
 	*storeGlblAtStart{
 		IFGlobal.setAtStart(
 			tmp:~tGlbStrt[0],scl1:~tGlbStrt[1],scl2:~tGlbStrt[2],root:~tGlbStrt[3],
+		);
+		Ambk.prtBnks(
+			~tGlbAmb1_2[0],~tGlbAmb1_2[1],~tGlbAmb1_2[2],~tGlbAmb1_2[3],
+			~tGlbAmb3_4[0],~tGlbAmb3_4[1],~tGlbAmb3_4[2],~tGlbAmb3_4[3],
+			~tGlbAmb5_6[0],~tGlbAmb5_6[1],~tGlbAmb5_6[2],~tGlbAmb5_6[3],
 		);
 	}
 	*storeGlblPatValues{

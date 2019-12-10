@@ -41,16 +41,16 @@ IFTrack01 {
 		IFAPCMn.actLine7(0,0,0,0);
 		IFAPCMn.actLine8(0,0,0,0);
 
-		IFMelMix.act1(0,0,0);
+		IFMelMix.act1(1,0,0);
 		IFMelMix.act2(1,0,0);
 		IFMelMix.act3(1,0,0);
-		IFMelMix.act4(0,0,0);
-		IFMelMix.act5(0,0,0);
-		IFMelMix.act6(0,0,0);
+		IFMelMix.act4(1,0,0);
+		IFMelMix.act5(1,0,0);
+		IFMelMix.act6(1,0,0);
 		IFMelMix.act7(1,0,0);
-		IFMelMix.act8(0,0,0);
+		IFMelMix.act8(1,0,0);
 
-		IFMIDIMix.act1(0,1,0);
+		IFMIDIMix.act1(0,0,0);
 		IFMIDIMix.act2(0,0,0);
 		IFMIDIMix.act3(0,0,0);
 		IFMIDIMix.act4(0,0,0);
@@ -65,8 +65,8 @@ IFTrack01 {
 	*setGlb01{
 		"TRACK 1".postln;
 		~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
-		IFTxt.readGlbStrt(\01,\01);
 
+		IFTxt.readGlbStrt(\01,\01);
 		this.part01;
 
 		/*~local.sendMsg('cutDrum',0.2, 0.3);

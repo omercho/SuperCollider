@@ -145,32 +145,56 @@ IFGlobal{
 		IFSends.set1(\comp,comp);IFSends.set1(\dec,dec);
 		IFSends.set2(\xyFx1,fx1X,fx1Y);IFSends.set2(\xyFx2,fx2X,fx2Y);
 	}
-	*setKick{|vol=0.95,octMul=1,susMul=0.05,dec=0.4,dly=0.2,pan=0.1,sndX=0,sndY=0|
+	*setKick{|vol=0.95,att=0,dec=0.4,sus=0.2,rls=0.1,pan=0.1,sndX=0,sndY=0,
+		octMul=1,susMul=0.05,xy1X=0.01,xy1Y=0.1,xy2X=0,xy2Y=0.1,lfo1=0,lfo2=0|
 		IFKick.set1(\vol,vol);
-		IFKick.set1(\octM,octMul);
-		IFKick.set1(\susM,susMul);
+		IFKick.set1(\att,att);
 		IFKick.set1(\dec,dec);
-		IFKick.set1(\dly,dly);
+		IFKick.set1(\sus,sus);
+		IFKick.set1(\rls,rls);
 		IFKick.set1(\pan,pan);
 		IFKick.set2(\send,sndY,sndX);
+		//----
+		IFKick.set1(\octM,octMul);
+		IFKick.set1(\susM,susMul);
+		IFKick.set2(\xy1,xy1Y,xy1X);
+		IFKick.set2(\xy2,xy2Y,xy2X);
+		IFKick.set1(\lfoM1,lfo1);
+		IFKick.set1(\lfoM2,lfo2);
 	}
-	*setSnr{|vol=0.95,octMul=1,susMul=0.05,dec=0.4,dly=0.2,pan=0.1,sndX=0,sndY=0|
+	*setSnr{|vol=0.95,att=0,dec=0.4,sus=0.2,rls=0.1,pan=0.1,sndX=0,sndY=0,
+		octMul=1,susMul=0.05,xy1X=0.01,xy1Y=0.1,xy2X=0,xy2Y=0.1,lfo1=0,lfo2=0|
 		IFSnr.set1(\vol,vol);
-		IFSnr.set1(\octM,octMul);
-		IFSnr.set1(\susM,susMul);
+		IFSnr.set1(\att,att);
 		IFSnr.set1(\dec,dec);
-		IFSnr.set1(\dly,dly);
+		IFSnr.set1(\sus,sus);
+		IFSnr.set1(\rls,rls);
 		IFSnr.set1(\pan,pan);
 		IFSnr.set2(\send,sndY,sndX);
+		//----
+		IFSnr.set1(\octM,octMul);
+		IFSnr.set1(\susM,susMul);
+		IFSnr.set2(\xy1,xy1Y,xy1X);
+		IFSnr.set2(\xy2,xy2Y,xy2X);
+		IFSnr.set1(\lfoM1,lfo1);
+		IFSnr.set1(\lfoM2,lfo2);
 	}
-	*setHat{|vol=0.95,octMul=1,susMul=0.05,dec=0.4,dly=0.2,pan=0.1,sndX=0,sndY=0|
+	*setHat{|vol=0.95,att=0,dec=0.4,sus=0.2,rls=0.1,pan=0.1,sndX=0,sndY=0,
+		octMul=1,susMul=0.05,xy1X=0.01,xy1Y=0.1,xy2X=0,xy2Y=0.1,lfo1=0,lfo2=0|
 		IFHat.set1(\vol,vol);
-		IFHat.set1(\octM,octMul);
-		IFHat.set1(\susM,susMul);
+		IFHat.set1(\att,att);
 		IFHat.set1(\dec,dec);
-		IFHat.set1(\dly,dly);
+		IFHat.set1(\sus,sus);
+		IFHat.set1(\rls,rls);
 		IFHat.set1(\pan,pan);
 		IFHat.set2(\send,sndY,sndX);
+		//----
+		IFHat.set1(\octM,octMul);
+		IFHat.set1(\susM,susMul);
+		IFHat.set2(\xy1,xy1Y,xy1X);
+		IFHat.set2(\xy2,xy2Y,xy2X);
+		IFHat.set1(\lfoM1,lfo1);
+		IFHat.set1(\lfoM2,lfo2);
 	}
 	*setBass{|vol=0.95,att=0,dec=0.4,sus=0.2,rls=0.1,pan=0.1,sndX=0,sndY=0,
 		octMul=1,susMul=0.05,xy1X=0.01,xy1Y=0.1,xy2X=0,xy2Y=0.1,lfo1=0,lfo2=0|

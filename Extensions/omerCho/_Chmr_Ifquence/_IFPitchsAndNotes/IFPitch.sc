@@ -20,15 +20,15 @@ IFPitch {
 		}
 	}
 	*loadAll {
-		this.buttons;
+		//this.buttons;
 		//this.shufTrans;
 		//this.note;
 		this.loadProxy;
 		this.loadScaleList;
-		this.noteBass;
-		this.noteKeys;
-		this.noteSamp;
-		this.noteMopho;
+		//this.noteBass;
+		//this.noteKeys;
+		//this.noteSamp;
+		//this.noteMopho;
 		this.trans;
 	}
 	*loadProxy {
@@ -98,7 +98,16 @@ IFPitch {
 			/*23*/Scale.ionian,         /*24*/Scale.dorian,
 			/*25*/Scale.phrygian,       /*26*/Scale.lydian,
 			/*27*/Scale.mixolydian,     /*28*/Scale.aeolian,
-			/*29*/Scale.locrian
+			/*29*/Scale.locrian,
+			/*30*/Scale.cargah,         /*31*/Scale.buselik,
+			/*32*/Scale.kurdi,          /*33*/Scale.rast,
+			/*34*/Scale.ussak,          /*35*/Scale.beyati,
+			/*36*/Scale.humayun,        /*37*/Scale.hicaz,
+			/*38*/Scale.uzzal,          /*39*/Scale.zirguleliHicaz,
+			/*40*/Scale.huseyni,        /*41*/Scale.muhayyer,
+			/*42*/Scale.neva,           /*43*/Scale.tahir,
+			/*44*/Scale.karcigar,        /*45*/Scale.basitSuznak,
+			/*46*/Scale.sipihrEski
 		];
 	}
 	*randscale{
@@ -116,7 +125,7 @@ IFPitch {
 		~root1Keys.source =(root);
 		~rootMopho.source =(root);
 		~rootSamp.source =(root);
-		~rootExt.source =(root);
+		//~rootExt.source =(root);
 
 		/*~rootLngBass.source=(root);
 		~rootLngKeys.source=(root);
@@ -125,34 +134,7 @@ IFPitch {
 
 	}
 
-	*buttons{
-		~pitchAllBut.free;
-		~countPAll=0;
-		~pitchAllBut = OSCFunc({
-			arg msg;
-			if ( msg[1]==1, {
-				//"Transpose Shuffle".postln;
-				~countPAll = ~countPAll + 1;
-				~countPAll.switch(
-					0,{"PITCH SWITCH 0".postln;},
-					1, {"PITCH SWITCH ON".postln;
-						~tOSCAdrr.sendMsg('pitchBass', 1);
-						~tOSCAdrr.sendMsg('pitchKeys', 1);
-						~tOSCAdrr.sendMsg('pitchSamp', 1);
-						~tOSCAdrr.sendMsg('pitchMopho', 1);
 
-					},
-					2,{"PITCH SWITCH OFF".postln;
-						~tOSCAdrr.sendMsg('pitchBass', 0);
-						~tOSCAdrr.sendMsg('pitchKeys', 0);
-						~tOSCAdrr.sendMsg('pitchSamp', 0);
-						~tOSCAdrr.sendMsg('pitchMopho', 0);
-
-						~countPAll=0;
-					}
-			)});
-		},'/pitchAll');
-	}
 	*trans {
 		//----Kick-------
 		~transKickMulBut.free;
@@ -750,7 +732,7 @@ IFPitch {
 		'/nt-14'
 		);
 	}
-	*noteBass {
+	/**noteBass {
 		/////////////////////----- Note -------//////////////
 		~noteBass_0.free;
 		~noteBass_0 = OSCFunc({
@@ -2167,9 +2149,37 @@ IFPitch {
 			});
 		},'/ntMopho-14');
 
-	}
+	}*/
 	*freeAll {
 
 	}
+	/**buttons{
+		~pitchAllBut.free;
+		~countPAll=0;
+		~pitchAllBut = OSCFunc({
+			arg msg;
+			if ( msg[1]==1, {
+				//"Transpose Shuffle".postln;
+				~countPAll = ~countPAll + 1;
+				~countPAll.switch(
+					0,{"PITCH SWITCH 0".postln;},
+					1, {"PITCH SWITCH ON".postln;
+						~tOSCAdrr.sendMsg('pitchBass', 1);
+						~tOSCAdrr.sendMsg('pitchKeys', 1);
+						~tOSCAdrr.sendMsg('pitchSamp', 1);
+						~tOSCAdrr.sendMsg('pitchMopho', 1);
+
+					},
+					2,{"PITCH SWITCH OFF".postln;
+						~tOSCAdrr.sendMsg('pitchBass', 0);
+						~tOSCAdrr.sendMsg('pitchKeys', 0);
+						~tOSCAdrr.sendMsg('pitchSamp', 0);
+						~tOSCAdrr.sendMsg('pitchMopho', 0);
+
+						~countPAll=0;
+					}
+			)});
+		},'/pitchAll');
+	}*/
 
 }

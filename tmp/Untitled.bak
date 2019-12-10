@@ -1,0 +1,8 @@
+~test=Pseq([Pxrand([\a,\b,\c],1),Pwhite(0, 127, 1)],inf).asStream;
+~test.next;
+
+
+~vMopho.program(0,127);
+~vMopho.cc(0,127);
+
+~vMopho.control(0,32,0);

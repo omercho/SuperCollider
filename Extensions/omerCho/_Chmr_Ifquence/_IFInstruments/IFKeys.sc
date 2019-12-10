@@ -247,11 +247,11 @@ IFKeys {
 			if ( msg[1]==1, {
 				~act1Keys.source=1;
 				//~apcMn.noteOn(~apcMnCh, ~actButA6, 127); //Trk5_But 1
-				~melMix.noteOn(~melMixGlobChan, ~recBut4, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA4, 127); //But C
 			},{
 				~act1Keys.source=0;
 				//~apcMn.noteOff(~apcMnCh, ~actButA6, 127); //Trk5_But
-				~melMix.noteOn(~melMixGlobChan, ~recBut4, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA4, 127); //But C
 			});
 		},'/activ1Keys');
 		~act2KeysBut.free;
@@ -259,10 +259,10 @@ IFKeys {
 			arg msg;
 			if ( msg[1]==1, {
 				~act2Keys.source=1;
-				~melMix.noteOn(~melMixGlobChan, ~recBut5, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA5, 127); //But C
 			},{
 				~act2Keys.source=0;
-				~melMix.noteOn(~melMixGlobChan, ~recBut5, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA5, 127); //But C
 			});
 		},'/activ2Keys');
 		~act3KeysBut.free;
@@ -270,10 +270,10 @@ IFKeys {
 			arg msg;
 			if ( msg[1]==1, {
 				~act3Keys.source=1;
-				~melMix.noteOn(~melMixGlobChan, ~recBut6, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA6, 127); //But C
 			},{
 				~act3Keys.source=0;
-				~melMix.noteOn(~melMixGlobChan, ~recBut6, 127); //But C
+				~melMix.noteOn(~mdMixGlb, ~actButA6, 127); //But C
 			});
 		},'/activ3Keys');
 
