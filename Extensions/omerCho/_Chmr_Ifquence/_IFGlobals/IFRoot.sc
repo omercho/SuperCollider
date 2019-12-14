@@ -31,7 +31,6 @@ IFRoot {
 		~durMaster = PatternProxy( Pseq([2],inf) );
 		~durMasterP= Pseq([~durMaster], inf).asStream;
 		~durMasterPV2=~durMasterP;
-
 		~durMasterMul = PatternProxy( Pseq([1/1], inf));
 		~durMasterMulP= Pseq([~durMasterMul], inf).asStream;
 
@@ -57,7 +56,7 @@ IFRoot {
 
 		~dur4 = PatternProxy( Pseq([2],inf) );
 		~dur4P= Pseq([~dur4], inf).asStream;
-		~durMul4 = PatternProxy( Pseq([1/8], inf));
+		~durMul4 = PatternProxy( Pseq([1/4], inf));
 		~durMul4P= Pseq([~durMul4], inf).asStream;
 
 		//Link With --> IFSeqStep.sc
@@ -161,8 +160,9 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step1(~stepNum1P.next);
-					IFStat.ln01;IFStat.ln02;IFStat.ln03;
-					IFStat.ln04;IFStat.ln05;IFStat.ln06;
+
+					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+
 					//IFStat.ln07;IFStat.ln08;
 					((~dur1P.next)*(~durMul1P.next)).wait;
 				};
@@ -173,10 +173,9 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step2(~stepNum2P.next);
-					IFKick(~tmMulKickP.next*~tmKickP.next);
+					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
-					//IFHat.hat2(~tmMul2HatP.next*~tm2HatP.next);
 					((~dur2P.next)*(~durMul2P.next)).wait;
 				};
 			};
@@ -186,8 +185,11 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step3(~stepNum3P.next);
+
+					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFBass(~tmMulBassP.next*~tmBassP.next);
-					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+
+					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					((~dur3P.next)*(~durMul3P.next)).wait;
 				};
 			};
@@ -197,8 +199,10 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step4(~stepNum4P.next);
-					IFSamp(~tmMulSampP.next*~tmSampP.next);
-					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
+					//IFSamp(~tmMulSampP.next*~tmSampP.next);
+
+					IFStat.ln01;IFStat.ln02;IFStat.ln03;
+
 					((~dur4P.next)*(~durMul4P.next)).wait;
 				};
 			};
@@ -313,6 +317,13 @@ IFRoot {
 				//this.mdNtOn(~lpMnButV2,val);
 
 			},
+			\durSeq1, {
+				case
+				{val>=1} {~dur1.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~dur1.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV1,val);
+				this.lbl(\TOdurSeq1,val);
+			},
 			\durPatSeq1, {
 				case
 				{val>=1} {~stepNum1.source=Pshuf([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
@@ -324,7 +335,7 @@ IFRoot {
 						9,10,11,12,13,14,15,16
 					], inf);
 				};
-				this.mdNtOn(~lpMnButV1,val);
+				//this.mdNtOn(~lpMnButV1,val);
 				this.lbl(\TOdurPatSeq1,val);
 			},
 			\durMulSeq1, {
@@ -333,6 +344,13 @@ IFRoot {
 				{val==0} {~durMul1.source=Pseq([1/2], inf);};
 				this.mdNtOn(~lpMnButV2,val);
 				this.lbl(\TOdurMulSeq1,val);
+			},
+			\durSeq2, {
+				case
+				{val>=1} {~dur2.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~dur2.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV3,val);
+				this.lbl(\TOdurSeq2,val);
 			},
 			\durPatSeq2, {
 				case
@@ -345,7 +363,7 @@ IFRoot {
 						9,10,11,12,13,14,15,16
 					], inf);
 				};
-				this.mdNtOn(~lpMnButV3,val);
+				//this.mdNtOn(~lpMnButV3,val);
 				this.lbl(\TOdurPatSeq2,val);
 			},
 			\durMulSeq2, {
@@ -354,6 +372,13 @@ IFRoot {
 				{val==0} {~durMul2.source=Pseq([1/4], inf);};
 				this.mdNtOn(~lpMnButV4,val);
 				this.lbl(\TOdurMulSeq2,val);
+			},
+			\durSeq3, {
+				case
+				{val>=1} {~dur3.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~dur3.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV5,val);
+				this.lbl(\TOdurSeq3,val);
 			},
 			\durPatSeq3, {
 				case
@@ -366,7 +391,7 @@ IFRoot {
 						9,10,11,12,13,14,15,16
 					], inf);
 				};
-				this.mdNtOn(~lpMnButV5,val);
+				//this.mdNtOn(~lpMnButV5,val);
 				this.lbl(\TOdurPatSeq3,val);
 			},
 			\durMulSeq3, {
@@ -375,6 +400,13 @@ IFRoot {
 				{val==0} {~durMul3.source=Pseq([1/4], inf);};
 				this.mdNtOn(~lpMnButV6,val);
 				this.lbl(\TOdurMulSeq3,val);
+			},
+			\durSeq4, {
+				case
+				{val>=1} {~dur4.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~dur4.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV7,val);
+				this.lbl(\TOdurSeq4,val);
 			},
 			\durPatSeq4, {
 				case
@@ -388,7 +420,7 @@ IFRoot {
 
 					], inf);
 				};
-				this.mdNtOn(~lpMnButV7,val);
+				//this.mdNtOn(~lpMnButV7,val);
 				this.lbl(\TOdurPatSeq4,val);
 			},
 			\durMulSeq4, {
@@ -408,10 +440,17 @@ IFRoot {
 			vel=val*127;
 			playTag.switch(
 				'masterSeqMul_T',{ this.set(\masterSeqMul,vel);},
+
+				'durSeq1_T',{ this.set(\durSeq1,vel);},
+				'durSeq2_T',{ this.set(\durSeq2,vel);},
+				'durSeq3_T',{ this.set(\durSeq3,vel);},
+				'durSeq4_T',{ this.set(\durSeq4,vel);},
+
 				'durPatSeq1_T',{ this.set(\durPatSeq1,vel);},
 				'durPatSeq2_T',{ this.set(\durPatSeq2,vel);},
 				'durPatSeq3_T',{ this.set(\durPatSeq3,vel);},
 				'durPatSeq4_T',{ this.set(\durPatSeq4,vel);},
+
 				'durMulSeq1_T',{ this.set(\durMulSeq1,vel);},
 				'durMulSeq2_T',{ this.set(\durMulSeq2,vel);},
 				'durMulSeq3_T',{ this.set(\durMulSeq3,vel);},
@@ -421,10 +460,17 @@ IFRoot {
 	}
 	*makeOSCResponders{
 		this.oscResp(respName:\masterSeqMulResp, oscName:\TOmasterSeqMul, playTag:'masterSeqMul_T');
+
+		this.oscResp(respName:\durSeq1Resp, oscName:\TOdurSeq1, playTag:'durSeq1_T');
+		this.oscResp(respName:\durSeq2Resp, oscName:\TOdurSeq2, playTag:'durSeq2_T');
+		this.oscResp(respName:\durSeq3Resp, oscName:\TOdurSeq3, playTag:'durSeq3_T');
+		this.oscResp(respName:\durSeq4Resp, oscName:\TOdurSeq4, playTag:'durSeq4_T');
+
 		this.oscResp(respName:\durPatSeq1Resp, oscName:\TOdurPatSeq1, playTag:'durPatSeq1_T');
 		this.oscResp(respName:\durPatSeq2Resp, oscName:\TOdurPatSeq2, playTag:'durPatSeq2_T');
 		this.oscResp(respName:\durPatSeq3Resp, oscName:\TOdurPatSeq3, playTag:'durPatSeq3_T');
 		this.oscResp(respName:\durPatSeq4Resp, oscName:\TOdurPatSeq4, playTag:'durPatSeq4_T');
+
 		this.oscResp(respName:\durMulSeq1Resp, oscName:\TOdurMulSeq1, playTag:'durMulSeq1_T');
 		this.oscResp(respName:\durMulSeq2Resp, oscName:\TOdurMulSeq2, playTag:'durMulSeq2_T');
 		this.oscResp(respName:\durMulSeq3Resp, oscName:\TOdurMulSeq3, playTag:'durMulSeq3_T');

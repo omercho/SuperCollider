@@ -113,7 +113,7 @@ IFTxt{
 	}
 	*writeRndGlbStrtLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq,lineBreak,tmLine;
-		var tmp,scl1,scl2,rootNote,bank;
+		var tmp,scl1,scl2,rootNote,bankAbk,bankMph;
 		tmLine=Pseq([
 			Pseq([4],4),
 			//Pseq([2],12),
@@ -122,18 +122,20 @@ IFTxt{
 		scl1= Pwhite(0, 0, inf).asStream;
 		scl2= Pwhite(0, 46, inf).asStream;
 		rootNote= Pwhite(-4,   7,   inf).asStream;
-		bank=Pseq([Pxrand([0,1,2],1),Pwhite(0, 127, 1)],inf).asStream;
+		bankAbk=Pseq([Pxrand([0,1,2],1),Pwhite(0, 127, 1)],inf).asStream;
+		bankMph=Pseq([Pxrand([0,1,2],1),Pwhite(0, 127, 1)],inf).asStream;
 		fork{
 			this.ifPath(trck,prt,inst);
 			file=File.new(ifTrckPath.standardizePath,"w");
 			0.02.wait;
-			(1..16).do{|n|
+			(1..18).do{|n|
 				case
 				{cnt==1}            { seq=tmp.next;}//tempo
 				{cnt==2}            { seq=scl1.next;}//scl1
 				{cnt==3}            { seq=scl2.next;}//scl2
 				{cnt==4}            { seq=rootNote.next;}//rootNote
-				{cnt>=5&&cnt<=16}   { seq=bank.next;};//Ambk Program Banks
+				{cnt>=5&&cnt<=16}   { seq=bankAbk.next;}//Ambk Program Banks
+				{cnt>=17&&cnt<=18}  { seq=bankAbk.next;};//Mopho Program Banks
 				file.write(
 					seq.asString ++ if (n % tmLine.next != 0, ",", Char.nl)
 				);
@@ -270,6 +272,7 @@ IFTxt{
 		~tGlbAmb1_2=IFTxt.line(2);
 		~tGlbAmb3_4=IFTxt.line(3);
 		~tGlbAmb5_6=IFTxt.line(4);
+		~tGlbMph=IFTxt.line(5);
 		IFTxt.storeGlblAtStart;
 	}
 	*readGlbl{|trck,prtDir|
@@ -304,6 +307,7 @@ IFTxt{
 			~tGlbAmb3_4[0],~tGlbAmb3_4[1],~tGlbAmb3_4[2],~tGlbAmb3_4[3],
 			~tGlbAmb5_6[0],~tGlbAmb5_6[1],~tGlbAmb5_6[2],~tGlbAmb5_6[3],
 		);
+		Mopho.bank(~chMopho,~tGlbMph[0],~tGlbMph[1]);
 	}
 	*storeGlblPatValues{
 		"storeGlblPatValues from Txt to Patterns ".postln;

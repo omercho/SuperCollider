@@ -102,21 +102,12 @@ IFShuf{
 		~shufSnrBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-
-				//"Transpose Shuffle".postln;
-				//~countShufBass = ~countShufBass + 1;
-
 				IFShuf.transSnrOn(
 					stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,
 					stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16
 				);
-			},{
-				IFShuf.transSnrOff;
-			}
-			);
-		},
-		'/shufSnr'
-		);
+			},{IFShuf.transSnrOff;});
+		},'/shufSnr');
 	}
 	*setHat{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16|
 		~shufHatBut.free;
@@ -124,21 +115,12 @@ IFShuf{
 		~shufHatBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
-
-				//"Transpose Shuffle".postln;
-				//~countShufBass = ~countShufBass + 1;
-
 				IFShuf.transHatOn(
 					stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,
 					stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16
 				);
-			},{
-				IFShuf.transHatOff;
-			}
-			);
-		},
-		'/shufHat'
-		);
+			},{ IFShuf.transHatOff;});
+		},'/shufHat');
 	}
 	*setBass{|stp1,stp2,stp3,stp4,stp5,stp6,stp7,stp8,stp9,stp10,stp11,stp12,stp13,stp14,stp15,stp16|
 		~shufBassBut.free;

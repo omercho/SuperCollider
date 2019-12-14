@@ -404,7 +404,7 @@ IFTxtBass{
 			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
 			Prand([0,1],inf).asStream
 		].choose;
-		oct=  Pwhite(3,   3,   inf).asStream;
+		oct=  Pwhite(2,   3,   inf).asStream;
 		nt=   [
 			Pwhite(-2,   7,   inf).asStream;
 			Pseq([0,0,1,0],inf).asStream,
@@ -414,12 +414,12 @@ IFTxtBass{
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
 			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
-		vel=  Pwhite(2,   3,   inf).asStream;
+		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   [
 			Pseq([1],inf).asStream,
 			Pshuf([2,1,1,1],inf).asStream,
-			Pshuf([2,1,2,1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
 		].choose;
 		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;

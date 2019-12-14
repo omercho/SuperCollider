@@ -204,13 +204,13 @@ IFMelMix{
 				},
 				\fad,{
 					IFKick.set1(\vol,val);
-					Ambk.cc(\pt1,\pt1Vol,vel*0.89);
+					Ambk.cc(\pt1,\pt1Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt1,\pt1F1Cut,vel*0.89);
+					Ambk.cc(\pt1,\pt1F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt1,\pt1Mix,vel*0.89);
+					Ambk.cc(\pt1,\pt1Mix,vel);
 				},
 				\nobC,{
 
@@ -242,10 +242,10 @@ IFMelMix{
 					Ambk.cc(\pt2,\pt2Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt2,\pt2F1Cut,vel*0.79);
+					Ambk.cc(\pt2,\pt2F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt2,\pt2Mix,vel*0.79);
+					Ambk.cc(\pt2,\pt2Mix,vel);
 				},
 				\nobC,{
 
@@ -275,10 +275,10 @@ IFMelMix{
 					Ambk.cc(\pt3,\pt3Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt3,\pt3F1Cut,vel*0.79);
+					Ambk.cc(\pt3,\pt3F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt3,\pt3Mix,vel*0.79);
+					Ambk.cc(\pt3,\pt3Mix,vel);
 				},
 				\nobC,{
 					~tOSCAdrr.sendMsg('hatCln', val);
@@ -309,10 +309,10 @@ IFMelMix{
 					Ambk.cc(\pt4,\pt4Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt4,\pt4F1Cut,vel*0.9);
+					Ambk.cc(\pt4,\pt4F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt4,\pt4Mix,vel*0.9);
+					Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
 					~tOSCAdrr.sendMsg('volClnKeys', val);

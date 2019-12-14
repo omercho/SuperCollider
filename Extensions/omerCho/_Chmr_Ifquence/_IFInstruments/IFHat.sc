@@ -10,9 +10,9 @@ IFHat {
 	classvar <>counter3=0, timeCnt=0;
 	var<>hTime=1;
 	/**initClass {
-		StartUp add: {
-			/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.cntrl; });*/
-		}
+	StartUp add: {
+	/*Server.default.doWhenBooted({ this.globals; this.preSet; this.default; this.cntrl; });*/
+	}
 	}*/
 	*load {
 		this.globals;
@@ -150,10 +150,10 @@ IFHat {
 		vel=val*127;
 		key.switch(
 			/*\timeM,{
-				if ( val==1, {
-					~apcMn.noteOn(~apcMnCh, ~actButA4, 1);
-					~tmMulHat.source = Pseq([2], inf);
-				});
+			if ( val==1, {
+			~apcMn.noteOn(~apcMnCh, ~actButA4, 1);
+			~tmMulHat.source = Pseq([2], inf);
+			});
 			},*/
 			\octMDcr,{
 				if ( val==1, {
@@ -332,7 +332,7 @@ IFTxtHat{
 			Prand([0,1],inf).asStream
 		].choose;
 		oct=  Pwhite(3,   3,   inf).asStream;
-		nt=   [
+		/*nt=   [
 			Pwhite(-2,   7,   inf).asStream;
 			Pseq([0,0,1,0],inf).asStream,
 			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
@@ -340,8 +340,22 @@ IFTxtHat{
 			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
 			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+			Pwalk(
+				    [60, 64, 67, 72, 76, 79, 84].midicps,    // C major
+				    Pseq([1], inf),
+				    Pseq([1, -1], inf),    // turn around at either end
+				    0);
+		].choose;*/
+		nt=   [
+			//Pwhite(-2,   7,   inf).asStream,
+			Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],    // C major
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
 		].choose;
-		vel=  Pwhite(2,   3,   inf).asStream;
+		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   [
 			Pseq([1],inf).asStream,
@@ -351,7 +365,7 @@ IFTxtHat{
 		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
-		vol=  Pwhite(0.85, 0.99,inf).asStream;
+		vol=  Pwhite(0.75, 0.89,inf).asStream;
 		att=  Pwhite(0.0, 0.2, inf).asStream;
 		dec=  Pwhite(0.1, 0.3, inf).asStream;
 		susV= Pwhite(0.1, 0.9, inf).asStream;

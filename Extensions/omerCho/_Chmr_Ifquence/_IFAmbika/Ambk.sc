@@ -64,8 +64,11 @@ Ambk{
 			\g, {~vAmbk.control(ch, 0, 6);~vAmbk.program(ch, prg);},
 		);
 	}
+	*bank{|chan,bank,prog|
+		Ambk.prog(ch:chan,bnk:~bankLst[bank],prg:prog);
+	}
 	*prtBnks{|bnk1,prg1,bnk2,prg2,bnk3,prg3,bnk4,prg4,bnk5,prg5,bnk6,prg6|
-		Ambk.prog(ch:~pt1,bnk:~bankLst[0],prg:prg1);
+		Ambk.prog(ch:~pt1,bnk:~bankLst[bnk1],prg:prg1);
 		Ambk.prog(ch:~pt2,bnk:~bankLst[bnk2],prg:prg2);
 		Ambk.prog(ch:~pt3,bnk:~bankLst[bnk3],prg:prg3);
 		Ambk.prog(ch:~pt4,bnk:~bankLst[bnk4],prg:prg4);
@@ -222,6 +225,8 @@ Ambk.prog(ch:~pt3,bnk:\a,prg:97);
 Ambk.prog(ch:~pt4,bnk:\a,prg:102);
 Ambk.prog(ch:~pt5,bnk:\a,prg:33);
 Ambk.prog(ch:~pt6,bnk:\a,prg:33);
+
+Ambk.prtBnks(0,10,0,2,0,3,0,4,0,5,0,6);
 
 ~vAmbk.control(abk1Ch, 0, 3);     //Bank Select (MSB)
 ~vAmbk.control(abk1Ch, 1, 89);    //Modulation Wheel (MSB)

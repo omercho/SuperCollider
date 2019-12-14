@@ -61,29 +61,32 @@ IFSequence {
 	*st1{|i|
 		this.led1(i);
 		IFLpMnSteps.led1(i);
+		IFSeqKeys.stepPack(i);
 
-		IFSeqVKick.stepPack(i);
-		IFSeqVSnr.stepPack(i);
-		IFSeqVHat.stepPack(i);
+
 	}
 	*st2{|i|
 		this.led2(i);
 		IFLpMnSteps.led2(i);
-		IFSeqKick.stepPack(i);
+		IFSeqMopho.stepPack(i);
 		IFSeqSnr.stepPack(i);
 		IFSeqHat.stepPack(i);
 	}
 	*st3{|i|
 		this.led3(i);
 		IFLpMnSteps.led3(i);
+
+		IFSeqKick.stepPack(i);
 		IFSeqBass.stepPack(i);
-		IFSeqKeys.stepPack(i);
+
 	}
 	*st4{|i|
 		this.led4(i);
 		IFLpMnSteps.led4(i);
-		IFSeqSamp.stepPack(i);
-		IFSeqMopho.stepPack(i);
+		IFSeqVKick.stepPack(i);IFSeqVSnr.stepPack(i);IFSeqVHat.stepPack(i);
+
+		//IFSeqSamp.stepPack(i);
+
 	}
 	*stCnt{|i|
 		this.ledCount(i);

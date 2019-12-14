@@ -17,7 +17,7 @@ Mopho{
 		~currentBpm=1;
 		~currentBpmDiv=1;
 		this.resetCnts;
-		this.loadLabelLists;
+		this.loadLists;
 		this.makeOSCResponders;
 	}
 	*nrp{|param1,nrpn,param2,vel|
@@ -29,7 +29,8 @@ Mopho{
 		~vMopho.control(chan,38, vel);//     then set value
 	}
 	*lbl{|key,val| var chan; ~tOSCAdrr.sendMsg(key, val);}
-	*loadLabelLists{
+	*loadLists{
+		~bankLst = [\a,\b,\c];
 		~onOffLst = [0,1];
 		~oscShapeLst = [\OFF, \SAW, \TRI, \SAW_TRI];
 		~keyModeLst = [\LowNote, \LowNtRT, \LowNtRT, \HighNtRT, \LastNt, \LastNtRT];
@@ -41,6 +42,16 @@ Mopho{
 		~srcLst = [\OFF,\Seq1,\Seq2,\Seq3,\Seq4,\LFO1,\LFO2,\LFO3,\LFO4,\FiltEnv,\AmpEnv,\Env3,\PitchBend,\ModWheel,\Pressure,\MIDIBreath,\MIDIFoot,\MIDIExp,\Velocity,\NoteNumber,\Noise,\AudInEnvFollow,\AudInPeakHold];
 		~arpKndLst=[\UP,\DOWN,\UpDown,\ASSIGN];
 		~seqTrigLst=[\NORMAL,\NrmNoRest,\NoGate,\NoGtNoRst,\KeyStep,\AudioIn];
+	}
+	*prog{|ch,bnk,prg|
+		bnk.switch(
+			\a, {~vMopho.control(ch, 0, /*0-2*/0);~vMopho.program(ch, prg);},
+			\b, {~vMopho.control(ch, 0, 1);~vMopho.program(ch, prg);},
+			\c, {~vMopho.control(ch, 0, 2);~vMopho.program(ch, prg);},
+		);
+	}
+	*bank{|chan,bank,prog|
+		Mopho.prog(ch:chan,bnk:~bankLst[bank],prg:prog);
 	}
 	*cc{|key,vel|
 		var ch,val,direct,valFreq, valTune;
@@ -1206,6 +1217,7 @@ case
 ~vMopho.control(0, 6, 0);
 //   then least significant byte for parameter number (1 in this case)
 
+Mopho.nrp( 0, 1, 0, 32);//
 
 Mopho.nrp( 0, 0, 0, 36);// osc1 freq
 Mopho.nrp( 0, 1, 0, 39);// osc1 tune

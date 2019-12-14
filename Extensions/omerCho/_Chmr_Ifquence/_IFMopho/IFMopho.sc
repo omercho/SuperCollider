@@ -423,12 +423,12 @@ IFTxtMopho{
 		sndB= Pwhite(0.1, 0.9, inf).asStream;
 		octM= Pwhite(0,   2, inf).asStream;
 		susM= Pwhite(0.1, 0.8, inf).asStream;
-		xy1X= Pwhite(0.0, 0.7, inf).asStream;
-		xy1Y= Pwhite(0.0, 0.7, inf).asStream;
-		xy2X= Pwhite(0.0, 0.9, inf).asStream;
-		xy2Y= Pwhite(0.0, 0.9, inf).asStream;
-		lfoM1=Pwhite(0.0, 1.0, inf).asStream;
-		lfoM2=Pwhite(0.0, 1.0, inf).asStream;
+		xy1X= Pwhite(0.0, 0.3, inf).asStream;
+		xy1Y= Pwhite(0.0, 0.4, inf).asStream;
+		xy2X= Pwhite(0.0, 0.5, inf).asStream;
+		xy2Y= Pwhite(0.0, 0.5, inf).asStream;
+		lfoM1=Pwhite(0.0, 5.0, inf).asStream;
+		lfoM2=Pwhite(0.0, 4.0, inf).asStream;
 		fork{
 			IFTxt.ifPath(trck,prt,inst);
 			file=File.new(IFTxt.ifTrckPath.standardizePath,"w");
