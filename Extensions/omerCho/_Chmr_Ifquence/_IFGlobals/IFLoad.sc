@@ -30,7 +30,7 @@ IFLoad{
 			IFSequence.load;0.1.wait;
 			IFCounter.zero;IFCounter.loadProxy;0.1.wait;
 			IFCntrl.loadAll;0.1.wait;
-			IFTracks.loadButtons;0.1.wait;
+			//IFTracks.loadButtons;0.1.wait;
 			"Loading Pitches: Kick".postln;
 			IFPitchKick.loadAll;0.1.wait;
 			"Loading Pitches: Snr".postln;

@@ -32,14 +32,14 @@ IFTrack01 {
 	}
 
 	*setActs{
-		IFAPCMn.actLine1(0,0,0,0);
-		IFAPCMn.actLine2(0,0,0,0);
-		IFAPCMn.actLine3(0,0,0,0);
-		IFAPCMn.actLine4(0,0,0,0);
-		IFAPCMn.actLine5(0,0,0,0);
-		IFAPCMn.actLine6(0,0,0,0);
-		IFAPCMn.actLine7(0,0,0,0);
-		IFAPCMn.actLine8(0,0,0,0);
+		IFAPCMn.actLine1(1,0,0,0);
+		IFAPCMn.actLine2(1,0,0,0);
+		IFAPCMn.actLine3(1,0,0,0);
+		IFAPCMn.actLine4(1,0,0,0);
+		IFAPCMn.actLine5(1,0,0,0);
+		IFAPCMn.actLine6(1,0,0,0);
+		IFAPCMn.actLine7(1,0,0,0);
+		IFAPCMn.actLine8(1,0,0,0);
 
 		IFMelMix.act1(1,0,0);
 		IFMelMix.act2(1,0,0);
@@ -66,7 +66,7 @@ IFTrack01 {
 		"TRACK 1".postln;
 		~tOSCAdrr.sendMsg('trackLabel','TRACK 1');
 
-		IFTxt.readGlbStrt(\01,\01);
+
 		this.part01;
 
 		/*~local.sendMsg('cutDrum',0.2, 0.3);
@@ -80,6 +80,7 @@ IFTrack01 {
 		"Track:01 - Part:01".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt01');
 		~partCase=1;
+		IFTxt.readGlbStrt(\01,\01);
 		IFTxt.readGlbl(\01,\01);
 		IFTxt.readFx(\01,\01);
 		IFTxtStat.read(\01,\01);
@@ -94,6 +95,7 @@ IFTrack01 {
 	*part02{//////                                      - 2 -
 		"Track:01 - Part:02".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt02');
+		~partCase=2;
 		IFTxt.readGlbl(\01,\02);
 		IFTxt.readFx(\01,\02);
 		IFTxtStat.read(\01,\02);
@@ -106,20 +108,45 @@ IFTrack01 {
 		IFTxtSamp.read(\01,\02);
 	}//////                                             - 2 -
 	*part03{//////                                      - 3 -
-
+		"Track:01 - Part:03".postln;
+		~tOSCAdrr.sendMsg('partLabel', 'T1prt03');
+		~partCase=3;
+		IFTxt.readGlbl(\01,\03);
+		IFTxt.readFx(\01,\03);
+		IFTxtStat.read(\01,\03);
+		IFTxtKick.read(\01,\03);
+		IFTxtSnr.read(\01,\03);
+		IFTxtHat.read(\01,\03);
+		IFTxtBass.read(\01,\03);
+		IFTxtMopho.read(\01,\03);
+		IFTxtKeys.read(\01,\03);
+		IFTxtSamp.read(\01,\03);
 	}//////                                             - 3 -
 	*part04{//////                                      - 4 -
-
+		"Track:01 - Part:03".postln;
+		~tOSCAdrr.sendMsg('partLabel', 'T1prt03');
+		~partCase=3;
+		IFTxt.readGlbl(\01,\03);
+		IFTxt.readFx(\01,\03);
+		IFTxtStat.read(\01,\03);
+		IFTxtKick.read(\01,\03);
+		IFTxtSnr.read(\01,\03);
+		IFTxtHat.read(\01,\03);
+		IFTxtBass.read(\01,\03);
+		IFTxtMopho.read(\01,\03);
+		IFTxtKeys.read(\01,\03);
+		IFTxtSamp.read(\01,\03);
 	}//////                                             - 4 -
 	*part05{//////                                      - 5 -
 
 	}//////                                             - 5 -
 	*part06{//////                                      - 6 -
-		IFTxtMophoSet.read(\01,\00);
+		//IFTxtMophoSet.read(\01,\00);
 	}//////                                             - 6 -
 	*part07{//////                                      - 7 -
 		"Trck1_Prt7_RNDM".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'Trck1_Prt7_RNDM');
+
 		IFTxt.readGlbStrt(\01,\00);
 		IFTxt.readGlbl(\01,\00);
 		IFTxt.readInst(\01,\00);

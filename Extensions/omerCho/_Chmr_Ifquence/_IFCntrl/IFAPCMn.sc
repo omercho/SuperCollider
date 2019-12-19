@@ -98,8 +98,8 @@ IFAPCMn{
 	}//globals
 	*shiftButton{
 		//~apcMn.noteOn(0, 98, 127); //SHIFT
-		~trackCase=0;
-		~partCase=0;
+		~trackCase=\00;
+		~partCase=\00;
 		~apcMnShiftBut.free;
 		~apcMnShiftBut=MIDIFunc.noteOn({
 			arg vel;

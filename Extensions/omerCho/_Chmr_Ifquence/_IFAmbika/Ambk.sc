@@ -223,7 +223,7 @@ Ambk.prog(ch:~pt1,bnk:\a,prg:34);
 Ambk.prog(ch:~pt2,bnk:\a,prg:62);
 Ambk.prog(ch:~pt3,bnk:\a,prg:97);
 Ambk.prog(ch:~pt4,bnk:\a,prg:102);
-Ambk.prog(ch:~pt5,bnk:\a,prg:33);
+Ambk.prog(ch:~pt5,bnk:\a,prg:91);
 Ambk.prog(ch:~pt6,bnk:\a,prg:33);
 
 Ambk.prtBnks(0,10,0,2,0,3,0,4,0,5,0,6);

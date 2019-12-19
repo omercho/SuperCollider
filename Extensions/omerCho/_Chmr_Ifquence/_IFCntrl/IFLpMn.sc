@@ -71,26 +71,27 @@ IFLpMn{
 	}//globals
 	*shiftButton{
 		//~lpMn.noteOn(0, 98, 127); //SHIFT
-		~trackCase=0;
-		~partCase=0;
+		~trackCase=\00;
+		~partCase=\00;
+
 		~lpMnShiftBu.free;
 		~lpMnShiftBu=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
 				IFLpMn.tracks;
 				~trackCase.switch(
-					0,{
+					\00,{
 						//IFLpMn.tsLeds(0,0,0,0,0,0,0,0);
 					},
-					1, {
+					\01, {
 						//IFTrack01.apcParts;
 						IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
 					},
-					2,{
+					\02,{
 						//IFTrack02.apcParts;
 						IFLpMn.tsLeds(0,1,0,0,0,0,0,0);
 					},
-					3,{
+					\03,{
 						//IFTrack03.apcParts;
 						IFLpMn.tsLeds(0,0,1,0,0,0,0,0);
 					}
@@ -98,21 +99,24 @@ IFLpMn{
 			},{
 				IFLpMn.tracks;
 				~partCase.switch(
-					0,{IFLpMn.tsLeds(0,0,0,0,0,0,0,0);},
-					1,{IFLpMn.tsLeds(1,0,0,0,0,0,0,0);},
-					2,{IFLpMn.tsLeds(0,1,0,0,0,0,0,0);},
-					3,{IFLpMn.tsLeds(0,0,1,0,0,0,0,0);},
-					4,{IFLpMn.tsLeds(0,0,0,1,0,0,0,0);},
-					5,{IFLpMn.tsLeds(0,0,0,0,1,0,0,0);},
-					6,{IFLpMn.tsLeds(0,0,0,0,0,1,0,0);},
-					7,{IFLpMn.tsLeds(0,0,0,0,0,0,1,0);},
-					8,{IFLpMn.tsLeds(0,0,0,0,0,0,0,1);}
+					\00,{IFLpMn.tsLeds(0,0,0,0,0,0,0,0);},
+					\01,{IFLpMn.tsLeds(1,0,0,0,0,0,0,0);},
+					\02,{IFLpMn.tsLeds(0,1,0,0,0,0,0,0);},
+					\03,{IFLpMn.tsLeds(0,0,1,0,0,0,0,0);},
+					\04,{IFLpMn.tsLeds(0,0,0,1,0,0,0,0);},
+					\05,{IFLpMn.tsLeds(0,0,0,0,1,0,0,0);},
+					\06,{IFLpMn.tsLeds(0,0,0,0,0,1,0,0);},
+					\07,{IFLpMn.tsLeds(0,0,0,0,0,0,1,0);},
+					\08,{IFLpMn.tsLeds(0,0,0,0,0,0,0,1);}
 				);
 				~trackCase.switch(
-					0,{IFLpMn.tsLeds(0,0,0,0,0,0,0,0);},
-					1,{IFLpMn.parts;},
-					2,{IFLpMn.parts;},
-					3,{IFLpMn.parts;}
+					\00,{IFLpMn.tsLeds(0,0,0,0,0,0,0,0);},
+					\01,{IFLpMn.parts;},
+					\02,{IFLpMn.parts;},
+					\03,{IFLpMn.parts;},
+					\04,{IFLpMn.parts;},
+					\05,{IFLpMn.parts;},
+					\06,{IFLpMn.parts;}
 				);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH8);
@@ -172,28 +176,33 @@ IFLpMn{
 		~lpMn_TS01=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				IFTrack01.loadAtStart;
+				//IFTrack01.loadAtStart;
+				IFTrack.load(\01,\01);
+				IFTrack.(\01,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH1);
 		~lpMn_TS02.free;
 		~lpMn_TS02=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				IFTrack02.loadAtStart;
+				IFTrack.load(\02,\01);
+				IFTrack.(\02,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH2);
 		~lpMn_TS03.free;
 		~lpMn_TS03=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				IFTrack03.loadAtStart;
+				IFTrack.load(\03,\01);
+				IFTrack.(\03,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH3);
 		~lpMn_TS04.free;
 		~lpMn_TS04=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-
+				IFTrack.load(\04,\01);
+				IFTrack.(\04,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH4);
 		~lpMn_TS05.free;
@@ -240,9 +249,10 @@ IFLpMn{
 		~lpMn_TS01=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=1;
+				//~partCase=1;
 				IFRoot.resetChng;
-				IFTrack01.part01;
+				IFTrack(\01,\01);
+				//IFTrack01.part01;
 				IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH1);
@@ -250,9 +260,10 @@ IFLpMn{
 		~lpMn_TS02=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=2;
+				//~partCase=2;
 				IFRoot.resetChng;
-				IFTrack01.part02;
+				IFTrack(\01,\02);
+				//IFTrack01.part02;
 				IFLpMn.tsLeds(0,1,0,0,0,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH2);
@@ -262,7 +273,7 @@ IFLpMn{
 			if ( vel==127, {
 				~partCase=3;
 				IFRoot.resetChng;
-				IFTrack01.part03;
+				IFTrack(\01,\02);
 				IFLpMn.tsLeds(0,0,1,0,0,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH3);
@@ -408,8 +419,8 @@ IFLpMn{
 					~cntSeqDur1 = ~cntSeqDur1 + 1;
 					~cntSeqDur1.switch(
 						0,{},
-						1,{IFRoot.set(\durSeq1,127);},
-						2,{IFRoot.set(\durSeq1,0);~cntSeqDur1=0},
+						1,{IFRoot.set(\durMaster,127);},
+						2,{IFRoot.set(\durMaster,0);~cntSeqDur1=0},
 					);
 				},
 				~lpMnButV2,{

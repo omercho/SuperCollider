@@ -194,7 +194,7 @@ IFMIDIMix{
 				},
 				\butB,{
 					~mdMix.noteOn(~mdMixGlb, ~act1B, val); //But B
-					JmxMBs.cc(\tuneJmx,val*127);
+					JmxMBs.cc(\lfoIntJmx,val*127);
 					~mixAct1ButBCnt=val;
 				},
 				\butC,{
@@ -204,7 +204,7 @@ IFMIDIMix{
 				\fad,{JmxMBs.cc(\volJmx,vel);},
 				\nobA,{JmxMBs.cc(\tuneJmx,vel);},
 				\nobB,{JmxMBs.cc(\decJmx,vel);},
-				\nobC,{JmxMBs.cc(\lfoIntJmx,vel);},
+				\nobC,{JmxMBs.cc(\attJmx,vel);},
 			);},
 			2,{paramKey.switch(
 				\butA,{
@@ -392,8 +392,7 @@ IFMIDIMix{
 					~mixAct7ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volVClap', val);
-					~volVClap.source = val;
+					IFSends.set1(\vol1,val);
 				},
 				\nobA,{
 
@@ -425,8 +424,7 @@ IFMIDIMix{
 					~mixAct8ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volVClap', val);
-					~volVClap.source = val;
+					IFSends.set1(\vol2,val);
 				},
 				\nobA,{
 

@@ -204,7 +204,7 @@ IFMelMix{
 				},
 				\fad,{
 					IFKick.set1(\vol,val);
-					Ambk.cc(\pt1,\pt1Vol,vel*0.79);
+					Ambk.cc(\pt1,\pt1Vol,vel*0.75);
 				},
 				\nobA,{
 					Ambk.cc(\pt1,\pt1F1Cut,vel);
@@ -436,10 +436,10 @@ IFMelMix{
 					IFBass.set1(\vol,val);
 				},
 				\nobA,{
-
+					IFBass.set1(\cut,val);
 				},
 				\nobB,{
-
+					IFBass.set1(\res,val);
 				},
 				\nobC,{
 

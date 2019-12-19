@@ -310,6 +310,13 @@ IFRoot {
 	*set{|key,val|
 		var vel;vel=val*127;
 		key.switch(
+			\masterSeq, {
+				case
+				{val>=1} {~durMaster.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~durMaster.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV1,val);
+				this.lbl(\TOdurMaster,val);
+			},
 			\masterSeqMul, {
 				case
 				{val>=1} {~durMasterMul.source=Pseq([8], inf);this.lbl(\TOmasterSeqMulLbl,8);}
@@ -321,7 +328,7 @@ IFRoot {
 				case
 				{val>=1} {~dur1.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
 				{val==0} {~dur1.source=Pshuf([2],inf);};
-				this.mdNtOn(~lpMnButV1,val);
+				//this.mdNtOn(~lpMnButV1,val);
 				this.lbl(\TOdurSeq1,val);
 			},
 			\durPatSeq1, {
@@ -439,6 +446,7 @@ IFRoot {
 			val=msg[1];
 			vel=val*127;
 			playTag.switch(
+				'masterSeq_T',{ this.set(\masterSeq,vel);},
 				'masterSeqMul_T',{ this.set(\masterSeqMul,vel);},
 
 				'durSeq1_T',{ this.set(\durSeq1,vel);},
@@ -459,6 +467,7 @@ IFRoot {
 		},path:oscName);
 	}
 	*makeOSCResponders{
+		this.oscResp(respName:\masterSeqResp, oscName:\TOmasterSeq, playTag:'masterSeq_T');
 		this.oscResp(respName:\masterSeqMulResp, oscName:\TOmasterSeqMul, playTag:'masterSeqMul_T');
 
 		this.oscResp(respName:\durSeq1Resp, oscName:\TOdurSeq1, playTag:'durSeq1_T');

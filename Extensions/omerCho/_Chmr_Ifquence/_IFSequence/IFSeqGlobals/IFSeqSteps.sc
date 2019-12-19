@@ -4,7 +4,7 @@ IFSeqSteps {
 	classvar <>list;
 	*load {
 		this.makeResponders;
-		this.new(01,08);
+		this.new(01,05);
 
 	}
 	*new{|directMst,direct|
@@ -13,14 +13,14 @@ IFSeqSteps {
 		~stepCnt.source  =  Pseq([1], inf);
 		directMst.switch(
 			00,{ ~stepMaster.source=Pseq([1], inf);},
-			01,{ ~stepMaster.source=Pseq([1,2], inf);},
-			02,{ ~stepMaster.source=Pseq([1,2,3,4], inf);},
-			03,{ ~stepMaster.source=Pseq([5,6,7,8], inf);},
-			04,{ ~stepMaster.source=Pseq([9,10,11,12], inf);},
-			05,{ ~stepMaster.source=Pseq([13,14,15,16], inf);},
+			01,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			02,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
+			03,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
+			04,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 4,1,0);},
+			05,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			06,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8], inf);},
 			07,{ ~stepMaster.source=Pseq([9,10,11,12,13,14,15,16], inf);},
-			08,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			08,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].mirror, inf);},
 			09,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
 			10,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8].reverse, inf);},
 			11,{ ~stepMaster.source=Pseq([9,10,11,12,13,14,15,16].reverse, inf);},
@@ -28,7 +28,7 @@ IFSeqSteps {
 			13,{ ~stepMaster.source=Pseq([9,10,11,12].reverse, inf);},
 			14,{ ~stepMaster.source=Pseq([5,6,7,8].reverse, inf);},
 			15,{ ~stepMaster.source=Pseq([1,2,3,4].reverse, inf);},
-			16,{ ~stepMaster.source=Pseq([1,2].reverse, inf);}
+			16,{ ~stepMaster.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
 		);
 		direct.switch(
 			00,{ this.first4;},

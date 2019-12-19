@@ -287,6 +287,16 @@ IFBass {
 				this.lbl1(\IFpanBass,val1);
 				~mdOut.control(5, 16, vel1);
 			},
+			\cut, {
+				~crntBass_cut=val1;
+				this.lbl1(\IFcutBass,val1);
+				~mdOut.control(5, 13, vel1);
+			},
+			\res, {
+				~crntBass_res=val1;
+				this.lbl1(\IFresBass,val1);
+				~mdOut.control(5, 14, vel1);
+			},
 			\octM, {
 				~crntBass_octM=val1;
 				this.lbl1(\IFoctMBassLbl,val1);
@@ -327,10 +337,10 @@ IFBass {
 			},
 			\xy1, {
 				this.lbl2(\IFxy1Bass,val1,val2);
-				VBass.cc(\lfoRateVB,vel2/2);
-				VBass.cc(\lfoIntVB,vel1);
-				~mdOut.control(5, 13, vel2); //FX Comp
-				~mdOut.control(5, 14, vel1); //FX Comp
+				IFBass.set1(\cut,val2);
+				IFBass.set1(\res,val1);
+				//~mdOut.control(5, 13, vel2);
+				//~mdOut.control(5, 14, vel1);
 				~crntBass_xy1X=val2;
 				~crntBass_xy1Y=val1;
 			},
@@ -361,6 +371,10 @@ IFBass {
 				'susBass_T' , { this.set1(\sus,val1);},
 				'rlsBass_T' , { this.set1(\rls,val1);},
 				'panBass_T' , { this.set1(\pan,val1);},
+
+				'cutBass_T' , { this.set1(\cut,val1);},
+				'resBass_T' , { this.set1(\res,val1);},
+
 				'sendBass_T', { this.set2(\send,val1,val2);},
 				'susMBass_T', { this.set1(\susM,val1);},
 				'octMBass_T', { this.set1(\octM,val1);},
@@ -382,6 +396,8 @@ IFBass {
 		this.oscResp(respName:\susBassResp, oscName:\IFsusBass, playTag:'susBass_T');
 		this.oscResp(respName:\rlsBassResp, oscName:\IFrlsBass, playTag:'rlsBass_T');
 		this.oscResp(respName:\panBassResp, oscName:\IFpanBass, playTag:'panBass_T');
+		this.oscResp(respName:\cutBassResp, oscName:\IFcutBass, playTag:'cutBass_T');
+		this.oscResp(respName:\resBassResp, oscName:\IFresBass, playTag:'resBass_T');
 		this.oscResp(respName:\sendBassResp, oscName:\IFsendBass, playTag:'sendBass_T');
 		this.oscResp(respName:\susMBassResp, oscName:\IFsusMBass, playTag:'susMBass_T');
 		this.oscResp(respName:\octMBassResp, oscName:\IFoctMBass, playTag:'octMBass_T');

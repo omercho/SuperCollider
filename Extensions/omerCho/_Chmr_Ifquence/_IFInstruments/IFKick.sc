@@ -412,7 +412,7 @@ IFTxtKick{
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
 			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
-		vel=  Pwhite(2,   3,   inf).asStream;
+		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   [
 			Pseq([1],inf).asStream,

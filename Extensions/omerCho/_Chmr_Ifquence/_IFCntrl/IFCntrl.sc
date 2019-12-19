@@ -129,8 +129,7 @@ IFCntrl {
 			vel=msg[1]*127;
 			~tOSCAdrr.sendMsg('/susDrum',~susDrumLedVal=val);
 			~susMulKick=val+0.15;~susMulSnr=val+0.2;~susMulHat=val+0.15;
-		},
-		'/susDrum');
+		},'/susDrum');
 		~cutDrumXY.free;
 		~cutDrumXY= OSCFunc({
 			arg msg,vel1, vel2,val1,val2;
@@ -144,9 +143,7 @@ IFCntrl {
 			~mdOut.control(10, 30, vel1);//Drum / Filt Morph - Feedback Hat Delay
 			~mdOut.control(10, 31, vel2);//Drum / Delay Feedback
 			~mdOut.control(10, 32, vel1);//Drum / Delay DryWet
-		},
-		'cutDrum'
-		);
+		},'cutDrum');
 		~xySendsDrumMel.free;
 		~xySendsDrumMel= OSCFunc({
 			arg msg,vel1,vel2;
