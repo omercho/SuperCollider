@@ -126,16 +126,16 @@ IFTrack01 {
 		"Track:01 - Part:03".postln;
 		~tOSCAdrr.sendMsg('partLabel', 'T1prt03');
 		~partCase=3;
-		IFTxt.readGlbl(\01,\03);
-		IFTxt.readFx(\01,\03);
-		IFTxtStat.read(\01,\03);
-		IFTxtKick.read(\01,\03);
-		IFTxtSnr.read(\01,\03);
-		IFTxtHat.read(\01,\03);
-		IFTxtBass.read(\01,\03);
-		IFTxtMopho.read(\01,\03);
-		IFTxtKeys.read(\01,\03);
-		IFTxtSamp.read(\01,\03);
+		IFTxt.readGlbl(\01,\04);
+		IFTxt.readFx(\01,\04);
+		IFTxtStat.read(\01,\04);
+		IFTxtKick.read(\01,\04);
+		IFTxtSnr.read(\01,\04);
+		IFTxtHat.read(\01,\04);
+		IFTxtBass.read(\01,\04);
+		IFTxtMopho.read(\01,\04);
+		IFTxtKeys.read(\01,\04);
+		IFTxtSamp.read(\01,\04);
 	}//////                                             - 4 -
 	*part05{//////                                      - 5 -
 

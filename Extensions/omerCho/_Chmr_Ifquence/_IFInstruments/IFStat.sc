@@ -48,6 +48,29 @@ IFStat {
 		~susMulVKick=1;
 		~susMulVSnr=1;
 		~susMulVHat=0.9;
+
+		~smp01=0;
+		~smp02=1;
+		~smp03=2;
+		~smp04=3;
+		~smp05=4;
+		~smp06=5;
+		~smp07=6;
+		~smp08=7;
+		~smp09=8;
+		~smp10=9;
+
+		~smpLvl=7;
+		~smpPan=10;
+		~smpStart=40;
+		~smpLength=41;
+		~smpHiCut=42;
+		~smpSpeed=43;
+		~smpPitchEgInt=44;
+		~smpPitchAtt=45;
+		~smpPitchDec=46;
+		~smpAtt=47;
+		~smpDec=48;
 	}
 
 	*proxy {
@@ -102,12 +125,12 @@ IFStat {
 		~tmMulVHatP= Pseq([~tmMulVHat], inf).asStream;
 		~tmVHat = PatternProxy( Pseq([1], inf));
 		~tmVHatP= Pseq([~tmVHat], inf).asStream;
-
 		//4 StaticClap
 		~actVClap = PatternProxy( Pseq([0], inf));
 		~actVClapP= Pseq([~actVClap], inf).asStream;
 		~durVClap = PatternProxy( Pseq([1], inf));
 		~durVClapP = Pseq([~durVClap], inf).asStream;
+		~durVClapPV2=~durVClapP;
 		~ampVClap = PatternProxy( Pseq([0,0,0,1], inf));
 		~ampVClapP = Pseq([~ampVClap], inf).asStream;
 		~ntVClap = PatternProxy( Pseq([~vClap], inf));
@@ -125,6 +148,7 @@ IFStat {
 		~actVTomLP= Pseq([~actVTomL], inf).asStream;
 		~durVTomL = PatternProxy( Pseq([1], inf));
 		~durVTomLP = Pseq([~durVTomL], inf).asStream;
+		~durVTomLPV2=~durVTomLP;
 		~ampVTomL = PatternProxy( Pseq([0,0,0,0,1], inf));
 		~ampVTomLP = Pseq([~ampVTomL], inf).asStream;
 		~ntVTomL = PatternProxy( Pseq([[~vTomL]], inf));
@@ -142,6 +166,7 @@ IFStat {
 		~actVTomHP= Pseq([~actVTomH], inf).asStream;
 		~durVTomH = PatternProxy( Pseq([1], inf));
 		~durVTomHP = Pseq([~durVTomH], inf).asStream;
+		~durVTomHPV2=~durVTomHP;
 		~ampVTomH = PatternProxy( Pseq([0,1,1,0,1], inf));
 		~ampVTomHP = Pseq([~ampVTomH], inf).asStream;
 		~ntVTomH = PatternProxy( Pseq([[~vTomH]], inf));
@@ -218,29 +243,42 @@ IFStat {
 	*ln04 {|i=1|
 		var val;
 		val=i;
+
 		~stVClapPat=Pbind(
-			\chan, ~chVClap,
-			\type, \midi, \midiout,~vMopho, \scale, Pfunc({~scl2}, inf),
+			\chan, ~smp04,
+			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVClap,
 			\dur, Pseq([~durVClapP.next],~actVClapP.next),
 			\degree, Pseq([~ntVClapP.next], inf),
-			\amp, Pseq([~volVClapP.next*~ampVClapP.next], inf),
+			\amp, Pseq([~ampVClapP.next], inf),
 			\sustain, Pseq([~susVClapP.next],inf)*~susMulVSnr
+		).play(~clkDrum, quant: 0);
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp04, \ctlNum, ~smpLvl,
+			\delta, Pseq([~durVClapPV2.next], 1),
+			\control, Pseq([127*~volVClapP.next], 1),
 		).play(~clkDrum, quant: 0);
 	}
 	*ln05 {|i=1|
 		var val;
 		val=i;
 		~stVTomLPat=Pbind(
-			\chan, ~chVTomL,
-			\type, \midi, \midiout,~vMopho, \scale, Pfunc({~scl1}, inf),
+			\chan, ~smp05,
+			\type, \midi, \midiout,~vSamp, \scale, Pfunc({~scl1}, inf),
 			\octave,~octVTomL,
 			\dur, Pseq([~durVTomLP.next],~actVTomLP.next),
 			\degree, Pseq([~ntVTomLP.next], inf),
-			\amp, Pseq([~volVTomLP.next*~ampVTomLP.next], inf),
+			\amp, Pseq([~ampVTomLP.next], inf),
 			\sustain, Pseq([~susVTomLP.next],inf)*~susMulVKick
 		).play(~clkDrum, quant: 0);
-	}//stat01
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpLvl,
+			\delta, Pseq([~durVTomLPV2.next], 1),
+			\control, Pseq([127*~volVTomLP.next], 1),
+		).play(~clkDrum, quant: 0);
+	}//stat05
 	*ln06 {|i=1|
 		var val;
 		val=i;
@@ -252,6 +290,12 @@ IFStat {
 			\degree, Pseq([~ntVTomHP.next], inf),
 			\amp, Pseq([~volVTomHP.next*~ampVTomHP.next], inf),
 			\sustain, Pseq([~susVTomHP.next],inf)*~susMulVHat
+		).play(~clkDrum, quant: 0);
+		Pbind(//LFO 1
+			\type, \midi, \midicmd, \control,
+			\midiout,~vSamp, \chan, ~smp06, \ctlNum, ~smpLvl,
+			\delta, Pseq([~durVTomHPV2.next], 1),
+			\control, Pseq([127*~volVTomHP.next], 1),
 		).play(~clkDrum, quant: 0);
 	}//stat01
 	/**ln07 {|i=1|

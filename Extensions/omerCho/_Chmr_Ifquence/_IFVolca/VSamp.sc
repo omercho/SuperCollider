@@ -18,7 +18,8 @@ VSamp {
 		}
 	}
 	*load{
-		this.globals;this.oscMIDI;this.preSet01;
+		this.globals;
+		//this.oscMIDI;this.preSet01;
 	}
 
 	*globals{
@@ -26,7 +27,7 @@ VSamp {
 		//~vSamp = MIDIOut.newByName("MIDIMATE II", "Port 2");
 		//~vSamp = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		//~vSamp = MIDIOut.newByName("UM-2G","2");
-		~vSamp = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
+		//~vSamp = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
 
 
 		~smp01=0;
@@ -151,3 +152,24 @@ VSamp {
 
 	*/
 }
+
+
+/*
+Pbind(
+	\chan, ~smp05,
+	\type, \midi, \midiout,~vSamp,
+	\dur, Pseq([~dur5VSampP.next],~act5VSampP),
+	\amp, Pseq([~amp5VSampP.next], 1),
+	\sustain, Pseq([~sus5VSampP.next],1)*~susMul5VSamp
+).play;
+
+
+Pbind(//LFO 1
+	\type, \midi, \midicmd, \control,
+	\midiout,~vSamp, \chan, ~smp05, \ctlNum, ~smpSpeed,
+	\delta, Pseq([~delta5VSampP.next], 1),
+	\control, Pseq([~speed5VSampP.next], 1),
+
+).play;
+*/
+

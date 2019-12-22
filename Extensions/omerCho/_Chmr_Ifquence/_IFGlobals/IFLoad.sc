@@ -23,6 +23,8 @@ IFLoad{
 			JmxMBs.load;
 			Ambk.load;
 			0.1.wait;
+			IFTracks.load;
+			0.1.wait;
 			IFRoot.load;0.1.wait;
 			IFProjectGlobals.load;0.1.wait;
 			IFPitch.loadAll;0.1.wait;
@@ -50,6 +52,7 @@ IFLoad{
 			"Loading VBass and VKeys".postln;
 			VBass.globals; VBass.preSet01;
 			VKeys.load;
+			//VSamp.load;
 			0.1.wait;
 			"Loading Instruments".postln;
 			IFStat.load;"IFStat Loaded".postln;0.1.wait;

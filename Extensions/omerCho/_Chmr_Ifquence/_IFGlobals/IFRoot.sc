@@ -28,10 +28,10 @@ IFRoot {
 		~ifPlayerCnt=TaskProxy.new;
 	}
 	*loadProxy {
-		~durMaster = PatternProxy( Pseq([2],inf) );
+		~durMaster = PatternProxy( Pseq([1],inf) );
 		~durMasterP= Pseq([~durMaster], inf).asStream;
 		~durMasterPV2=~durMasterP;
-		~durMasterMul = PatternProxy( Pseq([1/1], inf));
+		~durMasterMul = PatternProxy( Pseq([1/4], inf));
 		~durMasterMulP= Pseq([~durMasterMul], inf).asStream;
 
 		~durCnt = PatternProxy( Pseq([1],inf) );
@@ -41,7 +41,7 @@ IFRoot {
 
 		~dur1 = PatternProxy( Pseq([2],inf) );
 		~dur1P= Pseq([~dur1], inf).asStream;
-		~durMul1 = PatternProxy( Pseq([1/4], inf));
+		~durMul1 = PatternProxy( Pseq([1/8], inf));
 		~durMul1P= Pseq([~durMul1], inf).asStream;
 
 		~dur2 = PatternProxy( Pseq([2],inf) );
@@ -160,10 +160,8 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step1(~stepNum1P.next);
-
+					IFHat(~tmMulHatP.next*~tmHatP.next);
 					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
-
-					//IFStat.ln07;IFStat.ln08;
 					((~dur1P.next)*(~durMul1P.next)).wait;
 				};
 			};
@@ -175,7 +173,6 @@ IFRoot {
 					IFSequence.step2(~stepNum2P.next);
 					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
-					IFHat(~tmMulHatP.next*~tmHatP.next);
 					((~dur2P.next)*(~durMul2P.next)).wait;
 				};
 			};
@@ -185,11 +182,8 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step3(~stepNum3P.next);
-
 					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFBass(~tmMulBassP.next*~tmBassP.next);
-
-					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					((~dur3P.next)*(~durMul3P.next)).wait;
 				};
 			};
@@ -199,10 +193,8 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step4(~stepNum4P.next);
-					//IFSamp(~tmMulSampP.next*~tmSampP.next);
-
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
-
+					IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					((~dur4P.next)*(~durMul4P.next)).wait;
 				};
 			};
@@ -229,16 +221,13 @@ IFRoot {
 		"IFRoot set01".postln;
 		IFRoot.butLeds(1);
 		~ifPlayerSeq01.source={
-
 			inf.do{
 				1.do {
 					IFSequence.step(~stepNum1P.next);
-
 					((~dur1P.next)*(~durMul1P.next)).wait;
 				};
 			};
 		};
-
 	}
 	*set02{
 		"IFRoot set02".postln;

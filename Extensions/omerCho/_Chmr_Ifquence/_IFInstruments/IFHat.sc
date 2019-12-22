@@ -347,13 +347,13 @@ IFTxtHat{
 				    0);
 		].choose;*/
 		nt=   [
-			//Pwhite(-2,   7,   inf).asStream,
-			Pwalk(
-				[0, -2, 1, 2, -1, 3, 4, 5, 6],    // C major
+			Pwhite(-2,   7,   inf).asStream,
+			/*Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],
 				Pseq([1], inf),
 				Pseq([1, -1], inf),    // turn around at either end
 				0
-			).asStream,
+			).asStream,*/
 		].choose;
 		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;

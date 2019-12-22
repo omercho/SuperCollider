@@ -33,6 +33,7 @@ IFCntrl {
 				fork{1.do{
 					IFRoot.play;
 					Ableton.tap4;
+					~vAmbkClock.start;
 					~tOSCAdrr.sendMsg('/1/toggleMain', 1);
 					0.000.wait;
 				}};
@@ -43,6 +44,7 @@ IFCntrl {
 				fork{1.do{
 					IFRoot.stop;
 					Ableton.stop;
+					~vAmbkClock.stop;
 					~tOSCAdrr.sendMsg('/1/toggleMain', 0);
 				}};
 			});

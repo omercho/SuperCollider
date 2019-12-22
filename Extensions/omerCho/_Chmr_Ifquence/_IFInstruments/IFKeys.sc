@@ -126,9 +126,6 @@ IFKeys {
 		~lfo2Keys = PatternProxy( Pseq([10], inf));
 		~lfo2KeysP = Pseq([~lfo2Keys], inf).asStream;
 
-
-
-
 		//lng
 		~rootLngKeys = PatternProxy( Pseq([0], inf));
 		~rootLngKeysP = Pseq([~rootLngKeys], inf).asStream;
@@ -184,7 +181,7 @@ IFKeys {
 			\dur, Pseq([~dur2KeysP.next],~act2KeysP.next),
 			\degree, Pseq([~nt2KeysP.next], inf),
 			\amp, Pseq([~vol2KeysP.next*~amp2KeysP.next], inf),
-			\sustain, Pseq([1.2*~sus2KeysP.next],inf)*~susMul2Keys,
+			\sustain, Pseq([1.3*~sus2KeysP.next],inf)*~susMul2Keys,
 			\mtranspose, Pseq([~trans2KeysP.next], inf)+~trKeys+~trans2CntKeysP.next+~trans2ShufKeysP.next,
 			\ctranspose, Pseq([~root2KeysP.next],inf),
 			\octave, Pseq([~oct2KeysP.next], inf)+~octMulKeys,
@@ -197,7 +194,7 @@ IFKeys {
 			\dur, Pseq([~dur3KeysP.next],~act3KeysP.next),
 			\degree, Pseq([~nt3KeysP.next], inf),
 			\amp, Pseq([~vol3KeysP.next*~amp3KeysP.next], inf),
-			\sustain, Pseq([1.2*~sus3KeysP.next],inf)*~susMul3Keys,
+			\sustain, Pseq([1.4*~sus3KeysP.next],inf)*~susMul3Keys,
 			\mtranspose, Pseq([~trans3KeysP.next], inf)+~trKeys+~trans3CntKeysP.next+~trans3ShufKeysP.next,
 			\ctranspose, Pseq([~root3KeysP.next],inf),
 			\octave, Pseq([~oct3KeysP.next], inf)+~octMulKeys,
@@ -489,13 +486,55 @@ IFTxtKeys{
 		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
 		amp=  Pwhite(0,   1,   inf).asStream;
 		oct=  Pwhite(2,   3,   inf).asStream;
-		nt=   Pwhite(0,   4,   inf).asStream;
-		nt2=  Pwhite(2,   7,   inf).asStream;
-		nt3=  Pwhite(4,   10,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream,
+			Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+			Pwalk(
+				[0, 4, 1, 0, -1, 2, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+		].choose;
+		nt2=   [
+			Pwhite(-2,   7,   inf).asStream,
+			Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+			Pwalk(
+				[0, 4, 1, 0, -1, 2, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+		].choose;
+		nt3=   [
+			Pwhite(-2,   7,   inf).asStream,
+			Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+			Pwalk(
+				[0, 4, 1, 0, -1, 2, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+		].choose;
 		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   Pwhite(1,   2,   inf).asStream;
-		dur=  Pwhite(2,   4,   inf).asStream;
+		dur=  Pwhite(1,   4,   inf).asStream;
 		shuf= Pwhite(-4,   4,   inf).asStream;
 		lfoP= Pwhite(10,   120, inf).asStream;
 		vol=  Pwhite(0.89, 0.99,inf).asStream;
@@ -506,7 +545,7 @@ IFTxtKeys{
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
 		sndA= Pwhite(0.0, 0.9, inf).asStream;
 		sndB= Pwhite(0.0, 0.9, inf).asStream;
-		octM= Pwhite(0,   2, inf).asStream;
+		octM= Pwhite(1,   2, inf).asStream;
 		susM= Pwhite(0.1, 0.9, inf).asStream;
 		xy1X= Pwhite(0.0, 0.9, inf).asStream;
 		xy1Y= Pwhite(0.0, 0.9, inf).asStream;
@@ -522,7 +561,7 @@ IFTxtKeys{
 				case
 				{cnt>0&&cnt<=16}   {seq=amp.next}//amp
 				{cnt>16&&cnt<=32}  {seq=oct.next}//oct
-				{cnt>32&&cnt<=48}  {seq=nt.next}//nt
+				{cnt>32&&cnt<=48}   {seq=nt.next}//nt
 
 				{cnt>48&&cnt<=64}  {seq=nt2.next}//nt2
 				{cnt>64&&cnt<=80}  {seq=nt3.next}//nt3

@@ -94,6 +94,18 @@ IFLpMn{
 					\03,{
 						//IFTrack03.apcParts;
 						IFLpMn.tsLeds(0,0,1,0,0,0,0,0);
+					},
+					\04,{
+						//IFTrack03.apcParts;
+						IFLpMn.tsLeds(0,0,0,1,0,0,0,0);
+					},
+					\05,{
+						//IFTrack03.apcParts;
+						IFLpMn.tsLeds(0,0,0,0,1,0,0,0);
+					},
+					\06,{
+						//IFTrack03.apcParts;
+						IFLpMn.tsLeds(0,0,0,0,0,1,0,0);
 					}
 				);
 			},{
@@ -178,7 +190,7 @@ IFLpMn{
 			if ( vel==127, {
 				//IFTrack01.loadAtStart;
 				IFTrack.load(\01,\01);
-				IFTrack.(\01,\01);
+				IFTrack(\01,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH1);
 		~lpMn_TS02.free;
@@ -186,7 +198,7 @@ IFLpMn{
 			arg vel;
 			if ( vel==127, {
 				IFTrack.load(\02,\01);
-				IFTrack.(\02,\01);
+				IFTrack(\02,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH2);
 		~lpMn_TS03.free;
@@ -194,7 +206,7 @@ IFLpMn{
 			arg vel;
 			if ( vel==127, {
 				IFTrack.load(\03,\01);
-				IFTrack.(\03,\01);
+				IFTrack(\03,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH3);
 		~lpMn_TS04.free;
@@ -202,21 +214,23 @@ IFLpMn{
 			arg vel;
 			if ( vel==127, {
 				IFTrack.load(\04,\01);
-				IFTrack.(\04,\01);
+				IFTrack(\04,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH4);
 		~lpMn_TS05.free;
 		~lpMn_TS05=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-
+				IFTrack.load(\05,\01);
+				IFTrack(\04,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH5);
 		~lpMn_TS06.free;
 		~lpMn_TS06=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				IFTxtMophoSet.makeDflt;
+				IFTrack.load(\06,\01);
+				IFTrack(\06,\01);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH6);
 		~lpMn_TS07.free;
@@ -251,7 +265,7 @@ IFLpMn{
 			if ( vel==127, {
 				//~partCase=1;
 				IFRoot.resetChng;
-				IFTrack(\01,\01);
+				IFTrack(~trackCase,\01);
 				//IFTrack01.part01;
 				IFLpMn.tsLeds(1,0,0,0,0,0,0,0);
 			});
@@ -262,7 +276,7 @@ IFLpMn{
 			if ( vel==127, {
 				//~partCase=2;
 				IFRoot.resetChng;
-				IFTrack(\01,\02);
+				IFTrack(~trackCase,\02);
 				//IFTrack01.part02;
 				IFLpMn.tsLeds(0,1,0,0,0,0,0,0);
 			});
@@ -271,9 +285,9 @@ IFLpMn{
 		~lpMn_TS03=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=3;
+				//~partCase=3;
 				IFRoot.resetChng;
-				IFTrack(\01,\02);
+				IFTrack(~trackCase,\03);
 				IFLpMn.tsLeds(0,0,1,0,0,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH3);
@@ -281,9 +295,9 @@ IFLpMn{
 		~lpMn_TS04=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=4;
+				//~partCase=4;
 				IFRoot.resetChng;
-				IFTrack01.part04;
+				IFTrack(~trackCase,\04);
 				IFLpMn.tsLeds(0,0,0,1,0,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH4);
@@ -291,9 +305,9 @@ IFLpMn{
 		~lpMn_TS05=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=5;
+				//~partCase=5;
 				IFRoot.resetChng;
-				IFTrack01.part05;
+				IFTrack(~trackCase,\05);
 				IFLpMn.tsLeds(0,0,0,0,1,0,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH5);
@@ -301,10 +315,10 @@ IFLpMn{
 		~lpMn_TS06=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=6;
+				//~partCase=6;
 				//IFTxt.readInst(\01,\01,1);
 				IFRoot.resetChng;
-				IFTrack01.part06;
+				IFTrack(~trackCase,\06);
 				IFLpMn.tsLeds(0,0,0,0,0,1,0,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH6);
@@ -312,9 +326,10 @@ IFLpMn{
 		~lpMn_TS07=MIDIFunc.cc( {
 			arg vel;
 			if ( vel==127, {
-				~partCase=7;
+				//~partCase=7;
 				IFRoot.resetChng;
-				IFTrack01.part07;
+				IFTrack.load(\01,\00);
+				IFTrack(\01,\00);
 				IFLpMn.tsLeds(0,0,0,0,0,0,1,0);
 			});
 		},srcID:~lpMnInID, chan:~lpMnCh, ccNum:~lpMnButH7);

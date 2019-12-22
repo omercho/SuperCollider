@@ -74,11 +74,15 @@ IFiConnectMIDI4{
 		~vKeysOutID=(405956365);
 		//~vSamplerInID=~hstPort1;
 
+		~vSamp = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
+		~vSampOutID=(-679083438);
+
 		~chMopho=0;
 		~vMopho = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN2");
 		~vMophoOutID=(-679083438);
 		//~vMophoInID=~hstPort1;
 
+		~vAmbkClock = MIDIClockOut("iConnectMIDI4+", "USB3 DIN4", ~clkMaster);
 		~vAmbk = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN4");
 		~vAmbkOutID=(405956365);
 

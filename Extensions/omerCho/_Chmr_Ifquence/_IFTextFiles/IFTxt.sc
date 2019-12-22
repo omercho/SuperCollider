@@ -147,12 +147,13 @@ IFTxt{
 	}
 
 	*writeRndGlobalLines{|trck,prt,inst|
-		var cnt=1, min=0,max=1,seq,lineBreak,tmLine;
+		var cnt=0, min=0,max=1,seq,lineBreak,tmLine;
 		var tmp,scl1,scl2,rootNote,pitchPat,pitchDur;
 		var rootStp,step,seqMul;
 		tmLine=Pseq([
 			Pseq([16],32),
-			Pseq([8],7),
+			Pseq([2],2),
+			Pseq([5],4),
 		],inf).asStream;
 		pitchPat=  [
 			Pseq([0,Pshuf([0,1,2,3,4,5,6,7],3)],inf).asStream,
@@ -175,16 +176,18 @@ IFTxt{
 			file=File.new(ifTrckPath.standardizePath,"w");
 			0.02.wait;
 			(1..39).do{|n|
+				cnt=cnt+1;
+
 				case
-				{cnt>=1&&cnt<=16}   { seq=pitchPat.next;}//MasterPitchPat
-				{cnt>=17&&cnt<=32}  { seq=pitchDur.next;}//MasterPitchDur
-				{cnt==33}           { seq=rootStp.next;}//
-				{cnt==34}           { seq=step.next;}//
-				{cnt>=35&&cnt<=39}  { seq=seqMul.next;};//
+				{ cnt >= 1  && cnt <=16 }{ tmLine=16; seq=pitchPat.next; }
+				{ cnt >= 17 && cnt <=32 }{ tmLine=16; seq=pitchDur.next; }
+				{ cnt >= 33 && cnt <=34 }{ tmLine=2;  seq=step.next; }
+				{ cnt == 35 }{ tmLine=2;  seq=step.next; }
+				{ cnt >= 36 && cnt <=39 }{ tmLine=5;  seq=seqMul.next; };
 				file.write(
 					seq.asString ++ if (n % tmLine.next != 0, ",", Char.nl)
 				);
-				cnt=cnt+1;
+				//cnt=cnt+1;
 			};
 			0.02.wait;
 			file.close;
@@ -275,22 +278,38 @@ IFTxt{
 		~tGlbMph=IFTxt.line(5);
 		IFTxt.storeGlblAtStart;
 	}
-	*readGlbl{|trck,prtDir|
+	*readGlbl{|trck,prtDir,prt|
 		IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-
-			//IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
-			~tGlbNt=IFTxt.line(1);
-			~tGlbDur=IFTxt.line(2);
-			~tGlbRt=IFTxt.line(3);
-
+		prt.switch(
+			\01, {
+				~tGlbNt=IFTxt.line(1);
+				~tGlbDur=IFTxt.line(2);
+				~tGlbRt=IFTxt.line(3);
+			},
+			\02, {
+				~tGlbNt=IFTxt.line(4);
+				~tGlbDur=IFTxt.line(5);
+				~tGlbRt=IFTxt.line(6);
+			},
+			\03, {
+				~tGlbNt=IFTxt.line(7);
+				~tGlbDur=IFTxt.line(8);
+				~tGlbRt=IFTxt.line(9);
+			},
+			\04, {
+				~tGlbNt=IFTxt.line(10);
+				~tGlbDur=IFTxt.line(11);
+				~tGlbRt=IFTxt.line(12);
+			},
+		);
 		IFTxt.storeGlblPatValues;
 	}
 	*readFx{|trck,prtDir|
 		IFTxt.readIfTrack(trck,prtDir,\ifFx);
 
-			~tFxVol=IFTxt.line(1);
-			~tFxFad=IFTxt.line(2);
-			~tFxXY=IFTxt.line(3);
+		~tFxVol=IFTxt.line(1);
+		~tFxFad=IFTxt.line(2);
+		~tFxXY=IFTxt.line(3);
 
 		IFTxt.storeGlblFxValues;
 	}
@@ -312,7 +331,7 @@ IFTxt{
 	*storeGlblPatValues{
 		"storeGlblPatValues from Txt to Patterns ".postln;
 		/*IFGlobal.setAtStart(
-			tmp:~tGlbStrt[0],scl1:~tGlbStrt[1],scl2:~tGlbStrt[2],root:~tGlbStrt[3],
+		tmp:~tGlbStrt[0],scl1:~tGlbStrt[1],scl2:~tGlbStrt[2],root:~tGlbStrt[3],
 		);*/
 		IFSeqNtPat.stGrpSet  (
 			~tGlbNt[0],~tGlbNt[1],~tGlbNt[2],~tGlbNt[3],

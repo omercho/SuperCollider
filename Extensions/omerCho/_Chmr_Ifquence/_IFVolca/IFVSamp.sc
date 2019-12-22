@@ -236,7 +236,7 @@ IFVSamp {
 			val=msg[1]*127;
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('attVSamp', msg[1]);
-				~vVSamp.control(0, ~egAtt, val+0.01);
+				~vSamp.control(0, ~egAtt, val+0.01);
 				~mdOut.control(5, 5, val);
 				},{
 					~tOSCAdrr.sendMsg('attVSamp', msg[1]);
@@ -253,7 +253,7 @@ IFVSamp {
 			val=msg[1]*127;
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('susVSamp', msg[1]);
-				~vVSamp.control(0, ~slideTime, val);
+				~vSamp.control(0, ~slideTime, val);
 				~mdOut.control(5, 6, val);
 				},{
 					~tOSCAdrr.sendMsg('susVSamp', msg[1]);
@@ -270,7 +270,7 @@ IFVSamp {
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
 				~tOSCAdrr.sendMsg('decVSamp', val);
-				~vVSamp.control(0, ~egDec, vel);
+				~vSamp.control(0, ~egDec, vel);
 				~mdOut.control(5, 127, vel);
 				~nobD5_m1Val= vel;
 				},{
@@ -288,8 +288,8 @@ IFVSamp {
 			val=msg[1];
 			vel=msg[1]*127;
 			if ( ~volcaBoolean==1, {
-				~vVSamp.control(0, ~vcoPitch2, msg[2]*127);
-				~vVSamp.control(0, ~vcoPitch3, msg[1]*127);
+				~vSamp.control(0, ~vcoPitch2, msg[2]*127);
+				~vSamp.control(0, ~vcoPitch3, msg[1]*127);
 				~mdOut.control(5, 11, msg[2]*127);
 				~mdOut.control(5, 12, msg[1]*127);
 				~tOSCAdrr.sendMsg('xy1VSamp', msg[1], msg[2]);
