@@ -411,9 +411,9 @@ IFTxtMopho{
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   Pwhite(1,   2,   inf).asStream;
 		dur=  Pwhite(1,   4,   inf).asStream;
-		shuf= Pwhite(-4,   4,   inf).asStream;
+		shuf= Pwhite(-4,   7,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
-		vol=  Pwhite(0.89, 0.99,inf).asStream;
+		vol=  Pwhite(0.70, 0.89,inf).asStream;
 		att=  Pwhite(0.0, 0.5, inf).asStream;
 		dec=  Pwhite(0.2, 1.0, inf).asStream;
 		susV= Pwhite(0.1, 0.8, inf).asStream;
@@ -482,7 +482,7 @@ IFTxtMopho{
 		)
 	}
 	*makeDflt{
-		IFTxtMopho.make(\01,\00,\ifMopho,'rndMophoTag');
+		IFTxtMopho.make(\00,\01,\ifMopho,'rndMophoTag');
 	}
 	*read{|trck,prtDir|
 

@@ -27,35 +27,81 @@ IFRoot {
 		~ifPlayerSeq04=TaskProxy.new;
 		~ifPlayerCnt=TaskProxy.new;
 	}
+	*loadClocks{
+		~clkMaster=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSq01=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSq02=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSq03=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSq04=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSqCnt=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkDrum=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkTom=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSnr=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkHat=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkBass=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkKeys=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkMopho=TempoClock(1, 0, Main.elapsedTime.ceil);
+		~clkSamp=TempoClock(1, 0, Main.elapsedTime.ceil);
+	}
+	*linkSeqs{
+		~dur1.source = Pseq([
+			~seq1Dur01,~seq1Dur02,~seq1Dur03,~seq1Dur04,
+			~seq1Dur05,~seq1Dur06,~seq1Dur07,~seq1Dur08,
+			~seq1Dur09,~seq1Dur10,~seq1Dur11,~seq1Dur12,
+			~seq1Dur13,~seq1Dur14,~seq1Dur15,~seq1Dur16
+		],inf);
+		~dur2.source = Pseq([
+			~seq2Dur01,~seq2Dur02,~seq2Dur03,~seq2Dur04,
+			~seq2Dur05,~seq2Dur06,~seq2Dur07,~seq2Dur08,
+			~seq2Dur09,~seq2Dur10,~seq2Dur11,~seq2Dur12,
+			~seq2Dur13,~seq2Dur14,~seq2Dur15,~seq2Dur16
+		],inf);
+		~dur3.source = Pseq([
+			~seq3Dur01,~seq3Dur02,~seq3Dur03,~seq3Dur04,
+			~seq3Dur05,~seq3Dur06,~seq3Dur07,~seq3Dur08,
+			~seq3Dur09,~seq3Dur10,~seq3Dur11,~seq3Dur12,
+			~seq3Dur13,~seq3Dur14,~seq3Dur15,~seq3Dur16
+		],inf);
+		~dur4.source = Pseq([
+			~seq4Dur01,~seq4Dur02,~seq4Dur03,~seq4Dur04,
+			~seq4Dur05,~seq4Dur06,~seq4Dur07,~seq4Dur08,
+			~seq4Dur09,~seq4Dur10,~seq4Dur11,~seq4Dur12,
+			~seq4Dur13,~seq4Dur14,~seq4Dur15,~seq4Dur16
+		],inf);
+	}
 	*loadProxy {
+		~durCnt = PatternProxy( Pseq([1],inf) );
+		~durCntP= Pseq([~durCnt], inf).asStream;
+		~durCntMul = PatternProxy( Pseq([1], inf));
+		~durCntMulP= Pseq([~durCntMul], inf).asStream;
+
 		~durMaster = PatternProxy( Pseq([1],inf) );
 		~durMasterP= Pseq([~durMaster], inf).asStream;
 		~durMasterPV2=~durMasterP;
 		~durMasterMul = PatternProxy( Pseq([1/4], inf));
 		~durMasterMulP= Pseq([~durMasterMul], inf).asStream;
 
-		~durCnt = PatternProxy( Pseq([1],inf) );
-		~durCntP= Pseq([~durCnt], inf).asStream;
-		~durCntMul = PatternProxy( Pseq([1], inf));
-		~durCntMulP= Pseq([~durCntMul], inf).asStream;
-
 		~dur1 = PatternProxy( Pseq([2],inf) );
 		~dur1P= Pseq([~dur1], inf).asStream;
+		~dur1PV2=~dur1P;
 		~durMul1 = PatternProxy( Pseq([1/8], inf));
 		~durMul1P= Pseq([~durMul1], inf).asStream;
 
 		~dur2 = PatternProxy( Pseq([2],inf) );
 		~dur2P= Pseq([~dur2], inf).asStream;
+		~dur2PV2=~dur2P;
 		~durMul2 = PatternProxy( Pseq([1/8], inf));
 		~durMul2P= Pseq([~durMul2], inf).asStream;
 
 		~dur3 = PatternProxy( Pseq([2],inf) );
 		~dur3P= Pseq([~dur3], inf).asStream;
+		~dur3PV2=~dur3P;
 		~durMul3 = PatternProxy( Pseq([1/8], inf));
 		~durMul3P= Pseq([~durMul3], inf).asStream;
 
 		~dur4 = PatternProxy( Pseq([2],inf) );
 		~dur4P= Pseq([~dur4], inf).asStream;
+		~dur4PV2=~dur4P;
 		~durMul4 = PatternProxy( Pseq([1/4], inf));
 		~durMul4P= Pseq([~durMul4], inf).asStream;
 
@@ -72,24 +118,6 @@ IFRoot {
 		~stepNum4P= Pseq([~stepNum4], inf).asStream;
 		~stepCnt = PatternProxy( Pseq([0], inf));
 		~stepCntP= Pseq([~stepCnt], inf).asStream;
-
-
-	}
-	*loadClocks{
-		~clkMaster=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSq01=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSq02=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSq03=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSq04=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSqCnt=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkDrum=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkTom=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSnr=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkHat=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkBass=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkKeys=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkMopho=TempoClock(1, 0, Main.elapsedTime.ceil);
-		~clkSamp=TempoClock(1, 0, Main.elapsedTime.ceil);
 	}
 
 	*play{
@@ -136,10 +164,10 @@ IFRoot {
 	}
 	*resetChng{
 		~stepMaster.reset;
-		//~stepNum1.reset;
-		//~stepNum2.reset;
-		//~stepNum3.reset;
-		//~stepNum4.reset;
+		~stepNum1.reset;
+		~stepNum2.reset;
+		~stepNum3.reset;
+		~stepNum4.reset;
 	}
 	*set00{
 		"IFRoot set00".postln;
@@ -299,28 +327,59 @@ IFRoot {
 	*set{|key,val|
 		var vel;vel=val*127;
 		key.switch(
-			\masterSeq, {
-				case
-				{val>=1} {~durMaster.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
-				{val==0} {~durMaster.source=Pshuf([2],inf);};
-				this.mdNtOn(~lpMnButV1,val);
-				this.lbl(\TOdurMaster,val);
-			},
-			\masterSeqMul, {
+
+			\durMulSeqM, {
 				case
 				{val>=1} {~durMasterMul.source=Pseq([8], inf);this.lbl(\TOmasterSeqMulLbl,8);}
 				{val==0} {~durMasterMul.source=Pseq([4], inf);this.lbl(\TOmasterSeqMulLbl,4);};
 				//this.mdNtOn(~lpMnButV2,val);
 
 			},
-			\durSeq1, {
+			\durMulSeq1, {
+				case
+				{val>=1} {~durMul1.source=Pseq([1/8], inf);}
+				{val==0} {~durMul1.source=Pseq([1/4], inf);};
+				this.mdNtOn(~lpMnButV2,val);
+				this.lbl(\TOdurMulSeq1,val);
+			},
+			\durMulSeq2, {
+				case
+				{val>=1} {~durMul2.source=Pseq([1/8], inf);}
+				{val==0} {~durMul2.source=Pseq([1/4], inf);};
+				this.mdNtOn(~lpMnButV4,val);
+				this.lbl(\TOdurMulSeq2,val);
+			},
+			\durMulSeq3, {
+				case
+				{val>=1} {~durMul3.source=Pseq([1/8], inf);}
+				{val==0} {~durMul3.source=Pseq([1/4], inf);};
+				this.mdNtOn(~lpMnButV6,val);
+				this.lbl(\TOdurMulSeq3,val);
+			},
+			\durMulSeq4, {
+				case
+				{val>=1} {~durMul4.source=Pseq([1/8], inf);}
+				{val==0} {~durMul4.source=Pseq([1/4], inf);};
+				this.mdNtOn(~lpMnButV8,val);
+				this.lbl(\TOdurMulSeq4,val);
+			},
+			/*\masterSeq, {
+				case
+				{val>=1} {~durMaster.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
+				{val==0} {~durMaster.source=Pshuf([2],inf);};
+				this.mdNtOn(~lpMnButV1,val);
+				this.lbl(\TOdurMaster,val);
+			},*/
+
+			/*\durSeq1, {
 				case
 				{val>=1} {~dur1.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
 				{val==0} {~dur1.source=Pshuf([2],inf);};
 				//this.mdNtOn(~lpMnButV1,val);
 				this.lbl(\TOdurSeq1,val);
-			},
-			\durPatSeq1, {
+			},*/
+
+			/*\durPatSeq1, {
 				case
 				{val>=1} {~stepNum1.source=Pshuf([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
 				{val==0} {
@@ -333,15 +392,9 @@ IFRoot {
 				};
 				//this.mdNtOn(~lpMnButV1,val);
 				this.lbl(\TOdurPatSeq1,val);
-			},
-			\durMulSeq1, {
-				case
-				{val>=1} {~durMul1.source=Pseq([1/4], inf);}
-				{val==0} {~durMul1.source=Pseq([1/2], inf);};
-				this.mdNtOn(~lpMnButV2,val);
-				this.lbl(\TOdurMulSeq1,val);
-			},
-			\durSeq2, {
+			},*/
+
+			/*\durSeq2, {
 				case
 				{val>=1} {~dur2.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
 				{val==0} {~dur2.source=Pshuf([2],inf);};
@@ -361,15 +414,9 @@ IFRoot {
 				};
 				//this.mdNtOn(~lpMnButV3,val);
 				this.lbl(\TOdurPatSeq2,val);
-			},
-			\durMulSeq2, {
-				case
-				{val>=1} {~durMul2.source=Pseq([1/8], inf);}
-				{val==0} {~durMul2.source=Pseq([1/4], inf);};
-				this.mdNtOn(~lpMnButV4,val);
-				this.lbl(\TOdurMulSeq2,val);
-			},
-			\durSeq3, {
+			},*/
+
+			/*\durSeq3, {
 				case
 				{val>=1} {~dur3.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
 				{val==0} {~dur3.source=Pshuf([2],inf);};
@@ -389,15 +436,9 @@ IFRoot {
 				};
 				//this.mdNtOn(~lpMnButV5,val);
 				this.lbl(\TOdurPatSeq3,val);
-			},
-			\durMulSeq3, {
-				case
-				{val>=1} {~durMul3.source=Pseq([1/8], inf);}
-				{val==0} {~durMul3.source=Pseq([1/4], inf);};
-				this.mdNtOn(~lpMnButV6,val);
-				this.lbl(\TOdurMulSeq3,val);
-			},
-			\durSeq4, {
+			},*/
+
+			/*\durSeq4, {
 				case
 				{val>=1} {~dur4.source=Pshuf([1,0.5,2,0.5,2,1,1]*2,inf);}
 				{val==0} {~dur4.source=Pshuf([2],inf);};
@@ -418,14 +459,8 @@ IFRoot {
 				};
 				//this.mdNtOn(~lpMnButV7,val);
 				this.lbl(\TOdurPatSeq4,val);
-			},
-			\durMulSeq4, {
-				case
-				{val>=1} {~durMul4.source=Pseq([1/8], inf);}
-				{val==0} {~durMul4.source=Pseq([1/4], inf);};
-				this.mdNtOn(~lpMnButV8,val);
-				this.lbl(\TOdurMulSeq4,val);
-			},
+			},*/
+
 		);
 	}
 	*oscResp{|respName,oscName,playTag|
@@ -435,10 +470,10 @@ IFRoot {
 			val=msg[1];
 			vel=val*127;
 			playTag.switch(
-				'masterSeq_T',{ this.set(\masterSeq,vel);},
-				'masterSeqMul_T',{ this.set(\masterSeqMul,vel);},
+				//'masterSeq_T',{ this.set(\masterSeq,vel);},
+				'masterSeqMul_T',{ this.set(\durMulSeqM,vel);},
 
-				'durSeq1_T',{ this.set(\durSeq1,vel);},
+				/*'durSeq1_T',{ this.set(\durSeq1,vel);},
 				'durSeq2_T',{ this.set(\durSeq2,vel);},
 				'durSeq3_T',{ this.set(\durSeq3,vel);},
 				'durSeq4_T',{ this.set(\durSeq4,vel);},
@@ -446,7 +481,7 @@ IFRoot {
 				'durPatSeq1_T',{ this.set(\durPatSeq1,vel);},
 				'durPatSeq2_T',{ this.set(\durPatSeq2,vel);},
 				'durPatSeq3_T',{ this.set(\durPatSeq3,vel);},
-				'durPatSeq4_T',{ this.set(\durPatSeq4,vel);},
+				'durPatSeq4_T',{ this.set(\durPatSeq4,vel);},*/
 
 				'durMulSeq1_T',{ this.set(\durMulSeq1,vel);},
 				'durMulSeq2_T',{ this.set(\durMulSeq2,vel);},
@@ -456,10 +491,10 @@ IFRoot {
 		},path:oscName);
 	}
 	*makeOSCResponders{
-		this.oscResp(respName:\masterSeqResp, oscName:\TOmasterSeq, playTag:'masterSeq_T');
-		this.oscResp(respName:\masterSeqMulResp, oscName:\TOmasterSeqMul, playTag:'masterSeqMul_T');
+		//this.oscResp(respName:\masterSeqResp, oscName:\TOmasterSeq, playTag:'masterSeq_T');
+		this.oscResp(respName:\durMulSeqMResp, oscName:\TOdurMulSeqM, playTag:'durMulSeqM_T');
 
-		this.oscResp(respName:\durSeq1Resp, oscName:\TOdurSeq1, playTag:'durSeq1_T');
+		/*this.oscResp(respName:\durSeq1Resp, oscName:\TOdurSeq1, playTag:'durSeq1_T');
 		this.oscResp(respName:\durSeq2Resp, oscName:\TOdurSeq2, playTag:'durSeq2_T');
 		this.oscResp(respName:\durSeq3Resp, oscName:\TOdurSeq3, playTag:'durSeq3_T');
 		this.oscResp(respName:\durSeq4Resp, oscName:\TOdurSeq4, playTag:'durSeq4_T');
@@ -467,7 +502,7 @@ IFRoot {
 		this.oscResp(respName:\durPatSeq1Resp, oscName:\TOdurPatSeq1, playTag:'durPatSeq1_T');
 		this.oscResp(respName:\durPatSeq2Resp, oscName:\TOdurPatSeq2, playTag:'durPatSeq2_T');
 		this.oscResp(respName:\durPatSeq3Resp, oscName:\TOdurPatSeq3, playTag:'durPatSeq3_T');
-		this.oscResp(respName:\durPatSeq4Resp, oscName:\TOdurPatSeq4, playTag:'durPatSeq4_T');
+		this.oscResp(respName:\durPatSeq4Resp, oscName:\TOdurPatSeq4, playTag:'durPatSeq4_T');*/
 
 		this.oscResp(respName:\durMulSeq1Resp, oscName:\TOdurMulSeq1, playTag:'durMulSeq1_T');
 		this.oscResp(respName:\durMulSeq2Resp, oscName:\TOdurMulSeq2, playTag:'durMulSeq2_T');

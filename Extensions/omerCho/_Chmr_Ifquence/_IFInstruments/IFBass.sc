@@ -423,7 +423,13 @@ IFTxtBass{
 		oct=  Pwhite(2,   3,   inf).asStream;
 		nt=   [
 			Pwhite(-2,   7,   inf).asStream;
+			Pwhite(0,   7,   inf).asStream;
 			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,1,1,0],inf).asStream,
+			Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,
+			Pseq([0,1,0,1],inf).asStream,
+			Pshuf([0,1,0,1],inf).asStream,
 			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
 			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
@@ -434,10 +440,11 @@ IFTxtBass{
 		susT= Pwhite(1,   5,   inf).asStream;
 		tm=   [
 			Pseq([1],inf).asStream,
+			Pseq([2],inf).asStream,
 			Pshuf([2,1,1,1],inf).asStream,
-			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
 		].choose;
-		dur=  Pwhite(3,   4,   inf).asStream;
+		dur=  Pwhite(1,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
 		vol=  Pwhite(0.85, 0.99,inf).asStream;
@@ -509,7 +516,7 @@ IFTxtBass{
 		)
 	}
 	*makeDflt{
-		IFTxtBass.make(\01,\00,\ifBass,'rndBassTag');
+		IFTxtBass.make(\00,\01,\ifBass,'rndBassTag');
 	}
 	*read{|trck,prtDir|
 

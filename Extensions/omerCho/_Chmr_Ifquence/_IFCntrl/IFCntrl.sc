@@ -34,6 +34,7 @@ IFCntrl {
 					IFRoot.play;
 					Ableton.tap4;
 					~vAmbkClock.start;
+					~vJmxMBsClock.start;
 					~tOSCAdrr.sendMsg('/1/toggleMain', 1);
 					0.000.wait;
 				}};
@@ -45,6 +46,7 @@ IFCntrl {
 					IFRoot.stop;
 					Ableton.stop;
 					~vAmbkClock.stop;
+					~vJmxMBsClock.stop;
 					~tOSCAdrr.sendMsg('/1/toggleMain', 0);
 				}};
 			});

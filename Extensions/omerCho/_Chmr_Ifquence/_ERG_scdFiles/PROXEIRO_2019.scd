@@ -2,7 +2,7 @@
 
 ~runTxtTest={|trck,prt,inst|
 	var cnt=0, min=0,max=1,seq,lineBreak,tmLine;
-	var tmp,scl1,scl2,rootNote,pitchPat,pitchDur;
+	var tmp,scl1,scl2,rootNote,pitchPat,pitchDur,seqDur,seqMulDir;
 	var rootStp,step,seqMul;
 	/*tmLine=Pseq([
 		Pseq([16],32),
@@ -15,6 +15,16 @@
 	].choose;
 	pitchDur=  [
 		Pseq([2],inf).asStream,
+		Pseq([4,4,2,2],inf).asStream,
+		Pseq([4,4,2,2, 4,4,4,4],inf).asStream,
+		Pseq([2,2,2,2, 4,4,4,4],inf).asStream,
+		Pseq([2,2,2,2, 4,4,4,4, 2,2,4,4, 2,2,4,4],inf).asStream,
+		Pseq([4,4,4,2, 4,4,4,2, 4,4,4,2, 4,4,4,4],inf).asStream,
+		Pseq([2,2,4,4, 2,2,4,4, 2,2,2,2, 4,4,4,4],inf).asStream,
+	].choose;
+	seqDur=  [
+
+		Pseq([2],inf).asStream,
 		Pseq([1,1,2,2],inf).asStream,
 		Pseq([1,1,2,2, 1,1,1,1],inf).asStream,
 		Pseq([2,2,2,2, 1,1,1,1],inf).asStream,
@@ -22,31 +32,35 @@
 		Pseq([1,1,1,2, 1,1,1,2, 1,1,1,2, 1,1,1,1],inf).asStream,
 		Pseq([2,2,1,1, 2,2,1,1, 2,2,2,2, 1,1,1,1],inf).asStream,
 	].choose;
+	seqMulDir=Pseq([Pxrand([0,1],1),Pwhite(0, 16, 1)],inf).asStream;
 	rootStp= Pwhite(0,   16,   inf).asStream;
 	step=    Pwhite(0,   16,   inf).asStream;
 	seqMul=  Pwhite(0,   2,   inf).asStream;
 	fork{
-		(1..39).do{|n|
-			("--SART").postln;
+		(1..106).do{|n|
+			//("--SART").postln;
 			//(cnt+"cntBeforePlus").postln;
 
 			cnt=cnt+1;
 
 			case
-			{ cnt >= 1  && cnt <=16 }{ tmLine=16; seq=pitchPat.next; }
-			{ cnt >= 17 && cnt <=32 }{ tmLine=16; seq=pitchDur.next; }
-			{ cnt >= 33 && cnt <=34 }{ tmLine=2;  seq=step.next; }
-			{ cnt == 35 }{ tmLine=2;  seq=seqMul.next; }
-			{ cnt >= 36 && cnt <=39 }{ tmLine=5;  seq=seqMul.next; };
+			{cnt>=1 &&cnt<=16}{ tmLine=16; seq=pitchPat.next}
+			{cnt>=17&&cnt<=32}{ tmLine=16; seq=pitchDur.next}
+			{cnt>=33&&cnt<=48}  {tmLine=16; seq=seqDur.next}//nt
+			{cnt>=49&&cnt<=64}  {tmLine=16; seq=seqDur.next}//vel
+			{cnt>=65&&cnt<=80}  {tmLine=16; seq=seqDur.next}//susT
+			{cnt>=81&&cnt<=96}  {tmLine=16; seq=seqDur.next}
+			{cnt>=97&&cnt<=106}{tmLine=16; seq=seqMulDir.next};
+			//{ cnt >= 103 && cnt <=108 }{ tmLine=6;  seq=seqMul.next; };
 			postln(
-				seq.asString ++ if (((n)+cnt.asString).postln; n%tmLine!=0, ",", Char.nl;);
+				seq.asString ++ if (/*((n)+cnt.asString).postln;*/ n%tmLine!=0, ",", Char.nl;);
 			);
 
 			//("-").postln;
 			//(cnt+"cntAfterPlus").postln;
 
 		};
-		0.02.wait;
+		0.4.wait;
 
 	}
 }.fork;

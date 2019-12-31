@@ -25,6 +25,16 @@ IFSends{
 		var vel1;
 		vel1=val1*127;
 		key.switch(
+			\clnMel, {
+				~crntFX_clnMel=val1;
+				this.lbl1(\IFXclnMel,val1);
+				~mdOut.control(1, 11, vel1); //FX clnMel
+			},
+			\clnDrm, {
+				~crntFX_clnDrm=val1;
+				this.lbl1(\IFXclnDrm,val1);
+				~mdOut.control(1, 12, vel1); //FX clnDrm
+			},
 			\comp, {
 				~crntFX_comp=val1;
 				this.lbl1(\IFXcomp,val1);
@@ -86,6 +96,8 @@ IFSends{
 			val1= msg[1];
 			val2= msg[2];
 			playTag.switch(
+				'clnMel_T' , { this.set1(\clnMel,val);},
+				'clnDrm_T' , { this.set1(\clnDrm,val);},
 				'comp_T' , { this.set1(\comp,val);},
 				'dec_T' , { this.set1(\dec,val);},
 				'vol1_T' , { this.set1(\vol1,val);},
@@ -98,6 +110,8 @@ IFSends{
 		},path:oscName);
 	}
 	*makeOSCResponders{
+		this.oscResp(respName:\clnMelResp, oscName:\IFXclnMel, playTag:'clnMel_T');
+		this.oscResp(respName:\clnDrmResp, oscName:\IFXclnDrm, playTag:'clnDrm_T');
 		this.oscResp(respName:\compResp, oscName:\IFXcomp, playTag:'comp_T');
 		this.oscResp(respName:\decResp, oscName:\IFXdec, playTag:'dec_T');
 		this.oscResp(respName:\vol1Resp, oscName:\IFXvol1, playTag:'vol1_T');

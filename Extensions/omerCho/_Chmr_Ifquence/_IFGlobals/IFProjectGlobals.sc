@@ -133,11 +133,11 @@ IFGlobal{
 		IFProjectGlobals.setTempo(tmp);
 		IFPitch.setScl(scl1:scl1,scl2:scl2, root:root);
 	}
-	*setRoot{|rootStp,step,mulSeqM,mulSeq1,mulSeq2,mulSeq3,mulSeq4|
-		IFSeqSteps(directMst:rootStp,direct:step);
-		IFRoot.set(\masterSeqMul,mulSeqM);
+	*setRoot{|mulSeqM,stepM,mulSeq1,step1,mulSeq2,step2,mulSeq3,step3,mulSeq4,step4|
+		IFRoot.set(\durMulSeqM,mulSeqM);
 		IFRoot.set(\durMulSeq1,mulSeq1);IFRoot.set(\durMulSeq2,mulSeq2);
 		IFRoot.set(\durMulSeq3,mulSeq3);IFRoot.set(\durMulSeq4,mulSeq4);
+		IFSeqSteps(directM:stepM,direct1:step1,direct2:step2,direct3:step3,direct4:step4);
 	}
 	*setFx{|vol1=9,vol2=9,fad1=0.2,fad2=0.4,comp=0.0,dec=0.2,fx1X=0.2,fx1Y=0.2,fx2X=0.2,fx2Y=0.2|
 		IFSends.set1(\vol1,vol1);IFSends.set1(\vol2,vol2);

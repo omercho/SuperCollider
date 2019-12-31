@@ -19,6 +19,10 @@ IFSequence {
 		this.loadProxy;
 		this.cntrl;
 		IFSeqPat.loadAll;
+		IFSeq1Dur.loadAll;
+		IFSeq2Dur.loadAll;
+		IFSeq3Dur.loadAll;
+		IFSeq4Dur.loadAll;
 		IFSeqKick.loadAll;
 		IFSeqSnr.loadAll;
 		IFSeqHat.loadAll;
@@ -64,9 +68,8 @@ IFSequence {
 	*st1{|i|
 		this.led1(i);
 		IFLpMnSteps.led1(i);
-		IFSeqKeys.stepPack(i);
 		IFSeqHat.stepPack(i);
-
+		IFSeqKeys.stepPack(i);
 	}
 	*st2{|i|
 		this.led2(i);

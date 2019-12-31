@@ -362,7 +362,7 @@ IFTxtHat{
 			Pshuf([2,1,1,1],inf).asStream,
 			Pshuf([2,1,2,1],inf).asStream,
 		].choose;
-		dur=  Pwhite(2,   4,   inf).asStream;
+		dur=  Pwhite(1,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
 		vol=  Pwhite(0.75, 0.89,inf).asStream;
@@ -434,7 +434,7 @@ IFTxtHat{
 		)
 	}
 	*makeDflt{
-		IFTxtHat.make(\01,\00,\ifHat,'rndHatTag');
+		IFTxtHat.make(\00,\01,\ifHat,'rndHatTag');
 	}
 	*read{|trck,prtDir|
 

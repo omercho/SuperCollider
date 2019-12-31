@@ -685,7 +685,7 @@ IFTxtMophoSet{
 		)
 	}
 	*makeDflt{
-		IFTxtMophoSet.make(\01,\00,\ifMophoSet,'rndMophoSetTag');
+		IFTxtMophoSet.make(\00,\01,\ifMophoSet,'rndMophoSetTag');
 	}
 	*read{|trck,prtDir|
 

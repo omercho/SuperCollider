@@ -437,7 +437,7 @@ IFSeqPat {
 
 	*stepPack{|i|
 		case
-		{ i == 1 } { this.step01;  }
+		{ i == 1 } { this.step01; }
 		{ i == 2 } { this.step02; }
 		{ i == 3 } { this.step03; }
 		{ i == 4 } { this.step04; }

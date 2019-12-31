@@ -30,6 +30,9 @@ IFLoad{
 			IFPitch.loadAll;0.1.wait;
 			IFiConnectMIDI4.load;0.1.wait;
 			IFSequence.load;0.1.wait;
+
+			IFRoot.linkSeqs;0.1.wait;
+
 			IFCounter.zero;IFCounter.loadProxy;0.1.wait;
 			IFCntrl.loadAll;0.1.wait;
 			//IFTracks.loadButtons;0.1.wait;

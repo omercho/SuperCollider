@@ -19,7 +19,7 @@ IFMelMix{
 
 		this.addr;
 		this.globals;
-		this.loadResponders;
+		//this.loadResponders;
 		this.makeMIDIResponders;
 		this.makeOSCResponders;
 		this.resetCnts;
@@ -31,6 +31,7 @@ IFMelMix{
 
 	}
 	*globals{
+		~lnM=0;
 		~ln1=1;
 		~ln2=2;
 		~ln3=3;
@@ -60,9 +61,13 @@ IFMelMix{
 
 		~fad=30;~nobA=33;~nobB=32;~nobC=31;
 
-		~bnkL=25; ~bnkR=26;
+		~bnkA=26; ~bnkB=25; ~fadM=31;
 
 	}//globals
+	*actM{|val1,val2|
+		this.line(~lnM,\butA,val:val1);
+		this.line(~lnM,\butB,val:val2);
+	}
 	*act1{|val1,val2,val3|
 		this.line(~ln1,\butA,val:val1);
 		this.line(~ln1,\butB,val:val2);
@@ -103,6 +108,7 @@ IFMelMix{
 		this.line(~ln8,\butB,val:val2);
 		this.line(~ln8,\butC,val:val3);
 	}
+	/*
 	//actBank
 	*actBank{|val1,val2|
 		this.actBankButA(val1);
@@ -159,7 +165,7 @@ IFMelMix{
 
 
 
-	}
+	}*/
 
 	*tsLed{|chan,led|
 		~melMix.noteOn(0, 51, led);
@@ -183,6 +189,25 @@ IFMelMix{
 		var vel;
 		vel=val*127;
 		instLine.switch(
+			0,{paramKey.switch(
+				\butA,{
+					~melMix.noteOn(~melMixGlb, ~bnkA, val); //But A
+					//~tOSCAdrr.sendMsg('activKick', val);
+					//~actKick.source=val;
+					~melBnkButACnt=val;
+				},
+				\butB,{
+					~melMix.noteOn(~melMixGlb, ~bnkB, val); //But B
+					//~tOSCAdrr.sendMsg('shufKick', val);
+					//~local.sendMsg('shufKick', val);
+					~melBnkButBCnt=val;
+				},
+				\fadM,{
+					//~mdOut.control(1, 0, vel); //AllMaster / Track Vol1
+					IFSends.set1(\clnMel,val);
+				},
+
+			);},
 			1,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act1A, val); //But A
@@ -448,6 +473,10 @@ IFMelMix{
 		);
 	}
 	*makeMIDIResponders{
+		//Master Banks
+		this.mdAct(~bnkA,\melBnkButA_Resp);
+		this.mdAct(~bnkB,\melBnkButB_Resp);
+		this.mdLine(~melMixLnM,~fadM,\melBnkFad_Resp);
 		//Line1
 		this.mdAct(~act1A,\melAct1ButA_Resp);
 		this.mdAct(~act1B,\melAct1ButB_Resp);
@@ -519,6 +548,9 @@ IFMelMix{
 			arg chan,noteNum;
 
 			ntNum.switch(
+				//Master Bank Buttons
+				~bnkA,{~local.sendMsg('melBnkButA', 1);},
+				~bnkB,{~local.sendMsg('melBnkButB', 1);},
 				//line1
 				~act1A,{~local.sendMsg('melAct1ButA', 1);},
 				~act1B,{~local.sendMsg('melAct1ButB', 1);},
@@ -559,6 +591,10 @@ IFMelMix{
 			arg vel,val;
 			val=vel/127;
 			chn.switch(
+				~melMixLnM,{
+					cNum.switch(
+						~fadM,{~local.sendMsg('melBnkFad', val);},
+				);},
 				~melMixLn1,{
 					cNum.switch(
 						~fad,{~local.sendMsg('melAct1Fad', val);},
@@ -625,6 +661,17 @@ IFMelMix{
 			var val;
 			val=msg[1];
 			playDir.switch(
+				//Master Banks
+				'melBnkButA_T',{if ( msg[1]==1,{
+					~melBnkButACnt = ~melBnkButACnt + 1;
+					~melBnkButACnt.switch(1,{this.line(~lnM,\butA,val:1);},2,{this.line(~lnM,\butA,val:0);});
+				});},
+				'melBnkButB_T',{if ( msg[1]==1,{
+					~melBnkButBCnt = ~melBnkButBCnt + 1;
+					~melBnkButBCnt.switch(1,{this.line(~lnM,\butB,val:1);},2,{this.line(~lnM,\butB,val:0);});
+				});},
+				'melBnkFad_T',{this.line(~lnM,\fadM,val:val);},
+
 				//line1
 				'melAct1ButA_T',{if ( msg[1]==1,{
 					~melAct1ButACnt = ~melAct1ButACnt + 1;
@@ -765,6 +812,10 @@ IFMelMix{
 		},path:oscName);
 	}
 	*makeOSCResponders{
+		//MasterFad and Bank Buttons
+		this.oscResp(respName:'melBnkButA_Resp', oscName:'melBnkButA', playDir:'melBnkButA_T');
+		this.oscResp(respName:'melBnkButB_Resp', oscName:'melBnkButB', playDir:'melBnkButB_T');
+		this.oscResp(respName:'melBnkFad_Resp', oscName:'melBnkFad', playDir:'melBnkFad_T');
 		//line1
 		this.oscResp(respName:'melAct1ButA_Resp', oscName:'melAct1ButA', playDir:'melAct1ButA_T');
 		this.oscResp(respName:'melAct1ButB_Resp', oscName:'melAct1ButB', playDir:'melAct1ButB_T');
@@ -832,6 +883,9 @@ IFMelMix{
 	}
 
 	*resetCnts{
+		~melBnkButACnt=0;
+		~melBnkButBCnt=0;
+
 		~melAct1ButACnt=0;
 		~melAct1ButBCnt=0;
 		~melAct1ButCCnt=0;

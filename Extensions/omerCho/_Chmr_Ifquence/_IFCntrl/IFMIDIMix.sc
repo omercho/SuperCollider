@@ -20,7 +20,7 @@ IFMIDIMix{
 
 		this.addr;
 		this.globals;
-		this.loadResponders;
+		//this.loadResponders;
 		this.makeMIDIResponders;
 		this.makeOSCResponders;
 		this.resetCnts;
@@ -33,6 +33,7 @@ IFMIDIMix{
 
 	}
 	*globals{
+		~lnM=0;
 		~ln1=1;
 		~ln2=2;
 		~ln3=3;
@@ -62,9 +63,13 @@ IFMIDIMix{
 
 		~fad=30;~nobA=33;~nobB=32;~nobC=31;
 
-		~bnkL=25; ~bnkR=26;
+		~bnkA=26; ~bnkB=25; ~fadM=31;
 
 	}//globals
+	*actM{|val1,val2|
+		this.line(~lnM,\butA,val:val1);
+		this.line(~lnM,\butB,val:val2);
+	}
 	*act1{|val1,val2,val3|
 		this.line(~ln1,\butA,val:val1);
 		this.line(~ln1,\butB,val:val2);
@@ -105,6 +110,7 @@ IFMIDIMix{
 		this.line(~ln8,\butB,val:val2);
 		this.line(~ln8,\butC,val:val3);
 	}
+	/*
 	//actBank
 	*actBank{|val1,val2|
 		this.actBankButA(val1);
@@ -161,7 +167,7 @@ IFMIDIMix{
 			IFSends.set1(\vol1,val);
 		},srcID:~mdMixInID, chan:~mdMixLnM, ccNum:30);
 
-	}
+	}*/
 
 	*tsLed{|chan,led|
 		~mdMix.noteOn(0, 51, led);
@@ -180,11 +186,31 @@ IFMIDIMix{
 	/*
 	IFMIDIMix.ndButLeds(1,0,0,0,0,0,0,0);
 	IFMIDIMix.nobDown(mode:2);
+	IFSends.set1(\clnMel,1);
 	*/
 	*line{|instLine,paramKey,val|
 		var vel;
 		vel=val*127;
 		instLine.switch(
+			0,{paramKey.switch(
+				\butA,{
+					~mdMix.noteOn(~mdMixGlb, ~bnkA, val); //But A
+					//~tOSCAdrr.sendMsg('activKick', val);
+					//~actKick.source=val;
+					~mixBnkButACnt=val;
+				},
+				\butB,{
+					~mdMix.noteOn(~mdMixGlb, ~bnkB, val); //But B
+					//~tOSCAdrr.sendMsg('shufKick', val);
+					//~local.sendMsg('shufKick', val);
+					~mixBnkButBCnt=val;
+				},
+				\fadM,{
+					//~mdOut.control(1, 0, vel); //AllMaster / Track Vol1
+					IFSends.set1(\clnDrm,val);
+				},
+
+			);},
 			1,{paramKey.switch(
 				\butA,{
 					~mdMix.noteOn(~mdMixGlb, ~act1A, val); //But A
@@ -249,8 +275,7 @@ IFMIDIMix{
 				},
 				\butB,{
 					~mdMix.noteOn(~mdMixGlb, ~act3B, val); //But B
-					/*~tOSCAdrr.sendMsg('activVTomH', val);
-					~actVTomH.source=val;*/
+					~mdOut.control(9, 2, vel);//VHat / VHatPre Delay Vol
 					~mixAct3ButBCnt=val;
 				},
 				\butC,{
@@ -264,10 +289,10 @@ IFMIDIMix{
 					~volVHat.source = val;
 				},
 				\nobA,{
-
+					~mdOut.control(10, 31, vel); //Drum / Delay Feedback
 				},
 				\nobB,{
-
+					~mdOut.control(10, 32, vel); //Drum / Delay DryWet
 				},
 				\nobC,{
 
@@ -439,6 +464,10 @@ IFMIDIMix{
 		);
 	}
 	*makeMIDIResponders{
+		//Master Banks
+		this.mdAct(~bnkA,\mixBnkButA_Resp);
+		this.mdAct(~bnkB,\mixBnkButB_Resp);
+		this.mdLine(~mdMixLnM,~fadM,\mixBnkFad_Resp);
 		//Line1
 		this.mdAct(~act1A,\mixAct1ButA_Resp);
 		this.mdAct(~act1B,\mixAct1ButB_Resp);
@@ -510,6 +539,9 @@ IFMIDIMix{
 			arg chan,noteNum;
 
 			ntNum.switch(
+				//Master Bank Buttons
+				~bnkA,{~local.sendMsg('mixBnkButA', 1);},
+				~bnkB,{~local.sendMsg('mixBnkButB', 1);},
 				//line1
 				~act1A,{~local.sendMsg('mixAct1ButA', 1);},
 				~act1B,{~local.sendMsg('mixAct1ButB', 1);},
@@ -550,6 +582,10 @@ IFMIDIMix{
 			arg vel,val;
 			val=vel/127;
 			chn.switch(
+				~mdMixLnM,{
+					cNum.switch(
+						~fadM,{~local.sendMsg('mixBnkFad', val);},
+				);},
 				~mdMixLn1,{
 					cNum.switch(
 						~fad,{~local.sendMsg('mixAct1Fad', val);},
@@ -616,6 +652,16 @@ IFMIDIMix{
 			var val;
 			val=msg[1];
 			playDir.switch(
+				//Master Banks
+				'mixBnkButA_T',{if ( msg[1]==1,{
+					~mixBnkButACnt = ~mixBnkButACnt + 1;
+					~mixBnkButACnt.switch(1,{this.line(~lnM,\butA,val:1);},2,{this.line(~lnM,\butA,val:0);});
+				});},
+				'mixBnkButB_T',{if ( msg[1]==1,{
+					~mixBnkButBCnt = ~mixBnkButBCnt + 1;
+					~mixBnkButBCnt.switch(1,{this.line(~lnM,\butB,val:1);},2,{this.line(~lnM,\butB,val:0);});
+				});},
+				'mixBnkFad_T',{this.line(~lnM,\fadM,val:val);},
 				//line1
 				'mixAct1ButA_T',{if ( msg[1]==1,{
 					~mixAct1ButACnt = ~mixAct1ButACnt + 1;
@@ -756,6 +802,10 @@ IFMIDIMix{
 		},path:oscName);
 	}
 	*makeOSCResponders{
+		//MasterFad and Bank Buttons
+		this.oscResp(respName:'mixBnkButA_Resp', oscName:'mixBnkButA', playDir:'mixBnkButA_T');
+		this.oscResp(respName:'mixBnkButB_Resp', oscName:'mixBnkButB', playDir:'mixBnkButB_T');
+		this.oscResp(respName:'mixBnkFad_Resp', oscName:'mixBnkFad', playDir:'mixBnkFad_T');
 		//line1
 		this.oscResp(respName:'mixAct1ButA_Resp', oscName:'mixAct1ButA', playDir:'mixAct1ButA_T');
 		this.oscResp(respName:'mixAct1ButB_Resp', oscName:'mixAct1ButB', playDir:'mixAct1ButB_T');
@@ -823,6 +873,9 @@ IFMIDIMix{
 	}
 
 	*resetCnts{
+		~mixBnkButACnt=0;
+		~mixBnkButBCnt=0;
+
 		~mixAct1ButACnt=0;
 		~mixAct1ButBCnt=0;
 		~mixAct1ButCCnt=0;

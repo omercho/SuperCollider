@@ -7,47 +7,104 @@ IFSeqSteps {
 		this.new(01,05);
 
 	}
-	*new{|directMst,direct|
+	*new{|directM,direct1,direct2,direct3,direct4|
 		//this.srcStpMstr;
-		~crntStepDir=direct;
+		//~crntStepDir=direct;
 		~stepCnt.source  =  Pseq([1], inf);
-		directMst.switch(
-			00,{ ~stepMaster.source=Pseq([1], inf);},
-			01,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			02,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
-			03,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
-			04,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 4,1,0);},
-			05,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			06,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8], inf);},
-			07,{ ~stepMaster.source=Pseq([9,10,11,12,13,14,15,16], inf);},
-			08,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].mirror, inf);},
-			09,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
+		directM.switch(
+			0,{ ~stepMaster.source=Pseq([1], inf);},
+			1,{ ~stepMaster.source=Pseq([1,2,3,4], inf);},
+			2,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			3,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			4,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 4,1,0);},
+			5,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 3,1,0);},
+			6,{ ~stepMaster.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 2,1,0);},
+			7,{ ~stepMaster.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			8,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].mirror, inf);},
+			9,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
 			10,{ ~stepMaster.source=Pseq([1,2,3,4,5,6,7,8].reverse, inf);},
 			11,{ ~stepMaster.source=Pseq([9,10,11,12,13,14,15,16].reverse, inf);},
 			12,{ ~stepMaster.source=Pseq([13,14,15,16].reverse, inf);},
 			13,{ ~stepMaster.source=Pseq([9,10,11,12].reverse, inf);},
 			14,{ ~stepMaster.source=Pseq([5,6,7,8].reverse, inf);},
-			15,{ ~stepMaster.source=Pseq([1,2,3,4].reverse, inf);},
+			15,{ ~stepMaster.source=Pseq([1,2,3,4], inf);},
 			16,{ ~stepMaster.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
 		);
-		direct.switch(
-			00,{ this.first4;},
-			01,{ this.long01;},
-			02,{ this.long02;},
-			03,{ this.long03;},
-			04,{ this.long04;},
-			05,{ this.forward;},
-			06,{ this.forward2;},
-			07,{ this.first8;},
-			08,{ this.second8;},
-			09,{ this.first8back;},
-			10,{ this.second8back;},
-			11,{ this.mirror;},
-			12,{ this.slide1;},
-			13,{ this.slide2;},
-			14,{ this.random;},
-			15,{ this.shuf;},
-			16,{ this.backward;}
+		direct1.switch(
+			0,{ ~stepNum1.source=Pseq([1], inf);},
+			1,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			2,{ ~stepNum1.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
+			3,{ ~stepNum1.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
+			4,{ ~stepNum1.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 4,1,0);},
+			5,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			6,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			7,{ ~stepNum1.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			8,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].mirror, inf);},
+			9,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
+			10,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			11,{ ~stepNum1.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			12,{ ~stepNum1.source=Pseq([13,14,15,16], inf);},
+			13,{ ~stepNum1.source=Pseq([9,10,11,12], inf);},
+			14,{ ~stepNum1.source=Pseq([5,6,7,8], inf);},
+			15,{ ~stepNum1.source=Pseq([1,2,3,4], inf);},
+			16,{ ~stepNum1.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+		);
+		direct2.switch(
+			0,{ ~stepNum2.source=Pseq([1], inf);},
+			1,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			2,{ ~stepNum2.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
+			3,{ ~stepNum2.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
+			4,{ ~stepNum2.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 4,1,0);},
+			5,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			6,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			7,{ ~stepNum2.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			8,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].mirror, inf);},
+			9,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
+			10,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			11,{ ~stepNum2.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			12,{ ~stepNum2.source=Pseq([13,14,15,16], inf);},
+			13,{ ~stepNum2.source=Pseq([9,10,11,12], inf);},
+			14,{ ~stepNum2.source=Pseq([5,6,7,8], inf);},
+			15,{ ~stepNum2.source=Pseq([1,2,3,4], inf);},
+			16,{ ~stepNum2.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+		);
+		direct3.switch(
+			0,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf)},
+			1,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf)},
+			2,{ ~stepNum3.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 2,1,0)},
+			3,{ ~stepNum3.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 3,1,0)},
+			4,{ ~stepNum3.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf, 4,1,0)},
+			5,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf)},
+			6,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8], inf)},
+			7,{ ~stepNum3.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			8,{ ~stepNum3.source=Pseq([1], inf);},
+			9,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].reverse, inf);},
+			10,{ ~stepNum3.source=Pseq([1,2,3,4,5,6,7,8].reverse, inf);},
+			11,{ ~stepNum3.source=Pseq([9,10,11,12,13,14,15,16].reverse, inf);},
+			12,{ ~stepNum3.source=Pseq([13,14,15,16].reverse, inf);},
+			13,{ ~stepNum3.source=Pseq([9,10,11,12].reverse, inf);},
+			14,{ ~stepNum3.source=Pseq([5,6,7,8].reverse, inf);},
+			15,{ ~stepNum3.source=Pseq([1,2,3,4].reverse, inf);},
+			16,{ ~stepNum3.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
+		);
+		direct4.switch(
+			0,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			1,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			2,{ ~stepNum4.source=Pseq([1,4,7,9], inf);},
+			3,{ ~stepNum4.source=Pseq([1,2,4, 5,6,8, 9,10,12, 3,7,8, 13,14,15,16], inf);},
+			4,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},
+			5,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
+			6,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			7,{ ~stepNum4.source=Pseq([9,10,11,12,13,14,15,16], inf);},
+			8,{ ~stepNum4.source=Pseq([1,2,13,4,15,6,7,8,9,1,11,12,13,5,3,1].mirror, inf);},
+			9,{ ~stepNum4.source=Pseq([9,10,11,12], inf);},
+			10,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
+			11,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},
+			12,{ ~stepNum4.source=Pseq([1,10,11,12], inf);},
+			13,{ ~stepNum4.source=Pseq([9,10,11,12], inf);},
+			14,{ ~stepNum4.source=Pseq([5,6,7,8], inf);},
+			15,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},
+			16,{ ~stepNum4.source=Pxrand([1,2,3,4,3,4,5,6,5,6,7,8,9,12,13,16], inf);}
 		);
 		IFRoot.reset;
 	}

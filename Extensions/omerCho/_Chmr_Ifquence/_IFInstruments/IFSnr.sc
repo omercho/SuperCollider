@@ -440,7 +440,7 @@ IFTxtSnr{
 		)
 	}
 	*makeDflt{
-		IFTxtSnr.make(\01,\00,\ifSnr,'rndSnrTag');
+		IFTxtSnr.make(\00,\01,\ifSnr,'rndSnrTag');
 	}
 	*read{|trck,prtDir|
 

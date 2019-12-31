@@ -491,7 +491,7 @@ IFTxtKick{
 		)
 	}
 	*makeDflt{
-		IFTxtKick.make(\01,\00,\ifKick,'rndKickTag');
+		IFTxtKick.make(\00,\01,\ifKick,'rndKickTag');
 	}
 	*read{|trck,prtDir|
 

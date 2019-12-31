@@ -357,12 +357,16 @@ IFTxtStat{
 
 		amp1=[
 			Pseq([1,0],inf).asStream,
+			Pseq([1,0],inf).asStream,
 			Pseq([1,0,1,0,1,0,1,1],inf).asStream,
 			Pseq([1,0,1,1,0,0,1,0],inf).asStream,
-			Pseq([1,0,0,1,1,0,1,0],inf).asStream
+			Pseq([1,0,0,1,1,0,1,0],inf).asStream,
+			Pseq([1,0,1,0,0,1,1,0],inf).asStream
 		].choose;
 		nt1=Pseq([0],inf).asStream;
 		amp2=[
+			Prand([0,0,0,1],inf).asStream;
+			Pseq([0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
 			Pseq([0,0,1,0],inf).asStream,
 			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
 			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
@@ -370,11 +374,12 @@ IFTxtStat{
 			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
 			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
-		ntVl2=(20..67).choose;
+		ntVl2=(0..100).choose;
 		nt2=Pseq([ntVl2],inf).asStream;
 		amp3= [
-			Pseq([0,1],inf).asStream,
-			Pshuf([0,1,0,1,0,1,0,1],inf).asStream,
+			Pseq([0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
+			Pshuf([0,1,0,1,0,0,0,1],inf).asStream,
+			Pshuf([0,1,1],inf).asStream,
 			Pshuf([0,1,1,0],inf).asStream,
 			Pseq([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1],inf).asStream
 		].choose;
@@ -382,21 +387,38 @@ IFTxtStat{
 		nt3=Pseq([ntVl3],inf).asStream;
 
 		amp4=[
+			Pseq([0,0,0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
 			Pseq([0,1],inf).asStream,Pshuf([0,1,1,0],inf).asStream,
-			Pseq([1],inf).asStream,Pshuf([0,1],inf).asStream,
-			Pshuf([1,0,0],inf).asStream,Pshuf([1,0,0,0],inf).asStream
+			Pseq([0,0,0,1],inf).asStream,Pshuf([0,1],inf).asStream,
+			Pshuf([1,0,0],inf).asStream,Pshuf([1,0,0,0],inf).asStream,
+			Pseq([0,1,0],inf).asStream
 		].choose;
 		ntVl4=(0..30).choose;
 		nt4=Pseq([ntVl4],inf).asStream;
 
-		amp5=Prand([0,0,0,1],inf).asStream;
+		amp5=[
+			Prand([0,0,0,1],inf).asStream;
+			Pseq([0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
 		ntVl5=(0..127).choose;
 		nt5=Pseq([ntVl5],inf).asStream;
 
 		amp6= [
+			Prand([0,0,0,1],inf).asStream;
+			Pseq([0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1],inf).asStream,Pseq([0,0,1,0],inf).asStream,Pseq([0,1,0,0],inf).asStream,
 			Pseq([0,1],inf).asStream,Pshuf([0,1,1,0],inf).asStream,
-			Pseq([1],inf).asStream,Pshuf([0,1],inf).asStream,
-			Pshuf([1,0,0],inf).asStream,Pshuf([1,0,0,0],inf).asStream
+			Pseq([0,0,0,1],inf).asStream,Pshuf([0,1],inf).asStream,
+			Pshuf([1,0,0],inf).asStream,Pshuf([1,0,0,0],inf).asStream,
+			Pseq([0,1,0,0],inf).asStream,Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1],inf).asStream
 		].choose;
 		ntVl6=(0..127).choose;
 		nt6=Pseq([ntVl6],inf).asStream;
@@ -447,7 +469,7 @@ IFTxtStat{
 		)
 	}
 	*makeDflt{
-		IFTxtStat.make(\01,\00,\ifStat,'rndStatTag');
+		IFTxtStat.make(\00,\00,\ifStat,'rndStatTag');
 	}
 	*read{|trck,prtDir|
 

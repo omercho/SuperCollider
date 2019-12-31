@@ -502,7 +502,7 @@ IFTxtKeys{
 			).asStream,
 		].choose;
 		nt2=   [
-			Pwhite(-2,   7,   inf).asStream,
+			Pwhite(1,   4,   inf).asStream,
 			Pwalk(
 				[0, -2, 1, 2, -1, 3, 4, 5, 6],
 				Pseq([1], inf),
@@ -517,7 +517,7 @@ IFTxtKeys{
 			).asStream,
 		].choose;
 		nt3=   [
-			Pwhite(-2,   7,   inf).asStream,
+			Pwhite(2,   7,   inf).asStream,
 			Pwalk(
 				[0, -2, 1, 2, -1, 3, 4, 5, 6],
 				Pseq([1], inf),
@@ -611,7 +611,7 @@ IFTxtKeys{
 		)
 	}
 	*makeDflt{
-		IFTxtKeys.make(\01,\00,\ifKeys,'rndKeysTag');
+		IFTxtKeys.make(\00,\01,\ifKeys,'rndKeysTag');
 	}
 	*read{|trck,prtDir|
 		/*

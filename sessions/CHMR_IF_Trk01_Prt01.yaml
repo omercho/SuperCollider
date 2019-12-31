@@ -21,14 +21,14 @@ editors: !QVariantMap
             position: 1012
           - !QVariantMap
             documentIndex: 2
-            position: 26
+            position: 46
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 222
           - !QVariantMap
             documentIndex: 3
-            position: 79
+            position: 1035
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
@@ -40,16 +40,6 @@ editors: !QVariantMap
             documentIndex: 4
             position: 3
       state: AAAA/wAAAAEAAAADAAAAkwAAAXMAAAKbAf////8BAAAAAQA=
-    - !QVariantList
-      - !QVariantMap
-        documentIndex: 0
-        position: 209
-      - !QVariantMap
-        documentIndex: 5
-        position: 318
-      - !QVariantMap
-        documentIndex: 1
-        position: 135
     - !QVariantList
       - !QVariantMap
         documentIndex: 4
@@ -67,14 +57,14 @@ editors: !QVariantMap
         documentIndex: 7
         position: 171
       - !QVariantMap
-        documentIndex: 5
-        position: 295
-      - !QVariantMap
         documentIndex: 8
         position: 223
       - !QVariantMap
         documentIndex: 9
-        position: 325
+        position: 195
+      - !QVariantMap
+        documentIndex: 5
+        position: 232
     - !QVariantList
       - !QVariantMap
         documentIndex: 4
@@ -87,8 +77,8 @@ editors: !QVariantMap
         position: 235
       - !QVariantMap
         documentIndex: 6
-        position: 191
-  state: AAAA/wAAAAEAAAAEAAAA7AAAAN4AAADZAAAA3AEAAAABAQAAAAIB
+        position: 223
+  state: AAAA/wAAAAEAAAADAAAB7wAAANwAAAC1AQAAAAEBAAAAAgE=
 mainWindow:
   detached: !QVariantMap
     documents-dock: ""

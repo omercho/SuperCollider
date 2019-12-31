@@ -114,7 +114,7 @@ IFPitch {
 		~scl2=~ifSclList[(0..29).choose];
 	}
 	*setScl{|scl1=0,scl2=16,root=4|
-		~tOSCAdrr.sendMsg('scaleLabel', (~ifSclList[17]).asStream);
+		~tOSCAdrr.sendMsg('scaleLabel', (~ifSclList[scl2]).asStream);
 		~scl1=~ifSclList[scl1];
 		~scl2=~ifSclList[scl2];
 
@@ -127,11 +127,10 @@ IFPitch {
 		~rootSamp.source =(root);
 		//~rootExt.source =(root);
 
-		/*~rootLngBass.source=(root);
+		~rootLngBass.source=(root);
 		~rootLngKeys.source=(root);
+		~rootLngMopho.source =(root);
 		~rootLngSamp.source =(root);
-		~rootLngMopho.source =(root);*/
-
 	}
 
 

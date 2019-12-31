@@ -149,6 +149,7 @@ IFTrack01 {
 
 		IFTxt.readGlbStrt(\01,\00);
 		IFTxt.readGlbl(\01,\00);
+		IFTxt.readFx(\01,\00);
 		IFTxt.readInst(\01,\00);
 		IFTxtStat.read(\01,\00);
 		IFTxtKick.read(\01,\00);
@@ -158,7 +159,7 @@ IFTrack01 {
 		IFTxtMopho.read(\01,\00);
 		IFTxtKeys.read(\01,\00);
 		IFTxtSamp.read(\01,\00);
-		IFTxt.readFx(\01,\00);
+
 	}//////                                      - 7 -
 
 	*part08{//////                               - 8 -

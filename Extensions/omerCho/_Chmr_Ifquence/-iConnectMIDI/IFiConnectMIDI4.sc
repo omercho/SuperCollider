@@ -63,6 +63,7 @@ IFiConnectMIDI4{
 		~iC_MacOutID=(-71786470);
 		~iC_iPhoneInID=(1980474828);
 
+		~vJmxMBsClock = MIDIClockOut("iConnectMIDI4+", "USB3 DIN1", ~clkMaster);
 		~vJmxMBs = MIDIOut.newByName("iConnectMIDI4+", "USB3 DIN1");
 		~vJmxMBsOutID=(-976567310);
 		//~vMophoInID=~hstPort1;

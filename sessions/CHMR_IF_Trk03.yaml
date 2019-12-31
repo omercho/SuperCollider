@@ -1,0 +1,116 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifBass.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifGlbStrt.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifGlobal.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifHat.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifKeys.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifKick.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifMopho.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifMophoSet.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifSamp.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifSnr.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/03/01/ifStat.txt
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantMap
+      elements: !QVariantList
+        - !QVariantList
+          - !QVariantMap
+            documentIndex: 0
+            position: 1014
+          - !QVariantMap
+            documentIndex: 1
+            position: 0
+          - !QVariantMap
+            documentIndex: 2
+            position: 0
+          - !QVariantMap
+            documentIndex: 4
+            position: 0
+          - !QVariantMap
+            documentIndex: 5
+            position: 0
+          - !QVariantMap
+            documentIndex: 7
+            position: 0
+          - !QVariantMap
+            documentIndex: 8
+            position: 95
+          - !QVariantMap
+            documentIndex: 9
+            position: 0
+          - !QVariantMap
+            documentIndex: 10
+            position: 0
+          - !QVariantMap
+            documentIndex: 11
+            position: 261
+          - !QVariantMap
+            documentIndex: 12
+            position: 0
+          - !QVariantMap
+            documentIndex: 6
+            position: 0
+          - !QVariantMap
+            documentIndex: 3
+            position: 11
+        - !QVariantList
+          - !QVariantMap
+            documentIndex: 0
+            position: 497
+          - !QVariantMap
+            documentIndex: 4
+            position: 161
+        - !QVariantList
+          - !QVariantMap
+            documentIndex: 0
+            position: 683
+          - !QVariantMap
+            documentIndex: 2
+            position: 173
+      state: AAAA/wAAAAEAAAADAAAAjgAAAXsAAAJIAf////8BAAAAAQA=
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 0
+        position: 143
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 12
+        position: 338
+      - !QVariantMap
+        documentIndex: 1
+        position: 204
+      - !QVariantMap
+        documentIndex: 8
+        position: 248
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 0
+        position: 243
+      - !QVariantMap
+        documentIndex: 1
+        position: 107
+      - !QVariantMap
+        documentIndex: 7
+        position: 563
+      - !QVariantMap
+        documentIndex: 9
+        position: 0
+      - !QVariantMap
+        documentIndex: 8
+        position: 278
+      - !QVariantMap
+        documentIndex: 11
+        position: 218
+  state: AAAA/wAAAAEAAAADAAAB0AAAAM8AAAEXAQAAAAEBAAAAAgE=
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAQZAAAAAAAAAC0AAAaPAAAEGQAAAAAAAAAABpA=
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAaYAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh4AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh8AAAGzAAAATAD///8AAARTAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==

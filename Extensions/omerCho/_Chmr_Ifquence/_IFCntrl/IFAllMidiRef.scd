@@ -56,27 +56,27 @@ NoteOnResponder.removeAll
 
 
 
-~mdOut.control(1, 0, ~midiVel); //AllMaster / Track Vol1
-~mdOut.control(1, 1, ~midiVel); //AllMaster / Track Vol2
-~mdOut.control(1, 2, ~midiVel); //AllMasterFX / DryWet
-~mdOut.control(1, 3, ~midiVel); //AllMasterFX / asejaeyjjyagj
-~mdOut.control(1, 4, ~midiVel); //AllMaster / Send A
-~mdOut.control(1, 5, ~midiVel); //AllMaster / Send B
-~mdOut.control(1, 6, ~midiVel); //AllMasterFX / Comp
-//~mdOut.control(1, 7, 127); //AllMasterFX / FX DECAY
-~mdOut.control(1, 8, ~midiVel); //AllMasterFX / FX Fad
-~mdOut.control(1, 9, ~midiVel); //AllMasterFX / Y1
-~mdOut.control(1, 10, ~midiVel); //AllMasterFX / X1
-~mdOut.control(1, 11, ~midiVel); //AllMasterFX / Distort
-~mdOut.control(1, 12, ~midiVel); //AllMaster / Grain
-~mdOut.control(1, 13, ~midiVel); //AllMaster / Send C
-~mdOut.control(1, 15, ~midiVel); //Cln Drm Vol
+~mdOut.control(1, 0, ~midiVel); //IFSends \fad1
+~mdOut.control(1, 1, ~midiVel); //IFSends \fad2
+~mdOut.control(1, 2, ~midiVel); //IFSends / DryWet
+~mdOut.control(1, 3, ~midiVel); //IFSends / asejaeyjjyagj
+~mdOut.control(1, 4, ~midiVel); //IFSends / Send A
+~mdOut.control(1, 5, ~midiVel); //IFSends / Send B
+~mdOut.control(1, 6, ~midiVel); //IFSendsFX / Comp
+//~mdOut.control(1, 7, 127); //IFSendsFX / FX DECAY
+~mdOut.control(1, 8, ~midiVel); //IFSendsFX / FX Fad
+~mdOut.control(1, 9, ~midiVel); //IFSendsFX / Y1
+~mdOut.control(1, 10, ~midiVel); //IFSendsFX / X1
+~mdOut.control(1, 11, ~midiVel); //IFSends \clnMel
+~mdOut.control(1, 12, ~midiVel); //IFSends \clnDrm
+~mdOut.control(1, 13, ~midiVel); //IFSends / Send C
+~mdOut.control(1, 15, ~midiVel); //
 //~mdOut.control(1, 16, ~midiVel); //Cln Keys Vol
 ~mdOut.control(1, 17, ~midiVel); //Cln Samp Vol
 ~mdOut.control(1, 18, ~midiVel); //Cln Mopho Vol
 ~mdOut.control(1, 19, ~midiVel); //Cln Keys Vol
-~mdOut.control(1, 20, ~midiVel); //AllMasterFX / FX DECAY
-~mdOut.control(1, 127, ~midiVel); //AllMasterFX / Track Vol
+~mdOut.control(1, 20, ~midiVel); //IFSendsFX / FX DECAY
+~mdOut.control(1, 127, ~midiVel); //IFSendsFX / Track Vol
 
 
 ~mdOut.control(2, 0, ~midiVel); //Kick / Mute
@@ -212,14 +212,14 @@ NoteOnResponder.removeAll
 ~mdOut.control(8, 41, ~midiVel); //IFMopho / lfo 2
 
 
-~mdOut.control(8, 2, ~midiVel); //IFExt / Rls
-~mdOut.control(8, 3, ~midiVel); //IFExt / SendA
-~mdOut.control(8, 4, ~midiVel); //IFExt / SendB
-~mdOut.control(8, 5, ~midiVel); //IFExt / SendC
+~mdOut.control(9, 2, ~midiVel); //VHat / VHatPre Delay Vol
+~mdOut.control(9, 3, ~midiVel); //VHat / SendA
+~mdOut.control(9, 4, ~midiVel); //VHat / SendB
+~mdOut.control(9, 5, ~midiVel); //VHat / SendC
 
-~mdOut.control(8, 20, ~midiVel); //IFStaticHat Act ---- MIDIIn
-~mdOut.control(8, 21, ~midiVel); //IFStaticClap Act ---- MIDIIn
-~mdOut.control(8, 22, ~midiVel); //IFStatic Fad8 ---- MIDIIn
+~mdOut.control(9, 20, ~midiVel); //IFStaticHat Act ---- MIDIIn
+~mdOut.control(9, 21, ~midiVel); //IFStaticClap Act ---- MIDIIn
+~mdOut.control(9, 22, ~midiVel); //IFStatic Fad8 ---- MIDIIn
 
 //Drum Channel
 ~mdOut.control(10, 23, ~midiVel); //Drum / Send A
