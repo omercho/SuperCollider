@@ -73,9 +73,9 @@ IFTracks{
 				if ( val==1, {
 					~trkPreNum.postln;
 					this.lbl(\IFtrkLbl,~trkPreNum);
-					~trackCase=~trkLst[~trkPreNum-1];
-					IFTrack.load(~trkLst[~trkPreNum-1],\01);
-					IFTrack(~trkLst[~trkPreNum-1],\01);
+					~trackCase=~trkLst[~trkPreNum];
+					IFTrack.load(~trkLst[~trkPreNum],\01);
+					IFTrack(~trkLst[~trkPreNum],\01);
 				});
 			},
 		);

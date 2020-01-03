@@ -256,14 +256,13 @@ IFMIDIMix{
 					~volVSnr.source = val;
 				},
 				\nobA,{
-
+					~mdOut.control(10, 23, vel); //VSnr / XPose
 				},
 				\nobB,{
-
+					~mdOut.control(10, 24, vel); //VSnr / Dly1
 				},
 				\nobC,{
-					~tOSCAdrr.sendMsg('snrCln', val);
-					~mdOut.control(1, 15, vel);//Cln Snrs Vol
+					~mdOut.control(10, 25, vel); //VSnr / Dly2
 				}
 			);},
 			3,{paramKey.switch(

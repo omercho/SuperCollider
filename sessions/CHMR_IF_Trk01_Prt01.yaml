@@ -21,7 +21,7 @@ editors: !QVariantMap
             position: 1012
           - !QVariantMap
             documentIndex: 2
-            position: 46
+            position: 31
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
@@ -39,7 +39,7 @@ editors: !QVariantMap
           - !QVariantMap
             documentIndex: 4
             position: 3
-      state: AAAA/wAAAAEAAAADAAAAkwAAAXMAAAKbAf////8BAAAAAQA=
+      state: AAAA/wAAAAEAAAADAAAAiwAAAZwAAAI2Af////8BAAAAAQA=
     - !QVariantList
       - !QVariantMap
         documentIndex: 4

@@ -222,15 +222,15 @@ NoteOnResponder.removeAll
 ~mdOut.control(9, 22, ~midiVel); //IFStatic Fad8 ---- MIDIIn
 
 //Drum Channel
-~mdOut.control(10, 23, ~midiVel); //Drum / Send A
-~mdOut.control(10, 24, ~midiVel); //Drum / Send B
-~mdOut.control(10, 25, ~midiVel); //Drum / Send C
+~mdOut.control(10, 23, ~midiVel); //VSnr / XPose
+~mdOut.control(10, 24, ~midiVel); //VSnr / Dly1
+~mdOut.control(10, 25, ~midiVel); //VSnr / Dly2
 ~mdOut.control(10, 26, ~midiVel); //Drum Audio / Low
 ~mdOut.control(10, 27, ~midiVel); //Drum Audio / Mid
 ~mdOut.control(10, 28, ~midiVel); //Drum Audio / High
 ~mdOut.control(10, 30, ~midiVel); //Drum / Filt Morph - Feedback Hat Delay
-~mdOut.control(10, 31, ~midiVel); //Drum / Delay Feedback
-~mdOut.control(10, 32, ~midiVel); //Drum / Delay DryWet
+~mdOut.control(10, 31, ~midiVel); //VHatPre / Delay Feedback
+~mdOut.control(10, 32, ~midiVel); //VHatPre / Delay DryWet
 //Melody Channel
 ~mdOut.control(10, 73, ~midiVel); //Mel / Send A
 ~mdOut.control(10, 74, ~midiVel); //Mel / Send B

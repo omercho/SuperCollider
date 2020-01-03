@@ -31,7 +31,7 @@ IFSeqSteps {
 			16,{ ~stepMaster.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
 		);
 		direct1.switch(
-			0,{ ~stepNum1.source=Pseq([1], inf);},
+			0,{ ~stepNum1.source=Pseq([1,3,5,8], inf);},
 			1,{ ~stepNum1.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			2,{ ~stepNum1.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
 			3,{ ~stepNum1.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
@@ -50,7 +50,7 @@ IFSeqSteps {
 			16,{ ~stepNum1.source=Pxrand([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);}
 		);
 		direct2.switch(
-			0,{ ~stepNum2.source=Pseq([1], inf);},
+			0,{ ~stepNum4.source=Pseq([3,4,5,6], inf);},
 			1,{ ~stepNum2.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			2,{ ~stepNum2.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 2,1,0);},
 			3,{ ~stepNum2.source=Pslide([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  inf, 3,1,0);},
@@ -90,17 +90,17 @@ IFSeqSteps {
 		direct4.switch(
 			0,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
 			1,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
-			2,{ ~stepNum4.source=Pseq([1,4,7,9], inf);},
-			3,{ ~stepNum4.source=Pseq([1,2,4, 5,6,8, 9,10,12, 3,7,8, 13,14,15,16], inf);},
+			2,{ ~stepNum4.source=Pseq([3,4,5,6], inf);},
+			3,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			4,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},
 			5,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16], inf);},
 			6,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
 			7,{ ~stepNum4.source=Pseq([9,10,11,12,13,14,15,16], inf);},
-			8,{ ~stepNum4.source=Pseq([1,2,13,4,15,6,7,8,9,1,11,12,13,5,3,1].mirror, inf);},
-			9,{ ~stepNum4.source=Pseq([9,10,11,12], inf);},
+			8,{ ~stepNum4.source=Pseq([9,10,11,12], inf);},
+			9,{ ~stepNum4.source=Pseq([13,14,15,16], inf);},
 			10,{ ~stepNum4.source=Pseq([1,2,3,4,5,6,7,8], inf);},
 			11,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},
-			12,{ ~stepNum4.source=Pseq([1,10,11,12], inf);},
+			12,{ ~stepNum4.source=Pseq([1,6,9,14], inf);},
 			13,{ ~stepNum4.source=Pseq([9,10,11,12], inf);},
 			14,{ ~stepNum4.source=Pseq([5,6,7,8], inf);},
 			15,{ ~stepNum4.source=Pseq([1,2,3,4], inf);},

@@ -427,13 +427,13 @@ IFMelMix{
 					IFMopho.set1(\vol,val);
 				},
 				\nobA,{
-					Mopho.cc(\lpfKeyAmnt, vel);
+					Mopho.cc('lpfKeyAmnt', vel);
 				},
 				\nobB,{
-					Mopho.cc('lfo1Amnt', vel);
+					Mopho.cc('oscMix', vel);
 				},
 				\nobC,{
-
+					Mopho.cc('lpfAmnt', vel);
 				},
 			);},
 			8,{paramKey.switch(

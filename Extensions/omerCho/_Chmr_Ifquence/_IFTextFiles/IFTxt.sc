@@ -203,14 +203,13 @@ IFTxt{
 			Pseq([2,2,4,2, 2,2,4,2, 2,2,4,2, 4,2,2,2],inf).asStream,
 		].choose;
 		seq4Dur=  [
-			Pseq([2],inf).asStream,
-			Pseq([4],inf).asStream,
-			Pseq([4,4,2,4],inf).asStream,
-			Pseq([4,2,2,2, 4,4,4,4],inf).asStream,
-			Pseq([4,4,2,2, 4,4,4,4],inf).asStream,
+			Pseq([2],inf).asStream,Pseq([4],inf).asStream,
+			/*Pseq([2,4,2,4],inf).asStream,
+			Pseq([4,2,2,2],inf).asStream,
+			Pseq([4,4,2,2],inf).asStream,
 			Pseq([4,2,2,2, 2,4,4,4, 2,2,2,2, 2,2,2,2],inf).asStream,
 			Pseq([4,2,2,2, 4,4,2,2, 4,2,2,2, 4,2,2,2],inf).asStream,
-			Pseq([2,2,4,2, 2,2,4,2, 2,2,4,2, 4,2,2,2],inf).asStream,
+			Pseq([2,2,4,2, 2,2,4,2, 2,2,4,2, 4,2,2,2],inf).asStream,*/
 		].choose;
 		seqMulDir=Pseq([Pxrand([0,1],1),Pwhite(0, 16, 1)],inf).asStream;
 		rootStp= Pwhite(0,   16,   inf).asStream;
