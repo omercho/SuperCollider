@@ -1,6 +1,10 @@
 /*
 /*
-Ambk.cc
+Ambk.cc;
+
+~vAmbk.noteOn(1, 26, 111); //But 1
+~vAmbk.noteOff(1, 26, 1); //But 1
+
 */
 */
 Ambk{
@@ -228,8 +232,8 @@ Ambk.prog(ch:~pt6,bnk:\a,prg:33);
 
 Ambk.prtBnks(0,10,0,2,0,3,0,4,0,5,0,6);
 
-~vAmbk.control(abk1Ch, 0, 3);     //Bank Select (MSB)
-~vAmbk.control(abk1Ch, 1, 89);    //Modulation Wheel (MSB)
+~vAmbk.control(~chAbk1, 0, 3);     //Bank Select (MSB)
+~vAmbk.control(~chAbk1, 1, 89);    //Modulation Wheel (MSB)
 ~vAmbk.control(abk1Ch, 2, 89);    //Breath Controller (MSB)
 ~vAmbk.control(abk1Ch, 3, 40);    //env2 -> cutoff
 ~vAmbk.control(abk1Ch, 4, 0);     //Foot Controller (MSB)

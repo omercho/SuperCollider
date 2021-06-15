@@ -26,7 +26,9 @@ IFTracks{
 				if ( val==1, {
 					fork{
 						"Random The System (make dflt) ".postln;
-						IFTxt.trckDflt;
+						IFTxt.makeDflt;
+						0.1.wait;
+						IFTxtSeqs.makeDflt;
 						0.1.wait;
 						IFTxtStat.makeDflt;
 						0.1.wait;
@@ -42,7 +44,7 @@ IFTracks{
 						0.1.wait;
 						IFTxtKeys.makeDflt;
 						0.1.wait;
-						IFTxtSamp.makeDflt;
+						//IFTxtSamp.makeDflt;
 						//IFTxtMophoSet.makeDflt;
 						this.lbl(\IFtrkLblPre,~trkPreNum);
 						0.1.wait;
@@ -113,13 +115,15 @@ IFTrack{
 		~trackCase=trk;
 		IFTxt.readGlbStrt(trk,prt);
 		IFTxt.readFx(trk,prt);
+		//IFTxtSeqs.read(trk,prt);
+		IFTxtStat.read(trk,prt);
 		IFTxtKick.read(trk,prt);
 		IFTxtSnr.read(trk,prt);
 		IFTxtHat.read(trk,prt);
 		IFTxtKeys.read(trk,prt);
 		IFTxtMopho.read(trk,prt);
 		IFTxtBass.read(trk,prt);
-		IFTxtStat.read(trk,prt);
+
 		trk.switch(
 			\00, {
 				"TRACK 0".postln;
@@ -171,8 +175,8 @@ IFTrack{
 
 		~partCase=prt;
 
-		IFTxt.readGlbl(trk,\01,prt);
-
+		//IFTxt.readGlbl(trk,\01,prt);
+		IFTxtSeqs.read(trk,\01,prt);
 
 		prt.switch(
 			\00, {

@@ -11,7 +11,7 @@ IFTxt.make(\00,\ifKeys,6);
 IFTxt.make(\00,\ifSamp,6);
 IFTxt.make(\00,\ifMopho,6);
 
-IFTxt.trckDflt;
+IFTxt.makeDflt;
 
 IFTxt.readIfTrack(\00,\ifKick);
 ~tKcAmp=IFTxt.line(1);
@@ -296,11 +296,11 @@ IFTxt{
 			};
 		)
 	}
-	*trckDflt{
+	*makeDflt{
 		fork{
 			IFTxt.make(\00,\01,\ifGlbStrt,'rndGlbStrtTag');
 			0.1.wait;
-			IFTxt.make(\00,\01,\ifGlobal,'rndGlobalTag');
+			//IFTxt.make(\00,\01,\ifGlobal,'rndGlobalTag');
 			0.1.wait;
 			IFTxt.make(\00,\01,\ifFx,'rndFxTag');
 			0.1.wait;
@@ -460,6 +460,6 @@ IFTxt{
 
 /*
 
-IFTxt.trckDflt;
+IFTxt.makeDflt;
 
 */

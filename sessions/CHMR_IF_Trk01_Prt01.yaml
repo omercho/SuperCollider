@@ -21,21 +21,21 @@ editors: !QVariantMap
             position: 1012
           - !QVariantMap
             documentIndex: 2
-            position: 31
+            position: 49
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 222
           - !QVariantMap
             documentIndex: 3
-            position: 1035
+            position: 255
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 258
           - !QVariantMap
             documentIndex: 2
-            position: 0
+            position: 2
           - !QVariantMap
             documentIndex: 4
             position: 3
@@ -64,7 +64,7 @@ editors: !QVariantMap
         position: 195
       - !QVariantMap
         documentIndex: 5
-        position: 232
+        position: 477
     - !QVariantList
       - !QVariantMap
         documentIndex: 4

@@ -52,14 +52,14 @@ IFProjectGlobals.setTempo(20);
 
 	}
 	*setAddr{
-		~tOSCAdrr = NetAddr.new("192.168.1.5", 5001); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.7", 5001); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");
 		~mdOutID= (-1714597932);
 		~mdClock = MIDIClockOut("IAC Driver", "SC-Abl", TempoClock.default);
 		~mdTouch = MIDIOut.newByName("TouchOSC Bridge", "TouchOSC Bridge");
-		~mdTouchOutID= (-568454460);
+		~mdTouchOutID= (-1229567606);
 		~midiVel=127;
 	}
 
@@ -138,6 +138,11 @@ IFGlobal{
 		IFRoot.set(\durMulSeq1,mulSeq1);IFRoot.set(\durMulSeq2,mulSeq2);
 		IFRoot.set(\durMulSeq3,mulSeq3);IFRoot.set(\durMulSeq4,mulSeq4);
 		IFSeqSteps(directM:stepM,direct1:step1,direct2:step2,direct3:step3,direct4:step4);
+	}
+	*setSeqMuls{|mulSeqM,mulSeq1,mulSeq2,mulSeq3,mulSeq4|
+		IFRoot.set(\durMulSeqM,mulSeqM);
+		IFRoot.set(\durMulSeq1,mulSeq1);IFRoot.set(\durMulSeq2,mulSeq2);
+		IFRoot.set(\durMulSeq3,mulSeq3);IFRoot.set(\durMulSeq4,mulSeq4);
 	}
 	*setFx{|vol1=9,vol2=9,fad1=0.2,fad2=0.4,comp=0.0,dec=0.2,fx1X=0.2,fx1Y=0.2,fx2X=0.2,fx2Y=0.2|
 		IFSends.set1(\vol1,vol1);IFSends.set1(\vol2,vol2);
