@@ -230,7 +230,8 @@ IFAPCMn{
 	//--1
 	*actLine1ButTS1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS1, val); //ButTS
-		~local.sendMsg('pitchKick', 1);
+		//~local.sendMsg('pitchKick', 1);
+		~local.sendMsg('pitchBass', 1);
 		~cntActLine1ButTS1=val;
 	}
 	*actLine1ButA1{|val|
@@ -390,7 +391,7 @@ IFAPCMn{
 	//--8
 	*actLine8ButTS8{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS8, val); //ButTS
-		~local.sendMsg('pitchBass', 1);
+		//~local.sendMsg('pitchBass', 1);
 		~cntActLine8ButTS8=val;
 	}
 	*actLine8ButA8{|val|

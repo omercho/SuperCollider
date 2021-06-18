@@ -73,10 +73,7 @@ IFPitchBass {
 	}
 
 	*noteBassOn {
-
 		/////////////////////----- Note -------//////////////
-
-
 		~noteBass_0.free;
 		~noteBass_0 = OSCFunc({
 			arg msg;
@@ -101,7 +98,6 @@ IFPitchBass {
 		},
 		'/nt_1'
 		);
-
 
 		~noteBass_2.free;
 		~noteBass_2 = OSCFunc({

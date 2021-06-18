@@ -104,7 +104,7 @@ IFHat {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chAbk3,
+			\chan, ~chAbk6,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1HatP.next],~actHatP),
 			\degree,  Pseq([~nt1HatP.next], inf),
@@ -118,20 +118,20 @@ IFHat {
 
 		Pbind(//LFO CUT Hat INT
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk3, \ctlNum, ~envDecVB,
+			\midiout,~vAmbk, \chan, ~chAbk6, \ctlNum, ~envDecVB,
 			\delta, Pseq([~delta1HatP.next], 1),
 			\control, Pseq([~lfo1HatP.value], 1)*~lfoMulHat1,
 		).play(~clkHat, quant: 0);
 		Pbind(//LFO CUT Hat RATE
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk3, \ctlNum, ~slideTm,
+			\midiout,~vAmbk, \chan, ~chAbk6, \ctlNum, ~slideTm,
 			\delta, Pseq([~delta2HatP.next], 1),
 			\control, Pseq([~lfo2HatP.value], 1)*~lfoMulHat2,
 		).play(~clkHat, quant: 0);
 	}
 	*lng{|deg=0,amp=1,sus=4|
 		Pbind(
-			\chan, ~chAbk1,
+			\chan, ~chAbk6,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
 			\dur, Pseq([~dur1LngHatP.next],1)+sus,
 			\ctranspose, Pseq([~rootLngHatP.next],inf),

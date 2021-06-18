@@ -130,7 +130,7 @@ IFKick {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chAbk1,
+			\chan, ~chAbk4,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KickP.next],~actKickP),
 			\degree,  Pseq([~nt1KickP.next], inf),
@@ -145,13 +145,13 @@ IFKick {
 		//this.timesCount;
 		Pbind(//LFO CUT Kick INT
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~envDecVB,
+			\midiout,~vAmbk, \chan, ~chAbk4, \ctlNum, ~envDecVB,
 			\delta, Pseq([~delta1KickP.next], 1),
 			\control, Pseq([~lfo1KickP.value], 1)*~lfoMulKick1,
 		).play(~clkKick, quant: 0);
 		Pbind(//LFO CUT Kick RATE
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~slideTm,
+			\midiout,~vAmbk, \chan, ~chAbk4, \ctlNum, ~slideTm,
 			\delta, Pseq([~delta2KickP.next], 1),
 			\control, Pseq([~lfo2KickP.value], 1)*~lfoMulKick2,
 		).play(~clkKick, quant: 0);
@@ -160,7 +160,7 @@ IFKick {
 
 	*lng{|deg=0,amp=1,sus=4|
 		Pbind(
-			\chan, ~chAbk1,
+			\chan, ~chAbk4,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
 			\dur, Pseq([~dur1LngKickP.next],1)+sus,
 			\ctranspose, Pseq([~rootLngKickP.next],inf),
@@ -256,8 +256,8 @@ IFKick {
 			\vol, {
 				~crntKick_vol=val1;
 				this.lbl1(\volKick,val1);
-				~volKick.source = val1;
-				~mdOut.control(2, 1, vel1);
+				//~volKick.source = val1;
+				//~mdOut.control(2, 1, vel1);
 			},
 			\att, {
 				~crntKick_att=val1;
@@ -421,9 +421,9 @@ IFTxtKick{
 		].choose;
 		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(0,  4,   inf).asStream;
-		lfoP= Pwhite(0,   127, inf).asStream;
+		lfoP= Pwhite(10,   127, inf).asStream;
 		vol=  Pwhite(0.85, 0.99,inf).asStream;
-		att=  Pwhite(0.0, 0.2, inf).asStream;
+		att=  Pwhite(0.01, 0.2, inf).asStream;
 		dec=  Pwhite(0.1, 0.3, inf).asStream;
 		susV= Pwhite(0.1, 0.9, inf).asStream;
 		rls=  Pwhite(0.1, 0.9, inf).asStream;

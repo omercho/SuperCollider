@@ -300,31 +300,38 @@ IFMIDIMix{
 			4,{paramKey.switch(
 				\butA,{
 					~mdMix.noteOn(~mdMixGlb, ~act4A, val); //But A
-					~tOSCAdrr.sendMsg('activVClap', val);
-					~actVClap.source=val;
+					//~tOSCAdrr.sendMsg('activVClap', val);
+					//~actVClap.source=val;
+					~tOSCAdrr.sendMsg('activKick', val);
+					~actKick.source=val;
 					~mixAct4ButACnt=val;
 				},
 				\butB,{
 					~mdMix.noteOn(~mdMixGlb, ~act4B, val); //But B
 					/*~tOSCAdrr.sendMsg('activVTomH', val);
 					~actVTomH.source=val;*/
+					~tOSCAdrr.sendMsg('shufKick', val);
+					~local.sendMsg('shufKick', val);
 					~mixAct4ButBCnt=val;
 				},
 				\butC,{
 					~mdMix.noteOn(~mdMixGlb, ~act4C, val); //But C
 					//~tOSCAdrr.sendMsg('shufSnr', val);
 					//~local.sendMsg('shufSnr', val);
+					~tOSCAdrr.sendMsg('time2Kick', val);
+					~tmMulKick.source = Pseq([val+1], inf);
 					~mixAct4ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volVClap', val);
-					~volVClap.source = val;
+					//~tOSCAdrr.sendMsg('volVClap', val);
+					//~volVClap.source = val;
+					Ambk.cc(\pt4,\pt4Vol,vel*0.75);
 				},
 				\nobA,{
-
+					Ambk.cc(\pt4,\pt4F1Cut,vel);
 				},
 				\nobB,{
-
+					Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
 
@@ -333,31 +340,39 @@ IFMIDIMix{
 			5,{paramKey.switch(
 				\butA,{
 					~mdMix.noteOn(~mdMixGlb, ~act5A, val); //But A
-					~tOSCAdrr.sendMsg('activVTomL', val);
-					~actVTomL.source=val;
+					//~tOSCAdrr.sendMsg('activVTomL', val);
+					//~actVTomL.source=val;
+					~tOSCAdrr.sendMsg('activSnr', val);
+					~actSnr.source=val;
 					~mixAct5ButACnt=val;
 				},
 				\butB,{
 					~mdMix.noteOn(~mdMixGlb, ~act5B, val); //But B
 					/*~tOSCAdrr.sendMsg('activVTomH', val);
 					~actVTomH.source=val;*/
+					~tOSCAdrr.sendMsg('shufSnr', val);
+					~local.sendMsg('shufSnr', val);
 					~mixAct5ButBCnt=val;
 				},
 				\butC,{
 					~mdMix.noteOn(~mdMixGlb, ~act5C, val); //But C
 					//~tOSCAdrr.sendMsg('shufSnr', val);
 					//~local.sendMsg('shufSnr', val);
+					~tOSCAdrr.sendMsg('time2Snr', val);
+					~tmMulSnr.source = Pseq([val+1], inf);
 					~mixAct5ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volVTomL', val);
-					~volVTomL.source = val;
+					//~tOSCAdrr.sendMsg('volVTomL', val);
+					//~volVTomL.source = val;
+					//IFSnr.set1(\vol,val);
+					Ambk.cc(\pt5,\pt5Vol,vel*0.79);
 				},
 				\nobA,{
-
+					Ambk.cc(\pt4,\pt4F1Cut,vel);
 				},
 				\nobB,{
-
+					Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
 
@@ -366,31 +381,37 @@ IFMIDIMix{
 			6,{paramKey.switch(
 				\butA,{
 					~mdMix.noteOn(~mdMixGlb, ~act6A, val); //But A
-					~tOSCAdrr.sendMsg('activVTomH', val);
-					~actVTomH.source=val;
+					//~tOSCAdrr.sendMsg('activVTomH', val);
+					//~actVTomH.source=val;
+					~tOSCAdrr.sendMsg('activHat', val);
+					~actHat.source=val;
 					~mixAct6ButACnt=val;
 				},
 				\butB,{
 					~mdMix.noteOn(~mdMixGlb, ~act6B, val); //But B
 					/*~tOSCAdrr.sendMsg('activVTomH', val);
 					~actVTomH.source=val;*/
+					~tOSCAdrr.sendMsg('shufHat', val);
+					~local.sendMsg('shufHat', val);
 					~mixAct6ButBCnt=val;
 				},
 				\butC,{
 					~mdMix.noteOn(~mdMixGlb, ~act6C, val); //But C
 					//~tOSCAdrr.sendMsg('shufSnr', val);
 					//~local.sendMsg('shufSnr', val);
+					~tOSCAdrr.sendMsg('time2Hat', val);
+					~tmMulHat.source = Pseq([val+1], inf);
 					~mixAct6ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volVTomH', val);
-					~volVTomH.source = val;
+					//IFHat.set1(\vol,val);
+					Ambk.cc(\pt6,\pt6Vol,vel*0.79);
 				},
 				\nobA,{
-
+					Ambk.cc(\pt6,\pt6F1Cut,vel);
 				},
 				\nobB,{
-
+					Ambk.cc(\pt6,\pt6Mix,vel);
 				},
 				\nobC,{
 

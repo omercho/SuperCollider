@@ -188,8 +188,8 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step1(~stepNum1P.next);
-					IFHat(~tmMulHatP.next*~tmHatP.next);
-					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
+					IFSamp(~tmMulSampP.next*~tmSampP.next);
+
 					((~dur1P.next)*(~durMul1P.next)).wait;
 				};
 			};
@@ -200,7 +200,7 @@ IFRoot {
 				1.do {
 					IFSequence.step2(~stepNum2P.next);
 					IFMopho(~tmMulMophoP.next*~tmMophoP.next);
-					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
+
 					((~dur2P.next)*(~durMul2P.next)).wait;
 				};
 			};
@@ -210,8 +210,8 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step3(~stepNum3P.next);
-					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFBass(~tmMulBassP.next*~tmBassP.next);
+					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
 					((~dur3P.next)*(~durMul3P.next)).wait;
 				};
 			};
@@ -221,8 +221,14 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step4(~stepNum4P.next);
+
+
+
+					IFKick(~tmMulKickP.next*~tmKickP.next);
+					IFHat(~tmMulHatP.next*~tmHatP.next);
+					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;
-					IFStat.ln04;IFStat.ln05;IFStat.ln06;
+					//IFStat.ln04;IFStat.ln05;IFStat.ln06;
 					((~dur4P.next)*(~durMul4P.next)).wait;
 				};
 			};

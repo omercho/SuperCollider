@@ -30,7 +30,7 @@ IFTxtSeqs{
 		].choose;
 		seqMDir=  [
 			Pwhite(1,   16,   inf).asStream,
-			Pseq([1],inf).asStream,
+			Pseq([1,2],inf).asStream,
 			Pseq([1,2,3,4],inf).asStream,
 			Pseq([5,6,7,8],inf).asStream,
 			Pseq([1,2,3,4, 5,6,7,8],inf).asStream,
@@ -48,7 +48,7 @@ IFTxtSeqs{
 		].choose;
 		seq1Dir=  [
 			Pwhite(1,   16,   inf).asStream,
-			Pseq([1],inf).asStream,
+			Pseq([1,2],inf).asStream,
 			Pseq([1,2,3,4],inf).asStream,
 			Pseq([5,6,7,8],inf).asStream,
 			Pseq([1,2,3,4, 5,6,7,8],inf).asStream,
@@ -66,7 +66,7 @@ IFTxtSeqs{
 		].choose;
 		seq2Dir=  [
 			Pwhite(1,   16,   inf).asStream,
-			Pseq([1],inf).asStream,
+			Pseq([1,2],inf).asStream,
 			Pseq([1,2,3,4],inf).asStream,
 			Pseq([5,6,7,8],inf).asStream,
 			Pseq([1,2,3,4, 5,6,7,8],inf).asStream,
@@ -84,7 +84,7 @@ IFTxtSeqs{
 		].choose;
 		seq3Dir=  [
 			Pwhite(1,   16,   inf).asStream,
-			Pseq([1],inf).asStream,
+			Pseq([1,2],inf).asStream,
 			Pseq([1,2,3,4],inf).asStream,
 			Pseq([5,6,7,8],inf).asStream,
 			Pseq([1,2,3,4, 5,6,7,8],inf).asStream,
@@ -101,7 +101,7 @@ IFTxtSeqs{
 		].choose;
 		seq4Dir=  [
 			Pwhite(1,   16,   inf).asStream,
-			Pseq([1],inf).asStream,
+			Pseq([1,2],inf).asStream,
 			Pseq([1,2,3],inf).asStream,
 			Pseq([1,2,3,4],inf).asStream,
 			Pseq([5,6,7,8],inf).asStream,

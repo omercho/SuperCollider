@@ -52,7 +52,7 @@ IFPitchSamp {
 		);
 
 		//APC Pitch Samp Button
-		~countPSampApc=0;
+		/*~countPSampApc=0;
 		~apcPSampButton.free;
 		~apcPSampButton=MIDIFunc.noteOn({
 			arg vel;
@@ -67,7 +67,7 @@ IFPitchSamp {
 					}
 				)}
 			);
-		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD6);
+		},srcID:~apcMnInID, chan:~apcMnCh, noteNum:~actButD6);*/
 	}
 
 	*noteSampOn {

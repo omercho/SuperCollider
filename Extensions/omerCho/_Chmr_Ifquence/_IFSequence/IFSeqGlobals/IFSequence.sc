@@ -69,7 +69,7 @@ IFSequence {
 		this.led1(i);
 		IFLpMnSteps.led1(i);
 		IFSeqHat.stepPack(i);
-		IFSeqKeys.stepPack(i);
+		IFSeqSamp.stepPack(i);
 	}
 	*st2{|i|
 		this.led2(i);
@@ -82,12 +82,13 @@ IFSequence {
 		this.led3(i);
 		IFLpMnSteps.led3(i);
 		IFSeqKick.stepPack(i);
-		IFSeqBass.stepPack(i);
+		IFSeqKeys.stepPack(i);
 
 	}
 	*st4{|i|
 		this.led4(i);
 		IFLpMnSteps.led4(i);
+		IFSeqBass.stepPack(i);
 		IFSeqVKick.stepPack(i);IFSeqVSnr.stepPack(i);IFSeqVHat.stepPack(i);
 		IFSeqVClap.stepPack(i);IFSeqVTomL.stepPack(i);IFSeqVTomH.stepPack(i);
 

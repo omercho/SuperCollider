@@ -1,0 +1,83 @@
+documents: !QVariantList
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifStat.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlbStrt.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlobal.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxt.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqDurPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxtSeqs.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifBass.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKick.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMopho.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSnr.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifHat.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKeys.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMophoSet.txt
+editors: !QVariantMap
+  elements: !QVariantList
+    - !QVariantList
+      - !QVariantMap
+        documentIndex: 3
+        position: 749
+      - !QVariantMap
+        documentIndex: 7
+        position: 4063
+      - !QVariantMap
+        documentIndex: 6
+        position: 9112
+      - !QVariantMap
+        documentIndex: 4
+        position: 0
+      - !QVariantMap
+        documentIndex: 9
+        position: 5932
+      - !QVariantMap
+        documentIndex: 5
+        position: 870
+    - !QVariantMap
+      elements: !QVariantList
+        - !QVariantList
+          - !QVariantMap
+            documentIndex: 5
+            position: 503
+          - !QVariantMap
+            documentIndex: 7
+            position: 1309
+          - !QVariantMap
+            documentIndex: 3
+            position: 712
+          - !QVariantMap
+            documentIndex: 4
+            position: 442
+          - !QVariantMap
+            documentIndex: 2
+            position: 0
+          - !QVariantMap
+            documentIndex: 6
+            position: 12345
+        - !QVariantList
+          - !QVariantMap
+            documentIndex: 6
+            position: 12621
+          - !QVariantMap
+            documentIndex: 3
+            position: 0
+          - !QVariantMap
+            documentIndex: 7
+            position: 360
+          - !QVariantMap
+            documentIndex: 8
+            position: 0
+      state: AAAA/wAAAAEAAAACAAACLwAAAi8B/////wEAAAABAA==
+  state: AAAA/wAAAAEAAAACAAABwQAAAcAB/////wEAAAACAA==
+mainWindow:
+  detached: !QVariantMap
+    documents-dock: ""
+    help-dock: ""
+    post-dock: ""
+  geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAQZAAAAAAAAAC0AAAaPAAAEGQAAAAAAAAAABpA=
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAZoAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh4AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh8AAAGzAAAATAD///8AAARfAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==

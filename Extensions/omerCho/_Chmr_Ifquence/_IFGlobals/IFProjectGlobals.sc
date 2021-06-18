@@ -52,7 +52,7 @@ IFProjectGlobals.setTempo(20);
 
 	}
 	*setAddr{
-		~tOSCAdrr = NetAddr.new("192.168.1.7", 5001); // router OTE
+		~tOSCAdrr = NetAddr.new("192.168.1.6", 5001); // router OTE
 		~local = NetAddr("localhost", 57120);
 
 		~mdOut = MIDIOut.newByName("IAC Driver", "SC-Abl");

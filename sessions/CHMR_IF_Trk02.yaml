@@ -2,6 +2,7 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifBass.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifGlbStrt.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifGlobal.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifHat.txt
@@ -21,22 +22,25 @@ editors: !QVariantMap
             documentIndex: 0
             position: 1014
           - !QVariantMap
-            documentIndex: 3
+            documentIndex: 4
             position: 14
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 400
           - !QVariantMap
-            documentIndex: 4
-            position: 156
+            documentIndex: 5
+            position: 535
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 427
           - !QVariantMap
             documentIndex: 2
-            position: 0
+            position: 169
+          - !QVariantMap
+            documentIndex: 3
+            position: 442
       state: AAAA/wAAAAEAAAADAAAAcAAAAZgAAAJHAf////8BAAAAAQA=
     - !QVariantList
       - !QVariantMap
@@ -49,14 +53,11 @@ editors: !QVariantMap
         documentIndex: 2
         position: 0
       - !QVariantMap
-        documentIndex: 3
-        position: 0
-      - !QVariantMap
         documentIndex: 4
         position: 0
       - !QVariantMap
         documentIndex: 5
-        position: 0
+        position: 4
       - !QVariantMap
         documentIndex: 6
         position: 0
@@ -74,9 +75,12 @@ editors: !QVariantMap
         position: 0
       - !QVariantMap
         documentIndex: 11
-        position: 28
+        position: 0
       - !QVariantMap
         documentIndex: 12
+        position: 28
+      - !QVariantMap
+        documentIndex: 13
         position: 16
     - !QVariantList
       - !QVariantMap
@@ -86,13 +90,13 @@ editors: !QVariantMap
         documentIndex: 1
         position: 0
       - !QVariantMap
-        documentIndex: 4
-        position: 764
-      - !QVariantMap
-        documentIndex: 7
-        position: 564
+        documentIndex: 5
+        position: 765
       - !QVariantMap
         documentIndex: 8
+        position: 564
+      - !QVariantMap
+        documentIndex: 9
         position: 456
   state: AAAA/wAAAAEAAAADAAAB0wAAANQAAADZAQAAAAEBAAAAAgE=
 mainWindow:

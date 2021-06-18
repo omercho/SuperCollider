@@ -124,7 +124,7 @@ IFSnr {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chAbk2,
+			\chan, ~chAbk5,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1SnrP.next],~actSnrP),
 			\degree,  Pseq([~nt1SnrP.next], inf),
@@ -138,13 +138,13 @@ IFSnr {
 
 		Pbind(//LFO CUT Snr INT
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk2, \ctlNum, ~envDecVB,
+			\midiout,~vAmbk, \chan, ~chAbk5, \ctlNum, ~envDecVB,
 			\delta, Pseq([~delta1SnrP.next], 1),
 			\control, Pseq([~lfo1SnrP.value], 1)*~lfoMulSnr1,
 		).play(~clkSnr, quant: 0);
 		Pbind(//LFO CUT Snr RATE
 			\midicmd, \control, \type, \midi,
-			\midiout,~vAmbk, \chan, ~chAbk2, \ctlNum, ~slideTm,
+			\midiout,~vAmbk, \chan, ~chAbk5, \ctlNum, ~slideTm,
 			\delta, Pseq([~delta2SnrP.next], 1),
 			\control, Pseq([~lfo2SnrP.value], 1)*~lfoMulSnr2,
 		).play(~clkSnr, quant: 0);
@@ -379,7 +379,7 @@ IFTxtSnr{
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
 		sndA= Pwhite(0.1, 0.6, inf).asStream;
 		sndB= Pwhite(0.1, 0.6, inf).asStream;
-		octM= Pwhite(1,   1, inf).asStream;
+		octM= Pwhite(1,   3, inf).asStream;
 		susM= Pwhite(0.1, 0.2, inf).asStream;
 		xy1X= Pwhite(0.0, 0.5, inf).asStream;
 		xy1Y= Pwhite(0.0, 0.4, inf).asStream;

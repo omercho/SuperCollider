@@ -163,19 +163,20 @@ IFKeys {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chAbk4,
+			\chan, ~chAbk2,
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KeysP.next],~act1KeysP.next),
 			\degree, Pseq([[~nt1KeysP.next]], inf),
-			\amp, Pseq([~vol1KeysP.next*~amp1KeysP.next], inf),
-			\sustain, Pseq([1.2*~sus1KeysP.next],inf)*~susMul1Keys,
+			//\amp, Pseq([~vol1KeysP.next*~amp1KeysP.next], inf),
+			\amp, Pseq([~amp1KeysP.next], inf),
+			\sustain, Pseq([1*~sus1KeysP.next],inf)*~susMul1Keys,
 			\mtranspose, Pseq([~trans1KeysP.next], inf)+~trKeys+~trans1CntKeysP.next+~trans1ShufKeysP.next,
 			\ctranspose, Pseq([~root1KeysP.next],inf),
 			\octave, Pseq([~oct1KeysP.next], inf)+~octMulKeys,
 			\harmonic, Pseq([~hrm1KeysP.next], inf)+~harmKeys
 		).play(~clkKeys, quant: 0);
 
-		Pbind(
+		/*Pbind(
 			\chan, ~chAbk5,
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur2KeysP.next],~act2KeysP.next),
@@ -186,9 +187,9 @@ IFKeys {
 			\ctranspose, Pseq([~root2KeysP.next],inf),
 			\octave, Pseq([~oct2KeysP.next], inf)+~octMulKeys,
 			\harmonic, Pseq([~hrm2KeysP.next], inf)+~harmKeys
-		).play(~clkKeys, quant: 0);
+		).play(~clkKeys, quant: 0);*/
 
-		Pbind(
+		/*Pbind(
 			\chan, ~chAbk6,
 			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur3KeysP.next],~act3KeysP.next),
@@ -199,7 +200,7 @@ IFKeys {
 			\ctranspose, Pseq([~root3KeysP.next],inf),
 			\octave, Pseq([~oct3KeysP.next], inf)+~octMulKeys,
 			\harmonic, Pseq([~hrm3KeysP.next], inf)+~harmKeys
-		).play(~clkKeys, quant: 0);
+		).play(~clkKeys, quant: 0);*/
 
 		~cntKeysLfo=~cntKeysLfo+1;
 		~cntKeysLfo.switch(
@@ -251,7 +252,7 @@ IFKeys {
 				~melMix.noteOn(~mdMixGlb, ~actButA4, 127); //But C
 			});
 		},'/activ1Keys');
-		~act2KeysBut.free;
+		/*~act2KeysBut.free;
 		~act2KeysBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
@@ -272,7 +273,7 @@ IFKeys {
 				~act3Keys.source=0;
 				~melMix.noteOn(~mdMixGlb, ~actButA6, 127); //But C
 			});
-		},'/activ3Keys');
+		},'/activ3Keys');*/
 
 		~time2KeysBut.free;
 		~countTime2Keys=0;
@@ -481,61 +482,48 @@ IFTxtKeys{
 	classvar <>file;
 	*crtRndLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq;
-		var amp,oct,nt,nt2,nt3,vel,susT,tm,dur,shuf,lfoP;
+		var amp,oct,nt,vel,susT,tm,dur,shuf,lfoP;
 		var vol,att,dec,susV,rls,pan,sndA,sndB;
 		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
-		amp=  Pwhite(0,   1,   inf).asStream;
+		amp=[
+			Pseq([1],inf).asStream,Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
+			Prand([0,1],inf).asStream
+		].choose;
 		oct=  Pwhite(2,   3,   inf).asStream;
+		/*nt=   [
+			Pwhite(2,   3,   inf).asStream,
+			Pwalk(
+				[0, -2, 1, 2, -1, 3, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+			Pwalk(
+				[0, 4, 1, 0, -1, 2, 4, 5, 6],
+				Pseq([1], inf),
+				Pseq([1, -1], inf),    // turn around at either end
+				0
+			).asStream,
+		].choose;*/
 		nt=   [
-			Pwhite(-2,   7,   inf).asStream,
-			Pwalk(
-				[0, -2, 1, 2, -1, 3, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
-			Pwalk(
-				[0, 4, 1, 0, -1, 2, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
-		].choose;
-		nt2=   [
-			Pwhite(1,   4,   inf).asStream,
-			Pwalk(
-				[0, -2, 1, 2, -1, 3, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
-			Pwalk(
-				[0, 4, 1, 0, -1, 2, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
-		].choose;
-		nt3=   [
-			Pwhite(2,   7,   inf).asStream,
-			Pwalk(
-				[0, -2, 1, 2, -1, 3, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
-			Pwalk(
-				[0, 4, 1, 0, -1, 2, 4, 5, 6],
-				Pseq([1], inf),
-				Pseq([1, -1], inf),    // turn around at either end
-				0
-			).asStream,
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
 		].choose;
 		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pwhite(1,   2,   inf).asStream;
-		dur=  Pwhite(1,   4,   inf).asStream;
-		shuf= Pwhite(-4,   4,   inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
+		dur=  Pwhite(3,   4,   inf).asStream;
+		shuf= Pwhite(0,   4,   inf).asStream;
 		lfoP= Pwhite(10,   120, inf).asStream;
 		vol=  Pwhite(0.89, 0.99,inf).asStream;
 		att=  Pwhite(0.0, 0.4, inf).asStream;
@@ -545,7 +533,7 @@ IFTxtKeys{
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
 		sndA= Pwhite(0.0, 0.9, inf).asStream;
 		sndB= Pwhite(0.0, 0.9, inf).asStream;
-		octM= Pwhite(1,   2, inf).asStream;
+		octM= Pwhite(1,   3, inf).asStream;
 		susM= Pwhite(0.1, 0.9, inf).asStream;
 		xy1X= Pwhite(0.0, 0.9, inf).asStream;
 		xy1Y= Pwhite(0.0, 0.9, inf).asStream;
@@ -557,38 +545,33 @@ IFTxtKeys{
 			IFTxt.ifPath(trck,prt,inst);
 			file=File.new(IFTxt.ifTrckPath.standardizePath,"w");
 			0.02.wait;
-			(1..192).do{|n|
+			(1..160).do{|n|
 				case
 				{cnt>0&&cnt<=16}   {seq=amp.next}//amp
 				{cnt>16&&cnt<=32}  {seq=oct.next}//oct
-				{cnt>32&&cnt<=48}   {seq=nt.next}//nt
-
-				{cnt>48&&cnt<=64}  {seq=nt2.next}//nt2
-				{cnt>64&&cnt<=80}  {seq=nt3.next}//nt3
-
-				{cnt>80&&cnt<=96}  {seq=vel.next}//vel
-				{cnt>96&&cnt<=112}  {seq=susT.next}//susT
-
-				{cnt>112&&cnt<=128}  {seq=tm.next}//tm
-				{cnt>128&&cnt<=144} {seq=dur.next}//dur
-				{cnt>144&&cnt<=160}{seq=shuf.next}//Shuf
-				{cnt>160&&cnt<=176}{seq=lfoP.next}//lfo
-				{cnt==177}     {seq=vol.next}//Vol
-				{cnt==178}     {seq=att.next}//Att
-				{cnt==179}     {seq=dec.next}//dec
-				{cnt==180}     {seq=susV.next}//sus
-				{cnt==181}     {seq=rls.next}//rls
-				{cnt==182}     {seq=pan.next}//pan
-				{cnt==183}     {seq=sndA.next}//sndX
-				{cnt==184}     {seq=sndB.next}//sndY
-				{cnt==185}   {seq=octM.next}//OctMul
-				{cnt==186}   {seq=susM.next}//SusMul
-				{cnt==187}   {seq=xy1X.next}//xy1X
-				{cnt==188}   {seq=xy1Y.next}//xy1Y
-				{cnt==189}   {seq=xy2X.next}//xy2X
-				{cnt==190}   {seq=xy1Y.next}//xy2Y
-				{cnt==191}   {seq=lfoM1.next}//lfoMul1
-				{cnt==192}   {seq=lfoM2.next};//lfoMul2
+				{cnt>32&&cnt<=48}  {seq=nt.next}//nt
+				{cnt>48&&cnt<=64}  {seq=vel.next}//vel
+				{cnt>64&&cnt<=80}  {seq=susT.next}//susT
+				{cnt>80&&cnt<=96}  {seq=tm.next}//tm
+				{cnt>96&&cnt<=112} {seq=dur.next}//dur
+				{cnt>112&&cnt<=128}{seq=shuf.next}//Shuf
+				{cnt>128&&cnt<=144}{seq=lfoP.next}//lfo
+				{cnt==145}     {seq=vol.next}//Vol
+				{cnt==146}     {seq=att.next}//Att
+				{cnt==147}     {seq=dec.next}//dec
+				{cnt==148}     {seq=susV.next}//sus
+				{cnt==149}     {seq=rls.next}//rls
+				{cnt==150}     {seq=pan.next}//pan
+				{cnt==151}     {seq=sndA.next}//sndX
+				{cnt==152}     {seq=sndB.next}//sndY
+				{cnt==153}   {seq=octM.next}//OctMul
+				{cnt==154}   {seq=susM.next}//SusMul
+				{cnt==155}   {seq=xy1X.next}//xy1X
+				{cnt==156}   {seq=xy1Y.next}//xy1Y
+				{cnt==157}   {seq=xy2X.next}//xy2X
+				{cnt==158}   {seq=xy1Y.next}//xy2Y
+				{cnt==159}   {seq=lfoM1.next}//lfoMul1
+				{cnt==160}   {seq=lfoM2.next};//lfoMul2
 				file.write(
 					seq.asString ++ if (n % 16 != 0, ",", Char.nl)
 				);
@@ -623,15 +606,13 @@ IFTxtKeys{
 		~tKyAmp=IFTxt.line(1);
 		~tKyOct=IFTxt.line(2);
 		~tKyNt=IFTxt.line(3);
-		~tKyNt2=IFTxt.line(4);
-		~tKyNt3=IFTxt.line(5);
-		~tKyVel=IFTxt.line(6);
-		~tKySus=IFTxt.line(7);
-		~tKyTm=IFTxt.line(8);
-		~tKyDur=IFTxt.line(9);
-		~tKyShuf=IFTxt.line(10);
-		~tKyLfo=IFTxt.line(11);
-		~tKyEnv=IFTxt.line(12);
+		~tKyVel=IFTxt.line(4);
+		~tKySus=IFTxt.line(5);
+		~tKyTm=IFTxt.line(6);
+		~tKyDur=IFTxt.line(7);
+		~tKyShuf=IFTxt.line(8);
+		~tKyLfo=IFTxt.line(9);
+		~tKyEnv=IFTxt.line(10);
 
 		this.storeVals;
 	}
@@ -655,18 +636,6 @@ IFTxtKeys{
 			~tKyNt[4],~tKyNt[5],~tKyNt[6],~tKyNt[7],
 			~tKyNt[8],~tKyNt[9],~tKyNt[10],~tKyNt[11],
 			~tKyNt[12],~tKyNt[13],~tKyNt[14],~tKyNt[15],
-		);
-		IFSeqNt2Keys.stGrpSet  (
-			~tKyNt2[0],~tKyNt2[1],~tKyNt2[2],~tKyNt2[3],
-			~tKyNt2[4],~tKyNt2[5],~tKyNt2[6],~tKyNt2[7],
-			~tKyNt2[8],~tKyNt2[9],~tKyNt2[10],~tKyNt2[11],
-			~tKyNt2[12],~tKyNt2[13],~tKyNt2[14],~tKyNt2[15],
-		);
-		IFSeqNt3Keys.stGrpSet  (
-			~tKyNt3[0],~tKyNt3[1],~tKyNt3[2],~tKyNt3[3],
-			~tKyNt3[4],~tKyNt3[5],~tKyNt3[6],~tKyNt3[7],
-			~tKyNt3[8],~tKyNt3[9],~tKyNt3[10],~tKyNt3[11],
-			~tKyNt3[12],~tKyNt3[13],~tKyNt3[14],~tKyNt3[15],
 		);
 		IFSeqVelKeys.stGrpSet (
 			~tKyVel[0],~tKyVel[1],~tKyVel[2],~tKyVel[3],

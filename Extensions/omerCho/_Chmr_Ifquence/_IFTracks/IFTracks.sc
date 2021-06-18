@@ -44,6 +44,8 @@ IFTracks{
 						0.1.wait;
 						IFTxtKeys.makeDflt;
 						0.1.wait;
+						IFTxtSamp.makeDflt;
+						0.1.wait;
 						//IFTxtSamp.makeDflt;
 						//IFTxtMophoSet.makeDflt;
 						this.lbl(\IFtrkLblPre,~trkPreNum);
@@ -123,6 +125,7 @@ IFTrack{
 		IFTxtKeys.read(trk,prt);
 		IFTxtMopho.read(trk,prt);
 		IFTxtBass.read(trk,prt);
+		IFTxtSamp.read(trk,prt);
 
 		trk.switch(
 			\00, {

@@ -173,7 +173,7 @@ IFMopho {
 
 	*osc{
 
-		~actMophoBut.free;
+		/*~actMophoBut.free;
 		~actMophoBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
@@ -212,7 +212,7 @@ IFMopho {
 			);
 		},
 		'/time2Mopho'
-		);
+		);*/
 
 	}
 
@@ -404,13 +404,29 @@ IFTxtMopho{
 		var amp,oct,nt,vel,susT,tm,dur,shuf,lfoP;
 		var vol,att,dec,susV,rls,pan,sndA,sndB;
 		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
-		amp=  Pwhite(0,   1,   inf).asStream;
-		oct=  Pwhite(3,   4,   inf).asStream;
-		nt=   Pwhite(-4,   7,   inf).asStream;
+		amp=[
+			Pseq([1],inf).asStream,Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
+			Prand([0,1],inf).asStream
+		].choose;
+		oct=  Pwhite(2,   3,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
 		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pwhite(1,   2,   inf).asStream;
-		dur=  Pwhite(1,   4,   inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
+		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(-4,   7,   inf).asStream;
 		lfoP= Pwhite(0,   127, inf).asStream;
 		vol=  Pwhite(0.70, 0.89,inf).asStream;

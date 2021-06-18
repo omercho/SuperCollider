@@ -121,11 +121,12 @@ IFBass {
 		var val;
 		val=i;
 		Pbind(
-			\chan, ~chVBass,
-			\type, \midi, \midiout,~vBass, \scale, Pfunc({~scl2}, inf),
+			\chan, ~chAbk1,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1BassP.next],~actBassP.next),
 			\degree, Pseq([~nt1BassP.next], inf),
-			\amp, Pseq([~volBassP.next*~amp1BassP.next], inf),
+			//\amp, Pseq([~volBassP.next*~amp1BassP.next], inf),
+			\amp, Pseq([~amp1BassP.next], inf),
 			\sustain, Pseq([~sus1BassP.next],inf)*~susMulBass,
 			\mtranspose, Pseq([~transBassP.next], inf)+~extraShufBassP.next+~transShufBassP.next+~transCntBassP.next+~trBass,
 			\ctranspose, Pseq([~rootBassP.next],inf),
@@ -169,10 +170,10 @@ IFBass {
 			arg msg;
 			if ( msg[1]==1, {
 				~actBass.source=1;
-				~apcMn.noteOn(~melMixGlb, ~actButA8, 127); //Trk4_But 1
+				~apcMn.noteOn(~melMixGlb, ~actButA1, 127); //Trk4_But 1
 			},{
 				~actBass.source=0;
-				~apcMn.noteOff(~melMixGlb, ~actButA8, 0); //Trk4_But 1
+				~apcMn.noteOff(~melMixGlb, ~actButA1, 0); //Trk4_But 1
 			});
 		},'/activBass');
 
@@ -260,42 +261,42 @@ IFBass {
 				~crntBass_vol=val1;
 				this.lbl1(\volBass,val1);
 				~volBass.source = val1;
-				~mdOut.control(5, 1, vel1);
+				//~mdOut.control(2, 1, vel1);
 			},
 			\att, {
 				~crntBass_att=val1;
 				this.lbl1(\IFattBass,val1);
-				~mdOut.control(5, 5, vel1);
+				//~mdOut.control(5, 5, vel1);
 			},
 			\dec, {
 				~crntBass_dec=val1;
 				this.lbl1(\IFdecBass,val1);
-				~mdOut.control(5, 127, vel1);
+				//~mdOut.control(5, 127, vel1);
 			},
 			\sus, {
 				~crntBass_sus=val1;
 				this.lbl1(\IFsusBass,val1);
-				~mdOut.control(5, 6, vel1);
+				//~mdOut.control(5, 6, vel1);
 			},
 			\rls, {
 				~crntBass_rls=val1;
 				this.lbl1(\IFrlsBass,val1);
-				~mdOut.control(5, 8, vel1);
+				//~mdOut.control(5, 8, vel1);
 			},
 			\pan, {
 				~crntBass_pan=val1;
 				this.lbl1(\IFpanBass,val1);
-				~mdOut.control(5, 16, vel1);
+				//~mdOut.control(5, 16, vel1);
 			},
 			\cut, {
 				~crntBass_cut=val1;
 				this.lbl1(\IFcutBass,val1);
-				~mdOut.control(5, 13, vel1);
+				//~mdOut.control(5, 13, vel1);
 			},
 			\res, {
 				~crntBass_res=val1;
 				this.lbl1(\IFresBass,val1);
-				~mdOut.control(5, 14, vel1);
+				//~mdOut.control(5, 14, vel1);
 			},
 			\octM, {
 				~crntBass_octM=val1;
@@ -396,8 +397,10 @@ IFBass {
 		this.oscResp(respName:\susBassResp, oscName:\IFsusBass, playTag:'susBass_T');
 		this.oscResp(respName:\rlsBassResp, oscName:\IFrlsBass, playTag:'rlsBass_T');
 		this.oscResp(respName:\panBassResp, oscName:\IFpanBass, playTag:'panBass_T');
+
 		this.oscResp(respName:\cutBassResp, oscName:\IFcutBass, playTag:'cutBass_T');
 		this.oscResp(respName:\resBassResp, oscName:\IFresBass, playTag:'resBass_T');
+
 		this.oscResp(respName:\sendBassResp, oscName:\IFsendBass, playTag:'sendBass_T');
 		this.oscResp(respName:\susMBassResp, oscName:\IFsusMBass, playTag:'susMBass_T');
 		this.oscResp(respName:\octMBassResp, oscName:\IFoctMBass, playTag:'octMBass_T');

@@ -212,23 +212,26 @@ IFMelMix{
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act1A, val); //But A
 					//~tOSCAdrr.sendMsg('activKick', val);
-					~actKick.source=val;
+					//~actKick.source=val;
+					~tOSCAdrr.sendMsg('activBass', val);
+					~actBass.source=val;
 					~melAct1ButACnt=val;
 				},
 				\butB,{
 					~melMix.noteOn(~melMixGlb, ~act1B, val); //But B
-					~tOSCAdrr.sendMsg('shufKick', val);
-					~local.sendMsg('shufKick', val);
+					//~tOSCAdrr.sendMsg('shufKick', val);
+					//~local.sendMsg('shufKick', val);
 					~melAct1ButBCnt=val;
 				},
 				\butC,{
 					~melMix.noteOn(~melMixGlb, ~act1C, val); //But C
-					~tOSCAdrr.sendMsg('time2Kick', val);
-					~tmMulKick.source = Pseq([val+1], inf);
+					//~tOSCAdrr.sendMsg('time2Kick', val);
+					//~tmMulKick.source = Pseq([val+1], inf);
 					~melAct1ButCCnt=val;
 				},
 				\fad,{
-					IFKick.set1(\vol,val);
+					//IFKick.set1(\vol,val);
+					//IFBass.set1(\vol,val);
 					Ambk.cc(\pt1,\pt1Vol,vel*0.75);
 				},
 				\nobA,{
@@ -245,25 +248,64 @@ IFMelMix{
 			2,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act2A, val); //But A
-					~tOSCAdrr.sendMsg('activSnr', val);
-					~actSnr.source=val;
+					//~tOSCAdrr.sendMsg('activSnr', val);
+					//~actSnr.source=val;
 					~melAct2ButACnt=val;
 				},
 				\butB,{
 					~melMix.noteOn(~melMixGlb, ~act2B, val); //But B
-					~tOSCAdrr.sendMsg('shufSnr', val);
-					~local.sendMsg('shufSnr', val);
+					//~tOSCAdrr.sendMsg('shufSnr', val);
+					//~local.sendMsg('shufSnr', val);
 					~melAct2ButBCnt=val;
 				},
 				\butC,{
 					~melMix.noteOn(~melMixGlb, ~act2C, val); //But C
-					~tOSCAdrr.sendMsg('time2Snr', val);
-					~tmMulSnr.source = Pseq([val+1], inf);
+					//~tOSCAdrr.sendMsg('time2Snr', val);
+					//~tmMulSnr.source = Pseq([val+1], inf);
 					~melAct2ButCCnt=val;
 				},
 				\fad,{
 					~tOSCAdrr.sendMsg('volSnr', val);
-					IFSnr.set1(\vol,val);
+					//IFSnr.set1(\vol,val);
+					//Ambk.cc(\pt2,\pt2Vol,vel*0.79);
+				},
+				\nobA,{
+					//Ambk.cc(\pt2,\pt2F1Cut,vel);
+				},
+				\nobB,{
+					//Ambk.cc(\pt2,\pt2Mix,vel);
+				},
+				\nobC,{
+
+				}
+			);},
+			3,{paramKey.switch(
+				\butA,{
+					~melMix.noteOn(~melMixGlb, ~act3A, val); //But A
+					//~tOSCAdrr.sendMsg('activHat', val);
+					//~actHat.source=val;
+					~tOSCAdrr.sendMsg('activ1Keys', val);
+					~act1Keys.source=val;
+					~melAct3ButACnt=val;
+				},
+				\butB,{
+					~melMix.noteOn(~melMixGlb, ~act3B, val); //But B
+					//~tOSCAdrr.sendMsg('shufHat', val);
+					//~local.sendMsg('shufHat', val);
+					~tOSCAdrr.sendMsg('shufKeys', val);
+					~local.sendMsg('shufKeys', val);
+					~melAct3ButBCnt=val;
+				},
+				\butC,{
+					~melMix.noteOn(~melMixGlb, ~act3C, val); //But C
+					//~tOSCAdrr.sendMsg('time2Hat', val);
+					//~tmMulHat.source = Pseq([val+1], inf);
+					~tOSCAdrr.sendMsg('time2Keys', val);
+					~tmMulKeys.source = Pseq([val+1], inf);
+					~melAct3ButCCnt=val;
+				},
+				\fad,{
+					//IFHat.set1(\vol,val);
 					Ambk.cc(\pt2,\pt2Vol,vel*0.79);
 				},
 				\nobA,{
@@ -273,71 +315,36 @@ IFMelMix{
 					Ambk.cc(\pt2,\pt2Mix,vel);
 				},
 				\nobC,{
-
-				}
-			);},
-			3,{paramKey.switch(
-				\butA,{
-					~melMix.noteOn(~melMixGlb, ~act3A, val); //But A
-					~tOSCAdrr.sendMsg('activHat', val);
-					~actHat.source=val;
-					~melAct3ButACnt=val;
-				},
-				\butB,{
-					~melMix.noteOn(~melMixGlb, ~act3B, val); //But B
-					~tOSCAdrr.sendMsg('shufHat', val);
-					~local.sendMsg('shufHat', val);
-					~melAct3ButBCnt=val;
-				},
-				\butC,{
-					~melMix.noteOn(~melMixGlb, ~act3C, val); //But C
-					~tOSCAdrr.sendMsg('time2Hat', val);
-					~tmMulHat.source = Pseq([val+1], inf);
-					~melAct3ButCCnt=val;
-				},
-				\fad,{
-					IFHat.set1(\vol,val);
-					Ambk.cc(\pt3,\pt3Vol,vel*0.79);
-				},
-				\nobA,{
-					Ambk.cc(\pt3,\pt3F1Cut,vel);
-				},
-				\nobB,{
-					Ambk.cc(\pt3,\pt3Mix,vel);
-				},
-				\nobC,{
-					~tOSCAdrr.sendMsg('hatCln', val);
-					~mdOut.control(1, 16, vel);//Cln Hats Vol
+					//~tOSCAdrr.sendMsg('hatCln', val);
+					//~mdOut.control(1, 16, vel);//Cln Hats Vol
 				},
 			);},
 			4,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act4A, val); //But A
-					~tOSCAdrr.sendMsg('activ1Keys', val);
-					~act1Keys.source=val;
+					//~tOSCAdrr.sendMsg('activ1Keys', val);
+					//~act1Keys.source=val;
 					~melAct4ButACnt=val;
 				},
 				\butB,{
 					~melMix.noteOn(~melMixGlb, ~act4B, val); //But B
-					~tOSCAdrr.sendMsg('shufKeys', val);
-					~local.sendMsg('shufKeys', val);
+
 					~melAct4ButBCnt=val;
 				},
 				\butC,{
 					~melMix.noteOn(~melMixGlb, ~act4C, val); //But C
-					~tOSCAdrr.sendMsg('time2Keys', val);
-					~tmMulKeys.source = Pseq([val+1], inf);
+
 					~melAct4ButCCnt=val;
 				},
 				\fad,{
-					IFKeys.set1(\vol,val);
-					Ambk.cc(\pt4,\pt4Vol,vel*0.79);
+					//IFKeys.set1(\vol,val);
+					//Ambk.cc(\pt4,\pt4Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt4,\pt4F1Cut,vel);
+					//Ambk.cc(\pt4,\pt4F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt4,\pt4Mix,vel);
+					//Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
 					~tOSCAdrr.sendMsg('volClnKeys', val);
@@ -347,8 +354,10 @@ IFMelMix{
 			5,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act5A, val); //But A
-					~tOSCAdrr.sendMsg('activ2Keys', val);
-					~act2Keys.source=val;
+					//~tOSCAdrr.sendMsg('activ2Keys', val);
+					//~act2Keys.source=val;
+					~tOSCAdrr.sendMsg('activSamp', val);
+					~actSamp.source=val;
 					~melAct5ButACnt=val;
 				},
 				\butB,{
@@ -362,13 +371,13 @@ IFMelMix{
 					~melAct5ButCCnt=val;
 				},
 				\fad,{
-					Ambk.cc(\pt5,\pt5Vol,vel*0.79);
+					Ambk.cc(\pt3,\pt3Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt5,\pt5F1Cut,vel*0.9);
+					Ambk.cc(\pt3,\pt3F1Cut,vel*0.9);
 				},
 				\nobB,{
-					Ambk.cc(\pt5,\pt5Mix,vel*0.9);
+					Ambk.cc(\pt3,\pt3Mix,vel*0.9);
 				},
 				\nobC,{
 
@@ -377,8 +386,8 @@ IFMelMix{
 			6,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act6A, val); //But A
-					~tOSCAdrr.sendMsg('activ3Keys', val);
-					~act3Keys.source=val;
+					//~tOSCAdrr.sendMsg('activ3Keys', val);
+					//~act3Keys.source=val;
 					~melAct6ButACnt=val;
 				},
 				\butB,{
@@ -392,13 +401,13 @@ IFMelMix{
 					~melAct6ButCCnt=val;
 				},
 				\fad,{
-					Ambk.cc(\pt6,\pt6Vol,vel*0.79);
+					//Ambk.cc(\pt6,\pt6Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt6,\pt6F1Cut,vel*0.9);
+					//Ambk.cc(\pt6,\pt6F1Cut,vel*0.9);
 				},
 				\nobB,{
-					Ambk.cc(\pt6,\pt6Mix,vel*0.9);
+					//Ambk.cc(\pt6,\pt6Mix,vel*0.9);
 				},
 				\nobC,{
 
@@ -439,8 +448,8 @@ IFMelMix{
 			8,{paramKey.switch(
 				\butA,{
 					~melMix.noteOn(~melMixGlb, ~act8A, val); //But A
-					~tOSCAdrr.sendMsg('activBass', val);
-					~actBass.source=val;
+					//~tOSCAdrr.sendMsg('activBass', val);
+					//~actBass.source=val;
 					~melAct8ButACnt=val;
 				},
 				\butB,{
@@ -457,14 +466,14 @@ IFMelMix{
 				},
 
 				\fad,{
-
-					IFBass.set1(\vol,val);
+					Mopho.cc('vcaLvl', vel);
+					//IFBass.set1(\vol,val);
 				},
 				\nobA,{
-					IFBass.set1(\cut,val);
+					//IFBass.set1(\cut,val);
 				},
 				\nobB,{
-					IFBass.set1(\res,val);
+					//IFBass.set1(\res,val);
 				},
 				\nobC,{
 

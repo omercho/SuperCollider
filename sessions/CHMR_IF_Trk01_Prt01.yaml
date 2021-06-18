@@ -2,14 +2,24 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifStat.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlbStrt.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFAmbika/Ambk.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlobal.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqNtPat.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFLoad.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSeqs.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSamp.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxtSeqs.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifBass.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKick.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMopho.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSnr.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifHat.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKeys.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxt.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMophoSet.txt
 editors: !QVariantMap
   elements: !QVariantList
@@ -20,15 +30,27 @@ editors: !QVariantMap
             documentIndex: 0
             position: 1012
           - !QVariantMap
+            documentIndex: 3
+            position: 91
+          - !QVariantMap
             documentIndex: 2
-            position: 49
+            position: 45
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 222
           - !QVariantMap
-            documentIndex: 3
-            position: 255
+            documentIndex: 10
+            position: 362
+          - !QVariantMap
+            documentIndex: 4
+            position: 213
+          - !QVariantMap
+            documentIndex: 5
+            position: 8321
+          - !QVariantMap
+            documentIndex: 11
+            position: 1209
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
@@ -37,47 +59,83 @@ editors: !QVariantMap
             documentIndex: 2
             position: 2
           - !QVariantMap
+            documentIndex: 7
+            position: 0
+          - !QVariantMap
+            documentIndex: 12
+            position: 1
+          - !QVariantMap
             documentIndex: 4
-            position: 3
-      state: AAAA/wAAAAEAAAADAAAAiwAAAZwAAAI2Af////8BAAAAAQA=
+            position: 213
+          - !QVariantMap
+            documentIndex: 6
+            position: 366
+          - !QVariantMap
+            documentIndex: 10
+            position: 362
+          - !QVariantMap
+            documentIndex: 8
+            position: 2051
+          - !QVariantMap
+            documentIndex: 9
+            position: 7224
+      state: AAAA/wAAAAEAAAADAAAAiwAAAecAAAHrAf////8BAAAAAQA=
     - !QVariantList
       - !QVariantMap
-        documentIndex: 4
-        position: 171
-      - !QVariantMap
-        documentIndex: 10
+        documentIndex: 7
         position: 0
       - !QVariantMap
-        documentIndex: 6
+        documentIndex: 15
         position: 31
       - !QVariantMap
-        documentIndex: 11
+        documentIndex: 21
         position: 0
       - !QVariantMap
-        documentIndex: 7
+        documentIndex: 16
         position: 171
       - !QVariantMap
-        documentIndex: 8
+        documentIndex: 17
         position: 223
       - !QVariantMap
-        documentIndex: 9
+        documentIndex: 18
         position: 195
       - !QVariantMap
-        documentIndex: 5
-        position: 477
+        documentIndex: 14
+        position: 223
+      - !QVariantMap
+        documentIndex: 12
+        position: 90
+      - !QVariantMap
+        documentIndex: 19
+        position: 295
+      - !QVariantMap
+        documentIndex: 3
+        position: 8291
+      - !QVariantMap
+        documentIndex: 20
+        position: 12297
     - !QVariantList
       - !QVariantMap
-        documentIndex: 4
-        position: 171
-      - !QVariantMap
         documentIndex: 7
+        position: 0
+      - !QVariantMap
+        documentIndex: 16
         position: 1
       - !QVariantMap
-        documentIndex: 8
-        position: 235
+        documentIndex: 15
+        position: 191
       - !QVariantMap
-        documentIndex: 6
-        position: 223
+        documentIndex: 17
+        position: 127
+      - !QVariantMap
+        documentIndex: 12
+        position: 191
+      - !QVariantMap
+        documentIndex: 3
+        position: 8150
+      - !QVariantMap
+        documentIndex: 13
+        position: 8818
   state: AAAA/wAAAAEAAAADAAAB7wAAANwAAAC1AQAAAAEBAAAAAgE=
 mainWindow:
   detached: !QVariantMap

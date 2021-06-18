@@ -36,42 +36,45 @@ IFSamp {
 	*globals{
 
 		~chSamp=5;
-		~sampLate=0.00;
+		~lateSamp=0.00;
 		~timesSamp=1;
 		~octMulSamp=2;
 		~rootFreqSamp=~c5; // 261=C4|523=C5
 		~harmSamp=0;
 		~susMulSamp=1;
+		~trSamp=0;
 		~lfoMulSamp1=0;
 		~lfoMulSamp2=0;
-		~trSamp=0;
-		~cntSamp=0;
 
 
 	}
-	*octave{|val|
+	/**octave{|val|
 		~octSamp.source = Pseq([val], inf);
 	}
 	*octMul{|val|
 		~octMulSamp = val;
 		~tOSCAdrr.sendMsg('octSampLabel', val);
-	}
+	}*/
 	*proxy{
 		~rootSamp = PatternProxy( Pseq([0], inf));
 		~rootSampP = Pseq([~rootSamp], inf).asStream;
 		~nt1Samp = PatternProxy( Pseq([0], inf));
 		~nt1SampP = Pseq([~nt1Samp], inf).asStream;
+
 		~dur1Samp = PatternProxy( Pseq([1], inf));
 		~dur1SampP = Pseq([~dur1Samp], inf).asStream;
+		~durMulSamp = PatternProxy( Pseq([1], inf));
+		~durMulSampP = Pseq([~durMulSamp], inf).asStream;
+
 		~amp1Samp = PatternProxy( Pseq([0.9], inf));
 		~amp1SampP = Pseq([~amp1Samp], inf).asStream;
 		~sus1Samp = PatternProxy( Pseq([1], inf));
 		~sus1SampP = Pseq([~sus1Samp], inf).asStream;
 
-		~tmMulSamp = PatternProxy( Pseq([1], inf));
-		~tmMulSampP= Pseq([~tmMulSamp], inf).asStream;
-		~tmSamp = PatternProxy( Pseq([1], inf));
-		~tmSampP= Pseq([~tmSamp], inf).asStream;
+		//~tmMulSamp = PatternProxy( Pseq([1], inf));
+		//~tmMulSampP= Pseq([~tmMulSamp], inf).asStream;
+		//~tmSamp = PatternProxy( Pseq([1], inf));
+		//~tmSampP= Pseq([~tmSamp], inf).asStream;
 
 		~transSamp = PatternProxy( Pseq([0], inf));
 		~transSampP = Pseq([~transSamp], inf).asStream;
@@ -80,11 +83,13 @@ IFSamp {
 		~transCntSamp = PatternProxy( Pseq([0], inf));
 		~transCntSampP = Pseq([~transCntSamp], inf).asStream;
 
+		~extraShufSamp = PatternProxy( Pshuf([0], inf));
+		~extraShufSampP = Pseq([~extraShufSamp], inf).asStream;
+
 		~octSamp = PatternProxy( Pseq([4], inf));
 		~octSampP = Pseq([~octSamp], inf).asStream;
-
-		~legSamp= PatternProxy( Pseq([0.0], inf));
-		~legSampP = Pseq([~legSamp], inf).asStream;
+		//~legSamp= PatternProxy( Pseq([0.0], inf));
+		//~legSampP = Pseq([~legSamp], inf).asStream;
 		~hrmSamp = PatternProxy( Pseq([1.0], inf));
 		~hrmSampP = Pseq([~hrmSamp], inf).asStream;
 
@@ -100,7 +105,6 @@ IFSamp {
 
 		~actSamp = PatternProxy( Pseq([1], inf));
 		~actSampP= Pseq([~actSamp], inf).asStream;
-
 		~volSamp = PatternProxy( Pseq([0.9], inf));
 		~volSampP = Pseq([~volSamp], inf).asStream;
 
@@ -123,21 +127,16 @@ IFSamp {
 
 	}
 
+
 	*new{|i=1|
 		var val;
 		val=i;
 		case
 		{ i == val }  {
 			{val.do{
-				~sampLate.wait;
-				~cntSamp=~cntSamp+1;
-				//~cntSamp.postln;
-				~cntSamp.switch(
-					0,{},
-					1,{this.p1(val);},
-					4,{~cntSamp=0;}
-				);
-				((~dur1SampP.next)*(~durMul4P.next)/val).wait;
+				~lateSamp.wait;
+				this.p1(val);
+				((~dur1SampP.next)*(~durMulSampP.next)/val).wait;
 			}}.fork;
 		}
 	}
@@ -146,38 +145,39 @@ IFSamp {
 		val=i;
 
 		Pbind(
-			\chan, ~chSamp,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
-			\dur, Pseq([~dur1SampP.next],~actSampP),
+			\chan, ~chAbk3,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
+			\dur, Pseq([~dur1SampP.next],~actSampP.next),
 			\degree, Pseq([~nt1SampP.next], inf),
-			\amp, Pseq([~volSampP.next*~amp1SampP.next], inf),
+			//\amp, Pseq([~volSampP.next*~amp1SampP.next], inf),
+			\amp, Pseq([~amp1SampP.next], inf),
 			\sustain, Pseq([~sus1SampP.next],inf)*~susMulSamp,
-			\mtranspose, Pseq([~transSampP.next], inf)+~transCntSampP.next+~trSamp+~transShufSampP.next,
+			\mtranspose, Pseq([~transSampP.next], inf)+~extraShufSampP.next+~transCntSampP.next+~trSamp+~transShufSampP.next+~trSamp,
 			\ctranspose, Pseq([~rootSampP.next],inf),
 			\octave, Pseq([~octSampP.next], inf)+~octMulSamp,
 			\harmonic, Pseq([~hrmSampP.next], inf)+~harmSamp
 		).play(~clkSamp, quant: 0);
 
-		/*Pbind(//LFO 1
+		Pbind(//LFO 1
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut, \chan, 7, \ctlNum, 40,
+			\midiout,~vAmbk, \chan, ~chAbk3, \ctlNum, 40,
 			\delta, Pseq([~delta1SampP.next], 1),
 			\control, Pseq([~lfo1SampP.next], 1)*~lfoMulSamp1,
 		).play(~clkSamp, quant: 0);
 
 		Pbind(//LFO 2
 			\type, \midi, \midicmd, \control,
-			\midiout,~mdOut,\chan, 7,  \ctlNum, 41,
+			\midiout,~vAmbk,\chan, ~chAbk3,  \ctlNum, 41,
 			\delta, Pseq([~delta2SampP.next], 1),
 			\control, Pseq([~lfo2SampP.next], 1)*~lfoMulSamp2,
-		).play(~clkSamp, quant: 0);*/
+		).play(~clkSamp, quant: 0);
 
 	}//p1
 
 	*lng{|deg=0,amp=1,sus=4|
 		Pbind(
-			\chan, ~chSamp,
-			\type, \midi, \midiout,~mdOut, \scale, Pfunc({~scl2}, inf),
+			\chan, ~chAbk3,
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1LngSampP.next],1),
 			\degree, Pseq([~nt1LngSampP.next], inf)+deg,
 			\amp, Pseq([~volSampP.next*~amp1LngSampP.next], inf)*amp,
@@ -191,17 +191,16 @@ IFSamp {
 
 	*osc{
 
-		/*~actSampBut.free;
+		~actSampBut.free;
 		~actSampBut = OSCFunc({
 			arg msg;
 			if ( msg[1]==1, {
 				~actSamp.source=1;
-				~apcMn.noteOn(~apcMnCh, ~actButA6, 127);
-				//~behOut.control(7, 2, 127);
+				~apcMn.noteOn(~melMixGlb, ~actButA5, 127); //Trk5_But 1
+
 			},{
 				~actSamp.source=0;
-				~apcMn.noteOff(~apcMnCh, ~actButA6, 127);
-				//~behOut.control(7, 2, 0);
+				~apcMn.noteOff(~melMixGlb, ~actButA5, 0); //Trk4_But 1
 			});
 		},
 		'/activSamp'
@@ -215,16 +214,16 @@ IFSamp {
 			~countTime2Samp.switch(
 				0,{},
 				1, {
-					~apcMn.noteOn(~apcMnCh, ~actButB6, 1);
+					//~apcMn.noteOn(~apcMnCh, ~actButB6, 1);
 					//~tOSCAdrr.sendMsg('time2Samp', 1);
 					//~tOSCAdrr.sendMsg('tmSampLabel', 2);
-					~tmMulSamp.source = Pseq([2], inf);
+					//~tmMulSamp.source = Pseq([2], inf);
 				},
 				2,{
-					~apcMn.noteOn(~apcMnCh, ~actButB6, 0);
+					//~apcMn.noteOn(~apcMnCh, ~actButB6, 0);
 					//~tOSCAdrr.sendMsg('time2Samp', 0);
 					//~tOSCAdrr.sendMsg('tmSampLabel', 1);
-					~tmMulSamp.source = Pseq([1], inf);
+					//~tmMulSamp.source = Pseq([1], inf);
 					~countTime2Samp=0;
 				}
 			);
@@ -233,7 +232,7 @@ IFSamp {
 		);
 
 
-		~volSampFader.free;
+		/*~volSampFader.free;
 		~volSampFader= OSCFunc({
 			arg msg,vel;
 			vel=msg[1]*127;
@@ -455,34 +454,34 @@ IFSamp {
 		key.switch(
 			\vol, {
 				~crntSamp_vol=val1;
-				this.lbl1(\IFvolSamp,val1);
-				~volSamp.source = val1;
-				~mdOut.control(7, 1, vel1);
+				this.lbl1(\volSamp,val1);
+				//~volSamp.source = val1;
+				//~mdOut.control(7, 1, vel1);
 			},
 			\att, {
 				~crntSamp_att=val1;
 				this.lbl1(\IFattSamp,val1);
-				~mdOut.control(7, 5, vel1);
+				//~mdOut.control(7, 5, vel1);
 			},
 			\dec, {
 				~crntSamp_dec=val1;
 				this.lbl1(\IFdecSamp,val1);
-				~mdOut.control(7, 127, vel1);
+				//~mdOut.control(7, 127, vel1);
 			},
 			\sus, {
 				~crntSamp_sus=val1;
 				this.lbl1(\IFsusSamp,val1);
-				~mdOut.control(7, 6, vel1);
+				//~mdOut.control(7, 6, vel1);
 			},
 			\rls, {
 				~crntSamp_rls=val1;
 				this.lbl1(\IFrlsSamp,val1);
-				~mdOut.control(7, 8, vel1);
+				//~mdOut.control(7, 8, vel1);
 			},
 			\pan, {
 				~crntSamp_pan=val1;
 				this.lbl1(\IFpanSamp,val1);
-				~mdOut.control(7, 16, vel1);
+				//~mdOut.control(7, 16, vel1);
 			},
 			\octM, {
 				~crntSamp_octM=val1;
@@ -552,6 +551,7 @@ IFSamp {
 				'susSamp_T' , { this.set1(\sus,val1);},
 				'rlsSamp_T' , { this.set1(\rls,val1);},
 				'panSamp_T' , { this.set1(\pan,val1);},
+
 				'sendSamp_T', { this.set2(\send,val1,val2);},
 				'susMSamp_T', { this.set1(\susM,val1);},
 				'octMSamp_T', { this.set1(\octM,val1);},
@@ -573,6 +573,7 @@ IFSamp {
 		this.oscResp(respName:\susSampResp, oscName:\IFsusSamp, playTag:'susSamp_T');
 		this.oscResp(respName:\rlsSampResp, oscName:\IFrlsSamp, playTag:'rlsSamp_T');
 		this.oscResp(respName:\panSampResp, oscName:\IFpanSamp, playTag:'panSamp_T');
+
 		this.oscResp(respName:\sendSampResp, oscName:\IFsendSamp, playTag:'sendSamp_T');
 		this.oscResp(respName:\susMSampResp, oscName:\IFsusMSamp, playTag:'susMSamp_T');
 		this.oscResp(respName:\octMSampResp, oscName:\IFoctMSamp, playTag:'octMSamp_T');
@@ -590,16 +591,32 @@ IFTxtSamp{
 		var amp,oct,nt,vel,susT,tm,dur,shuf,lfoP;
 		var vol,att,dec,susV,rls,pan,sndA,sndB;
 		var octM,susM,xy1X,xy1Y,xy2X,xy2Y,lfoM1,lfoM2;
-		amp=  Pwhite(0,   1,   inf).asStream;
-		oct=  Pwhite(3,   4,   inf).asStream;
-		nt=   Pwhite(0,   7,   inf).asStream;
+		amp=[
+			Pseq([1],inf).asStream,Pseq([1,1,1,0],inf).asStream,
+			Pseq([0,1,1,1],inf).asStream,Pshuf([1,1,1,0],inf).asStream,
+			Prand([0,1],inf).asStream
+		].choose;
+		oct=  Pwhite(2,   3,   inf).asStream;
+		nt=   [
+			Pwhite(-2,   7,   inf).asStream;
+			Pseq([0,0,1,0],inf).asStream,
+			Pseq([0,0,0,1,0,0,1,1],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,1],inf).asStream,
+			Pseq([0,1,1,0,0,0,1,0],inf).asStream,
+			Pseq([0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1],inf).asStream,
+			Pshuf([0,1,1,0,0,0,1,0,0,0,1,0,1,0,1,0],inf).asStream,
+		].choose;
 		vel=  Pwhite(1,   3,   inf).asStream;
 		susT= Pwhite(1,   5,   inf).asStream;
-		tm=   Pwhite(1,   1,   inf).asStream;
-		dur=  Pwhite(4,   4,   inf).asStream;
+		tm=   [
+			Pseq([1],inf).asStream,
+			Pshuf([2,1,1,1],inf).asStream,
+			Pshuf([2,1,2,1],inf).asStream,
+		].choose;
+		dur=  Pwhite(3,   4,   inf).asStream;
 		shuf= Pwhite(0,   4,   inf).asStream;
 		lfoP= Pwhite(10,   127, inf).asStream;
-		vol=  Pwhite(0.8, 0.9,inf).asStream;
+		vol=  Pwhite(0.85, 0.95,inf).asStream;
 		att=  Pwhite(0.2, 0.5, inf).asStream;
 		dec=  Pwhite(0.6, 1.0, inf).asStream;
 		susV= Pwhite(0.1, 0.6, inf).asStream;
@@ -607,8 +624,8 @@ IFTxtSamp{
 		pan=  Pwhite(0.1, 0.9, inf).asStream;
 		sndA= Pwhite(0.1, 0.9, inf).asStream;
 		sndB= Pwhite(0.1, 0.9, inf).asStream;
-		octM= Pwhite(0,   3, inf).asStream;
-		susM= Pwhite(0.1, 0.9, inf).asStream;
+		octM= Pwhite(1,   3, inf).asStream;
+		susM= Pwhite(0.1, 0.4, inf).asStream;
 		xy1X= Pwhite(0.0, 0.9, inf).asStream;
 		xy1Y= Pwhite(0.0, 0.9, inf).asStream;
 		xy2X= Pwhite(0.0, 0.9, inf).asStream;
@@ -668,7 +685,7 @@ IFTxtSamp{
 		)
 	}
 	*makeDflt{
-		IFTxtSamp.make(\01,\00,\ifSamp,'rndSampTag');
+		IFTxtSamp.make(\00,\01,\ifSamp,'rndSampTag');
 	}
 	*read{|trck,prtDir|
 
