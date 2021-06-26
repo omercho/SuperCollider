@@ -43,34 +43,80 @@ IFBass {
 	}
 
 	*proxy {
+		~actBass = PatternProxy( Pseq([1], inf));
+		~actBassP= Pseq([~actBass], inf).asStream;
+
+		~volBass = PatternProxy( Pseq([0.9], inf));
+		~volBassP = Pseq([~volBass], inf).asStream;
+
 		~rootBass = PatternProxy( Pseq([0], inf));
-		~rootBassP = Pseq([~rootBass], inf).asStream;
+		~rootBassP = ~rootBass.asStream;
+		~root2BassP = ~rootBass.asStream;
+		~root3BassP = ~rootBass.asStream;
+
+
 		~nt1Bass = PatternProxy( Pseq([0], inf));
-		~nt1BassP = Pseq([~nt1Bass], inf).asStream;
+		~nt1BassP = ~nt1Bass.asStream;
+		~nt2BassP = ~nt1Bass.asStream+~nt2Bass.asStream;
+		~nt3BassP = ~nt1Bass.asStream+~nt2Bass.asStream+~nt3Bass.asStream;
+		//~nt1BassP = Pseq([~nt1Bass], inf).asStream;
 
 		~dur1Bass = PatternProxy( Pseq([1], inf));
-		~dur1BassP = Pseq([~dur1Bass], inf).asStream;
+		~dur1BassP =~dur1Bass.asStream;
+		~dur2BassP = ~dur1Bass.asStream;
+		~dur3BassP = ~dur1Bass.asStream;
+		//~dur1BassP = Pseq([~dur1Bass], inf).asStream;
+
 		~durMulBass = PatternProxy( Pseq([1], inf));
-		~durMulBassP = Pseq([~durMulBass], inf).asStream;
+		//~durMulBassP = Pseq([~durMulBass], inf).asStream;
+		~durMulBassP = ~durMulBass.asStream;
+		~durMul2BassP = ~durMulBass.asStream;
+		~durMul3BassP = ~durMulBass.asStream;
 
 		~amp1Bass = PatternProxy( Pseq([0.9], inf));
-		~amp1BassP = Pseq([~amp1Bass], inf).asStream;
+		~amp1BassP = ~amp1Bass.asStream;
+		~amp2BassP = ~amp1Bass.asStream;
+		~amp3BassP = ~amp1Bass.asStream;
+		//~amp1BassP = Pseq([~amp1Bass], inf).asStream;
+
 		~sus1Bass = PatternProxy( Pseq([1], inf));
-		~sus1BassP = Pseq([~sus1Bass], inf).asStream;
+		~sus1BassP = ~sus1Bass.asStream;
+		~sus2BassP = ~sus1Bass.asStream;
+		~sus3BassP = ~sus1Bass.asStream;
+		//~sus1BassP = Pseq([~sus1Bass], inf).asStream;
 
-		~transBass = PatternProxy( Pseq([0], inf));
-		~transBassP = Pseq([~transBass], inf).asStream;
+		~transBass = PatternProxy( Pseq([0.2], inf));
+		~transBassP= ~transBass.asStream;
+		~trans2BassP= ~transBass.asStream;
+		~trans3BassP= ~transBass.asStream;
+		//~transBassP = Pseq([~transBass], inf).asStream;
+
+
 		~transShufBass = PatternProxy( Pseq([0], inf));
-		~transShufBassP = Pseq([~transShufBass], inf).asStream;
-		~transCntBass = PatternProxy( Pseq([0], inf));
-		~transCntBassP = Pseq([~transCntBass], inf).asStream;
-		~extraShufBass = PatternProxy( Pshuf([0], inf));
-		~extraShufBassP = Pseq([~extraShufBass], inf).asStream;
+		//~transShufBassP = Pseq([~transShufBass], inf).asStream;
+		~transShufBassP = ~transShufBass.asStream;
+		~trans2ShufBassP = ~transShufBass.asStream;
+		~trans3ShufBassP = ~transShufBass.asStream;
 
-		~octBass = PatternProxy( Pseq([4], inf));
+
+		~transCntBass = PatternProxy( Pseq([0], inf));
+		//~transCntBassP = Pseq([~transCntBass], inf).asStream;
+		~transCntBassP = ~transCntBass.asStream;
+		~trans2CntBassP = ~transCntBass.asStream;
+		~trans3CntBassP = ~transCntBass.asStream;
+
+		//~extraShufBass = PatternProxy( Pshuf([0], inf));
+		//~extraShufBassP = Pseq([~extraShufBass], inf).asStream;
+
+		~octBass = PatternProxy( Pseq([2], inf));
 		~octBassP = Pseq([~octBass], inf).asStream;
+		~oct2BassP = Pseq([~octBass], inf).asStream;
+		~oct3BassP = Pseq([~octBass], inf).asStream;
+
 		~hrmBass = PatternProxy( Pseq([1.0], inf));
 		~hrmBassP = Pseq([~hrmBass], inf).asStream;
+		~hrm2BassP = Pseq([~hrmBass], inf).asStream;
+		~hrm2BassP = Pseq([~hrmBass], inf).asStream;
 
 		~delta1Bass = PatternProxy( Pseq([1/1], inf));
 		~delta1BassP = Pseq([~delta1Bass], inf).asStream;
@@ -82,11 +128,7 @@ IFBass {
 		~lfo2Bass = PatternProxy( Pseq([10], inf));
 		~lfo2BassP = Pseq([~lfo2Bass], inf).asStream;
 
-		~actBass = PatternProxy( Pseq([1], inf));
-		~actBassP= Pseq([~actBass], inf).asStream;
 
-		~volBass = PatternProxy( Pseq([0.9], inf));
-		~volBassP = Pseq([~volBass], inf).asStream;
 
 		//lng
 		~rootLngBass = PatternProxy( Pseq([0], inf));
@@ -127,14 +169,14 @@ IFBass {
 			\degree, Pseq([~nt1BassP.next], inf),
 			//\amp, Pseq([~volBassP.next*~amp1BassP.next], inf),
 			\amp, Pseq([~amp1BassP.next], inf),
-			\sustain, Pseq([~sus1BassP.next],inf)*~susMulBass,
-			\mtranspose, Pseq([~transBassP.next], inf)+~extraShufBassP.next+~transShufBassP.next+~transCntBassP.next+~trBass,
+			\sustain, Pseq([1*~sus1BassP.next],inf)*~susMulBass,
+			\mtranspose, Pseq([~transBassP.next], inf)+~transShufBassP.next+~transCntBassP.next+~trBass,
 			\ctranspose, Pseq([~rootBassP.next],inf),
 			\octave, Pseq([~octBassP.next], inf)+~octMulBass,
 			\harmonic, Pseq([~hrmBassP.next], inf)+~harmBass
 		).play(~clkBass, quant: 0);
 
-		Pbind(//LFO CUT BASS INT
+		/*Pbind(//LFO CUT BASS INT
 			\midicmd, \control, \type, \midi,
 			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~envDecVB,
 			\delta, Pseq([~delta1BassP.next], 1),
@@ -145,12 +187,12 @@ IFBass {
 			\midiout,~vAmbk, \chan, ~chAbk1, \ctlNum, ~slideTm,
 			\delta, Pseq([~delta2BassP.next], 1),
 			\control, Pseq([~lfo2BassP.value], 1)*~lfoMulBass2,
-		).play(~clkBass, quant: 0);
+		).play(~clkBass, quant: 0);*/
 
 	}//p1
 
 	*lng{|deg=0,amp=1,sus=4|
-		Pbind(
+		/*Pbind(
 			\chan, ~chAbk1,
 			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2},inf),
 			\dur, Pseq([~dur1LngBassP.next],1)+sus,
@@ -161,7 +203,7 @@ IFBass {
 			\mtranspose, Pseq([~transLngBassP.next],inf)+~transShufLngBassP.next+~transCntBassP.next,
 			\octave, Pseq([~octBassP.next],inf)+~octMulBass,
 			\harmonic, Pseq([~hrmBassP.next],inf)+~harmBass
-		).play(~clkBass, quant: 0);
+		).play(~clkBass, quant: 0);*/
 	}//lng
 
 	*osc{
@@ -170,10 +212,10 @@ IFBass {
 			arg msg;
 			if ( msg[1]==1, {
 				~actBass.source=1;
-				~apcMn.noteOn(~melMixGlb, ~actButA1, 127); //Trk4_But 1
+				~melMix.noteOn(~melMixGlb, ~actButA1, 127); //Trk4_But 1
 			},{
 				~actBass.source=0;
-				~apcMn.noteOff(~melMixGlb, ~actButA1, 0); //Trk4_But 1
+				~melMix.noteOff(~melMixGlb, ~actButA1, 0); //Trk4_But 1
 			});
 		},'/activBass');
 
@@ -261,41 +303,49 @@ IFBass {
 				~crntBass_vol=val1;
 				this.lbl1(\volBass,val1);
 				~volBass.source = val1;
+				Ambk.cc(\pt1,\pt1Vol,vel1);
 				//~mdOut.control(2, 1, vel1);
 			},
 			\att, {
 				~crntBass_att=val1;
 				this.lbl1(\IFattBass,val1);
+				Ambk.cc(\pt1,\pt1Env1Att,vel1);
 				//~mdOut.control(5, 5, vel1);
 			},
 			\dec, {
 				~crntBass_dec=val1;
 				this.lbl1(\IFdecBass,val1);
+				Ambk.cc(\pt1,\pt1Env1Dec,vel1);
 				//~mdOut.control(5, 127, vel1);
 			},
 			\sus, {
 				~crntBass_sus=val1;
 				this.lbl1(\IFsusBass,val1);
+				Ambk.cc(\pt1,\pt1Env1Sus,vel1);
 				//~mdOut.control(5, 6, vel1);
 			},
 			\rls, {
 				~crntBass_rls=val1;
 				this.lbl1(\IFrlsBass,val1);
+				Ambk.cc(\pt1,\pt1Env1Rls,vel1);
 				//~mdOut.control(5, 8, vel1);
 			},
 			\pan, {
 				~crntBass_pan=val1;
 				this.lbl1(\IFpanBass,val1);
+				Ambk.cc(\pt1,\pt1Mix,vel1);
 				//~mdOut.control(5, 16, vel1);
 			},
 			\cut, {
 				~crntBass_cut=val1;
 				this.lbl1(\IFcutBass,val1);
+				Ambk.cc(\pt1,\pt1F1Cut,vel1);
 				//~mdOut.control(5, 13, vel1);
 			},
 			\res, {
 				~crntBass_res=val1;
 				this.lbl1(\IFresBass,val1);
+				Ambk.cc(\pt1,\pt1F1Res,vel1);
 				//~mdOut.control(5, 14, vel1);
 			},
 			\octM, {

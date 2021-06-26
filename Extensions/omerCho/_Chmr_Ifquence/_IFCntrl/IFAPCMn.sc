@@ -82,8 +82,6 @@ IFAPCMn{
 		~tsBut1=64;~tsBut2=65;~tsBut3=66;~tsBut4=67;
 		~tsBut5=68;~tsBut6=69;~tsBut7=70;~tsBut8=71;
 
-
-
 		~apcPlayBut=98;
 
 		~apcStopBut=92;
@@ -253,7 +251,7 @@ IFAPCMn{
 	//--2
 	*actLine2ButTS2{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS2, val);  //ButTS
-		~local.sendMsg('pitchSnr', 1);
+		//~local.sendMsg('pitchSnr', 1);
 		~cntActLine2ButTS2=val;
 	}
 	*actLine2ButA2{|val|
@@ -276,7 +274,9 @@ IFAPCMn{
 	//--3
 	*actLine3ButTS3{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS3, val); //ButTS
-		~local.sendMsg('pitchHat', 1);
+
+		~local.sendMsg('pitchKeys', 1);
+		//~local.sendMsg('pitchHat', 1);
 		~cntActLine3ButTS3=val;
 	}
 	*actLine3ButA3{|val|
@@ -299,7 +299,7 @@ IFAPCMn{
 	//--4
 	*actLine4ButTS4{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS4, val); //ButTS
-		~local.sendMsg('pitchKeys', 1);
+
 		~cntActLine4ButTS4=val;
 	}
 	*actLine4ButA4{|val|
@@ -322,7 +322,7 @@ IFAPCMn{
 	//--5
 	*actLine5ButTS5{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS5, val); //ButTS
-
+		~local.sendMsg('pitchSamp', 1);
 		~cntActLine5ButTS5=val;
 	}
 	*actLine5ButA5{|val|
@@ -417,7 +417,8 @@ IFAPCMn{
 		~apcMnFad1=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-			IFKick.set1(\susM,val+0.15);
+			IFBass.set1(\susM,val);
+			//IFKick.set1(\susM,val+0.15);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd1);
 
 		////--------------------line2
@@ -425,7 +426,7 @@ IFAPCMn{
 		~apcMnFad2=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-			IFSnr.set1(\susM,val+0.1);
+			//IFSnr.set1(\susM,val+0.1);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd2);
 
 		////--------------------line3
@@ -433,7 +434,8 @@ IFAPCMn{
 		~apcMnFad3=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-			IFHat.set1(\susM,val+0.15);
+			IFKeys.set1(\susM,val);
+			//IFHat.set1(\susM,val+0.15);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd3);
 
 		//--------------------line4
@@ -441,7 +443,7 @@ IFAPCMn{
 		~apcMnFad4=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-			IFKeys.set1(\susM,val);
+			//IFKeys.set1(\susM,val);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd4);
 
 		//--------------------line5
@@ -449,7 +451,7 @@ IFAPCMn{
 		~apcMnFad5=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-
+			IFSamp.set1(\susM,val);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd5);
 
 		//--------------------line6
@@ -473,7 +475,7 @@ IFAPCMn{
 		~apcMnFad8=MIDIFunc.cc( {
 			arg vel,val;
 			val=vel/127;
-			IFBass.set1(\susM,val);
+			//IFBass.set1(\susM,val);
 		},srcID:~apcMnInID, chan:~apcMnCh, ccNum:~apcFd8);
 
 	}

@@ -38,6 +38,10 @@ Ambk{
 		~ptF2CutABK=29;
 		~ptF2ResABK=30;
 		~ptMixABK=22;
+		~ptEnv1AttABK=73;
+		~ptEnv1DecABK=75;
+		~ptEnv1SusABK=70;
+		~ptEnv1RlsABK=72;
 
 		Ambk.multi(ch:~pt1,bnk:\a,prg:0);
 	}
@@ -113,6 +117,13 @@ Ambk{
 			\pt4F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt4F1Cut,val);}, //ptF1Cut
 			\pt5F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt5F1Cut,val);}, //ptF1Cut
 			\pt6F1Cut, {this.md(pt,~ptF1CutABK, vel);Ambk.lbl(\ABKpt6F1Cut,val);}, //ptF1Cut
+			//F1Res
+			\pt1F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt1F1Res,val);}, //ptF1Res
+			\pt2F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt2F1Res,val);}, //ptF1Res
+			\pt3F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt3F1Res,val);}, //ptF1Res
+			\pt4F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt4F1Res,val);}, //ptF1Res
+			\pt5F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt5F1Res,val);}, //ptF1Res
+			\pt6F1Res, {this.md(pt,~ptF1ResABK, vel);Ambk.lbl(\ABKpt6F1Res,val);}, //ptF1Res
 			//Mix
 			\pt1Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt1Mix,val);}, //ptMix
 			\pt2Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt2Mix,val);}, //ptMix
@@ -120,6 +131,34 @@ Ambk{
 			\pt4Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt4Mix,val);}, //ptMix
 			\pt5Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt5Mix,val);}, //ptMix
 			\pt6Mix, {this.md(pt,~ptMixABK, vel);Ambk.lbl(\ABKpt6Mix,val);}, //ptMix
+			//Env1Att
+			\pt1Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt1Env1Att,val);}, //ptEnv1Att
+			\pt2Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt2Env1Att,val);}, //ptEnv1Att
+			\pt3Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt3Env1Att,val);}, //ptEnv1Att
+			\pt4Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt4Env1Att,val);}, //ptEnv1Att
+			\pt5Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt5Env1Att,val);}, //ptEnv1Att
+			\pt6Env1Att, {this.md(pt,~ptEnv1AttABK, vel);Ambk.lbl(\ABKpt6Env1Att,val);}, //ptEnv1Att
+			//Env1Dec
+			\pt1Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt1Env1Dec,val);}, //ptEnv1Dec
+			\pt2Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt2Env1Dec,val);}, //ptEnv1Dec
+			\pt3Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt3Env1Dec,val);}, //ptEnv1Dec
+			\pt4Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt4Env1Dec,val);}, //ptEnv1Dec
+			\pt5Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt5Env1Dec,val);}, //ptEnv1Dec
+			\pt6Env1Dec, {this.md(pt,~ptEnv1DecABK, vel);Ambk.lbl(\ABKpt6Env1Dec,val);}, //ptEnv1Dec
+			//Env1Sus
+			\pt1Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt1Env1Sus,val);}, //ptEnv1Sus
+			\pt2Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt2Env1Sus,val);}, //ptEnv1Sus
+			\pt3Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt3Env1Sus,val);}, //ptEnv1Sus
+			\pt4Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt4Env1Sus,val);}, //ptEnv1Sus
+			\pt5Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt5Env1Sus,val);}, //ptEnv1Sus
+			\pt6Env1Sus, {this.md(pt,~ptEnv1SusABK, vel);Ambk.lbl(\ABKpt6Env1Sus,val);}, //ptEnv1Sus
+			//Env1Rls
+			\pt1Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt1Env1Rls,val);}, //ptEnv1Rls
+			\pt2Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt2Env1Rls,val);}, //ptEnv1Rls
+			\pt3Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt3Env1Rls,val);}, //ptEnv1Rls
+			\pt4Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt4Env1Rls,val);}, //ptEnv1Rls
+			\pt5Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt5Env1Rls,val);}, //ptEnv1Rls
+			\pt6Env1Rls, {this.md(pt,~ptEnv1RlsABK, vel);Ambk.lbl(\ABKpt6Env1Rls,val);}, //ptEnv1Rls
 
 
 		);
@@ -148,12 +187,47 @@ Ambk{
 				'pt5F1CutT',{ this.cc(\pt5,\pt5F1Cut,vel);},
 				'pt6F1CutT',{ this.cc(\pt6,\pt6F1Cut,vel);},
 
+				'pt1F1ResT',{ this.cc(\pt1,\pt1F1Res,vel);},
+				'pt2F1ResT',{ this.cc(\pt2,\pt2F1Res,vel);},
+				'pt3F1ResT',{ this.cc(\pt3,\pt3F1Res,vel);},
+				'pt4F1ResT',{ this.cc(\pt4,\pt4F1Res,vel);},
+				'pt5F1ResT',{ this.cc(\pt5,\pt5F1Res,vel);},
+				'pt6F1ResT',{ this.cc(\pt6,\pt6F1Res,vel);},
+
 				'pt1MixT',{ this.cc(\pt1,\pt1Mix,vel);},
 				'pt2MixT',{ this.cc(\pt2,\pt2Mix,vel);},
 				'pt3MixT',{ this.cc(\pt3,\pt3Mix,vel);},
 				'pt4MixT',{ this.cc(\pt4,\pt4Mix,vel);},
 				'pt5MixT',{ this.cc(\pt5,\pt5Mix,vel);},
 				'pt6MixT',{ this.cc(\pt6,\pt6Mix,vel);},
+				//Env1Att
+				'pt1Env1AttT',{ this.cc(\pt1,\pt1Env1Att,vel);},
+				'pt2Env1AttT',{ this.cc(\pt2,\pt2Env1Att,vel);},
+				'pt3Env1AttT',{ this.cc(\pt3,\pt3Env1Att,vel);},
+				'pt4Env1AttT',{ this.cc(\pt4,\pt4Env1Att,vel);},
+				'pt5Env1AttT',{ this.cc(\pt5,\pt5Env1Att,vel);},
+				'pt6Env1AttT',{ this.cc(\pt6,\pt6Env1Att,vel);},
+				//Env1Dec
+				'pt1Env1DecT',{ this.cc(\pt1,\pt1Env1Dec,vel);},
+				'pt2Env1DecT',{ this.cc(\pt2,\pt2Env1Dec,vel);},
+				'pt3Env1DecT',{ this.cc(\pt3,\pt3Env1Dec,vel);},
+				'pt4Env1DecT',{ this.cc(\pt4,\pt4Env1Dec,vel);},
+				'pt5Env1DecT',{ this.cc(\pt5,\pt5Env1Dec,vel);},
+				'pt6Env1DecT',{ this.cc(\pt6,\pt6Env1Dec,vel);},
+				//Env1Sus
+				'pt1Env1SusT',{ this.cc(\pt1,\pt1Env1Sus,vel);},
+				'pt2Env1SusT',{ this.cc(\pt2,\pt2Env1Sus,vel);},
+				'pt3Env1SusT',{ this.cc(\pt3,\pt3Env1Sus,vel);},
+				'pt4Env1SusT',{ this.cc(\pt4,\pt4Env1Sus,vel);},
+				'pt5Env1SusT',{ this.cc(\pt5,\pt5Env1Sus,vel);},
+				'pt6Env1SusT',{ this.cc(\pt6,\pt6Env1Sus,vel);},
+				//Env1Rls
+				'pt1Env1RlsT',{ this.cc(\pt1,\pt1Env1Rls,vel);},
+				'pt2Env1RlsT',{ this.cc(\pt2,\pt2Env1Rls,vel);},
+				'pt3Env1RlsT',{ this.cc(\pt3,\pt3Env1Rls,vel);},
+				'pt4Env1RlsT',{ this.cc(\pt4,\pt4Env1Rls,vel);},
+				'pt5Env1RlsT',{ this.cc(\pt5,\pt5Env1Rls,vel);},
+				'pt6Env1RlsT',{ this.cc(\pt6,\pt6Env1Rls,vel);},
 
 			);
 		},path:oscName);
@@ -173,6 +247,13 @@ Ambk{
 		this.oscResp(respName:'pt4F1CutResp', oscName:'ABKpt4F1Cut', playDir:'pt4F1CutT');
 		this.oscResp(respName:'pt5F1CutResp', oscName:'ABKpt5F1Cut', playDir:'pt5F1CutT');
 		this.oscResp(respName:'pt6F1CutResp', oscName:'ABKpt6F1Cut', playDir:'pt6F1CutT');
+		//ptF1Res
+		this.oscResp(respName:'pt1F1ResResp', oscName:'ABKpt1F1Res', playDir:'pt1F1ResT');
+		this.oscResp(respName:'pt2F1ResResp', oscName:'ABKpt2F1Res', playDir:'pt2F1ResT');
+		this.oscResp(respName:'pt3F1ResResp', oscName:'ABKpt3F1Res', playDir:'pt3F1ResT');
+		this.oscResp(respName:'pt4F1ResResp', oscName:'ABKpt4F1Res', playDir:'pt4F1ResT');
+		this.oscResp(respName:'pt5F1ResResp', oscName:'ABKpt5F1Res', playDir:'pt5F1ResT');
+		this.oscResp(respName:'pt6F1ResResp', oscName:'ABKpt6F1Res', playDir:'pt6F1ResT');
 		//ptMix
 		this.oscResp(respName:'pt1MixResp', oscName:'ABKpt1Mix', playDir:'pt1MixT');
 		this.oscResp(respName:'pt2MixResp', oscName:'ABKpt2Mix', playDir:'pt2MixT');
@@ -180,6 +261,34 @@ Ambk{
 		this.oscResp(respName:'pt4MixResp', oscName:'ABKpt4Mix', playDir:'pt4MixT');
 		this.oscResp(respName:'pt5MixResp', oscName:'ABKpt5Mix', playDir:'pt5MixT');
 		this.oscResp(respName:'pt6MixResp', oscName:'ABKpt6Mix', playDir:'pt6MixT');
+		//ptEnv1Att
+		this.oscResp(respName:'pt1Env1AttResp', oscName:'ABKpt1Env1Att', playDir:'pt1Env1AttT');
+		this.oscResp(respName:'pt2Env1AttResp', oscName:'ABKpt2Env1Att', playDir:'pt2Env1AttT');
+		this.oscResp(respName:'pt3Env1AttResp', oscName:'ABKpt3Env1Att', playDir:'pt3Env1AttT');
+		this.oscResp(respName:'pt4Env1AttResp', oscName:'ABKpt4Env1Att', playDir:'pt4Env1AttT');
+		this.oscResp(respName:'pt5Env1AttResp', oscName:'ABKpt5Env1Att', playDir:'pt5Env1AttT');
+		this.oscResp(respName:'pt6Env1AttResp', oscName:'ABKpt6Env1Att', playDir:'pt6Env1AttT');
+		//ptEnv1Dec
+		this.oscResp(respName:'pt1Env1DecResp', oscName:'ABKpt1Env1Dec', playDir:'pt1Env1DecT');
+		this.oscResp(respName:'pt2Env1DecResp', oscName:'ABKpt2Env1Dec', playDir:'pt2Env1DecT');
+		this.oscResp(respName:'pt3Env1DecResp', oscName:'ABKpt3Env1Dec', playDir:'pt3Env1DecT');
+		this.oscResp(respName:'pt4Env1DecResp', oscName:'ABKpt4Env1Dec', playDir:'pt4Env1DecT');
+		this.oscResp(respName:'pt5Env1DecResp', oscName:'ABKpt5Env1Dec', playDir:'pt5Env1DecT');
+		this.oscResp(respName:'pt6Env1DecResp', oscName:'ABKpt6Env1Dec', playDir:'pt6Env1DecT');
+		//ptEnv1Sus
+		this.oscResp(respName:'pt1Env1SusResp', oscName:'ABKpt1Env1Sus', playDir:'pt1Env1SusT');
+		this.oscResp(respName:'pt2Env1SusResp', oscName:'ABKpt2Env1Sus', playDir:'pt2Env1SusT');
+		this.oscResp(respName:'pt3Env1SusResp', oscName:'ABKpt3Env1Sus', playDir:'pt3Env1SusT');
+		this.oscResp(respName:'pt4Env1SusResp', oscName:'ABKpt4Env1Sus', playDir:'pt4Env1SusT');
+		this.oscResp(respName:'pt5Env1SusResp', oscName:'ABKpt5Env1Sus', playDir:'pt5Env1SusT');
+		this.oscResp(respName:'pt6Env1SusResp', oscName:'ABKpt6Env1Sus', playDir:'pt6Env1SusT');
+		//ptEnv1Rls
+		this.oscResp(respName:'pt1Env1RlsResp', oscName:'ABKpt1Env1Rls', playDir:'pt1Env1RlsT');
+		this.oscResp(respName:'pt2Env1RlsResp', oscName:'ABKpt2Env1Rls', playDir:'pt2Env1RlsT');
+		this.oscResp(respName:'pt3Env1RlsResp', oscName:'ABKpt3Env1Rls', playDir:'pt3Env1RlsT');
+		this.oscResp(respName:'pt4Env1RlsResp', oscName:'ABKpt4Env1Rls', playDir:'pt4Env1RlsT');
+		this.oscResp(respName:'pt5Env1RlsResp', oscName:'ABKpt5Env1Rls', playDir:'pt5Env1RlsT');
+		this.oscResp(respName:'pt6Env1RlsResp', oscName:'ABKpt6Env1Rls', playDir:'pt6Env1RlsT');
 
 
 	}
@@ -200,6 +309,10 @@ Ambk.oscResp(respName:'pt1VolResp', oscName:'ABKpt1Vol', playDir:'pt1VolT');
 Ambk.lbl(\ABKpt1Vol,5);
 Ambk.md(\pt1,~ptVolABK,10);
 Ambk.cc(\pt1,\pt1Vol,0);
+Ambk.cc(\pt1,\pt1Env1Att,10);
+Ambk.cc(\pt1,\pt1Env1Dec,10);
+Ambk.cc(\pt1,\pt1Env1Sus,10);
+Ambk.cc(\pt1,\pt1Env1Rls,10);
 ~vAmbk.control(0, 7, 12);
 
 127*0.79

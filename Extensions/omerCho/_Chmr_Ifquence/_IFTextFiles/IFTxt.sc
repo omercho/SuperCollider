@@ -146,7 +146,7 @@ IFTxt{
 		}
 	}
 
-	*writeRndGlobalLines{|trck,prt,inst|
+	/**writeRndGlobalLines{|trck,prt,inst|
 		var cnt=0, min=0,max=1,seq,lineBreak,tmLine;
 		var tmp,scl1,scl2,rootNote,pitchPat,pitchDur,seq1Dur,seq2Dur,seq3Dur,seq4Dur,seqMulDir;
 		var rootStp,step,seqMul;
@@ -239,7 +239,7 @@ IFTxt{
 			0.02.wait;
 			file.close;
 		};
-	}
+	}*/
 	*writeRndFxLines{|trck,prt,inst|
 		var cnt=1, min=0,max=1,seq,lineBreak,tmLine;
 		var tmp,scl1,scl2,rootNote,pitchPat,pitchDur;
@@ -278,14 +278,14 @@ IFTxt{
 					0.1.wait;
 				};
 			},
-			'rndGlobalTag',{
+			/*'rndGlobalTag',{
 				fork{
 					this.writeRndGlobalLines(trck,prt,inst);
 					0.1.wait;
 					this.readIfTrack(trck,prt,inst);
 					0.1.wait;
 				};
-			},
+			},*/
 			'rndFxTag',{
 				fork{
 					this.writeRndFxLines(trck,prt,inst);
@@ -301,7 +301,7 @@ IFTxt{
 			IFTxt.make(\00,\01,\ifGlbStrt,'rndGlbStrtTag');
 			0.1.wait;
 			//IFTxt.make(\00,\01,\ifGlobal,'rndGlobalTag');
-			0.1.wait;
+			//0.1.wait;
 			IFTxt.make(\00,\01,\ifFx,'rndFxTag');
 			0.1.wait;
 		};
@@ -325,7 +325,7 @@ IFTxt{
 		~tGlbMph=IFTxt.line(5);
 		IFTxt.storeGlblAtStart;
 	}
-	*readGlbl{|trck,prtDir,prt|
+	/**readGlbl{|trck,prtDir,prt|
 		IFTxt.readIfTrack(trck,prtDir,\ifGlobal);
 		prt.switch(
 			\01, {
@@ -366,7 +366,7 @@ IFTxt{
 			},
 		);
 		IFTxt.storeGlblPatValues;
-	}
+	}*/
 	*readFx{|trck,prtDir|
 		IFTxt.readIfTrack(trck,prtDir,\ifFx);
 
@@ -392,7 +392,7 @@ IFTxt{
 		);
 		Mopho.bank(~chMopho,~tGlbMph[0],~tGlbMph[1]);
 	}
-	*storeGlblPatValues{
+	/**storeGlblPatValues{
 		"IFTxt.storeGlblPatValues ".postln;
 		/*IFGlobal.setAtStart(
 		tmp:~tGlbStrt[0],scl1:~tGlbStrt[1],scl2:~tGlbStrt[2],root:~tGlbStrt[3],
@@ -440,7 +440,7 @@ IFTxt{
 			mulSeq3:~tGlbRt[6],step3:~tGlbRt[7],
 			mulSeq4:~tGlbRt[8],step4:~tGlbRt[9],
 		);
-	}
+	}*/
 	*storeGlblFxValues{
 		"IFTxt.storeGlblFxValues ".postln;
 

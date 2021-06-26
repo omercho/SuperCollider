@@ -53,11 +53,11 @@ IFSequence {
 	}
 
 	*stepMaster{|i|this.stMstr(i);}
-	*stepCnt{|i|this.stCnt(i);}
 	*step1{|i|this.st1(i);}
 	*step2{|i|this.st2(i);}
 	*step3{|i|this.st3(i);}
 	*step4{|i|this.st4(i);}
+	*stepCnt{|i|this.stCnt(i);}
 
 	*stMstr{|i|
 		ledMstrDly=~durMasterPV2.next;
@@ -68,31 +68,27 @@ IFSequence {
 	*st1{|i|
 		this.led1(i);
 		IFLpMnSteps.led1(i);
-		IFSeqHat.stepPack(i);
 		IFSeqSamp.stepPack(i);
 	}
 	*st2{|i|
 		this.led2(i);
 		IFLpMnSteps.led2(i);
 		IFSeqMopho.stepPack(i);
-		IFSeqSnr.stepPack(i);
-
 	}
 	*st3{|i|
 		this.led3(i);
 		IFLpMnSteps.led3(i);
-		IFSeqKick.stepPack(i);
 		IFSeqKeys.stepPack(i);
-
+		IFSeqBass.stepPack(i);
 	}
 	*st4{|i|
 		this.led4(i);
 		IFLpMnSteps.led4(i);
-		IFSeqBass.stepPack(i);
+		IFSeqKick.stepPack(i);
+		IFSeqSnr.stepPack(i);
+		IFSeqHat.stepPack(i);
 		IFSeqVKick.stepPack(i);IFSeqVSnr.stepPack(i);IFSeqVHat.stepPack(i);
 		IFSeqVClap.stepPack(i);IFSeqVTomL.stepPack(i);IFSeqVTomH.stepPack(i);
-
-		//IFSeqSamp.stepPack(i);
 
 	}
 	*stCnt{|i|

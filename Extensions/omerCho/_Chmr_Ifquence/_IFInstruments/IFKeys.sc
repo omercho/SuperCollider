@@ -164,13 +164,13 @@ IFKeys {
 		val=i;
 		Pbind(
 			\chan, ~chAbk2,
-			\type, \midi, \midiout,~vKeys, \scale, Pfunc({~scl2}, inf),
+			\type, \midi, \midiout,~vAmbk, \scale, Pfunc({~scl2}, inf),
 			\dur, Pseq([~dur1KeysP.next],~act1KeysP.next),
 			\degree, Pseq([[~nt1KeysP.next]], inf),
 			//\amp, Pseq([~vol1KeysP.next*~amp1KeysP.next], inf),
 			\amp, Pseq([~amp1KeysP.next], inf),
 			\sustain, Pseq([1*~sus1KeysP.next],inf)*~susMul1Keys,
-			\mtranspose, Pseq([~trans1KeysP.next], inf)+~trKeys+~trans1CntKeysP.next+~trans1ShufKeysP.next,
+			\mtranspose, Pseq([~trans1KeysP.next], inf)+~trans1ShufKeysP.next+~trans1CntKeysP.next+~trKeys,
 			\ctranspose, Pseq([~root1KeysP.next],inf),
 			\octave, Pseq([~oct1KeysP.next], inf)+~octMulKeys,
 			\harmonic, Pseq([~hrm1KeysP.next], inf)+~harmKeys
@@ -343,37 +343,55 @@ IFKeys {
 				~crntKeys_vol=val1;
 				this.lbl1(\IFvolKeys,val1);
 				~vol1Keys.source = val1;
+				Ambk.cc(\pt2,\pt2Vol,vel1);
 				//VKeys.cc(\expresVK,vel1);
 				//~mdOut.control(6, 1, vel1);
 			},
 			\att, {
 				~crntKeys_att=val1;
 				this.lbl1(\IFattKeys,val1);
+				Ambk.cc(\pt2,\pt2Env1Att,vel1);
 				//VKeys.cc(\envAttVK,vel1);
-				~mdOut.control(6, 5, vel1);
+				//~mdOut.control(6, 5, vel1);
 			},
 			\dec, {
 				~crntKeys_dec=val1;
 				this.lbl1(\IFdecKeys,val1);
+				Ambk.cc(\pt2,\pt2Env1Dec,vel1);
 				//VKeys.cc(\envDecVK,vel1);
-				~mdOut.control(6, 127, vel1);
+				//~mdOut.control(6, 127, vel1);
 			},
 			\sus, {
 				~crntKeys_sus=val1;
 				this.lbl1(\IFsusKeys,val1);
+				Ambk.cc(\pt2,\pt2Env1Sus,vel1);
 				//VKeys.cc(\envSusVK,vel1);
-				~mdOut.control(6, 6, vel1);
+				//~mdOut.control(6, 6, vel1);
 			},
 			\rls, {
 				~crntKeys_rls=val1;
 				this.lbl1(\IFrlsKeys,val1);
-				~mdOut.control(6, 8, vel1);
+				Ambk.cc(\pt2,\pt2Env1Rls,vel1);
+				//~mdOut.control(6, 8, vel1);
 			},
 			\pan, {
 				~crntKeys_pan=val1;
 				this.lbl1(\IFpanKeys,val1);
+				Ambk.cc(\pt2,\pt2Mix,vel1);
 				//VKeys.cc(\vcfEgVK,vel1);
-				~mdOut.control(6, 16, vel1);
+				//~mdOut.control(6, 16, vel1);
+			},
+			\cut, {
+				~crntKeys_cut=val1;
+				this.lbl1(\IFcutKeys,val1);
+				Ambk.cc(\pt2,\pt2F1Cut,vel1);
+				//~mdOut.control(5, 13, vel1);
+			},
+			\res, {
+				~crntKeys_res=val1;
+				this.lbl1(\IFresKeys,val1);
+				Ambk.cc(\pt2,\pt2F1Res,vel1);
+				//~mdOut.control(5, 14, vel1);
 			},
 			\octM, {
 				~crntKeys_octM=val1;
@@ -447,6 +465,10 @@ IFKeys {
 				'susKeys_T' , { this.set1(\sus,val1);},
 				'rlsKeys_T' , { this.set1(\rls,val1);},
 				'panKeys_T' , { this.set1(\pan,val1);},
+
+				'cutKeys_T' , { this.set1(\cut,val1);},
+				'resKeys_T' , { this.set1(\res,val1);},
+
 				'sendKeys_T', { this.set2(\send,val1,val2);},
 				'susMKeys_T', { this.set1(\susM,val1);},
 				'octMKeys_T', { this.set1(\octM,val1);},
@@ -467,6 +489,10 @@ IFKeys {
 		this.oscResp(respName:\decKeysResp, oscName:\IFdecKeys, playTag:'decKeys_T');
 		this.oscResp(respName:\susKeysResp, oscName:\IFsusKeys, playTag:'susKeys_T');
 		this.oscResp(respName:\rlsKeysResp, oscName:\IFrlsKeys, playTag:'rlsKeys_T');
+
+		this.oscResp(respName:\cutKeysResp, oscName:\IFcutKeys, playTag:'cutKeys_T');
+		this.oscResp(respName:\resKeysResp, oscName:\IFresKeys, playTag:'resKeys_T');
+
 		this.oscResp(respName:\panKeysResp, oscName:\IFpanKeys, playTag:'panKeys_T');
 		this.oscResp(respName:\sendKeysResp, oscName:\IFsendKeys, playTag:'sendKeys_T');
 		this.oscResp(respName:\susMKeysResp, oscName:\IFsusMKeys, playTag:'susMKeys_T');
@@ -597,10 +623,6 @@ IFTxtKeys{
 		IFTxtKeys.make(\00,\01,\ifKeys,'rndKeysTag');
 	}
 	*read{|trck,prtDir|
-		/*
-		IFTxt.readIfTrack(\01,\01,\ifKeys);
-		*/
-
 
 		IFTxt.readIfTrack(trck,prtDir,\ifKeys);
 		~tKyAmp=IFTxt.line(1);

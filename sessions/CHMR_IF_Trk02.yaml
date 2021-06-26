@@ -1,10 +1,10 @@
 documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifBass.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifFx.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifGlbStrt.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifGlobal.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifStat.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifBass.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifHat.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifKeys.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifKick.txt
@@ -12,7 +12,6 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifMophoSet.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSamp.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSnr.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifStat.txt
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantMap
@@ -22,82 +21,100 @@ editors: !QVariantMap
             documentIndex: 0
             position: 1014
           - !QVariantMap
-            documentIndex: 4
-            position: 14
+            documentIndex: 1
+            position: 20
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
-            position: 400
+            position: 598
           - !QVariantMap
-            documentIndex: 5
-            position: 535
+            documentIndex: 2
+            position: 73
         - !QVariantList
           - !QVariantMap
             documentIndex: 0
             position: 427
           - !QVariantMap
+            documentIndex: 10
+            position: 228
+          - !QVariantMap
+            documentIndex: 5
+            position: 563
+          - !QVariantMap
+            documentIndex: 7
+            position: 562
+          - !QVariantMap
+            documentIndex: 1
+            position: 0
+          - !QVariantMap
             documentIndex: 2
+            position: 405
+          - !QVariantMap
+            documentIndex: 4
             position: 169
           - !QVariantMap
             documentIndex: 3
-            position: 442
-      state: AAAA/wAAAAEAAAADAAAAcAAAAZgAAAJHAf////8BAAAAAQA=
+            position: 444
+      state: AAAA/wAAAAEAAAADAAAAfwAAAacAAAIrAf////8BAAAAAQA=
     - !QVariantList
       - !QVariantMap
         documentIndex: 0
-        position: 0
-      - !QVariantMap
-        documentIndex: 1
-        position: 0
-      - !QVariantMap
-        documentIndex: 2
         position: 0
       - !QVariantMap
         documentIndex: 4
         position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 4
+        documentIndex: 1
+        position: 0
       - !QVariantMap
         documentIndex: 6
         position: 0
       - !QVariantMap
-        documentIndex: 7
-        position: 0
-      - !QVariantMap
         documentIndex: 8
-        position: 0
+        position: 562
       - !QVariantMap
         documentIndex: 9
-        position: 0
+        position: 255
       - !QVariantMap
         documentIndex: 10
         position: 0
       - !QVariantMap
+        documentIndex: 3
+        position: 267
+      - !QVariantMap
+        documentIndex: 5
+        position: 159
+      - !QVariantMap
         documentIndex: 11
-        position: 0
+        position: 223
       - !QVariantMap
         documentIndex: 12
-        position: 28
+        position: 248
       - !QVariantMap
-        documentIndex: 13
-        position: 16
+        documentIndex: 7
+        position: 55
     - !QVariantList
       - !QVariantMap
         documentIndex: 0
         position: 110
       - !QVariantMap
-        documentIndex: 1
-        position: 0
+        documentIndex: 12
+        position: 255
       - !QVariantMap
-        documentIndex: 5
-        position: 765
-      - !QVariantMap
-        documentIndex: 8
-        position: 564
+        documentIndex: 7
+        position: 303
       - !QVariantMap
         documentIndex: 9
-        position: 456
+        position: 73
+      - !QVariantMap
+        documentIndex: 11
+        position: 255
+      - !QVariantMap
+        documentIndex: 8
+        position: 177
+      - !QVariantMap
+        documentIndex: 5
+        position: 223
   state: AAAA/wAAAAEAAAADAAAB0wAAANQAAADZAQAAAAEBAAAAAgE=
 mainWindow:
   detached: !QVariantMap
@@ -105,4 +122,4 @@ mainWindow:
     help-dock: ""
     post-dock: ""
   geometry: AdnQywACAAAAAAAAAAAAFwAABo8AAAQZAAAAAAAAAC0AAAaPAAAEGQAAAAAAAAAABpA=
-  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAaYAAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh4AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh8AAAGzAAAATAD///8AAARTAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==
+  state: AAAA/wAAAAD9AAAAAgAAAAAAAACVAAAD0vwCAAAAAfsAAAAcAGQAbwBjAHUAbQBlAG4AdABzAC0AZABvAGMAawEAAAAAAAAD0gAAAGcA////AAAAAQAAAa8AAAPS/AIAAAAC+wAAABIAaABlAGwAcAAtAGQAbwBjAGsBAAAAAAAAAh4AAABMAP////sAAAASAHAAbwBzAHQALQBkAG8AYwBrAQAAAh8AAAGzAAAATAD///8AAARKAAAD0gAAAAEAAAACAAAAAQAAAAL8AAAAAA==

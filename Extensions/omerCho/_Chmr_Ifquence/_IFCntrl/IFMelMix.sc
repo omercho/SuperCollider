@@ -231,14 +231,16 @@ IFMelMix{
 				},
 				\fad,{
 					//IFKick.set1(\vol,val);
-					//IFBass.set1(\vol,val);
-					Ambk.cc(\pt1,\pt1Vol,vel*0.75);
+					IFBass.set1(\vol,val);
+					//Ambk.cc(\pt1,\pt1Vol,vel*0.75);
 				},
 				\nobA,{
-					Ambk.cc(\pt1,\pt1F1Cut,vel);
+					IFBass.set1(\cut,val);
+					//Ambk.cc(\pt1,\pt1F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt1,\pt1Mix,vel);
+					IFBass.set1(\pan,val);
+					//Ambk.cc(\pt1,\pt1Mix,vel);
 				},
 				\nobC,{
 
@@ -271,6 +273,7 @@ IFMelMix{
 				},
 				\nobA,{
 					//Ambk.cc(\pt2,\pt2F1Cut,vel);
+					IFBass.set1(\res,val);
 				},
 				\nobB,{
 					//Ambk.cc(\pt2,\pt2Mix,vel);
@@ -436,7 +439,8 @@ IFMelMix{
 					IFMopho.set1(\vol,val);
 				},
 				\nobA,{
-					Mopho.cc('lpfKeyAmnt', vel);
+					Mopho.cc(\lpfFreq, vel);
+					//Mopho.cc('lpfKeyAmnt', vel);
 				},
 				\nobB,{
 					Mopho.cc('oscMix', vel);
@@ -466,17 +470,21 @@ IFMelMix{
 				},
 
 				\fad,{
-					Mopho.cc('vcaLvl', vel);
+					//Mopho.cc('vcaLvl', vel);
+					Mopho.cc(\osc2Sub, vel);
 					//IFBass.set1(\vol,val);
 				},
 				\nobA,{
 					//IFBass.set1(\cut,val);
+
+					Mopho.cc(\lpfRes, vel);
 				},
 				\nobB,{
 					//IFBass.set1(\res,val);
+					Mopho.cc(\env3Amnt, vel);
 				},
 				\nobC,{
-
+					Mopho.cc('lfo1Amnt', vel);
 				},
 			);},
 		);

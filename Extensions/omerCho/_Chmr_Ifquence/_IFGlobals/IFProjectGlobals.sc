@@ -139,7 +139,7 @@ IFGlobal{
 		IFRoot.set(\durMulSeq3,mulSeq3);IFRoot.set(\durMulSeq4,mulSeq4);
 		IFSeqSteps(directM:stepM,direct1:step1,direct2:step2,direct3:step3,direct4:step4);
 	}
-	*setSeqMuls{|mulSeqM,mulSeq1,mulSeq2,mulSeq3,mulSeq4|
+	*setSeqMuls{|mulSeqM,stepM,mulSeq1,step1,mulSeq2,step2,mulSeq3,step3,mulSeq4,step4|
 		IFRoot.set(\durMulSeqM,mulSeqM);
 		IFRoot.set(\durMulSeq1,mulSeq1);IFRoot.set(\durMulSeq2,mulSeq2);
 		IFRoot.set(\durMulSeq3,mulSeq3);IFRoot.set(\durMulSeq4,mulSeq4);

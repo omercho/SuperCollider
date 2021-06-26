@@ -1,77 +1,98 @@
 documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/CommandsOC/CommandsOC.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifStat.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlbStrt.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlobal.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFRoot.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxt.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqDurPat.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxtSeqs.sc
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifFx.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifBass.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKick.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMopho.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSnr.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifHat.txt
-  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKeys.txt
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMophoSet.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKeys.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifHat.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifSnr.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifMopho.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifKick.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifBass.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifFx.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxtSeqs.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqDurPat.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFLoad.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxt.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSequence.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/02/01/ifSeqs.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlobal.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifGlbStrt.txt
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTrackPatterns/01/01/ifStat.txt
 editors: !QVariantMap
   elements: !QVariantList
     - !QVariantList
       - !QVariantMap
-        documentIndex: 3
-        position: 749
-      - !QVariantMap
-        documentIndex: 7
-        position: 4063
-      - !QVariantMap
-        documentIndex: 6
-        position: 9112
-      - !QVariantMap
-        documentIndex: 4
+        documentIndex: 18
         position: 0
       - !QVariantMap
-        documentIndex: 9
-        position: 5932
+        documentIndex: 17
+        position: 0
       - !QVariantMap
-        documentIndex: 5
-        position: 870
+        documentIndex: 16
+        position: 1462
+      - !QVariantMap
+        documentIndex: 11
+        position: 4339
+      - !QVariantMap
+        documentIndex: 12
+        position: 2048
+      - !QVariantMap
+        documentIndex: 15
+        position: 240
+      - !QVariantMap
+        documentIndex: 9
+        position: 8878
+      - !QVariantMap
+        documentIndex: 13
+        position: 8432
     - !QVariantMap
       elements: !QVariantList
         - !QVariantList
           - !QVariantMap
-            documentIndex: 5
+            documentIndex: 16
             position: 503
           - !QVariantMap
-            documentIndex: 7
+            documentIndex: 11
             position: 1309
           - !QVariantMap
-            documentIndex: 3
-            position: 712
+            documentIndex: 18
+            position: 0
           - !QVariantMap
-            documentIndex: 4
+            documentIndex: 19
+            position: 0
+          - !QVariantMap
+            documentIndex: 15
+            position: 202
+          - !QVariantMap
+            documentIndex: 13
+            position: 8440
+          - !QVariantMap
+            documentIndex: 17
             position: 442
           - !QVariantMap
-            documentIndex: 2
-            position: 0
-          - !QVariantMap
-            documentIndex: 6
-            position: 12345
+            documentIndex: 14
+            position: 177
         - !QVariantList
           - !QVariantMap
-            documentIndex: 6
-            position: 12621
+            documentIndex: 13
+            position: 12639
           - !QVariantMap
-            documentIndex: 3
+            documentIndex: 18
             position: 0
           - !QVariantMap
-            documentIndex: 7
+            documentIndex: 11
             position: 360
           - !QVariantMap
-            documentIndex: 8
-            position: 0
+            documentIndex: 10
+            position: 82
+          - !QVariantMap
+            documentIndex: 9
+            position: 5364
+          - !QVariantMap
+            documentIndex: 12
+            position: 528
       state: AAAA/wAAAAEAAAACAAACLwAAAi8B/////wEAAAABAA==
   state: AAAA/wAAAAEAAAACAAABwQAAAcAB/////wEAAAACAA==
 mainWindow:
