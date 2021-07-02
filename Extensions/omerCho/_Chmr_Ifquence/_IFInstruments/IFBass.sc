@@ -397,8 +397,8 @@ IFBass {
 			},
 			\xy2, {
 				this.lbl2(\IFxy2Bass,val1,val2);
-				VBass.cc(\vco2VB,vel2);
-				VBass.cc(\vco3VB,vel1);
+				//VBass.cc(\vco2VB,vel2);
+				//VBass.cc(\vco3VB,vel1);
 				~crntBass_xy2X=val2;
 				~crntBass_xy2Y=val1;
 			},

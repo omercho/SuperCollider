@@ -309,13 +309,16 @@ IFMelMix{
 				},
 				\fad,{
 					//IFHat.set1(\vol,val);
-					Ambk.cc(\pt2,\pt2Vol,vel*0.79);
+					IFKeys.set1(\vol,val);
+					//Ambk.cc(\pt2,\pt2Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt2,\pt2F1Cut,vel);
+					IFKeys.set1(\cut,val);
+					//Ambk.cc(\pt2,\pt2F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt2,\pt2Mix,vel);
+					IFKeys.set1(\pan,val);
+					//Ambk.cc(\pt2,\pt2Mix,vel);
 				},
 				\nobC,{
 					//~tOSCAdrr.sendMsg('hatCln', val);
@@ -345,13 +348,14 @@ IFMelMix{
 				},
 				\nobA,{
 					//Ambk.cc(\pt4,\pt4F1Cut,vel);
+					IFKeys.set1(\res,val);
 				},
 				\nobB,{
 					//Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
 					~tOSCAdrr.sendMsg('volClnKeys', val);
-					~mdOut.control(1, 19, vel); //Cln Keys Vol
+					//~mdOut.control(1, 19, vel); //Cln Keys Vol
 				},
 			);},
 			5,{paramKey.switch(
@@ -374,13 +378,13 @@ IFMelMix{
 					~melAct5ButCCnt=val;
 				},
 				\fad,{
-					Ambk.cc(\pt3,\pt3Vol,vel*0.79);
+					//Ambk.cc(\pt3,\pt3Vol,vel*0.79);
 				},
 				\nobA,{
-					Ambk.cc(\pt3,\pt3F1Cut,vel*0.9);
+					//Ambk.cc(\pt3,\pt3F1Cut,vel*0.9);
 				},
 				\nobB,{
-					Ambk.cc(\pt3,\pt3Mix,vel*0.9);
+					//Ambk.cc(\pt3,\pt3Mix,vel*0.9);
 				},
 				\nobC,{
 
@@ -458,8 +462,8 @@ IFMelMix{
 				},
 				\butB,{
 					~melMix.noteOn(~melMixGlb, ~act8B, val); //But B
-					~tOSCAdrr.sendMsg('shufBass', val);
-					~local.sendMsg('shufBass', val);
+					//~tOSCAdrr.sendMsg('shufBass', val);
+					//~local.sendMsg('shufBass', val);
 					~melAct8ButBCnt=val;
 				},
 				\butC,{

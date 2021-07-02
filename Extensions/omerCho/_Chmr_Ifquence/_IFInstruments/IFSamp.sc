@@ -457,31 +457,50 @@ IFSamp {
 				this.lbl1(\volSamp,val1);
 				//~volSamp.source = val1;
 				//~mdOut.control(7, 1, vel1);
+				Ambk.cc(\pt3,\pt3Vol,vel1);
 			},
 			\att, {
 				~crntSamp_att=val1;
 				this.lbl1(\IFattSamp,val1);
 				//~mdOut.control(7, 5, vel1);
+				Ambk.cc(\pt3,\pt3Env1Att,vel1);
 			},
 			\dec, {
 				~crntSamp_dec=val1;
 				this.lbl1(\IFdecSamp,val1);
 				//~mdOut.control(7, 127, vel1);
+				Ambk.cc(\pt3,\pt3Env1Dec,vel1);
+
 			},
 			\sus, {
 				~crntSamp_sus=val1;
 				this.lbl1(\IFsusSamp,val1);
 				//~mdOut.control(7, 6, vel1);
+				Ambk.cc(\pt3,\pt3Env1Sus,vel1);
 			},
 			\rls, {
 				~crntSamp_rls=val1;
 				this.lbl1(\IFrlsSamp,val1);
 				//~mdOut.control(7, 8, vel1);
+				Ambk.cc(\pt3,\pt3Env1Rls,vel1);
 			},
 			\pan, {
 				~crntSamp_pan=val1;
 				this.lbl1(\IFpanSamp,val1);
 				//~mdOut.control(7, 16, vel1);
+				Ambk.cc(\pt3,\pt3Mix,vel1);
+			},
+			\cut, {
+				~crntSamp_cut=val1;
+				this.lbl1(\IFcutSamp,val1);
+				Ambk.cc(\pt3,\pt3F1Cut,vel1);
+				//~mdOut.control(5, 13, vel1);
+			},
+			\res, {
+				~crntSamp_res=val1;
+				this.lbl1(\IFresSamp,val1);
+				Ambk.cc(\pt3,\pt3F1Res,vel1);
+				//~mdOut.control(5, 14, vel1);
 			},
 			\octM, {
 				~crntSamp_octM=val1;
@@ -552,6 +571,9 @@ IFSamp {
 				'rlsSamp_T' , { this.set1(\rls,val1);},
 				'panSamp_T' , { this.set1(\pan,val1);},
 
+				'cutSamp_T' , { this.set1(\cut,val1);},
+				'resSamp_T' , { this.set1(\res,val1);},
+
 				'sendSamp_T', { this.set2(\send,val1,val2);},
 				'susMSamp_T', { this.set1(\susM,val1);},
 				'octMSamp_T', { this.set1(\octM,val1);},
@@ -573,6 +595,9 @@ IFSamp {
 		this.oscResp(respName:\susSampResp, oscName:\IFsusSamp, playTag:'susSamp_T');
 		this.oscResp(respName:\rlsSampResp, oscName:\IFrlsSamp, playTag:'rlsSamp_T');
 		this.oscResp(respName:\panSampResp, oscName:\IFpanSamp, playTag:'panSamp_T');
+
+		this.oscResp(respName:\cutSampResp, oscName:\IFcutSamp, playTag:'cutSamp_T');
+		this.oscResp(respName:\resSampResp, oscName:\IFresSamp, playTag:'resSamp_T');
 
 		this.oscResp(respName:\sendSampResp, oscName:\IFsendSamp, playTag:'sendSamp_T');
 		this.oscResp(respName:\susMSampResp, oscName:\IFsusMSamp, playTag:'susMSamp_T');
