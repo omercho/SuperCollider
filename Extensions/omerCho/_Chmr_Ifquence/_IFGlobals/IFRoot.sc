@@ -210,6 +210,7 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step3(~stepNum3P.next);
+					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFBass(~tmMulBassP.next*~tmBassP.next);
 					IFKeys(~tmMulKeysP.next*~tmKeysP.next);
 					((~dur3P.next)*(~durMul3P.next)).wait;
@@ -221,10 +222,6 @@ IFRoot {
 			inf.do{
 				1.do {
 					IFSequence.step4(~stepNum4P.next);
-
-
-
-					IFKick(~tmMulKickP.next*~tmKickP.next);
 					IFHat(~tmMulHatP.next*~tmHatP.next);
 					IFSnr(~tmMulSnrP.next*~tmSnrP.next);
 					IFStat.ln01;IFStat.ln02;IFStat.ln03;

@@ -17,6 +17,7 @@ documents: !QVariantList
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFSequence/IFSeqGlobals/IFSeqSteps.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFTextFiles/IFTxtSeqs.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFRoot.sc
+  - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/-iConnectMIDI/IFiConnectMIDI4.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFProjectGlobals.sc
   - /Users/omercho/Library/Application Support/SuperCollider/Extensions/omerCho/_Chmr_Ifquence/_IFGlobals/IFLoad.sc
 editors: !QVariantMap
@@ -25,11 +26,17 @@ editors: !QVariantMap
       elements: !QVariantList
         - !QVariantList
           - !QVariantMap
+            documentIndex: 20
+            position: 0
+          - !QVariantMap
             documentIndex: 0
             position: 1012
           - !QVariantMap
+            documentIndex: 12
+            position: 0
+          - !QVariantMap
             documentIndex: 13
-            position: 13
+            position: 44
         - !QVariantList
           - !QVariantMap
             documentIndex: 8
@@ -38,10 +45,10 @@ editors: !QVariantMap
             documentIndex: 16
             position: 0
           - !QVariantMap
-            documentIndex: 18
+            documentIndex: 19
             position: 0
           - !QVariantMap
-            documentIndex: 19
+            documentIndex: 20
             position: 0
           - !QVariantMap
             documentIndex: 15
@@ -78,14 +85,8 @@ editors: !QVariantMap
             documentIndex: 2
             position: 1
           - !QVariantMap
-            documentIndex: 19
-            position: 2051
-          - !QVariantMap
             documentIndex: 10
             position: 15854
-          - !QVariantMap
-            documentIndex: 17
-            position: 5544
           - !QVariantMap
             documentIndex: 11
             position: 169
@@ -96,15 +97,24 @@ editors: !QVariantMap
             documentIndex: 15
             position: 520
           - !QVariantMap
-            documentIndex: 18
-            position: 8140
-          - !QVariantMap
             documentIndex: 16
             position: 1527
           - !QVariantMap
             documentIndex: 14
-            position: 12765
-      state: AAAA/wAAAAEAAAADAAAAiwAAAUUAAAKNAf////8BAAAAAQA=
+            position: 12485
+          - !QVariantMap
+            documentIndex: 17
+            position: 5544
+          - !QVariantMap
+            documentIndex: 20
+            position: 294
+          - !QVariantMap
+            documentIndex: 19
+            position: 596
+          - !QVariantMap
+            documentIndex: 18
+            position: 623
+      state: AAAA/wAAAAEAAAADAAAAjAAAATsAAAKBAf////8BAAAAAQA=
     - !QVariantList
       - !QVariantMap
         documentIndex: 11
@@ -135,7 +145,7 @@ editors: !QVariantMap
         position: 146
       - !QVariantMap
         documentIndex: 9
-        position: 255
+        position: 127
     - !QVariantList
       - !QVariantMap
         documentIndex: 11

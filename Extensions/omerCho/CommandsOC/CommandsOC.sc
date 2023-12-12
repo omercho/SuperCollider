@@ -7,6 +7,9 @@
 PostAllMIDI.on;
 PostAllMIDI.off;
 
+PostAllOSC.on;
+PostAllOSC.off;
+
 //to find the srcID of MIDIOut sources
 ~mdOut.uid;
 ~mdTouch.uid;

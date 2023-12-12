@@ -378,6 +378,7 @@ IFMelMix{
 					~melAct5ButCCnt=val;
 				},
 				\fad,{
+					IFSamp.set1(\vol,val);
 					//Ambk.cc(\pt3,\pt3Vol,vel*0.79);
 				},
 				\nobA,{
