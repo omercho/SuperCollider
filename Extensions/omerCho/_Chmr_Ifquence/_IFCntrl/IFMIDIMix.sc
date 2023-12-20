@@ -366,13 +366,13 @@ IFMIDIMix{
 					//~tOSCAdrr.sendMsg('volVTomL', val);
 					//~volVTomL.source = val;
 					//IFSnr.set1(\vol,val);
-					Ambk.cc(\pt5,\pt5Vol,vel*0.79);
+					Ambk.cc(\pt5,\pt5Vol,vel*0.75);
 				},
 				\nobA,{
-					Ambk.cc(\pt4,\pt4F1Cut,vel);
+					Ambk.cc(\pt5,\pt5F1Cut,vel);
 				},
 				\nobB,{
-					Ambk.cc(\pt4,\pt4Mix,vel);
+					Ambk.cc(\pt5,\pt5Mix,vel);
 				},
 				\nobC,{
 
@@ -405,7 +405,7 @@ IFMIDIMix{
 				},
 				\fad,{
 					//IFHat.set1(\vol,val);
-					Ambk.cc(\pt6,\pt6Vol,vel*0.79);
+					Ambk.cc(\pt6,\pt6Vol,vel*0.75);
 				},
 				\nobA,{
 					Ambk.cc(\pt6,\pt6F1Cut,vel);

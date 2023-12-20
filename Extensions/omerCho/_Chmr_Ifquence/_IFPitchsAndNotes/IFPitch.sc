@@ -61,9 +61,9 @@ IFPitch {
 		~transSamp.source=(trns);
 	}
 	*trnsCnt{|trns=0|
-		~transCntKick.source=(trns);
-		~transCntSnr.source=(trns);
-		~transCntHat.source=(trns);
+		//~transCntKick.source=(trns);
+		//~transCntSnr.source=(trns);
+		//~transCntHat.source=(trns);
 		~transCntBass.source=(trns);
 		~transCntMopho.source=(trns);
 		~trans1CntKeys.source=(trns);

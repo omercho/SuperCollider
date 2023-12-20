@@ -228,8 +228,8 @@ IFAPCMn{
 	//--1
 	*actLine1ButTS1{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS1, val); //ButTS
-		//~local.sendMsg('pitchKick', 1);
-		~local.sendMsg('pitchBass', 1);
+		~local.sendMsg('pitchBass', val);
+		//~local.sendMsg('pitchBass', 1);
 		~cntActLine1ButTS1=val;
 	}
 	*actLine1ButA1{|val|
@@ -251,7 +251,7 @@ IFAPCMn{
 	//--2
 	*actLine2ButTS2{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS2, val);  //ButTS
-		//~local.sendMsg('pitchSnr', 1);
+		~local.sendMsg('pitchKeys', val);
 		~cntActLine2ButTS2=val;
 	}
 	*actLine2ButA2{|val|
@@ -275,7 +275,7 @@ IFAPCMn{
 	*actLine3ButTS3{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS3, val); //ButTS
 
-		~local.sendMsg('pitchKeys', 1);
+		~local.sendMsg('pitchSamp', val);
 		//~local.sendMsg('pitchHat', 1);
 		~cntActLine3ButTS3=val;
 	}
@@ -299,7 +299,7 @@ IFAPCMn{
 	//--4
 	*actLine4ButTS4{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS4, val); //ButTS
-
+		~local.sendMsg('pitchMopho', val);
 		~cntActLine4ButTS4=val;
 	}
 	*actLine4ButA4{|val|
@@ -322,7 +322,7 @@ IFAPCMn{
 	//--5
 	*actLine5ButTS5{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS5, val); //ButTS
-		~local.sendMsg('pitchSamp', 1);
+		~local.sendMsg('pitchKick', val);
 		~cntActLine5ButTS5=val;
 	}
 	*actLine5ButA5{|val|
@@ -345,7 +345,7 @@ IFAPCMn{
 	//--6
 	*actLine6ButTS6{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS6, val); //ButTS
-
+		~local.sendMsg('pitchSnr', val);
 		~cntActLine6ButTS6=val;
 	}
 	*actLine6ButA6{|val|
@@ -368,7 +368,7 @@ IFAPCMn{
 	//--7
 	*actLine7ButTS7{|val|
 		~apcMn.noteOn(~apcLn1, ~actButTS7, val); //ButTS
-		~local.sendMsg('pitchMopho', 1);
+		~local.sendMsg('pitchHat', val);
 		~cntActLine7ButTS7=val;
 	}
 	*actLine7ButA7{|val|

@@ -267,7 +267,7 @@ IFMelMix{
 					~melAct2ButCCnt=val;
 				},
 				\fad,{
-					~tOSCAdrr.sendMsg('volSnr', val);
+					//~tOSCAdrr.sendMsg('volSnr', val);
 					//IFSnr.set1(\vol,val);
 					//Ambk.cc(\pt2,\pt2Vol,vel*0.79);
 				},
@@ -354,7 +354,7 @@ IFMelMix{
 					//Ambk.cc(\pt4,\pt4Mix,vel);
 				},
 				\nobC,{
-					~tOSCAdrr.sendMsg('volClnKeys', val);
+					//~tOSCAdrr.sendMsg('volClnKeys', val);
 					//~mdOut.control(1, 19, vel); //Cln Keys Vol
 				},
 			);},
@@ -382,9 +382,11 @@ IFMelMix{
 					//Ambk.cc(\pt3,\pt3Vol,vel*0.79);
 				},
 				\nobA,{
+					IFSamp.set1(\cut,val);
 					//Ambk.cc(\pt3,\pt3F1Cut,vel*0.9);
 				},
 				\nobB,{
+					IFSamp.set1(\pan,val);
 					//Ambk.cc(\pt3,\pt3Mix,vel*0.9);
 				},
 				\nobC,{
@@ -412,6 +414,7 @@ IFMelMix{
 					//Ambk.cc(\pt6,\pt6Vol,vel*0.79);
 				},
 				\nobA,{
+					IFSamp.set1(\res,val);
 					//Ambk.cc(\pt6,\pt6F1Cut,vel*0.9);
 				},
 				\nobB,{

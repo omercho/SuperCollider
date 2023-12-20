@@ -93,7 +93,7 @@ editors: !QVariantMap
             position: 9625
           - !QVariantMap
             documentIndex: 46
-            position: 16445
+            position: 16449
           - !QVariantMap
             documentIndex: 40
             position: 0
@@ -130,9 +130,6 @@ editors: !QVariantMap
           - !QVariantMap
             documentIndex: 35
             position: 8239
-          - !QVariantMap
-            documentIndex: 34
-            position: 10060
           - !QVariantMap
             documentIndex: 26
             position: 8866
@@ -206,6 +203,9 @@ editors: !QVariantMap
             documentIndex: 32
             position: 7312
           - !QVariantMap
+            documentIndex: 34
+            position: 5101
+          - !QVariantMap
             documentIndex: 33
             position: 8796
         - !QVariantList
@@ -226,8 +226,20 @@ editors: !QVariantMap
             position: 436
           - !QVariantMap
             documentIndex: 15
-            position: 10659
-      state: AAAA/wAAAAEAAAACAAAC4wAAAe4B/////wEAAAABAA==
+            position: 11040
+          - !QVariantMap
+            documentIndex: 53
+            position: 0
+          - !QVariantMap
+            documentIndex: 47
+            position: 0
+          - !QVariantMap
+            documentIndex: 46
+            position: 5024
+          - !QVariantMap
+            documentIndex: 32
+            position: 8918
+      state: AAAA/wAAAAEAAAACAAACpAAAAi0B/////wEAAAABAA==
     - !QVariantMap
       elements: !QVariantList
         - !QVariantList
@@ -254,7 +266,7 @@ editors: !QVariantMap
             position: 2006
           - !QVariantMap
             documentIndex: 46
-            position: 2669
+            position: 2673
           - !QVariantMap
             documentIndex: 30
             position: 380
@@ -377,7 +389,7 @@ editors: !QVariantMap
             position: 1598
           - !QVariantMap
             documentIndex: 33
-            position: 7243
+            position: 7564
         - !QVariantList
           - !QVariantMap
             documentIndex: 3
@@ -405,6 +417,9 @@ editors: !QVariantMap
             position: 10463
           - !QVariantMap
             documentIndex: 21
+            position: 249
+          - !QVariantMap
+            documentIndex: 12
             position: 0
       state: AAAA/wAAAAEAAAACAAAC4gAAAe8B/////wEAAAABAA==
   state: AAAA/wAAAAEAAAACAAABwQAAAcAB/////wEAAAACAA==
